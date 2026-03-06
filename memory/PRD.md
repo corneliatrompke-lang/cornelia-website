@@ -58,6 +58,14 @@ Create a cinematic editorial luxury marketing website for Cornelia Trompke — a
 - Preloader with CT logo mark + progress bar (~2.5s)
 - Neural network canvas background (custom canvas API, gold nodes + connections)
 - Scroll-reveal animations (framer-motion useInView)
+- **SVG Venn Diagram** (homepage): Two text-keyword circles rotating at different speeds
+  - Keywords form the circle edges (no stroke/fill)
+  - CW sweep paths — text reads left-to-right at top of each circle
+  - Three-layer SVG masking for interlocking chain-link illusion
+  - Scroll-triggered Gold S-curve arrow (IntersectionObserver, framer-motion pathLength animation)
+  - Arrow: #C8A96A Gold, strokeWidth 2.2, open chevron arrowhead
+  - Hover on circles pauses orbit animation
+  - Background: bg-ivory (merges seamlessly with Philosophy section)
 - Smooth hover transitions on all interactive elements
 - Scrolling marquee ticker
 
@@ -139,6 +147,7 @@ Create a cinematic editorial luxury marketing website for Cornelia Trompke — a
 ## Prioritized Backlog
 
 ### P0 (Must Have — Pre-Launch)
+- [x] Venn Diagram complete redesign (SVG text-circles, interlocking masking, Gold arrow)
 - [ ] Replace placeholder copy with final client copy
 - [ ] Replace portrait placeholder with real Cornelia photo
 - [ ] Update WhatsApp number (currently placeholder 49030000000)

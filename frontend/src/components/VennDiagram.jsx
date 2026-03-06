@@ -1,37 +1,95 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { useLanguage } from "../context/LanguageContext";
 
-// Two distinct keyword sets
-const LEFT_TEXT  = "EXECUTIVE DEPTH  ·  SYSTEMIC CLARITY  ·  ORGANISATIONAL CHANGE  ·  LEADERSHIP  ·  ";
-const RIGHT_TEXT = "NERVOUS SYSTEM  ·  TRANSFORMATION  ·  NARM  ·  INTEGRAL COACHING  ·  ";
+// ── SVG viewport ────────────────────────────────────────────────────────────
+const W = 1000;
+const H = 530;
 
-// SVG viewport
-const W  = 900;
-const H  = 480;
+// ── Circle geometry ──────────────────────────────────────────────────────────
+const LX = 340;   // Left circle centre X
+const LY = 255;   // Shared centre Y
+const RX = 660;   // Right circle centre X
+const R  = 200;   // Radius
 
-// Circle geometry
-const LX = 320;  // left circle centre x
-const LY = 210;  // left circle centre y (shared y)
-const RX = 580;  // right circle centre x
-const R  = 185;  // radius
+// Derived values
+const INT_X   = (LX + RX) / 2;                                      // 500
+const D_HALF  = (RX - LX) / 2;                                      // 160
+const H_LENS  = Math.round(Math.sqrt(R * R - D_HALF * D_HALF));     // 120
+const BOT_Y   = LY + H_LENS;                                         // 375
+const L_EDGE  = RX - R;                                               // 460
+const R_EDGE  = LX + R;                                               // 540
 
-// Intersection lens bottom tip:
-//   y = LY + sqrt(R² - (midX - LX)²)
-//   midX = (LX + RX) / 2 = 450
-//   y = 210 + sqrt(185² - 130²) ≈ 210 + 131.6 = 341.6
-const INT_X      = (LX + RX) / 2;   // 450
-const INT_Y_BOTTOM = 344;            // ≈ bottom tip of lens
+// ── Circle text path — CW so text at the top reads left → right ────────────
+// sweep=1 (CW): leftmost → (upward via 12 o-clock) → rightmost → (downward via 6 o-clock) → back
+const circPath = (cx, cy, r) =>
+  `M ${cx - r} ${cy} A ${r} ${r} 0 0 1 ${cx + r} ${cy} A ${r} ${r} 0 0 1 ${cx - r} ${cy}`;
+
+// ── Bottom-lens mask path ────────────────────────────────────────────────────
+// Traces the region where y ≥ LY inside both circles (right circle appears on
+// top here, giving the interlocking / chain-link illusion).
+// Start at R_EDGE (3-o-clock of left circle), arc CW down left circle to
+// bottom crossing, arc CW up right circle back to L_EDGE, close path.
+const BOTTOM_LENS = [
+  `M ${R_EDGE} ${LY}`,
+  `A ${R} ${R} 0 0 1 ${INT_X} ${BOT_Y}`,  // left circle — CW (3-o-clock down to 4-5)
+  `A ${R} ${R} 0 0 1 ${L_EDGE} ${LY}`,    // right circle — CW (7-8-o-clock up to 9)
+  "Z",
+].join(" ");
+
+// ── Keywords ─────────────────────────────────────────────────────────────────
+// Repeated 3× to fill full circumference ≈ 1257 px
+const L_BASE = "LEADERSHIP  ·  EXECUTIVE DEPTH  ·  SYSTEMIC CLARITY  ·  ORGANISATIONAL CHANGE  ·  ";
+const R_BASE = "NERVOUS SYSTEM  ·  TRANSFORMATION  ·  NARM  ·  INTEGRAL COACHING  ·  SOMATIC AWARENESS  ·  ";
+const L_TEXT = L_BASE.repeat(3);
+const R_TEXT = R_BASE.repeat(3);
+
+// ── Curved arrow — Gold S-curve from lens centre down to SVG bottom ─────────
+const ARROW = `M ${INT_X} ${LY + 14} C ${INT_X - 56} ${LY + 95} ${INT_X + 48} ${LY + 158} ${INT_X - 5} ${H - 18}`;
+
+// ─────────────────────────────────────────────────────────────────────────────
 
 const VennDiagram = () => {
-  const [hovered, setHovered] = useState(false);
+  const [paused,       setPaused]       = useState(false);
+  const [arrowVisible, setArrowVisible] = useState(false);
+  const sectionRef = useRef(null);
   const { t } = useLanguage();
+
+  // Trigger arrow once section scrolls into view
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => setArrowVisible(true), 300);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.3 }
+    );
+    if (sectionRef.current) observer.observe(sectionRef.current);
+    return () => observer.disconnect();
+  }, []);
+
+  // Inline animation style — handles transform-origin and play-state
+  const orbit = (side) => ({
+    transformBox:      "view-box",
+    transformOrigin:   `${side === "left" ? LX : RX}px ${LY}px`,
+    animation:         `vennOrbit${side === "left" ? "CW" : "CCW"} ${side === "left" ? "38" : "29"}s linear infinite`,
+    animationPlayState: paused ? "paused" : "running",
+  });
+
+  const textAttrs = {
+    fontSize:     "8.5",
+    fill:         "rgba(18,18,18,0.46)",
+    fontFamily:   "Manrope, sans-serif",
+    letterSpacing: "2.8",
+  };
 
   return (
     <>
-      {/* ── Mobile: keep original scrolling marquee ── */}
+      {/* ── Mobile: scrolling marquee ── */}
       <section
-        className="md:hidden bg-stone py-5 overflow-hidden"
+        className="md:hidden bg-ivory py-5 overflow-hidden"
         data-testid="marquee-section"
       >
         <div className="marquee-outer">
@@ -39,7 +97,7 @@ const VennDiagram = () => {
             {[t.home.marquee, t.home.marquee].map((text, i) => (
               <span
                 key={i}
-                className="ct-overline text-charcoal/50 pr-8"
+                className="ct-overline text-charcoal/40 pr-8"
                 style={{ fontSize: "10px" }}
               >
                 {text}
@@ -49,123 +107,118 @@ const VennDiagram = () => {
         </div>
       </section>
 
-      {/* ── Desktop: Venn diagram ── */}
+      {/* ── Desktop: SVG Venn ── */}
       <section
-        className="hidden md:block bg-stone relative"
-        style={{ paddingTop: "50px", paddingBottom: "60px" }}
-        onMouseEnter={() => setHovered(true)}
-        onMouseLeave={() => setHovered(false)}
+        ref={sectionRef}
+        className="hidden md:block bg-ivory"
+        style={{ paddingTop: "56px", paddingBottom: "0" }}
         data-testid="venn-section"
       >
         <svg
           viewBox={`0 0 ${W} ${H}`}
           preserveAspectRatio="xMidYMid meet"
           className="w-full block"
-          style={{ maxHeight: "440px", margin: "0 auto" }}
+          style={{ maxHeight: `${H}px` }}
           aria-hidden="true"
         >
           <defs>
-            {/* ── Circular orbit paths for text ── */}
-            <path
-              id="vennLeftOrbit"
-              d={`M ${LX},${LY} m -${R},0 a ${R},${R} 0 1,1 ${2*R},0 a ${R},${R} 0 1,1 -${2*R},0`}
-            />
-            <path
-              id="vennRightOrbit"
-              d={`M ${RX},${LY} m -${R},0 a ${R},${R} 0 1,1 ${2*R},0 a ${R},${R} 0 1,1 -${2*R},0`}
-            />
+            {/* Text orbit paths */}
+            <path id="vennLeft"  d={circPath(LX, LY, R)} />
+            <path id="vennRight" d={circPath(RX, LY, R)} />
 
-            {/* ── Clip path to shade intersection ── */}
-            <clipPath id="vennLeftClip">
-              <circle cx={LX} cy={LY} r={R} />
-            </clipPath>
-
-            {/* ── Open chevron arrowhead ── */}
+            {/* Arrow marker — Gold open chevron */}
             <marker
               id="vennArrowHead"
-              markerWidth="12"
-              markerHeight="12"
-              refX="6"
-              refY="6"
+              markerWidth="14" markerHeight="14"
+              refX="7" refY="7"
               orient="auto"
             >
               <path
-                d="M 2,2 L 10,6 L 2,10"
+                d="M 2 2 L 12 7 L 2 12"
                 fill="none"
-                stroke="rgba(18,18,18,0.45)"
-                strokeWidth="1.5"
+                stroke="#C8A96A"
+                strokeWidth="2.2"
                 strokeLinecap="round"
                 strokeLinejoin="round"
               />
             </marker>
+
+            {/* Bottom-lens mask — right circle text sits on top here */}
+            <mask id="bottomLensMask">
+              <rect width={W} height={H} fill="black" />
+              <path d={BOTTOM_LENS} fill="white" />
+            </mask>
           </defs>
 
-          {/* ── Subtle fills ── */}
-          <circle cx={LX} cy={LY} r={R} fill="rgba(18,18,18,0.016)" stroke="none" />
-          <circle cx={RX} cy={LY} r={R} fill="rgba(18,18,18,0.016)" stroke="none" />
-          {/* Intersection – slightly more opaque */}
-          <circle cx={RX} cy={LY} r={R} fill="rgba(18,18,18,0.022)" clipPath="url(#vennLeftClip)" stroke="none" />
-
-          {/* ── Circle outlines ── */}
-          <circle cx={LX} cy={LY} r={R} fill="none" stroke="rgba(18,18,18,0.13)" strokeWidth="1" />
-          <circle cx={RX} cy={LY} r={R} fill="none" stroke="rgba(18,18,18,0.13)" strokeWidth="1" />
-
-          {/* ── Left orbit text ── */}
-          <g className={hovered ? "venn-orbit-left venn-orbit-paused" : "venn-orbit-left"}>
-            <text
-              fontSize="9"
-              fill="rgba(18,18,18,0.50)"
-              fontFamily="Manrope, sans-serif"
-              letterSpacing="2.5"
-            >
-              <textPath href="#vennLeftOrbit">{LEFT_TEXT}</textPath>
+          {/* ─ Layer 1: Right circle text (base layer, everywhere) ─ */}
+          <g style={orbit("right")}>
+            <text {...textAttrs}>
+              <textPath href="#vennRight">{R_TEXT}</textPath>
             </text>
           </g>
 
-          {/* ── Right orbit text (spins opposite direction) ── */}
-          <g className={hovered ? "venn-orbit-right venn-orbit-paused" : "venn-orbit-right"}>
-            <text
-              fontSize="9"
-              fill="rgba(18,18,18,0.50)"
-              fontFamily="Manrope, sans-serif"
-              letterSpacing="2.5"
-            >
-              <textPath href="#vennRightOrbit">{RIGHT_TEXT}</textPath>
+          {/* ─ Layer 2: Left circle text (on top — dominates top-lens area) ─ */}
+          <g style={orbit("left")}>
+            <text {...textAttrs}>
+              <textPath href="#vennLeft">{L_TEXT}</textPath>
             </text>
           </g>
 
-          {/* ── Intersection label ── */}
+          {/* ─ Layer 3: Right circle text masked to bottom-lens only
+                        (right circle appears in front of left circle here,
+                        creating the interlocking chain-link illusion) ─ */}
+          <g mask="url(#bottomLensMask)" style={orbit("right")}>
+            <text {...textAttrs}>
+              <textPath href="#vennRight">{R_TEXT}</textPath>
+            </text>
+          </g>
+
+          {/* ─ Intersection label ─ */}
           <text
-            x={INT_X}
-            y={LY}
-            textAnchor="middle"
-            dominantBaseline="middle"
+            x={INT_X} y={LY}
+            textAnchor="middle" dominantBaseline="middle"
             fontSize="12"
-            fill="rgba(18,18,18,0.28)"
             fontFamily="Cormorant Garamond, serif"
             fontStyle="italic"
-            letterSpacing="2"
+            fill="rgba(18,18,18,0.22)"
+            letterSpacing="2.5"
           >
             Integration
           </text>
 
-          {/* ── Curved arrow – emerges on hover ──
-               Starts at the bottom tip of the intersection lens,
-               curves in a gentle S-shape, arrowhead points downward
-               toward the next section's heading. ── */}
+          {/* ─ Invisible hover targets — pause orbit on circle hover ─ */}
+          <circle
+            cx={LX} cy={LY} r={R}
+            fill="transparent"
+            style={{ cursor: "default" }}
+            onMouseEnter={() => setPaused(true)}
+            onMouseLeave={() => setPaused(false)}
+          />
+          <circle
+            cx={RX} cy={LY} r={R}
+            fill="transparent"
+            style={{ cursor: "default" }}
+            onMouseEnter={() => setPaused(true)}
+            onMouseLeave={() => setPaused(false)}
+          />
+
+          {/* ─ Scroll-triggered Gold S-curve arrow ─ */}
           <motion.path
-            d={`M ${INT_X},${INT_Y_BOTTOM + 4}
-                C ${INT_X - 38},${INT_Y_BOTTOM + 52}
-                  ${INT_X + 30},${INT_Y_BOTTOM + 80}
-                  ${INT_X - 5},${H - 14}`}
+            d={ARROW}
             fill="none"
-            stroke="rgba(18,18,18,0.42)"
-            strokeWidth="1.3"
+            stroke="#C8A96A"
+            strokeWidth="2.2"
             strokeLinecap="round"
             markerEnd="url(#vennArrowHead)"
             initial={{ pathLength: 0, opacity: 0 }}
-            animate={{ pathLength: hovered ? 1 : 0, opacity: hovered ? 1 : 0 }}
-            transition={{ duration: 0.72, ease: [0.4, 0, 0.2, 1] }}
+            animate={{
+              pathLength: arrowVisible ? 1 : 0,
+              opacity:    arrowVisible ? 1 : 0,
+            }}
+            transition={{
+              pathLength: { duration: 1.6, ease: [0.4, 0, 0.2, 1] },
+              opacity:    { duration: 0.4, ease: "easeOut" },
+            }}
           />
         </svg>
       </section>
