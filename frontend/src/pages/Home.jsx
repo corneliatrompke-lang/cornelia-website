@@ -4,6 +4,7 @@ import { ArrowRight } from "lucide-react";
 import NeuralCanvas from "../components/NeuralCanvas";
 import ScrollReveal from "../components/ScrollReveal";
 import VennDiagram from "../components/VennDiagram";
+import TransformationSection from "../components/TransformationSection";
 import { useLanguage } from "../context/LanguageContext";
 
 const PORTRAIT =
@@ -336,6 +337,9 @@ const Home = () => {
           </ScrollReveal>
         </div>
       </section>
+
+      {/* ═══ TRANSFORMATION ═══ */}
+      <TransformationSection />
 
       {/* ═══ SERVICES — horizontal accordion ═══ */}
       <section className="bg-charcoal" style={{ paddingTop: "80px", paddingBottom: "80px" }} data-testid="services-section">
