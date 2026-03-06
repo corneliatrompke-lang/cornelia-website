@@ -14,7 +14,7 @@ const OrganizationalAdvisory = () => {
         <div className="max-w-[1400px] mx-auto px-6 md:px-16 w-full">
           <ScrollReveal><p className="ct-overline text-gold mb-6">{s.hero.overline}</p></ScrollReveal>
           <ScrollReveal delay={0.15}>
-            <h1 className="text-ivory leading-[1.05] max-w-[680px]" style={{ fontFamily: "Playfair Display, serif", fontSize: "clamp(40px, 6vw, 74px)", fontWeight: 400 }}>
+            <h1 className="text-ivory leading-[1.05] max-w-[680px]" style={{ fontFamily: "Figtree, sans-serif", fontSize: "clamp(40px, 6vw, 74px)", fontWeight: 400 }}>
               {s.hero.headline}
             </h1>
           </ScrollReveal>
@@ -32,7 +32,7 @@ const OrganizationalAdvisory = () => {
             <div className="lg:col-span-5">
               <ScrollReveal>
                 <p className="ct-overline text-charcoal/40 mb-4">{s.description.overline}</p>
-                <h2 className="text-charcoal leading-[1.1]" style={{ fontFamily: "Playfair Display, serif", fontSize: "clamp(24px, 3vw, 36px)", fontWeight: 400 }}>
+                <h2 className="text-charcoal leading-[1.1]" style={{ fontFamily: "Figtree, sans-serif", fontSize: "clamp(24px, 3vw, 36px)", fontWeight: 400 }}>
                   {s.description.headline}
                 </h2>
               </ScrollReveal>
@@ -54,7 +54,7 @@ const OrganizationalAdvisory = () => {
             <div className="lg:col-span-5">
               <ScrollReveal>
                 <p className="ct-overline text-gold mb-4">{s.forWhom.overline}</p>
-                <h2 className="text-ivory leading-[1.1]" style={{ fontFamily: "Playfair Display, serif", fontSize: "clamp(24px, 3vw, 36px)", fontWeight: 400 }}>
+                <h2 className="text-ivory leading-[1.1]" style={{ fontFamily: "Figtree, sans-serif", fontSize: "clamp(24px, 3vw, 36px)", fontWeight: 400 }}>
                   {s.forWhom.headline}
                 </h2>
               </ScrollReveal>
@@ -79,7 +79,7 @@ const OrganizationalAdvisory = () => {
         <div className="max-w-[1400px] mx-auto px-6 md:px-16">
           <ScrollReveal>
             <p className="ct-overline text-sage mb-4">{s.format.overline}</p>
-            <h2 className="text-charcoal leading-[1.1] mb-12" style={{ fontFamily: "Playfair Display, serif", fontSize: "clamp(24px, 3vw, 36px)", fontWeight: 400 }}>
+            <h2 className="text-charcoal leading-[1.1] mb-12" style={{ fontFamily: "Figtree, sans-serif", fontSize: "clamp(24px, 3vw, 36px)", fontWeight: 400 }}>
               {s.format.headline}
             </h2>
           </ScrollReveal>
@@ -100,7 +100,7 @@ const OrganizationalAdvisory = () => {
       <section className="bg-charcoal ct-section-sm text-center">
         <div className="max-w-[520px] mx-auto px-6">
           <ScrollReveal>
-            <h2 className="text-ivory" style={{ fontFamily: "Playfair Display, serif", fontSize: "clamp(26px, 3vw, 36px)", fontWeight: 400 }}>
+            <h2 className="text-ivory" style={{ fontFamily: "Figtree, sans-serif", fontSize: "clamp(26px, 3vw, 36px)", fontWeight: 400 }}>
               {s.cta.headline}
             </h2>
             <Link to="/contact" className="btn-secondary mt-8 inline-block" data-testid="advisory-cta-btn">

@@ -42,7 +42,7 @@ const Contact = () => {
             <p className="ct-overline text-gold mb-6">{c.hero.overline}</p>
           </ScrollReveal>
           <ScrollReveal delay={0.15}>
-            <h1 className="text-ivory leading-[1.05] max-w-[600px]" style={{ fontFamily: "Playfair Display, serif", fontSize: "clamp(44px, 6vw, 76px)", fontWeight: 400 }}>
+            <h1 className="text-ivory leading-[1.05] max-w-[600px]" style={{ fontFamily: "Figtree, sans-serif", fontSize: "clamp(44px, 6vw, 76px)", fontWeight: 400 }}>
               {c.hero.headline}
             </h1>
           </ScrollReveal>
@@ -61,7 +61,7 @@ const Contact = () => {
             {/* Form */}
             <div className="lg:col-span-7">
               <ScrollReveal>
-                <h2 className="text-charcoal mb-10" style={{ fontFamily: "Playfair Display, serif", fontSize: "clamp(24px, 2.5vw, 32px)", fontWeight: 400 }}>
+                <h2 className="text-charcoal mb-10" style={{ fontFamily: "Figtree, sans-serif", fontSize: "clamp(24px, 2.5vw, 32px)", fontWeight: 400 }}>
                   {c.form.headline}
                 </h2>
               </ScrollReveal>
@@ -123,7 +123,7 @@ const Contact = () => {
               <ScrollReveal delay={0.2}>
                 {/* WhatsApp */}
                 <div className="mb-12">
-                  <h3 className="text-charcoal mb-3" style={{ fontFamily: "Playfair Display, serif", fontSize: "20px", fontWeight: 400 }}>
+                  <h3 className="text-charcoal mb-3" style={{ fontFamily: "Figtree, sans-serif", fontSize: "20px", fontWeight: 400 }}>
                     {c.whatsapp.headline}
                   </h3>
                   <p className="text-charcoal/55 mb-5" style={{ fontFamily: "Manrope, sans-serif", fontSize: "14px", fontWeight: 300 }}>

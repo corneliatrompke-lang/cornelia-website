@@ -4,8 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, ChevronDown, Globe } from "lucide-react";
 import { useLanguage } from "../context/LanguageContext";
 
-const LOGO_MARK =
-  "https://customer-assets.emergentagent.com/job_c6a96dcc-a529-4678-b4e5-76313235aa2d/artifacts/kv7m20gz_Cornelia%20Trompke%20Logo%20Mark.png";
+const LOGO_NAV = "/ct-logo-nav.png";
 
 const Navigation = () => {
   const { lang, setLang, t } = useLanguage();
@@ -45,23 +44,12 @@ const Navigation = () => {
           style={{ height: 48 }}
         >
           {/* ── LEFT: Logo ── */}
-          <Link to="/" className="flex items-center gap-2.5 no-underline flex-shrink-0" data-testid="nav-logo">
+          <Link to="/" className="flex items-center no-underline flex-shrink-0" data-testid="nav-logo">
             <img
-              src={LOGO_MARK}
-              alt="CT"
-              style={{ width: 34, height: 34, objectFit: "contain", mixBlendMode: "lighten" }}
+              src={LOGO_NAV}
+              alt="Cornelia Trompke Consulting & Coaching"
+              style={{ height: 38, width: "auto", objectFit: "contain" }}
             />
-            <div className="hidden sm:block">
-              <div
-                className="text-ivory leading-none"
-                style={{ fontFamily: "Playfair Display, serif", fontSize: "14px", fontWeight: 400 }}
-              >
-                Cornelia Trompke
-              </div>
-              <div className="ct-overline text-stone/40 mt-0.5" style={{ fontSize: "8px" }}>
-                Consulting & Coaching
-              </div>
-            </div>
           </Link>
 
           {/* ── CENTER: Individual glassmorphic nav links (desktop) ── */}
@@ -216,7 +204,7 @@ const Navigation = () => {
                     <Link
                       to={item.to}
                       className="text-ivory/80 hover:text-ivory no-underline block transition-colors"
-                      style={{ fontFamily: "Playfair Display, serif", fontSize: "28px", fontWeight: 400 }}
+                      style={{ fontFamily: "Figtree, sans-serif", fontSize: "28px", fontWeight: 400 }}
                       onClick={() => setMobileOpen(false)}
                     >
                       {item.label}

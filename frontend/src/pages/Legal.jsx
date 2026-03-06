@@ -45,7 +45,7 @@ const Legal = () => {
         {/* Impressum */}
         {activeTab === "impressum" && (
           <ScrollReveal key="impressum">
-            <h1 className="text-charcoal mb-10" style={{ fontFamily: "Playfair Display, serif", fontSize: "clamp(32px, 4vw, 48px)", fontWeight: 400 }}>
+            <h1 className="text-charcoal mb-10" style={{ fontFamily: "Figtree, sans-serif", fontSize: "clamp(32px, 4vw, 48px)", fontWeight: 400 }}>
               {l.impressum.headline}
             </h1>
             <div className="space-y-4">
@@ -72,7 +72,7 @@ const Legal = () => {
         {/* Privacy */}
         {activeTab === "privacy" && (
           <ScrollReveal key="privacy">
-            <h1 className="text-charcoal mb-8" style={{ fontFamily: "Playfair Display, serif", fontSize: "clamp(32px, 4vw, 48px)", fontWeight: 400 }}>
+            <h1 className="text-charcoal mb-8" style={{ fontFamily: "Figtree, sans-serif", fontSize: "clamp(32px, 4vw, 48px)", fontWeight: 400 }}>
               {l.privacy.headline}
             </h1>
             <p className="text-charcoal/65 leading-relaxed" style={{ fontFamily: "Manrope, sans-serif", fontSize: "15px", fontWeight: 300 }}>
@@ -98,7 +98,7 @@ const Legal = () => {
         {/* Terms */}
         {activeTab === "terms" && (
           <ScrollReveal key="terms">
-            <h1 className="text-charcoal mb-8" style={{ fontFamily: "Playfair Display, serif", fontSize: "clamp(32px, 4vw, 48px)", fontWeight: 400 }}>
+            <h1 className="text-charcoal mb-8" style={{ fontFamily: "Figtree, sans-serif", fontSize: "clamp(32px, 4vw, 48px)", fontWeight: 400 }}>
               {l.terms.headline}
             </h1>
             <p className="text-charcoal/65 leading-relaxed mb-10" style={{ fontFamily: "Manrope, sans-serif", fontSize: "15px", fontWeight: 300 }}>

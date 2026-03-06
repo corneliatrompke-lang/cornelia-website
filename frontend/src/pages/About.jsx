@@ -32,7 +32,7 @@ const About = () => {
               <ScrollReveal delay={0.15}>
                 <h1
                   className="text-ivory leading-[1.05]"
-                  style={{ fontFamily: "Playfair Display, serif", fontSize: "clamp(48px, 7vw, 88px)", fontWeight: 400 }}
+                  style={{ fontFamily: "Figtree, sans-serif", fontSize: "clamp(48px, 7vw, 88px)", fontWeight: 400 }}
                 >
                   {a.hero.headline}
                 </h1>
@@ -78,7 +78,7 @@ const About = () => {
                 <p className="ct-overline text-sage mb-4">{a.bio.overline}</p>
                 <h2
                   className="text-charcoal leading-[1.1] mb-8"
-                  style={{ fontFamily: "Playfair Display, serif", fontSize: "clamp(28px, 3.5vw, 42px)", fontWeight: 400 }}
+                  style={{ fontFamily: "Figtree, sans-serif", fontSize: "clamp(28px, 3.5vw, 42px)", fontWeight: 400 }}
                 >
                   {a.bio.headline}
                 </h2>
@@ -107,7 +107,7 @@ const About = () => {
             <p className="ct-overline text-gold mb-5">{a.credentials.overline}</p>
             <h2
               className="text-ivory leading-[1.1] mb-14 max-w-[500px]"
-              style={{ fontFamily: "Playfair Display, serif", fontSize: "clamp(26px, 3vw, 38px)", fontWeight: 400 }}
+              style={{ fontFamily: "Figtree, sans-serif", fontSize: "clamp(26px, 3vw, 38px)", fontWeight: 400 }}
             >
               {a.credentials.headline}
             </h2>
@@ -120,7 +120,7 @@ const About = () => {
                   <div className="ct-divider mb-5" />
                   <h3
                     className="text-ivory mb-3"
-                    style={{ fontFamily: "Playfair Display, serif", fontSize: "18px", fontWeight: 400 }}
+                    style={{ fontFamily: "Figtree, sans-serif", fontSize: "18px", fontWeight: 400 }}
                   >
                     {item.title}
                   </h3>
@@ -144,7 +144,7 @@ const About = () => {
             <p className="ct-overline text-charcoal/40 mb-6">{a.philosophy.overline}</p>
             <h2
               className="text-charcoal leading-[1.15] mb-8"
-              style={{ fontFamily: "Playfair Display, serif", fontSize: "clamp(26px, 3.5vw, 40px)", fontWeight: 400 }}
+              style={{ fontFamily: "Figtree, sans-serif", fontSize: "clamp(26px, 3.5vw, 40px)", fontWeight: 400 }}
             >
               {a.philosophy.headline}
             </h2>
@@ -168,7 +168,7 @@ const About = () => {
           <ScrollReveal>
             <h2
               className="text-ivory leading-[1.1]"
-              style={{ fontFamily: "Playfair Display, serif", fontSize: "clamp(28px, 3.5vw, 40px)", fontWeight: 400 }}
+              style={{ fontFamily: "Figtree, sans-serif", fontSize: "clamp(28px, 3.5vw, 40px)", fontWeight: 400 }}
             >
               {a.cta.headline}
             </h2>

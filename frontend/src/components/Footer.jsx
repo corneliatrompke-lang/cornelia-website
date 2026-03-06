@@ -28,7 +28,7 @@ const Footer = () => {
               <div>
                 <div
                   className="text-ivory leading-none"
-                  style={{ fontFamily: "Playfair Display, serif", fontSize: "16px" }}
+                  style={{ fontFamily: "Figtree, sans-serif", fontSize: "16px" }}
                 >
                   Cornelia Trompke
                 </div>

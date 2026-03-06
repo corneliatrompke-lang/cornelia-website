@@ -80,7 +80,7 @@ const Home = () => {
               <h1
                 className="text-ivory leading-[1.04]"
                 style={{
-                  fontFamily: "Playfair Display, serif",
+                  fontFamily: "Figtree, sans-serif",
                   fontSize: "clamp(40px, 6.5vw, 84px)",
                   fontWeight: 400,
                 }}
@@ -142,7 +142,7 @@ const Home = () => {
           <ScrollReveal delay={0.15}>
             <h2
               className="text-charcoal leading-[1.15]"
-              style={{ fontFamily: "Playfair Display, serif", fontSize: "clamp(28px, 4vw, 46px)", fontWeight: 400 }}
+              style={{ fontFamily: "Figtree, sans-serif", fontSize: "clamp(28px, 4vw, 46px)", fontWeight: 400 }}
             >
               {t.home.philosophy.headline}
             </h2>
@@ -170,7 +170,7 @@ const Home = () => {
                 <p className="ct-overline text-gold mb-6">{t.home.aboutPreview.overline}</p>
                 <h2
                   className="text-ivory leading-[1.15] max-w-[500px]"
-                  style={{ fontFamily: "Playfair Display, serif", fontSize: "clamp(26px, 3.5vw, 42px)", fontWeight: 400 }}
+                  style={{ fontFamily: "Figtree, sans-serif", fontSize: "clamp(26px, 3.5vw, 42px)", fontWeight: 400 }}
                 >
                   {t.home.aboutPreview.headline}
                 </h2>
@@ -222,7 +222,7 @@ const Home = () => {
             <p className="ct-overline text-gold/60 mb-4">{t.home.services.overline}</p>
             <h2
               className="text-ivory leading-[1.1] max-w-[500px]"
-              style={{ fontFamily: "Playfair Display, serif", fontSize: "clamp(28px, 3.5vw, 44px)", fontWeight: 400 }}
+              style={{ fontFamily: "Figtree, sans-serif", fontSize: "clamp(28px, 3.5vw, 44px)", fontWeight: 400 }}
             >
               {t.home.services.headline}
             </h2>
@@ -323,7 +323,7 @@ const Home = () => {
                     </span>
                     <h3
                       style={{
-                        fontFamily: "Playfair Display, serif",
+                        fontFamily: "Figtree, sans-serif",
                         fontSize: "clamp(22px, 2.2vw, 30px)",
                         fontWeight: 400,
                         color: "#F5F2EC",
@@ -374,7 +374,7 @@ const Home = () => {
           <ScrollReveal delay={0.15}>
             <h2
               className="text-ivory leading-[1.15]"
-              style={{ fontFamily: "Playfair Display, serif", fontSize: "clamp(28px, 4vw, 46px)", fontWeight: 400 }}
+              style={{ fontFamily: "Figtree, sans-serif", fontSize: "clamp(28px, 4vw, 46px)", fontWeight: 400 }}
             >
               {t.home.method.headline}
             </h2>
@@ -460,7 +460,7 @@ const Home = () => {
           <ScrollReveal>
             <h2
               className="text-ivory leading-[1.1]"
-              style={{ fontFamily: "Playfair Display, serif", fontSize: "clamp(32px, 5vw, 60px)", fontWeight: 400 }}
+              style={{ fontFamily: "Figtree, sans-serif", fontSize: "clamp(32px, 5vw, 60px)", fontWeight: 400 }}
             >
               {t.home.cta.headline}
             </h2>
