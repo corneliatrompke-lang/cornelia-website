@@ -133,12 +133,12 @@ const Home = () => {
       >
         {/* ── Image collage ── */}
         <div className="max-w-[1400px] mx-auto px-6 md:px-16">
-          <div className="relative hidden md:block" style={{ height: "520px" }}>
+          <div className="relative hidden md:block" style={{ height: "630px" }}>
 
-            {/* Banner — 75% width, left-aligned */}
+            {/* Banner — 75% width, centred, 50px top padding */}
             <div style={{
-              position: "absolute", left: 0, top: 0,
-              width: "75%", height: "420px", overflow: "hidden",
+              position: "absolute", left: "12.5%", top: "50px",
+              width: "75%", height: "500px", overflow: "hidden",
             }}>
               <img
                 src="https://images.unsplash.com/photo-1671735250135-fc322596644a?crop=entropy&cs=srgb&fm=jpg&ixlib=rb-4.1.0&q=85"
@@ -149,7 +149,7 @@ const Home = () => {
 
             {/* Circle — overlapping banner's right + bottom edges */}
             <div style={{
-              position: "absolute", right: 0, top: "218px",
+              position: "absolute", right: 0, top: "290px",
               width: "264px", height: "264px",
               borderRadius: "50%", overflow: "hidden",
               border: "6px solid #F5F2EC",
@@ -164,7 +164,7 @@ const Home = () => {
 
             {/* Tilted square — overlapping banner's bottom-left */}
             <div style={{
-              position: "absolute", left: "52px", bottom: 0,
+              position: "absolute", left: "calc(12.5% + 50px)", bottom: "30px",
               width: "192px", height: "192px",
               transform: "rotate(-5deg)", overflow: "hidden",
               border: "6px solid #F5F2EC",
@@ -180,8 +180,11 @@ const Home = () => {
           </div>
         </div>
 
-        {/* ── Text content ── */}
-        <div className="max-w-[720px] mx-auto px-6 text-center" style={{ paddingTop: "80px" }}>
+        {/* ── Text content — pulls up 150px over the image collage ── */}
+        <div
+          className="max-w-[720px] mx-auto px-6 text-center"
+          style={{ paddingTop: "80px", marginTop: "-150px", position: "relative", zIndex: 10 }}
+        >
           <ScrollReveal>
             <div className="ct-divider mx-auto mb-8" style={{ background: "rgba(18,18,18,0.2)" }} />
             <p className="ct-overline text-sage mb-6">{t.home.philosophy.overline}</p>
