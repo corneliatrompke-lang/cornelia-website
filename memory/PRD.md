@@ -203,19 +203,17 @@ Create a cinematic editorial luxury marketing website for Cornelia Trompke — a
 
 ## Changelog
 
-### FoundationSection — Text Cascade Animation (Mar 2026)
-- Added individual scroll-driven reveals for each text element in the content card
-- Divider: scales in horizontally (scaleX 0→1) at fp [0.76, 0.86]
-- Heading: drops in from -80px above at fp [0.80, 0.91] with overflow:hidden clip
-- Paragraph 1: slides up 60px at fp [0.86, 0.94]
-- Paragraph 2: staggered, slides up 60px at fp [0.90, 0.97]
-- Card settle point moved to fp 0.80 (was 0.88) to give more scroll budget for text cascade
-- REWRITTEN with dramatically larger travel distances and slower timing
-- Banner: -220px drop, Circle: +380px right sweep, Square: -300px/-140px lower-left surge, Card: +160px rise
-- Scroll offset expanded to `["start end", "start 5%"]` — animation runs over full section scroll range
-- Canvas-based gold dust particle effect: 55 particles with glow halos converge toward content card, fade out when fully assembled
-- Text (divider, heading, body) only reveals after card fully settles (progress 0.84+)
-- 100% test pass rate confirmed by testing agent (iteration_7)
+### FoundationSection — Full Animation Overhaul v3 (Mar 2026)
+- Scroll offset: `["start end", "end 70%"]` — animation spans ~1420px of scroll range
+- Section paddingBottom: 380px (total section height ~1180px for slow cinematic scroll)
+- Images: Banner -400px drop, Circle 600px right sweep, Square -520px/-200px lower-left surge
+- Card: rises 220px from below over [0.52, 0.80]
+- Text cascade (generous scroll-driven ranges with overflow:hidden clip):
+  - Divider: scaleX 0→1 at fp [0.78, 0.92]
+  - Heading: -120px drop at fp [0.82, 0.95]
+  - Para 1: +90px rise at fp [0.88, 0.97]
+  - Para 2: +90px rise at fp [0.92, 1.00] staggered
+- Particle canvas: z-index 10 (floats over images AND card), 70 particles, size 0.8-3.8, opacity 0.25-0.85
 
 ### Testimonials Section Redesign (Mar 2026)
 - Background changed to charcoal (#121212)
