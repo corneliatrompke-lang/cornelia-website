@@ -231,11 +231,7 @@ const Home = () => {
           {/* Accordion — 4 columns separated by thin lines */}
           <div
             className="flex mt-16"
-            style={{
-              height: "520px",
-              borderTop: "1px solid rgba(245,242,236,0.10)",
-              borderLeft: "1px solid rgba(245,242,236,0.10)",
-            }}
+            style={{ height: "520px" }}
           >
             {t.home.services.items.map((service, i) => {
               const isActive = activeService === i;
@@ -250,8 +246,7 @@ const Home = () => {
                     transition: "flex 0.65s cubic-bezier(0.4, 0, 0.2, 1)",
                     position: "relative",
                     overflow: "hidden",
-                    borderRight: "1px solid rgba(245,242,236,0.10)",
-                    borderBottom: "1px solid rgba(245,242,236,0.10)",
+                    borderRight: i < t.home.services.items.length - 1 ? "1px solid rgba(245,242,236,0.10)" : "none",
                     cursor: "default",
                   }}
                 >
@@ -274,9 +269,9 @@ const Home = () => {
                         writingMode: "vertical-rl",
                         transform: "rotate(180deg)",
                         fontFamily: "Cormorant Garamond, serif",
-                        fontSize: "15px",
+                        fontSize: "clamp(20px, 2vw, 28px)",
                         fontWeight: 400,
-                        letterSpacing: "0.12em",
+                        letterSpacing: "0.08em",
                         color: "rgba(245,242,236,0.6)",
                         flex: 1,
                         display: "flex",
