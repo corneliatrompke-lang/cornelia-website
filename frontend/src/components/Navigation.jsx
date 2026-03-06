@@ -64,16 +64,9 @@ const Navigation = () => {
             </div>
           </Link>
 
-          {/* ── CENTER: Glassmorphic pill nav (desktop) ── */}
+          {/* ── CENTER: Individual glassmorphic nav links (desktop) ── */}
           <div
-            className="hidden lg:flex items-center gap-0.5 absolute left-1/2 -translate-x-1/2"
-            style={{
-              background: "rgba(255,255,255,0.07)",
-              backdropFilter: "blur(20px)",
-              border: "1px solid rgba(255,255,255,0.1)",
-              borderRadius: "50px",
-              padding: "5px 6px",
-            }}
+            className="hidden lg:flex items-center gap-2 absolute left-1/2 -translate-x-1/2"
           >
             <Link to="/" className={`nav-pill-link ${isActive("/") ? "active" : ""}`} data-testid="nav-home">
               {t.nav.home}
@@ -93,7 +86,7 @@ const Navigation = () => {
               data-testid="nav-work-with-me"
             >
               <button
-                className={`nav-pill-link flex items-center gap-1 bg-transparent border-none cursor-pointer ${isServicesActive ? "active" : ""}`}
+                className={`nav-pill-link gap-1 ${isServicesActive ? "active" : ""}`}
               >
                 {t.nav.workWithMe}
                 <ChevronDown
@@ -145,17 +138,22 @@ const Navigation = () => {
             </Link>
           </div>
 
-          {/* ── RIGHT: Lang switcher + CTA (desktop) ── */}
+          {/* ── RIGHT: CTA → Language switcher (desktop) ── */}
           <div className="hidden lg:flex items-center gap-3 flex-shrink-0">
-            {/* Language pill */}
+            {/* CTA — first */}
+            <Link to="/contact" className="nav-cta-pill" data-testid="nav-cta-btn">
+              {t.nav.contact}
+            </Link>
+
+            {/* Language switcher — extreme right */}
             <div
               className="flex items-center gap-1.5"
               style={{
                 background: "rgba(255,255,255,0.06)",
                 backdropFilter: "blur(12px)",
                 border: "1px solid rgba(255,255,255,0.09)",
-                borderRadius: "50px",
-                padding: "6px 12px",
+                borderRadius: "8px",
+                padding: "10px 12px",
               }}
             >
               <Globe size={11} className="text-stone/40" />
@@ -175,11 +173,6 @@ const Navigation = () => {
                 DE
               </button>
             </div>
-
-            {/* CTA */}
-            <Link to="/contact" className="nav-cta-pill" data-testid="nav-cta-btn">
-              {t.nav.contact}
-            </Link>
           </div>
 
           {/* ── MOBILE hamburger ── */}
