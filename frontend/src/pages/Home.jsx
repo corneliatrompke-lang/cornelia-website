@@ -5,6 +5,7 @@ import NeuralCanvas from "../components/NeuralCanvas";
 import ScrollReveal from "../components/ScrollReveal";
 import VennDiagram from "../components/VennDiagram";
 import TransformationSection from "../components/TransformationSection";
+import FoundationSection from "../components/home/FoundationSection";
 import { useLanguage } from "../context/LanguageContext";
 
 const PORTRAIT =
@@ -218,123 +219,7 @@ const Home = () => {
         `}</style>
       </div>
 
-      {/* ═══ THE FOUNDATION ═══ */}
-      <section
-        className="bg-ivory"
-        style={{ paddingBottom: "140px" }}
-        data-testid="philosophy-section"
-      >
-        {/* ── Desktop: collage + overlapping content card ── */}
-        <div className="hidden md:block max-w-[1400px] mx-auto px-6 md:px-16">
-          {/* Outer relative wrapper so absolute elements are scoped here */}
-          <div className="relative">
-
-            {/* Banner — 75% width, centered, in normal flow */}
-            <div style={{ margin: "140px auto 0", width: "75%", height: "460px", overflow: "hidden" }}>
-              <img
-                src="https://images.unsplash.com/photo-1671735250135-fc322596644a?crop=entropy&cs=srgb&fm=jpg&ixlib=rb-4.1.0&q=85"
-                alt=""
-                style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center 30%" }}
-              />
-            </div>
-
-            {/* Circle — middle layer, top-right of banner */}
-            <div style={{
-              position: "absolute", right: 0, top: "140px",
-              width: "290px", height: "290px",
-              borderRadius: "50%", overflow: "hidden",
-              border: "6px solid #F5F2EC",
-              boxShadow: "0 12px 48px rgba(18,18,18,0.20)",
-              zIndex: 2,
-            }}>
-              <img
-                src="https://images.unsplash.com/photo-1572866649630-bd38af3d527c?crop=entropy&cs=srgb&fm=jpg&ixlib=rb-4.1.0&q=85"
-                alt=""
-                style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center top" }}
-              />
-            </div>
-
-            {/* Tilted square — middle layer, lower-left of banner */}
-            <div style={{
-              position: "absolute", left: "calc(12.5% - 40px)", top: "280px",
-              width: "250px", height: "250px",
-              transform: "rotate(-5deg)", overflow: "hidden",
-              border: "6px solid #F5F2EC",
-              boxShadow: "0 12px 48px rgba(18,18,18,0.20)",
-              zIndex: 2,
-            }}>
-              <img
-                src="https://images.unsplash.com/photo-1684963948721-e24aa0d82911?crop=entropy&cs=srgb&fm=jpg&ixlib=rb-4.1.0&q=85"
-                alt=""
-                style={{ width: "100%", height: "100%", objectFit: "cover" }}
-              />
-            </div>
-
-            {/* Content card — top layer, narrow centered card overlapping square + banner */}
-            <div
-              className="mx-auto text-center"
-              style={{
-                maxWidth: "608px",
-                marginTop: "-100px",
-                position: "relative",
-                zIndex: 3,
-                background: "#F5F2EC",
-                padding: "24px 24px 0",
-              }}
-            >
-              <ScrollReveal>
-                <div className="ct-divider mx-auto mb-8" style={{ background: "rgba(18,18,18,0.2)" }} />
-              </ScrollReveal>
-              <ScrollReveal delay={0.15}>
-                <h2
-                  className="text-charcoal leading-[1.15]"
-                  style={{ fontFamily: "Figtree, sans-serif", fontSize: "clamp(28px, 4vw, 46px)", fontWeight: 400 }}
-                >
-                  {t.home.philosophy.headline}
-                </h2>
-              </ScrollReveal>
-              <ScrollReveal delay={0.3}>
-                {t.home.philosophy.body.split("\n\n").map((para, i) => (
-                  <p
-                    key={i}
-                    className="text-charcoal/65 mt-6 leading-relaxed"
-                    style={{ fontFamily: "Manrope, sans-serif", fontSize: "17px", fontWeight: 300 }}
-                  >
-                    {para}
-                  </p>
-                ))}
-              </ScrollReveal>
-            </div>
-
-          </div>
-        </div>
-
-        {/* ── Mobile: text only ── */}
-        <div className="md:hidden max-w-[720px] mx-auto px-6 text-center" style={{ paddingTop: "60px" }}>
-          <ScrollReveal>
-            <div className="ct-divider mx-auto mb-8" style={{ background: "rgba(18,18,18,0.2)" }} />
-          </ScrollReveal>
-          <ScrollReveal delay={0.15}>
-            <h2
-              className="text-charcoal leading-[1.15]"
-              style={{ fontFamily: "Figtree, sans-serif", fontSize: "clamp(28px, 4vw, 46px)", fontWeight: 400 }}
-            >
-              {t.home.philosophy.headline}
-            </h2>
-          </ScrollReveal>
-          <ScrollReveal delay={0.3}>
-            {t.home.philosophy.body.split("\n\n").map((para, i) => (
-              <p
-                key={i}
-                className="text-charcoal/65 mt-6 leading-relaxed"
-                style={{ fontFamily: "Manrope, sans-serif", fontSize: "17px", fontWeight: 300 }}
-              >
-                {para}
-              </p>
-            ))}
-          </ScrollReveal>
-        </div>
-      </section>
+      <FoundationSection />
 
       {/* ═══ ABOUT PREVIEW ═══ */}
       <section className="bg-charcoal ct-section" data-testid="about-preview-section">
