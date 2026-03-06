@@ -88,7 +88,7 @@ const VennDiagram = () => {
 
   const textAttrs = {
     fontSize:      "12",
-    fill:          "rgba(18,18,18,0.46)",
+    fill:          "rgba(245,242,236,0.35)",
     fontFamily:    "Manrope, sans-serif",
     letterSpacing: "3.5",
   };
@@ -97,7 +97,7 @@ const VennDiagram = () => {
     <>
       {/* ── Mobile: scrolling marquee ── */}
       <section
-        className="md:hidden bg-ivory py-5 overflow-hidden"
+        className="md:hidden bg-charcoal py-5 overflow-hidden"
         data-testid="marquee-section"
       >
         <div className="marquee-outer">
@@ -105,7 +105,7 @@ const VennDiagram = () => {
             {[t.home.marquee, t.home.marquee].map((text, i) => (
               <span
                 key={i}
-                className="ct-overline text-charcoal/40 pr-8"
+                className="ct-overline text-ivory/40 pr-8"
                 style={{ fontSize: "10px" }}
               >
                 {text}
@@ -118,7 +118,7 @@ const VennDiagram = () => {
       {/* ── Desktop: SVG Venn ── */}
       <section
         ref={sectionRef}
-        className="hidden md:block bg-ivory"
+        className="hidden md:block bg-charcoal"
         style={{ paddingTop: "56px", paddingBottom: "0" }}
         data-testid="venn-section"
       >
@@ -179,22 +179,22 @@ const VennDiagram = () => {
             textAnchor="middle" dominantBaseline="middle"
             fontSize="18"
             fontFamily="Cormorant Garamond, serif"
-            fontStyle="italic"
-            fill="rgba(18,18,18,0.30)"
+            fontWeight="700"
+            fill="#C8A96A"
             letterSpacing="2"
           >
-            Executive
+            NARM
           </text>
           <text
             x={RX} y={LY}
             textAnchor="middle" dominantBaseline="middle"
             fontSize="18"
             fontFamily="Cormorant Garamond, serif"
-            fontStyle="italic"
-            fill="rgba(18,18,18,0.30)"
+            fontWeight="700"
+            fill="#C8A96A"
             letterSpacing="2"
           >
-            Advisory
+            Integral Coaching
           </text>
 
           {/* ─ Invisible hover targets — pause orbit on circle hover ─ */}
