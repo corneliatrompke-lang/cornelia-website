@@ -118,16 +118,24 @@ Create a cinematic editorial luxury marketing website for Cornelia Trompke — a
 
 ## What's Been Implemented (March 2025)
 
+### v1.3 (Venn Diagram — Arrow & Logo Fix — Mar 2026)
+- Fixed CT logo rendering: switched from external URL to local `/ct-logo-mark.png`; logo already has RGBA transparency so feColorMatrix filter removed entirely
+- Replaced procedural SVG path arrow with the client-provided `Venn arrow.svg` asset:
+  - Two SVG paths inlined directly (no external image request)
+  - Recoloured from navy #15305B → gold #C8A96A to match brand palette
+  - Vertically flipped via `scale(0.183, -0.183)` so the chevron faces downward toward the heading
+  - Scaled and centred at INT_X=500 within SVG viewBox (arrow occupies y=286→607)
+  - SVG viewport height extended from H=490 to H=620 to accommodate the taller arrow
+  - Retains Framer Motion scroll-triggered opacity fade-in (0→0.88, 1.6s, delay 0.4s)
+
 ### v1.2 (Venn Diagram Section — Feb 2026)
 - Replaced scrolling marquee with an interactive SVG Venn diagram
-- Two overlapping circles: Left = executive/leadership keywords (EXECUTIVE DEPTH · SYSTEMIC CLARITY · ORGANISATIONAL CHANGE · LEADERSHIP), Right = methodology keywords (NERVOUS SYSTEM · TRANSFORMATION · NARM · INTEGRAL COACHING)
+- Two overlapping circles: Left = executive/leadership keywords, Right = methodology keywords
 - Keywords orbit each circle at different speeds (CW/CCW) via CSS animation
-- Hover state: rotation pauses and a curved SVG arrow emerges from the intersection, pointing toward the "Leadership Is Not a Strategy" heading in the next section
-- Arrow uses framer-motion `pathLength` for the draw-in animation
-- Intersection zone labelled "Integration" in Cormorant Garamond italic
+- Hover state: rotation pauses; arrow emerges pointing toward the heading
+- Intersection zone labelled with CT logo mark (Cormorant Garamond italic "Executive"/"Advisory" labels)
 - Mobile fallback: original scrolling marquee preserved for smaller screens
 - New component: `/app/frontend/src/components/VennDiagram.jsx`
-- New CSS: venn orbit animations added to `/app/frontend/src/App.css`
 
 
 - Navigation redesigned: 3-zone layout (logo left | glassmorphic pill center | lang+CTA right)
