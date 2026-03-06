@@ -194,8 +194,21 @@ Create a cinematic editorial luxury marketing website for Cornelia Trompke — a
 
 ## Next Tasks
 
-1. Replace all placeholder content with final copy
-2. Upload Cornelia's real portrait photo
-3. Update WhatsApp number and legal details
-4. Configure custom domain
-5. Optionally add Calendly booking integration
+1. Get user sign-off on TransformationSection scroll animation (verified 100% passing — Mar 2026)
+2. Replace all placeholder content with final copy
+3. Upload Cornelia's real portrait photo
+4. Update WhatsApp number and legal details
+5. Configure custom domain
+6. Optionally add Calendly booking integration
+
+## Changelog
+
+### TransformationSection Rewrite (Mar 2026)
+- Removed `backdrop-filter` to fix ghost dot rendering at opacity=0
+- Circle 1 now visible immediately on section entry (opacity starts at 1)
+- Circle size increased to `min(44vmin, 380px)` (~44% of viewport height)
+- All text (number, heading, divider, subtext) moved inside the circle
+- SVG nerve line split into 3 separate segments (seg12, seg23, seg34)
+- Each segment only visible during/after its specific transition
+- Section height: 400vh (4 circles × 100vh each)
+- 100% test pass rate confirmed by testing agent
