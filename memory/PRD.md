@@ -107,7 +107,12 @@ Create a cinematic editorial luxury marketing website for Cornelia Trompke — a
 
 ## What's Been Implemented (March 2025)
 
-### v1.0 (Initial Build)
+### v1.1 (Homepage & Nav Update)
+- Navigation redesigned: 3-zone layout (logo left | glassmorphic pill center | lang+CTA right)
+- Hero section: rounded card wrapper (20px radius) with atmospheric background image
+- Hero text repositioned to bottom-left with pill-style CTAs
+- New button styles: btn-hero-pill, btn-hero-pill-outline, nav-cta-pill, nav-pill-link
+- Scroll indicator moved to bottom-right of hero card
 - Complete 10-page website with all routes
 - Full bilingual EN/DE translations
 - Luxury editorial design system

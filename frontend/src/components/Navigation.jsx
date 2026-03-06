@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, ChevronDown } from "lucide-react";
+import { Menu, X, ChevronDown, Globe } from "lucide-react";
 import { useLanguage } from "../context/LanguageContext";
 
 const LOGO_MARK =
@@ -34,40 +34,54 @@ const Navigation = () => {
         data-testid="navigation"
         className="fixed top-0 left-0 right-0 z-[900] transition-all duration-500"
         style={{
-          padding: scrolled ? "16px 40px" : "24px 40px",
-          background: scrolled ? "rgba(18,18,18,0.92)" : "transparent",
-          backdropFilter: scrolled ? "blur(20px)" : "none",
-          borderBottom: scrolled ? "1px solid rgba(200,169,106,0.08)" : "none",
+          padding: "16px 24px",
+          background: scrolled ? "rgba(18,18,18,0.88)" : "transparent",
+          backdropFilter: scrolled ? "blur(24px)" : "none",
+          borderBottom: scrolled ? "1px solid rgba(200,169,106,0.07)" : "none",
         }}
       >
-        <div className="max-w-[1400px] mx-auto flex items-center justify-between">
-          {/* Logo */}
-          <Link to="/" className="flex items-center gap-3 no-underline" data-testid="nav-logo">
+        <div
+          className="max-w-[1400px] mx-auto flex items-center justify-between relative"
+          style={{ height: 48 }}
+        >
+          {/* ── LEFT: Logo ── */}
+          <Link to="/" className="flex items-center gap-2.5 no-underline flex-shrink-0" data-testid="nav-logo">
             <img
               src={LOGO_MARK}
               alt="CT"
-              className="w-9 h-9 object-contain"
-              style={{ mixBlendMode: "lighten" }}
+              style={{ width: 34, height: 34, objectFit: "contain", mixBlendMode: "lighten" }}
             />
             <div className="hidden sm:block">
-              <div className="text-ivory text-sm leading-none" style={{ fontFamily: "Playfair Display, serif", fontWeight: 400 }}>
+              <div
+                className="text-ivory leading-none"
+                style={{ fontFamily: "Playfair Display, serif", fontSize: "14px", fontWeight: 400 }}
+              >
                 Cornelia Trompke
               </div>
-              <div className="ct-overline text-stone/50 mt-0.5">
+              <div className="ct-overline text-stone/40 mt-0.5" style={{ fontSize: "8px" }}>
                 Consulting & Coaching
               </div>
             </div>
           </Link>
 
-          {/* Desktop Nav */}
-          <div className="hidden lg:flex items-center gap-8">
-            <Link to="/" className={`nav-link ${isActive("/") ? "active" : ""}`} data-testid="nav-home">
+          {/* ── CENTER: Glassmorphic pill nav (desktop) ── */}
+          <div
+            className="hidden lg:flex items-center gap-0.5 absolute left-1/2 -translate-x-1/2"
+            style={{
+              background: "rgba(255,255,255,0.07)",
+              backdropFilter: "blur(20px)",
+              border: "1px solid rgba(255,255,255,0.1)",
+              borderRadius: "50px",
+              padding: "5px 6px",
+            }}
+          >
+            <Link to="/" className={`nav-pill-link ${isActive("/") ? "active" : ""}`} data-testid="nav-home">
               {t.nav.home}
             </Link>
-            <Link to="/about" className={`nav-link ${isActive("/about") ? "active" : ""}`} data-testid="nav-about">
+            <Link to="/about" className={`nav-pill-link ${isActive("/about") ? "active" : ""}`} data-testid="nav-about">
               {t.nav.about}
             </Link>
-            <Link to="/method" className={`nav-link ${isActive("/method") ? "active" : ""}`} data-testid="nav-method">
+            <Link to="/method" className={`nav-pill-link ${isActive("/method") ? "active" : ""}`} data-testid="nav-method">
               {t.nav.method}
             </Link>
 
@@ -79,36 +93,43 @@ const Navigation = () => {
               data-testid="nav-work-with-me"
             >
               <button
-                className={`nav-link flex items-center gap-1 bg-transparent border-none cursor-pointer ${isServicesActive ? "active" : ""}`}
-                style={{ fontFamily: "Manrope, sans-serif" }}
+                className={`nav-pill-link flex items-center gap-1 bg-transparent border-none cursor-pointer ${isServicesActive ? "active" : ""}`}
               >
                 {t.nav.workWithMe}
-                <ChevronDown size={12} className={`transition-transform duration-300 ${servicesOpen ? "rotate-180" : ""}`} />
+                <ChevronDown
+                  size={11}
+                  className={`transition-transform duration-300 ${servicesOpen ? "rotate-180" : ""}`}
+                />
               </button>
 
               <AnimatePresence>
                 {servicesOpen && (
                   <motion.div
-                    initial={{ opacity: 0, y: 8 }}
+                    initial={{ opacity: 0, y: 6 }}
                     animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: 8 }}
-                    transition={{ duration: 0.25 }}
-                    className="absolute top-full left-0 pt-3 w-72"
+                    exit={{ opacity: 0, y: 6 }}
+                    transition={{ duration: 0.22 }}
+                    className="absolute top-full left-1/2 -translate-x-1/2 pt-3 w-72"
                   >
                     <div
-                      className="py-3"
+                      className="py-2"
                       style={{
-                        background: "rgba(18,18,18,0.96)",
-                        backdropFilter: "blur(20px)",
+                        background: "rgba(14,14,14,0.96)",
+                        backdropFilter: "blur(24px)",
                         border: "1px solid rgba(200,169,106,0.12)",
+                        borderRadius: "12px",
                       }}
                     >
                       {t.nav.workWithMeLinks.map((item) => (
                         <Link
                           key={item.path}
                           to={item.path}
-                          className="block px-6 py-3 text-stone/70 hover:text-ivory hover:bg-white/5 no-underline transition-colors duration-200"
-                          style={{ fontFamily: "Manrope, sans-serif", fontSize: "11px", letterSpacing: "0.08em" }}
+                          className="block px-5 py-2.5 text-stone/65 hover:text-ivory hover:bg-white/5 no-underline transition-colors duration-200"
+                          style={{
+                            fontFamily: "Manrope, sans-serif",
+                            fontSize: "11px",
+                            letterSpacing: "0.07em",
+                          }}
                         >
                           {item.title}
                         </Link>
@@ -119,31 +140,49 @@ const Navigation = () => {
               </AnimatePresence>
             </div>
 
-            <Link to="/contact" className={`nav-link ${isActive("/contact") ? "active" : ""}`} data-testid="nav-contact">
+            <Link to="/contact" className={`nav-pill-link ${isActive("/contact") ? "active" : ""}`} data-testid="nav-contact">
               {t.nav.contact}
             </Link>
+          </div>
 
-            {/* Language Switcher */}
-            <div className="flex items-center gap-2 ml-2 border-l border-white/10 pl-6">
+          {/* ── RIGHT: Lang switcher + CTA (desktop) ── */}
+          <div className="hidden lg:flex items-center gap-3 flex-shrink-0">
+            {/* Language pill */}
+            <div
+              className="flex items-center gap-1.5"
+              style={{
+                background: "rgba(255,255,255,0.06)",
+                backdropFilter: "blur(12px)",
+                border: "1px solid rgba(255,255,255,0.09)",
+                borderRadius: "50px",
+                padding: "6px 12px",
+              }}
+            >
+              <Globe size={11} className="text-stone/40" />
               <button
                 onClick={() => setLang("en")}
-                className={`ct-overline transition-colors duration-300 bg-transparent border-none cursor-pointer ${lang === "en" ? "text-gold" : "text-stone/40 hover:text-stone/70"}`}
+                className={`ct-overline bg-transparent border-none cursor-pointer transition-colors ${lang === "en" ? "text-ivory" : "text-stone/40 hover:text-stone/70"}`}
                 data-testid="lang-en"
               >
                 EN
               </button>
-              <span className="text-stone/20 text-xs">|</span>
+              <span className="text-stone/25 text-xs">|</span>
               <button
                 onClick={() => setLang("de")}
-                className={`ct-overline transition-colors duration-300 bg-transparent border-none cursor-pointer ${lang === "de" ? "text-gold" : "text-stone/40 hover:text-stone/70"}`}
+                className={`ct-overline bg-transparent border-none cursor-pointer transition-colors ${lang === "de" ? "text-ivory" : "text-stone/40 hover:text-stone/70"}`}
                 data-testid="lang-de"
               >
                 DE
               </button>
             </div>
+
+            {/* CTA */}
+            <Link to="/contact" className="nav-cta-pill" data-testid="nav-cta-btn">
+              {t.nav.contact}
+            </Link>
           </div>
 
-          {/* Mobile Hamburger */}
+          {/* ── MOBILE hamburger ── */}
           <button
             onClick={() => setMobileOpen(!mobileOpen)}
             className="lg:hidden text-ivory p-1 bg-transparent border-none cursor-pointer"
@@ -154,7 +193,7 @@ const Navigation = () => {
         </div>
       </nav>
 
-      {/* Mobile Menu */}
+      {/* ── Mobile Menu ── */}
       <AnimatePresence>
         {mobileOpen && (
           <motion.div
@@ -163,7 +202,7 @@ const Navigation = () => {
             exit={{ opacity: 0 }}
             transition={{ duration: 0.35 }}
             className="fixed inset-0 z-[800] lg:hidden"
-            style={{ background: "rgba(18,18,18,0.98)", backdropFilter: "blur(20px)" }}
+            style={{ background: "rgba(12,12,12,0.97)", backdropFilter: "blur(24px)" }}
             data-testid="mobile-menu"
           >
             <div className="flex flex-col h-full justify-center items-start px-10">
@@ -193,7 +232,6 @@ const Navigation = () => {
                 ))}
               </div>
 
-              {/* Sub-services */}
               <div className="mt-10 space-y-2 border-t border-white/10 pt-8">
                 {t.nav.workWithMeLinks.map((item, i) => (
                   <motion.div
@@ -213,7 +251,6 @@ const Navigation = () => {
                 ))}
               </div>
 
-              {/* Language Switcher Mobile */}
               <div className="mt-10 flex gap-4">
                 {["en", "de"].map((l) => (
                   <button

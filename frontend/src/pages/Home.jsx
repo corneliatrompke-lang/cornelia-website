@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import NeuralCanvas from "../components/NeuralCanvas";
 import ScrollReveal from "../components/ScrollReveal";
@@ -9,6 +8,9 @@ import { useLanguage } from "../context/LanguageContext";
 const PORTRAIT =
   "https://images.unsplash.com/photo-1686078803106-7c6684f62158?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA1NTJ8MHwxfHNlYXJjaHwyfHxwcm9mZXNzaW9uYWwlMjBzZW5pb3IlMjB3b21hbiUyMGV4ZWN1dGl2ZSUyMHBvcnRyYWl0JTIwYmxhY2slMjB3aGl0ZSUyMGVkaXRvcmlhbHxlbnwwfHx8fDE3NzI3ODc5NjB8MA&ixlib=rb-4.1.0&q=85";
 
+const HERO_BG =
+  "https://images.unsplash.com/photo-1467139999947-97d5d3164083?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA1ODR8MHwxfHNlYXJjaHwyfHxzZXJlbmUlMjBjb250ZW1wbGF0aXZlJTIwbGlnaHQlMjBhcmNoaXRlY3R1cmFsJTIwbWluaW1hbCUyMGx1eHVyeSUyMGludGVyaW9yJTIwYXRtb3NwaGVyaWN8ZW58MHx8fHwxNzcyNzg5OTAwfDA&ixlib=rb-4.1.0&q=85";
+
 const Home = () => {
   const { t } = useLanguage();
   const [activeTestimonial, setActiveTestimonial] = useState(0);
@@ -16,59 +18,101 @@ const Home = () => {
 
   return (
     <div className="bg-charcoal">
-      {/* ═══ HERO ═══ */}
+      {/* ═══ HERO — Rounded card wrapper ═══ */}
       <section
-        className="relative min-h-screen flex items-center overflow-hidden"
+        className="bg-charcoal pt-[76px] px-3 md:px-4 pb-3"
         data-testid="hero-section"
       >
-        <NeuralCanvas opacity={0.13} nodeCount={60} />
-        <div className="relative z-10 max-w-[1400px] mx-auto px-6 md:px-16 w-full pt-32 pb-24">
-          <ScrollReveal delay={0.1}>
-            <p className="ct-overline text-gold mb-10" data-testid="hero-overline">
-              {t.home.hero.overline}
-            </p>
-          </ScrollReveal>
-          <ScrollReveal delay={0.3}>
-            <h1
-              className="text-ivory leading-[1.05] max-w-[860px]"
-              style={{ fontFamily: "Playfair Display, serif", fontSize: "clamp(44px, 7vw, 88px)", fontWeight: 400 }}
-              data-testid="hero-headline"
-            >
-              {t.home.hero.tagline}
-            </h1>
-          </ScrollReveal>
-          <ScrollReveal delay={0.5}>
-            <p
-              className="text-stone/60 mt-8 max-w-[560px] leading-relaxed"
-              style={{ fontFamily: "Manrope, sans-serif", fontSize: "17px", fontWeight: 300 }}
-            >
-              {t.home.hero.subtitle}
-            </p>
-          </ScrollReveal>
-          <ScrollReveal delay={0.7}>
-            <div className="flex flex-col sm:flex-row gap-4 mt-12">
-              <Link to="/contact" className="btn-primary" data-testid="hero-cta-primary">
-                {t.home.hero.cta}
-              </Link>
-              <Link to="/work-with-me" className="btn-secondary" data-testid="hero-cta-secondary">
-                {t.home.hero.ctaSecondary}
-              </Link>
-            </div>
-          </ScrollReveal>
-        </div>
+        {/* Rounded container */}
+        <div
+          className="relative overflow-hidden w-full"
+          style={{
+            borderRadius: "20px",
+            minHeight: "88vh",
+          }}
+        >
+          {/* Background image */}
+          <img
+            src={HERO_BG}
+            alt=""
+            className="absolute inset-0 w-full h-full object-cover"
+            aria-hidden="true"
+          />
 
-        {/* Scroll indicator */}
-        <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3 z-10">
-          <span className="ct-overline text-stone/25">Scroll</span>
-          <div className="scroll-line" />
-        </div>
+          {/* Gradient overlay — heavy bottom for text legibility */}
+          <div
+            className="absolute inset-0"
+            style={{
+              background:
+                "linear-gradient(to top, rgba(5,5,5,0.82) 0%, rgba(5,5,5,0.45) 45%, rgba(5,5,5,0.18) 100%)",
+            }}
+          />
 
-        {/* Bottom gradient */}
-        <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-charcoal to-transparent" />
+          {/* Neural canvas */}
+          <NeuralCanvas opacity={0.1} nodeCount={50} />
+
+          {/* ── Text: bottom-left ── */}
+          <div
+            className="absolute bottom-0 left-0 z-10 p-8 md:p-14"
+            style={{ maxWidth: "860px" }}
+          >
+            <ScrollReveal delay={0.1}>
+              <p className="ct-overline text-gold mb-6" data-testid="hero-overline">
+                {t.home.hero.overline}
+              </p>
+            </ScrollReveal>
+
+            <ScrollReveal delay={0.25}>
+              <h1
+                className="text-ivory leading-[1.04]"
+                style={{
+                  fontFamily: "Playfair Display, serif",
+                  fontSize: "clamp(40px, 6.5vw, 84px)",
+                  fontWeight: 400,
+                }}
+                data-testid="hero-headline"
+              >
+                {t.home.hero.tagline}
+              </h1>
+            </ScrollReveal>
+
+            <ScrollReveal delay={0.42}>
+              <p
+                className="mt-5 max-w-[520px] leading-relaxed"
+                style={{
+                  fontFamily: "Manrope, sans-serif",
+                  fontSize: "16px",
+                  fontWeight: 300,
+                  color: "rgba(227,222,215,0.65)",
+                }}
+              >
+                {t.home.hero.subtitle}
+              </p>
+            </ScrollReveal>
+
+            <ScrollReveal delay={0.58}>
+              <div className="flex flex-col sm:flex-row gap-3 mt-9 mb-10">
+                <Link to="/contact" className="btn-hero-pill" data-testid="hero-cta-primary">
+                  {t.home.hero.cta}
+                  <ArrowRight size={13} />
+                </Link>
+                <Link to="/work-with-me" className="btn-hero-pill-outline" data-testid="hero-cta-secondary">
+                  {t.home.hero.ctaSecondary}
+                </Link>
+              </div>
+            </ScrollReveal>
+          </div>
+
+          {/* Scroll indicator — bottom right */}
+          <div className="absolute bottom-10 right-10 z-10 flex flex-col items-center gap-2">
+            <span className="ct-overline text-white/25" style={{ fontSize: "9px" }}>Scroll</span>
+            <div className="scroll-line" />
+          </div>
+        </div>
       </section>
 
       {/* ═══ MARQUEE ═══ */}
-      <section className="bg-stone py-5 overflow-hidden" data-testid="marquee-section">
+      <section className="bg-stone mt-3 py-5 overflow-hidden" data-testid="marquee-section">
         <div className="marquee-outer">
           <div className="marquee-track">
             {[t.home.marquee, t.home.marquee].map((text, i) => (
