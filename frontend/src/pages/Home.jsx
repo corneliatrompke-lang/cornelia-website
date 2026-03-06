@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
 import NeuralCanvas from "../components/NeuralCanvas";
@@ -10,6 +10,13 @@ import { useLanguage } from "../context/LanguageContext";
 const PORTRAIT =
   "https://images.unsplash.com/photo-1686078803106-7c6684f62158?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA1NTJ8MHwxfHNlYXJjaHwyfHxwcm9mZXNzaW9uYWwlMjBzZW5pb3IlMjB3b21hbiUyMGV4ZWN1dGl2ZSUyMHBvcnRyYWl0JTIwYmxhY2slMjB3aGl0ZSUyMGVkaXRvcmlhbHxlbnwwfHx8fDE3NzI3ODc5NjB8MA&ixlib=rb-4.1.0&q=85";
 
+// Placeholder testimonial portrait images — replace with real client photography
+const TESTIMONIAL_PORTRAITS = [
+  "https://images.unsplash.com/photo-1560250097-0b93528c311a?crop=entropy&cs=srgb&fm=jpg&ixlib=rb-4.1.0&q=85",
+  "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?crop=entropy&cs=srgb&fm=jpg&ixlib=rb-4.1.0&q=85",
+  "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?crop=entropy&cs=srgb&fm=jpg&ixlib=rb-4.1.0&q=85",
+];
+
 // Hero placeholder image — replace with client's own photography
 
 const HERO_BG =
@@ -20,6 +27,25 @@ const Home = () => {
   const [activeTestimonial, setActiveTestimonial] = useState(0);
   const [activeService, setActiveService] = useState(null);
   const testimonials = t.home.testimonials.items;
+  const timerRef = useRef(null);
+
+  const restartTimer = (count) => {
+    clearInterval(timerRef.current);
+    timerRef.current = setInterval(() => {
+      setActiveTestimonial(prev => (prev + 1) % count);
+    }, 5000);
+  };
+
+  useEffect(() => {
+    restartTimer(testimonials.length);
+    return () => clearInterval(timerRef.current);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [testimonials.length]);
+
+  const handleTestimonialClick = (i) => {
+    setActiveTestimonial(i);
+    restartTimer(testimonials.length);
+  };
 
   return (
     <div className="bg-[#F5F2EC]">
@@ -490,52 +516,303 @@ const Home = () => {
       </section>
 
       {/* ═══ TESTIMONIALS ═══ */}
-      <section className="bg-ivory ct-section" data-testid="testimonials-section">
-        <div className="max-w-[1400px] mx-auto px-6 md:px-16">
+      <section
+        style={{ background: "#121212", paddingTop: "100px", paddingBottom: "100px" }}
+        data-testid="testimonials-section"
+      >
+        <div className="max-w-[1200px] mx-auto px-6 md:px-16">
           <ScrollReveal>
-            <p className="ct-overline text-sage mb-12">{t.home.testimonials.overline}</p>
+            <p className="ct-overline mb-10" style={{ color: "rgba(200,169,106,0.65)" }}>
+              {t.home.testimonials.overline}
+            </p>
           </ScrollReveal>
 
-          <div className="max-w-[760px]">
-            <ScrollReveal delay={0.1}>
-              <blockquote
-                className="text-charcoal/80 leading-relaxed"
-                style={{ fontFamily: "Cormorant Garamond, serif", fontSize: "clamp(20px, 2.5vw, 28px)", fontStyle: "italic", fontWeight: 400 }}
-              >
-                &ldquo;{testimonials[activeTestimonial].text}&rdquo;
-              </blockquote>
-              <div className="mt-6">
-                <div className="ct-divider mb-5" style={{ background: "rgba(18,18,18,0.15)" }} />
-                <p className="ct-overline text-charcoal/50">
-                  {testimonials[activeTestimonial].author}
-                </p>
-                <p
-                  className="text-sage text-xs mt-1"
-                  style={{ fontFamily: "Manrope, sans-serif", fontWeight: 300 }}
-                >
-                  {testimonials[activeTestimonial].company}
-                </p>
+          {/* ── Glassmorphic wrapper ── */}
+          <ScrollReveal delay={0.1}>
+            <div
+              style={{
+                display: "flex",
+                minHeight: "400px",
+                background: "rgba(200,169,106,0.04)",
+                backdropFilter: "blur(22px)",
+                WebkitBackdropFilter: "blur(22px)",
+                border: "1px solid rgba(200,169,106,0.11)",
+                borderRadius: "16px",
+                overflow: "hidden",
+                position: "relative",
+              }}
+            >
+              {/* LEFT — cross-fading portrait images */}
+              <div style={{ width: "38%", flexShrink: 0, position: "relative" }}>
+                {TESTIMONIAL_PORTRAITS.map((src, i) => (
+                  <img
+                    key={i}
+                    src={src}
+                    alt=""
+                    style={{
+                      position: "absolute",
+                      inset: 0,
+                      width: "100%",
+                      height: "100%",
+                      objectFit: "cover",
+                      objectPosition: "center top",
+                      opacity: i === activeTestimonial ? 1 : 0,
+                      transition: "opacity 0.9s ease",
+                      filter: "grayscale(15%)",
+                    }}
+                  />
+                ))}
+                {/* Vertical gold divider on right edge of image */}
+                <div
+                  style={{
+                    position: "absolute",
+                    right: 0,
+                    top: "15%",
+                    bottom: "15%",
+                    width: "1px",
+                    background: "linear-gradient(to bottom, transparent, rgba(200,169,106,0.45), transparent)",
+                    zIndex: 2,
+                  }}
+                />
               </div>
-            </ScrollReveal>
-          </div>
 
-          {/* Testimonial navigation */}
-          <div className="flex gap-3 mt-10">
-            {testimonials.map((_, i) => (
+              {/* RIGHT — quote text, vertically centred */}
+              <div
+                style={{
+                  flex: 1,
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "center",
+                  padding: "52px 60px",
+                  position: "relative",
+                }}
+              >
+                {/* Decorative large open-quote */}
+                <span
+                  style={{
+                    fontFamily: "Cormorant Garamond, serif",
+                    fontSize: "120px",
+                    lineHeight: 1,
+                    color: "rgba(200,169,106,0.07)",
+                    position: "absolute",
+                    top: "16px",
+                    left: "52px",
+                    userSelect: "none",
+                    pointerEvents: "none",
+                  }}
+                >
+                  &ldquo;
+                </span>
+
+                {/* Stacked testimonial panels — opacity-fade between them */}
+                <div style={{ position: "relative", minHeight: "220px" }}>
+                  {testimonials.map((item, i) => (
+                    <div
+                      key={i}
+                      style={{
+                        position: "absolute",
+                        inset: 0,
+                        display: "flex",
+                        flexDirection: "column",
+                        justifyContent: "center",
+                        opacity: i === activeTestimonial ? 1 : 0,
+                        transform: i === activeTestimonial ? "translateY(0)" : "translateY(10px)",
+                        transition: "opacity 0.75s ease, transform 0.75s ease",
+                        pointerEvents: i === activeTestimonial ? "auto" : "none",
+                      }}
+                    >
+                      <blockquote
+                        style={{
+                          fontFamily: "Cormorant Garamond, serif",
+                          fontSize: "clamp(18px, 2vw, 26px)",
+                          fontStyle: "italic",
+                          fontWeight: 400,
+                          color: "#F5F2EC",
+                          lineHeight: 1.6,
+                          position: "relative",
+                          zIndex: 1,
+                        }}
+                      >
+                        &ldquo;{item.text}&rdquo;
+                      </blockquote>
+
+                      <div style={{ marginTop: "28px" }}>
+                        <div
+                          style={{
+                            width: "32px",
+                            height: "1px",
+                            background: "rgba(200,169,106,0.45)",
+                            marginBottom: "12px",
+                          }}
+                        />
+                        <p
+                          style={{
+                            fontFamily: "Manrope, sans-serif",
+                            fontSize: "11px",
+                            fontWeight: 600,
+                            letterSpacing: "0.20em",
+                            textTransform: "uppercase",
+                            color: "#F5F2EC",
+                          }}
+                        >
+                          {item.author}
+                        </p>
+                        <p
+                          style={{
+                            fontFamily: "Manrope, sans-serif",
+                            fontSize: "12px",
+                            fontWeight: 300,
+                            color: "rgba(200,169,106,0.65)",
+                            marginTop: "4px",
+                          }}
+                        >
+                          {item.company}
+                        </p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+
+                {/* Thin auto-progress bar at bottom of card */}
+                <div
+                  style={{
+                    position: "absolute",
+                    bottom: 0,
+                    left: 0,
+                    right: 0,
+                    height: "2px",
+                    background: "rgba(200,169,106,0.08)",
+                  }}
+                >
+                  <div
+                    key={activeTestimonial}
+                    style={{
+                      height: "100%",
+                      background: "rgba(200,169,106,0.45)",
+                      animation: "progressSlide 5s linear forwards",
+                    }}
+                  />
+                </div>
+              </div>
+            </div>
+          </ScrollReveal>
+
+          {/* ── Thumbnails — OUTSIDE the wrapper, float up toward it ── */}
+          <div
+            style={{
+              display: "flex",
+              gap: "20px",
+              marginTop: "0px",
+              alignItems: "flex-end",
+              paddingLeft: "4px",
+            }}
+          >
+            {TESTIMONIAL_PORTRAITS.map((src, i) => (
               <button
                 key={i}
-                onClick={() => setActiveTestimonial(i)}
-                className="transition-all duration-300 border-none cursor-pointer p-0"
-                style={{
-                  width: i === activeTestimonial ? 32 : 16,
-                  height: 1,
-                  background: i === activeTestimonial ? "#C8A96A" : "rgba(18,18,18,0.2)",
-                }}
+                onClick={() => handleTestimonialClick(i)}
                 data-testid={`testimonial-nav-${i}`}
-              />
+                style={{
+                  width: i === activeTestimonial ? "72px" : "58px",
+                  height: i === activeTestimonial ? "72px" : "58px",
+                  borderRadius: "50%",
+                  overflow: "hidden",
+                  border: i === activeTestimonial
+                    ? "2px solid #C8A96A"
+                    : "2px solid rgba(245,242,236,0.12)",
+                  transform: i === activeTestimonial
+                    ? "translateY(-14px)"
+                    : "translateY(0)",
+                  transition: "all 0.45s cubic-bezier(0.4, 0, 0.2, 1)",
+                  cursor: "pointer",
+                  padding: 0,
+                  background: "none",
+                  flexShrink: 0,
+                  boxShadow: i === activeTestimonial
+                    ? "0 8px 28px rgba(200,169,106,0.22)"
+                    : "none",
+                }}
+              >
+                <img
+                  src={src}
+                  alt=""
+                  style={{
+                    width: "100%",
+                    height: "100%",
+                    objectFit: "cover",
+                    objectPosition: "center top",
+                    filter: i === activeTestimonial ? "none" : "grayscale(70%)",
+                    transition: "filter 0.45s ease",
+                  }}
+                />
+              </button>
             ))}
+
+            {/* Author labels beside thumbnails */}
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                gap: "6px",
+                marginLeft: "12px",
+                paddingBottom: "6px",
+              }}
+            >
+              {testimonials.map((item, i) => (
+                <button
+                  key={i}
+                  onClick={() => handleTestimonialClick(i)}
+                  style={{
+                    background: "none",
+                    border: "none",
+                    padding: "0",
+                    cursor: "pointer",
+                    display: "flex",
+                    alignItems: "center",
+                    gap: "8px",
+                    opacity: i === activeTestimonial ? 1 : 0.35,
+                    transition: "opacity 0.35s ease",
+                  }}
+                >
+                  <div
+                    style={{
+                      width: i === activeTestimonial ? "20px" : "10px",
+                      height: "1px",
+                      background: i === activeTestimonial
+                        ? "#C8A96A"
+                        : "rgba(245,242,236,0.3)",
+                      transition: "width 0.35s ease, background 0.35s ease",
+                      flexShrink: 0,
+                    }}
+                  />
+                  <span
+                    style={{
+                      fontFamily: "Manrope, sans-serif",
+                      fontSize: "10px",
+                      letterSpacing: "0.16em",
+                      textTransform: "uppercase",
+                      color: i === activeTestimonial
+                        ? "#F5F2EC"
+                        : "rgba(245,242,236,0.4)",
+                      whiteSpace: "nowrap",
+                      transition: "color 0.35s ease",
+                    }}
+                  >
+                    {item.author}
+                  </span>
+                </button>
+              ))}
+            </div>
           </div>
         </div>
+
+        {/* Keyframe for progress bar */}
+        <style>{`
+          @keyframes progressSlide {
+            from { width: 0%; }
+            to   { width: 100%; }
+          }
+        `}</style>
       </section>
 
       {/* ═══ FINAL CTA ═══ */}
