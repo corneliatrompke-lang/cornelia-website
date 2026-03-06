@@ -147,10 +147,10 @@ const Home = () => {
               />
             </div>
 
-            {/* Circle — overlapping banner's right + bottom edges */}
+            {/* Circle — top-right edge of banner */}
             <div style={{
-              position: "absolute", right: 0, top: "290px",
-              width: "264px", height: "264px",
+              position: "absolute", right: 0, top: "40px",
+              width: "290px", height: "290px",
               borderRadius: "50%", overflow: "hidden",
               border: "6px solid #F5F2EC",
               boxShadow: "0 12px 48px rgba(18,18,18,0.20)",
@@ -162,10 +162,10 @@ const Home = () => {
               />
             </div>
 
-            {/* Tilted square — overlapping banner's bottom-left */}
+            {/* Tilted square — larger, anchored to left edge of banner */}
             <div style={{
-              position: "absolute", left: "calc(12.5% + 50px)", bottom: "30px",
-              width: "192px", height: "192px",
+              position: "absolute", left: "calc(12.5% - 40px)", bottom: "20px",
+              width: "250px", height: "250px",
               transform: "rotate(-5deg)", overflow: "hidden",
               border: "6px solid #F5F2EC",
               boxShadow: "0 12px 48px rgba(18,18,18,0.20)",
@@ -183,7 +183,7 @@ const Home = () => {
         {/* ── Text content — pulls up 150px over the image collage ── */}
         <div
           className="max-w-[720px] mx-auto px-6 text-center"
-          style={{ paddingTop: "80px", marginTop: "-150px", position: "relative", zIndex: 10 }}
+          style={{ paddingTop: "60px", marginTop: "-260px", position: "relative", zIndex: 10 }}
         >
           <ScrollReveal>
             <div className="ct-divider mx-auto mb-8" style={{ background: "rgba(18,18,18,0.2)" }} />
