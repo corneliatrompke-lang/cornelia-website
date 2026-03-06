@@ -203,12 +203,32 @@ Create a cinematic editorial luxury marketing website for Cornelia Trompke — a
 
 ## Changelog
 
+### FoundationSection — Scroll Assembly Animation (Mar 2026)
+- Extracted into `/app/frontend/src/components/home/FoundationSection.jsx`
+- Banner drifts down, Circle slides from right, Square from lower-left, Card rises from below
+- Text (divider, heading, body) only appears after content card reaches final position
+- Uses Framer Motion `useScroll` + `useTransform` with `offset: ["start 90%", "start 15%"]`
+
+### Testimonials Section Redesign (Mar 2026)
+- Background changed to charcoal (#121212)
+- Glassmorphic card: left portrait image (cross-fade) + right quote text (vertically centred)
+- Thumbnails below card — active floats up with gold ring, title text below each portrait
+- Auto-advance every 5s with progress bar; resets on click
+
+### Final CTA — Glassmorphic Wrapper (Mar 2026)
+- Gold-tinted glass card with corner accent lines and inner radial shimmer
+- NeuralCanvas background, section stays charcoal
+
+### Brand Logo Ticker (Mar 2026)
+- Infinite marquee below hero: Microsoft, Google, Amazon, Apple, Meta, Netflix, Tesla, BMW, Siemens, SAP
+- `brightness(0)` filter → clean black marks on ivory at 22% opacity, 70s loop speed
+
 ### TransformationSection Rewrite (Mar 2026)
 - Removed `backdrop-filter` to fix ghost dot rendering at opacity=0
 - Circle 1 now visible immediately on section entry (opacity starts at 1)
-- Circle size increased to `min(44vmin, 380px)` (~44% of viewport height)
-- All text (number, heading, divider, subtext) moved inside the circle
+- Circle size 450px, heading 24-30px, subtext 14-18px
+- Wavy SVG connector lines, L/R/L/R alternating positions, slower animations
+- Final all-4 scene: staggered small circles (text below) at [60,230,150,350]px offsets, 60px gap
 - SVG nerve line split into 3 separate segments (seg12, seg23, seg34)
-- Each segment only visible during/after its specific transition
-- Section height: 400vh (4 circles × 100vh each)
+- Section height: 500vh (4 individual + 1 final)
 - 100% test pass rate confirmed by testing agent
