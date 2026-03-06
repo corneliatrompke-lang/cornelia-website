@@ -125,13 +125,9 @@ const Home = () => {
         </div>
       </section>
 
-      {/* ═══ VENN DIAGRAM ═══ */}
-      <VennDiagram />
-
       {/* ═══ PHILOSOPHY ═══ */}
       <section
         className="bg-ivory ct-section"
-        style={{ paddingTop: "30px" }}
         data-testid="philosophy-section"
       >
         <div className="max-w-[720px] mx-auto px-6 text-center">
@@ -214,6 +210,9 @@ const Home = () => {
           </div>
         </div>
       </section>
+
+      {/* ═══ VENN DIAGRAM ═══ */}
+      <VennDiagram />
 
       {/* ═══ METHOD TEASER ═══ */}
       <section className="bg-charcoal ct-section relative overflow-hidden" data-testid="method-section">
