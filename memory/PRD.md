@@ -118,6 +118,15 @@ Create a cinematic editorial luxury marketing website for Cornelia Trompke — a
 
 ## What's Been Implemented (March 2025)
 
+### v1.4 (Services Section Redesign + CTA + Fixes — Mar 2026)
+- Services section background changed from bg-stone → bg-charcoal (continues from About Preview)
+- Replaced vertical list with horizontal accordion: 4 columns, thin ivory/10% dividers, rotated serif titles when collapsed
+- On hover: column expands (flex 1→3.5, 0.65s cubic-bezier), editorial layout fades in — number overline, large headline, description, rounded CTA pill
+- Each service has a dedicated CTA routing to its page
+- About Preview ("Cornelia Trompke") CTA: updated to pill style (border-radius 8px, padding 10px 22px), icon removed
+- Venn chevron clip fix: SVG H extended 620→650 so polygon bottom (y≈630) is fully visible
+- Homepage services section padding removed (paddingTop 72px → 30px on Philosophy section)
+
 ### v1.3 (Venn Diagram — Arrow & Logo Fix — Mar 2026)
 - Fixed CT logo rendering: switched from external URL to local `/ct-logo-mark.png`; logo already has RGBA transparency so feColorMatrix filter removed entirely
 - Replaced procedural SVG path arrow with the client-provided `Venn arrow.svg` asset:

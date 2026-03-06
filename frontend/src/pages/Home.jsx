@@ -17,6 +17,7 @@ const HERO_BG =
 const Home = () => {
   const { t } = useLanguage();
   const [activeTestimonial, setActiveTestimonial] = useState(0);
+  const [activeService, setActiveService] = useState(null);
   const testimonials = t.home.testimonials.items;
 
   return (
@@ -214,73 +215,156 @@ const Home = () => {
         </div>
       </section>
 
-      {/* ═══ SERVICES ═══ */}
-      <section className="bg-stone ct-section" data-testid="services-section">
+      {/* ═══ SERVICES — horizontal accordion ═══ */}
+      <section className="bg-charcoal" style={{ paddingTop: "80px", paddingBottom: "80px" }} data-testid="services-section">
         <div className="max-w-[1400px] mx-auto px-6 md:px-16">
           <ScrollReveal>
-            <p className="ct-overline text-charcoal/40 mb-4">{t.home.services.overline}</p>
+            <p className="ct-overline text-gold/60 mb-4">{t.home.services.overline}</p>
             <h2
-              className="text-charcoal leading-[1.1] max-w-[500px]"
+              className="text-ivory leading-[1.1] max-w-[500px]"
               style={{ fontFamily: "Playfair Display, serif", fontSize: "clamp(28px, 3.5vw, 44px)", fontWeight: 400 }}
             >
               {t.home.services.headline}
             </h2>
           </ScrollReveal>
 
-          <div className="mt-16 space-y-0">
-            {t.home.services.items.map((service, i) => (
-              <ScrollReveal key={service.number} delay={i * 0.08}>
-                <Link
-                  to={service.link}
-                  className="group block no-underline border-t py-10 hover:bg-charcoal/4 transition-colors duration-500"
-                  style={{ borderColor: "rgba(18,18,18,0.12)" }}
+          {/* Accordion — 4 columns separated by thin lines */}
+          <div
+            className="flex mt-16"
+            style={{
+              height: "520px",
+              borderTop: "1px solid rgba(245,242,236,0.10)",
+              borderLeft: "1px solid rgba(245,242,236,0.10)",
+            }}
+          >
+            {t.home.services.items.map((service, i) => {
+              const isActive = activeService === i;
+              return (
+                <div
+                  key={i}
+                  onMouseEnter={() => setActiveService(i)}
+                  onMouseLeave={() => setActiveService(null)}
                   data-testid={`service-item-${i}`}
+                  style={{
+                    flex: isActive ? 3.5 : 1,
+                    transition: "flex 0.65s cubic-bezier(0.4, 0, 0.2, 1)",
+                    position: "relative",
+                    overflow: "hidden",
+                    borderRight: "1px solid rgba(245,242,236,0.10)",
+                    borderBottom: "1px solid rgba(245,242,236,0.10)",
+                    cursor: "default",
+                  }}
                 >
-                  <div className="grid grid-cols-12 gap-6 items-start">
-                    <div className="col-span-1">
-                      <span
-                        className="text-charcoal/20 text-sm"
-                        style={{ fontFamily: "Cormorant Garamond, serif", fontSize: "48px", lineHeight: 1 }}
-                      >
-                        {service.number}
-                      </span>
-                    </div>
-                    <div className="col-span-10 lg:col-span-5">
-                      <h3
-                        className="text-charcoal group-hover:text-charcoal/80 transition-colors"
-                        style={{ fontFamily: "Playfair Display, serif", fontSize: "22px", fontWeight: 400 }}
-                      >
-                        {service.title}
-                      </h3>
-                    </div>
-                    <div className="col-span-12 lg:col-span-5 lg:col-start-7">
-                      <p
-                        className="text-charcoal/55 leading-relaxed"
-                        style={{ fontFamily: "Manrope, sans-serif", fontSize: "14px", fontWeight: 300 }}
-                      >
-                        {service.description}
-                      </p>
-                    </div>
-                    <div className="col-span-1 flex justify-end items-start pt-1">
-                      <ArrowRight
-                        size={16}
-                        className="text-gold/40 group-hover:text-gold transition-all duration-300 group-hover:translate-x-1"
-                      />
-                    </div>
+                  {/* ── Collapsed: rotated title + number ── */}
+                  <div
+                    style={{
+                      position: "absolute",
+                      inset: 0,
+                      display: "flex",
+                      flexDirection: "column",
+                      alignItems: "center",
+                      padding: "40px 0",
+                      opacity: isActive ? 0 : 1,
+                      transition: "opacity 0.2s ease",
+                      pointerEvents: "none",
+                    }}
+                  >
+                    <span
+                      style={{
+                        writingMode: "vertical-rl",
+                        transform: "rotate(180deg)",
+                        fontFamily: "Cormorant Garamond, serif",
+                        fontSize: "15px",
+                        fontWeight: 400,
+                        letterSpacing: "0.12em",
+                        color: "rgba(245,242,236,0.6)",
+                        flex: 1,
+                        display: "flex",
+                        alignItems: "center",
+                      }}
+                    >
+                      {service.title}
+                    </span>
+                    <span
+                      style={{
+                        fontFamily: "Cormorant Garamond, serif",
+                        fontSize: "32px",
+                        fontWeight: 300,
+                        color: "rgba(245,242,236,0.16)",
+                        lineHeight: 1,
+                        paddingBottom: "4px",
+                      }}
+                    >
+                      {service.number}
+                    </span>
                   </div>
-                </Link>
-              </ScrollReveal>
-            ))}
-            <div className="border-t" style={{ borderColor: "rgba(18,18,18,0.12)" }} />
-          </div>
 
-          <ScrollReveal delay={0.2}>
-            <div className="mt-12">
-              <Link to="/work-with-me" className="btn-dark" data-testid="view-all-services">
-                {t.home.services.cta}
-              </Link>
-            </div>
-          </ScrollReveal>
+                  {/* ── Expanded: editorial layout ── */}
+                  <div
+                    style={{
+                      opacity: isActive ? 1 : 0,
+                      transition: "opacity 0.35s ease 0.22s",
+                      padding: "48px 52px",
+                      height: "100%",
+                      display: "flex",
+                      flexDirection: "column",
+                      justifyContent: "flex-end",
+                      minWidth: "420px",
+                    }}
+                  >
+                    <span
+                      style={{
+                        fontFamily: "Manrope, sans-serif",
+                        fontSize: "10px",
+                        fontWeight: 600,
+                        letterSpacing: "0.25em",
+                        textTransform: "uppercase",
+                        color: "rgba(200,169,106,0.65)",
+                        marginBottom: "20px",
+                        display: "block",
+                      }}
+                    >
+                      {service.number}
+                    </span>
+                    <h3
+                      style={{
+                        fontFamily: "Playfair Display, serif",
+                        fontSize: "clamp(22px, 2.2vw, 30px)",
+                        fontWeight: 400,
+                        color: "#F5F2EC",
+                        lineHeight: 1.2,
+                        marginBottom: "18px",
+                        maxWidth: "380px",
+                      }}
+                    >
+                      {service.title}
+                    </h3>
+                    <p
+                      style={{
+                        fontFamily: "Manrope, sans-serif",
+                        fontSize: "14px",
+                        fontWeight: 300,
+                        color: "rgba(245,242,236,0.5)",
+                        lineHeight: 1.75,
+                        marginBottom: "36px",
+                        maxWidth: "360px",
+                      }}
+                    >
+                      {service.description}
+                    </p>
+                    <Link
+                      to={service.link}
+                      className="btn-secondary"
+                      style={{ borderRadius: "8px", padding: "10px 22px", display: "inline-block" }}
+                      data-testid={`service-cta-${i}`}
+                    >
+                      Explore This Work
+                    </Link>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
         </div>
       </section>
 
