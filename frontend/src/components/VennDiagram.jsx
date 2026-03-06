@@ -38,14 +38,20 @@ const BOTTOM_LENS = [
 ].join(" ");
 
 // ── Keywords ─────────────────────────────────────────────────────────────────
-// Repeated 3× to fill full circumference ≈ 1257 px
+// Repeated 2× — sufficient to fill circumference at 12 px font size
 const L_BASE = "LEADERSHIP  ·  EXECUTIVE DEPTH  ·  SYSTEMIC CLARITY  ·  ORGANISATIONAL CHANGE  ·  ";
 const R_BASE = "NERVOUS SYSTEM  ·  TRANSFORMATION  ·  NARM  ·  INTEGRAL COACHING  ·  SOMATIC AWARENESS  ·  ";
-const L_TEXT = L_BASE.repeat(3);
-const R_TEXT = R_BASE.repeat(3);
+const L_TEXT = L_BASE.repeat(2);
+const R_TEXT = R_BASE.repeat(2);
 
-// ── Curved arrow — Gold S-curve from lens centre down to SVG bottom ─────────
-const ARROW = `M ${INT_X} ${LY + 14} C ${INT_X - 56} ${LY + 95} ${INT_X + 48} ${LY + 158} ${INT_X - 5} ${H - 18}`;
+// ── Twisted arrow — teardrop self-crossing loop + downward S-curve ───────────
+// The loop is a closed cubic bezier (P0 = P3) creating a self-intersecting
+// teardrop at the lens centre.  The second segment is the downward tail.
+const ARROW = [
+  `M ${INT_X} ${LY + 14}`,
+  `C ${INT_X + 48} ${LY - 67} ${INT_X - 48} ${LY - 97} ${INT_X} ${LY + 14}`,
+  `C ${INT_X - 5} ${LY + 27} ${INT_X - 20} ${LY + 135} ${INT_X - 5} ${H - 18}`,
+].join(" ");
 
 // ─────────────────────────────────────────────────────────────────────────────
 
@@ -74,15 +80,15 @@ const VennDiagram = () => {
   const orbit = (side) => ({
     transformBox:      "view-box",
     transformOrigin:   `${side === "left" ? LX : RX}px ${LY}px`,
-    animation:         `vennOrbit${side === "left" ? "CW" : "CCW"} ${side === "left" ? "38" : "29"}s linear infinite`,
+    animation:         `vennOrbit${side === "left" ? "CW" : "CCW"} ${side === "left" ? "60" : "48"}s linear infinite`,
     animationPlayState: paused ? "paused" : "running",
   });
 
   const textAttrs = {
-    fontSize:     "8.5",
-    fill:         "rgba(18,18,18,0.46)",
-    fontFamily:   "Manrope, sans-serif",
-    letterSpacing: "2.8",
+    fontSize:      "12",
+    fill:          "rgba(18,18,18,0.46)",
+    fontFamily:    "Manrope, sans-serif",
+    letterSpacing: "3.5",
   };
 
   return (
@@ -125,6 +131,17 @@ const VennDiagram = () => {
             {/* Text orbit paths */}
             <path id="vennLeft"  d={circPath(LX, LY, R)} />
             <path id="vennRight" d={circPath(RX, LY, R)} />
+
+            {/* Filter: make black background of CT logo transparent */}
+            <filter id="removeBlackBg" colorInterpolationFilters="sRGB">
+              <feColorMatrix
+                type="matrix"
+                values="1 0 0 0 0
+                        0 1 0 0 0
+                        0 0 1 0 0
+                        1 1 1 -1 0"
+              />
+            </filter>
 
             {/* Arrow marker — Gold open chevron */}
             <marker
@@ -173,17 +190,38 @@ const VennDiagram = () => {
             </text>
           </g>
 
-          {/* ─ Intersection label ─ */}
+          {/* ─ CT logo mark at intersection centre (replaces "Integration" text) ─ */}
+          <image
+            href="https://customer-assets.emergentagent.com/job_nervous-system-exec/artifacts/k6ify51i_Cornelia%20Trompke%20Logo%20Mark.png"
+            x={INT_X - 28}
+            y={LY - 28}
+            width="56"
+            height="56"
+            filter="url(#removeBlackBg)"
+          />
+
+          {/* ─ Circle heading labels ─ */}
           <text
-            x={INT_X} y={LY}
+            x={LX} y={LY}
             textAnchor="middle" dominantBaseline="middle"
-            fontSize="12"
+            fontSize="15"
             fontFamily="Cormorant Garamond, serif"
             fontStyle="italic"
-            fill="rgba(18,18,18,0.22)"
-            letterSpacing="2.5"
+            fill="rgba(18,18,18,0.30)"
+            letterSpacing="2"
           >
-            Integration
+            Executive
+          </text>
+          <text
+            x={RX} y={LY}
+            textAnchor="middle" dominantBaseline="middle"
+            fontSize="15"
+            fontFamily="Cormorant Garamond, serif"
+            fontStyle="italic"
+            fill="rgba(18,18,18,0.30)"
+            letterSpacing="2"
+          >
+            Advisory
           </text>
 
           {/* ─ Invisible hover targets — pause orbit on circle hover ─ */}

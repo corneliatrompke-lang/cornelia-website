@@ -59,11 +59,14 @@ Create a cinematic editorial luxury marketing website for Cornelia Trompke — a
 - Neural network canvas background (custom canvas API, gold nodes + connections)
 - Scroll-reveal animations (framer-motion useInView)
 - **SVG Venn Diagram** (homepage): Two text-keyword circles rotating at different speeds
-  - Keywords form the circle edges (no stroke/fill)
+  - Keywords form the circle edges (no stroke/fill), 12px Manrope, letterSpacing 3.5
   - CW sweep paths — text reads left-to-right at top of each circle
   - Three-layer SVG masking for interlocking chain-link illusion
-  - Scroll-triggered Gold S-curve arrow (IntersectionObserver, framer-motion pathLength animation)
-  - Arrow: #C8A96A Gold, strokeWidth 2.2, open chevron arrowhead
+  - "Executive" italic label at left circle centre, "Advisory" at right circle centre
+  - CT logo mark (SVG feColorMatrix black-bg removal filter) at intersection centre
+  - Twisted loop arrow: self-intersecting teardrop cubic bezier (P0=P3) + downward S-curve tail
+  - Arrow: #C8A96A Gold, strokeWidth 2.2, open chevron arrowhead, scroll-triggered
+  - Rotation: 60s CW (left), 48s CCW (right) — meditative, unhurried feel
   - Hover on circles pauses orbit animation
   - Background: bg-ivory (merges seamlessly with Philosophy section)
 - Smooth hover transitions on all interactive elements
