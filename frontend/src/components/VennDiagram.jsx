@@ -213,11 +213,11 @@ const VennDiagram = () => {
           />
 
           {/* ─ Scroll-triggered arrow (from Venn arrow.svg, gold, flipped) ─
-               Transform: translate(427,607) scale(0.183,-0.183)
-               • centres the 800px-wide shape at INT_X=500 (427+146/2≈500)
-               • negative scaleY flips so chevron faces downward toward heading ─ */}
+               scaleX=0.10 (width 80px) keeps the shape thin/calligraphic
+               scaleY=-0.183 (height 321px) preserves the full vertical length
+               translateX: 500 - 400*0.10 = 460 re-centres at INT_X ─ */}
           <motion.g
-            transform="translate(427, 607) scale(0.183, -0.183)"
+            transform="translate(460, 607) scale(0.10, -0.183)"
             initial={{ opacity: 0 }}
             animate={{ opacity: arrowVisible ? 0.88 : 0 }}
             transition={{ duration: 1.6, ease: [0.4, 0, 0.2, 1], delay: 0.4 }}
