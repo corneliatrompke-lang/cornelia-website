@@ -203,11 +203,13 @@ Create a cinematic editorial luxury marketing website for Cornelia Trompke — a
 
 ## Changelog
 
-### FoundationSection — Scroll Assembly Animation (Mar 2026)
-- Extracted into `/app/frontend/src/components/home/FoundationSection.jsx`
-- Banner drifts down, Circle slides from right, Square from lower-left, Card rises from below
-- Text (divider, heading, body) only appears after content card reaches final position
-- Uses Framer Motion `useScroll` + `useTransform` with `offset: ["start 90%", "start 15%"]`
+### FoundationSection — Scroll Assembly Animation v2 (Mar 2026)
+- REWRITTEN with dramatically larger travel distances and slower timing
+- Banner: -220px drop, Circle: +380px right sweep, Square: -300px/-140px lower-left surge, Card: +160px rise
+- Scroll offset expanded to `["start end", "start 5%"]` — animation runs over full section scroll range
+- Canvas-based gold dust particle effect: 55 particles with glow halos converge toward content card, fade out when fully assembled
+- Text (divider, heading, body) only reveals after card fully settles (progress 0.84+)
+- 100% test pass rate confirmed by testing agent (iteration_7)
 
 ### Testimonials Section Redesign (Mar 2026)
 - Background changed to charcoal (#121212)
