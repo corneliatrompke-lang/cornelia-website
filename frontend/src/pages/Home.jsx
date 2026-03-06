@@ -218,33 +218,47 @@ const Home = () => {
       {/* ═══ METHOD TEASER ═══ */}
       <section className="bg-charcoal ct-section relative overflow-hidden" data-testid="method-section">
         <NeuralCanvas opacity={0.08} nodeCount={40} />
-        <div className="relative z-10 max-w-[750px] mx-auto px-6 text-center">
-          <ScrollReveal>
-            <div className="ct-divider mx-auto mb-8" />
-            <p className="ct-overline text-gold/70 mb-6">{t.home.method.overline}</p>
-          </ScrollReveal>
-          <ScrollReveal delay={0.15}>
-            <h2
-              className="text-ivory leading-[1.15]"
-              style={{ fontFamily: "Figtree, sans-serif", fontSize: "clamp(28px, 4vw, 46px)", fontWeight: 400 }}
-            >
-              {t.home.method.headline}
-            </h2>
-          </ScrollReveal>
-          <ScrollReveal delay={0.3}>
-            <p
-              className="text-stone/55 mt-7 leading-relaxed"
-              style={{ fontFamily: "Manrope, sans-serif", fontSize: "17px", fontWeight: 300 }}
-            >
-              {t.home.method.body}
-            </p>
-          </ScrollReveal>
-          <ScrollReveal delay={0.45}>
-            <Link to="/method" className="btn-secondary mt-10 inline-flex items-center gap-2" data-testid="method-cta">
-              {t.home.method.cta}
-              <ArrowRight size={12} />
-            </Link>
-          </ScrollReveal>
+        <div className="relative z-10 max-w-[1400px] mx-auto px-6 md:px-16">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+
+            {/* Left column — decorative space (NeuralCanvas shows through) */}
+            <div />
+
+            {/* Right column — editorial text */}
+            <div>
+              <ScrollReveal>
+                <div className="ct-divider mb-8" />
+                <p className="ct-overline text-gold/70 mb-6">{t.home.method.overline}</p>
+              </ScrollReveal>
+              <ScrollReveal delay={0.15}>
+                <h2
+                  className="text-ivory leading-[1.15]"
+                  style={{ fontFamily: "Figtree, sans-serif", fontSize: "clamp(28px, 4vw, 46px)", fontWeight: 400 }}
+                >
+                  {t.home.method.headline}
+                </h2>
+              </ScrollReveal>
+              <ScrollReveal delay={0.3}>
+                <p
+                  className="text-stone/55 mt-7 leading-relaxed"
+                  style={{ fontFamily: "Manrope, sans-serif", fontSize: "17px", fontWeight: 300 }}
+                >
+                  {t.home.method.body}
+                </p>
+              </ScrollReveal>
+              <ScrollReveal delay={0.45}>
+                <Link
+                  to="/method"
+                  className="btn-secondary mt-10"
+                  style={{ borderRadius: "8px", padding: "10px 22px", display: "inline-block" }}
+                  data-testid="method-cta"
+                >
+                  {t.home.method.cta}
+                </Link>
+              </ScrollReveal>
+            </div>
+
+          </div>
         </div>
       </section>
 
