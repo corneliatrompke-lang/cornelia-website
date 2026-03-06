@@ -145,7 +145,7 @@ const Home = () => {
               />
             </div>
 
-            {/* Circle — absolute, top-right, z above banner */}
+            {/* Circle — absolute, top-right, anchored to banner top */}
             <div style={{
               position: "absolute", right: 0, top: "50px",
               width: "290px", height: "290px",
@@ -161,45 +161,9 @@ const Home = () => {
               />
             </div>
 
-            {/* Content card — overlaps banner by ~280px from below */}
+            {/* Tilted square — absolute, lower-left of banner image */}
             <div style={{
-              marginTop: "-280px",
-              position: "relative",
-              zIndex: 2,
-              background: "#F5F2EC",
-              paddingTop: "60px",
-              paddingBottom: "0",
-            }}>
-              <div className="max-w-[720px] mx-auto text-center" style={{ padding: "0 24px" }}>
-                <ScrollReveal>
-                  <div className="ct-divider mx-auto mb-8" style={{ background: "rgba(18,18,18,0.2)" }} />
-                  <p className="ct-overline text-sage mb-6">{t.home.philosophy.overline}</p>
-                </ScrollReveal>
-                <ScrollReveal delay={0.15}>
-                  <h2
-                    className="text-charcoal leading-[1.15]"
-                    style={{ fontFamily: "Figtree, sans-serif", fontSize: "clamp(28px, 4vw, 46px)", fontWeight: 400 }}
-                  >
-                    {t.home.philosophy.headline}
-                  </h2>
-                </ScrollReveal>
-                <ScrollReveal delay={0.3}>
-                  {t.home.philosophy.body.split("\n\n").map((para, i) => (
-                    <p
-                      key={i}
-                      className="text-charcoal/65 mt-6 leading-relaxed"
-                      style={{ fontFamily: "Manrope, sans-serif", fontSize: "17px", fontWeight: 300 }}
-                    >
-                      {para}
-                    </p>
-                  ))}
-                </ScrollReveal>
-              </div>
-            </div>
-
-            {/* Tilted square — absolute, bottom-left, z above content card */}
-            <div style={{
-              position: "absolute", left: "calc(12.5% - 40px)", bottom: "80px",
+              position: "absolute", left: "calc(12.5% - 40px)", top: "190px",
               width: "250px", height: "250px",
               transform: "rotate(-5deg)", overflow: "hidden",
               border: "6px solid #F5F2EC",
@@ -211,6 +175,43 @@ const Home = () => {
                 alt=""
                 style={{ width: "100%", height: "100%", objectFit: "cover" }}
               />
+            </div>
+
+            {/* Content card — narrow centered card, -150px overlap into banner */}
+            <div
+              className="mx-auto text-center"
+              style={{
+                maxWidth: "760px",
+                marginTop: "-150px",
+                position: "relative",
+                zIndex: 2,
+                background: "#F5F2EC",
+                padding: "48px 48px 0",
+              }}
+            >
+              <ScrollReveal>
+                <div className="ct-divider mx-auto mb-8" style={{ background: "rgba(18,18,18,0.2)" }} />
+                <p className="ct-overline text-sage mb-6">{t.home.philosophy.overline}</p>
+              </ScrollReveal>
+              <ScrollReveal delay={0.15}>
+                <h2
+                  className="text-charcoal leading-[1.15]"
+                  style={{ fontFamily: "Figtree, sans-serif", fontSize: "clamp(28px, 4vw, 46px)", fontWeight: 400 }}
+                >
+                  {t.home.philosophy.headline}
+                </h2>
+              </ScrollReveal>
+              <ScrollReveal delay={0.3}>
+                {t.home.philosophy.body.split("\n\n").map((para, i) => (
+                  <p
+                    key={i}
+                    className="text-charcoal/65 mt-6 leading-relaxed"
+                    style={{ fontFamily: "Manrope, sans-serif", fontSize: "17px", fontWeight: 300 }}
+                  >
+                    {para}
+                  </p>
+                ))}
+              </ScrollReveal>
             </div>
 
           </div>
