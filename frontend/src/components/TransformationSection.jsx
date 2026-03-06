@@ -30,7 +30,7 @@ const ITEMS = [
 ];
 
 // Asymmetric vertical stagger for the final all-4 row
-const FINAL_STAGGER = [0, 72, 26, 98];
+const FINAL_STAGGER = [20, 112, 56, 150];
 
 // Wavy connector paths (viewBox 0 0 100 100)
 const SEG12 = "M 22,54 C 36,46 43,65 50,54 C 57,43 65,65 78,58";
