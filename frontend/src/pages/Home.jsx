@@ -179,7 +179,7 @@ const Home = () => {
           style={{
             display: "flex",
             width: "max-content",
-            animation: "logoTicker 34s linear infinite",
+            animation: "logoTicker 70s linear infinite",
           }}
         >
           {[...TICKER_ITEMS, ...TICKER_ITEMS].map((item, idx) => {
@@ -196,20 +196,7 @@ const Home = () => {
                   flexShrink: 0,
                 }}
               >
-                <Icon size={13} style={{ color: "rgba(18,18,18,0.22)", flexShrink: 0 }} />
-                <span
-                  style={{
-                    fontFamily: "Manrope, sans-serif",
-                    fontSize: "10px",
-                    fontWeight: 500,
-                    letterSpacing: "0.22em",
-                    textTransform: "uppercase",
-                    color: "rgba(18,18,18,0.26)",
-                    whiteSpace: "nowrap",
-                  }}
-                >
-                  {item.label}
-                </span>
+                <Icon size={20} style={{ color: "rgba(18,18,18,0.28)", flexShrink: 0 }} />
               </div>
             );
           })}
