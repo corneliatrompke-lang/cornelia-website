@@ -107,7 +107,18 @@ Create a cinematic editorial luxury marketing website for Cornelia Trompke — a
 
 ## What's Been Implemented (March 2025)
 
-### v1.1 (Homepage & Nav Update)
+### v1.2 (Venn Diagram Section — Feb 2026)
+- Replaced scrolling marquee with an interactive SVG Venn diagram
+- Two overlapping circles: Left = executive/leadership keywords (EXECUTIVE DEPTH · SYSTEMIC CLARITY · ORGANISATIONAL CHANGE · LEADERSHIP), Right = methodology keywords (NERVOUS SYSTEM · TRANSFORMATION · NARM · INTEGRAL COACHING)
+- Keywords orbit each circle at different speeds (CW/CCW) via CSS animation
+- Hover state: rotation pauses and a curved SVG arrow emerges from the intersection, pointing toward the "Leadership Is Not a Strategy" heading in the next section
+- Arrow uses framer-motion `pathLength` for the draw-in animation
+- Intersection zone labelled "Integration" in Cormorant Garamond italic
+- Mobile fallback: original scrolling marquee preserved for smaller screens
+- New component: `/app/frontend/src/components/VennDiagram.jsx`
+- New CSS: venn orbit animations added to `/app/frontend/src/App.css`
+
+
 - Navigation redesigned: 3-zone layout (logo left | glassmorphic pill center | lang+CTA right)
 - Hero section: rounded card wrapper (20px radius) with atmospheric background image
 - Hero text repositioned to bottom-left with pill-style CTAs

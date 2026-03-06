@@ -308,3 +308,26 @@
 }
 
 html { scroll-behavior: smooth; }
+
+/* ---- Venn Diagram — orbit animations ---- */
+@keyframes vennOrbitCW {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+@keyframes vennOrbitCCW {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(-360deg); }
+}
+.venn-orbit-left {
+  transform-box: view-box;
+  transform-origin: 320px 210px;
+  animation: vennOrbitCW 32s linear infinite;
+}
+.venn-orbit-right {
+  transform-box: view-box;
+  transform-origin: 580px 210px;
+  animation: vennOrbitCCW 27s linear infinite;
+}
+.venn-orbit-paused {
+  animation-play-state: paused !important;
+}

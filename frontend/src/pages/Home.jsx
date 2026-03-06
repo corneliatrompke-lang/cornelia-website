@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
 import NeuralCanvas from "../components/NeuralCanvas";
 import ScrollReveal from "../components/ScrollReveal";
+import VennDiagram from "../components/VennDiagram";
 import { useLanguage } from "../context/LanguageContext";
 
 const PORTRAIT =
@@ -123,22 +124,8 @@ const Home = () => {
         </div>
       </section>
 
-      {/* ═══ MARQUEE ═══ */}
-      <section className="bg-stone py-5 overflow-hidden" data-testid="marquee-section">
-        <div className="marquee-outer">
-          <div className="marquee-track">
-            {[t.home.marquee, t.home.marquee].map((text, i) => (
-              <span
-                key={i}
-                className="ct-overline text-charcoal/50 pr-8"
-                style={{ fontSize: "10px" }}
-              >
-                {text}
-              </span>
-            ))}
-          </div>
-        </div>
-      </section>
+      {/* ═══ VENN DIAGRAM ═══ */}
+      <VennDiagram />
 
       {/* ═══ PHILOSOPHY ═══ */}
       <section
