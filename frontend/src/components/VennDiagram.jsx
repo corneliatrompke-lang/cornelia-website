@@ -213,13 +213,15 @@ const VennDiagram = () => {
             onMouseLeave={() => setPaused(false)}
           />
 
-          {/* ─ Scroll-triggered arrow (Venn arrow3.svg, gold, no flip needed) ─
-               translate(450,253) scale(0.033,0.129)
-               • path bbox x[300-2711] → 80px wide, centred at INT_X=500
-               • path bbox y[253-2746] → 321px tall, y=286→607
-               • vectorEffect keeps stroke at 2px regardless of non-uniform scale ─ */}
+          {/* ─ Scroll-triggered arrow (Venn arrow3.svg, gold, uniform scale + rotation) ─
+               transform reads right-to-left:
+               1. translate(-300.561,-253.553) — move path start to origin
+               2. scale(0.1)                  — uniform scale (preserves proportions)
+               3. rotate(43.6)                — tilt 43.6° CW so start→end goes straight down
+               4. translate(500,283)          — place start at logo bottom, INT_X=500
+               Result: start=(500,283), end≈(500,607) — both centre-aligned ─ */}
           <motion.g
-            transform="translate(450, 253) scale(0.033, 0.129)"
+            transform="translate(500, 283) rotate(43.6) scale(0.1) translate(-300.561, -253.553)"
             initial={{ opacity: 0 }}
             animate={{ opacity: arrowVisible ? 0.88 : 0 }}
             transition={{ duration: 1.6, ease: [0.4, 0, 0.2, 1], delay: 0.4 }}
