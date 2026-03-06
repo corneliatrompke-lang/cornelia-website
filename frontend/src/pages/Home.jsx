@@ -179,9 +179,13 @@ const Home = () => {
                 >
                   {t.home.aboutPreview.body}
                 </p>
-                <Link to="/about" className="btn-secondary mt-10 inline-flex items-center gap-2" data-testid="about-cta">
+                <Link
+                  to="/about"
+                  className="btn-secondary mt-10"
+                  style={{ borderRadius: "8px", padding: "10px 22px" }}
+                  data-testid="about-cta"
+                >
                   {t.home.aboutPreview.cta}
-                  <ArrowRight size={12} />
                 </Link>
               </ScrollReveal>
             </div>

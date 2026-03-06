@@ -4,7 +4,7 @@ import { useLanguage } from "../context/LanguageContext";
 
 // ── SVG viewport ────────────────────────────────────────────────────────────
 const W = 1000;
-const H = 620; // Extended to give the arrow room below the circles
+const H = 650; // Extended to give chevron room below circles
 
 // ── Circle geometry ──────────────────────────────────────────────────────────
 const LX = 340;   // Left circle centre X
