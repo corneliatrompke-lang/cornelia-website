@@ -19,7 +19,7 @@ const Home = () => {
   const testimonials = t.home.testimonials.items;
 
   return (
-    <div className="bg-charcoal">
+    <div className="bg-[#F5F2EC]">
       {/* ═══ HERO — Rounded card wrapper ═══ */}
       <section
         className="pt-[6px] px-3 md:px-4 pb-3"
@@ -124,7 +124,7 @@ const Home = () => {
       </section>
 
       {/* ═══ MARQUEE ═══ */}
-      <section className="bg-stone mt-3 py-5 overflow-hidden" data-testid="marquee-section">
+      <section className="bg-stone py-5 overflow-hidden" data-testid="marquee-section">
         <div className="marquee-outer">
           <div className="marquee-track">
             {[t.home.marquee, t.home.marquee].map((text, i) => (
