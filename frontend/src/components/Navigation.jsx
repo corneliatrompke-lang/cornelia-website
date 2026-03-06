@@ -35,7 +35,7 @@ const Navigation = () => {
         className="fixed top-0 left-0 right-0 z-[900] transition-all duration-500"
         style={{
           padding: "16px 24px",
-          background: scrolled ? "rgba(18,18,18,0.88)" : "transparent",
+          background: scrolled ? "rgba(18,18,18,0.88)" : "rgba(10,10,10,0.18)",
           backdropFilter: scrolled ? "blur(24px)" : "none",
           borderBottom: scrolled ? "1px solid rgba(200,169,106,0.07)" : "none",
         }}

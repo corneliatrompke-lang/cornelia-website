@@ -8,8 +8,10 @@ import { useLanguage } from "../context/LanguageContext";
 const PORTRAIT =
   "https://images.unsplash.com/photo-1686078803106-7c6684f62158?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA1NTJ8MHwxfHNlYXJjaHwyfHxwcm9mZXNzaW9uYWwlMjBzZW5pb3IlMjB3b21hbiUyMGV4ZWN1dGl2ZSUyMHBvcnRyYWl0JTIwYmxhY2slMjB3aGl0ZSUyMGVkaXRvcmlhbHxlbnwwfHx8fDE3NzI3ODc5NjB8MA&ixlib=rb-4.1.0&q=85";
 
+// Hero placeholder image — replace with client's own photography
+
 const HERO_BG =
-  "https://images.unsplash.com/photo-1467139999947-97d5d3164083?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA1ODR8MHwxfHNlYXJjaHwyfHxzZXJlbmUlMjBjb250ZW1wbGF0aXZlJTIwbGlnaHQlMjBhcmNoaXRlY3R1cmFsJTIwbWluaW1hbCUyMGx1eHVyeSUyMGludGVyaW9yJTIwYXRtb3NwaGVyaWN8ZW58MHx8fHwxNzcyNzg5OTAwfDA&ixlib=rb-4.1.0&q=85";
+  "https://images.unsplash.com/photo-1729250829395-864b0d9489c2?crop=entropy&cs=srgb&fm=jpg&q=85";
 
 const Home = () => {
   const { t } = useLanguage();
@@ -20,7 +22,8 @@ const Home = () => {
     <div className="bg-charcoal">
       {/* ═══ HERO — Rounded card wrapper ═══ */}
       <section
-        className="bg-charcoal pt-[76px] px-3 md:px-4 pb-3"
+        className="pt-[76px] px-3 md:px-4 pb-3"
+        style={{ background: "#F5F2EC" }}
         data-testid="hero-section"
       >
         {/* Rounded container */}
@@ -39,17 +42,26 @@ const Home = () => {
             aria-hidden="true"
           />
 
-          {/* Gradient overlay — heavy bottom for text legibility */}
+          {/* Left-to-right charcoal gradient: near-black on left → ~1% on right */}
           <div
-            className="absolute inset-0"
+            className="absolute inset-0 z-[1]"
             style={{
               background:
-                "linear-gradient(to top, rgba(5,5,5,0.82) 0%, rgba(5,5,5,0.45) 45%, rgba(5,5,5,0.18) 100%)",
+                "linear-gradient(to right, rgba(18,18,18,0.97) 0%, rgba(18,18,18,0.88) 18%, rgba(18,18,18,0.60) 38%, rgba(18,18,18,0.20) 62%, rgba(18,18,18,0.01) 100%)",
+            }}
+          />
+          {/* Top strip gradient — keeps nav links legible over any image */}
+          <div
+            className="absolute top-0 left-0 right-0 z-[2]"
+            style={{
+              height: "100px",
+              background:
+                "linear-gradient(to bottom, rgba(18,18,18,0.45) 0%, transparent 100%)",
             }}
           />
 
           {/* Neural canvas */}
-          <NeuralCanvas opacity={0.1} nodeCount={50} />
+          <NeuralCanvas opacity={0.08} nodeCount={40} />
 
           {/* ── Text: bottom-left ── */}
           <div
