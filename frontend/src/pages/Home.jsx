@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
-import { ArrowRight, Building2, Globe, Award, BookOpen, Users, TrendingUp, Briefcase, Layers } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import NeuralCanvas from "../components/NeuralCanvas";
 import ScrollReveal from "../components/ScrollReveal";
 import VennDiagram from "../components/VennDiagram";
@@ -17,16 +17,18 @@ const TESTIMONIAL_PORTRAITS = [
   "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?crop=entropy&cs=srgb&fm=jpg&ixlib=rb-4.1.0&q=85",
 ];
 
-// Brand logo ticker items
+// Brand logo ticker — Simple Icons CDN, rendered as black marks on ivory
 const TICKER_ITEMS = [
-  { icon: Award,     label: "NARM Institute" },
-  { icon: BookOpen,  label: "New Ventures West" },
-  { icon: Users,     label: "Integral Coaching" },
-  { icon: Globe,     label: "ICF Global" },
-  { icon: Building2, label: "European Foundation" },
-  { icon: TrendingUp,label: "DAX Executive Leaders" },
-  { icon: Briefcase, label: "Board-Level Advisory" },
-  { icon: Layers,    label: "Systemic Facilitation" },
+  { src: "https://cdn.simpleicons.org/microsoft", alt: "Microsoft" },
+  { src: "https://cdn.simpleicons.org/google",    alt: "Google"    },
+  { src: "https://cdn.simpleicons.org/amazon",    alt: "Amazon"    },
+  { src: "https://cdn.simpleicons.org/apple",     alt: "Apple"     },
+  { src: "https://cdn.simpleicons.org/meta",      alt: "Meta"      },
+  { src: "https://cdn.simpleicons.org/netflix",   alt: "Netflix"   },
+  { src: "https://cdn.simpleicons.org/tesla",     alt: "Tesla"     },
+  { src: "https://cdn.simpleicons.org/bmw",       alt: "BMW"       },
+  { src: "https://cdn.simpleicons.org/siemens",   alt: "Siemens"   },
+  { src: "https://cdn.simpleicons.org/sap",       alt: "SAP"       },
 ];
 
 // Hero placeholder image — replace with client's own photography
@@ -183,20 +185,27 @@ const Home = () => {
           }}
         >
           {[...TICKER_ITEMS, ...TICKER_ITEMS].map((item, idx) => {
-            const Icon = item.icon;
             return (
               <div
                 key={idx}
                 style={{
                   display: "flex",
                   alignItems: "center",
-                  gap: "10px",
-                  padding: "0 52px",
-                  borderRight: "1px solid rgba(18,18,18,0.07)",
+                  justifyContent: "center",
+                  padding: "0 64px",
                   flexShrink: 0,
                 }}
               >
-                <Icon size={20} style={{ color: "rgba(18,18,18,0.28)", flexShrink: 0 }} />
+                <img
+                  src={item.src}
+                  alt={item.alt}
+                  style={{
+                    height: "60px",
+                    width: "auto",
+                    filter: "brightness(0)",
+                    opacity: 0.22,
+                  }}
+                />
               </div>
             );
           })}
