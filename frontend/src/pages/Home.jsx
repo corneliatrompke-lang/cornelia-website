@@ -125,21 +125,19 @@ const Home = () => {
         </div>
       </section>
 
-      {/* ═══ PHILOSOPHY ═══ */}
+      {/* ═══ THE FOUNDATION ═══ */}
       <section
         className="bg-ivory"
-        style={{ paddingTop: 0, paddingBottom: "140px" }}
+        style={{ paddingBottom: "140px" }}
         data-testid="philosophy-section"
       >
-        {/* ── Image collage ── */}
-        <div className="max-w-[1400px] mx-auto px-6 md:px-16">
-          <div className="relative hidden md:block" style={{ height: "630px" }}>
+        {/* ── Desktop: collage + overlapping content card ── */}
+        <div className="hidden md:block max-w-[1400px] mx-auto px-6 md:px-16">
+          {/* Outer relative wrapper so absolute elements are scoped here */}
+          <div className="relative">
 
-            {/* Banner — 75% width, centred, 50px top padding */}
-            <div style={{
-              position: "absolute", left: "12.5%", top: "50px",
-              width: "75%", height: "500px", overflow: "hidden",
-            }}>
+            {/* Banner — 75% width, centered, in normal flow */}
+            <div style={{ margin: "50px auto 0", width: "75%", height: "460px", overflow: "hidden" }}>
               <img
                 src="https://images.unsplash.com/photo-1671735250135-fc322596644a?crop=entropy&cs=srgb&fm=jpg&ixlib=rb-4.1.0&q=85"
                 alt=""
@@ -147,13 +145,14 @@ const Home = () => {
               />
             </div>
 
-            {/* Circle — top-right edge of banner */}
+            {/* Circle — absolute, top-right, z above banner */}
             <div style={{
-              position: "absolute", right: 0, top: "40px",
+              position: "absolute", right: 0, top: "50px",
               width: "290px", height: "290px",
               borderRadius: "50%", overflow: "hidden",
               border: "6px solid #F5F2EC",
               boxShadow: "0 12px 48px rgba(18,18,18,0.20)",
+              zIndex: 3,
             }}>
               <img
                 src="https://images.unsplash.com/photo-1572866649630-bd38af3d527c?crop=entropy&cs=srgb&fm=jpg&ixlib=rb-4.1.0&q=85"
@@ -162,13 +161,50 @@ const Home = () => {
               />
             </div>
 
-            {/* Tilted square — larger, anchored to left edge of banner */}
+            {/* Content card — overlaps banner by ~280px from below */}
             <div style={{
-              position: "absolute", left: "calc(12.5% - 40px)", bottom: "20px",
+              marginTop: "-280px",
+              position: "relative",
+              zIndex: 2,
+              background: "#F5F2EC",
+              paddingTop: "60px",
+              paddingBottom: "0",
+            }}>
+              <div className="max-w-[720px] mx-auto text-center" style={{ padding: "0 24px" }}>
+                <ScrollReveal>
+                  <div className="ct-divider mx-auto mb-8" style={{ background: "rgba(18,18,18,0.2)" }} />
+                  <p className="ct-overline text-sage mb-6">{t.home.philosophy.overline}</p>
+                </ScrollReveal>
+                <ScrollReveal delay={0.15}>
+                  <h2
+                    className="text-charcoal leading-[1.15]"
+                    style={{ fontFamily: "Figtree, sans-serif", fontSize: "clamp(28px, 4vw, 46px)", fontWeight: 400 }}
+                  >
+                    {t.home.philosophy.headline}
+                  </h2>
+                </ScrollReveal>
+                <ScrollReveal delay={0.3}>
+                  {t.home.philosophy.body.split("\n\n").map((para, i) => (
+                    <p
+                      key={i}
+                      className="text-charcoal/65 mt-6 leading-relaxed"
+                      style={{ fontFamily: "Manrope, sans-serif", fontSize: "17px", fontWeight: 300 }}
+                    >
+                      {para}
+                    </p>
+                  ))}
+                </ScrollReveal>
+              </div>
+            </div>
+
+            {/* Tilted square — absolute, bottom-left, z above content card */}
+            <div style={{
+              position: "absolute", left: "calc(12.5% - 40px)", bottom: "80px",
               width: "250px", height: "250px",
               transform: "rotate(-5deg)", overflow: "hidden",
               border: "6px solid #F5F2EC",
               boxShadow: "0 12px 48px rgba(18,18,18,0.20)",
+              zIndex: 4,
             }}>
               <img
                 src="https://images.unsplash.com/photo-1684963948721-e24aa0d82911?crop=entropy&cs=srgb&fm=jpg&ixlib=rb-4.1.0&q=85"
@@ -180,11 +216,8 @@ const Home = () => {
           </div>
         </div>
 
-        {/* ── Text content — pulls up 150px over the image collage ── */}
-        <div
-          className="max-w-[720px] mx-auto px-6 text-center"
-          style={{ paddingTop: "60px", marginTop: "-260px", position: "relative", zIndex: 10 }}
-        >
+        {/* ── Mobile: text only ── */}
+        <div className="md:hidden max-w-[720px] mx-auto px-6 text-center" style={{ paddingTop: "60px" }}>
           <ScrollReveal>
             <div className="ct-divider mx-auto mb-8" style={{ background: "rgba(18,18,18,0.2)" }} />
             <p className="ct-overline text-sage mb-6">{t.home.philosophy.overline}</p>
