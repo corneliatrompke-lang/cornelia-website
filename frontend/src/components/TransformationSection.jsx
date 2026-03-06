@@ -1,49 +1,43 @@
 import React, { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 
-// Left / right alternating positions — same y per side for consistency.
-// On 1280×800: left circle (x:22) center at 282px, right (x:78) at 998px.
-// 450px circle radius = 225px — both stay within screen.
+// Left / right alternating — x:22 = left, x:78 = right
 const ITEMS = [
   {
     number: "01",
     heading: "From Reactive\nto Responsive",
     subtext: "Lead from clarity rather than fear, even under extraordinary pressure.",
-    x: 22, y: 51,   // LEFT
+    x: 22, y: 54,
   },
   {
     number: "02",
     heading: "From Isolation\nto Influence",
     subtext: "Build cultures of trust that attract and retain exceptional talent.",
-    x: 78, y: 55,   // RIGHT
+    x: 78, y: 58,
   },
   {
     number: "03",
     heading: "From Depletion\nto Sustainability",
     subtext: "Your capacity grows rather than diminishes with the demands of leadership.",
-    x: 22, y: 51,   // LEFT
+    x: 22, y: 54,
   },
   {
     number: "04",
     heading: "From Performance\nto Presence",
     subtext: "Bring your full intelligence to every room, every decision, every relationship.",
-    x: 78, y: 55,   // RIGHT
+    x: 78, y: 58,
   },
 ];
 
-// Wavy two-segment cubic bezier paths (viewBox 0 0 100 100)
-// C1 (22,51) ↔ C2 (78,55) — diagonal with organic waves
-const SEG12 = "M 22,51 C 36,44 43,63 50,52 C 57,41 65,63 78,55";
-// C2 (78,55) ↔ C3 (22,51) — return wave, mirrored rhythm
-const SEG23 = "M 78,55 C 64,48 57,65 50,55 C 43,45 36,64 22,51";
-// C3 (22,51) ↔ C4 (78,55) — same diagonal as SEG12
-const SEG34 = "M 22,51 C 36,44 43,63 50,52 C 57,41 65,63 78,55";
+// Asymmetric vertical stagger for the final all-4 row
+const FINAL_STAGGER = [0, 72, 26, 98];
 
-// 500vh: 4 individual phases (×100vh each) + 1 final all-4 phase (×100vh)
-// scrollYProgress 0–0.80 = individual; 0.80–1.0 = final row
+// Wavy connector paths (viewBox 0 0 100 100)
+const SEG12 = "M 22,54 C 36,46 43,65 50,54 C 57,43 65,65 78,58";
+const SEG23 = "M 78,58 C 64,51 57,67 50,57 C 43,47 36,64 22,54";
+const SEG34 = "M 22,54 C 36,46 43,65 50,54 C 57,43 65,65 78,58";
 
-const CIRCLE_LARGE = 450;  // individual view
-const CIRCLE_SMALL = 178;  // final all-4 row
+const CIRCLE_LARGE = 450;
 
 export default function TransformationSection() {
   const sectionRef = useRef(null);
@@ -53,35 +47,28 @@ export default function TransformationSection() {
     offset: ["start start", "end end"],
   });
 
-  // ── Circles (slower: enter/exit over 0.12 each) ──────────────────
+  // ── Individual circles (500vh, 4 phases × 0.20 each + final 0.20) ──
 
-  // C1: visible from start, slow exit
   const c1o = useTransform(scrollYProgress, [0, 0.15, 0.24], [1, 1, 0]);
   const c1s = useTransform(scrollYProgress, [0, 0.15, 0.24], [1, 1, 0.92]);
 
-  // C2: slow fade-in at 0.22, slow fade-out at 0.36
   const c2o = useTransform(scrollYProgress, [0.22, 0.34, 0.36, 0.46], [0, 1, 1, 0]);
   const c2s = useTransform(scrollYProgress, [0.22, 0.34, 0.36, 0.46], [0.84, 1, 1, 0.92]);
 
-  // C3
   const c3o = useTransform(scrollYProgress, [0.42, 0.54, 0.56, 0.66], [0, 1, 1, 0]);
   const c3s = useTransform(scrollYProgress, [0.42, 0.54, 0.56, 0.66], [0.84, 1, 1, 0.92]);
 
-  // C4 individual — exits before final row
   const c4o = useTransform(scrollYProgress, [0.62, 0.74, 0.76, 0.84], [0, 1, 1, 0]);
   const c4s = useTransform(scrollYProgress, [0.62, 0.74, 0.76, 0.84], [0.84, 1, 1, 0.92]);
 
-  // ── Wavy segments (slower draw: over 0.14, visible until exit) ────
+  // ── Wavy segments ────────────────────────────────────────────────
 
-  // Seg 1→2
   const seg12PL = useTransform(scrollYProgress, [0.15, 0.30], [0, 1]);
   const seg12O  = useTransform(scrollYProgress, [0.15, 0.24, 0.36, 0.46], [0, 0.85, 0.85, 0]);
 
-  // Seg 2→3
   const seg23PL = useTransform(scrollYProgress, [0.35, 0.50], [0, 1]);
   const seg23O  = useTransform(scrollYProgress, [0.35, 0.46, 0.56, 0.66], [0, 0.85, 0.85, 0]);
 
-  // Seg 3→4
   const seg34PL = useTransform(scrollYProgress, [0.55, 0.70], [0, 1]);
   const seg34O  = useTransform(scrollYProgress, [0.55, 0.66, 0.76, 0.84], [0, 0.85, 0.85, 0]);
 
@@ -115,11 +102,11 @@ export default function TransformationSection() {
           overflow: "hidden",
         }}
       >
-        {/* ── Header — compact spacing ────────────────────────────── */}
+        {/* ── Header — pushed below nav bar (~70px) ──────────────── */}
         <div
           style={{
             position: "absolute",
-            top: "28px",
+            top: "78px",
             left: 0,
             right: 0,
             textAlign: "center",
@@ -142,7 +129,7 @@ export default function TransformationSection() {
           <h2
             style={{
               fontFamily: "Figtree, sans-serif",
-              fontSize: "clamp(26px, 3vw, 42px)",
+              fontSize: "clamp(26px, 3vw, 40px)",
               fontWeight: 400,
               color: "#F5F2EC",
               lineHeight: 1.1,
@@ -178,16 +165,14 @@ export default function TransformationSection() {
         >
           {segments.map(({ d, pl, opacity }, si) => (
             <React.Fragment key={si}>
-              {/* Soft outer glow */}
               <motion.path
                 d={d}
                 stroke="rgba(200,169,106,0.18)"
-                strokeWidth="2.0"
+                strokeWidth="2.2"
                 fill="none"
                 strokeLinecap="round"
                 style={{ pathLength: pl, opacity, filter: "blur(6px)" }}
               />
-              {/* Crisp centre line */}
               <motion.path
                 d={d}
                 stroke="rgba(200,169,106,0.68)"
@@ -200,7 +185,7 @@ export default function TransformationSection() {
           ))}
         </svg>
 
-        {/* ── Individual circles ──────────────────────────────────── */}
+        {/* ── Individual large circles ─────────────────────────────── */}
         {ITEMS.map((item, i) => (
           <motion.div
             key={i}
@@ -282,102 +267,102 @@ export default function TransformationSection() {
           </motion.div>
         ))}
 
-        {/* ── Final view: all 4 circles in a row ─────────────────── */}
+        {/* ── Final view: 4 staggered columns (circle + text below) ── */}
         <motion.div
           style={{
             position: "absolute",
-            top: "108px",          // clears the header
+            top: "160px",   // clears nav + full header block
             left: 0,
             right: 0,
             bottom: 0,
             display: "flex",
-            alignItems: "center",
+            alignItems: "flex-start",
             justifyContent: "center",
-            gap: "22px",
-            paddingLeft: "24px",
-            paddingRight: "24px",
+            gap: "20px",
+            paddingLeft: "40px",
+            paddingRight: "40px",
             opacity: finalO,
             zIndex: 6,
             pointerEvents: "none",
           }}
         >
-          {/* Subtle horizontal connector behind circles */}
-          <div
-            style={{
-              position: "absolute",
-              top: "50%",
-              left: "5%",
-              right: "5%",
-              height: "1px",
-              background:
-                "linear-gradient(to right, transparent 0%, rgba(200,169,106,0.25) 15%, rgba(200,169,106,0.25) 85%, transparent 100%)",
-              zIndex: 0,
-            }}
-          />
-
           {ITEMS.map((item, i) => (
             <div
               key={i}
               style={{
-                width: `${CIRCLE_SMALL}px`,
-                height: `${CIRCLE_SMALL}px`,
-                flexShrink: 0,
-                borderRadius: "50%",
-                border: "1px solid rgba(200,169,106,0.28)",
                 display: "flex",
                 flexDirection: "column",
                 alignItems: "center",
-                justifyContent: "center",
-                padding: "13%",
-                background: "#151515",
-                boxShadow: "0 0 40px rgba(200,169,106,0.06)",
-                textAlign: "center",
-                boxSizing: "border-box",
-                position: "relative",
-                zIndex: 1,
+                flex: 1,
+                maxWidth: "230px",
+                marginTop: `${FINAL_STAGGER[i]}px`,
               }}
             >
-              <span
+              {/* Small number circle */}
+              <div
                 style={{
-                  fontFamily: "Manrope, sans-serif",
-                  fontSize: "9px",
-                  letterSpacing: "0.22em",
-                  color: "#C8A96A",
-                  marginBottom: "8px",
-                  display: "block",
+                  width: "120px",
+                  height: "120px",
+                  flexShrink: 0,
+                  borderRadius: "50%",
+                  border: "1px solid rgba(200,169,106,0.28)",
+                  background: "#151515",
+                  boxShadow: "0 0 40px rgba(200,169,106,0.06)",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  marginBottom: "20px",
                 }}
               >
-                {item.number}
-              </span>
-              <span
+                <span
+                  style={{
+                    fontFamily: "Cormorant Garamond, serif",
+                    fontSize: "34px",
+                    fontWeight: 300,
+                    color: "rgba(200,169,106,0.80)",
+                    lineHeight: 1,
+                  }}
+                >
+                  {item.number}
+                </span>
+              </div>
+
+              {/* Heading */}
+              <h3
                 style={{
                   fontFamily: "Figtree, sans-serif",
-                  fontSize: "13px",
+                  fontSize: "16px",
                   fontWeight: 400,
                   color: "#F5F2EC",
-                  lineHeight: 1.3,
-                  display: "block",
+                  lineHeight: 1.32,
+                  textAlign: "center",
                   whiteSpace: "pre-line",
+                  marginBottom: "12px",
+                  margin: "0 0 12px",
                 }}
               >
                 {item.heading}
-              </span>
+              </h3>
+
+              {/* Divider */}
               <div
                 style={{
-                  width: "18px",
+                  width: "22px",
                   height: "1px",
                   background: "rgba(200,169,106,0.30)",
-                  margin: "8px auto",
+                  marginBottom: "12px",
                   flexShrink: 0,
                 }}
               />
+
+              {/* Subtext */}
               <p
                 style={{
                   fontFamily: "Manrope, sans-serif",
-                  fontSize: "10px",
-                  color: "rgba(245,242,236,0.42)",
-                  lineHeight: 1.65,
-                  maxWidth: "86%",
+                  fontSize: "13px",
+                  color: "rgba(245,242,236,0.44)",
+                  lineHeight: 1.68,
+                  textAlign: "center",
                   margin: 0,
                 }}
               >
