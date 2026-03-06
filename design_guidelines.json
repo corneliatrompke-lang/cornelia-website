@@ -1,0 +1,136 @@
+{
+  "brand_identity": {
+    "name": "Cornelia Trompke Consulting & Coaching",
+    "ethos": "Quiet Power, Grounded Intelligence, Cinematic Luxury",
+    "core_values": ["Trauma-Informed Leadership", "Nervous System Regulation", "Executive Depth"],
+    "target_audience": "Senior Executives, Founders, Board Members (Global)",
+    "visual_metaphor": "Neural networks meeting high-end editorial fashion",
+    "tone": "Calm, Authoritative, Sophisticated, Slow"
+  },
+  "typography": {
+    "font_family": {
+      "heading": "Playfair Display, serif",
+      "body": "Manrope, sans-serif",
+      "accent": "Cormorant Garamond, serif"
+    },
+    "scaling": {
+      "h1": "text-5xl md:text-7xl lg:text-8xl font-medium tracking-tight leading-[1.1]",
+      "h2": "text-4xl md:text-5xl lg:text-6xl font-normal tracking-tight leading-[1.2]",
+      "h3": "text-2xl md:text-3xl font-normal tracking-normal",
+      "body_large": "text-lg md:text-xl font-light leading-relaxed text-balance",
+      "body_main": "text-base md:text-lg font-light leading-relaxed text-pretty",
+      "caption": "text-xs md:text-sm font-medium tracking-[0.2em] uppercase"
+    },
+    "usage_rules": {
+      "headings": "Use Playfair Display for all major headings. Avoid bold weights; rely on size for hierarchy.",
+      "body": "Use Manrope for all functional text and long-form reading. Keep weights light (300) or regular (400).",
+      "quotes": "Use Cormorant Garamond Italic for pull quotes and testimonials to add an editorial voice."
+    }
+  },
+  "colors": {
+    "palette": {
+      "charcoal": "#121212",
+      "warm_ivory": "#F5F2EC",
+      "soft_stone": "#E3DED7",
+      "muted_sage": "#7C8C82",
+      "soft_gold": "#C8A96A"
+    },
+    "theme_strategy": {
+      "mode_a_dark": {
+        "bg": "bg-[#121212]",
+        "text_primary": "text-[#F5F2EC]",
+        "text_secondary": "text-[#E3DED7]",
+        "accent": "text-[#C8A96A]",
+        "border": "border-[#E3DED7]/10"
+      },
+      "mode_b_light": {
+        "bg": "bg-[#F5F2EC]",
+        "text_primary": "text-[#121212]",
+        "text_secondary": "text-[#7C8C82]",
+        "accent": "text-[#C8A96A]",
+        "border": "border-[#121212]/10"
+      }
+    },
+    "gradients": "NONE. Use solid colors or subtle radial gradients for lighting effects (e.g., a faint gold glow in the dark theme).",
+    "forbidden_colors": ["#1B93A4", "#7351B7", "Generic Blue", "Neon Green"]
+  },
+  "spacing_and_layout": {
+    "vertical_rhythm": "120px - 160px between major sections. Do not fear empty space.",
+    "container_width": "max-w-[1400px] mx-auto px-6 md:px-12",
+    "text_block_width": "max-w-[650px] to max-w-[750px] for optimal readability.",
+    "grid_system": "Avoid symmetric 3-column SaaS grids. Use 12-column distinct asymmetric layouts (e.g., col-span-5 offset-1).",
+    "alignment": "Left-align text by default. Center alignment ONLY for specific 'Impact' statements or hero tagline."
+  },
+  "visual_enhancers": {
+    "neural_network_bg": {
+      "library": "tsparticles",
+      "description": "A slow-moving, interactive mesh network. Nodes are tiny, links are thin. Color: Soft Gold (#C8A96A) or White (#FFFFFF) at low opacity (10-20%).",
+      "location": "Hero Section, 'The Method' background."
+    },
+    "textures": {
+      "grain": "Apply a fixed overlay of subtle film grain (opacity 3-5%) to the entire site to kill digital flatness.",
+      "images": "Use images with a 'matte' finish feel. Avoid high-gloss stock photos."
+    },
+    "borders": "Use ultra-thin borders (1px) with low opacity (10-20%) for dividers. No thick separators."
+  },
+  "components": {
+    "buttons": {
+      "primary": "bg-[#C8A96A] text-[#121212] px-8 py-3 rounded-none uppercase tracking-widest text-xs hover:bg-[#E3DED7] transition-colors duration-500",
+      "secondary": "border border-[#C8A96A] text-[#C8A96A] px-8 py-3 rounded-none uppercase tracking-widest text-xs hover:bg-[#C8A96A] hover:text-[#121212] transition-all duration-500",
+      "link": "text-[#F5F2EC] underline decoration-1 underline-offset-4 hover:text-[#C8A96A] transition-colors"
+    },
+    "cards": {
+      "style": "No shadow, no rounded corners. Sharp edges. Minimal border (1px solid border-white/10). Transparent background with backdrop-blur-md for 'glass' feel.",
+      "hover": "Subtle border color shift to Soft Gold. No lifting or scaling."
+    },
+    "navigation": {
+      "header": "Sticky, glassmorphism (blur-md). Logo on left. Links on right. Language Switcher (EN/DE) distinct.",
+      "footer": "Massive spacing. Editorial layout. Links in columns. Large 'Cornelia Trompke' branding."
+    }
+  },
+  "motion": {
+    "scroll": "Use Lenis for smooth momentum scrolling. Mandatory.",
+    "reveal": "Elements fade in and slide up (y: 20 -> 0) slowly (duration: 0.8s, ease: 'easeOut'). Stagger children.",
+    "hover": "Slow transitions (0.5s). Never snappy.",
+    "parallax": "Apply parallax effect to images and the neural background."
+  },
+  "images": {
+    "style_guide": "Black and white or desaturated editorial shots. High contrast. Abstract macro textures for backgrounds.",
+    "hero_bg": "Abstract golden glowing lines on dark background (Neural Motif).",
+    "portrait": "Professional senior executive woman, black and white, serious/calm expression.",
+    "textures": "Stone, Sand, Sage leaves macro."
+  },
+  "image_urls": {
+    "hero_neural": "https://images.unsplash.com/photo-1762278804760-f94bf1c972f9?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDQ2NDN8MHwxfHNlYXJjaHw0fHxnb2xkZW4lMjBnbG93aW5nJTIwYWJzdHJhY3QlMjBuZXVyYWwlMjBuZXR3b3JrJTIwbGluZXMlMjBkYXJrJTIwYmFja2dyb3VuZHxlbnwwfHx8fDE3NzI3ODc2OTR8MA&ixlib=rb-4.1.0&q=85",
+    "texture_stone": "https://images.unsplash.com/photo-1660300110557-e2419a8b766e?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA1NDh8MHwxfHNlYXJjaHwyfHxtYWNybyUyMHRleHR1cmUlMjBzbW9vdGglMjBzdG9uZSUyMGJlaWdlJTIwd2FybSUyMGl2b3J5fGVufDB8fHx8MTc3Mjc4NzY5NXww&ixlib=rb-4.1.0&q=85",
+    "office_interior": "https://images.unsplash.com/photo-1702360174953-b9d72d5ddba2?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjAzMzN8MHwxfHNlYXJjaHwzfHxtaW5pbWFsJTIwbHV4dXJ5JTIwb2ZmaWNlJTIwaW50ZXJpb3IlMjBkYXJrJTIwbW9vZHxlbnwwfHx8fDE3NzI3ODc2OTV8MA&ixlib=rb-4.1.0&q=85",
+    "cornelia_portrait_placeholder": "https://images.unsplash.com/flagged/photo-1573678767320-5f661e294748?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA2MTJ8MHwxfHNlYXJjaHwxfHxwcm9mZXNzaW9uYWwlMjBzZW5pb3IlMjB3b21hbiUyMGV4ZWN1dGl2ZSUyMHBvcnRyYWl0JTIwYmxhY2slMjBhbmQlMjB3aGl0ZSUyMGVkaXRvcmlhbHxlbnwwfHx8fDE3NzI3ODc2OTZ8MA&ixlib=rb-4.1.0&q=85",
+    "texture_gold_fabric": "https://images.unsplash.com/photo-1650026857159-3cc0003a609e?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA1NDh8MHwxfHNlYXJjaHw0fHxtYWNybyUyMHRleHR1cmUlMjBzbW9vdGglMjBzdG9uZSUyMGJlaWdlJTIwd2FybSUyMGl2b3J5fGVufDB8fHx8MTc3Mjc4NzY5NXww&ixlib=rb-4.1.0&q=85"
+  },
+  "tech_stack_instructions": {
+    "framework": "React + Tailwind CSS",
+    "components": "Shadcn UI (Customize heavily - remove radii, change fonts)",
+    "icons": "Phosphor Icons (Light weight) or Lucide (Fine weight)",
+    "packages_to_install": [
+      "@phosphor-icons/react",
+      "framer-motion",
+      "lenis",
+      "tsparticles",
+      "react-tsparticles",
+      "tsparticles-slim",
+      "clsx",
+      "tailwind-merge"
+    ]
+  },
+  "accessibility": {
+    "contrast": "Ensure text contrast on dark backgrounds is at least 4.5:1. Use lighter greys than default for readability.",
+    "reduced_motion": "Disable Lenis and complex particles if prefers-reduced-motion is true.",
+    "aria": "Neural network canvas must be aria-hidden='true'."
+  },
+  "universal_guidelines": [
+    "Do not use gradients for backgrounds.",
+    "Do not center align the app container.",
+    "Use pill-shaped or sharp rectangular buttons, never default rounded.",
+    "Add data-testid to all interactive elements."
+  ]
+}
