@@ -44,15 +44,16 @@ const R_BASE = "NERVOUS SYSTEM  ·  TRANSFORMATION  ·  NARM  ·  INTEGRAL COACH
 const L_TEXT = L_BASE.repeat(2);
 const R_TEXT = R_BASE.repeat(2);
 
-// ── Arrow SVG paths (from Venn arrow.svg — native viewBox 0 0 800 1755.029) ───
-// Two filled paths; coloured gold and flipped vertically so the chevron
-// (originally at the top/y≈0-420) ends up at the BOTTOM, pointing toward
-// the heading section below.
-// Transform: translate(427, 607) scale(0.183, -0.183)
-//   • places the arrow from (427,286) to (573,607) — centred at INT_X=500
-//   • negative scaleY flips the image so chevron faces down
-const ARROW_P1 = "M420.28,1755.028c-8.777,0-17.428-4.183-22.759-11.991c-244.223-356.513-239.178-609.603-185.833-764.615c-61.837-50.491-110.874-121.141-136.29-212.324C24.906,584.897,65.076,401.004,191.586,234.307C285.982,109.916,393.858,39.589,398.4,36.646c12.798-8.258,29.833-4.56,38.106,8.22c8.258,12.78,4.579,29.833-8.185,38.108c-4.128,2.674-410.507,271.145-299.793,668.333c20.946,75.155,58.606,132.072,105.023,173.608c8.992-18.847,18.469-35.684,27.821-50.493c102.097-161.672,273.354-227.69,389.865-209.273c73.288,11.559,124.946,55.786,141.711,121.321c31.735,124.049-45.609,233.756-192.49,273.012c-111.863,29.921-238.568,14.43-341.562-47.8c-43.815,143.453-39.382,373.943,184.109,700.194c8.615,12.565,5.402,29.725-7.163,38.323C431.085,1753.466,425.647,1755.028,420.28,1755.028zM278.586,958.948c97.791,62.015,218.86,70.972,307.639,47.261c93.229-24.915,182.456-92.135,153.307-206.062c-14.379-56.2-60.617-74.814-96.892-80.521c-96.138-15.258-246.232,44.245-334.651,184.252C298.008,919.673,287.921,938,278.586,958.948z";
-const ARROW_P2 = "M377.902,420.408c-2.064,0-4.165-0.233-6.282-0.719c-14.827-3.465-24.034-18.272-20.588-33.118c30.943-132.754,60.723-281.736,64.098-332.478c-55.286,1.722-227.745,28.558-382.559,57.078c-14.952,2.674-29.33-7.143-32.112-22.132C-2.288,74.071,7.602,59.693,22.59,56.929c408.783-75.28,425.783-58.157,437.072-46.866c11.541,11.559,28.99,29.006-54.926,389.038C401.774,411.828,390.43,420.408,377.902,420.408zM415.021,39.464L415.021,39.464L415.021,39.464z";
+// ── Arrow SVG data (from Venn arrow3.svg — native viewBox 0 0 3000 3000) ─────
+// Stroke-based path + filled polygon arrowhead.
+// Path flows top-left → bottom-right; polygon chevron is already at the bottom,
+// so NO vertical flip is needed.
+// Transform: translate(450, 253) scale(0.033, 0.129)
+//   • maps path bounding box (x 300-2711, y 253-2746) into SVG units:
+//     width 80px centred at INT_X=500; height 321px from y=286 to y=607
+//   • vectorEffect="non-scaling-stroke" keeps stroke at a fixed 2px regardless of scale
+const ARROW_PATH = "M300.561,253.553c-15.914,70.003-23.502,160.711,38.749,196.467c51.57,29.621,115.255-0.867,168.63-27.094c120.933-59.424,277.616-93.406,381.844-8.01c11.224,9.197,21.8,20.056,26.627,33.741c12.947,36.703-19.027,72.681-48.13,98.524c-187.353,166.367-389.068,354.299-418.554,603.116c-9.321,78.659,6.455,170.42,73.444,212.688c44.586,28.131,102.813,27.214,152.488,9.562c49.675-17.653,92.526-50.127,133.633-83.134c175.773-141.138,336.186-301.146,517.448-435.162s389.329-243.112,613.937-262.276c62.071-5.296,144.859,14.092,148.251,76.296c2.076,38.069-29.316,68.697-58.311,93.452c-218.065,186.176-445.786,361.355-654.48,557.978s-399.598,417.051-527.953,673.447c-53.303,106.476-92.369,243.922-18.103,336.996c44.494,55.763,121.164,78.995,192.183,72.247c71.019-6.748,137.096-39.732,196.195-79.689c190.523-128.813,319.126-327.91,462.185-507.982s320.635-354.011,546.945-394.943c53.501-9.677,119.18-6.28,148.091,39.765c30.309,48.272,0.959,111.088-31.733,157.779c-177.951,254.155-460.732,429.965-599.912,707.255c-21.492,42.819-38.064,97.94-8.422,135.579c37.636,47.79,112.848,27.15,169.235,4.322c113.133-45.803,285.316-169.326,409.542-95.691c71.166,42.185,99.683,129.332,162.712,181.171c4.677,3.847,9.417,7.612,14.206,11.308";
+const ARROW_POLY = "2318.201,2675.158 2710.598,2746.461 2576.181,2370.952";
 
 // ─────────────────────────────────────────────────────────────────────────────
 
@@ -212,18 +213,27 @@ const VennDiagram = () => {
             onMouseLeave={() => setPaused(false)}
           />
 
-          {/* ─ Scroll-triggered arrow (from Venn arrow.svg, gold, flipped) ─
-               scaleX=0.10 (width 80px) keeps the shape thin/calligraphic
-               scaleY=-0.183 (height 321px) preserves the full vertical length
-               translateX: 500 - 400*0.10 = 460 re-centres at INT_X ─ */}
+          {/* ─ Scroll-triggered arrow (Venn arrow3.svg, gold, no flip needed) ─
+               translate(450,253) scale(0.033,0.129)
+               • path bbox x[300-2711] → 80px wide, centred at INT_X=500
+               • path bbox y[253-2746] → 321px tall, y=286→607
+               • vectorEffect keeps stroke at 2px regardless of non-uniform scale ─ */}
           <motion.g
-            transform="translate(460, 607) scale(0.10, -0.183)"
+            transform="translate(450, 253) scale(0.033, 0.129)"
             initial={{ opacity: 0 }}
             animate={{ opacity: arrowVisible ? 0.88 : 0 }}
             transition={{ duration: 1.6, ease: [0.4, 0, 0.2, 1], delay: 0.4 }}
           >
-            <path fill="#C8A96A" d={ARROW_P1} />
-            <path fill="#C8A96A" d={ARROW_P2} />
+            <path
+              d={ARROW_PATH}
+              fill="none"
+              stroke="#C8A96A"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeMiterlimit="10"
+              vectorEffect="non-scaling-stroke"
+            />
+            <polygon points={ARROW_POLY} fill="#C8A96A" />
           </motion.g>
         </svg>
       </section>

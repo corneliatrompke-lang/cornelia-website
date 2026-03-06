@@ -130,7 +130,7 @@ const Home = () => {
       {/* ═══ PHILOSOPHY ═══ */}
       <section
         className="bg-ivory ct-section"
-        style={{ paddingTop: "72px" }}
+        style={{ paddingTop: "30px" }}
         data-testid="philosophy-section"
       >
         <div className="max-w-[720px] mx-auto px-6 text-center">
