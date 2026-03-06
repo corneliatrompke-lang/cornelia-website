@@ -137,7 +137,7 @@ const Home = () => {
           <div className="relative">
 
             {/* Banner — 75% width, centered, in normal flow */}
-            <div style={{ margin: "50px auto 0", width: "75%", height: "460px", overflow: "hidden" }}>
+            <div style={{ margin: "140px auto 0", width: "75%", height: "460px", overflow: "hidden" }}>
               <img
                 src="https://images.unsplash.com/photo-1671735250135-fc322596644a?crop=entropy&cs=srgb&fm=jpg&ixlib=rb-4.1.0&q=85"
                 alt=""
@@ -147,7 +147,7 @@ const Home = () => {
 
             {/* Circle — middle layer, top-right of banner */}
             <div style={{
-              position: "absolute", right: 0, top: "50px",
+              position: "absolute", right: 0, top: "140px",
               width: "290px", height: "290px",
               borderRadius: "50%", overflow: "hidden",
               border: "6px solid #F5F2EC",
@@ -163,7 +163,7 @@ const Home = () => {
 
             {/* Tilted square — middle layer, lower-left of banner */}
             <div style={{
-              position: "absolute", left: "calc(12.5% - 40px)", top: "190px",
+              position: "absolute", left: "calc(12.5% - 40px)", top: "280px",
               width: "250px", height: "250px",
               transform: "rotate(-5deg)", overflow: "hidden",
               border: "6px solid #F5F2EC",
