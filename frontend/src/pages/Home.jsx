@@ -788,7 +788,7 @@ const Home = () => {
                 >
                   {t.home.cta.body}
                 </p>
-                <Link to="/contact" className="btn-primary mt-10 inline-block" data-testid="final-cta-btn">
+                <Link to="/contact" className="btn-secondary mt-10 inline-block" data-testid="final-cta-btn">
                   {t.home.cta.cta}
                 </Link>
               </div>

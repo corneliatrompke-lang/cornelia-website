@@ -203,7 +203,16 @@ Create a cinematic editorial luxury marketing website for Cornelia Trompke — a
 
 ## Changelog
 
-### FoundationSection — Full Animation Overhaul v3 (Mar 2026)
+### FoundationSection — Sticky Scroll (Pinned) Pattern (Mar 2026)
+- Outer section: `height: 300vh` — scroll driver giving ~1600px of animation range
+- Inner div: `position: sticky, top: 0, height: 100vh` — content pins to viewport for full duration
+- Images assemble in first ~60% (fp 0.0–0.58), card rises at fp [0.50, 0.70], text cascades at fp [0.68–0.97]
+- Heading uses negative-y (drops from above, clips via overflow:hidden); paragraphs use positive-y (slide up from below)
+- Gold particle canvas at z-index 10 — floats over all elements, clearly visible
+
+### CTA Button Style (Mar 2026)
+- Changed final CTA button from `btn-primary` (solid gold) to `btn-secondary` (transparent + gold border)
+- Now consistent with About Preview, Method, and Services sections
 - Scroll offset: `["start end", "end 70%"]` — animation spans ~1420px of scroll range
 - Section paddingBottom: 380px (total section height ~1180px for slow cinematic scroll)
 - Images: Banner -400px drop, Circle 600px right sweep, Square -520px/-200px lower-left surge
