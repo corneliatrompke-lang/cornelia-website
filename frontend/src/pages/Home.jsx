@@ -269,7 +269,7 @@ const Home = () => {
                         writingMode: "vertical-rl",
                         transform: "rotate(180deg)",
                         fontFamily: "Cormorant Garamond, serif",
-                        fontSize: "clamp(20px, 2vw, 28px)",
+                        fontSize: "clamp(16px, 2vw, 24px)",
                         fontWeight: 400,
                         letterSpacing: "0.08em",
                         color: "rgba(245,242,236,0.6)",
