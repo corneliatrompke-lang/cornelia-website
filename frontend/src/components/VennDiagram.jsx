@@ -4,7 +4,7 @@ import { useLanguage } from "../context/LanguageContext";
 
 // ── SVG viewport ────────────────────────────────────────────────────────────
 const W = 1000;
-const H = 530;
+const H = 490;
 
 // ── Circle geometry ──────────────────────────────────────────────────────────
 const LX = 340;   // Left circle centre X
@@ -50,7 +50,7 @@ const R_TEXT = R_BASE.repeat(2);
 const ARROW = [
   `M ${INT_X} ${LY + 14}`,
   `C ${INT_X + 48} ${LY - 67} ${INT_X - 48} ${LY - 97} ${INT_X} ${LY + 14}`,
-  `C ${INT_X - 5} ${LY + 27} ${INT_X - 20} ${LY + 135} ${INT_X - 5} ${H - 18}`,
+  `C ${INT_X - 5} ${LY + 27} ${INT_X - 20} ${LY + 115} ${INT_X - 5} ${H - 18}`,
 ].join(" ");
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -204,7 +204,7 @@ const VennDiagram = () => {
           <text
             x={LX} y={LY}
             textAnchor="middle" dominantBaseline="middle"
-            fontSize="15"
+            fontSize="18"
             fontFamily="Cormorant Garamond, serif"
             fontStyle="italic"
             fill="rgba(18,18,18,0.30)"
@@ -215,7 +215,7 @@ const VennDiagram = () => {
           <text
             x={RX} y={LY}
             textAnchor="middle" dominantBaseline="middle"
-            fontSize="15"
+            fontSize="18"
             fontFamily="Cormorant Garamond, serif"
             fontStyle="italic"
             fill="rgba(18,18,18,0.30)"
