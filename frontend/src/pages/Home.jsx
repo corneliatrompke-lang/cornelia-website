@@ -145,14 +145,14 @@ const Home = () => {
               />
             </div>
 
-            {/* Circle — absolute, top-right, anchored to banner top */}
+            {/* Circle — middle layer, top-right of banner */}
             <div style={{
               position: "absolute", right: 0, top: "50px",
               width: "290px", height: "290px",
               borderRadius: "50%", overflow: "hidden",
               border: "6px solid #F5F2EC",
               boxShadow: "0 12px 48px rgba(18,18,18,0.20)",
-              zIndex: 3,
+              zIndex: 2,
             }}>
               <img
                 src="https://images.unsplash.com/photo-1572866649630-bd38af3d527c?crop=entropy&cs=srgb&fm=jpg&ixlib=rb-4.1.0&q=85"
@@ -161,14 +161,14 @@ const Home = () => {
               />
             </div>
 
-            {/* Tilted square — absolute, lower-left of banner image */}
+            {/* Tilted square — middle layer, lower-left of banner */}
             <div style={{
               position: "absolute", left: "calc(12.5% - 40px)", top: "190px",
               width: "250px", height: "250px",
               transform: "rotate(-5deg)", overflow: "hidden",
               border: "6px solid #F5F2EC",
               boxShadow: "0 12px 48px rgba(18,18,18,0.20)",
-              zIndex: 4,
+              zIndex: 2,
             }}>
               <img
                 src="https://images.unsplash.com/photo-1684963948721-e24aa0d82911?crop=entropy&cs=srgb&fm=jpg&ixlib=rb-4.1.0&q=85"
@@ -177,21 +177,20 @@ const Home = () => {
               />
             </div>
 
-            {/* Content card — narrow centered card, -150px overlap into banner */}
+            {/* Content card — top layer, narrow centered card overlapping square + banner */}
             <div
               className="mx-auto text-center"
               style={{
                 maxWidth: "760px",
-                marginTop: "-150px",
+                marginTop: "-120px",
                 position: "relative",
-                zIndex: 2,
+                zIndex: 3,
                 background: "#F5F2EC",
-                padding: "48px 48px 0",
+                padding: "24px 24px 0",
               }}
             >
               <ScrollReveal>
                 <div className="ct-divider mx-auto mb-8" style={{ background: "rgba(18,18,18,0.2)" }} />
-                <p className="ct-overline text-sage mb-6">{t.home.philosophy.overline}</p>
               </ScrollReveal>
               <ScrollReveal delay={0.15}>
                 <h2
@@ -221,7 +220,6 @@ const Home = () => {
         <div className="md:hidden max-w-[720px] mx-auto px-6 text-center" style={{ paddingTop: "60px" }}>
           <ScrollReveal>
             <div className="ct-divider mx-auto mb-8" style={{ background: "rgba(18,18,18,0.2)" }} />
-            <p className="ct-overline text-sage mb-6">{t.home.philosophy.overline}</p>
           </ScrollReveal>
           <ScrollReveal delay={0.15}>
             <h2
