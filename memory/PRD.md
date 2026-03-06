@@ -203,7 +203,11 @@ Create a cinematic editorial luxury marketing website for Cornelia Trompke — a
 
 ## Changelog
 
-### FoundationSection — Sticky Scroll (Pinned) Pattern (Mar 2026)
+### FoundationSection — Layout Fixes + Gold Heading (Mar 2026)
+- Sub-container offset `top: 80px` (NAV_H) so banner starts below fixed nav — no overlap
+- Circle: fixed 260px x 260px; Square: fixed 225px x 225px (back to editorial scale)
+- Card positioned at `top: 305px` = 45px overlap below banner bottom — editorial float effect restored
+- Heading: warm gold gradient `linear-gradient(160deg, #121212 30%, #3D2916 100%)` with WebkitBackgroundClip for subtle warmth
 - Outer section: `height: 300vh` — scroll driver giving ~1600px of animation range
 - Inner div: `position: sticky, top: 0, height: 100vh` — content pins to viewport for full duration
 - Images assemble in first ~60% (fp 0.0–0.58), card rises at fp [0.50, 0.70], text cascades at fp [0.68–0.97]

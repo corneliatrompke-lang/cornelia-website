@@ -9,11 +9,14 @@ const CIRCLE_SRC =
 const SQUARE_SRC =
   "https://images.unsplash.com/photo-1684963948721-e24aa0d82911?crop=entropy&cs=srgb&fm=jpg&ixlib=rb-4.1.0&q=85";
 
+// Fixed nav height — sticky inner content starts below this
+const NAV_H = 80;
+
 const N_PARTICLES = 70;
 
 function initParticles(w, h) {
   const cx = w * 0.5;
-  const cardCY = h * 0.80;
+  const cardCY = h * 0.75;
   return Array.from({ length: N_PARTICLES }, (_, i) => {
     const angle = (i / N_PARTICLES) * Math.PI * 2 + Math.random() * 0.5;
     const r = 100 + Math.random() * 360;
@@ -32,19 +35,18 @@ function initParticles(w, h) {
 
 export default function FoundationSection() {
   const { t } = useLanguage();
-  const outerRef  = useRef(null); // 300vh scroll driver
+  const outerRef  = useRef(null);
   const canvasRef = useRef(null);
   const particlesRef = useRef([]);
   const progressRef  = useRef(0);
   const rafRef = useRef(null);
 
-  // ── Full 0→1 progress over 300vh of scroll ───────────────────────
   const { scrollYProgress: fp } = useScroll({
     target: outerRef,
     offset: ["start start", "end end"],
   });
 
-  // ── Images: generous travel, assemble over first ~60% ────────────
+  // ── Images assemble over first ~58% ────────────────────────────
   const bannerY = useTransform(fp, [0.00, 0.55], [-240, 0]);
   const bannerO = useTransform(fp, [0.00, 0.22], [0, 1]);
 
@@ -55,11 +57,11 @@ export default function FoundationSection() {
   const squareY = useTransform(fp, [0.05, 0.58], [160, 0]);
   const squareO = useTransform(fp, [0.05, 0.26], [0, 1]);
 
-  // ── Card rises after images settle ───────────────────────────────
+  // ── Card rises after images settle ─────────────────────────────
   const cardY = useTransform(fp, [0.50, 0.70], [180, 0]);
   const cardO = useTransform(fp, [0.50, 0.66], [0, 1]);
 
-  // ── Text cascade — generous, clearly visible while pinned ─────────
+  // ── Text cascade ───────────────────────────────────────────────
   const dividerScaleX = useTransform(fp, [0.68, 0.80], [0, 1]);
   const dividerO      = useTransform(fp, [0.68, 0.78], [0, 1]);
 
@@ -72,7 +74,7 @@ export default function FoundationSection() {
   const para1Y = useTransform(fp, [0.88, 0.97], [80, 0]);
   const para1O = useTransform(fp, [0.88, 0.97], [0, 1]);
 
-  // ── Particle canvas RAF ───────────────────────────────────────────
+  // ── Particle canvas RAF ────────────────────────────────────────
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
@@ -96,9 +98,9 @@ export default function FoundationSection() {
         const h = canvas.height;
         ctx.clearRect(0, 0, w, h);
 
-        const conv     = Math.min(1, Math.max(0, (prog - 0.03) / 0.68));
-        const fadeIn   = Math.min(1, prog / 0.18);
-        const fadeOut  = conv > 0.85 ? Math.max(0, 1 - (conv - 0.85) / 0.15) : 1;
+        const conv    = Math.min(1, Math.max(0, (prog - 0.03) / 0.68));
+        const fadeIn  = Math.min(1, prog / 0.18);
+        const fadeOut = conv > 0.85 ? Math.max(0, 1 - (conv - 0.85) / 0.15) : 1;
         const tw = ts * 0.0012;
 
         particlesRef.current.forEach((p) => {
@@ -141,14 +143,14 @@ export default function FoundationSection() {
   });
 
   return (
-    // ── Outer: 300vh — provides the scroll budget without moving content ─
+    // ── 300vh outer section: scroll driver ──────────────────────
     <section
       ref={outerRef}
       className="bg-ivory"
       style={{ height: "300vh" }}
       data-testid="philosophy-section"
     >
-      {/* ── Inner sticky frame: always in viewport ─────────────────── */}
+      {/* ── Pinned inner frame: viewport-locked ───────────────── */}
       <div
         style={{
           position: "sticky",
@@ -158,7 +160,7 @@ export default function FoundationSection() {
           background: "#F5F2EC",
         }}
       >
-        {/* Gold dust particle canvas */}
+        {/* Particle canvas — fills full sticky frame */}
         <canvas
           ref={canvasRef}
           style={{
@@ -171,163 +173,192 @@ export default function FoundationSection() {
           }}
         />
 
-        {/* ── Desktop collage ──────────────────────────────────────── */}
+        {/* ── Desktop collage ───────────────────────────────────── */}
+        {/* Sub-container offset by nav height so images start below nav */}
         <div
           className="hidden md:block"
           style={{
             position: "absolute",
-            inset: 0,
-            maxWidth: "1400px",
-            margin: "0 auto",
+            top: NAV_H,
             left: 0,
             right: 0,
+            bottom: 0,
           }}
         >
-          {/* Banner — drops 240px from above */}
-          <motion.div
-            style={{
-              position: "absolute",
-              top: "9vh",
-              left: "12%",
-              right: "12%",
-              height: "44vh",
-              overflow: "hidden",
-              y: bannerY,
-              opacity: bannerO,
-            }}
-          >
-            <img
-              src={BANNER_SRC}
-              alt=""
-              style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center 30%" }}
-            />
-          </motion.div>
-
-          {/* Circle — sweeps 620px from right */}
-          <motion.div
-            style={{
-              position: "absolute",
-              right: "2%",
-              top: "8vh",
-              width: "22vh",
-              height: "22vh",
-              borderRadius: "50%",
-              overflow: "hidden",
-              border: "5px solid #F5F2EC",
-              boxShadow: "0 12px 40px rgba(18,18,18,0.18)",
-              zIndex: 2,
-              x: circleX,
-              opacity: circleO,
-            }}
-          >
-            <img
-              src={CIRCLE_SRC}
-              alt=""
-              style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center top" }}
-            />
-          </motion.div>
-
-          {/* Square — surges 560px left + 160px below */}
-          <motion.div
-            style={{
-              position: "absolute",
-              left: "2%",
-              top: "28vh",
-              width: "20vh",
-              height: "20vh",
-              overflow: "hidden",
-              border: "5px solid #F5F2EC",
-              boxShadow: "0 12px 40px rgba(18,18,18,0.18)",
-              zIndex: 2,
-              rotate: -5,
-              x: squareX,
-              y: squareY,
-              opacity: squareO,
-            }}
-          >
-            <img
-              src={SQUARE_SRC}
-              alt=""
-              style={{ width: "100%", height: "100%", objectFit: "cover" }}
-            />
-          </motion.div>
-
-          {/* Card — centred at bottom, rises 180px, text cascades inside */}
+          {/* Centred layout wrapper */}
           <div
             style={{
-              position: "absolute",
-              bottom: "5vh",
-              left: "50%",
-              transform: "translateX(-50%)",
-              width: "clamp(360px, 36%, 540px)",
-              textAlign: "center",
-              zIndex: 3,
+              position: "relative",
+              maxWidth: "1400px",
+              margin: "0 auto",
+              height: "100%",
             }}
           >
-            <motion.div style={{ y: cardY, opacity: cardO }}>
-
-              {/* Divider — scales from centre */}
-              <motion.div
-                className="ct-divider mx-auto mb-6"
-                style={{
-                  background: "rgba(18,18,18,0.2)",
-                  opacity: dividerO,
-                  scaleX: dividerScaleX,
-                  transformOrigin: "center",
-                }}
+            {/* Banner — drops 240px from above, slightly inset from sides */}
+            <motion.div
+              style={{
+                position: "absolute",
+                top: 0,
+                left: "13%",
+                right: "13%",
+                height: 350,
+                overflow: "hidden",
+                y: bannerY,
+                opacity: bannerO,
+              }}
+            >
+              <img
+                src={BANNER_SRC}
+                alt=""
+                style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center 30%" }}
               />
-
-              {/* Heading — clips down from above */}
-              <div style={{ overflow: "hidden" }}>
-                <motion.h2
-                  className="text-charcoal leading-[1.15]"
-                  style={{
-                    fontFamily: "Figtree, sans-serif",
-                    fontSize: "clamp(26px, 3.2vw, 44px)",
-                    fontWeight: 400,
-                    y: headingY,
-                    opacity: headingO,
-                  }}
-                >
-                  {t.home.philosophy.headline}
-                </motion.h2>
-              </div>
-
-              {/* Body paragraphs — each clips up */}
-              {t.home.philosophy.body.split("\n\n").map((para, i) => {
-                const py = i === 0 ? para0Y : para1Y;
-                const po = i === 0 ? para0O : para1O;
-                return (
-                  <div key={i} style={{ overflow: "hidden" }}>
-                    <motion.p
-                      className="text-charcoal/65 mt-5 leading-relaxed"
-                      style={{
-                        fontFamily: "Manrope, sans-serif",
-                        fontSize: "16px",
-                        fontWeight: 300,
-                        y: py,
-                        opacity: po,
-                      }}
-                    >
-                      {para}
-                    </motion.p>
-                  </div>
-                );
-              })}
             </motion.div>
+
+            {/* Circle — 260px, sweeps 620px from the right */}
+            <motion.div
+              style={{
+                position: "absolute",
+                right: 80,
+                top: 0,
+                width: 260,
+                height: 260,
+                borderRadius: "50%",
+                overflow: "hidden",
+                border: "6px solid #F5F2EC",
+                boxShadow: "0 12px 48px rgba(18,18,18,0.20)",
+                zIndex: 2,
+                x: circleX,
+                opacity: circleO,
+              }}
+            >
+              <img
+                src={CIRCLE_SRC}
+                alt=""
+                style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center top" }}
+              />
+            </motion.div>
+
+            {/* Square — 225px, surges from lower-left */}
+            <motion.div
+              style={{
+                position: "absolute",
+                left: 60,
+                top: 190,
+                width: 225,
+                height: 225,
+                overflow: "hidden",
+                border: "6px solid #F5F2EC",
+                boxShadow: "0 12px 48px rgba(18,18,18,0.20)",
+                zIndex: 2,
+                rotate: -5,
+                x: squareX,
+                y: squareY,
+                opacity: squareO,
+              }}
+            >
+              <img
+                src={SQUARE_SRC}
+                alt=""
+                style={{ width: "100%", height: "100%", objectFit: "cover" }}
+              />
+            </motion.div>
+
+            {/* Card centering wrapper
+                top: 305px = banner bottom (350) minus 45px overlap */}
+            <div
+              style={{
+                position: "absolute",
+                top: 305,
+                left: "50%",
+                transform: "translateX(-50%)",
+                width: "clamp(380px, 36%, 520px)",
+                textAlign: "center",
+                zIndex: 3,
+              }}
+            >
+              <motion.div
+                style={{
+                  background: "#F5F2EC",
+                  padding: "28px 28px 0",
+                  y: cardY,
+                  opacity: cardO,
+                }}
+              >
+                {/* Divider scales from centre */}
+                <motion.div
+                  className="ct-divider mx-auto mb-6"
+                  style={{
+                    background: "rgba(18,18,18,0.2)",
+                    opacity: dividerO,
+                    scaleX: dividerScaleX,
+                    transformOrigin: "center",
+                  }}
+                />
+
+                {/* Heading — clips down from above, warm gold gradient tint */}
+                <div style={{ overflow: "hidden" }}>
+                  <motion.h2
+                    className="leading-[1.15]"
+                    style={{
+                      fontFamily: "Figtree, sans-serif",
+                      fontSize: "clamp(26px, 3.2vw, 44px)",
+                      fontWeight: 400,
+                      background: "linear-gradient(160deg, #121212 30%, #3D2916 100%)",
+                      WebkitBackgroundClip: "text",
+                      WebkitTextFillColor: "transparent",
+                      backgroundClip: "text",
+                      y: headingY,
+                      opacity: headingO,
+                    }}
+                  >
+                    {t.home.philosophy.headline}
+                  </motion.h2>
+                </div>
+
+                {/* Paragraphs clip up individually */}
+                {t.home.philosophy.body.split("\n\n").map((para, i) => {
+                  const py = i === 0 ? para0Y : para1Y;
+                  const po = i === 0 ? para0O : para1O;
+                  return (
+                    <div key={i} style={{ overflow: "hidden" }}>
+                      <motion.p
+                        className="text-charcoal/65 mt-5 leading-relaxed"
+                        style={{
+                          fontFamily: "Manrope, sans-serif",
+                          fontSize: "16px",
+                          fontWeight: 300,
+                          y: py,
+                          opacity: po,
+                        }}
+                      >
+                        {para}
+                      </motion.p>
+                    </div>
+                  );
+                })}
+              </motion.div>
+            </div>
           </div>
         </div>
 
-        {/* ── Mobile: centred static layout ────────────────────────── */}
+        {/* ── Mobile: centred static layout ──────────────────────── */}
         <div
           className="md:hidden flex items-center justify-center h-full px-6 text-center"
-          style={{ position: "relative", zIndex: 2 }}
+          style={{ position: "relative", zIndex: 2, paddingTop: NAV_H }}
         >
           <div>
             <div className="ct-divider mx-auto mb-8" style={{ background: "rgba(18,18,18,0.2)" }} />
             <h2
-              className="text-charcoal leading-[1.15]"
-              style={{ fontFamily: "Figtree, sans-serif", fontSize: "clamp(28px, 4vw, 44px)", fontWeight: 400 }}
+              className="leading-[1.15]"
+              style={{
+                fontFamily: "Figtree, sans-serif",
+                fontSize: "clamp(28px, 4vw, 44px)",
+                fontWeight: 400,
+                background: "linear-gradient(160deg, #121212 30%, #3D2916 100%)",
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+                backgroundClip: "text",
+              }}
             >
               {t.home.philosophy.headline}
             </h2>
