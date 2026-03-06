@@ -181,7 +181,7 @@ const Home = () => {
             <div
               className="mx-auto text-center"
               style={{
-                maxWidth: "760px",
+                maxWidth: "608px",
                 marginTop: "-120px",
                 position: "relative",
                 zIndex: 3,
