@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Building2, Globe, Award, BookOpen, Users, TrendingUp, Briefcase, Layers } from "lucide-react";
 import NeuralCanvas from "../components/NeuralCanvas";
 import ScrollReveal from "../components/ScrollReveal";
 import VennDiagram from "../components/VennDiagram";
@@ -15,6 +15,18 @@ const TESTIMONIAL_PORTRAITS = [
   "https://images.unsplash.com/photo-1560250097-0b93528c311a?crop=entropy&cs=srgb&fm=jpg&ixlib=rb-4.1.0&q=85",
   "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?crop=entropy&cs=srgb&fm=jpg&ixlib=rb-4.1.0&q=85",
   "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?crop=entropy&cs=srgb&fm=jpg&ixlib=rb-4.1.0&q=85",
+];
+
+// Brand logo ticker items
+const TICKER_ITEMS = [
+  { icon: Award,     label: "NARM Institute" },
+  { icon: BookOpen,  label: "New Ventures West" },
+  { icon: Users,     label: "Integral Coaching" },
+  { icon: Globe,     label: "ICF Global" },
+  { icon: Building2, label: "European Foundation" },
+  { icon: TrendingUp,label: "DAX Executive Leaders" },
+  { icon: Briefcase, label: "Board-Level Advisory" },
+  { icon: Layers,    label: "Systemic Facilitation" },
 ];
 
 // Hero placeholder image — replace with client's own photography
@@ -151,6 +163,64 @@ const Home = () => {
           </div>
         </div>
       </section>
+
+      {/* ═══ BRAND LOGOS TICKER ═══ */}
+      <div
+        style={{
+          background: "#F5F2EC",
+          overflow: "hidden",
+          borderTop: "1px solid rgba(18,18,18,0.07)",
+          borderBottom: "1px solid rgba(18,18,18,0.07)",
+          padding: "18px 0",
+        }}
+        data-testid="brand-ticker"
+      >
+        <div
+          style={{
+            display: "flex",
+            width: "max-content",
+            animation: "logoTicker 34s linear infinite",
+          }}
+        >
+          {[...TICKER_ITEMS, ...TICKER_ITEMS].map((item, idx) => {
+            const Icon = item.icon;
+            return (
+              <div
+                key={idx}
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "10px",
+                  padding: "0 52px",
+                  borderRight: "1px solid rgba(18,18,18,0.07)",
+                  flexShrink: 0,
+                }}
+              >
+                <Icon size={13} style={{ color: "rgba(18,18,18,0.22)", flexShrink: 0 }} />
+                <span
+                  style={{
+                    fontFamily: "Manrope, sans-serif",
+                    fontSize: "10px",
+                    fontWeight: 500,
+                    letterSpacing: "0.22em",
+                    textTransform: "uppercase",
+                    color: "rgba(18,18,18,0.26)",
+                    whiteSpace: "nowrap",
+                  }}
+                >
+                  {item.label}
+                </span>
+              </div>
+            );
+          })}
+        </div>
+        <style>{`
+          @keyframes logoTicker {
+            0%   { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+          }
+        `}</style>
+      </div>
 
       {/* ═══ THE FOUNDATION ═══ */}
       <section
@@ -697,13 +767,13 @@ const Home = () => {
             </div>
           </ScrollReveal>
 
-          {/* ── Thumbnails — OUTSIDE the wrapper, float up toward it ── */}
+          {/* ── Thumbnails with titles — OUTSIDE the wrapper ── */}
           <div
             style={{
               display: "flex",
-              gap: "20px",
+              gap: "28px",
               marginTop: "0px",
-              alignItems: "flex-end",
+              alignItems: "flex-start",
               paddingLeft: "4px",
             }}
           >
@@ -713,96 +783,69 @@ const Home = () => {
                 onClick={() => handleTestimonialClick(i)}
                 data-testid={`testimonial-nav-${i}`}
                 style={{
-                  width: i === activeTestimonial ? "72px" : "58px",
-                  height: i === activeTestimonial ? "72px" : "58px",
-                  borderRadius: "50%",
-                  overflow: "hidden",
-                  border: i === activeTestimonial
-                    ? "2px solid #C8A96A"
-                    : "2px solid rgba(245,242,236,0.12)",
-                  transform: i === activeTestimonial
-                    ? "translateY(-14px)"
-                    : "translateY(0)",
-                  transition: "all 0.45s cubic-bezier(0.4, 0, 0.2, 1)",
-                  cursor: "pointer",
-                  padding: 0,
                   background: "none",
-                  flexShrink: 0,
-                  boxShadow: i === activeTestimonial
-                    ? "0 8px 28px rgba(200,169,106,0.22)"
-                    : "none",
+                  border: "none",
+                  padding: 0,
+                  cursor: "pointer",
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
+                  gap: "10px",
                 }}
               >
-                <img
-                  src={src}
-                  alt=""
+                {/* Circle portrait */}
+                <div
                   style={{
-                    width: "100%",
-                    height: "100%",
-                    objectFit: "cover",
-                    objectPosition: "center top",
-                    filter: i === activeTestimonial ? "none" : "grayscale(70%)",
-                    transition: "filter 0.45s ease",
-                  }}
-                />
-              </button>
-            ))}
-
-            {/* Author labels beside thumbnails */}
-            <div
-              style={{
-                display: "flex",
-                flexDirection: "column",
-                gap: "6px",
-                marginLeft: "12px",
-                paddingBottom: "6px",
-              }}
-            >
-              {testimonials.map((item, i) => (
-                <button
-                  key={i}
-                  onClick={() => handleTestimonialClick(i)}
-                  style={{
-                    background: "none",
-                    border: "none",
-                    padding: "0",
-                    cursor: "pointer",
-                    display: "flex",
-                    alignItems: "center",
-                    gap: "8px",
-                    opacity: i === activeTestimonial ? 1 : 0.35,
-                    transition: "opacity 0.35s ease",
+                    width: i === activeTestimonial ? "68px" : "56px",
+                    height: i === activeTestimonial ? "68px" : "56px",
+                    borderRadius: "50%",
+                    overflow: "hidden",
+                    border: i === activeTestimonial
+                      ? "2px solid #C8A96A"
+                      : "2px solid rgba(245,242,236,0.12)",
+                    transform: i === activeTestimonial ? "translateY(-12px)" : "translateY(0)",
+                    transition: "all 0.45s cubic-bezier(0.4, 0, 0.2, 1)",
+                    flexShrink: 0,
+                    boxShadow: i === activeTestimonial
+                      ? "0 8px 28px rgba(200,169,106,0.22)"
+                      : "none",
                   }}
                 >
-                  <div
+                  <img
+                    src={src}
+                    alt=""
                     style={{
-                      width: i === activeTestimonial ? "20px" : "10px",
-                      height: "1px",
-                      background: i === activeTestimonial
-                        ? "#C8A96A"
-                        : "rgba(245,242,236,0.3)",
-                      transition: "width 0.35s ease, background 0.35s ease",
-                      flexShrink: 0,
+                      width: "100%",
+                      height: "100%",
+                      objectFit: "cover",
+                      objectPosition: "center top",
+                      filter: i === activeTestimonial ? "none" : "grayscale(70%)",
+                      transition: "filter 0.45s ease",
                     }}
                   />
-                  <span
-                    style={{
-                      fontFamily: "Manrope, sans-serif",
-                      fontSize: "10px",
-                      letterSpacing: "0.16em",
-                      textTransform: "uppercase",
-                      color: i === activeTestimonial
-                        ? "#F5F2EC"
-                        : "rgba(245,242,236,0.4)",
-                      whiteSpace: "nowrap",
-                      transition: "color 0.35s ease",
-                    }}
-                  >
-                    {item.author}
-                  </span>
-                </button>
-              ))}
-            </div>
+                </div>
+
+                {/* Title below thumbnail */}
+                <span
+                  style={{
+                    fontFamily: "Manrope, sans-serif",
+                    fontSize: "9px",
+                    fontWeight: 500,
+                    letterSpacing: "0.14em",
+                    textTransform: "uppercase",
+                    color: i === activeTestimonial
+                      ? "#F5F2EC"
+                      : "rgba(245,242,236,0.32)",
+                    transition: "color 0.4s ease",
+                    textAlign: "center",
+                    maxWidth: "88px",
+                    lineHeight: 1.55,
+                  }}
+                >
+                  {testimonials[i]?.author}
+                </span>
+              </button>
+            ))}
           </div>
         </div>
 
@@ -817,36 +860,58 @@ const Home = () => {
 
       {/* ═══ FINAL CTA ═══ */}
       <section
-        className="bg-charcoal ct-section relative overflow-hidden text-center"
+        className="bg-charcoal ct-section relative overflow-hidden"
         data-testid="final-cta-section"
       >
-        <div
-          className="absolute inset-0"
-          style={{
-            background: "radial-gradient(ellipse 60% 50% at 50% 50%, rgba(200,169,106,0.04) 0%, transparent 70%)",
-          }}
-        />
-        <div className="relative z-10 max-w-[640px] mx-auto px-6">
+        <NeuralCanvas opacity={0.04} nodeCount={22} />
+        <div className="relative z-10 max-w-[760px] mx-auto px-6">
           <ScrollReveal>
-            <h2
-              className="text-ivory leading-[1.1]"
-              style={{ fontFamily: "Figtree, sans-serif", fontSize: "clamp(32px, 5vw, 60px)", fontWeight: 400 }}
+            <div
+              style={{
+                background: "rgba(200,169,106,0.06)",
+                backdropFilter: "blur(28px)",
+                WebkitBackdropFilter: "blur(28px)",
+                border: "1px solid rgba(200,169,106,0.18)",
+                borderRadius: "20px",
+                padding: "80px 72px",
+                textAlign: "center",
+                position: "relative",
+                overflow: "hidden",
+              }}
             >
-              {t.home.cta.headline}
-            </h2>
-          </ScrollReveal>
-          <ScrollReveal delay={0.2}>
-            <p
-              className="text-stone/50 mt-6 leading-relaxed"
-              style={{ fontFamily: "Manrope, sans-serif", fontSize: "16px", fontWeight: 300 }}
-            >
-              {t.home.cta.body}
-            </p>
-          </ScrollReveal>
-          <ScrollReveal delay={0.35}>
-            <Link to="/contact" className="btn-primary mt-10 inline-block" data-testid="final-cta-btn">
-              {t.home.cta.cta}
-            </Link>
+              {/* Inner radial shimmer */}
+              <div
+                style={{
+                  position: "absolute",
+                  inset: 0,
+                  background: "radial-gradient(ellipse 80% 60% at 50% 40%, rgba(200,169,106,0.05) 0%, transparent 70%)",
+                  pointerEvents: "none",
+                }}
+              />
+              {/* Corner accent lines */}
+              <div style={{ position: "absolute", top: 0, left: 0, width: "48px", height: "1px", background: "rgba(200,169,106,0.35)" }} />
+              <div style={{ position: "absolute", top: 0, left: 0, width: "1px", height: "48px", background: "rgba(200,169,106,0.35)" }} />
+              <div style={{ position: "absolute", bottom: 0, right: 0, width: "48px", height: "1px", background: "rgba(200,169,106,0.35)" }} />
+              <div style={{ position: "absolute", bottom: 0, right: 0, width: "1px", height: "48px", background: "rgba(200,169,106,0.35)" }} />
+
+              <div className="relative z-10">
+                <h2
+                  className="text-ivory leading-[1.1]"
+                  style={{ fontFamily: "Figtree, sans-serif", fontSize: "clamp(32px, 5vw, 60px)", fontWeight: 400 }}
+                >
+                  {t.home.cta.headline}
+                </h2>
+                <p
+                  className="text-stone/50 mt-6 leading-relaxed"
+                  style={{ fontFamily: "Manrope, sans-serif", fontSize: "16px", fontWeight: 300 }}
+                >
+                  {t.home.cta.body}
+                </p>
+                <Link to="/contact" className="btn-primary mt-10 inline-block" data-testid="final-cta-btn">
+                  {t.home.cta.cta}
+                </Link>
+              </div>
+            </div>
           </ScrollReveal>
         </div>
       </section>
