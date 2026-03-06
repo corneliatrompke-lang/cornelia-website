@@ -59,15 +59,22 @@ export default function FoundationSection() {
   const squareO = useTransform(fp, [0.05, 0.30], [0, 1]);
 
   // ── Content card — rises 160px from below ───────────────────────
-  const cardY = useTransform(fp, [0.50, 0.88], [160, 0]);
-  const cardO = useTransform(fp, [0.50, 0.70], [0, 1]);
+  const cardY = useTransform(fp, [0.50, 0.80], [160, 0]);
+  const cardO = useTransform(fp, [0.50, 0.68], [0, 1]);
 
-  // ── Card text — only reveals once card has settled ──────────────
-  const dividerO = useTransform(fp, [0.84, 0.91], [0, 1]);
-  const headingY = useTransform(fp, [0.85, 0.94], [28, 0]);
-  const headingO = useTransform(fp, [0.85, 0.94], [0, 1]);
-  const bodyY    = useTransform(fp, [0.90, 0.98], [20, 0]);
-  const bodyO    = useTransform(fp, [0.90, 0.98], [0, 1]);
+  // ── Text cascade — each element has its own scroll-driven reveal ─
+  // Divider sweeps in first
+  const dividerScaleX = useTransform(fp, [0.76, 0.86], [0, 1]);
+  const dividerO      = useTransform(fp, [0.76, 0.83], [0, 1]);
+  // Heading drops in dramatically
+  const headingY = useTransform(fp, [0.80, 0.91], [-80, 0]);
+  const headingO = useTransform(fp, [0.80, 0.91], [0, 1]);
+  // Paragraph 1 — slides up after heading lands
+  const para0Y = useTransform(fp, [0.86, 0.94], [60, 0]);
+  const para0O = useTransform(fp, [0.86, 0.94], [0, 1]);
+  // Paragraph 2 — follows with a beat of delay
+  const para1Y = useTransform(fp, [0.90, 0.97], [60, 0]);
+  const para1O = useTransform(fp, [0.90, 0.97], [0, 1]);
 
   // ── Particle canvas RAF loop ─────────────────────────────────────
   useEffect(() => {
@@ -254,33 +261,54 @@ export default function FoundationSection() {
               opacity: cardO,
             }}
           >
+            {/* Divider — scales in horizontally */}
             <motion.div
               className="ct-divider mx-auto mb-8"
-              style={{ background: "rgba(18,18,18,0.2)", opacity: dividerO }}
-            />
-            <motion.h2
-              className="text-charcoal leading-[1.15]"
               style={{
-                fontFamily: "Figtree, sans-serif",
-                fontSize: "clamp(28px, 4vw, 46px)",
-                fontWeight: 400,
-                y: headingY,
-                opacity: headingO,
+                background: "rgba(18,18,18,0.2)",
+                opacity: dividerO,
+                scaleX: dividerScaleX,
+                transformOrigin: "center",
               }}
-            >
-              {t.home.philosophy.headline}
-            </motion.h2>
-            <motion.div style={{ y: bodyY, opacity: bodyO }}>
-              {t.home.philosophy.body.split("\n\n").map((para, i) => (
-                <p
-                  key={i}
-                  className="text-charcoal/65 mt-6 leading-relaxed"
-                  style={{ fontFamily: "Manrope, sans-serif", fontSize: "17px", fontWeight: 300 }}
-                >
-                  {para}
-                </p>
-              ))}
-            </motion.div>
+            />
+
+            {/* Heading — drops in from above */}
+            <div style={{ overflow: "hidden" }}>
+              <motion.h2
+                className="text-charcoal leading-[1.15]"
+                style={{
+                  fontFamily: "Figtree, sans-serif",
+                  fontSize: "clamp(28px, 4vw, 46px)",
+                  fontWeight: 400,
+                  y: headingY,
+                  opacity: headingO,
+                }}
+              >
+                {t.home.philosophy.headline}
+              </motion.h2>
+            </div>
+
+            {/* Body paragraphs — each slides up individually */}
+            {t.home.philosophy.body.split("\n\n").map((para, i) => {
+              const paraY = i === 0 ? para0Y : para1Y;
+              const paraO = i === 0 ? para0O : para1O;
+              return (
+                <div key={i} style={{ overflow: "hidden" }}>
+                  <motion.p
+                    className="text-charcoal/65 mt-6 leading-relaxed"
+                    style={{
+                      fontFamily: "Manrope, sans-serif",
+                      fontSize: "17px",
+                      fontWeight: 300,
+                      y: paraY,
+                      opacity: paraO,
+                    }}
+                  >
+                    {para}
+                  </motion.p>
+                </div>
+              );
+            })}
           </motion.div>
 
         </div>

@@ -203,7 +203,13 @@ Create a cinematic editorial luxury marketing website for Cornelia Trompke — a
 
 ## Changelog
 
-### FoundationSection — Scroll Assembly Animation v2 (Mar 2026)
+### FoundationSection — Text Cascade Animation (Mar 2026)
+- Added individual scroll-driven reveals for each text element in the content card
+- Divider: scales in horizontally (scaleX 0→1) at fp [0.76, 0.86]
+- Heading: drops in from -80px above at fp [0.80, 0.91] with overflow:hidden clip
+- Paragraph 1: slides up 60px at fp [0.86, 0.94]
+- Paragraph 2: staggered, slides up 60px at fp [0.90, 0.97]
+- Card settle point moved to fp 0.80 (was 0.88) to give more scroll budget for text cascade
 - REWRITTEN with dramatically larger travel distances and slower timing
 - Banner: -220px drop, Circle: +380px right sweep, Square: -300px/-140px lower-left surge, Card: +160px rise
 - Scroll offset expanded to `["start end", "start 5%"]` — animation runs over full section scroll range
