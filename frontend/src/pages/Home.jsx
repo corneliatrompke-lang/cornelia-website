@@ -127,10 +127,61 @@ const Home = () => {
 
       {/* ═══ PHILOSOPHY ═══ */}
       <section
-        className="bg-ivory ct-section"
+        className="bg-ivory"
+        style={{ paddingTop: 0, paddingBottom: "140px" }}
         data-testid="philosophy-section"
       >
-        <div className="max-w-[720px] mx-auto px-6 text-center">
+        {/* ── Image collage ── */}
+        <div className="max-w-[1400px] mx-auto px-6 md:px-16">
+          <div className="relative hidden md:block" style={{ height: "520px" }}>
+
+            {/* Banner — 75% width, left-aligned */}
+            <div style={{
+              position: "absolute", left: 0, top: 0,
+              width: "75%", height: "420px", overflow: "hidden",
+            }}>
+              <img
+                src="https://images.unsplash.com/photo-1671735250135-fc322596644a?crop=entropy&cs=srgb&fm=jpg&ixlib=rb-4.1.0&q=85"
+                alt=""
+                style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center 30%" }}
+              />
+            </div>
+
+            {/* Circle — overlapping banner's right + bottom edges */}
+            <div style={{
+              position: "absolute", right: 0, top: "218px",
+              width: "264px", height: "264px",
+              borderRadius: "50%", overflow: "hidden",
+              border: "6px solid #F5F2EC",
+              boxShadow: "0 12px 48px rgba(18,18,18,0.20)",
+            }}>
+              <img
+                src="https://images.unsplash.com/photo-1572866649630-bd38af3d527c?crop=entropy&cs=srgb&fm=jpg&ixlib=rb-4.1.0&q=85"
+                alt=""
+                style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center top" }}
+              />
+            </div>
+
+            {/* Tilted square — overlapping banner's bottom-left */}
+            <div style={{
+              position: "absolute", left: "52px", bottom: 0,
+              width: "192px", height: "192px",
+              transform: "rotate(-5deg)", overflow: "hidden",
+              border: "6px solid #F5F2EC",
+              boxShadow: "0 12px 48px rgba(18,18,18,0.20)",
+            }}>
+              <img
+                src="https://images.unsplash.com/photo-1684963948721-e24aa0d82911?crop=entropy&cs=srgb&fm=jpg&ixlib=rb-4.1.0&q=85"
+                alt=""
+                style={{ width: "100%", height: "100%", objectFit: "cover" }}
+              />
+            </div>
+
+          </div>
+        </div>
+
+        {/* ── Text content ── */}
+        <div className="max-w-[720px] mx-auto px-6 text-center" style={{ paddingTop: "80px" }}>
           <ScrollReveal>
             <div className="ct-divider mx-auto mb-8" style={{ background: "rgba(18,18,18,0.2)" }} />
             <p className="ct-overline text-sage mb-6">{t.home.philosophy.overline}</p>
