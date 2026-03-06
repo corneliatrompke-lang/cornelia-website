@@ -22,7 +22,7 @@ const Home = () => {
     <div className="bg-charcoal">
       {/* ═══ HERO — Rounded card wrapper ═══ */}
       <section
-        className="pt-[76px] px-3 md:px-4 pb-3"
+        className="pt-[6px] px-3 md:px-4 pb-3"
         style={{ background: "#F5F2EC" }}
         data-testid="hero-section"
       >
@@ -31,7 +31,7 @@ const Home = () => {
           className="relative overflow-hidden w-full"
           style={{
             borderRadius: "20px",
-            minHeight: "88vh",
+            minHeight: "96vh",
           }}
         >
           {/* Background image */}
@@ -54,9 +54,9 @@ const Home = () => {
           <div
             className="absolute top-0 left-0 right-0 z-[2]"
             style={{
-              height: "100px",
+              height: "130px",
               background:
-                "linear-gradient(to bottom, rgba(18,18,18,0.45) 0%, transparent 100%)",
+                "linear-gradient(to bottom, rgba(12,12,12,0.65) 0%, rgba(12,12,12,0.2) 70%, transparent 100%)",
             }}
           />
 
