@@ -1,45 +1,49 @@
 import React, { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 
-// Positions kept within safe viewport bounds so circles never clip off-screen.
-// At min(44vmin, 380px) ≈ 352px diameter on a 1080×800 screen (radius 176px).
-// Safe x: 18–82 %, safe y: 42–76 % (reserves ~150px for header at top).
+// Left / right alternating positions — same y per side for consistency.
+// On 1280×800: left circle (x:22) center at 282px, right (x:78) at 998px.
+// 450px circle radius = 225px — both stay within screen.
 const ITEMS = [
   {
     number: "01",
     heading: "From Reactive\nto Responsive",
     subtext: "Lead from clarity rather than fear, even under extraordinary pressure.",
-    x: 52, y: 57,
+    x: 22, y: 51,   // LEFT
   },
   {
     number: "02",
     heading: "From Isolation\nto Influence",
     subtext: "Build cultures of trust that attract and retain exceptional talent.",
-    x: 24, y: 54,
+    x: 78, y: 55,   // RIGHT
   },
   {
     number: "03",
     heading: "From Depletion\nto Sustainability",
     subtext: "Your capacity grows rather than diminishes with the demands of leadership.",
-    x: 70, y: 62,
+    x: 22, y: 51,   // LEFT
   },
   {
     number: "04",
     heading: "From Performance\nto Presence",
     subtext: "Bring your full intelligence to every room, every decision, every relationship.",
-    x: 47, y: 65,
+    x: 78, y: 55,   // RIGHT
   },
 ];
 
-// Short connecting segments between adjacent circle centres (viewBox 0 0 100 100).
-// Each segment is only shown during the transition to the NEXT circle —
-// so on step 2 you see only the line from step 1, never the whole path.
-const SEG12 = "M 52,57 C 44,56 36,54 24,54";
-const SEG23 = "M 24,54 C 42,57 57,60 70,62";
-const SEG34 = "M 70,62 C 62,63 54,64 47,65";
+// Wavy two-segment cubic bezier paths (viewBox 0 0 100 100)
+// C1 (22,51) ↔ C2 (78,55) — diagonal with organic waves
+const SEG12 = "M 22,51 C 36,44 43,63 50,52 C 57,41 65,63 78,55";
+// C2 (78,55) ↔ C3 (22,51) — return wave, mirrored rhythm
+const SEG23 = "M 78,55 C 64,48 57,65 50,55 C 43,45 36,64 22,51";
+// C3 (22,51) ↔ C4 (78,55) — same diagonal as SEG12
+const SEG34 = "M 22,51 C 36,44 43,63 50,52 C 57,41 65,63 78,55";
 
-// Circle size: ~44 % of the shorter viewport dimension, capped at 380 px
-const SZ = "min(44vmin, 380px)";
+// 500vh: 4 individual phases (×100vh each) + 1 final all-4 phase (×100vh)
+// scrollYProgress 0–0.80 = individual; 0.80–1.0 = final row
+
+const CIRCLE_LARGE = 450;  // individual view
+const CIRCLE_SMALL = 178;  // final all-4 row
 
 export default function TransformationSection() {
   const sectionRef = useRef(null);
@@ -49,33 +53,40 @@ export default function TransformationSection() {
     offset: ["start start", "end end"],
   });
 
-  // ── Circle 1 ─ visible the moment the section enters; fades out at ≈ 25 %
-  const c1o = useTransform(scrollYProgress, [0, 0.20, 0.27], [1, 1, 0]);
-  const c1s = useTransform(scrollYProgress, [0, 0.20, 0.27], [1, 1, 0.92]);
+  // ── Circles (slower: enter/exit over 0.12 each) ──────────────────
 
-  // ── Circle 2 ─ enters at 25 %, leaves at 50 %
-  const c2o = useTransform(scrollYProgress, [0.25, 0.33, 0.45, 0.52], [0, 1, 1, 0]);
-  const c2s = useTransform(scrollYProgress, [0.25, 0.33, 0.45, 0.52], [0.82, 1, 1, 0.92]);
+  // C1: visible from start, slow exit
+  const c1o = useTransform(scrollYProgress, [0, 0.15, 0.24], [1, 1, 0]);
+  const c1s = useTransform(scrollYProgress, [0, 0.15, 0.24], [1, 1, 0.92]);
 
-  // ── Circle 3 ─ enters at 50 %, leaves at 75 %
-  const c3o = useTransform(scrollYProgress, [0.50, 0.58, 0.70, 0.77], [0, 1, 1, 0]);
-  const c3s = useTransform(scrollYProgress, [0.50, 0.58, 0.70, 0.77], [0.82, 1, 1, 0.92]);
+  // C2: slow fade-in at 0.22, slow fade-out at 0.36
+  const c2o = useTransform(scrollYProgress, [0.22, 0.34, 0.36, 0.46], [0, 1, 1, 0]);
+  const c2s = useTransform(scrollYProgress, [0.22, 0.34, 0.36, 0.46], [0.84, 1, 1, 0.92]);
 
-  // ── Circle 4 ─ enters at 75 %, stays visible
-  const c4o = useTransform(scrollYProgress, [0.75, 0.86], [0, 1]);
-  const c4s = useTransform(scrollYProgress, [0.75, 0.86], [0.82, 1]);
+  // C3
+  const c3o = useTransform(scrollYProgress, [0.42, 0.54, 0.56, 0.66], [0, 1, 1, 0]);
+  const c3s = useTransform(scrollYProgress, [0.42, 0.54, 0.56, 0.66], [0.84, 1, 1, 0.92]);
 
-  // ── Segment 1 → 2 ─ draws as circle 1 fades; fades before circle 3 enters
-  const seg12PL = useTransform(scrollYProgress, [0.20, 0.29], [0, 1]);
-  const seg12O  = useTransform(scrollYProgress, [0.20, 0.27, 0.44, 0.52], [0, 0.85, 0.85, 0]);
+  // C4 individual — exits before final row
+  const c4o = useTransform(scrollYProgress, [0.62, 0.74, 0.76, 0.84], [0, 1, 1, 0]);
+  const c4s = useTransform(scrollYProgress, [0.62, 0.74, 0.76, 0.84], [0.84, 1, 1, 0.92]);
 
-  // ── Segment 2 → 3 ─ draws as circle 2 fades
-  const seg23PL = useTransform(scrollYProgress, [0.45, 0.54], [0, 1]);
-  const seg23O  = useTransform(scrollYProgress, [0.45, 0.52, 0.69, 0.77], [0, 0.85, 0.85, 0]);
+  // ── Wavy segments (slower draw: over 0.14, visible until exit) ────
 
-  // ── Segment 3 → 4 ─ draws as circle 3 fades; stays to end
-  const seg34PL = useTransform(scrollYProgress, [0.70, 0.79], [0, 1]);
-  const seg34O  = useTransform(scrollYProgress, [0.70, 0.77, 0.95, 1.0], [0, 0.85, 0.85, 0.85]);
+  // Seg 1→2
+  const seg12PL = useTransform(scrollYProgress, [0.15, 0.30], [0, 1]);
+  const seg12O  = useTransform(scrollYProgress, [0.15, 0.24, 0.36, 0.46], [0, 0.85, 0.85, 0]);
+
+  // Seg 2→3
+  const seg23PL = useTransform(scrollYProgress, [0.35, 0.50], [0, 1]);
+  const seg23O  = useTransform(scrollYProgress, [0.35, 0.46, 0.56, 0.66], [0, 0.85, 0.85, 0]);
+
+  // Seg 3→4
+  const seg34PL = useTransform(scrollYProgress, [0.55, 0.70], [0, 1]);
+  const seg34O  = useTransform(scrollYProgress, [0.55, 0.66, 0.76, 0.84], [0, 0.85, 0.85, 0]);
+
+  // ── Final all-4 row ───────────────────────────────────────────────
+  const finalO = useTransform(scrollYProgress, [0.82, 0.94], [0, 1]);
 
   const circles = [
     { o: c1o, s: c1s },
@@ -93,7 +104,7 @@ export default function TransformationSection() {
   return (
     <section
       ref={sectionRef}
-      style={{ height: "400vh", background: "#121212" }}
+      style={{ height: "500vh", background: "#121212" }}
       data-testid="transformation-section"
     >
       <div
@@ -104,11 +115,11 @@ export default function TransformationSection() {
           overflow: "hidden",
         }}
       >
-        {/* ── Section header ── */}
+        {/* ── Header — compact spacing ────────────────────────────── */}
         <div
           style={{
             position: "absolute",
-            top: "44px",
+            top: "28px",
             left: 0,
             right: 0,
             textAlign: "center",
@@ -123,7 +134,7 @@ export default function TransformationSection() {
               letterSpacing: "0.22em",
               textTransform: "uppercase",
               color: "#C8A96A",
-              marginBottom: "12px",
+              marginBottom: "8px",
             }}
           >
             The Transformation
@@ -131,10 +142,10 @@ export default function TransformationSection() {
           <h2
             style={{
               fontFamily: "Figtree, sans-serif",
-              fontSize: "clamp(26px, 3vw, 44px)",
+              fontSize: "clamp(26px, 3vw, 42px)",
               fontWeight: 400,
               color: "#F5F2EC",
-              lineHeight: 1.15,
+              lineHeight: 1.1,
             }}
           >
             What Becomes Possible
@@ -142,16 +153,16 @@ export default function TransformationSection() {
           <p
             style={{
               fontFamily: "Manrope, sans-serif",
-              fontSize: "15px",
-              color: "rgba(245,242,236,0.38)",
-              marginTop: "8px",
+              fontSize: "13px",
+              color: "rgba(245,242,236,0.36)",
+              marginTop: "5px",
             }}
           >
             When leaders regulate their nervous system, everything changes.
           </p>
         </div>
 
-        {/* ── Nerve-line segments (one per transition) ── */}
+        {/* ── Wavy nerve segments ─────────────────────────────────── */}
         <svg
           style={{
             position: "absolute",
@@ -170,17 +181,17 @@ export default function TransformationSection() {
               {/* Soft outer glow */}
               <motion.path
                 d={d}
-                stroke="rgba(200,169,106,0.22)"
-                strokeWidth="1.5"
+                stroke="rgba(200,169,106,0.18)"
+                strokeWidth="2.0"
                 fill="none"
                 strokeLinecap="round"
-                style={{ pathLength: pl, opacity, filter: "blur(4px)" }}
+                style={{ pathLength: pl, opacity, filter: "blur(6px)" }}
               />
               {/* Crisp centre line */}
               <motion.path
                 d={d}
-                stroke="rgba(200,169,106,0.70)"
-                strokeWidth="0.16"
+                stroke="rgba(200,169,106,0.68)"
+                strokeWidth="0.18"
                 fill="none"
                 strokeLinecap="round"
                 style={{ pathLength: pl, opacity }}
@@ -189,7 +200,7 @@ export default function TransformationSection() {
           ))}
         </svg>
 
-        {/* ── Circles — one visible at a time, all text inside ── */}
+        {/* ── Individual circles ──────────────────────────────────── */}
         {ITEMS.map((item, i) => (
           <motion.div
             key={i}
@@ -206,18 +217,17 @@ export default function TransformationSection() {
           >
             <div
               style={{
-                width: SZ,
-                height: SZ,
+                width: `${CIRCLE_LARGE}px`,
+                height: `${CIRCLE_LARGE}px`,
                 borderRadius: "50%",
-                border: "1px solid rgba(200,169,106,0.32)",
+                border: "1px solid rgba(200,169,106,0.30)",
                 display: "flex",
                 flexDirection: "column",
                 alignItems: "center",
                 justifyContent: "center",
-                padding: "11%",
-                // Solid background — no backdrop-filter to avoid ghost rendering at low opacity
+                padding: "10%",
                 background: "#151515",
-                boxShadow: "0 0 80px rgba(200,169,106,0.07)",
+                boxShadow: "0 0 90px rgba(200,169,106,0.07)",
                 textAlign: "center",
                 boxSizing: "border-box",
               }}
@@ -234,38 +244,35 @@ export default function TransformationSection() {
               >
                 {item.number}
               </span>
-
               <span
                 style={{
                   fontFamily: "Figtree, sans-serif",
-                  fontSize: "clamp(15px, 1.7vmin, 20px)",
+                  fontSize: "clamp(24px, 2.4vw, 30px)",
                   fontWeight: 400,
                   color: "#F5F2EC",
-                  lineHeight: 1.32,
+                  lineHeight: 1.26,
                   display: "block",
                   whiteSpace: "pre-line",
                 }}
               >
                 {item.heading}
               </span>
-
               <div
                 style={{
-                  width: "28px",
+                  width: "32px",
                   height: "1px",
-                  background: "rgba(200,169,106,0.32)",
-                  margin: "14px auto",
+                  background: "rgba(200,169,106,0.34)",
+                  margin: "16px auto",
                   flexShrink: 0,
                 }}
               />
-
               <p
                 style={{
                   fontFamily: "Manrope, sans-serif",
-                  fontSize: "clamp(11px, 1.2vmin, 13px)",
-                  color: "rgba(245,242,236,0.48)",
-                  lineHeight: 1.68,
-                  maxWidth: "78%",
+                  fontSize: "clamp(14px, 1.4vw, 18px)",
+                  color: "rgba(245,242,236,0.50)",
+                  lineHeight: 1.65,
+                  maxWidth: "76%",
                   margin: 0,
                 }}
               >
@@ -274,6 +281,111 @@ export default function TransformationSection() {
             </div>
           </motion.div>
         ))}
+
+        {/* ── Final view: all 4 circles in a row ─────────────────── */}
+        <motion.div
+          style={{
+            position: "absolute",
+            top: "108px",          // clears the header
+            left: 0,
+            right: 0,
+            bottom: 0,
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            gap: "22px",
+            paddingLeft: "24px",
+            paddingRight: "24px",
+            opacity: finalO,
+            zIndex: 6,
+            pointerEvents: "none",
+          }}
+        >
+          {/* Subtle horizontal connector behind circles */}
+          <div
+            style={{
+              position: "absolute",
+              top: "50%",
+              left: "5%",
+              right: "5%",
+              height: "1px",
+              background:
+                "linear-gradient(to right, transparent 0%, rgba(200,169,106,0.25) 15%, rgba(200,169,106,0.25) 85%, transparent 100%)",
+              zIndex: 0,
+            }}
+          />
+
+          {ITEMS.map((item, i) => (
+            <div
+              key={i}
+              style={{
+                width: `${CIRCLE_SMALL}px`,
+                height: `${CIRCLE_SMALL}px`,
+                flexShrink: 0,
+                borderRadius: "50%",
+                border: "1px solid rgba(200,169,106,0.28)",
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                justifyContent: "center",
+                padding: "13%",
+                background: "#151515",
+                boxShadow: "0 0 40px rgba(200,169,106,0.06)",
+                textAlign: "center",
+                boxSizing: "border-box",
+                position: "relative",
+                zIndex: 1,
+              }}
+            >
+              <span
+                style={{
+                  fontFamily: "Manrope, sans-serif",
+                  fontSize: "9px",
+                  letterSpacing: "0.22em",
+                  color: "#C8A96A",
+                  marginBottom: "8px",
+                  display: "block",
+                }}
+              >
+                {item.number}
+              </span>
+              <span
+                style={{
+                  fontFamily: "Figtree, sans-serif",
+                  fontSize: "13px",
+                  fontWeight: 400,
+                  color: "#F5F2EC",
+                  lineHeight: 1.3,
+                  display: "block",
+                  whiteSpace: "pre-line",
+                }}
+              >
+                {item.heading}
+              </span>
+              <div
+                style={{
+                  width: "18px",
+                  height: "1px",
+                  background: "rgba(200,169,106,0.30)",
+                  margin: "8px auto",
+                  flexShrink: 0,
+                }}
+              />
+              <p
+                style={{
+                  fontFamily: "Manrope, sans-serif",
+                  fontSize: "10px",
+                  color: "rgba(245,242,236,0.42)",
+                  lineHeight: 1.65,
+                  maxWidth: "86%",
+                  margin: 0,
+                }}
+              >
+                {item.subtext}
+              </p>
+            </div>
+          ))}
+        </motion.div>
       </div>
     </section>
   );
