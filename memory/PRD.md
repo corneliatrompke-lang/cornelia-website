@@ -127,6 +127,13 @@ Create a cinematic editorial luxury marketing website for Cornelia Trompke — a
 - Venn chevron clip fix: SVG H extended 620→650 so polygon bottom (y≈630) is fully visible
 - Homepage services section padding removed (paddingTop 72px → 30px on Philosophy section)
 
+### v1.5 (Venn Diagram — Off-Screen Slide-In — Mar 2026)
+- LX_START changed from 80 → -220 (circle fully off-screen left)
+- RX_START changed from 920 → 1220 (circle fully off-screen right)
+- "NARM" and "Integral Coaching" labels separated from labelOpacity group → always visible, track circle centers (lx/rx state), slide in with the circles
+- CT logo mark still fades in only when circles fully converge (labelOpacity group)
+- Fixed critical bug: `motion` import was missing from Home.jsx (caused "motion is not defined" runtime crash)
+
 ### v1.3 (Venn Diagram — Arrow & Logo Fix — Mar 2026)
 - Fixed CT logo rendering: switched from external URL to local `/ct-logo-mark.png`; logo already has RGBA transparency so feColorMatrix filter removed entirely
 - Replaced procedural SVG path arrow with the client-provided `Venn arrow.svg` asset:

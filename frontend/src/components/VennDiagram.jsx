@@ -11,9 +11,9 @@ const R = 200;
 // Final (resting) circle positions
 const LX_FINAL = 340;
 const RX_FINAL = 660;
-// Starting positions (circles apart, off toward edges)
-const LX_START = 80;
-const RX_START = 920;
+// Starting positions — completely outside the SVG viewBox (W=1000, R=200)
+const LX_START = -220;   // right edge of left circle: -220+200=-20 → just off-screen left
+const RX_START = 1220;   // left edge of right circle: 1220-200=1020 → just off-screen right
 
 // ── Circle text path — CW so text at the top reads left → right ─────────────
 const circPath = (cx, cy, r) =>
@@ -165,7 +165,31 @@ const VennDiagram = () => {
               </text>
             </g>
 
-            {/* ─ Labels + logo — fade in as circles converge ─ */}
+            {/* ─ Circle labels — always visible, move in with their circles ─ */}
+            <text
+              x={lx} y={LY}
+              textAnchor="middle" dominantBaseline="middle"
+              fontSize="18"
+              fontFamily="Cormorant Garamond, serif"
+              fontWeight="700"
+              fill="#C8A96A"
+              letterSpacing="2"
+            >
+              NARM
+            </text>
+            <text
+              x={rx} y={LY}
+              textAnchor="middle" dominantBaseline="middle"
+              fontSize="18"
+              fontFamily="Cormorant Garamond, serif"
+              fontWeight="700"
+              fill="#C8A96A"
+              letterSpacing="2"
+            >
+              Integral Coaching
+            </text>
+
+            {/* ─ CT logo — fades in as circles fully converge ─ */}
             <motion.g style={{ opacity: labelOpacity }}>
               <image
                 href="/ct-logo-mark.png"
@@ -174,28 +198,6 @@ const VennDiagram = () => {
                 width="56"
                 height="56"
               />
-              <text
-                x={lx} y={LY}
-                textAnchor="middle" dominantBaseline="middle"
-                fontSize="18"
-                fontFamily="Cormorant Garamond, serif"
-                fontWeight="700"
-                fill="#C8A96A"
-                letterSpacing="2"
-              >
-                NARM
-              </text>
-              <text
-                x={rx} y={LY}
-                textAnchor="middle" dominantBaseline="middle"
-                fontSize="18"
-                fontFamily="Cormorant Garamond, serif"
-                fontWeight="700"
-                fill="#C8A96A"
-                letterSpacing="2"
-              >
-                Integral Coaching
-              </text>
             </motion.g>
 
             {/* ─ Invisible hover targets ─ */}
