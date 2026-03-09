@@ -221,6 +221,16 @@ const Home = () => {
 
       <FoundationSection />
 
+      {/* Gradient transition: ivory → faint gold → charcoal */}
+      <div
+        style={{
+          height: "220px",
+          background:
+            "linear-gradient(to bottom, #F5F2EC 0%, rgba(200,169,106,0.10) 38%, #1a1610 68%, #121212 100%)",
+          marginTop: "-1px",
+        }}
+      />
+
       {/* ═══ ABOUT PREVIEW ═══ */}
       <section className="bg-charcoal ct-section" data-testid="about-preview-section">
         <div className="max-w-[1400px] mx-auto px-6 md:px-16">
