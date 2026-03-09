@@ -179,7 +179,7 @@ export default function FoundationSection() {
           className="hidden md:block"
           style={{
             position: "absolute",
-            top: NAV_H,
+            top: NAV_H + 32,
             left: 0,
             right: 0,
             bottom: 0,
@@ -271,7 +271,7 @@ export default function FoundationSection() {
                 top: 305,
                 left: "50%",
                 transform: "translateX(-50%)",
-                width: "clamp(380px, 36%, 520px)",
+                width: "clamp(494px, 47%, 676px)",
                 textAlign: "center",
                 zIndex: 3,
               }}
