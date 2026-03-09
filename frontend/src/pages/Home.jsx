@@ -281,7 +281,7 @@ const Home = () => {
                 </p>
                 <Link
                   to="/about"
-                  className="btn-dark mt-10"
+                  className="btn-primary mt-10"
                   style={{ borderRadius: "8px", padding: "10px 22px" }}
                   data-testid="about-cta"
                 >
