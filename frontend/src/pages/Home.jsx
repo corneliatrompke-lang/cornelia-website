@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
+import { motion } from "framer-motion";
 import NeuralCanvas from "../components/NeuralCanvas";
 import ScrollReveal from "../components/ScrollReveal";
 import VennDiagram from "../components/VennDiagram";
@@ -264,25 +265,33 @@ const Home = () => {
 
         <div className="max-w-[1400px] mx-auto px-6 md:px-16" style={{ position: "relative", zIndex: 1 }}>
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+
+            {/* ── Text column ── */}
             <div className="lg:col-span-6 lg:col-start-2">
               <ScrollReveal>
                 <p className="ct-overline text-gold mb-6">{t.home.aboutPreview.overline}</p>
+              </ScrollReveal>
+              <ScrollReveal delay={0.15}>
                 <h2
                   className="leading-[1.15] max-w-[500px]"
                   style={{ fontFamily: "Figtree, sans-serif", fontSize: "clamp(26px, 3.5vw, 42px)", fontWeight: 400, color: "#F5F2EC" }}
                 >
                   {t.home.aboutPreview.headline}
                 </h2>
+              </ScrollReveal>
+              <ScrollReveal delay={0.3}>
                 <p
                   className="mt-6 leading-relaxed max-w-[480px]"
                   style={{ fontFamily: "Manrope, sans-serif", fontSize: "16px", fontWeight: 300, color: "rgba(245,242,236,0.72)" }}
                 >
                   {t.home.aboutPreview.body}
                 </p>
+              </ScrollReveal>
+              <ScrollReveal delay={0.45}>
                 <Link
                   to="/about"
                   className="btn-primary mt-10"
-                  style={{ borderRadius: "8px", padding: "10px 22px" }}
+                  style={{ borderRadius: "8px", padding: "10px 22px", display: "inline-block" }}
                   data-testid="about-cta"
                 >
                   {t.home.aboutPreview.cta}
@@ -290,26 +299,43 @@ const Home = () => {
               </ScrollReveal>
             </div>
 
+            {/* ── Portrait column ── */}
             <div className="lg:col-span-4">
-              <ScrollReveal delay={0.2} direction="left">
-                <div
+              <ScrollReveal delay={0.1} direction="none">
+                <motion.div
                   className="relative overflow-hidden"
                   style={{ aspectRatio: "3/4" }}
+                  initial={{ opacity: 0, x: 40 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.9, ease: [0.25, 0.46, 0.45, 0.94] }}
+                  viewport={{ once: true, margin: "-5%" }}
                 >
-                  <img
+                  <motion.img
                     src={PORTRAIT}
                     alt="Cornelia Trompke"
                     className="w-full h-full object-cover"
                     style={{ filter: "grayscale(40%) contrast(1.05)" }}
+                    initial={{ scale: 1.06 }}
+                    whileInView={{ scale: 1 }}
+                    transition={{ duration: 1.2, ease: [0.25, 0.46, 0.45, 0.94] }}
+                    viewport={{ once: true }}
                   />
-                  {/* Gold accent line */}
-                  <div
+                  {/* Gold accent line — animates scaleY from top */}
+                  <motion.div
                     className="absolute left-0 top-0 bottom-0 w-px"
-                    style={{ background: "linear-gradient(to bottom, transparent, #C8A96A, transparent)" }}
+                    style={{
+                      background: "linear-gradient(to bottom, transparent, #C8A96A, transparent)",
+                      transformOrigin: "top",
+                    }}
+                    initial={{ scaleY: 0 }}
+                    whileInView={{ scaleY: 1 }}
+                    transition={{ duration: 1.1, delay: 0.5, ease: [0.25, 0.46, 0.45, 0.94] }}
+                    viewport={{ once: true }}
                   />
-                </div>
+                </motion.div>
               </ScrollReveal>
             </div>
+
           </div>
         </div>
       </section>
