@@ -9,7 +9,7 @@ import FoundationSection from "../components/home/FoundationSection";
 import { useLanguage } from "../context/LanguageContext";
 
 const PORTRAIT =
-  "https://images.unsplash.com/photo-1686078803106-7c6684f62158?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA1NTJ8MHwxfHNlYXJjaHwyfHxwcm9mZXNzaW9uYWwlMjBzZW5pb3IlMjB3b21hbiUyMGV4ZWN1dGl2ZSUyMHBvcnRyYWl0JTIwYmxhY2slMjB3aGl0ZSUyMGVkaXRvcmlhbHxlbnwwfHx8fDE3NzI3ODc5NjB8MA&ixlib=rb-4.1.0&q=85";
+  "https://customer-assets.emergentagent.com/job_nervous-system-exec/artifacts/za4j3pc7_Cornelia%2BTrompke_0436.webp";
 
 // Placeholder testimonial portrait images — replace with real client photography
 const TESTIMONIAL_PORTRAITS = [

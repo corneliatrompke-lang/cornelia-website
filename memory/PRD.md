@@ -214,7 +214,9 @@ Create a cinematic editorial luxury marketing website for Cornelia Trompke — a
 - Heading uses negative-y (drops from above, clips via overflow:hidden); paragraphs use positive-y (slide up from below)
 - Gold particle canvas at z-index 10 — floats over all elements, clearly visible
 
-### CTA Button Style (Mar 2026)
+### About Section Portrait (Mar 2026)
+- Replaced Unsplash placeholder with Cornelia Trompke's actual portrait (za4j3pc7 asset)
+- Preserved: `aspectRatio: "3/4"`, `object-cover`, `grayscale(100%) contrast(1.05)` filter, gold accent line
 - Changed final CTA button from `btn-primary` (solid gold) to `btn-secondary` (transparent + gold border)
 - Now consistent with About Preview, Method, and Services sections
 - Scroll offset: `["start end", "end 70%"]` — animation spans ~1420px of scroll range
