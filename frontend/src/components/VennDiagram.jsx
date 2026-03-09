@@ -11,9 +11,10 @@ const R = 200;
 // Final (resting) circle positions
 const LX_FINAL = 340;
 const RX_FINAL = 660;
-// Starting positions — completely outside the SVG viewBox (W=1000, R=200)
-const LX_START = -220;   // right edge of left circle: -220+200=-20 → just off-screen left
-const RX_START = 1220;   // left edge of right circle: 1220-200=1020 → just off-screen right
+// Starting positions — well outside the SVG viewBox (W=1000, R=200)
+// At LX_START=-300: right edge at -300+200=-100 → 100px off-screen left
+const LX_START = -300;
+const RX_START = 1300;  // left edge at 1300-200=1100 → 100px off-screen right
 
 // ── Circle text path — CW so text at the top reads left → right ─────────────
 const circPath = (cx, cy, r) =>
@@ -132,10 +133,13 @@ const VennDiagram = () => {
             viewBox={`0 0 ${W} ${H}`}
             preserveAspectRatio="xMidYMid meet"
             className="w-full block"
-            style={{ maxHeight: `${H}px` }}
+            style={{ maxHeight: `${H}px`, overflow: "hidden" }}
             aria-hidden="true"
           >
             <defs>
+              <clipPath id="vennViewClip">
+                <rect x="0" y="0" width={W} height={H} />
+              </clipPath>
               <path id="vennLeft"  d={leftPath}  />
               <path id="vennRight" d={rightPath} />
               <mask id="bottomLensMask">
@@ -143,6 +147,9 @@ const VennDiagram = () => {
                 <path d={bottomLens} fill="white" />
               </mask>
             </defs>
+
+            {/* ─ All content clipped to viewBox — nothing renders outside ─ */}
+            <g clipPath="url(#vennViewClip)">
 
             {/* ─ Layer 1: Right circle text (base) ─ */}
             <g style={orbit("right")}>
@@ -232,6 +239,8 @@ const VennDiagram = () => {
               />
               <polygon points={ARROW_POLY} fill="#C8A96A" />
             </motion.g>
+
+            </g>{/* end vennViewClip */}
           </svg>
         </div>
       </div>
