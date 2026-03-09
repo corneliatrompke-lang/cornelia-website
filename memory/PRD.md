@@ -214,15 +214,15 @@ Create a cinematic editorial luxury marketing website for Cornelia Trompke — a
 - Heading uses negative-y (drops from above, clips via overflow:hidden); paragraphs use positive-y (slide up from below)
 - Gold particle canvas at z-index 10 — floats over all elements, clearly visible
 
-### About Section — Asymmetric Ivory Blob (Mar 2026)
-- Replaced gradient (8-stop #F5F2EC→#121212) with solid charcoal background + ivory organic shape
-- `.about-blob` class: circular shape (80vw × 80vw), left: -22vw, top: -8%, border-radius: 50%
-- Ivory circle (#F5F2EC) covers left ~58% of section; charcoal visible on right + bottom
-- Blob creates editorial ivory/charcoal contrast without any gradient banding
-- Text colors updated: heading `color: "#121212"`, body `color: "rgba(18,18,18,0.62)"` (dark on ivory)
-- CTA button changed from `btn-secondary` (gold border) to `btn-dark` (charcoal border/text on ivory)
-- Portrait (Cornelia) sits in charcoal zone right of blob edge — dramatic dark-background framing
-- grayscale(40%) contrast(1.05) filter preserved on portrait
+### About Section — SVG Arc Divider (Mar 2026)
+- Replaced circular CSS blob with an SVG cubic-bezier arc divider
+- SVG `viewBox="0 0 100 100"` with `preserveAspectRatio="none"` scales to fill section
+- **Ivory fill path:** `M 0 0 L 100 0 L 100 48 C 60 52, 25 78, 0 88 Z` — upper region
+- **Gold arc stroke:** `M 0 88 C 25 78, 60 52, 100 48` — `strokeWidth="1.5"`, `strokeOpacity="0.55"`, `vectorEffect="non-scaling-stroke"`
+- Arc sweeps from lower-left (y≈88%) diagonally to upper-right (y≈48%) with gentle cubic curve
+- Text content (left column) fully covered by ivory zone ✓
+- Portrait (right column) sits against arc boundary — charcoal visible in lower section area ✓
+- Removed `.about-blob` CSS class from App.css (no longer needed)
 
 ### Testimonials Section Redesign (Mar 2026)
 - Background changed to charcoal (#121212)

@@ -81,18 +81,6 @@
   border-color: #121212;
 }
 
-/* ---- About Section Ivory Blob ---- */
-.about-blob {
-  position: absolute;
-  left: -22vw;
-  top: -8%;
-  width: 80vw;
-  height: 80vw;
-  border-radius: 50%;
-  background: #F5F2EC;
-  z-index: 0;
-  pointer-events: none;
-}
 
 /* ---- Marquee ---- */
 .marquee-outer {

@@ -231,8 +231,36 @@ const Home = () => {
           overflow: "hidden",
         }}
       >
-        {/* Asymmetric ivory blob — covers left ~58% of section */}
-        <div className="about-blob" />
+        {/* SVG arc — ivory upper region / charcoal lower region */}
+        <svg
+          aria-hidden="true"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 100 100"
+          preserveAspectRatio="none"
+          style={{
+            position: "absolute",
+            inset: 0,
+            width: "100%",
+            height: "100%",
+            pointerEvents: "none",
+            zIndex: 0,
+          }}
+        >
+          {/* Ivory region: top of section down to the diagonal sweep arc */}
+          <path
+            d="M 0 0 L 100 0 L 100 48 C 60 52, 25 78, 0 88 Z"
+            fill="#F5F2EC"
+          />
+          {/* Gold arc edge — slight gold tint on the dividing line */}
+          <path
+            d="M 0 88 C 25 78, 60 52, 100 48"
+            fill="none"
+            stroke="#C8A96A"
+            strokeWidth="1.5"
+            strokeOpacity="0.55"
+            vectorEffect="non-scaling-stroke"
+          />
+        </svg>
 
         <div className="max-w-[1400px] mx-auto px-6 md:px-16" style={{ position: "relative", zIndex: 1 }}>
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
