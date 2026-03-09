@@ -221,18 +221,15 @@ const Home = () => {
 
       <FoundationSection />
 
-      {/* Gradient transition: ivory → faint gold → charcoal */}
-      <div
-        style={{
-          height: "220px",
-          background:
-            "linear-gradient(to bottom, #F5F2EC 0%, rgba(200,169,106,0.10) 38%, #1a1610 68%, #121212 100%)",
-          marginTop: "-1px",
-        }}
-      />
-
       {/* ═══ ABOUT PREVIEW ═══ */}
-      <section className="bg-charcoal ct-section" data-testid="about-preview-section">
+      <section
+        className="ct-section"
+        data-testid="about-preview-section"
+        style={{
+          background:
+            "linear-gradient(to bottom, #F5F2EC 0%, rgba(200,169,106,0.08) 22%, #1a1610 55%, #121212 70%)",
+        }}
+      >
         <div className="max-w-[1400px] mx-auto px-6 md:px-16">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
             <div className="lg:col-span-6 lg:col-start-2">
