@@ -231,7 +231,7 @@ const Home = () => {
           overflow: "hidden",
         }}
       >
-        {/* SVG arc — ivory upper region / charcoal lower region */}
+        {/* SVG arc — ivory decorative swoosh at the bottom edge only */}
         <svg
           aria-hidden="true"
           xmlns="http://www.w3.org/2000/svg"
@@ -246,18 +246,19 @@ const Home = () => {
             zIndex: 0,
           }}
         >
-          {/* Ivory region: left edge rises to a peak, then dramatic fall across portrait */}
+          {/* Ivory swoosh — bottom edge only, does not cover content */}
           <path
-            d="M 0 0 L 100 0 L 100 35 C 80 35, 65 38, 50 72 C 35 96, 20 96, 0 88 Z"
+            d="M 0 100 L 100 100 L 100 88 C 80 82, 55 78, 30 90 C 15 96, 5 98, 0 98 Z"
             fill="#F5F2EC"
+            fillOpacity="0.07"
           />
           {/* Gold arc edge */}
           <path
-            d="M 0 88 C 20 96, 35 96, 50 72 C 65 38, 80 35, 100 35"
+            d="M 0 98 C 5 98, 15 96, 30 90 C 55 78, 80 82, 100 88"
             fill="none"
             stroke="#C8A96A"
-            strokeWidth="1.5"
-            strokeOpacity="0.55"
+            strokeWidth="1"
+            strokeOpacity="0.3"
             vectorEffect="non-scaling-stroke"
           />
         </svg>
@@ -269,13 +270,13 @@ const Home = () => {
                 <p className="ct-overline text-gold mb-6">{t.home.aboutPreview.overline}</p>
                 <h2
                   className="leading-[1.15] max-w-[500px]"
-                  style={{ fontFamily: "Figtree, sans-serif", fontSize: "clamp(26px, 3.5vw, 42px)", fontWeight: 400, color: "#121212" }}
+                  style={{ fontFamily: "Figtree, sans-serif", fontSize: "clamp(26px, 3.5vw, 42px)", fontWeight: 400, color: "#F5F2EC" }}
                 >
                   {t.home.aboutPreview.headline}
                 </h2>
                 <p
                   className="mt-6 leading-relaxed max-w-[480px]"
-                  style={{ fontFamily: "Manrope, sans-serif", fontSize: "16px", fontWeight: 300, color: "rgba(18,18,18,0.62)" }}
+                  style={{ fontFamily: "Manrope, sans-serif", fontSize: "16px", fontWeight: 300, color: "rgba(245,242,236,0.72)" }}
                 >
                   {t.home.aboutPreview.body}
                 </p>
