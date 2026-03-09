@@ -201,7 +201,7 @@ export default function FoundationSection() {
                 top: 0,
                 left: "13%",
                 right: "13%",
-                height: 350,
+                height: 450,
                 overflow: "hidden",
                 y: bannerY,
                 opacity: bannerO,
@@ -243,7 +243,7 @@ export default function FoundationSection() {
               style={{
                 position: "absolute",
                 left: 60,
-                top: 190,
+                top: 244,
                 width: 225,
                 height: 225,
                 overflow: "hidden",
@@ -264,11 +264,11 @@ export default function FoundationSection() {
             </motion.div>
 
             {/* Card centering wrapper
-                top: 305px = banner bottom (350) minus 45px overlap */}
+                top: 392px = banner bottom (450) minus 58px overlap (~12.86%) */}
             <div
               style={{
                 position: "absolute",
-                top: 305,
+                top: 392,
                 left: "50%",
                 transform: "translateX(-50%)",
                 width: "clamp(494px, 47%, 676px)",
