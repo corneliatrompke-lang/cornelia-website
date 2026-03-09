@@ -246,14 +246,14 @@ const Home = () => {
             zIndex: 0,
           }}
         >
-          {/* Charcoal dome: left edge rises to a peak, dramatic fall across portrait */}
+          {/* Charcoal dome — flipped: opens upward from the bottom */}
           <path
-            d="M 0 0 L 100 0 L 100 35 C 80 35, 65 38, 50 72 C 35 96, 20 96, 0 88 Z"
+            d="M 0 100 L 100 100 L 100 65 C 80 65, 65 62, 50 28 C 35 4, 20 4, 0 12 Z"
             fill="#121212"
           />
           {/* Gold arc edge */}
           <path
-            d="M 0 88 C 20 96, 35 96, 50 72 C 65 38, 80 35, 100 35"
+            d="M 0 12 C 20 4, 35 4, 50 28 C 65 62, 80 65, 100 65"
             fill="none"
             stroke="#C8A96A"
             strokeWidth="1.5"
