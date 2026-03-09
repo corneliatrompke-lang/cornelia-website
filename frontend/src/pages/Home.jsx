@@ -246,14 +246,14 @@ const Home = () => {
             zIndex: 0,
           }}
         >
-          {/* Ivory region: top of section down to the diagonal sweep arc */}
+          {/* Ivory region: left edge rises to a peak, then dramatic fall across portrait */}
           <path
-            d="M 0 0 L 100 0 L 100 48 C 60 52, 25 78, 0 88 Z"
+            d="M 0 0 L 100 0 L 100 35 C 80 35, 65 38, 50 72 C 35 96, 20 96, 0 88 Z"
             fill="#F5F2EC"
           />
-          {/* Gold arc edge — slight gold tint on the dividing line */}
+          {/* Gold arc edge */}
           <path
-            d="M 0 88 C 25 78, 60 52, 100 48"
+            d="M 0 88 C 20 96, 35 96, 50 72 C 65 38, 80 35, 100 35"
             fill="none"
             stroke="#C8A96A"
             strokeWidth="1.5"
