@@ -248,10 +248,10 @@ const Home = () => {
         >
           {/* Charcoal dome — flipped: opens upward from the bottom */}
           <path
-            d="M 0 100 L 100 100 L 100 65 C 80 65, 65 62, 50 28 C 35 4, 20 4, 0 12 Z"
+            d="M 0 102 L 100 102 L 100 65 C 80 65, 65 62, 50 28 C 35 4, 20 4, 0 12 Z"
             fill="#121212"
           />
-          {/* Gold arc edge */}
+          {/* Gold arc edge — curved portion only, not the flat edges */}
           <path
             d="M 0 12 C 20 4, 35 4, 50 28 C 65 62, 80 65, 100 65"
             fill="none"
