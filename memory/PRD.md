@@ -214,21 +214,15 @@ Create a cinematic editorial luxury marketing website for Cornelia Trompke — a
 - Heading uses negative-y (drops from above, clips via overflow:hidden); paragraphs use positive-y (slide up from below)
 - Gold particle canvas at z-index 10 — floats over all elements, clearly visible
 
-### About Section Portrait (Mar 2026)
-- Replaced Unsplash placeholder with Cornelia Trompke's actual portrait (za4j3pc7 asset)
-- Preserved: `aspectRatio: "3/4"`, `object-cover`, `grayscale(100%) contrast(1.05)` filter, gold accent line
-- Changed final CTA button from `btn-primary` (solid gold) to `btn-secondary` (transparent + gold border)
-- Now consistent with About Preview, Method, and Services sections
-- Scroll offset: `["start end", "end 70%"]` — animation spans ~1420px of scroll range
-- Section paddingBottom: 380px (total section height ~1180px for slow cinematic scroll)
-- Images: Banner -400px drop, Circle 600px right sweep, Square -520px/-200px lower-left surge
-- Card: rises 220px from below over [0.52, 0.80]
-- Text cascade (generous scroll-driven ranges with overflow:hidden clip):
-  - Divider: scaleX 0→1 at fp [0.78, 0.92]
-  - Heading: -120px drop at fp [0.82, 0.95]
-  - Para 1: +90px rise at fp [0.88, 0.97]
-  - Para 2: +90px rise at fp [0.92, 1.00] staggered
-- Particle canvas: z-index 10 (floats over images AND card), 70 particles, size 0.8-3.8, opacity 0.25-0.85
+### About Section — Asymmetric Ivory Blob (Mar 2026)
+- Replaced gradient (8-stop #F5F2EC→#121212) with solid charcoal background + ivory organic shape
+- `.about-blob` class: circular shape (80vw × 80vw), left: -22vw, top: -8%, border-radius: 50%
+- Ivory circle (#F5F2EC) covers left ~58% of section; charcoal visible on right + bottom
+- Blob creates editorial ivory/charcoal contrast without any gradient banding
+- Text colors updated: heading `color: "#121212"`, body `color: "rgba(18,18,18,0.62)"` (dark on ivory)
+- CTA button changed from `btn-secondary` (gold border) to `btn-dark` (charcoal border/text on ivory)
+- Portrait (Cornelia) sits in charcoal zone right of blob edge — dramatic dark-background framing
+- grayscale(40%) contrast(1.05) filter preserved on portrait
 
 ### Testimonials Section Redesign (Mar 2026)
 - Background changed to charcoal (#121212)

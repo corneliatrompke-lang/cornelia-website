@@ -226,30 +226,34 @@ const Home = () => {
         className="ct-section"
         data-testid="about-preview-section"
         style={{
-          background:
-            "linear-gradient(to bottom, #F5F2EC 0%, #D6CFC5 14%, #B2A99B 28%, #8A807A 42%, #5E554F 56%, #3D3530 70%, #231F1C 83%, #121212 100%)",
+          background: "#121212",
+          position: "relative",
+          overflow: "hidden",
         }}
       >
-        <div className="max-w-[1400px] mx-auto px-6 md:px-16">
+        {/* Asymmetric ivory blob — covers left ~58% of section */}
+        <div className="about-blob" />
+
+        <div className="max-w-[1400px] mx-auto px-6 md:px-16" style={{ position: "relative", zIndex: 1 }}>
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
             <div className="lg:col-span-6 lg:col-start-2">
               <ScrollReveal>
                 <p className="ct-overline text-gold mb-6">{t.home.aboutPreview.overline}</p>
                 <h2
-                  className="text-ivory leading-[1.15] max-w-[500px]"
-                  style={{ fontFamily: "Figtree, sans-serif", fontSize: "clamp(26px, 3.5vw, 42px)", fontWeight: 400 }}
+                  className="leading-[1.15] max-w-[500px]"
+                  style={{ fontFamily: "Figtree, sans-serif", fontSize: "clamp(26px, 3.5vw, 42px)", fontWeight: 400, color: "#121212" }}
                 >
                   {t.home.aboutPreview.headline}
                 </h2>
                 <p
-                  className="text-stone/55 mt-6 leading-relaxed max-w-[480px]"
-                  style={{ fontFamily: "Manrope, sans-serif", fontSize: "16px", fontWeight: 300 }}
+                  className="mt-6 leading-relaxed max-w-[480px]"
+                  style={{ fontFamily: "Manrope, sans-serif", fontSize: "16px", fontWeight: 300, color: "rgba(18,18,18,0.62)" }}
                 >
                   {t.home.aboutPreview.body}
                 </p>
                 <Link
                   to="/about"
-                  className="btn-secondary mt-10"
+                  className="btn-dark mt-10"
                   style={{ borderRadius: "8px", padding: "10px 22px" }}
                   data-testid="about-cta"
                 >
