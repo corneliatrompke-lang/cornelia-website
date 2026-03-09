@@ -226,12 +226,12 @@ const Home = () => {
         className="ct-section"
         data-testid="about-preview-section"
         style={{
-          background: "#121212",
+          background: "#F5F2EC",
           position: "relative",
           overflow: "hidden",
         }}
       >
-        {/* SVG arc — ivory decorative swoosh at the bottom edge only */}
+        {/* SVG arc — charcoal dome covers content, ivory background shows at edges */}
         <svg
           aria-hidden="true"
           xmlns="http://www.w3.org/2000/svg"
@@ -246,19 +246,18 @@ const Home = () => {
             zIndex: 0,
           }}
         >
-          {/* Ivory swoosh — bottom edge only, does not cover content */}
+          {/* Charcoal dome: left edge rises to a peak, dramatic fall across portrait */}
           <path
-            d="M 0 100 L 100 100 L 100 88 C 80 82, 55 78, 30 90 C 15 96, 5 98, 0 98 Z"
-            fill="#F5F2EC"
-            fillOpacity="0.07"
+            d="M 0 0 L 100 0 L 100 35 C 80 35, 65 38, 50 72 C 35 96, 20 96, 0 88 Z"
+            fill="#121212"
           />
           {/* Gold arc edge */}
           <path
-            d="M 0 98 C 5 98, 15 96, 30 90 C 55 78, 80 82, 100 88"
+            d="M 0 88 C 20 96, 35 96, 50 72 C 65 38, 80 35, 100 35"
             fill="none"
             stroke="#C8A96A"
-            strokeWidth="1"
-            strokeOpacity="0.3"
+            strokeWidth="1.5"
+            strokeOpacity="0.55"
             vectorEffect="non-scaling-stroke"
           />
         </svg>
