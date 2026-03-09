@@ -227,7 +227,7 @@ const Home = () => {
         data-testid="about-preview-section"
         style={{
           background:
-            "linear-gradient(to bottom, #F5F2EC 0%, rgba(200,169,106,0.08) 30%, #1a1610 65%, #121212 85%)",
+            "linear-gradient(to bottom, #F5F2EC 0%, #D6CFC5 14%, #B2A99B 28%, #8A807A 42%, #5E554F 56%, #3D3530 70%, #231F1C 83%, #121212 100%)",
         }}
       >
         <div className="max-w-[1400px] mx-auto px-6 md:px-16">
