@@ -261,7 +261,7 @@ const Home = () => {
                     src={PORTRAIT}
                     alt="Cornelia Trompke"
                     className="w-full h-full object-cover"
-                    style={{ filter: "grayscale(100%) contrast(1.05)" }}
+                    style={{ filter: "grayscale(40%) contrast(1.05)" }}
                   />
                   {/* Gold accent line */}
                   <div
