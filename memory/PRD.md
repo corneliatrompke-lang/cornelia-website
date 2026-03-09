@@ -127,6 +127,12 @@ Create a cinematic editorial luxury marketing website for Cornelia Trompke — a
 - Venn chevron clip fix: SVG H extended 620→650 so polygon bottom (y≈630) is fully visible
 - Homepage services section padding removed (paddingTop 72px → 30px on Philosophy section)
 
+### v1.6 (About Gradient + Hero Parallax — Mar 2026)
+- **About Preview section**: removed SVG dome design; replaced with seamless CSS gradient `#F5F2EC → warm taupe → warm brown → #121212` for a cinematic ivory-to-charcoal transition
+- Portrait: removed `grayscale(40%)` filter — shows in full colour against the warm gradient
+- **Hero parallax**: added `useScroll` + `useTransform` (framer-motion) on hero container ref; background image is now `motion.img` with `height: "115%"` and Y drift `0% → -12%` as hero scrolls out of viewport — cinematic slow drift
+- Fixed: `motion` import was missing from Home.jsx (critical crash fix, v1.5)
+
 ### v1.5 (Venn Diagram — Off-Screen Slide-In — Mar 2026)
 - LX_START changed from 80 → -220 (circle fully off-screen left)
 - RX_START changed from 920 → 1220 (circle fully off-screen right)

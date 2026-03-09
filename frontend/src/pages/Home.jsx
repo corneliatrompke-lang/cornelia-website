@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 import NeuralCanvas from "../components/NeuralCanvas";
 import ScrollReveal from "../components/ScrollReveal";
 import VennDiagram from "../components/VennDiagram";
@@ -45,6 +45,15 @@ const Home = () => {
   const testimonials = t.home.testimonials.items;
   const timerRef = useRef(null);
 
+  // ── Hero parallax ────────────────────────────────────────────────────────
+  const heroRef = useRef(null);
+  const { scrollYProgress: heroScroll } = useScroll({
+    target: heroRef,
+    offset: ["start start", "end start"],
+  });
+  // Background image drifts upward -12% as hero scrolls out of view
+  const heroBgY = useTransform(heroScroll, [0, 1], ["0%", "-12%"]);
+
   const restartTimer = (count) => {
     clearInterval(timerRef.current);
     timerRef.current = setInterval(() => {
@@ -73,18 +82,29 @@ const Home = () => {
       >
         {/* Rounded container */}
         <div
+          ref={heroRef}
           className="relative overflow-hidden w-full"
           style={{
             borderRadius: "20px",
             minHeight: "96vh",
           }}
         >
-          {/* Background image */}
-          <img
+          {/* Background image — parallax drift */}
+          <motion.img
             src={HERO_BG}
             alt=""
-            className="absolute inset-0 w-full h-full object-cover"
             aria-hidden="true"
+            style={{
+              position: "absolute",
+              left: 0,
+              right: 0,
+              top: 0,
+              width: "100%",
+              height: "115%",
+              objectFit: "cover",
+              objectPosition: "center",
+              y: heroBgY,
+            }}
           />
 
           {/* Left-to-right charcoal gradient: near-black on left → ~1% on right */}
@@ -227,42 +247,10 @@ const Home = () => {
         className="ct-section"
         data-testid="about-preview-section"
         style={{
-          background: "#F5F2EC",
+          background: "linear-gradient(to bottom, #F5F2EC 0%, #D4C5B0 6%, #A08872 18%, #6B5040 32%, #3D2410 52%, #1A1210 74%, #121212 100%)",
           position: "relative",
-          overflow: "hidden",
         }}
       >
-        {/* SVG arc — charcoal dome covers content, ivory background shows at edges */}
-        <svg
-          aria-hidden="true"
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 100 100"
-          preserveAspectRatio="none"
-          style={{
-            position: "absolute",
-            inset: 0,
-            width: "100%",
-            height: "100%",
-            pointerEvents: "none",
-            zIndex: 0,
-          }}
-        >
-          {/* Charcoal dome — flipped: opens upward from the bottom */}
-          <path
-            d="M 0 102 L 100 102 L 100 65 C 80 65, 65 62, 50 28 C 35 4, 20 4, 0 12 Z"
-            fill="#121212"
-          />
-          {/* Gold arc edge — curved portion only, not the flat edges */}
-          <path
-            d="M 0 12 C 20 4, 35 4, 50 28 C 65 62, 80 65, 100 65"
-            fill="none"
-            stroke="#C8A96A"
-            strokeWidth="1.5"
-            strokeOpacity="0.55"
-            vectorEffect="non-scaling-stroke"
-          />
-        </svg>
-
         <div className="max-w-[1400px] mx-auto px-6 md:px-16" style={{ position: "relative", zIndex: 1 }}>
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
 
@@ -314,7 +302,7 @@ const Home = () => {
                     src={PORTRAIT}
                     alt="Cornelia Trompke"
                     className="w-full h-full object-cover"
-                    style={{ filter: "grayscale(40%) contrast(1.05)" }}
+                    style={{ filter: "contrast(1.05)" }}
                     initial={{ scale: 1.06 }}
                     whileInView={{ scale: 1 }}
                     transition={{ duration: 1.2, ease: [0.25, 0.46, 0.45, 0.94] }}
