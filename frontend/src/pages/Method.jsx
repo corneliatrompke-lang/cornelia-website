@@ -1,84 +1,655 @@
-import React from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
-import { CheckCircle2 } from "lucide-react";
+import { ArrowRight, Plus, Minus, Check } from "lucide-react";
+import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion";
 import NeuralCanvas from "../components/NeuralCanvas";
 import ScrollReveal from "../components/ScrollReveal";
 import { useLanguage } from "../context/LanguageContext";
 
+// ─── Assets ─────────────────────────────────────────────────────────────────
+const METHOD_HERO_BG =
+  "https://images.unsplash.com/photo-1754663575934-7964717934c1?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjAzMzJ8MHwxfHNlYXJjaHwxfHx3b21hbiUyMGV4ZWN1dGl2ZSUyMGNvbnRlbXBsYXRpdmUlMjB3aW5kb3clMjBsaWdodCUyMG1vb2R5JTIwcG9ydHJhaXR8ZW58MHx8fHwxNzczMTQyOTA3fDA&ixlib=rb-4.1.0&q=85";
+
+const TESTIMONIAL_PORTRAITS = [
+  "https://images.unsplash.com/photo-1560250097-0b93528c311a?crop=entropy&cs=srgb&fm=jpg&ixlib=rb-4.1.0&q=85",
+  "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?crop=entropy&cs=srgb&fm=jpg&ixlib=rb-4.1.0&q=85",
+  "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?crop=entropy&cs=srgb&fm=jpg&ixlib=rb-4.1.0&q=85",
+];
+
+// ─── NARM Diagram ────────────────────────────────────────────────────────────
+const NarmDiagram = ({ layers }) => (
+  <div className="w-full mt-16" data-testid="narm-diagram">
+    {layers.map((layer, i) => {
+      const progress = i / (layers.length - 1); // 0 = top biological, 1 = bottom expression
+      const bgOpacity = 0.06 + progress * 0.12;
+      const leftPad = i * 32;
+      return (
+        <ScrollReveal key={i} delay={0.08 * i}>
+          <div
+            className="flex items-stretch mb-2"
+            style={{ marginLeft: `${leftPad}px` }}
+          >
+            {/* Level badge */}
+            <div
+              style={{
+                flexShrink: 0,
+                width: "44px",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                background: `rgba(200,169,106,${bgOpacity + 0.06})`,
+                borderLeft: "2px solid rgba(200,169,106,0.35)",
+              }}
+            >
+              <span
+                style={{
+                  fontFamily: "Manrope, sans-serif",
+                  fontSize: "10px",
+                  fontWeight: 600,
+                  color: "rgba(200,169,106,0.7)",
+                  letterSpacing: "1px",
+                }}
+              >
+                {layer.level}
+              </span>
+            </div>
+            {/* Content */}
+            <div
+              style={{
+                flex: 1,
+                padding: "14px 24px",
+                background: `rgba(200,169,106,${bgOpacity})`,
+                borderTop: "1px solid rgba(200,169,106,0.1)",
+                borderBottom: "1px solid rgba(200,169,106,0.1)",
+                borderRight: "1px solid rgba(200,169,106,0.1)",
+              }}
+            >
+              <div className="flex items-baseline gap-4">
+                <span
+                  style={{
+                    fontFamily: "Cormorant Garamond, serif",
+                    fontSize: "18px",
+                    fontWeight: 600,
+                    color: "#C8A96A",
+                    minWidth: "140px",
+                  }}
+                >
+                  {layer.name}
+                </span>
+                <span
+                  style={{
+                    fontFamily: "Manrope, sans-serif",
+                    fontSize: "13px",
+                    fontWeight: 300,
+                    color: "rgba(227,222,215,0.55)",
+                  }}
+                >
+                  {layer.description}
+                </span>
+              </div>
+            </div>
+          </div>
+        </ScrollReveal>
+      );
+    })}
+    {/* Arrow at bottom */}
+    <ScrollReveal delay={0.5}>
+      <div className="flex items-center gap-3 mt-6" style={{ marginLeft: "160px" }}>
+        <div style={{ width: "1px", height: "32px", background: "rgba(200,169,106,0.4)" }} />
+        <span
+          style={{
+            fontFamily: "Cormorant Garamond, serif",
+            fontSize: "14px",
+            fontStyle: "italic",
+            color: "rgba(200,169,106,0.6)",
+          }}
+        >
+          NARM works simultaneously across all layers
+        </span>
+      </div>
+    </ScrollReveal>
+  </div>
+);
+
+// ─── Accordion Item ───────────────────────────────────────────────────────────
+const AccordionItem = ({ item, index, isOpen, onToggle, gradientPct }) => (
+  <div
+    style={{
+      borderBottom: "1px solid rgba(245,242,236,0.12)",
+    }}
+    data-testid={`accordion-item-${index}`}
+  >
+    <button
+      onClick={onToggle}
+      className="w-full text-left"
+      style={{ padding: "36px 0", display: "flex", alignItems: "center", justifyContent: "space-between", gap: "24px" }}
+    >
+      <div>
+        <p
+          style={{
+            fontFamily: "Manrope, sans-serif",
+            fontSize: "11px",
+            fontWeight: 500,
+            letterSpacing: "2.5px",
+            textTransform: "uppercase",
+            color: isOpen ? "rgba(200,169,106,0.9)" : "rgba(200,169,106,0.45)",
+            marginBottom: "8px",
+            transition: "color 0.3s",
+          }}
+        >
+          {item.subtitle}
+        </p>
+        <h3
+          style={{
+            fontFamily: "Figtree, sans-serif",
+            fontSize: "clamp(22px, 2.8vw, 34px)",
+            fontWeight: 400,
+            color: isOpen ? "#F5F2EC" : "rgba(245,242,236,0.7)",
+            transition: "color 0.3s",
+          }}
+        >
+          {item.audience}
+        </h3>
+      </div>
+      <div
+        style={{
+          flexShrink: 0,
+          width: "40px",
+          height: "40px",
+          borderRadius: "50%",
+          border: "1px solid rgba(200,169,106,0.35)",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          color: "#C8A96A",
+          transition: "background 0.3s",
+          background: isOpen ? "rgba(200,169,106,0.12)" : "transparent",
+        }}
+      >
+        {isOpen ? <Minus size={16} /> : <Plus size={16} />}
+      </div>
+    </button>
+
+    <AnimatePresence initial={false}>
+      {isOpen && (
+        <motion.div
+          key="content"
+          initial={{ height: 0, opacity: 0 }}
+          animate={{ height: "auto", opacity: 1 }}
+          exit={{ height: 0, opacity: 0 }}
+          transition={{ duration: 0.45, ease: [0.25, 0.46, 0.45, 0.94] }}
+          style={{ overflow: "hidden" }}
+        >
+          <div className="pb-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            {item.benefits.map((benefit, j) => (
+              <motion.div
+                key={j}
+                initial={{ opacity: 0, y: 12 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: j * 0.07, duration: 0.4, ease: "easeOut" }}
+                style={{
+                  padding: "20px 24px",
+                  background: "rgba(200,169,106,0.06)",
+                  border: "1px solid rgba(200,169,106,0.12)",
+                  borderRadius: "4px",
+                  display: "flex",
+                  gap: "14px",
+                  alignItems: "flex-start",
+                }}
+              >
+                <div
+                  style={{
+                    flexShrink: 0,
+                    width: "20px",
+                    height: "20px",
+                    borderRadius: "50%",
+                    background: "rgba(200,169,106,0.15)",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    marginTop: "2px",
+                  }}
+                >
+                  <Check size={11} color="#C8A96A" />
+                </div>
+                <p
+                  style={{
+                    fontFamily: "Manrope, sans-serif",
+                    fontSize: "14px",
+                    fontWeight: 300,
+                    color: "rgba(245,242,236,0.72)",
+                    lineHeight: 1.6,
+                  }}
+                >
+                  {benefit}
+                </p>
+              </motion.div>
+            ))}
+          </div>
+        </motion.div>
+      )}
+    </AnimatePresence>
+  </div>
+);
+
+// ─── Page ─────────────────────────────────────────────────────────────────────
 const Method = () => {
   const { t } = useLanguage();
   const m = t.method;
 
+  // Hero parallax
+  const heroRef = useRef(null);
+  const { scrollYProgress: heroScroll } = useScroll({
+    target: heroRef,
+    offset: ["start start", "end start"],
+  });
+  const heroBgY = useTransform(heroScroll, [0, 1], ["0%", "-12%"]);
+
+  // Accordion
+  const [openAccordion, setOpenAccordion] = useState(0);
+
+  // Testimonials
+  const testimonials = t.home.testimonials.items;
+  const [activeTestimonial, setActiveTestimonial] = useState(0);
+  const timerRef = useRef(null);
+  const restartTimer = (len) => {
+    clearInterval(timerRef.current);
+    timerRef.current = setInterval(() => setActiveTestimonial((p) => (p + 1) % len), 6000);
+  };
+  useEffect(() => {
+    restartTimer(testimonials.length);
+    return () => clearInterval(timerRef.current);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [testimonials.length]);
+
   return (
-    <div>
-      {/* ═══ HERO ═══ */}
+    <div className="bg-[#F5F2EC]">
+
+      {/* ══════════════════════════════════════════════════════════════
+          1. HERO — same rounded-card layout as Home
+      ══════════════════════════════════════════════════════════════ */}
       <section
-        className="bg-charcoal min-h-[70vh] flex items-end pb-20 pt-36 relative overflow-hidden"
+        className="pt-[6px] px-3 md:px-4 pb-3"
+        style={{ background: "#F5F2EC" }}
         data-testid="method-hero"
       >
-        <NeuralCanvas opacity={0.1} nodeCount={50} />
         <div
-          className="absolute inset-0"
-          style={{
-            background: "radial-gradient(ellipse 80% 60% at 50% 80%, rgba(200,169,106,0.05) 0%, transparent 65%)",
-          }}
-        />
-        <div className="relative z-10 max-w-[1400px] mx-auto px-6 md:px-16 w-full">
-          <div className="max-w-[720px]">
-            <ScrollReveal>
-              <p className="ct-overline text-gold mb-6">{m.hero.overline}</p>
+          ref={heroRef}
+          className="relative overflow-hidden w-full"
+          style={{ borderRadius: "20px", minHeight: "96vh" }}
+        >
+          <motion.img
+            src={METHOD_HERO_BG}
+            alt=""
+            aria-hidden="true"
+            style={{
+              position: "absolute", left: 0, right: 0, top: 0,
+              width: "100%", height: "115%",
+              objectFit: "cover", objectPosition: "center",
+              y: heroBgY,
+            }}
+          />
+          {/* Left dark gradient */}
+          <div
+            className="absolute inset-0 z-[1]"
+            style={{
+              background:
+                "linear-gradient(to right, rgba(18,18,18,1.00) 0%, rgba(18,18,18,0.90) 20%, rgba(18,18,18,0.75) 40%, rgba(18,18,18,0.30) 60%, rgba(18,18,18,0.15) 80%, rgba(18,18,18,0.01) 100%)",
+            }}
+          />
+          {/* Top strip */}
+          <div
+            className="absolute top-0 left-0 right-0 z-[2]"
+            style={{
+              height: "130px",
+              background: "linear-gradient(to bottom, rgba(12,12,12,0.65) 0%, rgba(12,12,12,0.2) 70%, transparent 100%)",
+            }}
+          />
+          <NeuralCanvas opacity={0.08} nodeCount={40} />
+
+          {/* Bottom-left text */}
+          <div className="absolute bottom-0 left-0 z-10 p-8 md:p-14" style={{ maxWidth: "860px" }}>
+            <ScrollReveal delay={0.1}>
+              <p className="ct-overline text-gold mb-6" data-testid="method-hero-overline">
+                {m.hero.overline}
+              </p>
             </ScrollReveal>
-            <ScrollReveal delay={0.15}>
+            <ScrollReveal delay={0.25}>
               <h1
-                className="text-ivory leading-[1.05]"
-                style={{ fontFamily: "Figtree, sans-serif", fontSize: "clamp(40px, 6vw, 76px)", fontWeight: 400 }}
+                className="text-ivory leading-[1.04]"
+                style={{ fontFamily: "Figtree, sans-serif", fontSize: "clamp(40px, 6.5vw, 84px)", fontWeight: 400 }}
+                data-testid="method-hero-headline"
               >
                 {m.hero.headline}
               </h1>
             </ScrollReveal>
-            <ScrollReveal delay={0.3}>
+            <ScrollReveal delay={0.42}>
               <p
-                className="text-stone/55 mt-6 leading-relaxed"
-                style={{ fontFamily: "Cormorant Garamond, serif", fontSize: "20px", fontStyle: "italic" }}
+                className="mt-5 max-w-[520px] leading-relaxed"
+                style={{ fontFamily: "Manrope, sans-serif", fontSize: "16px", fontWeight: 300, color: "rgba(227,222,215,0.65)" }}
               >
                 {m.hero.subtitle}
               </p>
+            </ScrollReveal>
+            <ScrollReveal delay={0.58}>
+              <div className="flex flex-col sm:flex-row gap-3 mt-9 mb-10">
+                <Link to="/contact" className="btn-hero-pill" data-testid="method-hero-cta">
+                  {m.cta.button}
+                  <ArrowRight size={13} />
+                </Link>
+              </div>
+            </ScrollReveal>
+          </div>
+
+          {/* Scroll indicator */}
+          <div className="absolute bottom-10 right-10 z-10 flex flex-col items-center gap-2">
+            <span className="ct-overline text-white/25" style={{ fontSize: "9px" }}>Scroll</span>
+            <div className="scroll-line" />
+          </div>
+        </div>
+      </section>
+
+      {/* ══════════════════════════════════════════════════════════════
+          2. THE TWO METHODOLOGIES — Ivory
+      ══════════════════════════════════════════════════════════════ */}
+      <section className="ct-section" style={{ background: "#F5F2EC" }} data-testid="method-what-we-do">
+        <div className="max-w-[1400px] mx-auto px-6 md:px-16">
+          <div className="max-w-[640px] mb-16">
+            <ScrollReveal>
+              <p className="ct-overline text-sage mb-5">{m.whatWeDo.overline}</p>
+              <h2
+                className="text-charcoal leading-[1.1]"
+                style={{ fontFamily: "Figtree, sans-serif", fontSize: "clamp(28px, 3.5vw, 46px)", fontWeight: 400 }}
+              >
+                {m.whatWeDo.headline}
+              </h2>
+            </ScrollReveal>
+            <ScrollReveal delay={0.15}>
+              <p className="mt-6 text-charcoal/60 leading-relaxed" style={{ fontFamily: "Manrope, sans-serif", fontSize: "16px", fontWeight: 300 }}>
+                {m.whatWeDo.body}
+              </p>
+            </ScrollReveal>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            {/* NARM card */}
+            <ScrollReveal delay={0.1}>
+              <div
+                style={{
+                  background: "#121212",
+                  borderRadius: "12px",
+                  padding: "48px 52px",
+                  height: "100%",
+                  position: "relative",
+                  overflow: "hidden",
+                }}
+                data-testid="narm-card"
+              >
+                <div
+                  style={{
+                    position: "absolute", top: 0, right: 0, width: "240px", height: "240px",
+                    background: "radial-gradient(circle, rgba(200,169,106,0.07) 0%, transparent 70%)",
+                    pointerEvents: "none",
+                  }}
+                />
+                <p className="ct-overline text-gold/60 mb-4">{m.whatWeDo.narmCard.label}</p>
+                <h3
+                  style={{ fontFamily: "Figtree, sans-serif", fontSize: "clamp(32px, 3.5vw, 52px)", fontWeight: 400, color: "#F5F2EC", lineHeight: 1 }}
+                >
+                  {m.whatWeDo.narmCard.title}
+                </h3>
+                <p
+                  style={{ fontFamily: "Cormorant Garamond, serif", fontSize: "17px", fontStyle: "italic", color: "rgba(200,169,106,0.7)", marginTop: "6px", marginBottom: "24px" }}
+                >
+                  {m.whatWeDo.narmCard.subtitle}
+                </p>
+                <p style={{ fontFamily: "Manrope, sans-serif", fontSize: "14px", fontWeight: 300, color: "rgba(227,222,215,0.6)", lineHeight: 1.7, marginBottom: "28px" }}>
+                  {m.whatWeDo.narmCard.description}
+                </p>
+                <div style={{ borderTop: "1px solid rgba(200,169,106,0.15)", paddingTop: "24px" }}>
+                  {m.whatWeDo.narmCard.points.map((pt, i) => (
+                    <div key={i} className="flex gap-3 items-start mb-3">
+                      <div style={{ flexShrink: 0, width: "5px", height: "5px", borderRadius: "50%", background: "#C8A96A", marginTop: "6px", opacity: 0.6 }} />
+                      <p style={{ fontFamily: "Manrope, sans-serif", fontSize: "13px", fontWeight: 300, color: "rgba(227,222,215,0.55)" }}>{pt}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </ScrollReveal>
+
+            {/* Integral card */}
+            <ScrollReveal delay={0.2}>
+              <div
+                style={{
+                  background: "#F5F2EC",
+                  border: "1px solid rgba(18,18,18,0.12)",
+                  borderRadius: "12px",
+                  padding: "48px 52px",
+                  height: "100%",
+                  position: "relative",
+                  overflow: "hidden",
+                }}
+                data-testid="integral-card"
+              >
+                <div
+                  style={{
+                    position: "absolute", bottom: 0, left: 0, width: "200px", height: "200px",
+                    background: "radial-gradient(circle, rgba(124,140,130,0.08) 0%, transparent 70%)",
+                    pointerEvents: "none",
+                  }}
+                />
+                <p className="ct-overline mb-4" style={{ color: "rgba(18,18,18,0.35)" }}>{m.whatWeDo.integralCard.label}</p>
+                <h3
+                  style={{ fontFamily: "Figtree, sans-serif", fontSize: "clamp(22px, 2.5vw, 36px)", fontWeight: 400, color: "#121212", lineHeight: 1.1 }}
+                >
+                  {m.whatWeDo.integralCard.title}
+                </h3>
+                <p
+                  style={{ fontFamily: "Cormorant Garamond, serif", fontSize: "17px", fontStyle: "italic", color: "rgba(124,140,130,0.85)", marginTop: "6px", marginBottom: "24px" }}
+                >
+                  {m.whatWeDo.integralCard.subtitle}
+                </p>
+                <p style={{ fontFamily: "Manrope, sans-serif", fontSize: "14px", fontWeight: 300, color: "rgba(18,18,18,0.6)", lineHeight: 1.7, marginBottom: "28px" }}>
+                  {m.whatWeDo.integralCard.description}
+                </p>
+                <div style={{ borderTop: "1px solid rgba(18,18,18,0.1)", paddingTop: "24px" }}>
+                  {m.whatWeDo.integralCard.points.map((pt, i) => (
+                    <div key={i} className="flex gap-3 items-start mb-3">
+                      <div style={{ flexShrink: 0, width: "5px", height: "5px", borderRadius: "50%", background: "#7C8C82", marginTop: "6px", opacity: 0.7 }} />
+                      <p style={{ fontFamily: "Manrope, sans-serif", fontSize: "13px", fontWeight: 300, color: "rgba(18,18,18,0.55)" }}>{pt}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
             </ScrollReveal>
           </div>
         </div>
       </section>
 
-      {/* ═══ INTRO ═══ */}
-      <section className="bg-ivory ct-section" data-testid="method-intro">
-        <div className="max-w-[720px] mx-auto px-6">
-          <ScrollReveal>
-            <p className="ct-overline text-sage mb-5">{m.intro.overline}</p>
-            <h2
-              className="text-charcoal leading-[1.15] mb-8"
-              style={{ fontFamily: "Figtree, sans-serif", fontSize: "clamp(26px, 3.5vw, 40px)", fontWeight: 400 }}
-            >
-              {m.intro.headline}
-            </h2>
-          </ScrollReveal>
-          {m.intro.body.split("\n\n").map((para, i) => (
-            <ScrollReveal key={i} delay={0.1 + i * 0.1}>
-              <p
-                className="text-charcoal/65 mt-5 leading-relaxed"
-                style={{ fontFamily: "Manrope, sans-serif", fontSize: "16px", fontWeight: 300 }}
+      {/* ══════════════════════════════════════════════════════════════
+          3. HIGH-LEVEL BENEFITS — Ivory
+      ══════════════════════════════════════════════════════════════ */}
+      <section
+        className="ct-section"
+        style={{ background: "#F5F2EC", borderTop: "1px solid rgba(18,18,18,0.07)" }}
+        data-testid="method-benefits"
+      >
+        <div className="max-w-[1400px] mx-auto px-6 md:px-16">
+          <div className="text-center max-w-[600px] mx-auto mb-16">
+            <ScrollReveal>
+              <p className="ct-overline text-sage mb-5">{m.benefits.overline}</p>
+              <h2
+                className="text-charcoal leading-[1.1]"
+                style={{ fontFamily: "Figtree, sans-serif", fontSize: "clamp(28px, 3.5vw, 46px)", fontWeight: 400 }}
               >
-                {para}
-              </p>
+                {m.benefits.headline}
+              </h2>
             </ScrollReveal>
-          ))}
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
+            {m.benefits.items.map((item, i) => (
+              <ScrollReveal key={i} delay={0.08 * i}>
+                <div
+                  style={{
+                    padding: "36px 32px",
+                    background: i % 2 === 0 ? "rgba(18,18,18,0.03)" : "#fff",
+                    border: "1px solid rgba(18,18,18,0.08)",
+                    borderRadius: "8px",
+                    height: "100%",
+                  }}
+                  data-testid={`benefit-card-${i}`}
+                >
+                  <p
+                    style={{
+                      fontFamily: "Cormorant Garamond, serif",
+                      fontSize: "44px",
+                      fontWeight: 400,
+                      color: "rgba(200,169,106,0.25)",
+                      lineHeight: 1,
+                      marginBottom: "20px",
+                    }}
+                  >
+                    {item.number}
+                  </p>
+                  <h3
+                    style={{ fontFamily: "Figtree, sans-serif", fontSize: "18px", fontWeight: 500, color: "#121212", marginBottom: "12px" }}
+                  >
+                    {item.title}
+                  </h3>
+                  <p
+                    style={{ fontFamily: "Manrope, sans-serif", fontSize: "13px", fontWeight: 300, color: "rgba(18,18,18,0.55)", lineHeight: 1.7 }}
+                  >
+                    {item.body}
+                  </p>
+                </div>
+              </ScrollReveal>
+            ))}
+          </div>
         </div>
       </section>
 
-      {/* ═══ NARM ═══ */}
-      <section className="bg-charcoal ct-section relative overflow-hidden" data-testid="method-narm">
+      {/* ══════════════════════════════════════════════════════════════
+          4. ACCORDION — Gradient ivory → charcoal
+      ══════════════════════════════════════════════════════════════ */}
+      <section
+        className="ct-section"
+        style={{
+          background: "linear-gradient(to bottom, #F5F2EC 0%, #D4C5B0 6%, #A08872 18%, #6B5040 32%, #3D2410 52%, #1A1210 74%, #121212 100%)",
+        }}
+        data-testid="method-accordion"
+      >
+        <div className="max-w-[1400px] mx-auto px-6 md:px-16">
+          <div className="max-w-[680px] mb-14">
+            <ScrollReveal>
+              <p className="ct-overline text-sage mb-5">{m.accordion.overline}</p>
+              <h2
+                style={{ fontFamily: "Figtree, sans-serif", fontSize: "clamp(28px, 3.5vw, 46px)", fontWeight: 400, color: "#121212" }}
+              >
+                {m.accordion.headline}
+              </h2>
+            </ScrollReveal>
+          </div>
+
+          <div style={{ borderTop: "1px solid rgba(245,242,236,0.15)" }}>
+            {m.accordion.items.map((item, i) => (
+              <AccordionItem
+                key={i}
+                item={item}
+                index={i}
+                isOpen={openAccordion === i}
+                onToggle={() => setOpenAccordion(openAccordion === i ? -1 : i)}
+                gradientPct={(i / (m.accordion.items.length - 1)) * 100}
+              />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ══════════════════════════════════════════════════════════════
+          5. TESTIMONIALS — Charcoal (same as Home)
+      ══════════════════════════════════════════════════════════════ */}
+      <section className="bg-charcoal ct-section relative overflow-hidden" data-testid="method-testimonials">
+        <NeuralCanvas opacity={0.06} nodeCount={30} />
+        <div className="relative z-10 max-w-[1400px] mx-auto px-6 md:px-16">
+          <ScrollReveal>
+            <p className="ct-overline text-gold/60 mb-10">{t.home.testimonials.overline}</p>
+          </ScrollReveal>
+          <ScrollReveal delay={0.1}>
+            <div
+              style={{
+                display: "flex",
+                minHeight: "400px",
+                background: "rgba(200,169,106,0.04)",
+                backdropFilter: "blur(22px)",
+                WebkitBackdropFilter: "blur(22px)",
+                border: "1px solid rgba(200,169,106,0.11)",
+                borderRadius: "16px",
+                overflow: "hidden",
+              }}
+            >
+              {/* Portrait */}
+              <div style={{ width: "38%", flexShrink: 0, position: "relative" }}>
+                {TESTIMONIAL_PORTRAITS.map((src, i) => (
+                  <img key={i} src={src} alt="" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", objectPosition: "center top", opacity: i === activeTestimonial ? 1 : 0, transition: "opacity 0.9s ease", filter: "grayscale(15%)" }} />
+                ))}
+                <div style={{ position: "absolute", right: 0, top: "15%", bottom: "15%", width: "1px", background: "linear-gradient(to bottom, transparent, rgba(200,169,106,0.45), transparent)", zIndex: 2 }} />
+              </div>
+
+              {/* Quote */}
+              <div style={{ flex: 1, display: "flex", flexDirection: "column", justifyContent: "center", padding: "52px 60px", position: "relative" }}>
+                <span style={{ fontFamily: "Cormorant Garamond, serif", fontSize: "120px", lineHeight: 1, color: "rgba(200,169,106,0.07)", position: "absolute", top: "16px", left: "52px", userSelect: "none", pointerEvents: "none" }}>&ldquo;</span>
+                <div style={{ position: "relative", minHeight: "220px" }}>
+                  {testimonials.map((item, i) => (
+                    <div
+                      key={i}
+                      style={{
+                        position: "absolute", inset: 0, display: "flex", flexDirection: "column", justifyContent: "center",
+                        opacity: i === activeTestimonial ? 1 : 0,
+                        transform: i === activeTestimonial ? "translateY(0)" : "translateY(14px)",
+                        transition: "opacity 0.8s ease, transform 0.8s ease",
+                        pointerEvents: i === activeTestimonial ? "auto" : "none",
+                      }}
+                    >
+                      <p style={{ fontFamily: "Cormorant Garamond, serif", fontSize: "clamp(20px, 2.2vw, 26px)", fontWeight: 400, color: "#F5F2EC", lineHeight: 1.45, fontStyle: "italic" }}>
+                        "{item.text}"
+                      </p>
+                      <div style={{ marginTop: "32px", display: "flex", alignItems: "center", gap: "14px" }}>
+                        <div style={{ width: "28px", height: "1px", background: "rgba(200,169,106,0.5)" }} />
+                        <div>
+                          <p style={{ fontFamily: "Manrope, sans-serif", fontSize: "12px", fontWeight: 500, color: "rgba(200,169,106,0.9)", letterSpacing: "1.5px", textTransform: "uppercase" }}>{item.author}</p>
+                          <p style={{ fontFamily: "Manrope, sans-serif", fontSize: "12px", fontWeight: 300, color: "rgba(227,222,215,0.4)", marginTop: "3px" }}>{item.company}</p>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+                {/* Dot navigation */}
+                <div style={{ display: "flex", gap: "8px", marginTop: "48px" }}>
+                  {testimonials.map((_, i) => (
+                    <button
+                      key={i}
+                      onClick={() => { setActiveTestimonial(i); restartTimer(testimonials.length); }}
+                      style={{ width: i === activeTestimonial ? "28px" : "8px", height: "8px", borderRadius: "4px", background: i === activeTestimonial ? "#C8A96A" : "rgba(200,169,106,0.25)", border: "none", cursor: "pointer", transition: "all 0.4s ease", padding: 0 }}
+                      aria-label={`Testimonial ${i + 1}`}
+                      data-testid={`testimonial-dot-${i}`}
+                    />
+                  ))}
+                </div>
+              </div>
+            </div>
+          </ScrollReveal>
+        </div>
+      </section>
+
+      {/* ══════════════════════════════════════════════════════════════
+          6. WHAT IS NARM — Charcoal + Diagram
+      ══════════════════════════════════════════════════════════════ */}
+      <section className="bg-charcoal ct-section relative overflow-hidden" data-testid="method-narm-deep">
         <NeuralCanvas opacity={0.07} nodeCount={35} />
         <div className="relative z-10 max-w-[1400px] mx-auto px-6 md:px-16">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-14 items-start">
-            <div className="lg:col-span-6">
+            <div className="lg:col-span-5">
               <ScrollReveal>
                 <p className="ct-overline text-gold mb-5">{m.narm.overline}</p>
                 <h2
@@ -89,8 +660,7 @@ const Method = () => {
                 </h2>
               </ScrollReveal>
             </div>
-
-            <div className="lg:col-span-6">
+            <div className="lg:col-span-7">
               {m.narm.body.split("\n\n").map((para, i) => (
                 <ScrollReveal key={i} delay={0.1 + i * 0.08}>
                   <p
@@ -102,49 +672,49 @@ const Method = () => {
                 </ScrollReveal>
               ))}
             </div>
+          </div>
 
-            <div className="lg:col-span-10 lg:col-start-2">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mt-4">
-                {m.narm.points.map((point, i) => (
-                  <ScrollReveal key={i} delay={0.1 + i * 0.06}>
-                    <div className="flex gap-4 items-start" data-testid={`narm-point-${i}`}>
-                      <CheckCircle2 size={16} className="text-gold/60 mt-0.5 flex-shrink-0" />
-                      <p
-                        className="text-stone/60"
-                        style={{ fontFamily: "Manrope, sans-serif", fontSize: "14px", fontWeight: 300 }}
-                      >
-                        {point}
-                      </p>
-                    </div>
-                  </ScrollReveal>
-                ))}
-              </div>
-            </div>
+          {/* Diagram */}
+          <div className="mt-10 max-w-[900px]">
+            <ScrollReveal>
+              <p
+                style={{ fontFamily: "Cormorant Garamond, serif", fontSize: "13px", letterSpacing: "3px", textTransform: "uppercase", color: "rgba(200,169,106,0.5)", marginBottom: "8px" }}
+              >
+                {m.narm.diagramTitle}
+              </p>
+            </ScrollReveal>
+            <NarmDiagram layers={m.narm.diagramLayers} />
           </div>
         </div>
       </section>
 
-      {/* ═══ INTEGRAL COACHING ═══ */}
-      <section className="bg-stone ct-section" data-testid="method-integral">
-        <div className="max-w-[1400px] mx-auto px-6 md:px-16">
+      {/* ══════════════════════════════════════════════════════════════
+          7. WHAT IS INTEGRAL COACHING — Charcoal
+      ══════════════════════════════════════════════════════════════ */}
+      <section
+        className="ct-section relative overflow-hidden"
+        style={{ background: "#1A1210", borderTop: "1px solid rgba(200,169,106,0.08)" }}
+        data-testid="method-integral-deep"
+      >
+        <NeuralCanvas opacity={0.06} nodeCount={30} />
+        <div className="relative z-10 max-w-[1400px] mx-auto px-6 md:px-16">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-14 items-start">
-            <div className="lg:col-span-6">
+            <div className="lg:col-span-5">
               <ScrollReveal>
-                <p className="ct-overline text-charcoal/40 mb-5">{m.integral.overline}</p>
+                <p className="ct-overline text-gold mb-5">{m.integral.overline}</p>
                 <h2
-                  className="text-charcoal leading-[1.1]"
+                  className="text-ivory leading-[1.1]"
                   style={{ fontFamily: "Figtree, sans-serif", fontSize: "clamp(28px, 3.5vw, 44px)", fontWeight: 400 }}
                 >
                   {m.integral.headline}
                 </h2>
               </ScrollReveal>
             </div>
-
-            <div className="lg:col-span-6">
+            <div className="lg:col-span-7">
               {m.integral.body.split("\n\n").map((para, i) => (
                 <ScrollReveal key={i} delay={0.1 + i * 0.08}>
                   <p
-                    className="text-charcoal/65 mb-5 leading-relaxed"
+                    className="text-stone/50 mb-5 leading-relaxed"
                     style={{ fontFamily: "Manrope, sans-serif", fontSize: "15px", fontWeight: 300 }}
                   >
                     {para}
@@ -152,17 +722,21 @@ const Method = () => {
                 </ScrollReveal>
               ))}
             </div>
-
             <div className="lg:col-span-10 lg:col-start-2">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mt-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
                 {m.integral.points.map((point, i) => (
                   <ScrollReveal key={i} delay={0.1 + i * 0.06}>
-                    <div className="flex gap-4 items-start">
-                      <CheckCircle2 size={16} className="text-sage mt-0.5 flex-shrink-0" />
-                      <p
-                        className="text-charcoal/60"
-                        style={{ fontFamily: "Manrope, sans-serif", fontSize: "14px", fontWeight: 300 }}
-                      >
+                    <div
+                      style={{
+                        display: "flex", gap: "14px", alignItems: "flex-start",
+                        padding: "18px 22px",
+                        border: "1px solid rgba(200,169,106,0.1)",
+                        borderRadius: "4px",
+                      }}
+                      data-testid={`integral-point-${i}`}
+                    >
+                      <div style={{ flexShrink: 0, width: "6px", height: "6px", borderRadius: "50%", background: "rgba(200,169,106,0.5)", marginTop: "5px" }} />
+                      <p style={{ fontFamily: "Manrope, sans-serif", fontSize: "14px", fontWeight: 300, color: "rgba(227,222,215,0.55)", lineHeight: 1.6 }}>
                         {point}
                       </p>
                     </div>
@@ -174,54 +748,139 @@ const Method = () => {
         </div>
       </section>
 
-      {/* ═══ SYNTHESIS ═══ */}
-      <section className="bg-charcoal ct-section text-center" data-testid="method-synthesis">
-        <div className="max-w-[680px] mx-auto px-6">
-          <ScrollReveal>
-            <div className="ct-divider mx-auto mb-8" />
-            <p className="ct-overline text-gold/60 mb-6">{m.integration.overline}</p>
-          </ScrollReveal>
-          <ScrollReveal delay={0.15}>
-            <h2
-              className="text-ivory leading-[1.15]"
-              style={{ fontFamily: "Figtree, sans-serif", fontSize: "clamp(28px, 3.5vw, 42px)", fontWeight: 400 }}
-            >
-              {m.integration.headline}
-            </h2>
-          </ScrollReveal>
-          <ScrollReveal delay={0.3}>
-            <p
-              className="text-stone/55 mt-6 leading-relaxed"
-              style={{ fontFamily: "Manrope, sans-serif", fontSize: "16px", fontWeight: 300 }}
-            >
-              {m.integration.body}
-            </p>
-          </ScrollReveal>
+      {/* ══════════════════════════════════════════════════════════════
+          8. COMBINED POWER — Gradient charcoal → ivory (inverted)
+      ══════════════════════════════════════════════════════════════ */}
+      <section
+        className="ct-section"
+        style={{
+          background: "linear-gradient(to bottom, #121212 0%, #1A1210 26%, #3D2410 48%, #6B5040 68%, #A08872 82%, #D4C5B0 94%, #F5F2EC 100%)",
+        }}
+        data-testid="method-combined"
+      >
+        <div className="max-w-[1400px] mx-auto px-6 md:px-16">
+          <div className="text-center max-w-[680px] mx-auto mb-16">
+            <ScrollReveal>
+              <p className="ct-overline text-gold/60 mb-5">{m.combined.overline}</p>
+              <h2
+                className="text-ivory leading-[1.1]"
+                style={{ fontFamily: "Figtree, sans-serif", fontSize: "clamp(28px, 3.5vw, 46px)", fontWeight: 400 }}
+              >
+                {m.combined.headline}
+              </h2>
+            </ScrollReveal>
+            <ScrollReveal delay={0.15}>
+              <p
+                className="mt-6 leading-relaxed"
+                style={{ fontFamily: "Cormorant Garamond, serif", fontSize: "20px", fontStyle: "italic", color: "rgba(200,169,106,0.7)" }}
+              >
+                {m.combined.subtitle}
+              </p>
+            </ScrollReveal>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            {m.combined.columns.map((col, i) => {
+              const isCenter = i === 2;
+              return (
+                <ScrollReveal key={i} delay={0.1 * i}>
+                  <div
+                    style={{
+                      padding: "40px 36px",
+                      borderRadius: "8px",
+                      border: isCenter ? "1px solid rgba(200,169,106,0.25)" : "1px solid rgba(245,242,236,0.08)",
+                      background: isCenter ? "rgba(200,169,106,0.06)" : "rgba(245,242,236,0.03)",
+                      height: "100%",
+                    }}
+                    data-testid={`combined-col-${i}`}
+                  >
+                    <h3
+                      style={{
+                        fontFamily: "Figtree, sans-serif",
+                        fontSize: "17px",
+                        fontWeight: 500,
+                        color: isCenter ? "#C8A96A" : "rgba(245,242,236,0.65)",
+                        marginBottom: "24px",
+                        paddingBottom: "16px",
+                        borderBottom: `1px solid ${isCenter ? "rgba(200,169,106,0.25)" : "rgba(245,242,236,0.1)"}`,
+                      }}
+                    >
+                      {col.heading}
+                    </h3>
+                    <div style={{ display: "flex", flexDirection: "column", gap: "14px" }}>
+                      {col.items.map((item, j) => (
+                        <div key={j} style={{ display: "flex", gap: "12px", alignItems: "flex-start" }}>
+                          <div
+                            style={{
+                              flexShrink: 0, width: "18px", height: "18px", borderRadius: "50%",
+                              background: isCenter ? "rgba(200,169,106,0.15)" : "rgba(245,242,236,0.06)",
+                              display: "flex", alignItems: "center", justifyContent: "center", marginTop: "2px",
+                            }}
+                          >
+                            <Check size={10} color={isCenter ? "#C8A96A" : "rgba(245,242,236,0.5)"} />
+                          </div>
+                          <p
+                            style={{
+                              fontFamily: "Manrope, sans-serif", fontSize: "13px", fontWeight: 300,
+                              color: isCenter ? "rgba(245,242,236,0.8)" : "rgba(245,242,236,0.5)",
+                              lineHeight: 1.6,
+                            }}
+                          >
+                            {item}
+                          </p>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </ScrollReveal>
+              );
+            })}
+          </div>
         </div>
       </section>
 
-      {/* ═══ CTA ═══ */}
-      <section className="bg-stone ct-section-sm text-center" data-testid="method-cta">
-        <div className="max-w-[540px] mx-auto px-6">
+      {/* ══════════════════════════════════════════════════════════════
+          9. FINAL CTA — Ivory
+      ══════════════════════════════════════════════════════════════ */}
+      <section
+        className="ct-section text-center"
+        style={{ background: "#F5F2EC" }}
+        data-testid="method-final-cta"
+      >
+        <div className="max-w-[560px] mx-auto px-6">
           <ScrollReveal>
+            <div
+              style={{ width: "1px", height: "60px", background: "linear-gradient(to bottom, transparent, rgba(18,18,18,0.2), transparent)", margin: "0 auto 40px" }}
+            />
             <h2
               className="text-charcoal"
-              style={{ fontFamily: "Figtree, sans-serif", fontSize: "clamp(26px, 3vw, 36px)", fontWeight: 400 }}
+              style={{ fontFamily: "Figtree, sans-serif", fontSize: "clamp(28px, 3.5vw, 44px)", fontWeight: 400, lineHeight: 1.1 }}
             >
               {m.cta.headline}
             </h2>
+          </ScrollReveal>
+          <ScrollReveal delay={0.15}>
             <p
-              className="text-charcoal/55 mt-4 leading-relaxed"
-              style={{ fontFamily: "Manrope, sans-serif", fontSize: "15px", fontWeight: 300 }}
+              className="mt-6 leading-relaxed"
+              style={{ fontFamily: "Manrope, sans-serif", fontSize: "16px", fontWeight: 300, color: "rgba(18,18,18,0.55)" }}
             >
               {m.cta.body}
             </p>
-            <Link to="/contact" className="btn-dark mt-8 inline-block" data-testid="method-contact-cta">
+          </ScrollReveal>
+          <ScrollReveal delay={0.28}>
+            <Link
+              to="/contact"
+              className="btn-primary mt-10 inline-flex items-center gap-2"
+              style={{ borderRadius: "8px", padding: "14px 32px" }}
+              data-testid="method-cta-btn"
+            >
               {m.cta.button}
+              <ArrowRight size={14} />
             </Link>
           </ScrollReveal>
         </div>
       </section>
+
     </div>
   );
 };

@@ -127,6 +127,20 @@ Create a cinematic editorial luxury marketing website for Cornelia Trompke — a
 - Venn chevron clip fix: SVG H extended 620→650 so polygon bottom (y≈630) is fully visible
 - Homepage services section padding removed (paddingTop 72px → 30px on Philosophy section)
 
+### v1.7 (Method Page — Full Build — Mar 2026)
+Complete 9-section Method page built from scratch:
+1. Hero (same rounded card + parallax BG as Home) — cinematic woman-at-window image
+2. The Two Methodologies — NARM dark card / Integral Coaching light card side-by-side
+3. High-Level Benefits — 4-column grid with large gold numbers (01–04)
+4. Accordion — 3 audience panels (Executives / Teams / Orgs) with AnimatePresence expand, gradient ivory→charcoal BG
+5. Testimonials — exact Home.jsx carousel (glassmorphic card, portrait, quote, dot nav)
+6. What is NARM — deep text + staggered 5-layer NARM diagram (Biological→Psychological→Relational→Identity→Expression)
+7. What is Integral Coaching — deep text + 4 bordered key-point cards
+8. Combined Power — 3-column card comparison (NARM / Integral / Together), gradient charcoal→ivory
+9. Final CTA — centered ivory with Begin the Conversation pill
+Footer (from shared Footer component)
+- Translations expanded in en.js: whatWeDo, benefits, accordion, narm (with diagramLayers), integral, combined sections
+
 ### v1.6 (About Gradient + Hero Parallax — Mar 2026)
 - **About Preview section**: removed SVG dome design; replaced with seamless CSS gradient `#F5F2EC → warm taupe → warm brown → #121212` for a cinematic ivory-to-charcoal transition
 - Portrait: removed `grayscale(40%)` filter — shows in full colour against the warm gradient

@@ -102,6 +102,74 @@ const en = {
       headline: "Where Neuroscience Meets Executive Depth",
       subtitle: "Two sophisticated methodologies. One integrated approach to leadership transformation.",
     },
+    whatWeDo: {
+      overline: "The Foundation",
+      headline: "Two Methodologies. One Integrated Container.",
+      body: "The work draws on two distinct but deeply complementary approaches — each sophisticated in its own right, and together, creating something no single methodology can achieve alone.",
+      narmCard: {
+        label: "Methodology One",
+        title: "NARM",
+        subtitle: "NeuroAffective Relational Model",
+        description: "Working at the intersection of neuroscience, developmental psychology, and somatic awareness — NARM addresses the adaptive survival patterns that shape how a leader functions under pressure.",
+        points: ["Nervous system regulation & capacity", "Release of constraining survival patterns", "Embodied presence & authentic authority"],
+      },
+      integralCard: {
+        label: "Methodology Two",
+        title: "Integral Coaching",
+        subtitle: "Developed at New Ventures West",
+        description: "Built on Ken Wilber's Integral Theory and Robert Kegan's developmental work — Integral Coaching grows the structure through which a leader makes sense of the world, rather than just adding new skills.",
+        points: ["Expansion of meaning-making capacity", "Development of the whole person in context", "Sustained structural transformation over time"],
+      },
+    },
+    benefits: {
+      overline: "What Changes",
+      headline: "The Outcomes That Define Deep Work",
+      items: [
+        { number: "01", title: "Nervous System Regulation", body: "You lead from a regulated, expansive state — not from chronic stress, reactivity, or performance anxiety." },
+        { number: "02", title: "Authentic Authority", body: "You stop performing leadership and begin inhabiting it — with the quiet confidence of someone who knows who they are." },
+        { number: "03", title: "Relational Precision", body: "How you meet others shifts. You become more present, more attuned, and more effective in the most complex human situations." },
+        { number: "04", title: "Lasting Transformation", body: "The changes are structural, not superficial. They hold under pressure, across contexts, and over time." },
+      ],
+    },
+    accordion: {
+      overline: "Who This Work Serves",
+      headline: "Tailored Depth Across Every Level",
+      items: [
+        {
+          audience: "For Individual Executives",
+          subtitle: "The leader who has outgrown conventional coaching",
+          benefits: [
+            "Release the survival patterns limiting your leadership presence",
+            "Move from reactive decision-making to grounded, regulated authority",
+            "Integrate the full complexity of who you are into how you lead",
+            "Build resilience that holds under board-level and public pressure",
+            "Find a clarity no strategy framework or competency model provides",
+          ],
+        },
+        {
+          audience: "For Leadership Teams",
+          subtitle: "The team that performs, but not yet at its full potential",
+          benefits: [
+            "Make the invisible relational field visible and workable",
+            "Resolve the dynamics that structural interventions cannot reach",
+            "Develop collective nervous system capacity and shared regulation",
+            "Create the conditions for genuine strategic alignment — not just agreement",
+            "Build a culture of psychological depth, not just high performance",
+          ],
+        },
+        {
+          audience: "For Organisations as a Whole",
+          subtitle: "The organisation at a genuine inflection point",
+          benefits: [
+            "Access the deeper architecture shaping culture and collective performance",
+            "Transform at the level where change actually sticks — not just the structural layer",
+            "Build leadership capacity throughout the system, not only at the top",
+            "Navigate complexity and uncertainty with systemic intelligence",
+            "Create the conditions for emergence — not just disciplined execution",
+          ],
+        },
+      ],
+    },
     intro: {
       overline: "The Integration",
       headline: "Most Leadership Development Operates at the Surface",
@@ -116,6 +184,14 @@ const en = {
         "Working with adaptive survival strategies that limit leadership effectiveness",
         "Restoring access to connection, aliveness, and authentic presence",
         "Developing resilience through genuine capacity — not suppression",
+      ],
+      diagramTitle: "The NARM Layers",
+      diagramLayers: [
+        { level: "01", name: "Biological", description: "Nervous system states — the physiological foundation of all leadership behaviour" },
+        { level: "02", name: "Psychological", description: "Adaptive survival patterns — the fixed strategies that once protected, now constrain" },
+        { level: "03", name: "Relational", description: "Connection themes — how we relate to ourselves, to others, and to life itself" },
+        { level: "04", name: "Identity", description: "The stories and structures of self — what we believe is possible for us as a leader" },
+        { level: "05", name: "Expression", description: "Authentic leadership presence — grounded, regulated, and genuinely alive" },
       ],
     },
     integral: {
@@ -133,6 +209,25 @@ const en = {
       overline: "The Synthesis",
       headline: "Together, They Create Something Rare",
       body: "When NARM and Integral Coaching are integrated, the result is a form of work that addresses the full depth of a leader's development — the biological, the psychological, the relational, and the structural. It is this integration that gives the work its distinctive quality: quietly transformative, deeply precise, and lasting.",
+    },
+    combined: {
+      overline: "The Synthesis",
+      headline: "Together, They Create Something Rare",
+      subtitle: "The integration of NARM and Integral Coaching is not additive — it is multiplicative. Each methodology reaches what the other cannot.",
+      columns: [
+        {
+          heading: "NARM Provides",
+          items: ["Nervous system awareness and regulation", "Release of constraining survival patterns", "Embodied presence and somatic intelligence", "Relational attunement at genuine depth"],
+        },
+        {
+          heading: "Integral Coaching Provides",
+          items: ["Developmental perspective and systemic context", "Expansion of meaning-making capacity", "Engagement with the whole person in their world", "Structural transformation sustained over time"],
+        },
+        {
+          heading: "Together They Create",
+          items: ["Leadership grounded in the body and expanded in perspective", "Authority that is authentic rather than performed", "The capacity to hold greater complexity with greater ease", "Transformation that lasts — because it is structural"],
+        },
+      ],
     },
     cta: { headline: "Ready to Experience the Work?", body: "All engagements begin with a conversation. Explore what format might serve you best.", button: "Begin the Conversation" },
   },
