@@ -48,6 +48,34 @@ const WHAT_SHIFTS = [
   "A quality of inner spaciousness that changes the texture of leadership entirely",
 ];
 
+const FOR_WHOM_ITEMS = [
+  {
+    number: "01",
+    title: "The Leader Who Has Outgrown Coaching",
+    body: "You are a senior executive, founder, or board member. Standard coaching no longer reaches the level at which your real limitations operate.",
+  },
+  {
+    number: "02",
+    title: "When Strategy Is Not the Answer",
+    body: "You sense that what is holding you back is not strategic — it is structural. The pattern runs deeper than any framework can reach.",
+  },
+  {
+    number: "03",
+    title: "Navigating Real Complexity",
+    body: "You are in the middle of a major transition — organisational, professional, or personal — and need an advisor who can hold the full weight of it.",
+  },
+  {
+    number: "04",
+    title: "Leading From Wholeness",
+    body: "You want to lead from a genuine centre — not from performance, anxiety, or exhaustion. You are looking for something more than optimisation.",
+  },
+  {
+    number: "05",
+    title: "Ready to Work at Depth",
+    body: "You are prepared to commit sustained time and attention. Real change is not quick, and you already understand that.",
+  },
+];
+
 // ─── Concentric Circles Viz ───────────────────────────────────────────────────
 const PHASE_GRADIENT = "linear-gradient(to bottom, #F5F2EC 0%, #D4C5B0 8%, #A08872 20%, #6B5040 35%, #3D2410 55%, #1A1210 76%, #121212 100%)";
 
@@ -393,44 +421,63 @@ const ExecutiveCoaching = () => {
         </div>
       </section>
 
-      {/* ══ 5. FOR WHOM — Charcoal→Ivory gradient (accordion editorial style) ══ */}
-      <section
-        className="ct-section"
-        style={{ background: "linear-gradient(to bottom, #121212 0%, #1A1210 25%, #3D2410 48%, #6B5040 65%, #A08872 80%, #D4C5B0 92%, #F5F2EC 100%)" }}
-        data-testid="coaching-for-whom"
-      >
+      {/* ══ 5. FOR WHOM — ivory, horizontal hover accordion ═════════════ */}
+      <section className="ct-section" style={{ background: "#F5F2EC" }} data-testid="coaching-for-whom">
         <div className="max-w-[1400px] mx-auto px-6 md:px-16">
-          <div className="max-w-[600px] mb-16">
+          <div className="max-w-[600px] mx-auto mb-16 text-center">
             <ScrollReveal>
-              <p className="ct-overline text-gold/60 mb-5">{s.forWhom.overline}</p>
-              <h2
-                style={{ fontFamily: "Figtree, sans-serif", fontSize: "clamp(28px, 3.5vw, 44px)", fontWeight: 400, color: "#F5F2EC", lineHeight: 1.1 }}
-              >
+              <p className="ct-overline text-sage mb-5">{s.forWhom.overline}</p>
+              <h2 style={{ fontFamily: "Figtree, sans-serif", fontSize: "clamp(28px, 3.5vw, 46px)", fontWeight: 400, color: "#121212", lineHeight: 1.1 }}>
                 {s.forWhom.headline}
               </h2>
             </ScrollReveal>
           </div>
 
-          <div style={{ maxWidth: "760px" }}>
-            {s.forWhom.items.map((item, i) => (
-              <ScrollReveal key={i} delay={0.08 * i}>
+          {/* Horizontal accordion */}
+          <div className="flex" style={{ height: "420px", overflow: "hidden" }}>
+            {FOR_WHOM_ITEMS.map((item, i) => {
+              const isActive = activeForWhom === i;
+              return (
                 <div
-                  style={{
-                    borderTop: i > 0 ? "1px solid rgba(245,242,236,0.1)" : "none",
-                    padding: "28px 0 28px 20px",
-                    borderLeft: "2px solid rgba(200,169,106,0.4)",
-                  }}
+                  key={i}
+                  onMouseEnter={() => setActiveForWhom(i)}
+                  onMouseLeave={() => setActiveForWhom(null)}
                   data-testid={`for-whom-item-${i}`}
+                  style={{
+                    flex: isActive ? 3.5 : 1,
+                    transition: "flex 0.65s cubic-bezier(0.4, 0, 0.2, 1), background 0.4s ease",
+                    position: "relative",
+                    overflow: "hidden",
+                    borderRight: i < FOR_WHOM_ITEMS.length - 1 ? "1px solid rgba(18,18,18,0.07)" : "none",
+                    cursor: "default",
+                    background: isActive ? "rgba(18,18,18,0.025)" : "#F5F2EC",
+                  }}
                 >
-                  <div style={{ display: "flex", gap: "18px", alignItems: "baseline" }}>
-                    <span style={{ fontFamily: "Cormorant Garamond, serif", fontSize: "16px", color: "rgba(200,169,106,0.4)", flexShrink: 0 }}>—</span>
-                    <p style={{ fontFamily: "Manrope, sans-serif", fontSize: "15px", fontWeight: 300, color: "rgba(245,242,236,0.7)", lineHeight: 1.7 }}>
-                      {item}
+                  {/* Collapsed: rotated title + faint number */}
+                  <div style={{ position: "absolute", inset: 0, display: "flex", flexDirection: "column", alignItems: "center", padding: "40px 0", opacity: isActive ? 0 : 1, transition: "opacity 0.2s ease", pointerEvents: "none" }}>
+                    <span style={{ writingMode: "vertical-rl", transform: "rotate(180deg)", fontFamily: "Figtree, sans-serif", fontSize: "clamp(13px, 1.6vw, 18px)", fontWeight: 400, letterSpacing: "0.08em", color: "rgba(18,18,18,0.5)", flex: 1, display: "flex", alignItems: "center" }}>
+                      {item.title}
+                    </span>
+                    <span style={{ fontFamily: "Cormorant Garamond, serif", fontSize: "28px", fontWeight: 300, color: "rgba(18,18,18,0.12)", lineHeight: 1, paddingBottom: "4px" }}>
+                      {item.number}
+                    </span>
+                  </div>
+
+                  {/* Expanded: editorial layout */}
+                  <div style={{ opacity: isActive ? 1 : 0, transition: "opacity 0.35s ease 0.22s", padding: "48px 52px", height: "100%", display: "flex", flexDirection: "column", justifyContent: "flex-end", minWidth: "380px" }}>
+                    <span style={{ fontFamily: "Manrope, sans-serif", fontSize: "10px", fontWeight: 600, letterSpacing: "0.25em", textTransform: "uppercase", color: "rgba(124,140,130,0.75)", marginBottom: "20px", display: "block" }}>
+                      {item.number}
+                    </span>
+                    <h3 style={{ fontFamily: "Figtree, sans-serif", fontSize: "clamp(20px, 2vw, 28px)", fontWeight: 400, color: "#121212", lineHeight: 1.2, marginBottom: "18px", maxWidth: "360px" }}>
+                      {item.title}
+                    </h3>
+                    <p style={{ fontFamily: "Manrope, sans-serif", fontSize: "14px", fontWeight: 300, color: "rgba(18,18,18,0.5)", lineHeight: 1.75, maxWidth: "360px" }}>
+                      {item.body}
                     </p>
                   </div>
                 </div>
-              </ScrollReveal>
-            ))}
+              );
+            })}
           </div>
         </div>
       </section>
