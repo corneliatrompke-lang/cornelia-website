@@ -31,12 +31,14 @@ const ARROW_POLY = "2318.201,2675.158 2710.598,2746.461 2576.181,2370.952";
  * VennDiagram
  *
  * Props:
- *   showLogo   {bool}  show CT logo mark in intersection  (default: true)
- *   showArrow  {bool}  show the animated gold arrow       (default: true)
- *   staticView {bool}  skip scroll-driven animation;
- *                      animate circles in when element enters viewport (default: false)
+ *   showLogo   {bool}    show CT logo mark in intersection  (default: true)
+ *   showArrow  {bool}    show the animated gold arrow       (default: true)
+ *   staticView {bool}    skip scroll-driven animation;
+ *                        animate circles in when element enters viewport (default: false)
+ *   theme      {string}  "dark" (default) — light orbit text on charcoal bg
+ *                        "ivory"          — dark orbit text for use on ivory/light bg
  */
-const VennDiagram = ({ showLogo = true, showArrow = true, staticView = false }) => {
+const VennDiagram = ({ showLogo = true, showArrow = true, staticView = false, theme = "dark" }) => {
   const outerRef = useRef(null); // 280vh scroll container (scroll mode)
   const svgRef  = useRef(null); // SVG wrapper (static mode in-view trigger)
 
@@ -104,7 +106,7 @@ const VennDiagram = ({ showLogo = true, showArrow = true, staticView = false }) 
 
   const textAttrs = {
     fontSize: "12",
-    fill: "rgba(245,242,236,0.35)",
+    fill: theme === "ivory" ? "rgba(18,18,18,0.22)" : "rgba(245,242,236,0.35)",
     fontFamily: "Manrope, sans-serif",
     letterSpacing: "3.5",
   };
@@ -157,12 +159,12 @@ const VennDiagram = ({ showLogo = true, showArrow = true, staticView = false }) 
         {/* NARM + Integral Coaching — always visible, move with circles */}
         <text x={lx} y={LY} textAnchor="middle" dominantBaseline="middle"
           fontSize="18" fontFamily="Cormorant Garamond, serif"
-          fontWeight="700" fill="#C8A96A" letterSpacing="2">
+          fontWeight="700" fill={theme === "ivory" ? "#8B6A35" : "#C8A96A"} letterSpacing="2">
           NARM
         </text>
         <text x={rx} y={LY} textAnchor="middle" dominantBaseline="middle"
           fontSize="18" fontFamily="Cormorant Garamond, serif"
-          fontWeight="700" fill="#C8A96A" letterSpacing="2">
+          fontWeight="700" fill={theme === "ivory" ? "#8B6A35" : "#C8A96A"} letterSpacing="2">
           Integral Coaching
         </text>
 
