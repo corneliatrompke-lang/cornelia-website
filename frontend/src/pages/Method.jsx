@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
-import { ArrowRight, Check } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion";
 import NeuralCanvas from "../components/NeuralCanvas";
 import ScrollReveal from "../components/ScrollReveal";
@@ -953,51 +953,78 @@ const Method = () => {
             </ScrollReveal>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-            {m.combined.columns.map((col, i) => {
-              const isCenter = i === 2;
+          {/* 3-column layout: NARM | Together (center, gold) | Integral */}
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 items-start">
+            {[m.combined.columns[0], m.combined.columns[2], m.combined.columns[1]].map((col, i) => {
+              const isCenter = i === 1;
               return (
                 <ScrollReveal key={i} delay={0.1 * i}>
                   <div
                     style={{
-                      padding: "40px 36px",
-                      borderRadius: "8px",
-                      border: isCenter ? "1px solid rgba(200,169,106,0.25)" : "1px solid rgba(245,242,236,0.08)",
-                      background: isCenter ? "rgba(200,169,106,0.06)" : "rgba(245,242,236,0.03)",
+                      padding: "44px 40px",
+                      borderRadius: "14px",
+                      backdropFilter: "blur(24px)",
+                      WebkitBackdropFilter: "blur(24px)",
                       height: "100%",
+                      transform: isCenter ? "translateY(-16px)" : "none",
+                      ...(isCenter
+                        ? {
+                            background: "rgba(16, 10, 0, 0.88)",
+                            border: "1px solid rgba(200,169,106,0.3)",
+                            boxShadow: "0 8px 60px rgba(200,169,106,0.07), 0 2px 0 rgba(200,169,106,0.15) inset, 0 0 120px rgba(200,169,106,0.04)",
+                          }
+                        : {
+                            background: "rgba(10, 10, 10, 0.84)",
+                            border: "1px solid rgba(245,242,236,0.06)",
+                            boxShadow: "0 4px 40px rgba(0,0,0,0.4)",
+                          }),
                     }}
                     data-testid={`combined-col-${i}`}
                   >
-                    <h3
+                    {/* Column heading */}
+                    <div
                       style={{
-                        fontFamily: "Figtree, sans-serif",
-                        fontSize: "17px",
-                        fontWeight: 500,
-                        color: isCenter ? "#C8A96A" : "rgba(245,242,236,0.65)",
-                        marginBottom: "24px",
-                        paddingBottom: "16px",
-                        borderBottom: `1px solid ${isCenter ? "rgba(200,169,106,0.25)" : "rgba(245,242,236,0.1)"}`,
+                        paddingBottom: "20px",
+                        marginBottom: "28px",
+                        borderBottom: `1px solid ${isCenter ? "rgba(200,169,106,0.2)" : "rgba(245,242,236,0.07)"}`,
                       }}
                     >
-                      {col.heading}
-                    </h3>
-                    <div style={{ display: "flex", flexDirection: "column", gap: "14px" }}>
+                      <h3
+                        style={{
+                          fontFamily: "Manrope, sans-serif",
+                          fontSize: "10px",
+                          fontWeight: 600,
+                          letterSpacing: "2.5px",
+                          textTransform: "uppercase",
+                          color: isCenter ? "rgba(200,169,106,0.9)" : "rgba(245,242,236,0.38)",
+                        }}
+                      >
+                        {col.heading}
+                      </h3>
+                    </div>
+
+                    {/* Items */}
+                    <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
                       {col.items.map((item, j) => (
-                        <div key={j} style={{ display: "flex", gap: "12px", alignItems: "flex-start" }}>
-                          <div
+                        <div key={j} style={{ display: "flex", gap: "16px", alignItems: "baseline" }}>
+                          <span
                             style={{
-                              flexShrink: 0, width: "18px", height: "18px", borderRadius: "50%",
-                              background: isCenter ? "rgba(200,169,106,0.15)" : "rgba(245,242,236,0.06)",
-                              display: "flex", alignItems: "center", justifyContent: "center", marginTop: "2px",
+                              fontFamily: "Cormorant Garamond, serif",
+                              fontSize: "16px",
+                              color: isCenter ? "rgba(200,169,106,0.45)" : "rgba(245,242,236,0.2)",
+                              flexShrink: 0,
+                              lineHeight: 1,
                             }}
                           >
-                            <Check size={10} color={isCenter ? "#C8A96A" : "rgba(245,242,236,0.5)"} />
-                          </div>
+                            —
+                          </span>
                           <p
                             style={{
-                              fontFamily: "Manrope, sans-serif", fontSize: "13px", fontWeight: 300,
-                              color: isCenter ? "rgba(245,242,236,0.8)" : "rgba(245,242,236,0.5)",
-                              lineHeight: 1.6,
+                              fontFamily: "Manrope, sans-serif",
+                              fontSize: "13px",
+                              fontWeight: 300,
+                              color: isCenter ? "rgba(245,242,236,0.78)" : "rgba(245,242,236,0.48)",
+                              lineHeight: 1.7,
                             }}
                           >
                             {item}
