@@ -1106,7 +1106,7 @@ const Method = () => {
                 </p>
                 <Link
                   to="/contact"
-                  className="btn-primary inline-block"
+                  className="btn-secondary inline-block"
                   style={{ marginTop: "40px", borderRadius: "8px" }}
                   data-testid="method-cta-btn"
                 >

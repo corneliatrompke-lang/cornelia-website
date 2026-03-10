@@ -967,6 +967,7 @@ const About = () => {
                 <Link
                   to="/contact"
                   className="btn-secondary mt-10 inline-block"
+                  style={{ borderRadius: "8px" }}
                   data-testid="about-contact-cta"
                 >
                   {a.cta.button}

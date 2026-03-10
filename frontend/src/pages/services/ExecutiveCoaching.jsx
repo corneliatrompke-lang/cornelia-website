@@ -715,7 +715,7 @@ const ExecutiveCoaching = () => {
                 </p>
                 <Link
                   to="/contact"
-                  className="btn-primary inline-block"
+                  className="btn-secondary inline-block"
                   style={{ marginTop: "40px", borderRadius: "8px" }}
                   data-testid="coaching-apply-btn"
                 >
