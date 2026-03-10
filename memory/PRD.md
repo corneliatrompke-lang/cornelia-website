@@ -116,9 +116,21 @@ Create a cinematic editorial luxury marketing website for Cornelia Trompke — a
 
 ---
 
-## What's Been Implemented (March 2025)
+## What's Been Implemented (March 2026)
+
+### v2.0 — About Page Complete Rebuild (Mar 2026)
+Full About.jsx redesign with 7-section page flow:
+1. **Hero** — rounded card, parallax bg (same pattern as Home/Method/Coaching), portrait placeholder, CTAs
+2. **Origin Story** — ivory bg, 3-milestone editorial horizontal timeline (Corporate Leadership → Org Development → Executive Coach), gold connector line + dots
+3. **Philosophy** — ivory bg, 3 bold statements in two-column rows (italic Cormorant left, explanatory Manrope right), hairline dividers
+4. **Credentials** — full-section gradient `#F5F2EC → warm amber → #121212` as visual bridge, 4-column horizontal credential row
+5. **Approach + Values** — charcoal bg, exact horizontal accordion from Homepage (4 items: Selective Engagement, Confidential Container, Bespoke Process, Integrity Above All)
+6. **Testimonials** — charcoal bg, identical glassmorphic slideshow + thumbnail navigation from Home/Method
+7. **Final CTA** — charcoal bg with NeuralCanvas background
+- Translations fully updated (en.js + de.js): replaced `bio` + old `philosophy` with `originStory`, `philosophy.statements[]`, `approach.items[]`
 
 ### v1.4 (Services Section Redesign + CTA + Fixes — Mar 2026)
+
 - Services section background changed from bg-stone → bg-charcoal (continues from About Preview)
 - Replaced vertical list with horizontal accordion: 4 columns, thin ivory/10% dividers, rotated serif titles when collapsed
 - On hover: column expands (flex 1→3.5, 0.65s cubic-bezier), editorial layout fades in — number overline, large headline, description, rounded CTA pill

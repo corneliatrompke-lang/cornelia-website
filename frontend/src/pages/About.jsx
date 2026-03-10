@@ -1,132 +1,460 @@
-import React from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
+import { ArrowRight } from "lucide-react";
+import { motion, useScroll, useTransform } from "framer-motion";
+import NeuralCanvas from "../components/NeuralCanvas";
 import ScrollReveal from "../components/ScrollReveal";
 import { useLanguage } from "../context/LanguageContext";
 
-const PORTRAIT =
+const HERO_BG =
   "https://images.unsplash.com/photo-1686078803106-7c6684f62158?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA1NTJ8MHwxfHNlYXJjaHwyfHxwcm9mZXNzaW9uYWwlMjBzZW5pb3IlMjB3b21hbiUyMGV4ZWN1dGl2ZSUyMHBvcnRyYWl0JTIwYmxhY2slMjB3aGl0ZSUyMGVkaXRvcmlhbHxlbnwwfHx8fDE3NzI3ODc5NjB8MA&ixlib=rb-4.1.0&q=85";
+
+const TESTIMONIAL_PORTRAITS = [
+  "https://images.unsplash.com/photo-1560250097-0b93528c311a?crop=entropy&cs=srgb&fm=jpg&ixlib=rb-4.1.0&q=85",
+  "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?crop=entropy&cs=srgb&fm=jpg&ixlib=rb-4.1.0&q=85",
+  "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?crop=entropy&cs=srgb&fm=jpg&ixlib=rb-4.1.0&q=85",
+];
 
 const About = () => {
   const { t } = useLanguage();
   const a = t.about;
+  const testimonials = t.home.testimonials.items;
+
+  const [activeApproach, setActiveApproach] = useState(null);
+  const [activeTestimonial, setActiveTestimonial] = useState(0);
+  const timerRef = useRef(null);
+
+  // ── Hero parallax ────────────────────────────────────────────────────────
+  const heroRef = useRef(null);
+  const { scrollYProgress: heroScroll } = useScroll({
+    target: heroRef,
+    offset: ["start start", "end start"],
+  });
+  const heroBgY = useTransform(heroScroll, [0, 1], ["0%", "-12%"]);
+
+  // ── Testimonial auto-advance ─────────────────────────────────────────────
+  const restartTimer = (count) => {
+    clearInterval(timerRef.current);
+    timerRef.current = setInterval(() => {
+      setActiveTestimonial((prev) => (prev + 1) % count);
+    }, 5000);
+  };
+
+  useEffect(() => {
+    restartTimer(testimonials.length);
+    return () => clearInterval(timerRef.current);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [testimonials.length]);
+
+  const handleTestimonialClick = (i) => {
+    setActiveTestimonial(i);
+    restartTimer(testimonials.length);
+  };
 
   return (
     <div>
-      {/* ═══ HERO ═══ */}
+
+      {/* ═══ HERO — rounded card, same as Home / Method / Coaching ═══ */}
       <section
-        className="bg-charcoal min-h-[70vh] flex items-end pb-20 pt-36 relative overflow-hidden"
+        className="pt-[6px] px-3 md:px-4 pb-3"
+        style={{ background: "#F5F2EC" }}
         data-testid="about-hero"
       >
         <div
-          className="absolute inset-0"
-          style={{
-            background: "radial-gradient(ellipse 70% 60% at 20% 60%, rgba(200,169,106,0.04) 0%, transparent 70%)",
-          }}
-        />
-        <div className="relative z-10 max-w-[1400px] mx-auto px-6 md:px-16 w-full">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-end">
-            <div className="lg:col-span-7">
-              <ScrollReveal>
-                <p className="ct-overline text-gold mb-6">{a.hero.overline}</p>
-              </ScrollReveal>
-              <ScrollReveal delay={0.15}>
-                <h1
-                  className="text-ivory leading-[1.05]"
-                  style={{ fontFamily: "Figtree, sans-serif", fontSize: "clamp(48px, 7vw, 88px)", fontWeight: 400 }}
-                >
-                  {a.hero.headline}
-                </h1>
-              </ScrollReveal>
-              <ScrollReveal delay={0.3}>
-                <p
-                  className="text-sage mt-4"
-                  style={{ fontFamily: "Cormorant Garamond, serif", fontSize: "20px", fontStyle: "italic" }}
-                >
-                  {a.hero.subheadline}
-                </p>
-              </ScrollReveal>
-            </div>
-          </div>
-        </div>
-      </section>
+          ref={heroRef}
+          className="relative overflow-hidden w-full"
+          style={{ borderRadius: "20px", minHeight: "96vh" }}
+        >
+          {/* Parallax background */}
+          <motion.img
+            src={HERO_BG}
+            alt=""
+            aria-hidden="true"
+            style={{
+              position: "absolute",
+              left: 0,
+              right: 0,
+              top: 0,
+              width: "100%",
+              height: "115%",
+              objectFit: "cover",
+              objectPosition: "center top",
+              y: heroBgY,
+            }}
+          />
 
-      {/* ═══ BIOGRAPHY ═══ */}
-      <section className="bg-ivory ct-section" data-testid="about-bio">
-        <div className="max-w-[1400px] mx-auto px-6 md:px-16">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-14 items-start">
-            {/* Portrait */}
-            <div className="lg:col-span-4">
-              <ScrollReveal direction="left">
-                <div className="relative" style={{ aspectRatio: "3/4", maxWidth: 400 }}>
-                  <img
-                    src={PORTRAIT}
-                    alt="Cornelia Trompke"
-                    className="w-full h-full object-cover"
-                    style={{ filter: "grayscale(100%)" }}
-                  />
-                  <div
-                    className="absolute right-0 top-0 bottom-0 w-px"
-                    style={{ background: "linear-gradient(to bottom, transparent, #C8A96A, transparent)" }}
-                  />
-                </div>
-              </ScrollReveal>
-            </div>
+          {/* Left-to-right charcoal gradient */}
+          <div
+            className="absolute inset-0 z-[1]"
+            style={{
+              background:
+                "linear-gradient(to right, rgba(18,18,18,1.00) 0%, rgba(18,18,18,0.90) 20%, rgba(18,18,18,0.75) 40%, rgba(18,18,18,0.30) 60%, rgba(18,18,18,0.15) 80%, rgba(18,18,18,0.01) 100%)",
+            }}
+          />
 
-            {/* Text */}
-            <div className="lg:col-span-7 lg:col-start-6">
-              <ScrollReveal>
-                <p className="ct-overline text-sage mb-4">{a.bio.overline}</p>
-                <h2
-                  className="text-charcoal leading-[1.1] mb-8"
-                  style={{ fontFamily: "Figtree, sans-serif", fontSize: "clamp(28px, 3.5vw, 42px)", fontWeight: 400 }}
-                >
-                  {a.bio.headline}
-                </h2>
-              </ScrollReveal>
-              <div className="space-y-5">
-                {a.bio.paragraphs.map((para, i) => (
-                  <ScrollReveal key={i} delay={0.1 + i * 0.08}>
-                    <p
-                      className="text-charcoal/65 leading-relaxed"
-                      style={{ fontFamily: "Manrope, sans-serif", fontSize: "16px", fontWeight: 300 }}
-                    >
-                      {para}
-                    </p>
-                  </ScrollReveal>
-                ))}
+          {/* Top fade — nav legibility */}
+          <div
+            className="absolute top-0 left-0 right-0 z-[2]"
+            style={{
+              height: "130px",
+              background:
+                "linear-gradient(to bottom, rgba(12,12,12,0.65) 0%, rgba(12,12,12,0.2) 70%, transparent 100%)",
+            }}
+          />
+
+          <NeuralCanvas opacity={0.06} nodeCount={30} />
+
+          {/* Text — bottom left */}
+          <div
+            className="absolute bottom-0 left-0 z-10 p-8 md:p-14"
+            style={{ maxWidth: "780px" }}
+          >
+            <ScrollReveal delay={0.1}>
+              <p className="ct-overline text-gold mb-6">{a.hero.overline}</p>
+            </ScrollReveal>
+
+            <ScrollReveal delay={0.25}>
+              <h1
+                className="text-ivory leading-[1.04]"
+                style={{
+                  fontFamily: "Figtree, sans-serif",
+                  fontSize: "clamp(40px, 6.5vw, 84px)",
+                  fontWeight: 400,
+                }}
+                data-testid="about-hero-headline"
+              >
+                {a.hero.headline}
+              </h1>
+            </ScrollReveal>
+
+            <ScrollReveal delay={0.42}>
+              <p
+                className="mt-4"
+                style={{
+                  fontFamily: "Cormorant Garamond, serif",
+                  fontSize: "clamp(16px, 1.8vw, 22px)",
+                  fontStyle: "italic",
+                  color: "rgba(227,222,215,0.7)",
+                  maxWidth: "520px",
+                }}
+              >
+                {a.hero.subheadline}
+              </p>
+            </ScrollReveal>
+
+            <ScrollReveal delay={0.58}>
+              <div className="flex flex-col sm:flex-row gap-3 mt-9 mb-10">
+                <Link to="/contact" className="btn-hero-pill" data-testid="about-hero-cta-primary">
+                  Begin the Conversation
+                  <ArrowRight size={13} />
+                </Link>
+                <Link to="/method" className="btn-hero-pill-outline" data-testid="about-hero-cta-secondary">
+                  Explore the Method
+                </Link>
               </div>
-            </div>
+            </ScrollReveal>
+          </div>
+
+          {/* Scroll indicator — bottom right */}
+          <div className="absolute bottom-10 right-10 z-10 flex flex-col items-center gap-2">
+            <span className="ct-overline text-white/25" style={{ fontSize: "9px" }}>Scroll</span>
+            <div className="scroll-line" />
           </div>
         </div>
       </section>
 
-      {/* ═══ CREDENTIALS ═══ */}
-      <section className="bg-charcoal ct-section" data-testid="about-credentials">
+
+      {/* ═══ ORIGIN STORY — editorial timeline, ivory ═══ */}
+      <section
+        style={{ background: "#F5F2EC", paddingTop: "120px", paddingBottom: "120px" }}
+        data-testid="about-origin-story"
+      >
         <div className="max-w-[1400px] mx-auto px-6 md:px-16">
           <ScrollReveal>
-            <p className="ct-overline text-gold mb-5">{a.credentials.overline}</p>
+            <p
+              className="ct-overline mb-4"
+              style={{ color: "rgba(124,140,130,0.8)" }}
+            >
+              {a.originStory.overline}
+            </p>
             <h2
-              className="text-ivory leading-[1.1] mb-14 max-w-[500px]"
-              style={{ fontFamily: "Figtree, sans-serif", fontSize: "clamp(26px, 3vw, 38px)", fontWeight: 400 }}
+              style={{
+                fontFamily: "Figtree, sans-serif",
+                fontSize: "clamp(26px, 3.5vw, 44px)",
+                fontWeight: 400,
+                color: "#121212",
+                lineHeight: 1.1,
+                maxWidth: "600px",
+                marginBottom: "80px",
+              }}
+            >
+              {a.originStory.headline}
+            </h2>
+          </ScrollReveal>
+
+          {/* 3-milestone timeline */}
+          <div className="relative">
+            {/* Horizontal connector line — desktop only */}
+            <div
+              className="hidden lg:block absolute"
+              style={{
+                top: "18px",
+                left: "8px",
+                right: "8px",
+                height: "1px",
+                background:
+                  "linear-gradient(to right, transparent 2%, rgba(200,169,106,0.3) 15%, rgba(200,169,106,0.3) 85%, transparent 98%)",
+              }}
+            />
+
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-16 lg:gap-10">
+              {a.originStory.milestones.map((m, i) => (
+                <ScrollReveal key={i} delay={i * 0.18}>
+                  <div
+                    className="relative"
+                    data-testid={`origin-milestone-${i}`}
+                  >
+                    {/* Gold dot on timeline */}
+                    <div
+                      className="hidden lg:block"
+                      style={{
+                        width: "10px",
+                        height: "10px",
+                        borderRadius: "50%",
+                        border: "1px solid rgba(200,169,106,0.55)",
+                        background: "rgba(200,169,106,0.1)",
+                        marginBottom: "0",
+                        position: "relative",
+                        top: 0,
+                      }}
+                    />
+                    {/* Mobile: vertical left accent */}
+                    <div
+                      className="lg:hidden absolute left-0 top-0 bottom-0"
+                      style={{
+                        width: "1px",
+                        background:
+                          "linear-gradient(to bottom, rgba(200,169,106,0.6) 0%, rgba(200,169,106,0.08) 100%)",
+                      }}
+                    />
+
+                    <div className="pl-6 lg:pl-0 mt-8 lg:mt-10">
+                      <span
+                        style={{
+                          fontFamily: "Cormorant Garamond, serif",
+                          fontSize: "11px",
+                          fontWeight: 400,
+                          letterSpacing: "0.32em",
+                          color: "rgba(200,169,106,0.7)",
+                          display: "block",
+                        }}
+                      >
+                        {m.number}
+                      </span>
+
+                      <h3
+                        style={{
+                          fontFamily: "Figtree, sans-serif",
+                          fontSize: "clamp(20px, 2vw, 26px)",
+                          fontWeight: 400,
+                          color: "#121212",
+                          lineHeight: 1.2,
+                          marginTop: "20px",
+                        }}
+                      >
+                        {m.role}
+                      </h3>
+
+                      <p
+                        style={{
+                          fontFamily: "Manrope, sans-serif",
+                          fontSize: "10px",
+                          fontWeight: 600,
+                          letterSpacing: "0.22em",
+                          textTransform: "uppercase",
+                          color: "rgba(124,140,130,0.7)",
+                          marginTop: "6px",
+                        }}
+                      >
+                        {m.period}
+                      </p>
+
+                      <div
+                        style={{
+                          width: "24px",
+                          height: "1px",
+                          background: "rgba(200,169,106,0.4)",
+                          marginTop: "22px",
+                          marginBottom: "22px",
+                        }}
+                      />
+
+                      <p
+                        style={{
+                          fontFamily: "Manrope, sans-serif",
+                          fontSize: "14px",
+                          fontWeight: 300,
+                          color: "rgba(18,18,18,0.58)",
+                          lineHeight: 1.85,
+                        }}
+                      >
+                        {m.description}
+                      </p>
+                    </div>
+                  </div>
+                </ScrollReveal>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+      {/* ═══ PHILOSOPHY — ivory, 3 bold two-column statements ═══ */}
+      <section
+        style={{ background: "#F5F2EC", paddingTop: "40px", paddingBottom: "100px" }}
+        data-testid="about-philosophy"
+      >
+        <div className="max-w-[1400px] mx-auto px-6 md:px-16">
+          <ScrollReveal>
+            <p
+              className="ct-overline mb-16"
+              style={{ color: "rgba(18,18,18,0.32)" }}
+            >
+              {a.philosophy.overline}
+            </p>
+          </ScrollReveal>
+
+          <div>
+            {a.philosophy.statements.map((s, i) => (
+              <ScrollReveal key={i} delay={i * 0.12}>
+                <div
+                  style={{
+                    borderTop: "1px solid rgba(18,18,18,0.08)",
+                    paddingTop: "56px",
+                    paddingBottom: "56px",
+                    display: "grid",
+                    gridTemplateColumns: "1fr 1fr",
+                    gap: "80px",
+                    alignItems: "start",
+                  }}
+                  data-testid={`philosophy-statement-${i}`}
+                >
+                  <h3
+                    style={{
+                      fontFamily: "Cormorant Garamond, serif",
+                      fontSize: "clamp(22px, 2.8vw, 36px)",
+                      fontStyle: "italic",
+                      fontWeight: 400,
+                      color: "#121212",
+                      lineHeight: 1.35,
+                    }}
+                  >
+                    &ldquo;{s.text}&rdquo;
+                  </h3>
+                  <p
+                    style={{
+                      fontFamily: "Manrope, sans-serif",
+                      fontSize: "15px",
+                      fontWeight: 300,
+                      color: "rgba(18,18,18,0.52)",
+                      lineHeight: 1.9,
+                      paddingTop: "4px",
+                    }}
+                  >
+                    {s.note}
+                  </p>
+                </div>
+              </ScrollReveal>
+            ))}
+            {/* Bottom border */}
+            <div style={{ borderTop: "1px solid rgba(18,18,18,0.08)" }} />
+          </div>
+        </div>
+      </section>
+
+
+      {/* ═══ CREDENTIALS — gradient ivory → charcoal (visual bridge) ═══ */}
+      <section
+        style={{
+          background:
+            "linear-gradient(to bottom, #F5F2EC 0%, #E8E2D5 18%, #7A5E43 44%, #241810 68%, #121212 100%)",
+          paddingTop: "80px",
+          paddingBottom: "100px",
+        }}
+        data-testid="about-credentials"
+      >
+        <div className="max-w-[1400px] mx-auto px-6 md:px-16">
+          <ScrollReveal>
+            <p
+              className="ct-overline mb-3"
+              style={{ color: "rgba(18,18,18,0.38)" }}
+            >
+              {a.credentials.overline}
+            </p>
+            <h2
+              style={{
+                fontFamily: "Figtree, sans-serif",
+                fontSize: "clamp(24px, 3vw, 38px)",
+                fontWeight: 400,
+                color: "#121212",
+                lineHeight: 1.1,
+                maxWidth: "460px",
+                marginBottom: "90px",
+              }}
             >
               {a.credentials.headline}
             </h2>
           </ScrollReveal>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-px" style={{ background: "rgba(200,169,106,0.1)" }}>
+          {/* 4-column horizontal credential row */}
+          <div
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4"
+            style={{ borderTop: "1px solid rgba(200,169,106,0.14)" }}
+          >
             {a.credentials.items.map((item, i) => (
-              <ScrollReveal key={i} delay={i * 0.08}>
-                <div className="bg-charcoal p-8" data-testid={`credential-${i}`}>
-                  <div className="ct-divider mb-5" />
+              <ScrollReveal key={i} delay={i * 0.1}>
+                <div
+                  style={{
+                    padding: "44px 32px",
+                    borderRight:
+                      i < a.credentials.items.length - 1
+                        ? "1px solid rgba(200,169,106,0.10)"
+                        : "none",
+                  }}
+                  data-testid={`credential-${i}`}
+                >
+                  <span
+                    style={{
+                      fontFamily: "Cormorant Garamond, serif",
+                      fontSize: "11px",
+                      letterSpacing: "0.32em",
+                      color: "rgba(200,169,106,0.55)",
+                      display: "block",
+                    }}
+                  >
+                    0{i + 1}
+                  </span>
                   <h3
-                    className="text-ivory mb-3"
-                    style={{ fontFamily: "Figtree, sans-serif", fontSize: "18px", fontWeight: 400 }}
+                    style={{
+                      fontFamily: "Figtree, sans-serif",
+                      fontSize: "16px",
+                      fontWeight: 400,
+                      color: "#F5F2EC",
+                      marginTop: "22px",
+                      marginBottom: "14px",
+                    }}
                   >
                     {item.title}
                   </h3>
                   <p
-                    className="text-stone/50"
-                    style={{ fontFamily: "Manrope, sans-serif", fontSize: "14px", fontWeight: 300 }}
+                    style={{
+                      fontFamily: "Manrope, sans-serif",
+                      fontSize: "13px",
+                      fontWeight: 300,
+                      color: "rgba(227,222,215,0.42)",
+                      lineHeight: 1.78,
+                    }}
                   >
                     {item.description}
                   </p>
@@ -137,53 +465,472 @@ const About = () => {
         </div>
       </section>
 
-      {/* ═══ PHILOSOPHY ═══ */}
-      <section className="bg-stone ct-section" data-testid="about-philosophy">
-        <div className="max-w-[750px] mx-auto px-6">
+
+      {/* ═══ APPROACH + VALUES — charcoal, horizontal accordion ═══ */}
+      <section
+        className="bg-charcoal"
+        style={{ paddingTop: "80px", paddingBottom: "80px" }}
+        data-testid="about-approach"
+      >
+        <div className="max-w-[1400px] mx-auto px-6 md:px-16">
           <ScrollReveal>
-            <p className="ct-overline text-charcoal/40 mb-6">{a.philosophy.overline}</p>
+            <p className="ct-overline text-gold/60 mb-4">{a.approach.overline}</p>
             <h2
-              className="text-charcoal leading-[1.15] mb-8"
-              style={{ fontFamily: "Figtree, sans-serif", fontSize: "clamp(26px, 3.5vw, 40px)", fontWeight: 400 }}
+              className="text-ivory leading-[1.1] max-w-[500px]"
+              style={{
+                fontFamily: "Figtree, sans-serif",
+                fontSize: "clamp(28px, 3.5vw, 44px)",
+                fontWeight: 400,
+              }}
             >
-              {a.philosophy.headline}
+              {a.approach.headline}
             </h2>
           </ScrollReveal>
-          {a.philosophy.body.split("\n\n").map((para, i) => (
-            <ScrollReveal key={i} delay={0.1 + i * 0.1}>
-              <p
-                className="text-charcoal/65 leading-relaxed mt-5"
-                style={{ fontFamily: "Manrope, sans-serif", fontSize: "16px", fontWeight: 300 }}
-              >
-                {para}
-              </p>
-            </ScrollReveal>
-          ))}
+
+          {/* Horizontal accordion — identical pattern to homepage services */}
+          <div className="flex mt-16" style={{ height: "520px" }}>
+            {a.approach.items.map((item, i) => {
+              const isActive = activeApproach === i;
+              return (
+                <div
+                  key={i}
+                  onMouseEnter={() => setActiveApproach(i)}
+                  onMouseLeave={() => setActiveApproach(null)}
+                  data-testid={`approach-item-${i}`}
+                  style={{
+                    flex: isActive ? 3.5 : 1,
+                    transition: "flex 0.65s cubic-bezier(0.4, 0, 0.2, 1)",
+                    position: "relative",
+                    overflow: "hidden",
+                    borderRight:
+                      i < a.approach.items.length - 1
+                        ? "1px solid rgba(245,242,236,0.10)"
+                        : "none",
+                    cursor: "default",
+                  }}
+                >
+                  {/* ── Collapsed: rotated title + number ── */}
+                  <div
+                    style={{
+                      position: "absolute",
+                      inset: 0,
+                      display: "flex",
+                      flexDirection: "column",
+                      alignItems: "center",
+                      padding: "40px 0",
+                      opacity: isActive ? 0 : 1,
+                      transition: "opacity 0.2s ease",
+                      pointerEvents: "none",
+                    }}
+                  >
+                    <span
+                      style={{
+                        writingMode: "vertical-rl",
+                        transform: "rotate(180deg)",
+                        fontFamily: "Cormorant Garamond, serif",
+                        fontSize: "clamp(16px, 2vw, 24px)",
+                        fontWeight: 400,
+                        letterSpacing: "0.08em",
+                        color: "rgba(245,242,236,0.6)",
+                        flex: 1,
+                        display: "flex",
+                        alignItems: "center",
+                      }}
+                    >
+                      {item.title}
+                    </span>
+                    <span
+                      style={{
+                        fontFamily: "Cormorant Garamond, serif",
+                        fontSize: "32px",
+                        fontWeight: 300,
+                        color: "rgba(245,242,236,0.16)",
+                        lineHeight: 1,
+                        paddingBottom: "4px",
+                      }}
+                    >
+                      {item.number}
+                    </span>
+                  </div>
+
+                  {/* ── Expanded: editorial layout ── */}
+                  <div
+                    style={{
+                      opacity: isActive ? 1 : 0,
+                      transition: "opacity 0.35s ease 0.22s",
+                      padding: "48px 52px",
+                      height: "100%",
+                      display: "flex",
+                      flexDirection: "column",
+                      justifyContent: "flex-end",
+                      minWidth: "420px",
+                    }}
+                  >
+                    <span
+                      style={{
+                        fontFamily: "Manrope, sans-serif",
+                        fontSize: "10px",
+                        fontWeight: 600,
+                        letterSpacing: "0.25em",
+                        textTransform: "uppercase",
+                        color: "rgba(200,169,106,0.65)",
+                        marginBottom: "20px",
+                        display: "block",
+                      }}
+                    >
+                      {item.number}
+                    </span>
+                    <h3
+                      style={{
+                        fontFamily: "Figtree, sans-serif",
+                        fontSize: "clamp(22px, 2.2vw, 30px)",
+                        fontWeight: 400,
+                        color: "#F5F2EC",
+                        lineHeight: 1.2,
+                        marginBottom: "18px",
+                        maxWidth: "380px",
+                      }}
+                    >
+                      {item.title}
+                    </h3>
+                    <p
+                      style={{
+                        fontFamily: "Manrope, sans-serif",
+                        fontSize: "14px",
+                        fontWeight: 300,
+                        color: "rgba(245,242,236,0.5)",
+                        lineHeight: 1.75,
+                        maxWidth: "360px",
+                      }}
+                    >
+                      {item.description}
+                    </p>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
         </div>
       </section>
 
-      {/* ═══ CTA ═══ */}
-      <section className="bg-charcoal ct-section-sm text-center" data-testid="about-cta">
-        <div className="max-w-[580px] mx-auto px-6">
+
+      {/* ═══ TESTIMONIALS — charcoal, exact slideshow from Home ═══ */}
+      <section
+        style={{ background: "#121212", paddingTop: "100px", paddingBottom: "100px" }}
+        data-testid="about-testimonials"
+      >
+        <div className="max-w-[1200px] mx-auto px-6 md:px-16">
+          <ScrollReveal>
+            <p className="ct-overline mb-10" style={{ color: "rgba(200,169,106,0.65)" }}>
+              {t.home.testimonials.overline}
+            </p>
+          </ScrollReveal>
+
+          {/* Glassmorphic card */}
+          <ScrollReveal delay={0.1}>
+            <div
+              style={{
+                display: "flex",
+                minHeight: "400px",
+                background: "rgba(200,169,106,0.04)",
+                backdropFilter: "blur(22px)",
+                WebkitBackdropFilter: "blur(22px)",
+                border: "1px solid rgba(200,169,106,0.11)",
+                borderRadius: "16px",
+                overflow: "hidden",
+                position: "relative",
+              }}
+            >
+              {/* LEFT — cross-fading portraits */}
+              <div style={{ width: "38%", flexShrink: 0, position: "relative" }}>
+                {TESTIMONIAL_PORTRAITS.map((src, i) => (
+                  <img
+                    key={i}
+                    src={src}
+                    alt=""
+                    style={{
+                      position: "absolute",
+                      inset: 0,
+                      width: "100%",
+                      height: "100%",
+                      objectFit: "cover",
+                      objectPosition: "center top",
+                      opacity: i === activeTestimonial ? 1 : 0,
+                      transition: "opacity 0.9s ease",
+                      filter: "grayscale(15%)",
+                    }}
+                  />
+                ))}
+                {/* Gold divider */}
+                <div
+                  style={{
+                    position: "absolute",
+                    right: 0,
+                    top: "15%",
+                    bottom: "15%",
+                    width: "1px",
+                    background:
+                      "linear-gradient(to bottom, transparent, rgba(200,169,106,0.45), transparent)",
+                    zIndex: 2,
+                  }}
+                />
+              </div>
+
+              {/* RIGHT — quote text */}
+              <div
+                style={{
+                  flex: 1,
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "center",
+                  padding: "52px 60px",
+                  position: "relative",
+                }}
+              >
+                {/* Decorative large open-quote */}
+                <span
+                  style={{
+                    fontFamily: "Cormorant Garamond, serif",
+                    fontSize: "120px",
+                    lineHeight: 1,
+                    color: "rgba(200,169,106,0.07)",
+                    position: "absolute",
+                    top: "16px",
+                    left: "52px",
+                    userSelect: "none",
+                    pointerEvents: "none",
+                  }}
+                >
+                  &ldquo;
+                </span>
+
+                {/* Stacked testimonial panels */}
+                <div style={{ position: "relative", minHeight: "220px" }}>
+                  {testimonials.map((item, i) => (
+                    <div
+                      key={i}
+                      style={{
+                        position: "absolute",
+                        inset: 0,
+                        display: "flex",
+                        flexDirection: "column",
+                        justifyContent: "center",
+                        opacity: i === activeTestimonial ? 1 : 0,
+                        transform:
+                          i === activeTestimonial ? "translateY(0)" : "translateY(10px)",
+                        transition: "opacity 0.75s ease, transform 0.75s ease",
+                        pointerEvents: i === activeTestimonial ? "auto" : "none",
+                      }}
+                    >
+                      <blockquote
+                        style={{
+                          fontFamily: "Cormorant Garamond, serif",
+                          fontSize: "clamp(18px, 2vw, 26px)",
+                          fontStyle: "italic",
+                          fontWeight: 400,
+                          color: "#F5F2EC",
+                          lineHeight: 1.6,
+                          position: "relative",
+                          zIndex: 1,
+                        }}
+                      >
+                        &ldquo;{item.text}&rdquo;
+                      </blockquote>
+
+                      <div style={{ marginTop: "28px" }}>
+                        <div
+                          style={{
+                            width: "32px",
+                            height: "1px",
+                            background: "rgba(200,169,106,0.45)",
+                            marginBottom: "12px",
+                          }}
+                        />
+                        <p
+                          style={{
+                            fontFamily: "Manrope, sans-serif",
+                            fontSize: "11px",
+                            fontWeight: 600,
+                            letterSpacing: "0.20em",
+                            textTransform: "uppercase",
+                            color: "#F5F2EC",
+                          }}
+                        >
+                          {item.author}
+                        </p>
+                        <p
+                          style={{
+                            fontFamily: "Manrope, sans-serif",
+                            fontSize: "12px",
+                            fontWeight: 300,
+                            color: "rgba(200,169,106,0.65)",
+                            marginTop: "4px",
+                          }}
+                        >
+                          {item.company}
+                        </p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+
+                {/* Progress bar */}
+                <div
+                  style={{
+                    position: "absolute",
+                    bottom: 0,
+                    left: 0,
+                    right: 0,
+                    height: "2px",
+                    background: "rgba(200,169,106,0.08)",
+                  }}
+                >
+                  <div
+                    key={activeTestimonial}
+                    style={{
+                      height: "100%",
+                      background: "rgba(200,169,106,0.45)",
+                      animation: "progressSlide 5s linear forwards",
+                    }}
+                  />
+                </div>
+              </div>
+            </div>
+          </ScrollReveal>
+
+          {/* Thumbnail navigation */}
+          <div
+            style={{
+              display: "flex",
+              gap: "28px",
+              marginTop: "0px",
+              alignItems: "flex-start",
+              paddingLeft: "4px",
+            }}
+          >
+            {TESTIMONIAL_PORTRAITS.map((src, i) => (
+              <button
+                key={i}
+                onClick={() => handleTestimonialClick(i)}
+                data-testid={`about-testimonial-nav-${i}`}
+                style={{
+                  background: "none",
+                  border: "none",
+                  padding: 0,
+                  cursor: "pointer",
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
+                  gap: "10px",
+                }}
+              >
+                <div
+                  style={{
+                    width: i === activeTestimonial ? "68px" : "56px",
+                    height: i === activeTestimonial ? "68px" : "56px",
+                    borderRadius: "50%",
+                    overflow: "hidden",
+                    border:
+                      i === activeTestimonial
+                        ? "2px solid #C8A96A"
+                        : "2px solid rgba(245,242,236,0.12)",
+                    transform:
+                      i === activeTestimonial ? "translateY(-12px)" : "translateY(0)",
+                    transition: "all 0.45s cubic-bezier(0.4, 0, 0.2, 1)",
+                    flexShrink: 0,
+                    boxShadow:
+                      i === activeTestimonial
+                        ? "0 8px 28px rgba(200,169,106,0.22)"
+                        : "none",
+                  }}
+                >
+                  <img
+                    src={src}
+                    alt=""
+                    style={{
+                      width: "100%",
+                      height: "100%",
+                      objectFit: "cover",
+                      objectPosition: "center top",
+                      filter:
+                        i === activeTestimonial ? "none" : "grayscale(70%)",
+                      transition: "filter 0.45s ease",
+                    }}
+                  />
+                </div>
+                <span
+                  style={{
+                    fontFamily: "Manrope, sans-serif",
+                    fontSize: "9px",
+                    fontWeight: 500,
+                    letterSpacing: "0.14em",
+                    textTransform: "uppercase",
+                    color:
+                      i === activeTestimonial
+                        ? "#F5F2EC"
+                        : "rgba(245,242,236,0.32)",
+                    transition: "color 0.4s ease",
+                    textAlign: "center",
+                    maxWidth: "88px",
+                    lineHeight: 1.55,
+                  }}
+                >
+                  {testimonials[i]?.author}
+                </span>
+              </button>
+            ))}
+          </div>
+        </div>
+
+        <style>{`
+          @keyframes progressSlide {
+            from { width: 0%; }
+            to   { width: 100%; }
+          }
+        `}</style>
+      </section>
+
+
+      {/* ═══ FINAL CTA — charcoal ═══ */}
+      <section
+        className="bg-charcoal ct-section relative overflow-hidden"
+        data-testid="about-cta"
+      >
+        <NeuralCanvas opacity={0.04} nodeCount={22} />
+        <div className="max-w-[580px] mx-auto px-6 text-center relative z-10">
           <ScrollReveal>
             <h2
               className="text-ivory leading-[1.1]"
-              style={{ fontFamily: "Figtree, sans-serif", fontSize: "clamp(28px, 3.5vw, 40px)", fontWeight: 400 }}
+              style={{
+                fontFamily: "Figtree, sans-serif",
+                fontSize: "clamp(28px, 3.5vw, 40px)",
+                fontWeight: 400,
+              }}
             >
               {a.cta.headline}
             </h2>
             <p
               className="text-stone/50 mt-5 leading-relaxed"
-              style={{ fontFamily: "Manrope, sans-serif", fontSize: "15px", fontWeight: 300 }}
+              style={{
+                fontFamily: "Manrope, sans-serif",
+                fontSize: "15px",
+                fontWeight: 300,
+              }}
             >
               {a.cta.body}
             </p>
-            <Link to="/contact" className="btn-secondary mt-8 inline-block" data-testid="about-contact-cta">
+            <Link
+              to="/contact"
+              className="btn-secondary mt-8 inline-block"
+              style={{ borderRadius: "8px" }}
+              data-testid="about-contact-cta"
+            >
               {a.cta.button}
             </Link>
           </ScrollReveal>
         </div>
       </section>
+
     </div>
   );
 };

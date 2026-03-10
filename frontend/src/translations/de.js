@@ -64,15 +64,50 @@ const de = {
     },
   },
   about: {
-    hero: { overline: "Über Cornelia", headline: "Cornelia Trompke", subheadline: "Executive Beraterin · Traumainformierte Coach · Systemische Denkerin" },
-    bio: {
-      overline: "Biografie",
-      headline: "Tiefe. Präzision. Autorität.",
-      paragraphs: [
-        "Cornelia Trompke arbeitet an einer Schnittstelle, die die meisten Berater und Coaches nie betreten haben: wo die Intelligenz des Nervensystems auf die Komplexität von Executive Leadership trifft.",
-        "Mit über zwei Jahrzehnten Praxis in internationalen Konzernen, Gründungsorganisationen und auf Vorstandsebene hat sie ein Arbeitsspektrum entwickelt, das eine Tiefe erreicht, die nur wenige Berater erreichen. Ihre Klienten sind CEOs, Gründer, Beiratsmitglieder und Senior Executives, die über die Rahmen hinausgewachsen sind, die ihnen bisher dienten.",
-        "Ihre Ausbildung integriert NARM — das NeuroAffective Relational Model — einen der ausgefeiltesten traumainformierten Ansätze der menschlichen Entwicklung — mit Integral Coaching, einer Methodik, die den ganzen Menschen in seinem vollständigsten Kontext erfasst.",
-        "Cornelia lebt und arbeitet in Deutschland und ist weltweit tätig — persönlich für intensive Engagements und Retreats, virtuell für nachhaltige Beratungspartnerschaften.",
+    hero: {
+      overline: "Über Cornelia",
+      headline: "Cornelia Trompke",
+      subheadline: "Executive Beraterin · Traumainformierte Coach · Systemische Denkerin",
+    },
+    originStory: {
+      overline: "Der Weg",
+      headline: "Zwei Jahrzehnte. Drei Wendepunkte. Eine Richtung.",
+      milestones: [
+        {
+          number: "01",
+          role: "Corporate Leadership",
+          period: "Frühe Karriere",
+          description: "Cornelia begann in den Institutionen, die sie später beraten würde — mit einem Insider-Verständnis dafür, was Senior Leaders wirklich antreibt, erschöpft und trägt.",
+        },
+        {
+          number: "02",
+          role: "Organisationsentwicklung",
+          period: "Der Übergang",
+          description: "Eine Wendung zur systemischen Arbeit. Transformation über Teams, Kulturen und Führungsstrukturen — die Erkenntnis, wo Wandel wurzelt und wo er an der Oberfläche bleibt.",
+        },
+        {
+          number: "03",
+          role: "Executive Coach & Beraterin",
+          period: "Heute",
+          description: "Die Integration: Tiefenpsychologie, Nervensystemwissenschaft und Integral-Methodik vereint in einer einzigartigen Praxis für Führungskräfte, die bereit sind, aus Ganzheit heraus zu führen.",
+        },
+      ],
+    },
+    philosophy: {
+      overline: "Philosophie",
+      statements: [
+        {
+          text: "Führung ist keine Performance. Sie ist ein Seinsszustand.",
+          note: "Die Fähigkeit, mit echter Autorität zu führen, lässt sich nicht einüben. Sie entsteht von innen — durch Nervensystemregulation, Selbsterkenntnis und die Fähigkeit, auch unter größtem Druck präsent zu bleiben.",
+        },
+        {
+          text: "Das Nervensystem entscheidet, bevor der Verstand gefragt wird.",
+          note: "Affektive Neurowissenschaft zeigt, dass unsere folgenreichsten Reaktionen aus subkortikalen Prozessen entstehen — nicht aus bewusstem Denken. Das Arbeiten auf dieser Ebene unterscheidet echte Entwicklung von Verhaltensveränderung.",
+        },
+        {
+          text: "Die bedeutsamsten Verschiebungen in der Führung sind unsichtbar, bevor sie strukturell werden.",
+          note: "Echte Entwicklung ist kein neues Framework und kein verändertes Verhalten. Es ist eine Reorganisation des Selbst — subtil, verkörpert und dauerhaft. Auf dieser Ebene operiert diese Arbeit.",
+        },
       ],
     },
     credentials: {
@@ -82,15 +117,40 @@ const de = {
         { title: "NARM Practitioner", description: "Zertifiziert im NeuroAffective Relational Model — einer führenden traumainformierten Entwicklungsmethodik" },
         { title: "Integral Coach", description: "Ausgebildet in Integral Coaching am New Ventures West Institute, San Francisco" },
         { title: "Systemische Facilitatorin", description: "Fortgeschrittene Ausbildung in systemischen Organisationsaufstellungen und Teamdynamiken" },
-        { title: "Executive Erfahrung", description: "Über 20 Jahre Arbeit innerhalb und neben internationalen Führungsteams" },
+        { title: "Executive Erfahrung", description: "Über 20 Jahre Arbeit innerhalb und neben internationalen Führungsteams und Vorständen" },
       ],
     },
-    philosophy: {
-      overline: "Philosophie",
-      headline: "Die unsichtbare Architektur von Führung",
-      body: "Jede Führungskraft trägt eine unsichtbare Architektur — Reaktionsmuster, Strategien für Verbindung und Sicherheit, Weisen, Erfahrungen zu organisieren, die lange vor dem ersten Vorstandsmeeting entstanden sind. Diese Architektur prägt jede Entscheidung, jedes Gespräch, jede Kultur, die eine Führungskraft schafft.\n\nDie meisten Führungsentwicklungsprogramme berühren diese Ebene nie. Die hier angebotene Arbeit schon.",
+    approach: {
+      overline: "Wie Cornelia arbeitet",
+      headline: "Die Prinzipien, die jedes Engagement prägen",
+      items: [
+        {
+          number: "01",
+          title: "Selektives Engagement",
+          description: "Jedes Engagement beginnt mit einem sorgfältigen Gespräch. Die Arbeit erfordert echte Bereitschaft — nicht nur Verfügbarkeit oder Budget.",
+        },
+        {
+          number: "02",
+          title: "Vertraulicher Rahmen",
+          description: "Vollständige Diskretion bestimmt jedes Gespräch. Nichts, was im Engagement gesagt wird, wird geteilt. Der Rahmen wird mit derselben Sorgfalt gehalten wie die Arbeit selbst.",
+        },
+        {
+          number: "03",
+          title: "Maßgeschneiderter Prozess",
+          description: "Es gibt keine Vorlagen, keine Standardprogramme. Jedes Engagement wird vollständig von dem geformt, was am lebendigsten und nötigsten ist — auf der Ebene der Person, nicht der Rolle.",
+        },
+        {
+          number: "04",
+          title: "Integrität über alles",
+          description: "Cornelia bringt tiefe persönliche Werte in jedes Engagement: intellektuelle Ehrlichkeit, emotionalen Mut und eine unerschütterliche Verpflichtung zur echten Entwicklung des Klienten.",
+        },
+      ],
     },
-    cta: { headline: "Gespräch beginnen", body: "Wenn Sie das Gefühl haben, dass diese Arbeit relevant sein könnte — für Sie persönlich oder Ihre Organisation — ist der erste Schritt immer ein Gespräch.", button: "Kontakt / Anfrage" },
+    cta: {
+      headline: "Gespräch beginnen",
+      body: "Wenn Sie das Gefühl haben, dass diese Arbeit relevant sein könnte — für Sie persönlich oder Ihre Organisation — ist der erste Schritt immer ein Gespräch.",
+      button: "Kontakt / Anfrage",
+    },
   },
   method: {
     hero: { overline: "Die Methode", headline: "Wo Neurowissenschaft auf Executive-Tiefe trifft", subtitle: "Zwei ausgereifte Methodiken. Ein integrierter Ansatz zur Führungstransformation." },

@@ -69,14 +69,45 @@ const en = {
       headline: "Cornelia Trompke",
       subheadline: "Executive Advisor · Trauma-Informed Coach · Systemic Thinker",
     },
-    bio: {
-      overline: "Biography",
-      headline: "Depth. Precision. Authority.",
-      paragraphs: [
-        "Cornelia Trompke works at an intersection that most consultants and coaches have never entered: where the intelligence of the nervous system meets the complexity of executive leadership.",
-        "With over two decades of practice spanning international corporations, founding-stage organisations, and board-level leadership, she has developed a body of work that operates at a depth few advisors can reach. Her clients are CEOs, founders, board members, and senior executives who have outgrown the frameworks that previously served them.",
-        "Her training integrates NARM — the NeuroAffective Relational Model — one of the most sophisticated trauma-informed approaches to human development — with Integral Coaching, a methodology that engages the whole person within their fullest context.",
-        "Based in Germany, Cornelia works globally — in person for intensive engagements and retreats, and virtually for sustained advisory partnerships.",
+    originStory: {
+      overline: "The Journey",
+      headline: "Two Decades. Three Pivots. One Direction.",
+      milestones: [
+        {
+          number: "01",
+          role: "Corporate Leadership",
+          period: "Early Career",
+          description: "Cornelia began inside the institutions she would later advise — gaining an insider's understanding of what drives, drains, and ultimately sustains senior leaders across complex global organisations.",
+        },
+        {
+          number: "02",
+          role: "Organisation Development",
+          period: "The Transition",
+          description: "A shift toward systems-level work. Facilitating transformation across teams, cultures, and leadership structures — learning where change takes root and where it stays only at the surface.",
+        },
+        {
+          number: "03",
+          role: "Executive Coach & Advisor",
+          period: "Today",
+          description: "The integration: depth psychology, nervous system science, and integral methodology combined into a singular practice for executives ready to lead from wholeness rather than performance.",
+        },
+      ],
+    },
+    philosophy: {
+      overline: "Philosophy",
+      statements: [
+        {
+          text: "Leadership is not a performance. It is a state of being.",
+          note: "The capacity to lead with genuine authority cannot be rehearsed. It emerges from within — from nervous system regulation, self-knowledge, and the ability to remain present under the most demanding conditions.",
+        },
+        {
+          text: "The nervous system decides before the mind is asked.",
+          note: "Research in affective neuroscience shows that our most consequential responses arise from subcortical processes — not conscious reasoning. Working with this layer is what distinguishes real development from behavioural change.",
+        },
+        {
+          text: "The most significant shifts in leadership are invisible before they become structural.",
+          note: "Real development is not a new framework or a changed behaviour. It is a reorganisation of the self — subtle, embodied, and enduring. This is the level at which this work operates.",
+        },
       ],
     },
     credentials: {
@@ -86,15 +117,40 @@ const en = {
         { title: "NARM Practitioner", description: "Certified in the NeuroAffective Relational Model — a leading trauma-informed developmental methodology" },
         { title: "Integral Coach", description: "Trained in Integral Coaching at New Ventures West Institute, San Francisco" },
         { title: "Systemic Facilitator", description: "Advanced training in systemic organisational constellations and team dynamics" },
-        { title: "Executive Experience", description: "Over 20 years working within and alongside international leadership teams" },
+        { title: "Executive Experience", description: "Over 20 years working within and alongside international leadership teams and boards" },
       ],
     },
-    philosophy: {
-      overline: "Philosophy",
-      headline: "The Invisible Architecture of Leadership",
-      body: "Every leader carries an invisible architecture — patterns of response, strategies for connection and safety, ways of organising experience that were forged long before the first board meeting. This architecture shapes every decision, every conversation, every culture a leader creates.\n\nMost leadership development never touches this layer. The work offered here does.",
+    approach: {
+      overline: "How Cornelia Works",
+      headline: "The Principles That Shape Every Engagement",
+      items: [
+        {
+          number: "01",
+          title: "Selective Engagement",
+          description: "Each engagement begins with a careful conversation to establish genuine mutual fit. The work requires real readiness — not simply availability or budget.",
+        },
+        {
+          number: "02",
+          title: "Confidential Container",
+          description: "Complete discretion governs every conversation. Nothing said within the engagement is shared. The container is held with the same rigour and care as the work itself.",
+        },
+        {
+          number: "03",
+          title: "Bespoke Process",
+          description: "There are no templates, no standard programmes. Each engagement is shaped entirely by what is most alive and most needed — at the level of the person, not the role.",
+        },
+        {
+          number: "04",
+          title: "Integrity Above All",
+          description: "Cornelia brings deep personal values to every engagement: intellectual honesty, emotional courage, and an unwavering commitment to the client's genuine development over any surface metric.",
+        },
+      ],
     },
-    cta: { headline: "Begin a Conversation", body: "If you sense this work might be relevant — for yourself or your organisation — the first step is always a conversation.", button: "Contact / Apply" },
+    cta: {
+      headline: "Begin a Conversation",
+      body: "If you sense this work might be relevant — for yourself or your organisation — the first step is always a conversation.",
+      button: "Contact / Apply",
+    },
   },
   method: {
     hero: {
