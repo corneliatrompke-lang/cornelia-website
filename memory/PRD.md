@@ -127,7 +127,16 @@ Create a cinematic editorial luxury marketing website for Cornelia Trompke — a
 - Venn chevron clip fix: SVG H extended 620→650 so polygon bottom (y≈630) is fully visible
 - Homepage services section padding removed (paddingTop 72px → 30px on Philosophy section)
 
-### v1.8 (Method Page — Venn Diagram Integration — Mar 2026)
+### v1.9 (Method Page — Layout & Benefits Redesign — Mar 2026)
+- Section 2 (Two Methodologies) grid: changed from `1fr 1fr` → `3fr 7fr` so Venn diagram occupies 70% width; heading text column narrowed to 30%
+- Section 2 padding reduced: `paddingBottom: 60px` override (was ct-section default 140px)
+- Section 3 (Benefits): removed `borderTop` divider; `paddingTop: 60px` override tightens gap from Section 2
+- Benefits section redesigned from static 4-box grid → horizontal hover-to-reveal accordion matching the Home services pattern:
+  - Collapsed: rotated serif title + faint number at bottom (charcoal on ivory)
+  - Hover: column expands (flex 1→3.5, 0.65s cubic-bezier), editorial layout fades in — sage number overline, large heading, description body
+  - `activeBenefit` state added to Method component
+
+
 - `VennDiagram.jsx` extended with 3 new props: `showLogo` (bool, default true), `showArrow` (bool, default true), `staticView` (bool, default false)
 - `staticView=true`: no 280vh sticky wrapper; circles animate from off-screen to final positions via `useInView` + rAF cubic-ease-out when section enters viewport; unique clipPath/mask IDs to avoid DOM collisions when both Venns exist on the same page
 - Method page Section 2 redesigned as two-column: left = overline/headline + NARM card + Integral card; right = `<VennDiagram showLogo={false} showArrow={false} staticView={true} />` in dark rounded container
@@ -227,12 +236,13 @@ Footer (from shared Footer component)
 
 ## Next Tasks
 
-1. Get user sign-off on TransformationSection scroll animation (verified 100% passing — Mar 2026)
-2. Replace all placeholder content with final copy
-3. Upload Cornelia's real portrait photo
-4. Update WhatsApp number and legal details
-5. Configure custom domain
-6. Optionally add Calendly booking integration
+1. Implement WhatsApp floating button (P1)
+2. Refactor Home.jsx & Method.jsx into smaller components (P1)
+3. Replace all placeholder content with final copy (P0)
+4. Upload Cornelia's real portrait photo (P0)
+5. Update WhatsApp number and legal details (P0)
+6. Configure custom domain (P0)
+7. Optionally add Calendly booking integration (P1)
 
 ## Changelog
 

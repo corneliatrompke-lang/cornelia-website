@@ -249,6 +249,9 @@ const Method = () => {
   // Accordion
   const [openAccordion, setOpenAccordion] = useState(0);
 
+  // Benefits hover accordion
+  const [activeBenefit, setActiveBenefit] = useState(null);
+
   // Testimonials
   const testimonials = t.home.testimonials.items;
   const [activeTestimonial, setActiveTestimonial] = useState(0);
@@ -355,12 +358,12 @@ const Method = () => {
           Row 1: [Heading + subtext] | [Venn on ivory]
           Row 2: [NARM card]         | [Integral card]
       ══════════════════════════════════════════════════════════════ */}
-      <section className="ct-section" style={{ background: "#F5F2EC" }} data-testid="method-what-we-do">
+      <section className="ct-section" style={{ background: "#F5F2EC", paddingBottom: "60px" }} data-testid="method-what-we-do">
         <div className="max-w-[1400px] mx-auto px-6 md:px-16">
           <div
             style={{
               display: "grid",
-              gridTemplateColumns: "1fr 1fr",
+              gridTemplateColumns: "3fr 7fr",
               gap: "40px 64px",
               alignItems: "start",
             }}
@@ -468,15 +471,15 @@ const Method = () => {
       </section>
 
       {/* ══════════════════════════════════════════════════════════════
-          3. HIGH-LEVEL BENEFITS — Ivory
+          3. HIGH-LEVEL BENEFITS — Ivory, hover-to-reveal accordion
       ══════════════════════════════════════════════════════════════ */}
       <section
         className="ct-section"
-        style={{ background: "#F5F2EC", borderTop: "1px solid rgba(18,18,18,0.07)" }}
+        style={{ background: "#F5F2EC", paddingTop: "60px" }}
         data-testid="method-benefits"
       >
         <div className="max-w-[1400px] mx-auto px-6 md:px-16">
-          <div className="text-center max-w-[600px] mx-auto mb-16">
+          <div className="max-w-[600px] mx-auto mb-16 text-center">
             <ScrollReveal>
               <p className="ct-overline text-sage mb-5">{m.benefits.overline}</p>
               <h2
@@ -488,44 +491,135 @@ const Method = () => {
             </ScrollReveal>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
-            {m.benefits.items.map((item, i) => (
-              <ScrollReveal key={i} delay={0.08 * i}>
+          {/* Horizontal accordion — hover to reveal */}
+          <div
+            className="flex"
+            style={{
+              height: "420px",
+              border: "1px solid rgba(18,18,18,0.07)",
+              borderRadius: "10px",
+              overflow: "hidden",
+            }}
+          >
+            {m.benefits.items.map((item, i) => {
+              const isActive = activeBenefit === i;
+              return (
                 <div
-                  style={{
-                    padding: "36px 32px",
-                    background: i % 2 === 0 ? "rgba(18,18,18,0.03)" : "#fff",
-                    border: "1px solid rgba(18,18,18,0.08)",
-                    borderRadius: "8px",
-                    height: "100%",
-                  }}
+                  key={i}
+                  onMouseEnter={() => setActiveBenefit(i)}
+                  onMouseLeave={() => setActiveBenefit(null)}
                   data-testid={`benefit-card-${i}`}
+                  style={{
+                    flex: isActive ? 3.5 : 1,
+                    transition: "flex 0.65s cubic-bezier(0.4, 0, 0.2, 1)",
+                    position: "relative",
+                    overflow: "hidden",
+                    borderRight: i < m.benefits.items.length - 1 ? "1px solid rgba(18,18,18,0.07)" : "none",
+                    cursor: "default",
+                    background: isActive ? "rgba(18,18,18,0.025)" : "#F5F2EC",
+                    transition: "flex 0.65s cubic-bezier(0.4, 0, 0.2, 1), background 0.4s ease",
+                  }}
                 >
-                  <p
+                  {/* Collapsed: rotated title + number */}
+                  <div
                     style={{
-                      fontFamily: "Cormorant Garamond, serif",
-                      fontSize: "44px",
-                      fontWeight: 400,
-                      color: "rgba(200,169,106,0.25)",
-                      lineHeight: 1,
-                      marginBottom: "20px",
+                      position: "absolute",
+                      inset: 0,
+                      display: "flex",
+                      flexDirection: "column",
+                      alignItems: "center",
+                      padding: "40px 0",
+                      opacity: isActive ? 0 : 1,
+                      transition: "opacity 0.2s ease",
+                      pointerEvents: "none",
                     }}
                   >
-                    {item.number}
-                  </p>
-                  <h3
-                    style={{ fontFamily: "Figtree, sans-serif", fontSize: "18px", fontWeight: 500, color: "#121212", marginBottom: "12px" }}
+                    <span
+                      style={{
+                        writingMode: "vertical-rl",
+                        transform: "rotate(180deg)",
+                        fontFamily: "Figtree, sans-serif",
+                        fontSize: "clamp(13px, 1.6vw, 18px)",
+                        fontWeight: 400,
+                        letterSpacing: "0.08em",
+                        color: "rgba(18,18,18,0.5)",
+                        flex: 1,
+                        display: "flex",
+                        alignItems: "center",
+                      }}
+                    >
+                      {item.title}
+                    </span>
+                    <span
+                      style={{
+                        fontFamily: "Cormorant Garamond, serif",
+                        fontSize: "28px",
+                        fontWeight: 300,
+                        color: "rgba(18,18,18,0.12)",
+                        lineHeight: 1,
+                        paddingBottom: "4px",
+                      }}
+                    >
+                      {item.number}
+                    </span>
+                  </div>
+
+                  {/* Expanded: editorial layout */}
+                  <div
+                    style={{
+                      opacity: isActive ? 1 : 0,
+                      transition: "opacity 0.35s ease 0.22s",
+                      padding: "48px 52px",
+                      height: "100%",
+                      display: "flex",
+                      flexDirection: "column",
+                      justifyContent: "flex-end",
+                      minWidth: "380px",
+                    }}
                   >
-                    {item.title}
-                  </h3>
-                  <p
-                    style={{ fontFamily: "Manrope, sans-serif", fontSize: "13px", fontWeight: 300, color: "rgba(18,18,18,0.55)", lineHeight: 1.7 }}
-                  >
-                    {item.body}
-                  </p>
+                    <span
+                      style={{
+                        fontFamily: "Manrope, sans-serif",
+                        fontSize: "10px",
+                        fontWeight: 600,
+                        letterSpacing: "0.25em",
+                        textTransform: "uppercase",
+                        color: "rgba(124,140,130,0.75)",
+                        marginBottom: "20px",
+                        display: "block",
+                      }}
+                    >
+                      {item.number}
+                    </span>
+                    <h3
+                      style={{
+                        fontFamily: "Figtree, sans-serif",
+                        fontSize: "clamp(20px, 2vw, 26px)",
+                        fontWeight: 400,
+                        color: "#121212",
+                        lineHeight: 1.2,
+                        marginBottom: "18px",
+                        maxWidth: "340px",
+                      }}
+                    >
+                      {item.title}
+                    </h3>
+                    <p
+                      style={{
+                        fontFamily: "Manrope, sans-serif",
+                        fontSize: "14px",
+                        fontWeight: 300,
+                        color: "rgba(18,18,18,0.5)",
+                        lineHeight: 1.75,
+                        maxWidth: "340px",
+                      }}
+                    >
+                      {item.body}
+                    </p>
+                  </div>
                 </div>
-              </ScrollReveal>
-            ))}
+              );
+            })}
           </div>
         </div>
       </section>
