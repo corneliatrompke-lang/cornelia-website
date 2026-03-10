@@ -71,7 +71,7 @@ const en = {
     },
     originStory: {
       overline: "The Journey",
-      headline: "Two Decades. Three Pivots. One Direction.",
+      headline: "Two Decades. One Direction.",
       milestones: [
         {
           number: "01",

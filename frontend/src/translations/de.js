@@ -71,7 +71,7 @@ const de = {
     },
     originStory: {
       overline: "Der Weg",
-      headline: "Zwei Jahrzehnte. Drei Wendepunkte. Eine Richtung.",
+      headline: "Zwei Jahrzehnte. Eine Richtung.",
       milestones: [
         {
           number: "01",

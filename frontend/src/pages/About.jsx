@@ -407,60 +407,75 @@ const About = () => {
             </h2>
           </ScrollReveal>
 
-          {/* 4-column horizontal credential row */}
-          <div
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4"
-            style={{ borderTop: "1px solid rgba(200,169,106,0.14)" }}
-          >
-            {a.credentials.items.map((item, i) => (
-              <ScrollReveal key={i} delay={i * 0.1}>
-                <div
-                  style={{
-                    padding: "44px 32px",
-                    borderRight:
-                      i < a.credentials.items.length - 1
-                        ? "1px solid rgba(200,169,106,0.10)"
-                        : "none",
-                  }}
-                  data-testid={`credential-${i}`}
-                >
-                  <span
-                    style={{
-                      fontFamily: "Cormorant Garamond, serif",
-                      fontSize: "11px",
-                      letterSpacing: "0.32em",
-                      color: "rgba(200,169,106,0.55)",
-                      display: "block",
-                    }}
-                  >
-                    0{i + 1}
-                  </span>
-                  <h3
-                    style={{
-                      fontFamily: "Figtree, sans-serif",
-                      fontSize: "16px",
-                      fontWeight: 400,
-                      color: "#F5F2EC",
-                      marginTop: "22px",
-                      marginBottom: "14px",
-                    }}
-                  >
-                    {item.title}
-                  </h3>
-                  <p
-                    style={{
-                      fontFamily: "Manrope, sans-serif",
-                      fontSize: "13px",
-                      fontWeight: 300,
-                      color: "rgba(227,222,215,0.42)",
-                      lineHeight: 1.78,
-                    }}
-                  >
-                    {item.description}
-                  </p>
-                </div>
-              </ScrollReveal>
-            ))}
+          {/* Vertical credential rows — integral coaching pattern */}
+          <div className="w-full max-w-[860px]" data-testid="credentials-list">
+            {a.credentials.items.map((item, i) => {
+              const bgOpacity = 0.04 + (i / (a.credentials.items.length - 1)) * 0.08;
+              const isLast = i === a.credentials.items.length - 1;
+              return (
+                <ScrollReveal key={i} delay={0.08 * i}>
+                  <div className="flex items-stretch mb-2" data-testid={`credential-${i}`}>
+                    {/* Number badge */}
+                    <div
+                      style={{
+                        flexShrink: 0,
+                        width: "52px",
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        background: `rgba(200,169,106,${bgOpacity + 0.06})`,
+                        borderLeft: "2px solid rgba(200,169,106,0.4)",
+                      }}
+                    >
+                      <span
+                        style={{
+                          fontFamily: "Manrope, sans-serif",
+                          fontSize: "10px",
+                          fontWeight: 600,
+                          color: "rgba(200,169,106,0.8)",
+                          letterSpacing: "1px",
+                        }}
+                      >
+                        {String(i + 1).padStart(2, "0")}
+                      </span>
+                    </div>
+                    {/* Content */}
+                    <div
+                      style={{
+                        flex: 1,
+                        padding: "20px 32px",
+                        background: `rgba(200,169,106,${bgOpacity})`,
+                        borderBottom: !isLast ? "1px solid rgba(200,169,106,0.10)" : "none",
+                        borderRight: "1px solid rgba(200,169,106,0.10)",
+                      }}
+                    >
+                      <p
+                        style={{
+                          fontFamily: "Figtree, sans-serif",
+                          fontSize: "15px",
+                          fontWeight: 400,
+                          color: "#F5F2EC",
+                          marginBottom: "6px",
+                        }}
+                      >
+                        {item.title}
+                      </p>
+                      <p
+                        style={{
+                          fontFamily: "Manrope, sans-serif",
+                          fontSize: "13px",
+                          fontWeight: 300,
+                          color: "rgba(227,222,215,0.48)",
+                          lineHeight: 1.72,
+                        }}
+                      >
+                        {item.description}
+                      </p>
+                    </div>
+                  </div>
+                </ScrollReveal>
+              );
+            })}
           </div>
         </div>
       </section>
