@@ -4,6 +4,7 @@ import { ArrowRight, Plus, Minus, Check } from "lucide-react";
 import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion";
 import NeuralCanvas from "../components/NeuralCanvas";
 import ScrollReveal from "../components/ScrollReveal";
+import VennDiagram from "../components/VennDiagram";
 import { useLanguage } from "../context/LanguageContext";
 
 // ─── Assets ─────────────────────────────────────────────────────────────────
@@ -350,118 +351,91 @@ const Method = () => {
       </section>
 
       {/* ══════════════════════════════════════════════════════════════
-          2. THE TWO METHODOLOGIES — Ivory
+          2. THE TWO METHODOLOGIES — Ivory, two-column with Venn
       ══════════════════════════════════════════════════════════════ */}
       <section className="ct-section" style={{ background: "#F5F2EC" }} data-testid="method-what-we-do">
         <div className="max-w-[1400px] mx-auto px-6 md:px-16">
-          <div className="max-w-[640px] mb-16">
-            <ScrollReveal>
-              <p className="ct-overline text-sage mb-5">{m.whatWeDo.overline}</p>
-              <h2
-                className="text-charcoal leading-[1.1]"
-                style={{ fontFamily: "Figtree, sans-serif", fontSize: "clamp(28px, 3.5vw, 46px)", fontWeight: 400 }}
-              >
-                {m.whatWeDo.headline}
-              </h2>
-            </ScrollReveal>
-            <ScrollReveal delay={0.15}>
-              <p className="mt-6 text-charcoal/60 leading-relaxed" style={{ fontFamily: "Manrope, sans-serif", fontSize: "16px", fontWeight: 300 }}>
-                {m.whatWeDo.body}
-              </p>
-            </ScrollReveal>
-          </div>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-            {/* NARM card */}
+            {/* Left — heading + method cards */}
+            <div>
+              <ScrollReveal>
+                <p className="ct-overline text-sage mb-5">{m.whatWeDo.overline}</p>
+                <h2
+                  className="text-charcoal leading-[1.1]"
+                  style={{ fontFamily: "Figtree, sans-serif", fontSize: "clamp(28px, 3.5vw, 46px)", fontWeight: 400 }}
+                >
+                  {m.whatWeDo.headline}
+                </h2>
+              </ScrollReveal>
+              <ScrollReveal delay={0.15}>
+                <p className="mt-6 text-charcoal/60 leading-relaxed" style={{ fontFamily: "Manrope, sans-serif", fontSize: "16px", fontWeight: 300 }}>
+                  {m.whatWeDo.body}
+                </p>
+              </ScrollReveal>
+
+              {/* NARM card */}
+              <ScrollReveal delay={0.25}>
+                <div
+                  style={{
+                    background: "#121212", borderRadius: "10px",
+                    padding: "28px 32px", marginTop: "32px",
+                    position: "relative", overflow: "hidden",
+                  }}
+                  data-testid="narm-card"
+                >
+                  <div style={{ position: "absolute", top: 0, right: 0, width: "160px", height: "160px", background: "radial-gradient(circle, rgba(200,169,106,0.07) 0%, transparent 70%)", pointerEvents: "none" }} />
+                  <p className="ct-overline text-gold/50 mb-3">{m.whatWeDo.narmCard.label}</p>
+                  <h3 style={{ fontFamily: "Figtree, sans-serif", fontSize: "28px", fontWeight: 400, color: "#F5F2EC" }}>{m.whatWeDo.narmCard.title}</h3>
+                  <p style={{ fontFamily: "Cormorant Garamond, serif", fontSize: "15px", fontStyle: "italic", color: "rgba(200,169,106,0.7)", margin: "4px 0 14px" }}>{m.whatWeDo.narmCard.subtitle}</p>
+                  <p style={{ fontFamily: "Manrope, sans-serif", fontSize: "13px", fontWeight: 300, color: "rgba(227,222,215,0.55)", lineHeight: 1.7 }}>{m.whatWeDo.narmCard.description}</p>
+                  <div style={{ borderTop: "1px solid rgba(200,169,106,0.12)", paddingTop: "16px", marginTop: "16px", display: "flex", flexDirection: "column", gap: "8px" }}>
+                    {m.whatWeDo.narmCard.points.map((pt, i) => (
+                      <div key={i} className="flex gap-3 items-start">
+                        <div style={{ flexShrink: 0, width: "4px", height: "4px", borderRadius: "50%", background: "#C8A96A", marginTop: "7px", opacity: 0.6 }} />
+                        <p style={{ fontFamily: "Manrope, sans-serif", fontSize: "12px", fontWeight: 300, color: "rgba(227,222,215,0.45)" }}>{pt}</p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </ScrollReveal>
+
+              {/* Integral card */}
+              <ScrollReveal delay={0.35}>
+                <div
+                  style={{
+                    background: "#F5F2EC", border: "1px solid rgba(18,18,18,0.1)",
+                    borderRadius: "10px", padding: "28px 32px", marginTop: "12px",
+                    position: "relative", overflow: "hidden",
+                  }}
+                  data-testid="integral-card"
+                >
+                  <p className="ct-overline mb-3" style={{ color: "rgba(18,18,18,0.3)" }}>{m.whatWeDo.integralCard.label}</p>
+                  <h3 style={{ fontFamily: "Figtree, sans-serif", fontSize: "22px", fontWeight: 400, color: "#121212" }}>{m.whatWeDo.integralCard.title}</h3>
+                  <p style={{ fontFamily: "Cormorant Garamond, serif", fontSize: "15px", fontStyle: "italic", color: "rgba(124,140,130,0.85)", margin: "4px 0 14px" }}>{m.whatWeDo.integralCard.subtitle}</p>
+                  <p style={{ fontFamily: "Manrope, sans-serif", fontSize: "13px", fontWeight: 300, color: "rgba(18,18,18,0.55)", lineHeight: 1.7 }}>{m.whatWeDo.integralCard.description}</p>
+                  <div style={{ borderTop: "1px solid rgba(18,18,18,0.08)", paddingTop: "16px", marginTop: "16px", display: "flex", flexDirection: "column", gap: "8px" }}>
+                    {m.whatWeDo.integralCard.points.map((pt, i) => (
+                      <div key={i} className="flex gap-3 items-start">
+                        <div style={{ flexShrink: 0, width: "4px", height: "4px", borderRadius: "50%", background: "#7C8C82", marginTop: "7px", opacity: 0.7 }} />
+                        <p style={{ fontFamily: "Manrope, sans-serif", fontSize: "12px", fontWeight: 300, color: "rgba(18,18,18,0.45)" }}>{pt}</p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </ScrollReveal>
+            </div>
+
+            {/* Right — Venn diagram (no CT logo, no arrow) */}
             <ScrollReveal delay={0.1}>
               <div
-                style={{
-                  background: "#121212",
-                  borderRadius: "12px",
-                  padding: "48px 52px",
-                  height: "100%",
-                  position: "relative",
-                  overflow: "hidden",
-                }}
-                data-testid="narm-card"
+                style={{ background: "#121212", borderRadius: "16px", overflow: "hidden", padding: "32px 16px" }}
+                data-testid="method-venn-container"
               >
-                <div
-                  style={{
-                    position: "absolute", top: 0, right: 0, width: "240px", height: "240px",
-                    background: "radial-gradient(circle, rgba(200,169,106,0.07) 0%, transparent 70%)",
-                    pointerEvents: "none",
-                  }}
-                />
-                <p className="ct-overline text-gold/60 mb-4">{m.whatWeDo.narmCard.label}</p>
-                <h3
-                  style={{ fontFamily: "Figtree, sans-serif", fontSize: "clamp(32px, 3.5vw, 52px)", fontWeight: 400, color: "#F5F2EC", lineHeight: 1 }}
-                >
-                  {m.whatWeDo.narmCard.title}
-                </h3>
-                <p
-                  style={{ fontFamily: "Cormorant Garamond, serif", fontSize: "17px", fontStyle: "italic", color: "rgba(200,169,106,0.7)", marginTop: "6px", marginBottom: "24px" }}
-                >
-                  {m.whatWeDo.narmCard.subtitle}
-                </p>
-                <p style={{ fontFamily: "Manrope, sans-serif", fontSize: "14px", fontWeight: 300, color: "rgba(227,222,215,0.6)", lineHeight: 1.7, marginBottom: "28px" }}>
-                  {m.whatWeDo.narmCard.description}
-                </p>
-                <div style={{ borderTop: "1px solid rgba(200,169,106,0.15)", paddingTop: "24px" }}>
-                  {m.whatWeDo.narmCard.points.map((pt, i) => (
-                    <div key={i} className="flex gap-3 items-start mb-3">
-                      <div style={{ flexShrink: 0, width: "5px", height: "5px", borderRadius: "50%", background: "#C8A96A", marginTop: "6px", opacity: 0.6 }} />
-                      <p style={{ fontFamily: "Manrope, sans-serif", fontSize: "13px", fontWeight: 300, color: "rgba(227,222,215,0.55)" }}>{pt}</p>
-                    </div>
-                  ))}
-                </div>
+                <VennDiagram showLogo={false} showArrow={false} staticView={true} />
               </div>
             </ScrollReveal>
 
-            {/* Integral card */}
-            <ScrollReveal delay={0.2}>
-              <div
-                style={{
-                  background: "#F5F2EC",
-                  border: "1px solid rgba(18,18,18,0.12)",
-                  borderRadius: "12px",
-                  padding: "48px 52px",
-                  height: "100%",
-                  position: "relative",
-                  overflow: "hidden",
-                }}
-                data-testid="integral-card"
-              >
-                <div
-                  style={{
-                    position: "absolute", bottom: 0, left: 0, width: "200px", height: "200px",
-                    background: "radial-gradient(circle, rgba(124,140,130,0.08) 0%, transparent 70%)",
-                    pointerEvents: "none",
-                  }}
-                />
-                <p className="ct-overline mb-4" style={{ color: "rgba(18,18,18,0.35)" }}>{m.whatWeDo.integralCard.label}</p>
-                <h3
-                  style={{ fontFamily: "Figtree, sans-serif", fontSize: "clamp(22px, 2.5vw, 36px)", fontWeight: 400, color: "#121212", lineHeight: 1.1 }}
-                >
-                  {m.whatWeDo.integralCard.title}
-                </h3>
-                <p
-                  style={{ fontFamily: "Cormorant Garamond, serif", fontSize: "17px", fontStyle: "italic", color: "rgba(124,140,130,0.85)", marginTop: "6px", marginBottom: "24px" }}
-                >
-                  {m.whatWeDo.integralCard.subtitle}
-                </p>
-                <p style={{ fontFamily: "Manrope, sans-serif", fontSize: "14px", fontWeight: 300, color: "rgba(18,18,18,0.6)", lineHeight: 1.7, marginBottom: "28px" }}>
-                  {m.whatWeDo.integralCard.description}
-                </p>
-                <div style={{ borderTop: "1px solid rgba(18,18,18,0.1)", paddingTop: "24px" }}>
-                  {m.whatWeDo.integralCard.points.map((pt, i) => (
-                    <div key={i} className="flex gap-3 items-start mb-3">
-                      <div style={{ flexShrink: 0, width: "5px", height: "5px", borderRadius: "50%", background: "#7C8C82", marginTop: "6px", opacity: 0.7 }} />
-                      <p style={{ fontFamily: "Manrope, sans-serif", fontSize: "13px", fontWeight: 300, color: "rgba(18,18,18,0.55)" }}>{pt}</p>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </ScrollReveal>
           </div>
         </div>
       </section>

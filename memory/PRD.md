@@ -127,6 +127,12 @@ Create a cinematic editorial luxury marketing website for Cornelia Trompke — a
 - Venn chevron clip fix: SVG H extended 620→650 so polygon bottom (y≈630) is fully visible
 - Homepage services section padding removed (paddingTop 72px → 30px on Philosophy section)
 
+### v1.8 (Method Page — Venn Diagram Integration — Mar 2026)
+- `VennDiagram.jsx` extended with 3 new props: `showLogo` (bool, default true), `showArrow` (bool, default true), `staticView` (bool, default false)
+- `staticView=true`: no 280vh sticky wrapper; circles animate from off-screen to final positions via `useInView` + rAF cubic-ease-out when section enters viewport; unique clipPath/mask IDs to avoid DOM collisions when both Venns exist on the same page
+- Method page Section 2 redesigned as two-column: left = overline/headline + NARM card + Integral card; right = `<VennDiagram showLogo={false} showArrow={false} staticView={true} />` in dark rounded container
+- Home page `<VennDiagram />` (no props) unchanged — scroll-driven mode still works correctly
+
 ### v1.7 (Method Page — Full Build — Mar 2026)
 Complete 9-section Method page built from scratch:
 1. Hero (same rounded card + parallax BG as Home) — cinematic woman-at-window image
