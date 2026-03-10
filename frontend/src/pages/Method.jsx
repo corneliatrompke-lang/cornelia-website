@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
-import { ArrowRight, Plus, Minus, Check } from "lucide-react";
+import { ArrowRight, Check } from "lucide-react";
 import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion";
 import NeuralCanvas from "../components/NeuralCanvas";
 import ScrollReveal from "../components/ScrollReveal";
@@ -109,127 +109,6 @@ const NarmDiagram = ({ layers }) => (
         </span>
       </div>
     </ScrollReveal>
-  </div>
-);
-
-// ─── Accordion Item ───────────────────────────────────────────────────────────
-const AccordionItem = ({ item, index, isOpen, onToggle, gradientPct }) => (
-  <div
-    style={{
-      borderBottom: "1px solid rgba(245,242,236,0.12)",
-    }}
-    data-testid={`accordion-item-${index}`}
-  >
-    <button
-      onClick={onToggle}
-      className="w-full text-left"
-      style={{ padding: "36px 0", display: "flex", alignItems: "center", justifyContent: "space-between", gap: "24px" }}
-    >
-      <div>
-        <p
-          style={{
-            fontFamily: "Manrope, sans-serif",
-            fontSize: "11px",
-            fontWeight: 500,
-            letterSpacing: "2.5px",
-            textTransform: "uppercase",
-            color: isOpen ? "rgba(200,169,106,0.9)" : "rgba(200,169,106,0.45)",
-            marginBottom: "8px",
-            transition: "color 0.3s",
-          }}
-        >
-          {item.subtitle}
-        </p>
-        <h3
-          style={{
-            fontFamily: "Figtree, sans-serif",
-            fontSize: "clamp(22px, 2.8vw, 34px)",
-            fontWeight: 400,
-            color: isOpen ? "#F5F2EC" : "rgba(245,242,236,0.7)",
-            transition: "color 0.3s",
-          }}
-        >
-          {item.audience}
-        </h3>
-      </div>
-      <div
-        style={{
-          flexShrink: 0,
-          width: "40px",
-          height: "40px",
-          borderRadius: "50%",
-          border: "1px solid rgba(200,169,106,0.35)",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          color: "#C8A96A",
-          transition: "background 0.3s",
-          background: isOpen ? "rgba(200,169,106,0.12)" : "transparent",
-        }}
-      >
-        {isOpen ? <Minus size={16} /> : <Plus size={16} />}
-      </div>
-    </button>
-
-    <AnimatePresence initial={false}>
-      {isOpen && (
-        <motion.div
-          key="content"
-          initial={{ height: 0, opacity: 0 }}
-          animate={{ height: "auto", opacity: 1 }}
-          exit={{ height: 0, opacity: 0 }}
-          transition={{ duration: 0.45, ease: [0.25, 0.46, 0.45, 0.94] }}
-          style={{ overflow: "hidden" }}
-        >
-          <div className="pb-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-            {item.benefits.map((benefit, j) => (
-              <motion.div
-                key={j}
-                initial={{ opacity: 0, y: 12 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: j * 0.07, duration: 0.4, ease: "easeOut" }}
-                style={{
-                  padding: "20px 24px",
-                  background: "rgba(200,169,106,0.06)",
-                  border: "1px solid rgba(200,169,106,0.12)",
-                  borderRadius: "4px",
-                  display: "flex",
-                  gap: "14px",
-                  alignItems: "flex-start",
-                }}
-              >
-                <div
-                  style={{
-                    flexShrink: 0,
-                    width: "20px",
-                    height: "20px",
-                    borderRadius: "50%",
-                    background: "rgba(200,169,106,0.15)",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    marginTop: "2px",
-                  }}
-                >
-                  <Check size={11} color="#C8A96A" />
-                </div>
-                <p
-                  style={{
-                    fontFamily: "Manrope, sans-serif",
-                    fontSize: "14px",
-                    fontWeight: 300,
-                    color: "rgba(245,242,236,0.72)",
-                    lineHeight: 1.6,
-                  }}
-                >
-                  {benefit}
-                </p>
-              </motion.div>
-            ))}
-          </div>
-        </motion.div>
-      )}
-    </AnimatePresence>
   </div>
 );
 
@@ -621,7 +500,8 @@ const Method = () => {
       </section>
 
       {/* ══════════════════════════════════════════════════════════════
-          4. ACCORDION — Gradient ivory → charcoal
+          4. WHO THIS SERVES — Editorial two-column selector
+          Left: stacked selector rows   Right: sticky benefits panel
       ══════════════════════════════════════════════════════════════ */}
       <section
         className="ct-section"
@@ -631,7 +511,9 @@ const Method = () => {
         data-testid="method-accordion"
       >
         <div className="max-w-[1400px] mx-auto px-6 md:px-16">
-          <div className="max-w-[680px] mb-14">
+
+          {/* Section heading */}
+          <div className="max-w-[680px] mb-20">
             <ScrollReveal>
               <p className="ct-overline text-sage mb-5">{m.accordion.overline}</p>
               <h2
@@ -642,17 +524,123 @@ const Method = () => {
             </ScrollReveal>
           </div>
 
-          <div style={{ borderTop: "1px solid rgba(245,242,236,0.15)" }}>
-            {m.accordion.items.map((item, i) => (
-              <AccordionItem
-                key={i}
-                item={item}
-                index={i}
-                isOpen={openAccordion === i}
-                onToggle={() => setOpenAccordion(openAccordion === i ? -1 : i)}
-                gradientPct={(i / (m.accordion.items.length - 1)) * 100}
-              />
-            ))}
+          {/* Two-column layout */}
+          <div style={{ display: "flex", alignItems: "flex-start", gap: "0" }}>
+
+            {/* Left: selector rows (~44%) */}
+            <div style={{ flex: "0 0 44%", paddingRight: "80px" }}>
+              {m.accordion.items.map((item, i) => {
+                const isActive = openAccordion === i;
+                return (
+                  <div
+                    key={i}
+                    onClick={() => setOpenAccordion(i)}
+                    data-testid={`accordion-item-${i}`}
+                    style={{
+                      borderTop: "1px solid rgba(245,242,236,0.12)",
+                      padding: "28px 0 28px 20px",
+                      cursor: "pointer",
+                      borderLeft: isActive ? "2px solid rgba(200,169,106,0.65)" : "2px solid transparent",
+                      transition: "border-color 0.35s ease",
+                    }}
+                  >
+                    <p
+                      style={{
+                        fontFamily: "Manrope, sans-serif",
+                        fontSize: "10px",
+                        fontWeight: 500,
+                        letterSpacing: "2.5px",
+                        textTransform: "uppercase",
+                        color: isActive ? "rgba(200,169,106,0.85)" : "rgba(200,169,106,0.3)",
+                        marginBottom: "10px",
+                        transition: "color 0.35s",
+                      }}
+                    >
+                      {item.subtitle}
+                    </p>
+                    <h3
+                      style={{
+                        fontFamily: "Figtree, sans-serif",
+                        fontSize: "clamp(20px, 2.4vw, 32px)",
+                        fontWeight: 400,
+                        color: isActive ? "#F5F2EC" : "rgba(245,242,236,0.38)",
+                        transition: "color 0.35s",
+                        lineHeight: 1.15,
+                      }}
+                    >
+                      {item.audience}
+                    </h3>
+                  </div>
+                );
+              })}
+              <div style={{ borderTop: "1px solid rgba(245,242,236,0.12)" }} />
+            </div>
+
+            {/* Thin vertical divider */}
+            <div style={{ width: "1px", background: "rgba(245,242,236,0.10)", flexShrink: 0, alignSelf: "stretch" }} />
+
+            {/* Right: active benefits panel (~56%) — sticky */}
+            <div style={{ flex: 1, paddingLeft: "80px", position: "sticky", top: "100px" }}>
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={openAccordion}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -12 }}
+                  transition={{ duration: 0.45, ease: [0.25, 0.46, 0.45, 0.94] }}
+                >
+                  <div style={{ borderTop: "1px solid rgba(245,242,236,0.12)", paddingTop: "28px", marginBottom: "32px" }}>
+                    <p
+                      style={{
+                        fontFamily: "Manrope, sans-serif",
+                        fontSize: "10px",
+                        fontWeight: 500,
+                        letterSpacing: "2.5px",
+                        textTransform: "uppercase",
+                        color: "rgba(200,169,106,0.5)",
+                      }}
+                    >
+                      What shifts
+                    </p>
+                  </div>
+                  <div style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
+                    {m.accordion.items[openAccordion >= 0 ? openAccordion : 0].benefits.map((benefit, j) => (
+                      <motion.div
+                        key={j}
+                        initial={{ opacity: 0, x: 14 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ delay: j * 0.07, duration: 0.38, ease: "easeOut" }}
+                        style={{ display: "flex", gap: "18px", alignItems: "baseline" }}
+                      >
+                        <span
+                          style={{
+                            fontFamily: "Cormorant Garamond, serif",
+                            fontSize: "18px",
+                            color: "rgba(200,169,106,0.4)",
+                            flexShrink: 0,
+                            lineHeight: 1,
+                          }}
+                        >
+                          —
+                        </span>
+                        <p
+                          style={{
+                            fontFamily: "Manrope, sans-serif",
+                            fontSize: "14px",
+                            fontWeight: 300,
+                            color: "rgba(227,222,215,0.65)",
+                            lineHeight: 1.8,
+                          }}
+                        >
+                          {benefit}
+                        </p>
+                      </motion.div>
+                    ))}
+                  </div>
+                </motion.div>
+              </AnimatePresence>
+            </div>
+
           </div>
         </div>
       </section>
