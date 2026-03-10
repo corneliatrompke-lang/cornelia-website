@@ -588,7 +588,7 @@ const Method = () => {
                   exit={{ opacity: 0, y: -12 }}
                   transition={{ duration: 0.45, ease: [0.25, 0.46, 0.45, 0.94] }}
                 >
-                  <div style={{ borderTop: "1px solid rgba(245,242,236,0.12)", paddingTop: "28px", marginBottom: "32px" }}>
+                  <div style={{ paddingTop: "0", marginBottom: "32px" }}>
                     <p
                       style={{
                         fontFamily: "Manrope, sans-serif",
@@ -812,7 +812,7 @@ const Method = () => {
       ══════════════════════════════════════════════════════════════ */}
       <section
         className="ct-section relative overflow-hidden"
-        style={{ background: "#1A1210", borderTop: "1px solid rgba(200,169,106,0.08)" }}
+        style={{ background: "#121212", borderTop: "1px solid rgba(200,169,106,0.08)" }}
         data-testid="method-integral-deep"
       >
         <NeuralCanvas opacity={0.06} nodeCount={30} />
