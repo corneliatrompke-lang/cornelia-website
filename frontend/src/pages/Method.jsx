@@ -285,7 +285,7 @@ const Method = () => {
                 <div style={{ flex: 1, paddingRight: "64px" }}>
                   <ScrollReveal delay={0.1}>
                     <div data-testid="narm-card">
-                      <div style={{ borderTop: "1px solid rgba(18,18,18,0.12)", paddingTop: "28px", marginBottom: "28px" }}>
+                      <div style={{ paddingTop: "0px", marginBottom: "28px" }}>
                         <p className="ct-overline" style={{ color: "rgba(200,169,106,0.65)" }}>{m.whatWeDo.narmCard.label}</p>
                       </div>
                       <h3 style={{ fontFamily: "Figtree, sans-serif", fontSize: "clamp(34px, 3.2vw, 50px)", fontWeight: 400, color: "#121212", lineHeight: 1.0, marginBottom: "10px" }}>
@@ -316,7 +316,7 @@ const Method = () => {
                 <div style={{ flex: 1, paddingLeft: "64px" }}>
                   <ScrollReveal delay={0.18}>
                     <div data-testid="integral-card">
-                      <div style={{ borderTop: "1px solid rgba(18,18,18,0.12)", paddingTop: "28px", marginBottom: "28px" }}>
+                      <div style={{ paddingTop: "0px", marginBottom: "28px" }}>
                         <p className="ct-overline" style={{ color: "rgba(124,140,130,0.6)" }}>{m.whatWeDo.integralCard.label}</p>
                       </div>
                       <h3 style={{ fontFamily: "Figtree, sans-serif", fontSize: "clamp(34px, 3.2vw, 50px)", fontWeight: 400, color: "#121212", lineHeight: 1.0, marginBottom: "10px" }}>
@@ -537,7 +537,7 @@ const Method = () => {
                     onClick={() => setOpenAccordion(i)}
                     data-testid={`accordion-item-${i}`}
                     style={{
-                      borderTop: "1px solid rgba(245,242,236,0.12)",
+                      borderTop: i > 0 ? "1px solid rgba(245,242,236,0.12)" : "none",
                       padding: "28px 0 28px 20px",
                       cursor: "pointer",
                       borderLeft: isActive ? "2px solid rgba(200,169,106,0.65)" : "2px solid transparent",
@@ -573,7 +573,6 @@ const Method = () => {
                   </div>
                 );
               })}
-              <div style={{ borderTop: "1px solid rgba(245,242,236,0.12)" }} />
             </div>
 
             {/* Thin vertical divider */}
@@ -665,6 +664,7 @@ const Method = () => {
                 border: "1px solid rgba(200,169,106,0.11)",
                 borderRadius: "16px",
                 overflow: "hidden",
+                position: "relative",
               }}
             >
               {/* Portrait */}
@@ -703,27 +703,67 @@ const Method = () => {
                     </div>
                   ))}
                 </div>
-                {/* Dot navigation */}
-                <div style={{ display: "flex", gap: "8px", marginTop: "48px" }}>
-                  {testimonials.map((_, i) => (
-                    <button
-                      key={i}
-                      onClick={() => { setActiveTestimonial(i); restartTimer(testimonials.length); }}
-                      style={{ width: i === activeTestimonial ? "28px" : "8px", height: "8px", borderRadius: "4px", background: i === activeTestimonial ? "#C8A96A" : "rgba(200,169,106,0.25)", border: "none", cursor: "pointer", transition: "all 0.4s ease", padding: 0 }}
-                      aria-label={`Testimonial ${i + 1}`}
-                      data-testid={`testimonial-dot-${i}`}
-                    />
-                  ))}
-                </div>
+              </div>
+
+              {/* Auto-progress bar */}
+              <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: "2px", background: "rgba(200,169,106,0.08)" }}>
+                <div key={activeTestimonial} style={{ height: "100%", background: "rgba(200,169,106,0.45)", animation: "progressSlide 6s linear forwards" }} />
               </div>
             </div>
           </ScrollReveal>
-        </div>
-      </section>
 
-      {/* ══════════════════════════════════════════════════════════════
-          6. WHAT IS NARM — Charcoal + Diagram
-      ══════════════════════════════════════════════════════════════ */}
+          {/* Thumbnail navigation — outside the card, matches Home.jsx */}
+          <div style={{ display: "flex", gap: "28px", marginTop: "0px", alignItems: "flex-start", paddingLeft: "4px" }}>
+            {TESTIMONIAL_PORTRAITS.map((src, i) => (
+              <button
+                key={i}
+                onClick={() => { setActiveTestimonial(i); restartTimer(testimonials.length); }}
+                data-testid={`testimonial-nav-${i}`}
+                style={{ background: "none", border: "none", padding: 0, cursor: "pointer", display: "flex", flexDirection: "column", alignItems: "center", gap: "10px" }}
+              >
+                <div
+                  style={{
+                    width: i === activeTestimonial ? "68px" : "56px",
+                    height: i === activeTestimonial ? "68px" : "56px",
+                    borderRadius: "50%",
+                    overflow: "hidden",
+                    border: i === activeTestimonial ? "2px solid #C8A96A" : "2px solid rgba(245,242,236,0.12)",
+                    transform: i === activeTestimonial ? "translateY(-12px)" : "translateY(0)",
+                    transition: "all 0.45s cubic-bezier(0.4, 0, 0.2, 1)",
+                    flexShrink: 0,
+                    boxShadow: i === activeTestimonial ? "0 8px 28px rgba(200,169,106,0.22)" : "none",
+                  }}
+                >
+                  <img
+                    src={src}
+                    alt=""
+                    style={{
+                      width: "100%", height: "100%",
+                      objectFit: "cover", objectPosition: "center top",
+                      filter: i === activeTestimonial ? "none" : "grayscale(70%)",
+                      transition: "filter 0.45s ease",
+                    }}
+                  />
+                </div>
+                <span
+                  style={{
+                    fontFamily: "Manrope, sans-serif",
+                    fontSize: "9px", fontWeight: 500,
+                    letterSpacing: "0.14em", textTransform: "uppercase",
+                    color: i === activeTestimonial ? "#F5F2EC" : "rgba(245,242,236,0.32)",
+                    transition: "color 0.4s ease",
+                    textAlign: "center", maxWidth: "88px", lineHeight: 1.55,
+                  }}
+                >
+                  {testimonials[i]?.author}
+                </span>
+              </button>
+            ))}
+          </div>
+        </div>
+
+        <style>{`@keyframes progressSlide { from { width: 0%; } to { width: 100%; } }`}</style>
+      </section>
       <section className="bg-charcoal ct-section relative overflow-hidden" data-testid="method-narm-deep">
         <NeuralCanvas opacity={0.07} nodeCount={35} />
         <div className="relative z-10 max-w-[1400px] mx-auto px-6 md:px-16">
