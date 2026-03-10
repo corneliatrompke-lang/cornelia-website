@@ -112,6 +112,13 @@ const NarmDiagram = ({ layers }) => (
   </div>
 );
 
+// Service links for each accordion item (in order)
+const ACCORDION_SERVICE_LINKS = [
+  { label: "Explore Executive Coaching", to: "/work-with-me/executive-coaching" },
+  { label: "Explore Team Facilitation", to: "/work-with-me/team-facilitation" },
+  { label: "Explore Organisational Advisory", to: "/work-with-me/organisational-advisory" },
+];
+
 // ─── Page ─────────────────────────────────────────────────────────────────────
 const Method = () => {
   const { t } = useLanguage();
@@ -636,6 +643,36 @@ const Method = () => {
                       </motion.div>
                     ))}
                   </div>
+
+                  {/* Service CTA */}
+                  <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: 0.55, duration: 0.4 }}
+                    style={{ marginTop: "36px", paddingTop: "28px", borderTop: "1px solid rgba(245,242,236,0.08)" }}
+                  >
+                    <Link
+                      to={ACCORDION_SERVICE_LINKS[openAccordion >= 0 ? openAccordion : 0].to}
+                      style={{
+                        fontFamily: "Manrope, sans-serif",
+                        fontSize: "11px",
+                        fontWeight: 500,
+                        letterSpacing: "2px",
+                        textTransform: "uppercase",
+                        color: "rgba(200,169,106,0.75)",
+                        display: "inline-flex",
+                        alignItems: "center",
+                        gap: "10px",
+                        textDecoration: "none",
+                        transition: "color 0.25s ease",
+                      }}
+                      className="group"
+                      data-testid={`accordion-cta-${openAccordion}`}
+                    >
+                      {ACCORDION_SERVICE_LINKS[openAccordion >= 0 ? openAccordion : 0].label}
+                      <ArrowRight size={12} style={{ transition: "transform 0.25s ease" }} />
+                    </Link>
+                  </motion.div>
                 </motion.div>
               </AnimatePresence>
             </div>
@@ -1041,43 +1078,50 @@ const Method = () => {
       </section>
 
       {/* ══════════════════════════════════════════════════════════════
-          9. FINAL CTA — Ivory
+          9. FINAL CTA — Charcoal + Gold glassmorphic card
       ══════════════════════════════════════════════════════════════ */}
       <section
-        className="ct-section text-center"
-        style={{ background: "#F5F2EC" }}
+        className="ct-section"
+        style={{ background: "#121212" }}
         data-testid="method-final-cta"
       >
-        <div className="max-w-[560px] mx-auto px-6">
+        <div className="max-w-[640px] mx-auto px-6">
           <ScrollReveal>
             <div
-              style={{ width: "1px", height: "60px", background: "linear-gradient(to bottom, transparent, rgba(18,18,18,0.2), transparent)", margin: "0 auto 40px" }}
-            />
-            <h2
-              className="text-charcoal"
-              style={{ fontFamily: "Figtree, sans-serif", fontSize: "clamp(28px, 3.5vw, 44px)", fontWeight: 400, lineHeight: 1.1 }}
+              style={{
+                padding: "72px 72px",
+                borderRadius: "16px",
+                backdropFilter: "blur(28px)",
+                WebkitBackdropFilter: "blur(28px)",
+                background: "rgba(14, 9, 0, 0.92)",
+                border: "1px solid rgba(200,169,106,0.25)",
+                boxShadow: "0 8px 80px rgba(200,169,106,0.06), inset 0 1px 0 rgba(200,169,106,0.12)",
+                textAlign: "center",
+              }}
             >
-              {m.cta.headline}
-            </h2>
-          </ScrollReveal>
-          <ScrollReveal delay={0.15}>
-            <p
-              className="mt-6 leading-relaxed"
-              style={{ fontFamily: "Manrope, sans-serif", fontSize: "16px", fontWeight: 300, color: "rgba(18,18,18,0.55)" }}
-            >
-              {m.cta.body}
-            </p>
-          </ScrollReveal>
-          <ScrollReveal delay={0.28}>
-            <Link
-              to="/contact"
-              className="btn-primary mt-10 inline-flex items-center gap-2"
-              style={{ borderRadius: "8px", padding: "14px 32px" }}
-              data-testid="method-cta-btn"
-            >
-              {m.cta.button}
-              <ArrowRight size={14} />
-            </Link>
+              <div
+                style={{ width: "1px", height: "48px", background: "linear-gradient(to bottom, transparent, rgba(200,169,106,0.35), transparent)", margin: "0 auto 40px" }}
+              />
+              <h2
+                style={{ fontFamily: "Figtree, sans-serif", fontSize: "clamp(28px, 3.5vw, 44px)", fontWeight: 400, lineHeight: 1.1, color: "#F5F2EC" }}
+              >
+                {m.cta.headline}
+              </h2>
+              <p
+                style={{ fontFamily: "Manrope, sans-serif", fontSize: "15px", fontWeight: 300, color: "rgba(227,222,215,0.5)", lineHeight: 1.75, marginTop: "20px" }}
+              >
+                {m.cta.body}
+              </p>
+              <Link
+                to="/contact"
+                className="btn-primary inline-flex items-center gap-2"
+                style={{ borderRadius: "8px", padding: "14px 36px", marginTop: "40px", display: "inline-flex" }}
+                data-testid="method-cta-btn"
+              >
+                {m.cta.button}
+                <ArrowRight size={14} />
+              </Link>
+            </div>
           </ScrollReveal>
         </div>
       </section>
