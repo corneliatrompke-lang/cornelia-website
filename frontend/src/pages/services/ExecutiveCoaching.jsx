@@ -140,50 +140,77 @@ const ExecutiveCoaching = () => {
   const [activeForWhom, setActiveForWhom] = useState(null);
 
   return (
-    <div>
+    <div className="bg-[#F5F2EC]">
 
-      {/* ══ 1. HERO ══════════════════════════════════════════════════════════ */}
+      {/* ══ 1. HERO — rounded-card wrapper matching Home & Method ════════ */}
       <section
-        ref={heroRef}
-        className="relative overflow-hidden flex items-end"
-        style={{ minHeight: "88vh", paddingBottom: "100px", paddingTop: "140px" }}
+        className="pt-[6px] px-3 md:px-4 pb-3"
+        style={{ background: "#F5F2EC" }}
         data-testid="coaching-hero"
       >
-        <motion.div
-          style={{ position: "absolute", inset: 0, y: heroBgY, scale: 1.08 }}
+        <div
+          ref={heroRef}
+          className="relative overflow-hidden w-full"
+          style={{ borderRadius: "20px", minHeight: "96vh" }}
         >
-          <img src={HERO_BG} alt="" style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center top" }} />
-          <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to bottom, rgba(18,18,18,0.55) 0%, rgba(18,18,18,0.3) 40%, rgba(18,18,18,0.82) 100%)" }} />
-        </motion.div>
-        <div className="relative z-10 max-w-[1400px] mx-auto px-6 md:px-16 w-full">
-          <ScrollReveal>
-            <p className="ct-overline text-gold mb-6">{s.hero.overline}</p>
-          </ScrollReveal>
-          <ScrollReveal delay={0.15}>
-            <h1
-              className="text-ivory leading-[1.05] max-w-[700px]"
-              style={{ fontFamily: "Figtree, sans-serif", fontSize: "clamp(40px, 6vw, 74px)", fontWeight: 400 }}
-            >
-              {s.hero.headline}
-            </h1>
-          </ScrollReveal>
-          <ScrollReveal delay={0.28}>
-            <p
-              style={{ fontFamily: "Cormorant Garamond, serif", fontSize: "22px", fontStyle: "italic", color: "rgba(227,222,215,0.65)", marginTop: "20px", maxWidth: "520px" }}
-            >
-              {s.hero.subtitle}
-            </p>
-          </ScrollReveal>
-          <ScrollReveal delay={0.4}>
-            <Link
-              to="/contact"
-              className="btn-primary inline-block"
-              style={{ marginTop: "44px", borderRadius: "8px" }}
-              data-testid="coaching-hero-cta"
-            >
-              Begin an Application
-            </Link>
-          </ScrollReveal>
+          <motion.img
+            src={HERO_BG}
+            alt=""
+            aria-hidden="true"
+            style={{
+              position: "absolute", left: 0, right: 0, top: 0,
+              width: "100%", height: "115%",
+              objectFit: "cover", objectPosition: "center top",
+              y: heroBgY,
+            }}
+          />
+          {/* Left gradient */}
+          <div
+            className="absolute inset-0 z-[1]"
+            style={{ background: "linear-gradient(to right, rgba(18,18,18,1.00) 0%, rgba(18,18,18,0.90) 20%, rgba(18,18,18,0.75) 40%, rgba(18,18,18,0.30) 60%, rgba(18,18,18,0.15) 80%, rgba(18,18,18,0.01) 100%)" }}
+          />
+          {/* Top strip */}
+          <div
+            className="absolute top-0 left-0 right-0 z-[2]"
+            style={{ height: "130px", background: "linear-gradient(to bottom, rgba(12,12,12,0.65) 0%, rgba(12,12,12,0.2) 70%, transparent 100%)" }}
+          />
+          <NeuralCanvas opacity={0.08} nodeCount={40} />
+
+          {/* Content — bottom left */}
+          <div className="absolute bottom-0 left-0 z-10 p-8 md:p-14" style={{ maxWidth: "860px" }}>
+            <ScrollReveal delay={0.1}>
+              <p className="ct-overline text-gold mb-6">{s.hero.overline}</p>
+            </ScrollReveal>
+            <ScrollReveal delay={0.25}>
+              <h1
+                className="text-ivory leading-[1.04]"
+                style={{ fontFamily: "Figtree, sans-serif", fontSize: "clamp(40px, 6.5vw, 84px)", fontWeight: 400 }}
+                data-testid="coaching-hero-headline"
+              >
+                {s.hero.headline}
+              </h1>
+            </ScrollReveal>
+            <ScrollReveal delay={0.42}>
+              <p
+                className="mt-5 max-w-[520px] leading-relaxed"
+                style={{ fontFamily: "Cormorant Garamond, serif", fontSize: "22px", fontStyle: "italic", color: "rgba(227,222,215,0.65)" }}
+              >
+                {s.hero.subtitle}
+              </p>
+            </ScrollReveal>
+            <ScrollReveal delay={0.58}>
+              <div className="flex flex-col sm:flex-row gap-3 mt-9 mb-10">
+                <Link
+                  to="/contact"
+                  className="btn-primary inline-block"
+                  style={{ borderRadius: "8px" }}
+                  data-testid="coaching-hero-cta"
+                >
+                  Begin an Application
+                </Link>
+              </div>
+            </ScrollReveal>
+          </div>
         </div>
       </section>
 
@@ -198,11 +225,11 @@ const ExecutiveCoaching = () => {
                 <p
                   style={{
                     fontFamily: "Cormorant Garamond, serif",
-                    fontSize: "clamp(26px, 2.8vw, 38px)",
+                    fontSize: "clamp(34px, 3.8vw, 54px)",
                     fontWeight: 400,
                     fontStyle: "italic",
                     color: "#121212",
-                    lineHeight: 1.3,
+                    lineHeight: 1.25,
                   }}
                 >
                   "{s.description.headline}"
