@@ -649,28 +649,14 @@ const Method = () => {
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ delay: 0.55, duration: 0.4 }}
-                    style={{ marginTop: "36px", paddingTop: "28px", borderTop: "1px solid rgba(245,242,236,0.08)" }}
+                    style={{ marginTop: "36px" }}
                   >
                     <Link
                       to={ACCORDION_SERVICE_LINKS[openAccordion >= 0 ? openAccordion : 0].to}
-                      style={{
-                        fontFamily: "Manrope, sans-serif",
-                        fontSize: "11px",
-                        fontWeight: 500,
-                        letterSpacing: "2px",
-                        textTransform: "uppercase",
-                        color: "rgba(200,169,106,0.75)",
-                        display: "inline-flex",
-                        alignItems: "center",
-                        gap: "10px",
-                        textDecoration: "none",
-                        transition: "color 0.25s ease",
-                      }}
-                      className="group"
+                      className="btn-primary inline-block"
                       data-testid={`accordion-cta-${openAccordion}`}
                     >
                       {ACCORDION_SERVICE_LINKS[openAccordion >= 0 ? openAccordion : 0].label}
-                      <ArrowRight size={12} style={{ transition: "transform 0.25s ease" }} />
                     </Link>
                   </motion.div>
                 </motion.div>
@@ -1078,49 +1064,55 @@ const Method = () => {
       </section>
 
       {/* ══════════════════════════════════════════════════════════════
-          9. FINAL CTA — Charcoal + Gold glassmorphic card
+          9. FINAL CTA — Ivory bg, charcoal+gold glassmorphic card
       ══════════════════════════════════════════════════════════════ */}
       <section
         className="ct-section"
-        style={{ background: "#121212" }}
+        style={{ background: "#F5F2EC" }}
         data-testid="method-final-cta"
       >
-        <div className="max-w-[640px] mx-auto px-6">
+        <div className="max-w-[760px] mx-auto px-6">
           <ScrollReveal>
             <div
               style={{
-                padding: "72px 72px",
-                borderRadius: "16px",
+                background: "rgba(18, 18, 18, 0.96)",
                 backdropFilter: "blur(28px)",
                 WebkitBackdropFilter: "blur(28px)",
-                background: "rgba(14, 9, 0, 0.92)",
-                border: "1px solid rgba(200,169,106,0.25)",
-                boxShadow: "0 8px 80px rgba(200,169,106,0.06), inset 0 1px 0 rgba(200,169,106,0.12)",
+                border: "1px solid rgba(200,169,106,0.2)",
+                borderRadius: "20px",
+                padding: "80px 72px",
                 textAlign: "center",
+                position: "relative",
+                overflow: "hidden",
               }}
             >
-              <div
-                style={{ width: "1px", height: "48px", background: "linear-gradient(to bottom, transparent, rgba(200,169,106,0.35), transparent)", margin: "0 auto 40px" }}
-              />
-              <h2
-                style={{ fontFamily: "Figtree, sans-serif", fontSize: "clamp(28px, 3.5vw, 44px)", fontWeight: 400, lineHeight: 1.1, color: "#F5F2EC" }}
-              >
-                {m.cta.headline}
-              </h2>
-              <p
-                style={{ fontFamily: "Manrope, sans-serif", fontSize: "15px", fontWeight: 300, color: "rgba(227,222,215,0.5)", lineHeight: 1.75, marginTop: "20px" }}
-              >
-                {m.cta.body}
-              </p>
-              <Link
-                to="/contact"
-                className="btn-primary inline-flex items-center gap-2"
-                style={{ borderRadius: "8px", padding: "14px 36px", marginTop: "40px", display: "inline-flex" }}
-                data-testid="method-cta-btn"
-              >
-                {m.cta.button}
-                <ArrowRight size={14} />
-              </Link>
+              {/* Inner radial shimmer */}
+              <div style={{ position: "absolute", inset: 0, background: "radial-gradient(ellipse 80% 60% at 50% 40%, rgba(200,169,106,0.05) 0%, transparent 70%)", pointerEvents: "none" }} />
+              {/* Corner accent lines */}
+              <div style={{ position: "absolute", top: 0, left: 0, width: "48px", height: "1px", background: "rgba(200,169,106,0.35)" }} />
+              <div style={{ position: "absolute", top: 0, left: 0, width: "1px", height: "48px", background: "rgba(200,169,106,0.35)" }} />
+              <div style={{ position: "absolute", bottom: 0, right: 0, width: "48px", height: "1px", background: "rgba(200,169,106,0.35)" }} />
+              <div style={{ position: "absolute", bottom: 0, right: 0, width: "1px", height: "48px", background: "rgba(200,169,106,0.35)" }} />
+
+              <div className="relative z-10">
+                <div style={{ width: "1px", height: "48px", background: "linear-gradient(to bottom, transparent, rgba(200,169,106,0.35), transparent)", margin: "0 auto 40px" }} />
+                <h2
+                  style={{ fontFamily: "Figtree, sans-serif", fontSize: "clamp(28px, 3.5vw, 44px)", fontWeight: 400, lineHeight: 1.1, color: "#F5F2EC" }}
+                >
+                  {m.cta.headline}
+                </h2>
+                <p style={{ fontFamily: "Manrope, sans-serif", fontSize: "15px", fontWeight: 300, color: "rgba(227,222,215,0.5)", lineHeight: 1.75, marginTop: "20px" }}>
+                  {m.cta.body}
+                </p>
+                <Link
+                  to="/contact"
+                  className="btn-primary inline-block"
+                  style={{ marginTop: "40px" }}
+                  data-testid="method-cta-btn"
+                >
+                  {m.cta.button}
+                </Link>
+              </div>
             </div>
           </ScrollReveal>
         </div>
