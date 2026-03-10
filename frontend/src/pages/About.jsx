@@ -906,42 +906,73 @@ const About = () => {
       </section>
 
 
-      {/* ═══ FINAL CTA — charcoal ═══ */}
+      {/* ═══ FINAL CTA — charcoal + glassmorphic wrapper ═══ */}
       <section
         className="bg-charcoal ct-section relative overflow-hidden"
         data-testid="about-cta"
       >
         <NeuralCanvas opacity={0.04} nodeCount={22} />
-        <div className="max-w-[580px] mx-auto px-6 text-center relative z-10">
+        <div className="relative z-10 max-w-[760px] mx-auto px-6">
           <ScrollReveal>
-            <h2
-              className="text-ivory leading-[1.1]"
+            <div
               style={{
-                fontFamily: "Figtree, sans-serif",
-                fontSize: "clamp(28px, 3.5vw, 40px)",
-                fontWeight: 400,
+                background: "rgba(200,169,106,0.06)",
+                backdropFilter: "blur(28px)",
+                WebkitBackdropFilter: "blur(28px)",
+                border: "1px solid rgba(200,169,106,0.18)",
+                borderRadius: "20px",
+                padding: "80px 72px",
+                textAlign: "center",
+                position: "relative",
+                overflow: "hidden",
               }}
             >
-              {a.cta.headline}
-            </h2>
-            <p
-              className="text-stone/50 mt-5 leading-relaxed"
-              style={{
-                fontFamily: "Manrope, sans-serif",
-                fontSize: "15px",
-                fontWeight: 300,
-              }}
-            >
-              {a.cta.body}
-            </p>
-            <Link
-              to="/contact"
-              className="btn-secondary mt-8 inline-block"
-              style={{ borderRadius: "8px" }}
-              data-testid="about-contact-cta"
-            >
-              {a.cta.button}
-            </Link>
+              {/* Inner radial shimmer */}
+              <div
+                style={{
+                  position: "absolute",
+                  inset: 0,
+                  background:
+                    "radial-gradient(ellipse 80% 60% at 50% 40%, rgba(200,169,106,0.05) 0%, transparent 70%)",
+                  pointerEvents: "none",
+                }}
+              />
+              {/* Corner accent lines */}
+              <div style={{ position: "absolute", top: 0, left: 0, width: "48px", height: "1px", background: "rgba(200,169,106,0.35)" }} />
+              <div style={{ position: "absolute", top: 0, left: 0, width: "1px", height: "48px", background: "rgba(200,169,106,0.35)" }} />
+              <div style={{ position: "absolute", bottom: 0, right: 0, width: "48px", height: "1px", background: "rgba(200,169,106,0.35)" }} />
+              <div style={{ position: "absolute", bottom: 0, right: 0, width: "1px", height: "48px", background: "rgba(200,169,106,0.35)" }} />
+
+              <div className="relative z-10">
+                <h2
+                  className="text-ivory leading-[1.1]"
+                  style={{
+                    fontFamily: "Figtree, sans-serif",
+                    fontSize: "clamp(32px, 5vw, 60px)",
+                    fontWeight: 400,
+                  }}
+                >
+                  {a.cta.headline}
+                </h2>
+                <p
+                  className="text-stone/50 mt-6 leading-relaxed"
+                  style={{
+                    fontFamily: "Manrope, sans-serif",
+                    fontSize: "16px",
+                    fontWeight: 300,
+                  }}
+                >
+                  {a.cta.body}
+                </p>
+                <Link
+                  to="/contact"
+                  className="btn-secondary mt-10 inline-block"
+                  data-testid="about-contact-cta"
+                >
+                  {a.cta.button}
+                </Link>
+              </div>
+            </div>
           </ScrollReveal>
         </div>
       </section>
