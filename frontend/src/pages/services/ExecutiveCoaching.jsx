@@ -421,19 +421,23 @@ const ExecutiveCoaching = () => {
         </div>
       </section>
 
-      {/* ══ 5. FOR WHOM — ivory, horizontal hover accordion ═════════════ */}
-      <section className="ct-section" style={{ background: "#F5F2EC" }} data-testid="coaching-for-whom">
+      {/* ══ 5. FOR WHOM — charcoal→ivory gradient, horizontal hover accordion ══ */}
+      <section
+        className="ct-section"
+        style={{ background: "linear-gradient(to bottom, #121212 0%, #1A1210 25%, #3D2410 48%, #6B5040 65%, #A08872 80%, #D4C5B0 92%, #F5F2EC 100%)" }}
+        data-testid="coaching-for-whom"
+      >
         <div className="max-w-[1400px] mx-auto px-6 md:px-16">
           <div className="max-w-[600px] mx-auto mb-16 text-center">
             <ScrollReveal>
-              <p className="ct-overline text-sage mb-5">{s.forWhom.overline}</p>
-              <h2 style={{ fontFamily: "Figtree, sans-serif", fontSize: "clamp(28px, 3.5vw, 46px)", fontWeight: 400, color: "#121212", lineHeight: 1.1 }}>
+              <p className="ct-overline text-gold/60 mb-5">{s.forWhom.overline}</p>
+              <h2 style={{ fontFamily: "Figtree, sans-serif", fontSize: "clamp(28px, 3.5vw, 46px)", fontWeight: 400, color: "#F5F2EC", lineHeight: 1.1 }}>
                 {s.forWhom.headline}
               </h2>
             </ScrollReveal>
           </div>
 
-          {/* Horizontal accordion */}
+          {/* Horizontal accordion — dark-adapted colors */}
           <div className="flex" style={{ height: "420px", overflow: "hidden" }}>
             {FOR_WHOM_ITEMS.map((item, i) => {
               const isActive = activeForWhom === i;
@@ -448,30 +452,30 @@ const ExecutiveCoaching = () => {
                     transition: "flex 0.65s cubic-bezier(0.4, 0, 0.2, 1), background 0.4s ease",
                     position: "relative",
                     overflow: "hidden",
-                    borderRight: i < FOR_WHOM_ITEMS.length - 1 ? "1px solid rgba(18,18,18,0.07)" : "none",
+                    borderRight: i < FOR_WHOM_ITEMS.length - 1 ? "1px solid rgba(245,242,236,0.08)" : "none",
                     cursor: "default",
-                    background: isActive ? "rgba(18,18,18,0.025)" : "#F5F2EC",
+                    background: isActive ? "rgba(245,242,236,0.04)" : "transparent",
                   }}
                 >
                   {/* Collapsed: rotated title + faint number */}
                   <div style={{ position: "absolute", inset: 0, display: "flex", flexDirection: "column", alignItems: "center", padding: "40px 0", opacity: isActive ? 0 : 1, transition: "opacity 0.2s ease", pointerEvents: "none" }}>
-                    <span style={{ writingMode: "vertical-rl", transform: "rotate(180deg)", fontFamily: "Figtree, sans-serif", fontSize: "clamp(13px, 1.6vw, 18px)", fontWeight: 400, letterSpacing: "0.08em", color: "rgba(18,18,18,0.5)", flex: 1, display: "flex", alignItems: "center" }}>
+                    <span style={{ writingMode: "vertical-rl", transform: "rotate(180deg)", fontFamily: "Figtree, sans-serif", fontSize: "clamp(13px, 1.6vw, 18px)", fontWeight: 400, letterSpacing: "0.08em", color: "rgba(245,242,236,0.45)", flex: 1, display: "flex", alignItems: "center" }}>
                       {item.title}
                     </span>
-                    <span style={{ fontFamily: "Cormorant Garamond, serif", fontSize: "28px", fontWeight: 300, color: "rgba(18,18,18,0.12)", lineHeight: 1, paddingBottom: "4px" }}>
+                    <span style={{ fontFamily: "Cormorant Garamond, serif", fontSize: "28px", fontWeight: 300, color: "rgba(245,242,236,0.1)", lineHeight: 1, paddingBottom: "4px" }}>
                       {item.number}
                     </span>
                   </div>
 
-                  {/* Expanded: editorial layout */}
+                  {/* Expanded */}
                   <div style={{ opacity: isActive ? 1 : 0, transition: "opacity 0.35s ease 0.22s", padding: "48px 52px", height: "100%", display: "flex", flexDirection: "column", justifyContent: "flex-end", minWidth: "380px" }}>
-                    <span style={{ fontFamily: "Manrope, sans-serif", fontSize: "10px", fontWeight: 600, letterSpacing: "0.25em", textTransform: "uppercase", color: "rgba(124,140,130,0.75)", marginBottom: "20px", display: "block" }}>
+                    <span style={{ fontFamily: "Manrope, sans-serif", fontSize: "10px", fontWeight: 600, letterSpacing: "0.25em", textTransform: "uppercase", color: "rgba(200,169,106,0.8)", marginBottom: "20px", display: "block" }}>
                       {item.number}
                     </span>
-                    <h3 style={{ fontFamily: "Figtree, sans-serif", fontSize: "clamp(20px, 2vw, 28px)", fontWeight: 400, color: "#121212", lineHeight: 1.2, marginBottom: "18px", maxWidth: "360px" }}>
+                    <h3 style={{ fontFamily: "Figtree, sans-serif", fontSize: "clamp(20px, 2vw, 28px)", fontWeight: 400, color: "#F5F2EC", lineHeight: 1.2, marginBottom: "18px", maxWidth: "360px" }}>
                       {item.title}
                     </h3>
-                    <p style={{ fontFamily: "Manrope, sans-serif", fontSize: "14px", fontWeight: 300, color: "rgba(18,18,18,0.5)", lineHeight: 1.75, maxWidth: "360px" }}>
+                    <p style={{ fontFamily: "Manrope, sans-serif", fontSize: "14px", fontWeight: 300, color: "rgba(227,222,215,0.55)", lineHeight: 1.75, maxWidth: "360px" }}>
                       {item.body}
                     </p>
                   </div>
@@ -504,24 +508,52 @@ const ExecutiveCoaching = () => {
             </div>
             {/* Thin divider */}
             <div style={{ width: "1px", background: "rgba(18,18,18,0.08)", flexShrink: 0, alignSelf: "stretch" }} />
-            {/* Right: outcomes */}
+            {/* Right: numbered row blocks (Integral-diagram style, ivory-adapted) */}
             <div style={{ flex: 1 }}>
-              {WHAT_SHIFTS.map((item, i) => (
-                <ScrollReveal key={i} delay={0.07 * i}>
-                  <div
-                    style={{
-                      borderTop: i > 0 ? "1px solid rgba(18,18,18,0.07)" : "none",
-                      padding: "22px 0",
-                      display: "flex", gap: "18px", alignItems: "baseline",
-                    }}
-                  >
-                    <span style={{ fontFamily: "Cormorant Garamond, serif", fontSize: "16px", color: "rgba(18,18,18,0.2)", flexShrink: 0 }}>—</span>
-                    <p style={{ fontFamily: "Manrope, sans-serif", fontSize: "14px", fontWeight: 300, color: "rgba(18,18,18,0.55)", lineHeight: 1.7 }}>
-                      {item}
-                    </p>
-                  </div>
-                </ScrollReveal>
-              ))}
+              {WHAT_SHIFTS.map((item, i) => {
+                const bgOpacity = 0.025 + (i / (WHAT_SHIFTS.length - 1)) * 0.04;
+                return (
+                  <ScrollReveal key={i} delay={0.07 * i}>
+                    <div className="flex items-stretch mb-2" data-testid={`shift-item-${i}`}>
+                      {/* Number badge */}
+                      <div
+                        style={{
+                          flexShrink: 0, width: "44px",
+                          display: "flex", alignItems: "center", justifyContent: "center",
+                          background: `rgba(18,18,18,${bgOpacity + 0.03})`,
+                          borderLeft: "2px solid rgba(18,18,18,0.18)",
+                        }}
+                      >
+                        <span style={{ fontFamily: "Manrope, sans-serif", fontSize: "10px", fontWeight: 600, color: "rgba(18,18,18,0.35)", letterSpacing: "1px" }}>
+                          {String(i + 1).padStart(2, "0")}
+                        </span>
+                      </div>
+                      {/* Content row */}
+                      <div
+                        style={{
+                          flex: 1, padding: "16px 28px",
+                          background: `rgba(18,18,18,${bgOpacity})`,
+                          borderTop: "1px solid rgba(18,18,18,0.06)",
+                          borderBottom: "1px solid rgba(18,18,18,0.06)",
+                          borderRight: "1px solid rgba(18,18,18,0.06)",
+                        }}
+                      >
+                        <p style={{ fontFamily: "Manrope, sans-serif", fontSize: "14px", fontWeight: 300, color: "rgba(18,18,18,0.55)", lineHeight: 1.65 }}>
+                          {item}
+                        </p>
+                      </div>
+                    </div>
+                  </ScrollReveal>
+                );
+              })}
+              <ScrollReveal delay={0.45}>
+                <div className="flex items-center gap-3 mt-6">
+                  <div style={{ width: "1px", height: "32px", background: "rgba(18,18,18,0.2)" }} />
+                  <span style={{ fontFamily: "Cormorant Garamond, serif", fontSize: "14px", fontStyle: "italic", color: "rgba(18,18,18,0.35)" }}>
+                    Sustained engagement changes the architecture of how you lead
+                  </span>
+                </div>
+              </ScrollReveal>
             </div>
           </div>
         </div>
