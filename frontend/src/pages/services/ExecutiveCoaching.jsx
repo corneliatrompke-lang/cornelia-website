@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
-import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion";
+import { motion, AnimatePresence, useScroll, useTransform, useMotionValueEvent } from "framer-motion";
 import NeuralCanvas from "../../components/NeuralCanvas";
 import ScrollReveal from "../../components/ScrollReveal";
 import { useLanguage } from "../../context/LanguageContext";
@@ -48,70 +48,46 @@ const WHAT_SHIFTS = [
   "A quality of inner spaciousness that changes the texture of leadership entirely",
 ];
 
-// ─── Concentric Circles ───────────────────────────────────────────────────────
-const ConcentricCircles = () => (
-  <div style={{ position: "relative", width: "320px", height: "320px", margin: "0 auto" }}>
-    {/* Outer ring — Integration */}
-    <motion.div
-      initial={{ scale: 0.6, opacity: 0 }}
-      whileInView={{ scale: 1, opacity: 1 }}
-      viewport={{ once: true }}
-      transition={{ duration: 1.4, delay: 0.4, ease: [0.25, 0.46, 0.45, 0.94] }}
-      style={{ position: "absolute", inset: 0, borderRadius: "50%", border: "1px solid rgba(200,169,106,0.18)" }}
-    />
-    {/* Middle ring — Deepening */}
-    <motion.div
-      initial={{ scale: 0.5, opacity: 0 }}
-      whileInView={{ scale: 1, opacity: 1 }}
-      viewport={{ once: true }}
-      transition={{ duration: 1.4, delay: 0.22, ease: [0.25, 0.46, 0.45, 0.94] }}
-      style={{ position: "absolute", inset: "52px", borderRadius: "50%", border: "1px solid rgba(200,169,106,0.32)" }}
-    />
-    {/* Inner ring — Orientation */}
-    <motion.div
-      initial={{ scale: 0.3, opacity: 0 }}
-      whileInView={{ scale: 1, opacity: 1 }}
-      viewport={{ once: true }}
-      transition={{ duration: 1.4, delay: 0.06, ease: [0.25, 0.46, 0.45, 0.94] }}
-      style={{
-        position: "absolute", inset: "104px", borderRadius: "50%",
-        border: "1px solid rgba(200,169,106,0.52)",
-        background: "rgba(200,169,106,0.03)",
-        display: "flex", alignItems: "center", justifyContent: "center",
-      }}
-    >
-      <span style={{ fontFamily: "Cormorant Garamond, serif", fontSize: "11px", fontStyle: "italic", color: "rgba(200,169,106,0.55)", textAlign: "center" }}>
-        The Work
-      </span>
-    </motion.div>
-    {/* Phase labels — positioned around the rings */}
-    {PHASES.map((phase, i) => {
-      const radii = [160, 108, 56]; // distance from center
-      const angles = [-55, 25, -10]; // angle in degrees
-      const rads = (angles[i] * Math.PI) / 180;
-      const x = 160 + radii[i] * Math.cos(rads) - 36;
-      const y = 160 + radii[i] * Math.sin(rads) - 10;
-      return (
-        <motion.div
-          key={i}
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.8 + i * 0.15, duration: 0.6 }}
-          style={{ position: "absolute", left: x, top: y, pointerEvents: "none" }}
-        >
-          <span style={{
-            fontFamily: "Manrope, sans-serif", fontSize: "9px", fontWeight: 600,
-            letterSpacing: "1.5px", textTransform: "uppercase",
-            color: "rgba(200,169,106,0.6)",
-          }}>
-            {phase.number}
-          </span>
-        </motion.div>
-      );
-    })}
-  </div>
-);
+// ─── Concentric Circles Viz ───────────────────────────────────────────────────
+const PHASE_GRADIENT = "linear-gradient(to bottom, #F5F2EC 0%, #D4C5B0 8%, #A08872 20%, #6B5040 35%, #3D2410 55%, #1A1210 76%, #121212 100%)";
+
+const CirclesViz = ({ activePhase }) => {
+  // Rings: index 0 = innermost (01), index 1 = middle (02), index 2 = outermost (03)
+  const rings = [
+    { inset: "180px", size: "140px" },  // 01 — inner
+    { inset: "90px",  size: "320px" },  // 02 — middle
+    { inset: "0px",   size: "500px" },  // 03 — outer
+  ];
+  return (
+    <div style={{ position: "relative", width: "500px", height: "500px", flexShrink: 0 }}>
+      {rings.map((ring, i) => {
+        const lit = activePhase >= i;
+        return (
+          <motion.div
+            key={i}
+            animate={{
+              borderColor: lit ? `rgba(200,169,106,${0.75 - i * 0.18})` : "rgba(200,169,106,0.06)",
+              boxShadow: lit ? `0 0 ${20 + i * 14}px rgba(200,169,106,${0.12 - i * 0.025})` : "none",
+            }}
+            transition={{ duration: 0.9, ease: "easeOut" }}
+            style={{
+              position: "absolute",
+              inset: ring.inset,
+              borderRadius: "50%",
+              border: "1px solid",
+            }}
+          />
+        );
+      })}
+      {/* Center label */}
+      <div style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%, -50%)" }}>
+        <span style={{ fontFamily: "Cormorant Garamond, serif", fontSize: "11px", fontStyle: "italic", color: "rgba(200,169,106,0.45)", whiteSpace: "nowrap" }}>
+          The Work
+        </span>
+      </div>
+    </div>
+  );
+};
 
 // ─── Page ─────────────────────────────────────────────────────────────────────
 const ExecutiveCoaching = () => {
@@ -122,6 +98,17 @@ const ExecutiveCoaching = () => {
   const heroRef = useRef(null);
   const { scrollYProgress: heroScroll } = useScroll({ target: heroRef, offset: ["start start", "end start"] });
   const heroBgY = useTransform(heroScroll, [0, 1], ["0%", "-12%"]);
+
+  // Phases scroll animation
+  const phasesRef = useRef(null);
+  const { scrollYProgress: phasesProgress } = useScroll({ target: phasesRef, offset: ["start start", "end end"] });
+  const [activePhase, setActivePhase] = useState(-1);
+  useMotionValueEvent(phasesProgress, "change", (v) => {
+    if (v < 0.06)       setActivePhase(-1);
+    else if (v < 0.38)  setActivePhase(0);
+    else if (v < 0.68)  setActivePhase(1);
+    else                setActivePhase(2);
+  });
 
   // Testimonials
   const testimonials = t.home.testimonials.items;
@@ -260,78 +247,89 @@ const ExecutiveCoaching = () => {
         </div>
       </section>
 
-      {/* ══ 3. HOW THE ENGAGEMENT UNFOLDS — Ivory→Charcoal + Concentric Circles ══ */}
-      <section
-        className="ct-section"
-        style={{ background: "linear-gradient(to bottom, #F5F2EC 0%, #D4C5B0 8%, #A08872 20%, #6B5040 35%, #3D2410 55%, #1A1210 76%, #121212 100%)" }}
+      {/* ══ 3. HOW THE ENGAGEMENT UNFOLDS — sticky scroll animation ═════ */}
+      {/* Outer wrapper tracks scroll for phase activation */}
+      <div
+        ref={phasesRef}
+        style={{ background: PHASE_GRADIENT, position: "relative" }}
         data-testid="coaching-phases"
       >
-        <div className="max-w-[1400px] mx-auto px-6 md:px-16">
-          {/* Heading */}
-          <div className="max-w-[600px] mb-20">
-            <ScrollReveal>
-              <p className="ct-overline text-sage mb-5">The Engagement Arc</p>
-              <h2
-                style={{ fontFamily: "Figtree, sans-serif", fontSize: "clamp(28px, 3.5vw, 46px)", fontWeight: 400, color: "#121212", lineHeight: 1.1 }}
-              >
-                How the Work Unfolds Over Time
-              </h2>
-            </ScrollReveal>
-          </div>
+        {/* Non-sticky heading */}
+        <div className="max-w-[1400px] mx-auto px-6 md:px-16" style={{ paddingTop: "140px", paddingBottom: "80px" }}>
+          <ScrollReveal>
+            <p className="ct-overline text-sage mb-5">The Engagement Arc</p>
+            <h2 style={{ fontFamily: "Figtree, sans-serif", fontSize: "clamp(28px, 3.5vw, 46px)", fontWeight: 400, color: "#121212", lineHeight: 1.1 }}>
+              How the Work Unfolds Over Time
+            </h2>
+          </ScrollReveal>
+        </div>
 
-          {/* Two columns */}
-          <div style={{ display: "flex", gap: "80px", alignItems: "center" }}>
+        {/* Tall container — drives the scroll */}
+        <div style={{ height: "260vh" }}>
+          <div style={{ position: "sticky", top: 0, height: "100vh", display: "flex", alignItems: "center", overflow: "hidden" }}>
+            <div className="max-w-[1400px] mx-auto px-6 md:px-16 w-full">
+              <div style={{ display: "flex", alignItems: "center", gap: "0" }}>
 
-            {/* Left: concentric circles */}
-            <div style={{ flex: "0 0 38%" }}>
-              <ConcentricCircles />
-            </div>
+                {/* Left: circles — 50% */}
+                <div style={{ flex: "0 0 50%", display: "flex", justifyContent: "center", alignItems: "center" }}>
+                  <CirclesViz activePhase={activePhase} />
+                </div>
 
-            {/* Thin divider */}
-            <div style={{ width: "1px", background: "rgba(245,242,236,0.1)", flexShrink: 0, alignSelf: "stretch" }} />
-
-            {/* Right: phase rows */}
-            <div style={{ flex: 1 }}>
-              {PHASES.map((phase, i) => (
-                <ScrollReveal key={i} delay={0.12 * i}>
-                  <div
-                    style={{
-                      borderTop: i > 0 ? "1px solid rgba(245,242,236,0.1)" : "none",
-                      paddingTop: i > 0 ? "32px" : "0",
-                      paddingBottom: "32px",
-                      paddingLeft: "20px",
-                      borderLeft: "2px solid rgba(200,169,106,0.35)",
-                    }}
-                  >
-                    <div style={{ display: "flex", alignItems: "baseline", gap: "12px", marginBottom: "8px" }}>
-                      <span
-                        style={{ fontFamily: "Manrope, sans-serif", fontSize: "10px", fontWeight: 600, letterSpacing: "2px", textTransform: "uppercase", color: "rgba(200,169,106,0.7)" }}
+                {/* Right: phase rows — 50% */}
+                <div style={{ flex: 1 }}>
+                  {PHASES.map((phase, i) => {
+                    const isActive = activePhase >= i;
+                    const isCurrent = activePhase === i;
+                    return (
+                      <div
+                        key={i}
+                        style={{
+                          borderTop: i > 0 ? "1px solid rgba(245,242,236,0.1)" : "none",
+                          paddingTop: i > 0 ? "32px" : "0",
+                          paddingBottom: "32px",
+                          paddingLeft: "20px",
+                          borderLeft: `2px solid ${isCurrent ? "rgba(200,169,106,0.65)" : isActive ? "rgba(200,169,106,0.3)" : "rgba(200,169,106,0.08)"}`,
+                          transition: "border-color 0.6s ease",
+                        }}
+                        data-testid={`phase-row-${i}`}
                       >
-                        {phase.number}
-                      </span>
-                      <span
-                        style={{ fontFamily: "Manrope, sans-serif", fontSize: "10px", fontWeight: 400, letterSpacing: "1px", color: "rgba(245,242,236,0.3)", textTransform: "uppercase" }}
-                      >
-                        {phase.duration}
-                      </span>
-                    </div>
-                    <h3
-                      style={{ fontFamily: "Figtree, sans-serif", fontSize: "clamp(18px, 2vw, 24px)", fontWeight: 400, color: "rgba(245,242,236,0.85)", marginBottom: "10px", lineHeight: 1.2 }}
-                    >
-                      {phase.label}
-                    </h3>
-                    <p
-                      style={{ fontFamily: "Manrope, sans-serif", fontSize: "13px", fontWeight: 300, color: "rgba(245,242,236,0.45)", lineHeight: 1.75 }}
-                    >
-                      {phase.description}
-                    </p>
-                  </div>
-                </ScrollReveal>
-              ))}
+                        <div style={{ display: "flex", alignItems: "baseline", gap: "12px", marginBottom: "8px" }}>
+                          <span style={{ fontFamily: "Manrope, sans-serif", fontSize: "10px", fontWeight: 600, letterSpacing: "2px", textTransform: "uppercase", color: isActive ? "rgba(200,169,106,0.85)" : "rgba(200,169,106,0.2)", transition: "color 0.6s ease" }}>
+                            {phase.number}
+                          </span>
+                          <span style={{ fontFamily: "Manrope, sans-serif", fontSize: "10px", fontWeight: 400, letterSpacing: "1px", color: isActive ? "rgba(245,242,236,0.35)" : "rgba(245,242,236,0.12)", textTransform: "uppercase", transition: "color 0.6s ease" }}>
+                            {phase.duration}
+                          </span>
+                        </div>
+                        <h3 style={{ fontFamily: "Figtree, sans-serif", fontSize: "clamp(18px, 2vw, 26px)", fontWeight: 400, color: isActive ? "rgba(245,242,236,0.88)" : "rgba(245,242,236,0.2)", lineHeight: 1.2, transition: "color 0.6s ease" }}>
+                          {phase.label}
+                        </h3>
+                        <AnimatePresence>
+                          {isActive && (
+                            <motion.p
+                              initial={{ opacity: 0, height: 0, marginTop: 0 }}
+                              animate={{ opacity: 1, height: "auto", marginTop: "10px" }}
+                              exit={{ opacity: 0, height: 0, marginTop: 0 }}
+                              transition={{ duration: 0.55, delay: 0.12, ease: "easeOut" }}
+                              style={{ fontFamily: "Manrope, sans-serif", fontSize: "13px", fontWeight: 300, color: "rgba(245,242,236,0.45)", lineHeight: 1.75, overflow: "hidden" }}
+                            >
+                              {phase.description}
+                            </motion.p>
+                          )}
+                        </AnimatePresence>
+                      </div>
+                    );
+                  })}
+                </div>
+
+              </div>
             </div>
           </div>
         </div>
-      </section>
+
+        {/* Bottom spacer so section ends cleanly */}
+        <div style={{ paddingBottom: "80px" }} />
+      </div>
 
       {/* ══ 4. WHAT YOU RECEIVE — Charcoal (NARM-row style) ════════════════ */}
       <section className="ct-section" style={{ background: "#121212" }} data-testid="coaching-format-detail">
