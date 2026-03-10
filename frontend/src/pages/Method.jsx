@@ -654,6 +654,7 @@ const Method = () => {
                     <Link
                       to={ACCORDION_SERVICE_LINKS[openAccordion >= 0 ? openAccordion : 0].to}
                       className="btn-primary inline-block"
+                      style={{ borderRadius: "8px" }}
                       data-testid={`accordion-cta-${openAccordion}`}
                     >
                       {ACCORDION_SERVICE_LINKS[openAccordion >= 0 ? openAccordion : 0].label}
@@ -1095,7 +1096,6 @@ const Method = () => {
               <div style={{ position: "absolute", bottom: 0, right: 0, width: "1px", height: "48px", background: "rgba(200,169,106,0.35)" }} />
 
               <div className="relative z-10">
-                <div style={{ width: "1px", height: "48px", background: "linear-gradient(to bottom, transparent, rgba(200,169,106,0.35), transparent)", margin: "0 auto 40px" }} />
                 <h2
                   style={{ fontFamily: "Figtree, sans-serif", fontSize: "clamp(28px, 3.5vw, 44px)", fontWeight: 400, lineHeight: 1.1, color: "#F5F2EC" }}
                 >
@@ -1107,7 +1107,7 @@ const Method = () => {
                 <Link
                   to="/contact"
                   className="btn-primary inline-block"
-                  style={{ marginTop: "40px" }}
+                  style={{ marginTop: "40px", borderRadius: "8px" }}
                   data-testid="method-cta-btn"
                 >
                   {m.cta.button}
