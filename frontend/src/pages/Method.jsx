@@ -812,7 +812,7 @@ const Method = () => {
       ══════════════════════════════════════════════════════════════ */}
       <section
         className="ct-section relative overflow-hidden"
-        style={{ background: "#121212", borderTop: "1px solid rgba(200,169,106,0.08)" }}
+        style={{ background: "#121212" }}
         data-testid="method-integral-deep"
       >
         <NeuralCanvas opacity={0.06} nodeCount={30} />
@@ -842,25 +842,80 @@ const Method = () => {
               ))}
             </div>
             <div className="lg:col-span-10 lg:col-start-2">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
-                {m.integral.points.map((point, i) => (
-                  <ScrollReveal key={i} delay={0.1 + i * 0.06}>
-                    <div
+              {/* Integral rows — matches NARM layers pattern, sage accent */}
+              <div className="w-full mt-4" data-testid="integral-diagram">
+                {m.integral.points.map((point, i) => {
+                  const bgOpacity = 0.04 + (i / (m.integral.points.length - 1)) * 0.08;
+                  return (
+                    <ScrollReveal key={i} delay={0.08 * i}>
+                      <div className="flex items-stretch mb-2">
+                        {/* Number badge */}
+                        <div
+                          style={{
+                            flexShrink: 0,
+                            width: "44px",
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "center",
+                            background: `rgba(124,140,130,${bgOpacity + 0.08})`,
+                            borderLeft: "2px solid rgba(124,140,130,0.4)",
+                          }}
+                        >
+                          <span
+                            style={{
+                              fontFamily: "Manrope, sans-serif",
+                              fontSize: "10px",
+                              fontWeight: 600,
+                              color: "rgba(124,140,130,0.85)",
+                              letterSpacing: "1px",
+                            }}
+                          >
+                            {String(i + 1).padStart(2, "0")}
+                          </span>
+                        </div>
+                        {/* Content */}
+                        <div
+                          style={{
+                            flex: 1,
+                            padding: "16px 28px",
+                            background: `rgba(124,140,130,${bgOpacity})`,
+                            borderTop: "1px solid rgba(124,140,130,0.12)",
+                            borderBottom: "1px solid rgba(124,140,130,0.12)",
+                            borderRight: "1px solid rgba(124,140,130,0.12)",
+                          }}
+                          data-testid={`integral-point-${i}`}
+                        >
+                          <p
+                            style={{
+                              fontFamily: "Manrope, sans-serif",
+                              fontSize: "14px",
+                              fontWeight: 300,
+                              color: "rgba(227,222,215,0.6)",
+                              lineHeight: 1.65,
+                            }}
+                          >
+                            {point}
+                          </p>
+                        </div>
+                      </div>
+                    </ScrollReveal>
+                  );
+                })}
+                <ScrollReveal delay={0.35}>
+                  <div className="flex items-center gap-3 mt-6">
+                    <div style={{ width: "1px", height: "32px", background: "rgba(124,140,130,0.4)" }} />
+                    <span
                       style={{
-                        display: "flex", gap: "14px", alignItems: "flex-start",
-                        padding: "18px 22px",
-                        border: "1px solid rgba(200,169,106,0.1)",
-                        borderRadius: "4px",
+                        fontFamily: "Cormorant Garamond, serif",
+                        fontSize: "14px",
+                        fontStyle: "italic",
+                        color: "rgba(124,140,130,0.65)",
                       }}
-                      data-testid={`integral-point-${i}`}
                     >
-                      <div style={{ flexShrink: 0, width: "6px", height: "6px", borderRadius: "50%", background: "rgba(200,169,106,0.5)", marginTop: "5px" }} />
-                      <p style={{ fontFamily: "Manrope, sans-serif", fontSize: "14px", fontWeight: 300, color: "rgba(227,222,215,0.55)", lineHeight: 1.6 }}>
-                        {point}
-                      </p>
-                    </div>
-                  </ScrollReveal>
-                ))}
+                      Integral Coaching works with the whole person across all dimensions
+                    </span>
+                  </div>
+                </ScrollReveal>
               </div>
             </div>
           </div>
