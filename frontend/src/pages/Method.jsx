@@ -398,72 +398,79 @@ const Method = () => {
               </ScrollReveal>
             </div>
 
-            {/* ── Row 2 Left: NARM card ── */}
-            <div>
-              <ScrollReveal delay={0.1}>
-                <div
-                  style={{
-                    background: "#121212", borderRadius: "10px",
-                    padding: "36px 40px", height: "100%",
-                    position: "relative", overflow: "hidden",
-                  }}
-                  data-testid="narm-card"
-                >
-                <div style={{ position: "absolute", top: 0, right: 0, width: "160px", height: "160px", background: "radial-gradient(circle, rgba(200,169,106,0.07) 0%, transparent 70%)", pointerEvents: "none" }} />
-                <p className="ct-overline text-gold/50 mb-3">{m.whatWeDo.narmCard.label}</p>
-                <h3 style={{ fontFamily: "Figtree, sans-serif", fontSize: "32px", fontWeight: 400, color: "#F5F2EC" }}>
-                  {m.whatWeDo.narmCard.title}
-                </h3>
-                <p style={{ fontFamily: "Cormorant Garamond, serif", fontSize: "15px", fontStyle: "italic", color: "rgba(200,169,106,0.7)", margin: "4px 0 16px" }}>
-                  {m.whatWeDo.narmCard.subtitle}
-                </p>
-                <p style={{ fontFamily: "Manrope, sans-serif", fontSize: "13px", fontWeight: 300, color: "rgba(227,222,215,0.55)", lineHeight: 1.7, marginBottom: "20px" }}>
-                  {m.whatWeDo.narmCard.description}
-                </p>
-                <div style={{ borderTop: "1px solid rgba(200,169,106,0.12)", paddingTop: "16px", display: "flex", flexDirection: "column", gap: "8px" }}>
-                  {m.whatWeDo.narmCard.points.map((pt, i) => (
-                    <div key={i} className="flex gap-3 items-start">
-                      <div style={{ flexShrink: 0, width: "4px", height: "4px", borderRadius: "50%", background: "#C8A96A", marginTop: "7px", opacity: 0.6 }} />
-                      <p style={{ fontFamily: "Manrope, sans-serif", fontSize: "12px", fontWeight: 300, color: "rgba(227,222,215,0.45)" }}>{pt}</p>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </ScrollReveal>
-          </div>
+            {/* ── Row 2: NARM + Integral — spans full width, equal 50/50 ── */}
+            <div style={{ gridColumn: "1 / -1" }}>
+              <div style={{ display: "flex", gap: "64px" }}>
 
-            {/* ── Row 2 Right: Integral card ── */}
-            <div>
-              <ScrollReveal delay={0.18}>
-                <div
-                  style={{
-                    background: "#fff", border: "1px solid rgba(18,18,18,0.09)",
-                    borderRadius: "10px", padding: "36px 40px", height: "100%",
-                    position: "relative", overflow: "hidden",
-                  }}
-                  data-testid="integral-card"
-                >
-                  <div style={{ position: "absolute", bottom: 0, left: 0, width: "180px", height: "180px", background: "radial-gradient(circle, rgba(124,140,130,0.07) 0%, transparent 70%)", pointerEvents: "none" }} />
-                  <p className="ct-overline mb-3" style={{ color: "rgba(18,18,18,0.3)" }}>{m.whatWeDo.integralCard.label}</p>
-                  <h3 style={{ fontFamily: "Figtree, sans-serif", fontSize: "26px", fontWeight: 400, color: "#121212" }}>
-                    {m.whatWeDo.integralCard.title}
-                  </h3>
-                  <p style={{ fontFamily: "Cormorant Garamond, serif", fontSize: "15px", fontStyle: "italic", color: "rgba(124,140,130,0.85)", margin: "4px 0 16px" }}>
-                    {m.whatWeDo.integralCard.subtitle}
-                  </p>
-                  <p style={{ fontFamily: "Manrope, sans-serif", fontSize: "13px", fontWeight: 300, color: "rgba(18,18,18,0.55)", lineHeight: 1.7, marginBottom: "20px" }}>
-                    {m.whatWeDo.integralCard.description}
-                  </p>
-                  <div style={{ borderTop: "1px solid rgba(18,18,18,0.08)", paddingTop: "16px", display: "flex", flexDirection: "column", gap: "8px" }}>
-                    {m.whatWeDo.integralCard.points.map((pt, i) => (
-                      <div key={i} className="flex gap-3 items-start">
-                        <div style={{ flexShrink: 0, width: "4px", height: "4px", borderRadius: "50%", background: "#7C8C82", marginTop: "7px", opacity: 0.7 }} />
-                        <p style={{ fontFamily: "Manrope, sans-serif", fontSize: "12px", fontWeight: 300, color: "rgba(18,18,18,0.45)" }}>{pt}</p>
+                {/* NARM card */}
+                <div style={{ flex: 1 }}>
+                  <ScrollReveal delay={0.1}>
+                    <div
+                      style={{
+                        background: "#121212", borderRadius: "10px",
+                        padding: "36px 40px",
+                        position: "relative", overflow: "hidden",
+                      }}
+                      data-testid="narm-card"
+                    >
+                      <div style={{ position: "absolute", top: 0, right: 0, width: "160px", height: "160px", background: "radial-gradient(circle, rgba(200,169,106,0.07) 0%, transparent 70%)", pointerEvents: "none" }} />
+                      <p className="ct-overline text-gold/50 mb-3">{m.whatWeDo.narmCard.label}</p>
+                      <h3 style={{ fontFamily: "Figtree, sans-serif", fontSize: "32px", fontWeight: 400, color: "#F5F2EC" }}>
+                        {m.whatWeDo.narmCard.title}
+                      </h3>
+                      <p style={{ fontFamily: "Cormorant Garamond, serif", fontSize: "15px", fontStyle: "italic", color: "rgba(200,169,106,0.7)", margin: "4px 0 16px" }}>
+                        {m.whatWeDo.narmCard.subtitle}
+                      </p>
+                      <p style={{ fontFamily: "Manrope, sans-serif", fontSize: "13px", fontWeight: 300, color: "rgba(227,222,215,0.55)", lineHeight: 1.7, marginBottom: "20px" }}>
+                        {m.whatWeDo.narmCard.description}
+                      </p>
+                      <div style={{ borderTop: "1px solid rgba(200,169,106,0.12)", paddingTop: "16px", display: "flex", flexDirection: "column", gap: "8px" }}>
+                        {m.whatWeDo.narmCard.points.map((pt, i) => (
+                          <div key={i} className="flex gap-3 items-start">
+                            <div style={{ flexShrink: 0, width: "4px", height: "4px", borderRadius: "50%", background: "#C8A96A", marginTop: "7px", opacity: 0.6 }} />
+                            <p style={{ fontFamily: "Manrope, sans-serif", fontSize: "12px", fontWeight: 300, color: "rgba(227,222,215,0.45)" }}>{pt}</p>
+                          </div>
+                        ))}
                       </div>
-                    ))}
-                  </div>
+                    </div>
+                  </ScrollReveal>
                 </div>
-              </ScrollReveal>
+
+                {/* Integral card */}
+                <div style={{ flex: 1 }}>
+                  <ScrollReveal delay={0.18}>
+                    <div
+                      style={{
+                        background: "#fff", border: "1px solid rgba(18,18,18,0.09)",
+                        borderRadius: "10px", padding: "36px 40px",
+                        position: "relative", overflow: "hidden",
+                      }}
+                      data-testid="integral-card"
+                    >
+                      <div style={{ position: "absolute", bottom: 0, left: 0, width: "180px", height: "180px", background: "radial-gradient(circle, rgba(124,140,130,0.07) 0%, transparent 70%)", pointerEvents: "none" }} />
+                      <p className="ct-overline mb-3" style={{ color: "rgba(18,18,18,0.3)" }}>{m.whatWeDo.integralCard.label}</p>
+                      <h3 style={{ fontFamily: "Figtree, sans-serif", fontSize: "26px", fontWeight: 400, color: "#121212" }}>
+                        {m.whatWeDo.integralCard.title}
+                      </h3>
+                      <p style={{ fontFamily: "Cormorant Garamond, serif", fontSize: "15px", fontStyle: "italic", color: "rgba(124,140,130,0.85)", margin: "4px 0 16px" }}>
+                        {m.whatWeDo.integralCard.subtitle}
+                      </p>
+                      <p style={{ fontFamily: "Manrope, sans-serif", fontSize: "13px", fontWeight: 300, color: "rgba(18,18,18,0.55)", lineHeight: 1.7, marginBottom: "20px" }}>
+                        {m.whatWeDo.integralCard.description}
+                      </p>
+                      <div style={{ borderTop: "1px solid rgba(18,18,18,0.08)", paddingTop: "16px", display: "flex", flexDirection: "column", gap: "8px" }}>
+                        {m.whatWeDo.integralCard.points.map((pt, i) => (
+                          <div key={i} className="flex gap-3 items-start">
+                            <div style={{ flexShrink: 0, width: "4px", height: "4px", borderRadius: "50%", background: "#7C8C82", marginTop: "7px", opacity: 0.7 }} />
+                            <p style={{ fontFamily: "Manrope, sans-serif", fontSize: "12px", fontWeight: 300, color: "rgba(18,18,18,0.45)" }}>{pt}</p>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  </ScrollReveal>
+                </div>
+
+              </div>
             </div>
 
           </div>
@@ -496,8 +503,6 @@ const Method = () => {
             className="flex"
             style={{
               height: "420px",
-              border: "1px solid rgba(18,18,18,0.07)",
-              borderRadius: "10px",
               overflow: "hidden",
             }}
           >
