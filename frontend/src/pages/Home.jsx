@@ -168,7 +168,7 @@ const Home = () => {
             </ScrollReveal>
 
             <ScrollReveal delay={0.58}>
-              <div className="flex flex-col sm:flex-row gap-3 mt-9 mb-10">
+              <div style={{ display: "flex", flexDirection: "row", flexWrap: "wrap", gap: "12px", marginTop: "36px", marginBottom: "40px" }}>
                 <Link to="/contact" className="btn-hero-pill" data-testid="hero-cta-primary">
                   {t.home.hero.cta}
                   <ArrowRight size={13} />

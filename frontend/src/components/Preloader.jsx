@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useLayoutEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 const LOGO_MARK =
@@ -7,18 +7,24 @@ const LOGO_MARK =
 const Preloader = ({ onComplete }) => {
   const [visible, setVisible] = useState(true);
 
-  useEffect(() => {
-    const t = setTimeout(() => setVisible(false), 2600);
-    return () => clearTimeout(t);
+  // useLayoutEffect is synchronous and not deferred by React scheduler
+  useLayoutEffect(() => {
+    const t1 = setTimeout(() => setVisible(false), 1500);
+    const t2 = setTimeout(onComplete, 1920);
+    return () => {
+      clearTimeout(t1);
+      clearTimeout(t2);
+    };
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
-    <AnimatePresence onExitComplete={onComplete}>
+    <AnimatePresence>
       {visible && (
         <motion.div
           key="preloader"
           initial={{ opacity: 1 }}
-          exit={{ opacity: 0, transition: { duration: 0.9, ease: [0.43, 0.13, 0.23, 0.96] } }}
+          exit={{ opacity: 0, transition: { duration: 0.4, ease: [0.43, 0.13, 0.23, 0.96] } }}
           className="fixed inset-0 z-[9999] bg-charcoal flex flex-col items-center justify-center"
           data-testid="preloader"
         >

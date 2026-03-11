@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import { AnimatePresence } from "framer-motion";
 import "./App.css";
@@ -49,12 +49,11 @@ const AppContent = () => (
 
 function App() {
   const [ready, setReady] = useState(false);
+  const handleComplete = useCallback(() => setReady(true), []);
 
   return (
     <LanguageProvider>
-      <AnimatePresence mode="wait">
-        {!ready && <Preloader key="preloader" onComplete={() => setReady(true)} />}
-      </AnimatePresence>
+      {!ready && <Preloader onComplete={handleComplete} />}
       {ready && (
         <BrowserRouter>
           <div className="App">

@@ -77,7 +77,7 @@ const FOR_WHOM_ITEMS = [
 ];
 
 // ─── Concentric Circles Viz ───────────────────────────────────────────────────
-const PHASE_GRADIENT = "linear-gradient(to bottom, #F5F2EC 0%, #D4C5B0 8%, #A08872 20%, #6B5040 35%, #3D2410 55%, #1A1210 76%, #121212 100%)";
+const PHASE_GRADIENT = "linear-gradient(to bottom, #F5F2EC 0%, #CDD8C4 15%, #8A9A80 32%, #2A3825 52%, #162018 75%, #0F1A12 100%)";
 
 const CirclesViz = ({ activePhase }) => {
   // Rings: index 0 = innermost (01), index 1 = middle (02), index 2 = outermost (03)
@@ -360,7 +360,7 @@ const ExecutiveCoaching = () => {
       </div>
 
       {/* ══ 4. WHAT YOU RECEIVE — Charcoal (NARM-row style) ════════════════ */}
-      <section className="ct-section" style={{ background: "#121212" }} data-testid="coaching-format-detail">
+      <section className="ct-section" style={{ background: "#0F1A12" }} data-testid="coaching-format-detail">
         <div className="max-w-[1400px] mx-auto px-6 md:px-16">
           <div className="max-w-[600px] mb-16">
             <ScrollReveal>
@@ -424,7 +424,7 @@ const ExecutiveCoaching = () => {
       {/* ══ 5. FOR WHOM — charcoal→ivory gradient, horizontal hover accordion ══ */}
       <section
         className="ct-section"
-        style={{ background: "linear-gradient(to bottom, #121212 0%, #1A1210 25%, #3D2410 48%, #6B5040 65%, #A08872 80%, #D4C5B0 92%, #F5F2EC 100%)" }}
+        style={{ background: "linear-gradient(to bottom, #0F1A12 0%, #162018 25%, #2A3825 48%, #8A9A80 68%, #CDD8C4 85%, #F5F2EC 100%)" }}
         data-testid="coaching-for-whom"
       >
         <div className="max-w-[1400px] mx-auto px-6 md:px-16">
@@ -637,7 +637,7 @@ const ExecutiveCoaching = () => {
       {/* ══ 8. ENGAGEMENT DETAILS — Ivory→Charcoal gradient ════════════════ */}
       <section
         className="ct-section"
-        style={{ background: "linear-gradient(to bottom, #F5F2EC 0%, #D4C5B0 8%, #A08872 20%, #6B5040 35%, #3D2410 55%, #1A1210 76%, #121212 100%)" }}
+        style={{ background: "linear-gradient(to bottom, #F5F2EC 0%, #CDD8C4 15%, #8A9A80 32%, #2A3825 52%, #162018 75%, #0F1A12 100%)" }}
         data-testid="coaching-format"
       >
         <div className="max-w-[1400px] mx-auto px-6 md:px-16">
@@ -684,13 +684,14 @@ const ExecutiveCoaching = () => {
         </div>
       </section>
 
-      {/* ══ 9. FINAL CTA — Charcoal bg, gold glassmorphic card ══════════════ */}
-      <section className="ct-section" style={{ background: "#121212" }} data-testid="coaching-cta">
-        <div className="max-w-[760px] mx-auto px-6">
+      {/* ══ 9. FINAL CTA — Forest green → ivory gradient ══════════════ */}
+      <section className="ct-section relative overflow-hidden" style={{ background: "linear-gradient(to bottom, #0F1A12 0%, #162018 25%, #2A3825 48%, #8A9A80 68%, #CDD8C4 85%, #F5F2EC 100%)" }} data-testid="coaching-cta">
+        <NeuralCanvas opacity={0.04} nodeCount={22} />
+        <div className="relative z-10 max-w-[760px] mx-auto px-6">
           <ScrollReveal>
             <div
               style={{
-                background: "rgba(14, 9, 0, 0.92)",
+                background: "rgba(15,26,18,0.92)",
                 backdropFilter: "blur(28px)",
                 WebkitBackdropFilter: "blur(28px)",
                 border: "1px solid rgba(200,169,106,0.25)",

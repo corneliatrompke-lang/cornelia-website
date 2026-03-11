@@ -143,7 +143,7 @@ const About = () => {
             </ScrollReveal>
 
             <ScrollReveal delay={0.58}>
-              <div className="flex flex-col sm:flex-row gap-3 mt-9 mb-10">
+              <div style={{ display: "flex", flexDirection: "row", flexWrap: "wrap", gap: "12px", marginTop: "36px", marginBottom: "40px" }}>
                 <Link to="/contact" className="btn-hero-pill" data-testid="about-hero-cta-primary">
                   Begin the Conversation
                   <ArrowRight size={13} />
@@ -374,11 +374,11 @@ const About = () => {
       </section>
 
 
-      {/* ═══ CREDENTIALS — gradient ivory → charcoal (visual bridge) ═══ */}
+      {/* ═══ CREDENTIALS — gradient ivory → forest green (visual bridge) ═══ */}
       <section
         style={{
           background:
-            "linear-gradient(to bottom, #F5F2EC 0%, #E8E2D5 18%, #7A5E43 44%, #241810 68%, #121212 100%)",
+            "linear-gradient(to bottom, #F5F2EC 0%, #CDD8C4 15%, #8A9A80 32%, #2A3825 52%, #162018 75%, #0F1A12 100%)",
           paddingTop: "80px",
           paddingBottom: "100px",
         }}
@@ -481,10 +481,9 @@ const About = () => {
       </section>
 
 
-      {/* ═══ APPROACH + VALUES — charcoal, horizontal accordion ═══ */}
+      {/* ═══ APPROACH + VALUES — deep forest green, horizontal accordion ═══ */}
       <section
-        className="bg-charcoal"
-        style={{ paddingTop: "80px", paddingBottom: "80px" }}
+        style={{ background: "#0F1A12", paddingTop: "80px", paddingBottom: "80px" }}
         data-testid="about-approach"
       >
         <div className="max-w-[1400px] mx-auto px-6 md:px-16">
@@ -629,9 +628,9 @@ const About = () => {
       </section>
 
 
-      {/* ═══ TESTIMONIALS — charcoal, exact slideshow from Home ═══ */}
+      {/* ═══ TESTIMONIALS — deep forest green, exact slideshow from Home ═══ */}
       <section
-        style={{ background: "#121212", paddingTop: "100px", paddingBottom: "100px" }}
+        style={{ background: "#0F1A12", paddingTop: "100px", paddingBottom: "100px" }}
         data-testid="about-testimonials"
       >
         <div className="max-w-[1200px] mx-auto px-6 md:px-16">
@@ -906,9 +905,12 @@ const About = () => {
       </section>
 
 
-      {/* ═══ FINAL CTA — charcoal + glassmorphic wrapper ═══ */}
+      {/* ═══ FINAL CTA — forest green → ivory gradient (seamless with footer) ═══ */}
       <section
-        className="bg-charcoal ct-section relative overflow-hidden"
+        className="ct-section relative overflow-hidden"
+        style={{
+          background: "linear-gradient(to bottom, #0F1A12 0%, #162018 25%, #2A3825 48%, #8A9A80 68%, #CDD8C4 85%, #F5F2EC 100%)",
+        }}
         data-testid="about-cta"
       >
         <NeuralCanvas opacity={0.04} nodeCount={22} />
@@ -916,7 +918,7 @@ const About = () => {
           <ScrollReveal>
             <div
               style={{
-                background: "rgba(200,169,106,0.06)",
+                background: "rgba(15,26,18,0.60)",
                 backdropFilter: "blur(28px)",
                 WebkitBackdropFilter: "blur(28px)",
                 border: "1px solid rgba(200,169,106,0.18)",

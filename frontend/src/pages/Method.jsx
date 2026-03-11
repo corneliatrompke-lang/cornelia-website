@@ -513,7 +513,7 @@ const Method = () => {
       <section
         className="ct-section"
         style={{
-          background: "linear-gradient(to bottom, #F5F2EC 0%, #D4C5B0 6%, #A08872 18%, #6B5040 32%, #3D2410 52%, #1A1210 74%, #121212 100%)",
+          background: "linear-gradient(to bottom, #F5F2EC 0%, #CDD8C4 15%, #8A9A80 32%, #2A3825 52%, #162018 75%, #0F1A12 100%)",
         }}
         data-testid="method-accordion"
       >
@@ -671,7 +671,7 @@ const Method = () => {
       {/* ══════════════════════════════════════════════════════════════
           5. TESTIMONIALS — Charcoal (same as Home)
       ══════════════════════════════════════════════════════════════ */}
-      <section className="bg-charcoal ct-section relative overflow-hidden" data-testid="method-testimonials">
+      <section className="ct-section relative overflow-hidden" style={{ background: "#0F1A12" }} data-testid="method-testimonials">
         <NeuralCanvas opacity={0.06} nodeCount={30} />
         <div className="relative z-10 max-w-[1400px] mx-auto px-6 md:px-16">
           <ScrollReveal>
@@ -788,7 +788,7 @@ const Method = () => {
 
         <style>{`@keyframes progressSlide { from { width: 0%; } to { width: 100%; } }`}</style>
       </section>
-      <section className="bg-charcoal ct-section relative overflow-hidden" data-testid="method-narm-deep">
+      <section className="ct-section relative overflow-hidden" style={{ background: "#0F1A12" }} data-testid="method-narm-deep">
         <NeuralCanvas opacity={0.07} nodeCount={35} />
         <div className="relative z-10 max-w-[1400px] mx-auto px-6 md:px-16">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-14 items-start">
@@ -836,7 +836,7 @@ const Method = () => {
       ══════════════════════════════════════════════════════════════ */}
       <section
         className="ct-section relative overflow-hidden"
-        style={{ background: "#121212" }}
+        style={{ background: "#0F1A12" }}
         data-testid="method-integral-deep"
       >
         <NeuralCanvas opacity={0.06} nodeCount={30} />
@@ -952,7 +952,7 @@ const Method = () => {
       <section
         className="ct-section"
         style={{
-          background: "linear-gradient(to bottom, #121212 0%, #1A1210 26%, #3D2410 48%, #6B5040 68%, #A08872 82%, #D4C5B0 94%, #F5F2EC 100%)",
+          background: "linear-gradient(to bottom, #0F1A12 0%, #162018 25%, #2A3825 48%, #8A9A80 68%, #CDD8C4 85%, #F5F2EC 100%)",
         }}
         data-testid="method-combined"
       >
@@ -1076,7 +1076,7 @@ const Method = () => {
           <ScrollReveal>
             <div
               style={{
-                background: "rgba(18, 18, 18, 0.96)",
+                background: "rgba(15,26,18,0.96)",
                 backdropFilter: "blur(28px)",
                 WebkitBackdropFilter: "blur(28px)",
                 border: "1px solid rgba(200,169,106,0.2)",

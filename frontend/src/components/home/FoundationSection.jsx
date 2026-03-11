@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import { motion, useScroll, useTransform, useMotionValueEvent } from "framer-motion";
 import { useLanguage } from "../../context/LanguageContext";
 
@@ -40,6 +40,16 @@ export default function FoundationSection() {
   const particlesRef = useRef([]);
   const progressRef  = useRef(0);
   const rafRef = useRef(null);
+
+  // JS-based responsive detection — avoids CSS class specificity conflicts
+  const [isDesktop, setIsDesktop] = useState(
+    typeof window !== "undefined" ? window.innerWidth >= 768 : true
+  );
+  useEffect(() => {
+    const check = () => setIsDesktop(window.innerWidth >= 768);
+    window.addEventListener("resize", check);
+    return () => window.removeEventListener("resize", check);
+  }, []);
 
   const { scrollYProgress: fp } = useScroll({
     target: outerRef,
@@ -175,8 +185,7 @@ export default function FoundationSection() {
 
         {/* ── Desktop collage ───────────────────────────────────── */}
         {/* Sub-container offset by nav height so images start below nav */}
-        <div
-          className="hidden md:block"
+        {isDesktop && <div
           style={{
             position: "absolute",
             top: NAV_H + 32,
@@ -296,7 +305,7 @@ export default function FoundationSection() {
                 />
 
                 {/* Heading — clips down from above, warm gold gradient tint */}
-                <div style={{ overflow: "hidden" }}>
+                <div style={{ overflow: "hidden", position: "relative" }}>
                   <motion.h2
                     className="leading-[1.15]"
                     style={{
@@ -320,7 +329,7 @@ export default function FoundationSection() {
                   const py = i === 0 ? para0Y : para1Y;
                   const po = i === 0 ? para0O : para1O;
                   return (
-                    <div key={i} style={{ overflow: "hidden" }}>
+                    <div key={i} style={{ overflow: "hidden", position: "relative" }}>
                       <motion.p
                         className="text-charcoal/65 mt-5 leading-relaxed"
                         style={{
@@ -339,12 +348,11 @@ export default function FoundationSection() {
               </motion.div>
             </div>
           </div>
-        </div>
+        </div>}
 
         {/* ── Mobile: centred static layout ──────────────────────── */}
-        <div
-          className="md:hidden flex items-center justify-center h-full px-6 text-center"
-          style={{ position: "relative", zIndex: 2, paddingTop: NAV_H }}
+        {!isDesktop && <div
+          style={{ position: "relative", zIndex: 2, paddingTop: NAV_H, display: "flex", alignItems: "center", justifyContent: "center", height: "100%", padding: `${NAV_H}px 24px 24px`, textAlign: "center" }}
         >
           <div>
             <div className="ct-divider mx-auto mb-8" style={{ background: "rgba(18,18,18,0.2)" }} />
@@ -372,7 +380,7 @@ export default function FoundationSection() {
               </p>
             ))}
           </div>
-        </div>
+        </div>}
       </div>
     </section>
   );
