@@ -795,7 +795,9 @@ const Home = () => {
       {/* ═══ FINAL CTA ═══ */}
       <section
         className="ct-section relative overflow-hidden"
-        style={{ background: "#1A1410" }}
+        style={{
+          background: "linear-gradient(to bottom, #1A1410 0%, #2A1A0C 28%, #7A5040 55%, #C4A07A 75%, #E8E2D5 90%, #F5F2EC 100%)",
+        }}
         data-testid="final-cta-section"
       >
         <NeuralCanvas opacity={0.04} nodeCount={22} />
@@ -803,7 +805,7 @@ const Home = () => {
           <ScrollReveal>
             <div
               style={{
-                background: "rgba(200,169,106,0.06)",
+                background: "rgba(26,20,16,0.58)",
                 backdropFilter: "blur(28px)",
                 WebkitBackdropFilter: "blur(28px)",
                 border: "1px solid rgba(200,169,106,0.18)",

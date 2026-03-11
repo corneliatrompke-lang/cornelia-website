@@ -34,7 +34,7 @@ const Navigation = () => {
         className="fixed top-0 left-0 right-0 z-[900] transition-all duration-500"
         style={{
           padding: "16px 24px",
-          background: scrolled ? "rgba(18,18,18,0.42)" : "transparent",
+          background: scrolled ? "rgba(26,20,16,0.82)" : "transparent",
           backdropFilter: scrolled ? "blur(28px)" : "none",
           borderBottom: scrolled ? "1px solid rgba(255,255,255,0.06)" : "none",
         }}
@@ -95,7 +95,7 @@ const Navigation = () => {
                     <div
                       className="py-2"
                       style={{
-                        background: "rgba(14,14,14,0.96)",
+                        background: "rgba(20,14,10,0.96)",
                         backdropFilter: "blur(24px)",
                         border: "1px solid rgba(200,169,106,0.12)",
                         borderRadius: "12px",
@@ -183,7 +183,7 @@ const Navigation = () => {
             exit={{ opacity: 0 }}
             transition={{ duration: 0.35 }}
             className="fixed inset-0 z-[800] lg:hidden"
-            style={{ background: "rgba(12,12,12,0.97)", backdropFilter: "blur(24px)" }}
+            style={{ background: "rgba(20,14,10,0.97)", backdropFilter: "blur(24px)" }}
             data-testid="mobile-menu"
           >
             <div className="flex flex-col h-full justify-center items-start px-10">

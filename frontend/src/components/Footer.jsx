@@ -2,8 +2,8 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { useLanguage } from "../context/LanguageContext";
 
-const LOGO_MARK =
-  "https://customer-assets.emergentagent.com/job_c6a96dcc-a529-4678-b4e5-76313235aa2d/artifacts/kv7m20gz_Cornelia%20Trompke%20Logo%20Mark.png";
+const LOGO_VERTICAL =
+  "https://customer-assets.emergentagent.com/job_nervous-system-exec/artifacts/qn22a37e_Cornelia%20Trompke%20Logo%20Vertical-01.png";
 
 const Footer = () => {
   const { t } = useLanguage();
@@ -11,42 +11,79 @@ const Footer = () => {
   return (
     <footer
       className="border-t"
-      style={{ background: "#1A1410", borderColor: "rgba(200,169,106,0.1)" }}
+      style={{ background: "#F5F2EC", borderColor: "rgba(18,18,18,0.08)" }}
       data-testid="footer"
     >
       {/* Main footer */}
       <div className="max-w-[1400px] mx-auto px-6 md:px-16 py-20">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-14 md:gap-8">
+
           {/* Brand */}
           <div className="md:col-span-5">
-            <Link to="/" className="flex items-center gap-3 mb-6 no-underline">
-              <img
-                src={LOGO_MARK}
-                alt="CT"
-                style={{ width: 42, height: 42, objectFit: "contain", mixBlendMode: "lighten" }}
-              />
-              <div>
-                <div
-                  className="text-ivory leading-none"
-                  style={{ fontFamily: "Figtree, sans-serif", fontSize: "16px" }}
-                >
-                  Cornelia Trompke
-                </div>
-                <div className="ct-overline text-stone/40 mt-1">Consulting & Coaching</div>
+            <Link to="/" className="inline-block mb-8 no-underline" data-testid="footer-logo">
+              <div
+                style={{
+                  background: "#1A1410",
+                  borderRadius: "10px",
+                  padding: "14px",
+                  display: "inline-block",
+                }}
+              >
+                <img
+                  src={LOGO_VERTICAL}
+                  alt="Cornelia Trompke Consulting & Coaching"
+                  style={{
+                    width: "72px",
+                    height: "72px",
+                    objectFit: "contain",
+                    display: "block",
+                    mixBlendMode: "lighten",
+                  }}
+                />
               </div>
             </Link>
             <p
-              className="text-stone/50 text-sm font-light leading-relaxed max-w-xs"
-              style={{ fontFamily: "Manrope, sans-serif" }}
+              style={{
+                fontFamily: "Manrope, sans-serif",
+                fontSize: "14px",
+                fontWeight: 300,
+                color: "rgba(18,18,18,0.52)",
+                lineHeight: 1.8,
+                maxWidth: "280px",
+              }}
             >
               {t.footer.tagline}
             </p>
-            <p className="ct-overline text-stone/30 mt-6">{t.footer.location}</p>
+            <p
+              style={{
+                fontFamily: "Manrope, sans-serif",
+                fontSize: "10px",
+                fontWeight: 600,
+                letterSpacing: "0.2em",
+                textTransform: "uppercase",
+                color: "rgba(18,18,18,0.32)",
+                marginTop: "20px",
+              }}
+            >
+              {t.footer.location}
+            </p>
           </div>
 
           {/* Navigation */}
           <div className="md:col-span-3">
-            <p className="ct-overline text-gold/60 mb-5">{t.footer.navigation}</p>
+            <p
+              style={{
+                fontFamily: "Manrope, sans-serif",
+                fontSize: "10px",
+                fontWeight: 600,
+                letterSpacing: "0.22em",
+                textTransform: "uppercase",
+                color: "rgba(200,169,106,0.85)",
+                marginBottom: "20px",
+              }}
+            >
+              {t.footer.navigation}
+            </p>
             <ul className="space-y-3">
               {[
                 { to: "/", label: t.nav.home },
@@ -58,8 +95,15 @@ const Footer = () => {
                 <li key={item.to}>
                   <Link
                     to={item.to}
-                    className="text-stone/50 hover:text-stone/80 transition-colors no-underline text-sm"
-                    style={{ fontFamily: "Manrope, sans-serif", fontWeight: 300 }}
+                    className="no-underline transition-colors"
+                    style={{
+                      fontFamily: "Manrope, sans-serif",
+                      fontSize: "13px",
+                      fontWeight: 300,
+                      color: "rgba(18,18,18,0.5)",
+                    }}
+                    onMouseEnter={(e) => (e.target.style.color = "rgba(18,18,18,0.85)")}
+                    onMouseLeave={(e) => (e.target.style.color = "rgba(18,18,18,0.5)")}
                   >
                     {item.label}
                   </Link>
@@ -70,14 +114,33 @@ const Footer = () => {
 
           {/* Services */}
           <div className="md:col-span-4">
-            <p className="ct-overline text-gold/60 mb-5">{t.footer.services}</p>
+            <p
+              style={{
+                fontFamily: "Manrope, sans-serif",
+                fontSize: "10px",
+                fontWeight: 600,
+                letterSpacing: "0.22em",
+                textTransform: "uppercase",
+                color: "rgba(200,169,106,0.85)",
+                marginBottom: "20px",
+              }}
+            >
+              {t.footer.services}
+            </p>
             <ul className="space-y-3">
               {t.nav.workWithMeLinks.map((item) => (
                 <li key={item.path}>
                   <Link
                     to={item.path}
-                    className="text-stone/50 hover:text-stone/80 transition-colors no-underline text-sm"
-                    style={{ fontFamily: "Manrope, sans-serif", fontWeight: 300 }}
+                    className="no-underline transition-colors"
+                    style={{
+                      fontFamily: "Manrope, sans-serif",
+                      fontSize: "13px",
+                      fontWeight: 300,
+                      color: "rgba(18,18,18,0.5)",
+                    }}
+                    onMouseEnter={(e) => (e.target.style.color = "rgba(18,18,18,0.85)")}
+                    onMouseLeave={(e) => (e.target.style.color = "rgba(18,18,18,0.5)")}
                   >
                     {item.title}
                   </Link>
@@ -89,14 +152,14 @@ const Footer = () => {
       </div>
 
       {/* Legal bar */}
-      <div
-        className="border-t"
-        style={{ borderColor: "rgba(200,169,106,0.06)" }}
-      >
+      <div className="border-t" style={{ borderColor: "rgba(18,18,18,0.06)" }}>
         <div className="max-w-[1400px] mx-auto px-6 md:px-16 py-6 flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
           <p
-            className="text-stone/30 text-xs"
-            style={{ fontFamily: "Manrope, sans-serif" }}
+            style={{
+              fontFamily: "Manrope, sans-serif",
+              fontSize: "11px",
+              color: "rgba(18,18,18,0.32)",
+            }}
           >
             {t.footer.rights}
           </p>
@@ -109,8 +172,15 @@ const Footer = () => {
               <Link
                 key={item.to}
                 to={item.to}
-                className="text-stone/30 hover:text-stone/60 transition-colors no-underline"
-                style={{ fontFamily: "Manrope, sans-serif", fontSize: "11px", letterSpacing: "0.08em" }}
+                className="no-underline transition-colors"
+                style={{
+                  fontFamily: "Manrope, sans-serif",
+                  fontSize: "11px",
+                  letterSpacing: "0.08em",
+                  color: "rgba(18,18,18,0.35)",
+                }}
+                onMouseEnter={(e) => (e.target.style.color = "rgba(18,18,18,0.65)")}
+                onMouseLeave={(e) => (e.target.style.color = "rgba(18,18,18,0.35)")}
               >
                 {item.label}
               </Link>
