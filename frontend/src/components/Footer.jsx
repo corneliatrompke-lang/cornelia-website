@@ -21,26 +21,16 @@ const Footer = () => {
           {/* Brand */}
           <div className="md:col-span-5">
             <Link to="/" className="inline-block mb-8 no-underline" data-testid="footer-logo">
-              <div
+              <img
+                src={LOGO_VERTICAL}
+                alt="Cornelia Trompke Consulting & Coaching"
                 style={{
-                  background: "#1A1410",
-                  borderRadius: "10px",
-                  padding: "14px",
-                  display: "inline-block",
+                  height: "100px",
+                  width: "auto",
+                  objectFit: "contain",
+                  display: "block",
                 }}
-              >
-                <img
-                  src={LOGO_VERTICAL}
-                  alt="Cornelia Trompke Consulting & Coaching"
-                  style={{
-                    width: "72px",
-                    height: "72px",
-                    objectFit: "contain",
-                    display: "block",
-                    mixBlendMode: "lighten",
-                  }}
-                />
-              </div>
+              />
             </Link>
             <p
               style={{
