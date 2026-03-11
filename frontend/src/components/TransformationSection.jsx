@@ -91,7 +91,7 @@ export default function TransformationSection() {
   return (
     <section
       ref={sectionRef}
-      style={{ height: "500vh", background: "#121212" }}
+      style={{ height: "500vh", background: "#1A1410" }}
       data-testid="transformation-section"
     >
       <div

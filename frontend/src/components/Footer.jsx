@@ -10,8 +10,8 @@ const Footer = () => {
 
   return (
     <footer
-      className="bg-charcoal border-t"
-      style={{ borderColor: "rgba(200,169,106,0.1)" }}
+      className="border-t"
+      style={{ background: "#1A1410", borderColor: "rgba(200,169,106,0.1)" }}
       data-testid="footer"
     >
       {/* Main footer */}
