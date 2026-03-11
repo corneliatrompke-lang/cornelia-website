@@ -247,7 +247,7 @@ const Home = () => {
         className="ct-section"
         data-testid="about-preview-section"
         style={{
-          background: "linear-gradient(to bottom, #F5F2EC 0%, #D4C5B0 6%, #A08872 18%, #6B5040 32%, #3D2410 52%, #1A1210 74%, #121212 100%)",
+          background: "linear-gradient(to bottom, #F5F2EC 0%, #D4C5B0 6%, #A08872 18%, #6B5040 32%, #3D2410 52%, #1A1410 74%, #1A1410 100%)",
           position: "relative",
         }}
       >
@@ -332,7 +332,7 @@ const Home = () => {
       <VennDiagram />
 
       {/* ═══ METHOD TEASER ═══ */}
-      <section className="bg-charcoal ct-section relative overflow-hidden" style={{ paddingTop: "32px" }} data-testid="method-section">
+      <section className="ct-section relative overflow-hidden" style={{ background: "#1A1410", paddingTop: "32px" }} data-testid="method-section">
         <NeuralCanvas opacity={0.08} nodeCount={40} />
         <div className="relative z-10 max-w-[750px] mx-auto px-6 text-center">
           <ScrollReveal>
@@ -372,7 +372,7 @@ const Home = () => {
       <TransformationSection />
 
       {/* ═══ SERVICES — horizontal accordion ═══ */}
-      <section className="bg-charcoal" style={{ paddingTop: "80px", paddingBottom: "80px" }} data-testid="services-section">
+      <section style={{ background: "#1A1410", paddingTop: "80px", paddingBottom: "80px" }} data-testid="services-section">
         <div className="max-w-[1400px] mx-auto px-6 md:px-16">
           <ScrollReveal>
             <p className="ct-overline text-gold/60 mb-4">{t.home.services.overline}</p>
@@ -521,7 +521,7 @@ const Home = () => {
 
       {/* ═══ TESTIMONIALS ═══ */}
       <section
-        style={{ background: "#121212", paddingTop: "100px", paddingBottom: "100px" }}
+        style={{ background: "#1A1410", paddingTop: "100px", paddingBottom: "100px" }}
         data-testid="testimonials-section"
       >
         <div className="max-w-[1200px] mx-auto px-6 md:px-16">
@@ -794,7 +794,8 @@ const Home = () => {
 
       {/* ═══ FINAL CTA ═══ */}
       <section
-        className="bg-charcoal ct-section relative overflow-hidden"
+        className="ct-section relative overflow-hidden"
+        style={{ background: "#1A1410" }}
         data-testid="final-cta-section"
       >
         <NeuralCanvas opacity={0.04} nodeCount={22} />
