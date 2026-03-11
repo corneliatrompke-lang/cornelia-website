@@ -247,7 +247,7 @@ const Home = () => {
         className="ct-section"
         data-testid="about-preview-section"
         style={{
-          background: "linear-gradient(to bottom, #F5F2EC 0%, #D4C5B0 6%, #A08872 18%, #6B5040 32%, #3D2410 52%, #1A1410 74%, #1A1410 100%)",
+          background: "linear-gradient(to bottom, #F5F2EC 0%, #D4C5A8 8%, #8A8072 22%, #4A4540 38%, #252B20 58%, #162018 78%, #0F1A12 100%)",
           position: "relative",
         }}
       >
@@ -332,7 +332,7 @@ const Home = () => {
       <VennDiagram />
 
       {/* ═══ METHOD TEASER ═══ */}
-      <section className="ct-section relative overflow-hidden" style={{ background: "#1A1410", paddingTop: "32px" }} data-testid="method-section">
+      <section className="ct-section relative overflow-hidden" style={{ background: "#0F1A12", paddingTop: "32px" }} data-testid="method-section">
         <NeuralCanvas opacity={0.08} nodeCount={40} />
         <div className="relative z-10 max-w-[750px] mx-auto px-6 text-center">
           <ScrollReveal>
@@ -372,7 +372,7 @@ const Home = () => {
       <TransformationSection />
 
       {/* ═══ SERVICES — horizontal accordion ═══ */}
-      <section style={{ background: "#1A1410", paddingTop: "80px", paddingBottom: "80px" }} data-testid="services-section">
+      <section style={{ background: "#0F1A12", paddingTop: "80px", paddingBottom: "80px" }} data-testid="services-section">
         <div className="max-w-[1400px] mx-auto px-6 md:px-16">
           <ScrollReveal>
             <p className="ct-overline text-gold/60 mb-4">{t.home.services.overline}</p>
@@ -521,7 +521,7 @@ const Home = () => {
 
       {/* ═══ TESTIMONIALS ═══ */}
       <section
-        style={{ background: "#1A1410", paddingTop: "100px", paddingBottom: "100px" }}
+        style={{ background: "#0F1A12", paddingTop: "100px", paddingBottom: "100px" }}
         data-testid="testimonials-section"
       >
         <div className="max-w-[1200px] mx-auto px-6 md:px-16">
@@ -796,7 +796,7 @@ const Home = () => {
       <section
         className="ct-section relative overflow-hidden"
         style={{
-          background: "linear-gradient(to bottom, #1A1410 0%, #2A1A0C 28%, #7A5040 55%, #C4A07A 75%, #E8E2D5 90%, #F5F2EC 100%)",
+          background: "linear-gradient(to bottom, #0F1A12 0%, #162018 25%, #2A3825 48%, #8A9A80 68%, #CDD8C4 85%, #F5F2EC 100%)",
         }}
         data-testid="final-cta-section"
       >
@@ -805,7 +805,7 @@ const Home = () => {
           <ScrollReveal>
             <div
               style={{
-                background: "rgba(26,20,16,0.58)",
+                background: "rgba(15,26,18,0.60)",
                 backdropFilter: "blur(28px)",
                 WebkitBackdropFilter: "blur(28px)",
                 border: "1px solid rgba(200,169,106,0.18)",

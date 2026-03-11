@@ -209,7 +209,7 @@ const VennDiagram = ({ showLogo = true, showArrow = true, staticView = false, th
   return (
     <>
       {/* Mobile marquee */}
-      <section className="md:hidden py-5 overflow-hidden" style={{ background: "#1A1410" }} data-testid="marquee-section">
+      <section className="md:hidden py-5 overflow-hidden" style={{ background: "#0F1A12" }} data-testid="marquee-section">
         <div className="marquee-outer">
           <div className="marquee-track">
             {[t.home.marquee, t.home.marquee].map((text, i) => (
@@ -223,7 +223,7 @@ const VennDiagram = ({ showLogo = true, showArrow = true, staticView = false, th
       <div
         ref={outerRef}
         className="hidden md:block"
-        style={{ background: "#1A1410", height: "280vh", position: "relative" }}
+        style={{ background: "#0F1A12", height: "280vh", position: "relative" }}
         data-testid="venn-section"
       >
         <div style={{
