@@ -247,7 +247,7 @@ const Home = () => {
         className="ct-section"
         data-testid="about-preview-section"
         style={{
-          background: "linear-gradient(to bottom, #F5F2EC 0%, #D4C5A8 8%, #8A8072 22%, #4A4540 38%, #252B20 58%, #162018 78%, #0F1A12 100%)",
+          background: "linear-gradient(to bottom, #F5F2EC 0%, #CDD8C4 15%, #8A9A80 32%, #2A3825 52%, #162018 75%, #0F1A12 100%)",
           position: "relative",
         }}
       >
