@@ -3,7 +3,7 @@
 ## Project Overview
 **Type:** Marketing Website (Luxury Editorial)
 **Client:** Cornelia Trompke Consulting & Coaching, Berlin, Germany
-**Built:** March 2025
+**Built:** March 2025 → ongoing
 **Stack:** React + FastAPI + MongoDB
 
 ---
@@ -17,7 +17,7 @@ Create a cinematic editorial luxury marketing website for Cornelia Trompke — a
 
 ### Frontend (React)
 - **Fonts:** Playfair Display (serif) + Manrope (sans-serif) + Cormorant Garamond (accent)
-- **Colors:** Charcoal #121212 | Ivory #F5F2EC | Stone #E3DED7 | Sage #7C8C82 | Gold #C8A96A
+- **Colors:** Deep Forest Green #0F1A12 | Ivory #F5F2EC | Stone #E3DED7 | Sage #7C8C82 | Gold #C8A96A
 - **Animations:** framer-motion scroll reveals, neural canvas (canvas API)
 - **Routing:** React Router v7
 
@@ -117,6 +117,17 @@ Create a cinematic editorial luxury marketing website for Cornelia Trompke — a
 ---
 
 ## What's Been Implemented (March 2026)
+
+### v2.1 — Deep Forest Green Theme + Bug Fixes (Mar 2026)
+1. **Bug Fix: Hero CTA Buttons** — Replaced `flex flex-col sm:flex-row` Tailwind responsive classes with inline flex styles. Buttons always render in a horizontal row. (Home.jsx + About.jsx)
+2. **Bug Fix: Foundation Section Duplicate Text** — Replaced `hidden md:block` / `md:hidden` CSS classes with JS-based `isDesktop` state (`useState` + `useEffect` with `window.innerWidth`). Eliminates CSS specificity conflict causing dual-render of mobile + desktop layouts simultaneously. Also added `position: relative` to all `overflow: hidden` animation wrappers for reliable transform clipping. (FoundationSection.jsx)
+3. **Deep Forest Green Theme — Site-wide:** Replaced `#121212` (charcoal) with `#0F1A12` (deep forest green) across all dark backgrounds. Replaced warm amber gradient intermediaries with forest green equivalents:
+   - Ivory → Dark gradient: `#F5F2EC → #CDD8C4 → #8A9A80 → #2A3825 → #162018 → #0F1A12`
+   - Dark → Ivory gradient: `#0F1A12 → #162018 → #2A3825 → #8A9A80 → #CDD8C4 → #F5F2EC`
+   - Files updated: `About.jsx`, `Method.jsx`, `ExecutiveCoaching.jsx`, `index.css` (body background)
+4. **About Page Final CTA:** Changed from solid charcoal (`bg-charcoal`) to forest green → ivory gradient, creating a seamless transition into the ivory footer. Glassmorphic card updated from `rgba(200,169,106,0.06)` to `rgba(15,26,18,0.60)` for better contrast on the gradient background.
+5. **Preloader Fix:** Rewrote timer logic using `useLayoutEffect` (synchronous, not deferred by React scheduler) with both timers set at mount time. Removed `AnimatePresence mode="wait"` from `App.js`. Memoized `handleComplete` callback with `useCallback` to prevent effect cleanup cancellation on re-renders. Preloader duration reduced to 1.5s (from 2.6s) + 0.4s exit animation.
+6. **Body Background:** Updated `index.css` body background from `#121212` to `#0F1A12`.
 
 ### v2.0 — About Page Complete Rebuild (Mar 2026)
 Full About.jsx redesign with 7-section page flow:
