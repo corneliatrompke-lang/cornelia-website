@@ -487,7 +487,7 @@ const About = () => {
 
       {/* ═══ APPROACH + VALUES — deep forest green, horizontal accordion ═══ */}
       <section
-        style={{ background: "#0F1A12", paddingTop: "80px", paddingBottom: "80px" }}
+        style={{ background: "#0F1A12", paddingTop: "80px", paddingBottom: "80px", position: "relative", marginTop: "-2px", zIndex: 1 }}
         data-testid="about-approach"
       >
         <div className="max-w-[1400px] mx-auto px-6 md:px-16">
