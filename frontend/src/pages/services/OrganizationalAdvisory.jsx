@@ -132,6 +132,7 @@ const OrganizationalAdvisory = () => {
   const heroBgY = useTransform(heroScroll, [0, 1], ["0%", "-12%"]);
 
   const [openForWhom, setOpenForWhom] = useState(0);
+  const [activePhase, setActivePhase] = useState(null);
 
   const [activeTestimonial, setActiveTestimonial] = useState(0);
   const timerRef = useRef(null);
@@ -316,76 +317,80 @@ const OrganizationalAdvisory = () => {
           <div
             style={{
               display: "grid",
-              gridTemplateColumns: "1fr 1fr 1fr",
+              gridTemplateColumns: "1fr 1px 1fr 1px 1fr",
               gap: "0",
             }}
           >
             {DIMENSIONS.map((dim, i) => (
-              <ScrollReveal key={i} delay={0.1 * i}>
-                <div
-                  style={{
-                    paddingRight: i < DIMENSIONS.length - 1 ? "clamp(32px, 4vw, 64px)" : "0",
-                    paddingLeft: i > 0 ? "clamp(32px, 4vw, 64px)" : "0",
-                    borderRight: i < DIMENSIONS.length - 1 ? "1px solid rgba(245,242,236,0.10)" : "none",
-                  }}
-                  data-testid={`dimension-${i}`}
-                >
-                  <span
+              <React.Fragment key={i}>
+                <ScrollReveal delay={0.1 * i}>
+                  <div
                     style={{
-                      fontFamily: "Cormorant Garamond, serif",
-                      fontSize: "clamp(64px, 8vw, 96px)",
-                      fontWeight: 300,
-                      color: "rgba(200,169,106,0.10)",
-                      lineHeight: 1,
-                      display: "block",
-                      marginBottom: "-4px",
-                      letterSpacing: "-2px",
+                      paddingRight: i < DIMENSIONS.length - 1 ? "clamp(32px, 4vw, 64px)" : "0",
+                      paddingLeft: i > 0 ? "clamp(32px, 4vw, 64px)" : "0",
                     }}
+                    data-testid={`dimension-${i}`}
                   >
-                    {dim.number}
-                  </span>
-                  <h3
-                    style={{
-                      fontFamily: "Figtree, sans-serif",
-                      fontSize: "clamp(20px, 2.2vw, 30px)",
-                      fontWeight: 400,
-                      color: "rgba(245,242,236,0.92)",
-                      lineHeight: 1.12,
-                      marginBottom: "10px",
-                    }}
-                  >
-                    {dim.title}
-                  </h3>
-                  <p
-                    style={{
-                      fontFamily: "Cormorant Garamond, serif",
-                      fontSize: "16px",
-                      fontStyle: "italic",
-                      color: "rgba(200,169,106,0.55)",
-                      marginBottom: "24px",
-                    }}
-                  >
-                    {dim.subtitle}
-                  </p>
-                  <p
-                    style={{
-                      fontFamily: "Manrope, sans-serif",
-                      fontSize: "13px",
-                      fontWeight: 300,
-                      color: "rgba(245,242,236,0.50)",
-                      lineHeight: 1.85,
-                    }}
-                  >
-                    {dim.body}
-                  </p>
-                </div>
-              </ScrollReveal>
+                    <span
+                      style={{
+                        fontFamily: "Cormorant Garamond, serif",
+                        fontSize: "clamp(64px, 8vw, 96px)",
+                        fontWeight: 300,
+                        color: "rgba(200,169,106,0.10)",
+                        lineHeight: 1,
+                        display: "block",
+                        marginBottom: "-4px",
+                        letterSpacing: "-2px",
+                      }}
+                    >
+                      {dim.number}
+                    </span>
+                    <h3
+                      style={{
+                        fontFamily: "Figtree, sans-serif",
+                        fontSize: "clamp(20px, 2.2vw, 30px)",
+                        fontWeight: 400,
+                        color: "rgba(245,242,236,0.92)",
+                        lineHeight: 1.12,
+                        marginBottom: "10px",
+                      }}
+                    >
+                      {dim.title}
+                    </h3>
+                    <p
+                      style={{
+                        fontFamily: "Cormorant Garamond, serif",
+                        fontSize: "16px",
+                        fontStyle: "italic",
+                        color: "rgba(200,169,106,0.55)",
+                        marginBottom: "24px",
+                      }}
+                    >
+                      {dim.subtitle}
+                    </p>
+                    <p
+                      style={{
+                        fontFamily: "Manrope, sans-serif",
+                        fontSize: "13px",
+                        fontWeight: 300,
+                        color: "rgba(245,242,236,0.50)",
+                        lineHeight: 1.85,
+                      }}
+                    >
+                      {dim.body}
+                    </p>
+                  </div>
+                </ScrollReveal>
+                {i < DIMENSIONS.length - 1 && (
+                  <div style={{ background: "rgba(245,242,236,0.10)" }} />
+                )}
+              </React.Fragment>
             ))}
           </div>
         </div>
       </section>
 
-      {/* ══ 4. HOW THE WORK UNFOLDS — Deep forest, 3-phase grid ══════════════ */}
+      {/* ══ 4. HOW THE WORK UNFOLDS — Deep forest, horizontal accordion ══════ */}
       <section className="ct-section" style={{ background: "#0F1A12" }} data-testid="advisory-process">
         <div className="max-w-[1400px] mx-auto px-6 md:px-16">
           <div className="max-w-[680px] mb-16">
@@ -405,77 +410,133 @@ const OrganizationalAdvisory = () => {
             </ScrollReveal>
           </div>
 
-          <ScrollReveal>
-            <div
-              style={{
-                display: "grid",
-                gridTemplateColumns: "1fr 1fr 1fr",
-                borderTop: "1px solid rgba(245,242,236,0.10)",
-              }}
-            >
-              {PROCESS_PHASES.map((phase, i) => (
+          <div className="flex" style={{ height: "420px", overflow: "hidden" }}>
+            {PROCESS_PHASES.map((phase, i) => {
+              const isActive = activePhase === i;
+              return (
                 <div
                   key={i}
-                  style={{
-                    paddingTop: "52px",
-                    paddingRight: i < PROCESS_PHASES.length - 1 ? "clamp(32px, 4vw, 64px)" : "0",
-                    paddingLeft: i > 0 ? "clamp(32px, 4vw, 64px)" : "0",
-                    borderRight: i < PROCESS_PHASES.length - 1 ? "1px solid rgba(245,242,236,0.08)" : "none",
-                  }}
+                  onMouseEnter={() => setActivePhase(i)}
+                  onMouseLeave={() => setActivePhase(null)}
                   data-testid={`process-phase-${i}`}
+                  style={{
+                    flex: isActive ? 3.5 : 1,
+                    transition: "flex 0.65s cubic-bezier(0.4, 0, 0.2, 1), background 0.4s ease",
+                    position: "relative",
+                    overflow: "hidden",
+                    borderRight: i < PROCESS_PHASES.length - 1 ? "1px solid rgba(245,242,236,0.07)" : "none",
+                    cursor: "default",
+                    background: isActive ? "rgba(200,169,106,0.04)" : "transparent",
+                  }}
                 >
-                  <span
+                  {/* Collapsed: rotated title */}
+                  <div
                     style={{
-                      fontFamily: "Cormorant Garamond, serif",
-                      fontSize: "clamp(64px, 8vw, 96px)",
-                      fontWeight: 300,
-                      color: "rgba(200,169,106,0.10)",
-                      lineHeight: 1,
-                      display: "block",
-                      marginBottom: "-4px",
-                      letterSpacing: "-2px",
+                      position: "absolute", inset: 0,
+                      display: "flex", flexDirection: "column", alignItems: "center",
+                      padding: "40px 0",
+                      opacity: isActive ? 0 : 1,
+                      transition: "opacity 0.2s ease",
+                      pointerEvents: "none",
                     }}
                   >
-                    {phase.number}
-                  </span>
-                  <h3
+                    <span
+                      style={{
+                        writingMode: "vertical-rl",
+                        transform: "rotate(180deg)",
+                        fontFamily: "Figtree, sans-serif",
+                        fontSize: "clamp(13px, 1.6vw, 18px)",
+                        fontWeight: 400,
+                        letterSpacing: "0.08em",
+                        color: "rgba(245,242,236,0.38)",
+                        flex: 1,
+                        display: "flex",
+                        alignItems: "center",
+                      }}
+                    >
+                      {phase.title}
+                    </span>
+                    <span
+                      style={{
+                        fontFamily: "Cormorant Garamond, serif",
+                        fontSize: "28px",
+                        fontWeight: 300,
+                        color: "rgba(200,169,106,0.10)",
+                        lineHeight: 1,
+                        paddingBottom: "4px",
+                      }}
+                    >
+                      {phase.number}
+                    </span>
+                  </div>
+
+                  {/* Expanded */}
+                  <div
                     style={{
-                      fontFamily: "Figtree, sans-serif",
-                      fontSize: "clamp(18px, 2vw, 26px)",
-                      fontWeight: 400,
-                      color: "rgba(245,242,236,0.92)",
-                      lineHeight: 1.15,
-                      marginBottom: "10px",
+                      opacity: isActive ? 1 : 0,
+                      transition: "opacity 0.35s ease 0.22s",
+                      padding: "48px 52px",
+                      height: "100%",
+                      display: "flex",
+                      flexDirection: "column",
+                      justifyContent: "flex-end",
+                      minWidth: "360px",
                     }}
                   >
-                    {phase.title}
-                  </h3>
-                  <p
-                    style={{
-                      fontFamily: "Cormorant Garamond, serif",
-                      fontSize: "15px",
-                      fontStyle: "italic",
-                      color: "rgba(200,169,106,0.55)",
-                      marginBottom: "22px",
-                    }}
-                  >
-                    {phase.subtitle}
-                  </p>
-                  <p
-                    style={{
-                      fontFamily: "Manrope, sans-serif",
-                      fontSize: "13px",
-                      fontWeight: 300,
-                      color: "rgba(245,242,236,0.48)",
-                      lineHeight: 1.85,
-                    }}
-                  >
-                    {phase.description}
-                  </p>
+                    <span
+                      style={{
+                        fontFamily: "Manrope, sans-serif",
+                        fontSize: "10px",
+                        fontWeight: 600,
+                        letterSpacing: "0.25em",
+                        textTransform: "uppercase",
+                        color: "rgba(200,169,106,0.8)",
+                        marginBottom: "8px",
+                        display: "block",
+                      }}
+                    >
+                      {phase.number}
+                    </span>
+                    <h3
+                      style={{
+                        fontFamily: "Figtree, sans-serif",
+                        fontSize: "clamp(20px, 2vw, 28px)",
+                        fontWeight: 400,
+                        color: "#F5F2EC",
+                        lineHeight: 1.2,
+                        marginBottom: "6px",
+                      }}
+                    >
+                      {phase.title}
+                    </h3>
+                    <p
+                      style={{
+                        fontFamily: "Cormorant Garamond, serif",
+                        fontSize: "14px",
+                        fontStyle: "italic",
+                        color: "rgba(200,169,106,0.6)",
+                        marginBottom: "18px",
+                      }}
+                    >
+                      {phase.subtitle}
+                    </p>
+                    <p
+                      style={{
+                        fontFamily: "Manrope, sans-serif",
+                        fontSize: "13px",
+                        fontWeight: 300,
+                        color: "rgba(227,222,215,0.52)",
+                        lineHeight: 1.75,
+                        maxWidth: "360px",
+                      }}
+                    >
+                      {phase.description}
+                    </p>
+                  </div>
                 </div>
-              ))}
-            </div>
-          </ScrollReveal>
+              );
+            })}
+          </div>
         </div>
       </section>
 

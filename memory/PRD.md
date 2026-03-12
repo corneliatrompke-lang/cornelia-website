@@ -118,6 +118,10 @@ Create a cinematic editorial luxury marketing website for Cornelia Trompke — a
 
 ## What's Been Implemented (March 2026)
 
+### v2.2 — OrganizationalAdvisory Layout Fixes (Mar 2026)
+1. **Equal-Length Dividers in "The Work" (Three Dimensions) section:** Root cause was `borderRight` applied to inner `<div>`s inside `ScrollReveal` wrappers — those only span content height, not cell height. Fix: changed the CSS grid from `"1fr 1fr 1fr"` to `"1fr 1px 1fr 1px 1fr"` and added dedicated `1px`-wide separator `<div>`s as grid children. CSS Grid's default `align-items: stretch` makes them naturally span the full row height, creating visually equal dividers.
+2. **"The Process" section — Horizontal Accordion:** Replaced the static 3-column grid with the hover-expand accordion pattern from `TeamFacilitation.jsx`'s "The Work" section. Fixed height `420px`, each phase collapses to a rotated vertical title + faint number, expands on hover to reveal full content. Added `activePhase` state.
+
 ### v2.1 — Deep Forest Green Theme + Bug Fixes (Mar 2026)
 1. **Bug Fix: Hero CTA Buttons** — Replaced `flex flex-col sm:flex-row` Tailwind responsive classes with inline flex styles. Buttons always render in a horizontal row. (Home.jsx + About.jsx)
 2. **Bug Fix: Foundation Section Duplicate Text** — Replaced `hidden md:block` / `md:hidden` CSS classes with JS-based `isDesktop` state (`useState` + `useEffect` with `window.innerWidth`). Eliminates CSS specificity conflict causing dual-render of mobile + desktop layouts simultaneously. Also added `position: relative` to all `overflow: hidden` animation wrappers for reliable transform clipping. (FoundationSection.jsx)
@@ -259,12 +263,12 @@ Footer (from shared Footer component)
 
 ## Next Tasks
 
-1. Implement WhatsApp floating button (P1)
-2. Refactor Home.jsx & Method.jsx into smaller components (P1)
-3. Replace all placeholder content with final copy (P0)
-4. Upload Cornelia's real portrait photo (P0)
-5. Update WhatsApp number and legal details (P0)
-6. Configure custom domain (P0)
+1. Replace all placeholder content with final copy (P0)
+2. Upload Cornelia's real portrait photo (P0)
+3. Update WhatsApp number and legal details (P0)
+4. Configure custom domain (P0)
+5. Implement WhatsApp floating button (P1)
+6. Refactor large page components into smaller section components (P2)
 7. Optionally add Calendly booking integration (P1)
 
 ## Changelog
