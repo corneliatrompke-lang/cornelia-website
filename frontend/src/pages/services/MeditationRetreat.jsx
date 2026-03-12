@@ -900,7 +900,7 @@ const MeditationRetreat = () => {
               style={{
                 marginTop: "40px",
                 paddingTop: "24px",
-                borderTop: "1px solid rgba(245,242,236,0.07)",
+                borderTop: isMobile ? "none" : "1px solid rgba(245,242,236,0.07)",
                 display: "flex",
                 alignItems: "center",
                 gap: "16px",
@@ -951,60 +951,74 @@ const MeditationRetreat = () => {
         </div>
 
         {isMobile ? (
-          /* ── Mobile: circles fully lit + whileInView stacked rows ── */
-          <div className="px-6 pb-16">
-            <div style={{ display: "flex", justifyContent: "center", marginBottom: "40px" }}>
-              <div style={{ position: "relative", width: "260px", height: "260px" }}>
-                {[
-                  { inset: "93.6px", size: "72.8px" },
-                  { inset: "46.8px", size: "166.4px" },
-                  { inset: "0px", size: "260px" },
-                ].map((ring, i) => (
-                  <div
-                    key={i}
-                    style={{
-                      position: "absolute",
-                      inset: ring.inset,
-                      borderRadius: "50%",
-                      border: `1px solid rgba(200,169,106,${0.75 - i * 0.18})`,
-                      boxShadow: `0 0 ${20 + i * 14}px rgba(200,169,106,${0.12 - i * 0.025})`,
-                    }}
-                  />
-                ))}
-                <div style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%, -50%)", textAlign: "center" }}>
-                  <span style={{ fontFamily: "Cormorant Garamond, serif", fontSize: "11px", fontStyle: "italic", color: "rgba(200,169,106,0.45)", whiteSpace: "nowrap" }}>Stillness</span>
-                </div>
+          /* ── Mobile: same sticky-scroll as desktop, vertical layout ── */
+          <div style={{ height: "260vh" }}>
+            <div
+              style={{
+                position: "sticky",
+                top: 0,
+                height: "100vh",
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                justifyContent: "center",
+                overflow: "hidden",
+                padding: "0 24px 24px",
+              }}
+            >
+              {/* Circles — update with scroll */}
+              <div style={{ marginBottom: "24px", flexShrink: 0 }}>
+                <CirclesViz activePhase={activeElement} size={200} />
+              </div>
+
+              {/* Element rows */}
+              <div style={{ width: "100%" }}>
+                {EXPERIENCE_ELEMENTS.map((el, i) => {
+                  const isActive = activeElement >= i;
+                  const isCurrent = activeElement === i;
+                  return (
+                    <div
+                      key={i}
+                      data-testid={`experience-row-${i}`}
+                      style={{
+                        borderTop: i > 0 ? "1px solid rgba(245,242,236,0.1)" : "none",
+                        paddingTop: i > 0 ? "18px" : "0",
+                        paddingBottom: "18px",
+                        paddingLeft: "16px",
+                        borderLeft: `2px solid ${isCurrent ? "rgba(200,169,106,0.65)" : isActive ? "rgba(200,169,106,0.3)" : "rgba(200,169,106,0.08)"}`,
+                        transition: "border-color 0.6s ease",
+                      }}
+                    >
+                      <div style={{ display: "flex", alignItems: "baseline", gap: "10px", marginBottom: "5px" }}>
+                        <span style={{ fontFamily: "Manrope, sans-serif", fontSize: "9px", fontWeight: 600, letterSpacing: "2px", textTransform: "uppercase", color: isActive ? "rgba(200,169,106,0.85)" : "rgba(200,169,106,0.2)", transition: "color 0.6s ease" }}>
+                          {el.number}
+                        </span>
+                        <span style={{ fontFamily: "Manrope, sans-serif", fontSize: "9px", fontWeight: 400, letterSpacing: "1px", color: isActive ? "rgba(245,242,236,0.35)" : "rgba(245,242,236,0.12)", textTransform: "uppercase", transition: "color 0.6s ease" }}>
+                          {el.role}
+                        </span>
+                      </div>
+                      <h3 style={{ fontFamily: "Figtree, sans-serif", fontSize: "17px", fontWeight: 400, color: isActive ? "rgba(245,242,236,0.88)" : "rgba(245,242,236,0.18)", lineHeight: 1.2, transition: "color 0.6s ease" }}>
+                        {el.label}
+                      </h3>
+                      <AnimatePresence>
+                        {isActive && (
+                          <motion.p
+                            initial={{ opacity: 0, height: 0, marginTop: 0 }}
+                            animate={{ opacity: 1, height: "auto", marginTop: "7px" }}
+                            exit={{ opacity: 0, height: 0, marginTop: 0 }}
+                            transition={{ duration: 0.45, delay: 0.1, ease: "easeOut" }}
+                            style={{ fontFamily: "Manrope, sans-serif", fontSize: "12px", fontWeight: 300, color: "rgba(245,242,236,0.45)", lineHeight: 1.7, overflow: "hidden" }}
+                          >
+                            {el.description}
+                          </motion.p>
+                        )}
+                      </AnimatePresence>
+                    </div>
+                  );
+                })}
               </div>
             </div>
-            <div>
-              {EXPERIENCE_ELEMENTS.map((el, i) => (
-                <motion.div
-                  key={i}
-                  initial={{ opacity: 0, x: -20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true, margin: "-40px" }}
-                  transition={{ duration: 0.65, ease: [0.25, 0.46, 0.45, 0.94], delay: i * 0.15 }}
-                  style={{
-                    borderTop: i > 0 ? "1px solid rgba(245,242,236,0.08)" : "none",
-                    paddingTop: i > 0 ? "24px" : "0",
-                    paddingBottom: "24px",
-                    paddingLeft: "20px",
-                    borderLeft: "2px solid rgba(200,169,106,0.65)",
-                  }}
-                  data-testid={`experience-row-${i}`}
-                >
-                  <div style={{ display: "flex", alignItems: "baseline", gap: "12px", marginBottom: "8px" }}>
-                    <span style={{ fontFamily: "Manrope, sans-serif", fontSize: "10px", fontWeight: 600, letterSpacing: "2px", textTransform: "uppercase", color: "rgba(200,169,106,0.85)" }}>{el.number}</span>
-                    <span style={{ fontFamily: "Manrope, sans-serif", fontSize: "10px", fontWeight: 400, letterSpacing: "1px", color: "rgba(245,242,236,0.32)", textTransform: "uppercase" }}>{el.role}</span>
-                  </div>
-                  <h3 style={{ fontFamily: "Figtree, sans-serif", fontSize: "20px", fontWeight: 400, color: "rgba(245,242,236,0.88)", lineHeight: 1.2, marginBottom: "8px" }}>{el.label}</h3>
-                  <p style={{ fontFamily: "Manrope, sans-serif", fontSize: "13px", fontWeight: 300, color: "rgba(245,242,236,0.42)", lineHeight: 1.75 }}>{el.description}</p>
-                </motion.div>
-              ))}
-              <div style={{ marginTop: "24px", paddingLeft: "20px", borderLeft: "2px solid rgba(200,169,106,0.15)" }}>
-                <p style={{ fontFamily: "Cormorant Garamond, serif", fontSize: "17px", fontStyle: "italic", color: "rgba(200,169,106,0.45)", lineHeight: 1.5 }}>"Insights don't just arrive. They settle."</p>
-              </div>
-            </div>
+            <div style={{ paddingBottom: "40px" }} />
           </div>
         ) : (
         /* ── Desktop/Tablet: sticky scroll — 260vh drives the three-step reveal ── */
@@ -1409,7 +1423,7 @@ const MeditationRetreat = () => {
                   </div>
 
                   {/* Spots + CTA row */}
-                  <div style={{ display: "flex", alignItems: "center", gap: "20px", flexShrink: 0 }}>
+                  <div style={{ display: "flex", alignItems: "center", justifyContent: isMobile ? "space-between" : "flex-start", gap: isMobile ? "0" : "20px", width: isMobile ? "100%" : "auto", flexShrink: 0 }}>
                     <span
                       style={{
                         fontFamily: "Manrope, sans-serif",
