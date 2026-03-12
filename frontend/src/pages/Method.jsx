@@ -18,12 +18,12 @@ const TESTIMONIAL_PORTRAITS = [
 ];
 
 // ─── NARM Diagram ────────────────────────────────────────────────────────────
-const NarmDiagram = ({ layers }) => (
+const NarmDiagram = ({ layers, isMobile = false }) => (
   <div className="w-full mt-16" data-testid="narm-diagram">
     {layers.map((layer, i) => {
-      const progress = i / (layers.length - 1); // 0 = top biological, 1 = bottom expression
+      const progress = i / (layers.length - 1);
       const bgOpacity = 0.06 + progress * 0.12;
-      const leftPad = i * 32;
+      const leftPad = isMobile ? 0 : i * 32;
       return (
         <ScrollReveal key={i} delay={0.08 * i}>
           <div
@@ -95,7 +95,7 @@ const NarmDiagram = ({ layers }) => (
     })}
     {/* Arrow at bottom */}
     <ScrollReveal delay={0.5}>
-      <div className="flex items-center gap-3 mt-6" style={{ marginLeft: "160px" }}>
+      <div className="flex items-center gap-3 mt-6" style={{ marginLeft: isMobile ? 0 : "160px" }}>
         <div style={{ width: "1px", height: "32px", background: "rgba(200,169,106,0.4)" }} />
         <span
           style={{
@@ -139,6 +139,7 @@ const Method = () => {
   // Accordion
   const [openAccordion, setOpenAccordion] = useState(0);
   const [activeBenefit, setActiveBenefit] = useState(null);
+  const [activeMobileBenefit, setActiveMobileBenefit] = useState(null);
   const [isMobile, setIsMobile] = useState(typeof window !== "undefined" ? window.innerWidth < 768 : false);
 
   // Testimonials
@@ -265,11 +266,10 @@ const Method = () => {
           <div
             style={{
               display: "grid",
-              gridTemplateColumns: "3fr 7fr",
-              gap: "40px 64px",
+              gridTemplateColumns: isMobile ? "1fr" : "3fr 7fr",
+              gap: isMobile ? "32px" : "40px 64px",
               alignItems: "start",
             }}
-            className="grid-cols-1 md:grid-cols-2"
           >
 
             {/* ── Row 1 Left: heading + subtext ── */}
@@ -300,12 +300,12 @@ const Method = () => {
               </ScrollReveal>
             </div>
 
-            {/* ── Row 2: NARM + Integral — editorial two-column layout ── */}
-            <div style={{ gridColumn: "1 / -1" }}>
-              <div style={{ display: "flex", alignItems: "stretch" }}>
+            {/* ── Row 2: NARM + Integral — stacked on mobile, side-by-side on desktop ── */}
+            <div style={{ gridColumn: isMobile ? "1" : "1 / -1" }}>
+              <div style={{ display: "flex", flexDirection: isMobile ? "column" : "row", alignItems: isMobile ? "stretch" : "stretch", gap: isMobile ? "48px" : "0" }}>
 
                 {/* NARM — left column */}
-                <div style={{ flex: 1, paddingRight: "64px" }}>
+                <div style={{ flex: 1, paddingRight: isMobile ? "0" : "64px" }}>
                   <ScrollReveal delay={0.1}>
                     <div data-testid="narm-card">
                       <div style={{ paddingTop: "0px", marginBottom: "28px" }}>
@@ -332,11 +332,11 @@ const Method = () => {
                   </ScrollReveal>
                 </div>
 
-                {/* Thin vertical divider */}
-                <div style={{ width: "1px", background: "rgba(18,18,18,0.10)", flexShrink: 0 }} />
+                {/* Thin vertical divider — desktop only */}
+                {!isMobile && <div style={{ width: "1px", background: "rgba(18,18,18,0.10)", flexShrink: 0 }} />}
 
                 {/* Integral Coaching — right column */}
-                <div style={{ flex: 1, paddingLeft: "64px" }}>
+                <div style={{ flex: 1, paddingLeft: isMobile ? "0" : "64px" }}>
                   <ScrollReveal delay={0.18}>
                     <div data-testid="integral-card">
                       <div style={{ paddingTop: "0px", marginBottom: "28px" }}>
@@ -391,14 +391,33 @@ const Method = () => {
             </ScrollReveal>
           </div>
 
-          {/* Horizontal accordion — hover to reveal */}
-          <div
-            className="flex"
-            style={{
-              height: "420px",
-              overflow: "hidden",
-            }}
-          >
+          {/* ── Mobile: vertical expand/collapse ── */}
+          {isMobile ? (
+            <div style={{ display: "flex", flexDirection: "column" }}>
+              {m.benefits.items.map((item, i) => {
+                const isOpen = activeMobileBenefit === i;
+                return (
+                  <div key={i} style={{ borderBottom: "1px solid rgba(18,18,18,0.08)" }}>
+                    <button
+                      onClick={() => setActiveMobileBenefit(isOpen ? null : i)}
+                      style={{ width: "100%", display: "flex", alignItems: "center", justifyContent: "space-between", padding: "20px 0", background: "none", border: "none", cursor: "pointer", textAlign: "left", gap: "16px" }}
+                    >
+                      <div style={{ display: "flex", alignItems: "center", gap: "14px" }}>
+                        <span style={{ fontFamily: "Cormorant Garamond, serif", fontSize: "13px", color: "rgba(18,18,18,0.28)", flexShrink: 0 }}>{item.number}</span>
+                        <span style={{ fontFamily: "Figtree, sans-serif", fontSize: "17px", fontWeight: 400, color: isOpen ? "#121212" : "rgba(18,18,18,0.55)", transition: "color 0.25s" }}>{item.title}</span>
+                      </div>
+                      <span style={{ color: "rgba(124,140,130,0.7)", fontSize: "20px", flexShrink: 0, transition: "transform 0.3s", transform: isOpen ? "rotate(45deg)" : "none" }}>+</span>
+                    </button>
+                    <div style={{ maxHeight: isOpen ? "400px" : "0", overflow: "hidden", transition: "max-height 0.4s cubic-bezier(0.4,0,0.2,1)" }}>
+                      <p style={{ fontFamily: "Manrope, sans-serif", fontSize: "14px", fontWeight: 300, color: "rgba(18,18,18,0.5)", lineHeight: 1.8, paddingBottom: "24px", paddingRight: "20px" }}>{item.body}</p>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          ) : (
+          /* ── Desktop: horizontal hover accordion ── */
+          <div className="flex" style={{ height: "420px", overflow: "hidden" }}>
             {m.benefits.items.map((item, i) => {
               const isActive = activeBenefit === i;
               return (
@@ -409,116 +428,28 @@ const Method = () => {
                   data-testid={`benefit-card-${i}`}
                   style={{
                     flex: isActive ? 3.5 : 1,
-                    transition: "flex 0.65s cubic-bezier(0.4, 0, 0.2, 1)",
+                    transition: "flex 0.65s cubic-bezier(0.4, 0, 0.2, 1), background 0.4s ease",
                     position: "relative",
                     overflow: "hidden",
                     borderRight: i < m.benefits.items.length - 1 ? "1px solid rgba(18,18,18,0.07)" : "none",
                     cursor: "default",
                     background: isActive ? "rgba(18,18,18,0.025)" : "#F5F2EC",
-                    transition: "flex 0.65s cubic-bezier(0.4, 0, 0.2, 1), background 0.4s ease",
                   }}
                 >
-                  {/* Collapsed: rotated title + number */}
-                  <div
-                    style={{
-                      position: "absolute",
-                      inset: 0,
-                      display: "flex",
-                      flexDirection: "column",
-                      alignItems: "center",
-                      padding: "40px 0",
-                      opacity: isActive ? 0 : 1,
-                      transition: "opacity 0.2s ease",
-                      pointerEvents: "none",
-                    }}
-                  >
-                    <span
-                      style={{
-                        writingMode: "vertical-rl",
-                        transform: "rotate(180deg)",
-                        fontFamily: "Figtree, sans-serif",
-                        fontSize: "clamp(13px, 1.6vw, 18px)",
-                        fontWeight: 400,
-                        letterSpacing: "0.08em",
-                        color: "rgba(18,18,18,0.5)",
-                        flex: 1,
-                        display: "flex",
-                        alignItems: "center",
-                      }}
-                    >
-                      {item.title}
-                    </span>
-                    <span
-                      style={{
-                        fontFamily: "Cormorant Garamond, serif",
-                        fontSize: "28px",
-                        fontWeight: 300,
-                        color: "rgba(18,18,18,0.12)",
-                        lineHeight: 1,
-                        paddingBottom: "4px",
-                      }}
-                    >
-                      {item.number}
-                    </span>
+                  <div style={{ position: "absolute", inset: 0, display: "flex", flexDirection: "column", alignItems: "center", padding: "40px 0", opacity: isActive ? 0 : 1, transition: "opacity 0.2s ease", pointerEvents: "none" }}>
+                    <span style={{ writingMode: "vertical-rl", transform: "rotate(180deg)", fontFamily: "Figtree, sans-serif", fontSize: "clamp(13px, 1.6vw, 18px)", fontWeight: 400, letterSpacing: "0.08em", color: "rgba(18,18,18,0.5)", flex: 1, display: "flex", alignItems: "center" }}>{item.title}</span>
+                    <span style={{ fontFamily: "Cormorant Garamond, serif", fontSize: "28px", fontWeight: 300, color: "rgba(18,18,18,0.12)", lineHeight: 1, paddingBottom: "4px" }}>{item.number}</span>
                   </div>
-
-                  {/* Expanded: editorial layout */}
-                  <div
-                    style={{
-                      opacity: isActive ? 1 : 0,
-                      transition: "opacity 0.35s ease 0.22s",
-                      padding: "48px 52px",
-                      height: "100%",
-                      display: "flex",
-                      flexDirection: "column",
-                      justifyContent: "flex-end",
-                      minWidth: "380px",
-                    }}
-                  >
-                    <span
-                      style={{
-                        fontFamily: "Manrope, sans-serif",
-                        fontSize: "10px",
-                        fontWeight: 600,
-                        letterSpacing: "0.25em",
-                        textTransform: "uppercase",
-                        color: "rgba(124,140,130,0.75)",
-                        marginBottom: "20px",
-                        display: "block",
-                      }}
-                    >
-                      {item.number}
-                    </span>
-                    <h3
-                      style={{
-                        fontFamily: "Figtree, sans-serif",
-                        fontSize: "clamp(20px, 2vw, 26px)",
-                        fontWeight: 400,
-                        color: "#121212",
-                        lineHeight: 1.2,
-                        marginBottom: "18px",
-                        maxWidth: "340px",
-                      }}
-                    >
-                      {item.title}
-                    </h3>
-                    <p
-                      style={{
-                        fontFamily: "Manrope, sans-serif",
-                        fontSize: "14px",
-                        fontWeight: 300,
-                        color: "rgba(18,18,18,0.5)",
-                        lineHeight: 1.75,
-                        maxWidth: "340px",
-                      }}
-                    >
-                      {item.body}
-                    </p>
+                  <div style={{ opacity: isActive ? 1 : 0, transition: "opacity 0.35s ease 0.22s", padding: "48px 52px", height: "100%", display: "flex", flexDirection: "column", justifyContent: "flex-end", minWidth: "380px" }}>
+                    <span style={{ fontFamily: "Manrope, sans-serif", fontSize: "10px", fontWeight: 600, letterSpacing: "0.25em", textTransform: "uppercase", color: "rgba(124,140,130,0.75)", marginBottom: "20px", display: "block" }}>{item.number}</span>
+                    <h3 style={{ fontFamily: "Figtree, sans-serif", fontSize: "clamp(20px, 2vw, 26px)", fontWeight: 400, color: "#121212", lineHeight: 1.2, marginBottom: "18px", maxWidth: "340px" }}>{item.title}</h3>
+                    <p style={{ fontFamily: "Manrope, sans-serif", fontSize: "14px", fontWeight: 300, color: "rgba(18,18,18,0.5)", lineHeight: 1.75, maxWidth: "340px" }}>{item.body}</p>
                   </div>
                 </div>
               );
             })}
           </div>
+          )}
         </div>
       </section>
 
@@ -547,7 +478,45 @@ const Method = () => {
             </ScrollReveal>
           </div>
 
-          {/* Two-column layout */}
+          {/* ── Mobile: vertical expand/collapse ── */}
+          {isMobile ? (
+            <div style={{ display: "flex", flexDirection: "column" }}>
+              {m.accordion.items.map((item, i) => {
+                const isOpen = openAccordion === i;
+                const link = ACCORDION_SERVICE_LINKS[i];
+                return (
+                  <div key={i} style={{ borderBottom: "1px solid rgba(245,242,236,0.10)" }}>
+                    <button
+                      onClick={() => setOpenAccordion(isOpen ? -1 : i)}
+                      style={{ width: "100%", display: "flex", alignItems: "center", justifyContent: "space-between", padding: "22px 0", background: "none", border: "none", cursor: "pointer", textAlign: "left", gap: "16px", borderLeft: isOpen ? "2px solid rgba(200,169,106,0.65)" : "2px solid transparent", paddingLeft: "16px", transition: "border-color 0.3s" }}
+                    >
+                      <div>
+                        <p style={{ fontFamily: "Manrope, sans-serif", fontSize: "10px", fontWeight: 500, letterSpacing: "2.5px", textTransform: "uppercase", color: isOpen ? "rgba(200,169,106,0.85)" : "rgba(200,169,106,0.3)", marginBottom: "6px", transition: "color 0.3s" }}>{item.subtitle}</p>
+                        <span style={{ fontFamily: "Figtree, sans-serif", fontSize: "20px", fontWeight: 400, color: isOpen ? "#F5F2EC" : "rgba(245,242,236,0.38)", transition: "color 0.3s", lineHeight: 1.15 }}>{item.audience}</span>
+                      </div>
+                      <span style={{ color: "rgba(200,169,106,0.65)", fontSize: "20px", flexShrink: 0, transition: "transform 0.3s", transform: isOpen ? "rotate(45deg)" : "none" }}>+</span>
+                    </button>
+                    <div style={{ maxHeight: isOpen ? "600px" : "0", overflow: "hidden", transition: "max-height 0.4s cubic-bezier(0.4,0,0.2,1)", paddingLeft: "18px" }}>
+                      <p style={{ fontFamily: "Manrope, sans-serif", fontSize: "10px", fontWeight: 500, letterSpacing: "2.5px", textTransform: "uppercase", color: "rgba(200,169,106,0.5)", marginBottom: "16px", marginTop: "8px" }}>What shifts</p>
+                      <div style={{ display: "flex", flexDirection: "column", gap: "14px", marginBottom: "24px" }}>
+                        {item.benefits.map((benefit, j) => (
+                          <div key={j} style={{ display: "flex", gap: "14px", alignItems: "baseline" }}>
+                            <span style={{ fontFamily: "Cormorant Garamond, serif", fontSize: "16px", color: "rgba(200,169,106,0.4)", flexShrink: 0 }}>—</span>
+                            <p style={{ fontFamily: "Manrope, sans-serif", fontSize: "13px", fontWeight: 300, color: "rgba(227,222,215,0.65)", lineHeight: 1.8 }}>{benefit}</p>
+                          </div>
+                        ))}
+                      </div>
+                      <div style={{ display: "flex", flexWrap: "wrap", gap: "10px", paddingBottom: "24px" }}>
+                        <Link to={link.to} className="btn-primary inline-block" style={{ borderRadius: "8px", fontSize: "13px" }}>{link.label}</Link>
+                        {link.secondary && <Link to={link.secondary.to} className="btn-secondary inline-block" style={{ borderRadius: "8px", fontSize: "13px" }}>{link.secondary.label}</Link>}
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          ) : (
+          /* ── Desktop: two-column sticky layout ── */
           <div style={{ display: "flex", alignItems: "flex-start", gap: "0" }}>
 
             {/* Left: selector rows (~44%) */}
@@ -567,32 +536,8 @@ const Method = () => {
                       transition: "border-color 0.35s ease",
                     }}
                   >
-                    <p
-                      style={{
-                        fontFamily: "Manrope, sans-serif",
-                        fontSize: "10px",
-                        fontWeight: 500,
-                        letterSpacing: "2.5px",
-                        textTransform: "uppercase",
-                        color: isActive ? "rgba(200,169,106,0.85)" : "rgba(200,169,106,0.3)",
-                        marginBottom: "10px",
-                        transition: "color 0.35s",
-                      }}
-                    >
-                      {item.subtitle}
-                    </p>
-                    <h3
-                      style={{
-                        fontFamily: "Figtree, sans-serif",
-                        fontSize: "clamp(20px, 2.4vw, 32px)",
-                        fontWeight: 400,
-                        color: isActive ? "#F5F2EC" : "rgba(245,242,236,0.38)",
-                        transition: "color 0.35s",
-                        lineHeight: 1.15,
-                      }}
-                    >
-                      {item.audience}
-                    </h3>
+                    <p style={{ fontFamily: "Manrope, sans-serif", fontSize: "10px", fontWeight: 500, letterSpacing: "2.5px", textTransform: "uppercase", color: isActive ? "rgba(200,169,106,0.85)" : "rgba(200,169,106,0.3)", marginBottom: "10px", transition: "color 0.35s" }}>{item.subtitle}</p>
+                    <h3 style={{ fontFamily: "Figtree, sans-serif", fontSize: "clamp(20px, 2.4vw, 32px)", fontWeight: 400, color: isActive ? "#F5F2EC" : "rgba(245,242,236,0.38)", transition: "color 0.35s", lineHeight: 1.15 }}>{item.audience}</h3>
                   </div>
                 );
               })}
@@ -604,86 +549,22 @@ const Method = () => {
             {/* Right: active benefits panel (~56%) — sticky */}
             <div style={{ flex: 1, paddingLeft: "80px", position: "sticky", top: "100px" }}>
               <AnimatePresence mode="wait">
-                <motion.div
-                  key={openAccordion}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -12 }}
-                  transition={{ duration: 0.45, ease: [0.25, 0.46, 0.45, 0.94] }}
-                >
+                <motion.div key={openAccordion} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -12 }} transition={{ duration: 0.45, ease: [0.25, 0.46, 0.45, 0.94] }}>
                   <div style={{ paddingTop: "0", marginBottom: "32px" }}>
-                    <p
-                      style={{
-                        fontFamily: "Manrope, sans-serif",
-                        fontSize: "10px",
-                        fontWeight: 500,
-                        letterSpacing: "2.5px",
-                        textTransform: "uppercase",
-                        color: "rgba(200,169,106,0.5)",
-                      }}
-                    >
-                      What shifts
-                    </p>
+                    <p style={{ fontFamily: "Manrope, sans-serif", fontSize: "10px", fontWeight: 500, letterSpacing: "2.5px", textTransform: "uppercase", color: "rgba(200,169,106,0.5)" }}>What shifts</p>
                   </div>
                   <div style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
                     {m.accordion.items[openAccordion >= 0 ? openAccordion : 0].benefits.map((benefit, j) => (
-                      <motion.div
-                        key={j}
-                        initial={{ opacity: 0, x: 14 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        transition={{ delay: j * 0.07, duration: 0.38, ease: "easeOut" }}
-                        style={{ display: "flex", gap: "18px", alignItems: "baseline" }}
-                      >
-                        <span
-                          style={{
-                            fontFamily: "Cormorant Garamond, serif",
-                            fontSize: "18px",
-                            color: "rgba(200,169,106,0.4)",
-                            flexShrink: 0,
-                            lineHeight: 1,
-                          }}
-                        >
-                          —
-                        </span>
-                        <p
-                          style={{
-                            fontFamily: "Manrope, sans-serif",
-                            fontSize: "14px",
-                            fontWeight: 300,
-                            color: "rgba(227,222,215,0.65)",
-                            lineHeight: 1.8,
-                          }}
-                        >
-                          {benefit}
-                        </p>
+                      <motion.div key={j} initial={{ opacity: 0, x: 14 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: j * 0.07, duration: 0.38, ease: "easeOut" }} style={{ display: "flex", gap: "18px", alignItems: "baseline" }}>
+                        <span style={{ fontFamily: "Cormorant Garamond, serif", fontSize: "18px", color: "rgba(200,169,106,0.4)", flexShrink: 0, lineHeight: 1 }}>—</span>
+                        <p style={{ fontFamily: "Manrope, sans-serif", fontSize: "14px", fontWeight: 300, color: "rgba(227,222,215,0.65)", lineHeight: 1.8 }}>{benefit}</p>
                       </motion.div>
                     ))}
                   </div>
-
-                  {/* Service CTA */}
-                  <motion.div
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ delay: 0.55, duration: 0.4 }}
-                    style={{ marginTop: "36px", display: "flex", flexWrap: "wrap", gap: "12px" }}
-                  >
-                    <Link
-                      to={ACCORDION_SERVICE_LINKS[openAccordion >= 0 ? openAccordion : 0].to}
-                      className="btn-primary inline-block"
-                      style={{ borderRadius: "8px" }}
-                      data-testid={`accordion-cta-${openAccordion}`}
-                    >
-                      {ACCORDION_SERVICE_LINKS[openAccordion >= 0 ? openAccordion : 0].label}
-                    </Link>
+                  <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.55, duration: 0.4 }} style={{ marginTop: "36px", display: "flex", flexWrap: "wrap", gap: "12px" }}>
+                    <Link to={ACCORDION_SERVICE_LINKS[openAccordion >= 0 ? openAccordion : 0].to} className="btn-primary inline-block" style={{ borderRadius: "8px" }} data-testid={`accordion-cta-${openAccordion}`}>{ACCORDION_SERVICE_LINKS[openAccordion >= 0 ? openAccordion : 0].label}</Link>
                     {ACCORDION_SERVICE_LINKS[openAccordion >= 0 ? openAccordion : 0].secondary && (
-                      <Link
-                        to={ACCORDION_SERVICE_LINKS[openAccordion >= 0 ? openAccordion : 0].secondary.to}
-                        className="btn-secondary inline-block"
-                        style={{ borderRadius: "8px" }}
-                        data-testid={`accordion-cta-secondary-${openAccordion}`}
-                      >
-                        {ACCORDION_SERVICE_LINKS[openAccordion >= 0 ? openAccordion : 0].secondary.label}
-                      </Link>
+                      <Link to={ACCORDION_SERVICE_LINKS[openAccordion >= 0 ? openAccordion : 0].secondary.to} className="btn-secondary inline-block" style={{ borderRadius: "8px" }} data-testid={`accordion-cta-secondary-${openAccordion}`}>{ACCORDION_SERVICE_LINKS[openAccordion >= 0 ? openAccordion : 0].secondary.label}</Link>
                     )}
                   </motion.div>
                 </motion.div>
@@ -691,6 +572,7 @@ const Method = () => {
             </div>
 
           </div>
+          )}
         </div>
       </section>
 
@@ -856,7 +738,7 @@ const Method = () => {
                 {m.narm.diagramTitle}
               </p>
             </ScrollReveal>
-            <NarmDiagram layers={m.narm.diagramLayers} />
+            <NarmDiagram layers={m.narm.diagramLayers} isMobile={isMobile} />
           </div>
         </div>
       </section>
