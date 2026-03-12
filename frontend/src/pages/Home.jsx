@@ -257,7 +257,7 @@ const Home = () => {
             {/* ── Text column ── */}
             <div className="lg:col-span-6 lg:col-start-2">
               <ScrollReveal>
-                <p className="ct-overline text-gold mb-6">{t.home.aboutPreview.overline}</p>
+                <p className="ct-overline mb-6" style={{ color: "#7A4F2D" }}>{t.home.aboutPreview.overline}</p>
               </ScrollReveal>
               <ScrollReveal delay={0.15}>
                 <h2

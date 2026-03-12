@@ -5,7 +5,7 @@ const en = {
     method: "The Method",
     workWithMe: "Work With Me",
     contact: "Contact",
-    cta: "Begin an Enquiry",
+    cta: "Begin the Work",
     workWithMeLinks: [
       { title: "Executive Coaching & Advisory", path: "/executive-coaching" },
       { title: "Executive Retreats", path: "/executive-retreats" },

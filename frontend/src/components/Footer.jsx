@@ -22,10 +22,10 @@ const Footer = () => {
           <div className="md:col-span-5">
             <Link to="/" className="inline-block mb-8 no-underline" data-testid="footer-logo">
               <img
-                src={LOGO_VERTICAL}
+                src="/ct-logo-nav.png"
                 alt="Cornelia Trompke Consulting & Coaching"
                 style={{
-                  height: "100px",
+                  height: "38px",
                   width: "auto",
                   objectFit: "contain",
                   display: "block",
