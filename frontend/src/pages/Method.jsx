@@ -818,7 +818,7 @@ const Method = () => {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-14 items-start">
             <div className="lg:col-span-5">
               <ScrollReveal>
-              <p style={{ fontFamily: "Manrope, sans-serif", fontSize: "10px", fontWeight: 600, letterSpacing: "0.2em", textTransform: "uppercase", color: "#C4845A", marginBottom: "20px" }} data-testid="narm-overline">{m.narm.overline}</p>
+              <p style={{ fontFamily: "Manrope, sans-serif", fontSize: "10px", fontWeight: 600, letterSpacing: "0.2em", textTransform: "uppercase", color: "#C8A96A", marginBottom: "20px" }} data-testid="narm-overline">{m.narm.overline}</p>
                 <h2
                   className="leading-[1.1]"
                   style={{ fontFamily: "Figtree, sans-serif", fontSize: "clamp(28px, 3.5vw, 44px)", fontWeight: 400, color: "#F5F2EC" }}
@@ -868,7 +868,7 @@ const Method = () => {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-14 items-start">
             <div className="lg:col-span-5">
               <ScrollReveal>
-                <p style={{ fontFamily: "Manrope, sans-serif", fontSize: "10px", fontWeight: 600, letterSpacing: "0.2em", textTransform: "uppercase", color: "#C4845A", marginBottom: "20px" }} data-testid="integral-overline">{m.integral.overline}</p>
+                <p style={{ fontFamily: "Manrope, sans-serif", fontSize: "10px", fontWeight: 600, letterSpacing: "0.2em", textTransform: "uppercase", color: "#C8A96A", marginBottom: "20px" }} data-testid="integral-overline">{m.integral.overline}</p>
                 <h2
                   className="leading-[1.1]"
                   style={{ fontFamily: "Figtree, sans-serif", fontSize: "clamp(28px, 3.5vw, 44px)", fontWeight: 400, color: "#F5F2EC" }}
