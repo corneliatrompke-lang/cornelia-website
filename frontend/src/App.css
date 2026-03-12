@@ -214,6 +214,11 @@
 .ct-section { padding-top: 140px; padding-bottom: 140px; }
 .ct-section-sm { padding-top: 80px; padding-bottom: 80px; }
 
+@media (max-width: 768px) {
+  .ct-section { padding-top: 72px; padding-bottom: 72px; }
+  .ct-section-sm { padding-top: 48px; padding-bottom: 48px; }
+}
+
 /* ---- Grain overlay ---- */
 .grain-overlay::after {
   content: "";

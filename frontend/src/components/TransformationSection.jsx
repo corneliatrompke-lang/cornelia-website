@@ -198,7 +198,7 @@ export default function TransformationSection() {
 
         {/* ── Individual large circles ─────────────────────────────── */}
         {ITEMS.map((item, i) => {
-          const circleSize = isMobile ? 240 : isNarrow ? 310 : 450;
+          const circleSize = isMobile ? 312 : isNarrow ? 465 : 450;
           const xPos = isNarrow ? 50 : item.x;
           const yPos = isNarrow ? 54 : item.y;
           return (
@@ -287,7 +287,7 @@ export default function TransformationSection() {
         <motion.div
           style={{
             position: "absolute",
-            top: isMobile ? "240px" : isNarrow ? "50%" : "160px",
+            top: isMobile ? "240px" : isNarrow ? "40%" : "160px",
             left: 0,
             right: 0,
             bottom: 0,

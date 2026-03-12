@@ -351,79 +351,46 @@ export default function FoundationSection() {
           </div>
         </div>}
 
-        {/* ── Mobile: static layout with images ─────────────────── */}
-        {!isDesktop && <div
-          style={{ position: "relative", zIndex: 2, padding: `${NAV_H}px 0 48px` }}
-        >
-          {/* Banner image */}
-          <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
-            viewport={{ once: true }}
-            style={{ width: "100%", height: "200px", overflow: "hidden", marginBottom: "0" }}
-          >
-            <img src={BANNER_SRC} alt="" style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center 30%" }} />
-          </motion.div>
-
-          {/* Circle + Square images row */}
-          <div style={{ display: "flex", gap: "12px", padding: "12px 20px 0", alignItems: "center" }}>
+        {/* ── Mobile: text-only with whileInView animation ─────── */}
+        {!isDesktop && (
+          <div style={{ position: "relative", zIndex: 2, padding: `${NAV_H}px 24px 48px`, textAlign: "center" }}>
             <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.7, delay: 0.15 }}
-              viewport={{ once: true }}
-              style={{ width: "100px", height: "100px", borderRadius: "50%", overflow: "hidden", flexShrink: 0, border: "4px solid #F5F2EC", boxShadow: "0 8px 24px rgba(18,18,18,0.15)" }}
-            >
-              <img src={CIRCLE_SRC} alt="" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
-            </motion.div>
-            <motion.div
-              initial={{ opacity: 0, x: 20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.7, delay: 0.25 }}
-              viewport={{ once: true }}
-              style={{ flex: 1, height: "100px", overflow: "hidden" }}
-            >
-              <img src={SQUARE_SRC} alt="" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
-            </motion.div>
-          </div>
-
-          {/* Text content */}
-          <div style={{ padding: "32px 24px 0", textAlign: "center" }}>
-            <div className="ct-divider mx-auto mb-8" style={{ background: "rgba(18,18,18,0.2)" }} />
-            <motion.h2
-              className="leading-[1.15]"
-              initial={{ opacity: 0, y: 16 }}
+              initial={{ opacity: 0, y: 32 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 0.1 }}
-              viewport={{ once: true }}
-              style={{
-                fontFamily: "Figtree, sans-serif",
-                fontSize: "clamp(28px, 4vw, 44px)",
-                fontWeight: 400,
-                background: "linear-gradient(160deg, #121212 30%, #3D2916 100%)",
-                WebkitBackgroundClip: "text",
-                WebkitTextFillColor: "transparent",
-                backgroundClip: "text",
-              }}
+              transition={{ duration: 0.85, ease: [0.25, 0.46, 0.45, 0.94] }}
+              viewport={{ once: true, margin: "-10%" }}
             >
-              {t.home.philosophy.headline}
-            </motion.h2>
+              <div className="ct-divider mx-auto mb-8" style={{ background: "rgba(18,18,18,0.2)" }} />
+              <h2
+                className="leading-[1.15]"
+                style={{
+                  fontFamily: "Figtree, sans-serif",
+                  fontSize: "clamp(28px, 6vw, 44px)",
+                  fontWeight: 400,
+                  background: "linear-gradient(160deg, #121212 30%, #3D2916 100%)",
+                  WebkitBackgroundClip: "text",
+                  WebkitTextFillColor: "transparent",
+                  backgroundClip: "text",
+                }}
+              >
+                {t.home.philosophy.headline}
+              </h2>
+            </motion.div>
             {t.home.philosophy.body.split("\n\n").map((para, i) => (
               <motion.p
                 key={i}
                 className="text-charcoal/65 mt-5 leading-relaxed"
                 style={{ fontFamily: "Manrope, sans-serif", fontSize: "16px", fontWeight: 300 }}
-                initial={{ opacity: 0, y: 12 }}
+                initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.2 + i * 0.1 }}
-                viewport={{ once: true }}
+                transition={{ duration: 0.7, delay: 0.15 + i * 0.1, ease: [0.25, 0.46, 0.45, 0.94] }}
+                viewport={{ once: true, margin: "-10%" }}
               >
                 {para}
               </motion.p>
             ))}
           </div>
-        </div>}
+        )}
       </div>
     </section>
   );

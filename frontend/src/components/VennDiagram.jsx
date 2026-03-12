@@ -47,6 +47,13 @@ const VennDiagram = ({ showLogo = true, showArrow = true, staticView = false, th
   const [paused, setPaused] = useState(false);
   const { t } = useLanguage();
 
+  const [isNarrow, setIsNarrow] = useState(typeof window !== "undefined" ? window.innerWidth < 1024 : false);
+  useEffect(() => {
+    const h = () => setIsNarrow(window.innerWidth < 1024);
+    window.addEventListener("resize", h);
+    return () => window.removeEventListener("resize", h);
+  }, []);
+
   // ── Scroll-driven mode ────────────────────────────────────────────────────
   const { scrollYProgress } = useScroll({
     target: outerRef,
@@ -219,11 +226,11 @@ const VennDiagram = ({ showLogo = true, showArrow = true, staticView = false, th
         </div>
       </section>
 
-      {/* Desktop 280vh sticky */}
+      {/* Desktop/tablet 280vh/200vh sticky */}
       <div
         ref={outerRef}
         className="hidden md:block"
-        style={{ background: "#0F1A12", height: "280vh", position: "relative" }}
+        style={{ background: "#0F1A12", height: isNarrow ? "200vh" : "280vh", position: "relative" }}
         data-testid="venn-section"
       >
         <div style={{
