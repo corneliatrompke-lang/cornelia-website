@@ -352,3 +352,11 @@ Footer (from shared Footer component)
 - SVG nerve line split into 3 separate segments (seg12, seg23, seg34)
 - Section height: 500vh (4 individual + 1 final)
 - 100% test pass rate confirmed by testing agent
+
+
+### Mobile Responsiveness — All 4 Service Pages (Mar 2026)
+- **ExecutiveCoaching.jsx**: Fixed "Engagement Arc" mobile animation — Framer Motion `whileInView` on each phase row (fade + slide from left, staggered)
+- **OrganizationalAdvisory.jsx**: Added `openProcessMobile` state; made Premise, Three Dimensions grid, Process accordion, Engagement, For Whom all responsive (1-col on mobile)
+- **TeamFacilitation.jsx**: Added `isMobile` state + useEffect (was missing); added `openWorkMobile`; made Premise, Process grid, Work Addresses, For Whom, Outcome all responsive; testimonials portrait hidden on mobile
+- **MeditationRetreat.jsx**: Added `isMobile` state + useEffect (was missing); added `openWhatOpensMobile`; made Invitation, Guide, What Opens, Experience circles (sticky→whileInView), Timeline (horizontal→vertical), Upcoming Retreats, Format all responsive; testimonials portrait hidden on mobile
+- 100% test pass rate at 390px viewport, no horizontal overflow
