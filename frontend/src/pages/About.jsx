@@ -432,7 +432,7 @@ const About = () => {
                           fontFamily: "Manrope, sans-serif",
                           fontSize: "10px",
                           fontWeight: 600,
-                          color: "rgba(200,169,106,0.8)",
+                          color: "#F5F2EC",
                           letterSpacing: "1px",
                         }}
                       >
@@ -465,7 +465,7 @@ const About = () => {
                           fontFamily: "Manrope, sans-serif",
                           fontSize: "13px",
                           fontWeight: 300,
-                          color: "rgba(227,222,215,0.48)",
+                          color: "rgba(245,242,236,0.75)",
                           lineHeight: 1.72,
                         }}
                       >
