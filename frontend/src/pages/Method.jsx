@@ -65,14 +65,14 @@ const NarmDiagram = ({ layers, isMobile = false }) => (
                 borderRight: "1px solid rgba(200,169,106,0.1)",
               }}
             >
-              <div className="flex items-baseline gap-4">
+              <div className={isMobile ? "flex flex-col gap-1" : "flex items-baseline gap-4"}>
                 <span
                   style={{
                     fontFamily: "Cormorant Garamond, serif",
                     fontSize: "18px",
                     fontWeight: 600,
                     color: "#C8A96A",
-                    minWidth: "140px",
+                    minWidth: isMobile ? undefined : "140px",
                   }}
                 >
                   {layer.name}
