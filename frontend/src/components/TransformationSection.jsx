@@ -198,7 +198,7 @@ export default function TransformationSection() {
 
         {/* ── Individual large circles ─────────────────────────────── */}
         {ITEMS.map((item, i) => {
-          const circleSize = isMobile ? 312 : isNarrow ? 698 : 450;
+          const circleSize = isMobile ? 312 : isNarrow ? 560 : 450;
           const xPos = isNarrow ? 50 : item.x;
           const yPos = isNarrow ? 54 : item.y;
           return (
@@ -247,7 +247,7 @@ export default function TransformationSection() {
               <span
                 style={{
                   fontFamily: "Figtree, sans-serif",
-                  fontSize: isMobile ? "20px" : isNarrow ? "22px" : "clamp(24px, 2.4vw, 30px)",
+                  fontSize: isMobile ? "20px" : isNarrow ? "30px" : "clamp(24px, 2.4vw, 30px)",
                   fontWeight: 400,
                   color: "#F5F2EC",
                   lineHeight: 1.26,
@@ -269,7 +269,7 @@ export default function TransformationSection() {
               <p
                 style={{
                   fontFamily: "Manrope, sans-serif",
-                  fontSize: isMobile ? "13px" : isNarrow ? "14px" : "clamp(14px, 1.4vw, 18px)",
+                  fontSize: isMobile ? "13px" : isNarrow ? "16px" : "clamp(14px, 1.4vw, 18px)",
                   color: "rgba(245,242,236,0.50)",
                   lineHeight: 1.65,
                   maxWidth: "76%",
@@ -294,8 +294,11 @@ export default function TransformationSection() {
             display: isNarrow ? "grid" : "flex",
             gridTemplateColumns: isNarrow ? "1fr 1fr" : undefined,
             alignItems: isNarrow ? "start" : "flex-start",
+            alignContent: (isNarrow && !isMobile) ? "start" : undefined,
             justifyContent: isNarrow ? undefined : "center",
-            gap: isMobile ? "12px" : isNarrow ? "16px" : "60px",
+            columnGap: (isNarrow && !isMobile) ? "16px" : undefined,
+            rowGap: (isNarrow && !isMobile) ? "80px" : undefined,
+            gap: (!isNarrow || isMobile) ? (isMobile ? "12px" : "60px") : undefined,
             paddingLeft: isMobile ? "20px" : "40px",
             paddingRight: isMobile ? "20px" : "40px",
             opacity: finalO,

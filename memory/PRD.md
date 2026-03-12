@@ -285,6 +285,10 @@ Footer (from shared Footer component)
 6. Refactor large page components into smaller section components (P2)
 7. Optionally add Calendly booking integration (P1)
 
+### v2.8 — Transformation Section Tablet Refinements (Mar 2026)
+- **Large individual circles (tablet)**: Reduced size from 698px → 560px (-20%); increased heading font from 22px → 30px and subtext from 14px → 16px for improved readability
+- **4 Summary circles (tablet)**: Fixed CSS grid row distribution — added `alignContent: "start"` to prevent rows from stretching across full container height; added explicit `rowGap: "80px"` to control inter-row spacing; reduced visual row gap by ~65% vs original stretched layout
+
 ### v2.7 — Tablet Layout Refinements (Mar 2026)
 - **About section**: Portrait image now full-width on tablet (`isMobile ? "260px" : "100%"`, maxHeight 500px on tablet); image column changes from `flex justify-center` to `block` on tablet/desktop
 - **Transformation large circle**: Size increased from 465px → 700px (50% larger) on tablet (`isNarrow`)
