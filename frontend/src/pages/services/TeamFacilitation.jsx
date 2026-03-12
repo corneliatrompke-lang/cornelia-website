@@ -336,14 +336,13 @@ const TeamFacilitation = () => {
               style={{
                 display: "grid",
                 gridTemplateColumns: "1fr 1fr",
-                borderTop: "1px solid rgba(245,242,236,0.12)",
               }}
             >
               {PROCESS_PHASES.map((phase, i) => (
                 <div
                   key={i}
                   style={{
-                    paddingTop: "64px",
+                    paddingTop: "32px",
                     paddingRight: i === 0 ? "clamp(40px, 6vw, 80px)" : "0",
                     paddingLeft: i === 1 ? "clamp(40px, 6vw, 80px)" : "0",
                     borderRight: i === 0 ? "1px solid rgba(245,242,236,0.10)" : "none",
