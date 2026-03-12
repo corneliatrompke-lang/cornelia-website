@@ -230,7 +230,7 @@ const Method = () => {
               </p>
             </ScrollReveal>
             <ScrollReveal delay={0.58}>
-              <div className="flex flex-col sm:flex-row gap-3 mt-9 mb-10">
+              <div className="flex flex-wrap items-center gap-3 mt-9 mb-10">
                 <Link to="/contact" className="btn-hero-pill" data-testid="method-hero-cta">
                   {m.cta.button}
                   <ArrowRight size={13} />
@@ -534,9 +534,9 @@ const Method = () => {
           {/* Section heading */}
           <div className="max-w-[680px] mb-20">
             <ScrollReveal>
-              <p className="ct-overline text-sage mb-5">{m.accordion.overline}</p>
+              <p className="mb-5" style={{ fontFamily: "Manrope, sans-serif", fontSize: "10px", fontWeight: 600, letterSpacing: "0.2em", textTransform: "uppercase", color: "#5C3317" }}>{m.accordion.overline}</p>
               <h2
-                style={{ fontFamily: "Figtree, sans-serif", fontSize: "clamp(28px, 3.5vw, 46px)", fontWeight: 400, color: "#5C3317" }}
+                style={{ fontFamily: "Figtree, sans-serif", fontSize: "clamp(28px, 3.5vw, 46px)", fontWeight: 400, color: "#121212" }}
               >
                 {m.accordion.headline}
               </h2>
@@ -818,10 +818,10 @@ const Method = () => {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-14 items-start">
             <div className="lg:col-span-5">
               <ScrollReveal>
-                <p style={{ fontFamily: "Manrope, sans-serif", fontSize: "10px", fontWeight: 600, letterSpacing: "0.2em", textTransform: "uppercase", color: "#C4845A", marginBottom: "20px" }} data-testid="narm-overline">{m.narm.overline}</p>
+              <p style={{ fontFamily: "Manrope, sans-serif", fontSize: "10px", fontWeight: 600, letterSpacing: "0.2em", textTransform: "uppercase", color: "#C4845A", marginBottom: "20px" }} data-testid="narm-overline">{m.narm.overline}</p>
                 <h2
-                  className="text-ivory leading-[1.1]"
-                  style={{ fontFamily: "Figtree, sans-serif", fontSize: "clamp(28px, 3.5vw, 44px)", fontWeight: 400 }}
+                  className="leading-[1.1]"
+                  style={{ fontFamily: "Figtree, sans-serif", fontSize: "clamp(28px, 3.5vw, 44px)", fontWeight: 400, color: "#F5F2EC" }}
                 >
                   {m.narm.headline}
                 </h2>
@@ -870,8 +870,8 @@ const Method = () => {
               <ScrollReveal>
                 <p style={{ fontFamily: "Manrope, sans-serif", fontSize: "10px", fontWeight: 600, letterSpacing: "0.2em", textTransform: "uppercase", color: "#C4845A", marginBottom: "20px" }} data-testid="integral-overline">{m.integral.overline}</p>
                 <h2
-                  className="text-ivory leading-[1.1]"
-                  style={{ fontFamily: "Figtree, sans-serif", fontSize: "clamp(28px, 3.5vw, 44px)", fontWeight: 400 }}
+                  className="leading-[1.1]"
+                  style={{ fontFamily: "Figtree, sans-serif", fontSize: "clamp(28px, 3.5vw, 44px)", fontWeight: 400, color: "#F5F2EC" }}
                 >
                   {m.integral.headline}
                 </h2>
