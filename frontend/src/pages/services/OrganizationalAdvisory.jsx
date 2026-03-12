@@ -1,46 +1,276 @@
-import React from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
-import { CheckCircle2 } from "lucide-react";
+import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion";
+import NeuralCanvas from "../../components/NeuralCanvas";
 import ScrollReveal from "../../components/ScrollReveal";
 import { useLanguage } from "../../context/LanguageContext";
 
+// ─── Constants ────────────────────────────────────────────────────────────────
+const HERO_BG =
+  "https://images.unsplash.com/photo-1601277743437-2b4cf99aab99?crop=entropy&cs=srgb&fm=jpg&ixlib=rb-4.1.0&q=85";
+
+const TESTIMONIAL_PORTRAITS = [
+  "https://images.unsplash.com/photo-1560250097-0b93528c311a?crop=entropy&cs=srgb&fm=jpg&ixlib=rb-4.1.0&q=85",
+  "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?crop=entropy&cs=srgb&fm=jpg&ixlib=rb-4.1.0&q=85",
+  "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?crop=entropy&cs=srgb&fm=jpg&ixlib=rb-4.1.0&q=85",
+];
+
+const DIMENSIONS = [
+  {
+    number: "01",
+    title: "Leadership",
+    subtitle: "How Leaders Operate",
+    body: "Leadership is the primary lever of organisational change. Who leads, how they lead, and what they model creates the conditions — or the constraints — for everything else. We examine leadership maturity, decision-making patterns, and the gap between stated values and enacted behaviour. Where leadership is not aligned with the intended future state, the transformation stalls.",
+  },
+  {
+    number: "02",
+    title: "People Systems",
+    subtitle: "The Architecture of Work",
+    body: "People practices are the operating system of an organisation. Performance processes, talent frameworks, ways of hiring, developing, and recognising people — these are not administrative functions. They are the structural encoding of what an organisation truly values. We review what your current systems produce, where they constrain the culture you are trying to build, and what needs to change.",
+  },
+  {
+    number: "03",
+    title: "Culture",
+    subtitle: "What the Organisation Lives",
+    body: "Culture is not a programme or a set of values on a wall. It is the sum of what is rewarded, what is tolerated, and what goes unsaid. Understanding your current culture — honestly — is the foundation for changing it. We examine the lived experience of people across the organisation and identify the patterns, habits, and norms that shape how work actually gets done.",
+  },
+];
+
+const PROCESS_PHASES = [
+  {
+    number: "01",
+    title: "Stakeholder Interviews",
+    subtitle: "Understanding Different Perspectives",
+    description:
+      "The engagement begins with structured conversations across the organisation — with leadership, managers, and key stakeholders. These interviews surface different perspectives on the current state, the challenges, and the distance between where the organisation is and where it intends to go.",
+  },
+  {
+    number: "02",
+    title: "Analysis & Review",
+    subtitle: "Mapping What Exists",
+    description:
+      "I review existing People & Culture practices, leadership routines, organisational structures, and the articulated future state. This creates a clear picture of where your current systems and practices support the intended direction — and where they work against it.",
+  },
+  {
+    number: "03",
+    title: "Strategic Guidance",
+    subtitle: "Clarity on the Path Forward",
+    description:
+      "Based on the analysis, I develop a presentation outlining potential transformation levers, priority focus areas, and options for supporting the journey. Where the engagement continues, I provide strategic guidance and regular check-ins to support the teams responsible for implementation.",
+  },
+];
+
+const ENGAGEMENT_ITEMS = [
+  "Stakeholder interview series across the organisation",
+  "Review of People & Culture practices and leadership routines",
+  "Transformation levers presentation with priority focus areas",
+  "Options for the transformation journey",
+  "Regular strategic check-ins with implementation teams",
+  "Conceptual and strategic guidance throughout",
+];
+
+const FOR_WHOM_ITEMS = [
+  {
+    number: "01",
+    subtitle: "Driving Change from Within",
+    title: "The CHRO / People Leader",
+    benefits: [
+      "Create a coherent transformation strategy grounded in the organisation's actual current state",
+      "Build a shared language with leadership for what change requires and what it costs",
+      "Identify where people systems are reinforcing the culture you are trying to move away from",
+      "Develop a clear and credible narrative for the transformation journey",
+    ],
+  },
+  {
+    number: "02",
+    subtitle: "Leading an Organisation Through Change",
+    title: "The CEO",
+    benefits: [
+      "Understand what your organisation actually needs — beyond the symptoms presenting on the surface",
+      "Build alignment across the leadership team on direction and priorities",
+      "Identify where leadership behaviour is the lever — and where systems need to change",
+      "Create a transformation roadmap that is realistic about what the organisation can absorb",
+    ],
+  },
+  {
+    number: "03",
+    subtitle: "Scaling, Merging, or Reinventing",
+    title: "The Organisation at Inflection Point",
+    benefits: [
+      "Navigate significant growth, merger, or strategic pivot without losing organisational cohesion",
+      "Align people practices with the organisation you are becoming, not the one you were",
+      "Address the cultural drift that often accompanies rapid scale",
+      "Build the leadership and people infrastructure for the next stage",
+    ],
+  },
+  {
+    number: "04",
+    subtitle: "Moving Beyond Founder-Led Culture",
+    title: "The Scale-up",
+    benefits: [
+      "Replace informal people practices with structured systems that support a growing organisation",
+      "Retain what made the company successful while building the infrastructure for scale",
+      "Develop leaders who can manage, not just build",
+      "Create clarity around performance, development, and expectations without losing agility",
+    ],
+  },
+];
+
+const PHASE_GRADIENT =
+  "linear-gradient(to bottom, #F5F2EC 0%, #CDD8C4 15%, #8A9A80 32%, #2A3825 52%, #162018 75%, #0F1A12 100%)";
+
+const FOREST_TO_IVORY =
+  "linear-gradient(to bottom, #0F1A12 0%, #162018 25%, #2A3825 48%, #8A9A80 68%, #CDD8C4 85%, #F5F2EC 100%)";
+
+// ─── Page ─────────────────────────────────────────────────────────────────────
 const OrganizationalAdvisory = () => {
   const { t } = useLanguage();
-  const s = t.services.organisationalAdvisory;
+  const testimonials = t.home.testimonials.items;
+
+  const heroRef = useRef(null);
+  const { scrollYProgress: heroScroll } = useScroll({ target: heroRef, offset: ["start start", "end start"] });
+  const heroBgY = useTransform(heroScroll, [0, 1], ["0%", "-12%"]);
+
+  const [openForWhom, setOpenForWhom] = useState(0);
+
+  const [activeTestimonial, setActiveTestimonial] = useState(0);
+  const timerRef = useRef(null);
+  const restartTimer = (len) => {
+    clearInterval(timerRef.current);
+    timerRef.current = setInterval(() => setActiveTestimonial((p) => (p + 1) % len), 6000);
+  };
+  useEffect(() => {
+    restartTimer(testimonials.length);
+    return () => clearInterval(timerRef.current);
+  }, [testimonials.length]);
 
   return (
-    <div>
-      <section className="bg-charcoal min-h-[65vh] flex items-end pb-20 pt-36" data-testid="advisory-hero">
-        <div className="max-w-[1400px] mx-auto px-6 md:px-16 w-full">
-          <ScrollReveal><p className="ct-overline text-gold mb-6">{s.hero.overline}</p></ScrollReveal>
-          <ScrollReveal delay={0.15}>
-            <h1 className="text-ivory leading-[1.05] max-w-[680px]" style={{ fontFamily: "Figtree, sans-serif", fontSize: "clamp(40px, 6vw, 74px)", fontWeight: 400 }}>
-              {s.hero.headline}
-            </h1>
-          </ScrollReveal>
-          <ScrollReveal delay={0.3}>
-            <p className="text-stone/50 mt-5 max-w-[520px]" style={{ fontFamily: "Cormorant Garamond, serif", fontSize: "20px", fontStyle: "italic" }}>
-              {s.hero.subtitle}
-            </p>
-          </ScrollReveal>
+    <div className="bg-[#F5F2EC]">
+
+      {/* ══ 1. HERO ══════════════════════════════════════════════════════════ */}
+      <section
+        className="pt-[6px] px-3 md:px-4 pb-3"
+        style={{ background: "#F5F2EC" }}
+        data-testid="advisory-hero"
+      >
+        <div
+          ref={heroRef}
+          className="relative overflow-hidden w-full"
+          style={{ borderRadius: "20px", minHeight: "96vh" }}
+        >
+          <motion.img
+            src={HERO_BG}
+            alt=""
+            aria-hidden="true"
+            style={{
+              position: "absolute", left: 0, right: 0, top: 0,
+              width: "100%", height: "115%",
+              objectFit: "cover", objectPosition: "center 40%",
+              y: heroBgY,
+            }}
+          />
+          <div
+            className="absolute inset-0 z-[1]"
+            style={{
+              background:
+                "linear-gradient(to right, rgba(15,26,18,0.97) 0%, rgba(15,26,18,0.90) 25%, rgba(15,26,18,0.72) 48%, rgba(15,26,18,0.28) 68%, rgba(15,26,18,0.06) 100%)",
+            }}
+          />
+          <div
+            className="absolute top-0 left-0 right-0 z-[2]"
+            style={{ height: "130px", background: "linear-gradient(to bottom, rgba(15,26,18,0.70) 0%, rgba(15,26,18,0.2) 70%, transparent 100%)" }}
+          />
+          <NeuralCanvas opacity={0.05} nodeCount={30} />
+          <div className="absolute bottom-0 left-0 z-10 p-8 md:p-14" style={{ maxWidth: "900px" }}>
+            <ScrollReveal delay={0.1}>
+              <p className="ct-overline text-gold mb-6">03 — Organisational Advisory</p>
+            </ScrollReveal>
+            <ScrollReveal delay={0.25}>
+              <h1
+                className="text-ivory leading-[1.04]"
+                style={{ fontFamily: "Figtree, sans-serif", fontSize: "clamp(38px, 6vw, 80px)", fontWeight: 400 }}
+                data-testid="advisory-hero-headline"
+              >
+                Where Leadership, People Practices, and Culture Evolve Together
+              </h1>
+            </ScrollReveal>
+            <ScrollReveal delay={0.42}>
+              <p
+                className="mt-5 max-w-[540px] leading-relaxed"
+                style={{ fontFamily: "Cormorant Garamond, serif", fontSize: "22px", fontStyle: "italic", color: "rgba(227,222,215,0.65)" }}
+              >
+                Strategic guidance for organisations at points of meaningful transformation.
+              </p>
+            </ScrollReveal>
+            <ScrollReveal delay={0.58}>
+              <div style={{ display: "flex", flexWrap: "wrap", gap: "12px", marginTop: "36px", marginBottom: "40px" }}>
+                <Link to="/contact" className="btn-hero-pill" data-testid="advisory-hero-cta">
+                  Begin the Conversation
+                </Link>
+              </div>
+            </ScrollReveal>
+          </div>
         </div>
       </section>
 
-      <section className="bg-stone ct-section" data-testid="advisory-description">
+      {/* ══ 2. THE PREMISE — Ivory ═══════════════════════════════════════════ */}
+      <section className="ct-section" style={{ background: "#F5F2EC" }} data-testid="advisory-premise">
         <div className="max-w-[1400px] mx-auto px-6 md:px-16">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-14">
-            <div className="lg:col-span-5">
+          <div style={{ display: "flex", gap: "80px", alignItems: "flex-start" }}>
+
+            {/* Left: pull quote */}
+            <div style={{ flex: "0 0 44%" }}>
               <ScrollReveal>
-                <p className="ct-overline text-charcoal/40 mb-4">{s.description.overline}</p>
-                <h2 className="text-charcoal leading-[1.1]" style={{ fontFamily: "Figtree, sans-serif", fontSize: "clamp(24px, 3vw, 36px)", fontWeight: 400 }}>
-                  {s.description.headline}
-                </h2>
+                <p className="ct-overline text-sage mb-8">The Premise</p>
+                <p
+                  style={{
+                    fontFamily: "Cormorant Garamond, serif",
+                    fontSize: "clamp(26px, 3vw, 44px)",
+                    fontWeight: 400,
+                    fontStyle: "italic",
+                    color: "#121212",
+                    lineHeight: 1.28,
+                  }}
+                >
+                  "Organisations evolve when leadership, people practices, and culture develop together — rarely when only one changes in isolation."
+                </p>
+                <div style={{ width: "40px", height: "1px", background: "rgba(200,169,106,0.5)", marginTop: "36px" }} />
+                <p
+                  style={{
+                    fontFamily: "Manrope, sans-serif",
+                    fontSize: "11px",
+                    fontWeight: 500,
+                    letterSpacing: "2px",
+                    textTransform: "uppercase",
+                    color: "rgba(18,18,18,0.35)",
+                    marginTop: "16px",
+                  }}
+                >
+                  Cornelia Trompke
+                </p>
               </ScrollReveal>
             </div>
-            <div className="lg:col-span-6 lg:col-start-7">
-              {s.description.body.split("\n\n").map((para, i) => (
-                <ScrollReveal key={i} delay={0.1 + i * 0.08}>
-                  <p className="text-charcoal/65 mb-5 leading-relaxed" style={{ fontFamily: "Manrope, sans-serif", fontSize: "15px", fontWeight: 300 }}>{para}</p>
+
+            {/* Right: body */}
+            <div style={{ flex: 1, paddingTop: "68px" }}>
+              {[
+                "I support organisations in understanding their current state and identifying the most effective levers for meaningful transformation.",
+                "The work typically begins with stakeholder interviews to understand different perspectives across the organisation. I review existing People & Culture practices, leadership routines, organisational structures, and the intended future state.",
+                "Based on these insights, I develop a presentation outlining potential transformation levers, priority focus areas, and options for supporting the transformation journey.",
+              ].map((para, i) => (
+                <ScrollReveal key={i} delay={0.08 * i}>
+                  <p
+                    style={{
+                      fontFamily: "Manrope, sans-serif",
+                      fontSize: "15px",
+                      fontWeight: 300,
+                      color: "rgba(18,18,18,0.55)",
+                      lineHeight: 1.85,
+                      marginBottom: "24px",
+                    }}
+                  >
+                    {para}
+                  </p>
                 </ScrollReveal>
               ))}
             </div>
@@ -48,24 +278,327 @@ const OrganizationalAdvisory = () => {
         </div>
       </section>
 
-      <section className="bg-charcoal ct-section" data-testid="advisory-for-whom">
+      {/* ══ 3. THREE DIMENSIONS — Ivory → Forest gradient, triptych ══════════ */}
+      <section
+        className="relative overflow-hidden"
+        style={{ background: PHASE_GRADIENT, paddingTop: "160px", paddingBottom: "140px" }}
+        data-testid="advisory-dimensions"
+      >
+        <div
+          style={{
+            position: "absolute", right: "-60px", top: "20px",
+            fontFamily: "Cormorant Garamond, serif", fontSize: "480px",
+            fontWeight: 300, color: "rgba(18,18,18,0.022)", lineHeight: 1,
+            pointerEvents: "none", userSelect: "none",
+          }}
+        >
+          03
+        </div>
+
+        <div className="max-w-[1400px] mx-auto px-6 md:px-16 relative z-10">
+          <ScrollReveal>
+            <p className="ct-overline text-sage mb-5">The Work</p>
+            <h2
+              style={{
+                fontFamily: "Figtree, sans-serif",
+                fontSize: "clamp(28px, 3.5vw, 46px)",
+                fontWeight: 400,
+                color: "#121212",
+                lineHeight: 1.1,
+                maxWidth: "680px",
+                marginBottom: "100px",
+              }}
+            >
+              Three Dimensions That Must Evolve Together
+            </h2>
+          </ScrollReveal>
+
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "1fr 1fr 1fr",
+              gap: "0",
+            }}
+          >
+            {DIMENSIONS.map((dim, i) => (
+              <ScrollReveal key={i} delay={0.1 * i}>
+                <div
+                  style={{
+                    paddingRight: i < DIMENSIONS.length - 1 ? "clamp(32px, 4vw, 64px)" : "0",
+                    paddingLeft: i > 0 ? "clamp(32px, 4vw, 64px)" : "0",
+                    borderRight: i < DIMENSIONS.length - 1 ? "1px solid rgba(245,242,236,0.10)" : "none",
+                  }}
+                  data-testid={`dimension-${i}`}
+                >
+                  <span
+                    style={{
+                      fontFamily: "Cormorant Garamond, serif",
+                      fontSize: "clamp(64px, 8vw, 96px)",
+                      fontWeight: 300,
+                      color: "rgba(200,169,106,0.10)",
+                      lineHeight: 1,
+                      display: "block",
+                      marginBottom: "-4px",
+                      letterSpacing: "-2px",
+                    }}
+                  >
+                    {dim.number}
+                  </span>
+                  <h3
+                    style={{
+                      fontFamily: "Figtree, sans-serif",
+                      fontSize: "clamp(20px, 2.2vw, 30px)",
+                      fontWeight: 400,
+                      color: "rgba(245,242,236,0.92)",
+                      lineHeight: 1.12,
+                      marginBottom: "10px",
+                    }}
+                  >
+                    {dim.title}
+                  </h3>
+                  <p
+                    style={{
+                      fontFamily: "Cormorant Garamond, serif",
+                      fontSize: "16px",
+                      fontStyle: "italic",
+                      color: "rgba(200,169,106,0.55)",
+                      marginBottom: "24px",
+                    }}
+                  >
+                    {dim.subtitle}
+                  </p>
+                  <p
+                    style={{
+                      fontFamily: "Manrope, sans-serif",
+                      fontSize: "13px",
+                      fontWeight: 300,
+                      color: "rgba(245,242,236,0.50)",
+                      lineHeight: 1.85,
+                    }}
+                  >
+                    {dim.body}
+                  </p>
+                </div>
+              </ScrollReveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ══ 4. HOW THE WORK UNFOLDS — Deep forest, 3-phase grid ══════════════ */}
+      <section className="ct-section" style={{ background: "#0F1A12" }} data-testid="advisory-process">
         <div className="max-w-[1400px] mx-auto px-6 md:px-16">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-14">
-            <div className="lg:col-span-5">
+          <div className="max-w-[680px] mb-16">
+            <ScrollReveal>
+              <p className="ct-overline text-gold/60 mb-5">The Process</p>
+              <h2
+                style={{
+                  fontFamily: "Figtree, sans-serif",
+                  fontSize: "clamp(28px, 3.5vw, 46px)",
+                  fontWeight: 400,
+                  color: "#F5F2EC",
+                  lineHeight: 1.1,
+                }}
+              >
+                Three Phases. One Coherent View.
+              </h2>
+            </ScrollReveal>
+          </div>
+
+          <ScrollReveal>
+            <div
+              style={{
+                display: "grid",
+                gridTemplateColumns: "1fr 1fr 1fr",
+                borderTop: "1px solid rgba(245,242,236,0.10)",
+              }}
+            >
+              {PROCESS_PHASES.map((phase, i) => (
+                <div
+                  key={i}
+                  style={{
+                    paddingTop: "52px",
+                    paddingRight: i < PROCESS_PHASES.length - 1 ? "clamp(32px, 4vw, 64px)" : "0",
+                    paddingLeft: i > 0 ? "clamp(32px, 4vw, 64px)" : "0",
+                    borderRight: i < PROCESS_PHASES.length - 1 ? "1px solid rgba(245,242,236,0.08)" : "none",
+                  }}
+                  data-testid={`process-phase-${i}`}
+                >
+                  <span
+                    style={{
+                      fontFamily: "Cormorant Garamond, serif",
+                      fontSize: "clamp(64px, 8vw, 96px)",
+                      fontWeight: 300,
+                      color: "rgba(200,169,106,0.10)",
+                      lineHeight: 1,
+                      display: "block",
+                      marginBottom: "-4px",
+                      letterSpacing: "-2px",
+                    }}
+                  >
+                    {phase.number}
+                  </span>
+                  <h3
+                    style={{
+                      fontFamily: "Figtree, sans-serif",
+                      fontSize: "clamp(18px, 2vw, 26px)",
+                      fontWeight: 400,
+                      color: "rgba(245,242,236,0.92)",
+                      lineHeight: 1.15,
+                      marginBottom: "10px",
+                    }}
+                  >
+                    {phase.title}
+                  </h3>
+                  <p
+                    style={{
+                      fontFamily: "Cormorant Garamond, serif",
+                      fontSize: "15px",
+                      fontStyle: "italic",
+                      color: "rgba(200,169,106,0.55)",
+                      marginBottom: "22px",
+                    }}
+                  >
+                    {phase.subtitle}
+                  </p>
+                  <p
+                    style={{
+                      fontFamily: "Manrope, sans-serif",
+                      fontSize: "13px",
+                      fontWeight: 300,
+                      color: "rgba(245,242,236,0.48)",
+                      lineHeight: 1.85,
+                    }}
+                  >
+                    {phase.description}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </ScrollReveal>
+        </div>
+      </section>
+
+      {/* ══ 5. THE ENGAGEMENT — Deep forest, 2-column ════════════════════════ */}
+      <section className="ct-section" style={{ background: "#0F1A12" }} data-testid="advisory-engagement">
+        <div className="max-w-[1400px] mx-auto px-6 md:px-16">
+          <div style={{ display: "flex", gap: "80px", alignItems: "flex-start" }}>
+
+            {/* Left: duration + context */}
+            <div style={{ flex: "0 0 42%" }}>
               <ScrollReveal>
-                <p className="ct-overline text-gold mb-4">{s.forWhom.overline}</p>
-                <h2 className="text-ivory leading-[1.1]" style={{ fontFamily: "Figtree, sans-serif", fontSize: "clamp(24px, 3vw, 36px)", fontWeight: 400 }}>
-                  {s.forWhom.headline}
+                <p className="ct-overline text-gold/60 mb-5">The Format</p>
+                <h2
+                  style={{
+                    fontFamily: "Figtree, sans-serif",
+                    fontSize: "clamp(28px, 3.2vw, 44px)",
+                    fontWeight: 400,
+                    color: "#F5F2EC",
+                    lineHeight: 1.1,
+                    marginBottom: "36px",
+                  }}
+                >
+                  Strategic Guidance Over Time
                 </h2>
+                {/* Duration display */}
+                <div
+                  style={{
+                    display: "flex",
+                    alignItems: "baseline",
+                    gap: "12px",
+                    marginBottom: "28px",
+                    paddingBottom: "28px",
+                    borderBottom: "1px solid rgba(245,242,236,0.08)",
+                  }}
+                >
+                  <span
+                    style={{
+                      fontFamily: "Cormorant Garamond, serif",
+                      fontSize: "clamp(52px, 7vw, 80px)",
+                      fontWeight: 300,
+                      color: "rgba(200,169,106,0.55)",
+                      lineHeight: 1,
+                      letterSpacing: "-1px",
+                    }}
+                  >
+                    3–12
+                  </span>
+                  <span
+                    style={{
+                      fontFamily: "Manrope, sans-serif",
+                      fontSize: "13px",
+                      fontWeight: 400,
+                      letterSpacing: "2px",
+                      textTransform: "uppercase",
+                      color: "rgba(245,242,236,0.35)",
+                    }}
+                  >
+                    months
+                  </span>
+                </div>
+                <p
+                  style={{
+                    fontFamily: "Manrope, sans-serif",
+                    fontSize: "14px",
+                    fontWeight: 300,
+                    color: "rgba(245,242,236,0.45)",
+                    lineHeight: 1.85,
+                  }}
+                >
+                  The structure adapts to what the organisation needs — from intensive diagnostic work at the front to lighter-touch strategic support during implementation.
+                </p>
               </ScrollReveal>
             </div>
-            <div className="lg:col-span-6 lg:col-start-7">
-              <div className="space-y-5">
-                {s.forWhom.items.map((item, i) => (
-                  <ScrollReveal key={i} delay={0.08 * i}>
-                    <div className="flex gap-4 items-start">
-                      <CheckCircle2 size={15} className="text-gold/60 mt-0.5 flex-shrink-0" />
-                      <p className="text-stone/60" style={{ fontFamily: "Manrope, sans-serif", fontSize: "14px", fontWeight: 300 }}>{item}</p>
+
+            {/* Right: what's included */}
+            <div style={{ flex: 1, paddingTop: "88px" }}>
+              <p
+                style={{
+                  fontFamily: "Manrope, sans-serif",
+                  fontSize: "10px",
+                  fontWeight: 600,
+                  letterSpacing: "2.5px",
+                  textTransform: "uppercase",
+                  color: "rgba(200,169,106,0.5)",
+                  marginBottom: "28px",
+                }}
+              >
+                What's Included
+              </p>
+              <div style={{ display: "flex", flexDirection: "column", gap: "0" }}>
+                {ENGAGEMENT_ITEMS.map((item, i) => (
+                  <ScrollReveal key={i} delay={0.06 * i}>
+                    <div
+                      style={{
+                        display: "flex",
+                        gap: "18px",
+                        alignItems: "baseline",
+                        padding: "18px 0",
+                        borderBottom: "1px solid rgba(245,242,236,0.07)",
+                      }}
+                    >
+                      <span
+                        style={{
+                          fontFamily: "Cormorant Garamond, serif",
+                          fontSize: "18px",
+                          color: "rgba(200,169,106,0.38)",
+                          flexShrink: 0,
+                          lineHeight: 1,
+                        }}
+                      >
+                        —
+                      </span>
+                      <p
+                        style={{
+                          fontFamily: "Manrope, sans-serif",
+                          fontSize: "14px",
+                          fontWeight: 300,
+                          color: "rgba(227,222,215,0.62)",
+                          lineHeight: 1.7,
+                        }}
+                      >
+                        {item}
+                      </p>
                     </div>
                   </ScrollReveal>
                 ))}
@@ -75,40 +608,400 @@ const OrganizationalAdvisory = () => {
         </div>
       </section>
 
-      <section className="bg-ivory ct-section" data-testid="advisory-format">
+      {/* ══ 6. FOR WHOM — Deep forest, Method-style vertical selector ════════ */}
+      <section className="ct-section" style={{ background: "#0F1A12" }} data-testid="advisory-for-whom">
         <div className="max-w-[1400px] mx-auto px-6 md:px-16">
-          <ScrollReveal>
-            <p className="ct-overline text-sage mb-4">{s.format.overline}</p>
-            <h2 className="text-charcoal leading-[1.1] mb-12" style={{ fontFamily: "Figtree, sans-serif", fontSize: "clamp(24px, 3vw, 36px)", fontWeight: 400 }}>
-              {s.format.headline}
-            </h2>
-          </ScrollReveal>
-          <div className="space-y-0">
-            {s.format.items.map((item, i) => (
-              <ScrollReveal key={i} delay={i * 0.06}>
-                <div className="border-t py-6 grid grid-cols-1 md:grid-cols-3 gap-4" style={{ borderColor: "rgba(18,18,18,0.12)" }}>
-                  <p className="ct-overline text-charcoal/40">{item.label}</p>
-                  <p className="md:col-span-2 text-charcoal/70" style={{ fontFamily: "Manrope, sans-serif", fontSize: "14px", fontWeight: 300 }}>{item.value}</p>
-                </div>
-              </ScrollReveal>
-            ))}
-            <div className="border-t" style={{ borderColor: "rgba(18,18,18,0.12)" }} />
+
+          <div className="max-w-[680px] mb-20">
+            <ScrollReveal>
+              <p className="ct-overline text-gold/60 mb-5">For Whom</p>
+              <h2
+                style={{
+                  fontFamily: "Figtree, sans-serif",
+                  fontSize: "clamp(28px, 3.5vw, 46px)",
+                  fontWeight: 400,
+                  color: "#F5F2EC",
+                }}
+              >
+                The Organisations This Work Serves
+              </h2>
+            </ScrollReveal>
           </div>
+
+          <div style={{ display: "flex", alignItems: "flex-start", gap: "0" }}>
+
+            {/* Left: selector rows */}
+            <div style={{ flex: "0 0 44%", paddingRight: "80px" }}>
+              {FOR_WHOM_ITEMS.map((item, i) => {
+                const isActive = openForWhom === i;
+                return (
+                  <div
+                    key={i}
+                    onClick={() => setOpenForWhom(i)}
+                    data-testid={`for-whom-item-${i}`}
+                    style={{
+                      borderTop: i > 0 ? "1px solid rgba(245,242,236,0.10)" : "none",
+                      padding: "28px 0 28px 20px",
+                      cursor: "pointer",
+                      borderLeft: isActive ? "2px solid rgba(200,169,106,0.65)" : "2px solid transparent",
+                      transition: "border-color 0.35s ease",
+                    }}
+                  >
+                    <p
+                      style={{
+                        fontFamily: "Manrope, sans-serif",
+                        fontSize: "10px",
+                        fontWeight: 500,
+                        letterSpacing: "2.5px",
+                        textTransform: "uppercase",
+                        color: isActive ? "rgba(200,169,106,0.85)" : "rgba(200,169,106,0.28)",
+                        marginBottom: "10px",
+                        transition: "color 0.35s",
+                      }}
+                    >
+                      {item.subtitle}
+                    </p>
+                    <h3
+                      style={{
+                        fontFamily: "Figtree, sans-serif",
+                        fontSize: "clamp(20px, 2.4vw, 32px)",
+                        fontWeight: 400,
+                        color: isActive ? "#F5F2EC" : "rgba(245,242,236,0.32)",
+                        transition: "color 0.35s",
+                        lineHeight: 1.15,
+                      }}
+                    >
+                      {item.title}
+                    </h3>
+                  </div>
+                );
+              })}
+            </div>
+
+            {/* Divider */}
+            <div style={{ width: "1px", background: "rgba(245,242,236,0.08)", flexShrink: 0, alignSelf: "stretch" }} />
+
+            {/* Right: benefits panel */}
+            <div style={{ flex: 1, paddingLeft: "80px" }}>
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={openForWhom}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -12 }}
+                  transition={{ duration: 0.45, ease: [0.25, 0.46, 0.45, 0.94] }}
+                >
+                  <div style={{ marginBottom: "32px" }}>
+                    <p
+                      style={{
+                        fontFamily: "Manrope, sans-serif",
+                        fontSize: "10px",
+                        fontWeight: 500,
+                        letterSpacing: "2.5px",
+                        textTransform: "uppercase",
+                        color: "rgba(200,169,106,0.5)",
+                      }}
+                    >
+                      What this addresses
+                    </p>
+                  </div>
+                  <div style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
+                    {FOR_WHOM_ITEMS[openForWhom].benefits.map((benefit, j) => (
+                      <motion.div
+                        key={j}
+                        initial={{ opacity: 0, x: 14 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ delay: j * 0.07, duration: 0.38, ease: "easeOut" }}
+                        style={{ display: "flex", gap: "18px", alignItems: "baseline" }}
+                      >
+                        <span
+                          style={{
+                            fontFamily: "Cormorant Garamond, serif",
+                            fontSize: "18px",
+                            color: "rgba(200,169,106,0.4)",
+                            flexShrink: 0,
+                            lineHeight: 1,
+                          }}
+                        >
+                          —
+                        </span>
+                        <p
+                          style={{
+                            fontFamily: "Manrope, sans-serif",
+                            fontSize: "14px",
+                            fontWeight: 300,
+                            color: "rgba(227,222,215,0.65)",
+                            lineHeight: 1.8,
+                          }}
+                        >
+                          {benefit}
+                        </p>
+                      </motion.div>
+                    ))}
+                  </div>
+                </motion.div>
+              </AnimatePresence>
+            </div>
+          </div>
+
+          {/* Unified CTA */}
+          <div style={{ marginTop: "56px", display: "flex", justifyContent: "center" }}>
+            <Link
+              to="/contact"
+              className="btn-primary"
+              style={{ borderRadius: "8px" }}
+              data-testid="advisory-for-whom-cta"
+            >
+              Begin the Conversation
+            </Link>
+          </div>
+
         </div>
       </section>
 
-      <section className="bg-charcoal ct-section-sm text-center">
-        <div className="max-w-[520px] mx-auto px-6">
+      {/* ══ 7. TESTIMONIALS — Deep forest, glassmorphic ══════════════════════ */}
+      <section className="ct-section relative overflow-hidden" style={{ background: "#0F1A12" }} data-testid="advisory-testimonials">
+        <NeuralCanvas opacity={0.05} nodeCount={28} />
+        <div className="relative z-10 max-w-[1400px] mx-auto px-6 md:px-16">
           <ScrollReveal>
-            <h2 className="text-ivory" style={{ fontFamily: "Figtree, sans-serif", fontSize: "clamp(26px, 3vw, 36px)", fontWeight: 400 }}>
-              {s.cta.headline}
-            </h2>
-            <Link to="/contact" className="btn-secondary mt-8 inline-block" data-testid="advisory-cta-btn">
-              {s.cta.button}
-            </Link>
+            <p className="ct-overline text-gold/60 mb-10">
+              {t.home.testimonials.overline}
+            </p>
+          </ScrollReveal>
+          <ScrollReveal delay={0.1}>
+            <div
+              style={{
+                display: "flex",
+                minHeight: "400px",
+                background: "rgba(245,242,236,0.04)",
+                backdropFilter: "blur(22px)",
+                WebkitBackdropFilter: "blur(22px)",
+                border: "1px solid rgba(200,169,106,0.12)",
+                borderRadius: "16px",
+                overflow: "hidden",
+                position: "relative",
+              }}
+            >
+              {/* Portrait */}
+              <div style={{ width: "38%", flexShrink: 0, position: "relative" }}>
+                {TESTIMONIAL_PORTRAITS.map((src, i) => (
+                  <img
+                    key={i}
+                    src={src}
+                    alt=""
+                    style={{
+                      position: "absolute", inset: 0,
+                      width: "100%", height: "100%",
+                      objectFit: "cover", objectPosition: "center top",
+                      opacity: i === activeTestimonial ? 1 : 0,
+                      transition: "opacity 0.9s ease",
+                      filter: "grayscale(15%)",
+                    }}
+                  />
+                ))}
+                <div
+                  style={{
+                    position: "absolute", right: 0, top: "15%", bottom: "15%",
+                    width: "1px",
+                    background: "linear-gradient(to bottom, transparent, rgba(200,169,106,0.4), transparent)",
+                    zIndex: 2,
+                  }}
+                />
+              </div>
+
+              {/* Quote */}
+              <div
+                style={{
+                  flex: 1,
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "center",
+                  padding: "52px 60px",
+                  position: "relative",
+                }}
+              >
+                <span
+                  style={{
+                    fontFamily: "Cormorant Garamond, serif",
+                    fontSize: "120px",
+                    lineHeight: 1,
+                    color: "rgba(200,169,106,0.06)",
+                    position: "absolute",
+                    top: "16px",
+                    left: "52px",
+                    userSelect: "none",
+                    pointerEvents: "none",
+                  }}
+                >
+                  &ldquo;
+                </span>
+                <div style={{ position: "relative", minHeight: "220px" }}>
+                  {testimonials.map((item, i) => (
+                    <div
+                      key={i}
+                      style={{
+                        position: "absolute", inset: 0,
+                        display: "flex", flexDirection: "column", justifyContent: "center",
+                        opacity: i === activeTestimonial ? 1 : 0,
+                        transform: i === activeTestimonial ? "translateY(0)" : "translateY(14px)",
+                        transition: "opacity 0.8s ease, transform 0.8s ease",
+                        pointerEvents: i === activeTestimonial ? "auto" : "none",
+                      }}
+                    >
+                      <p
+                        style={{
+                          fontFamily: "Cormorant Garamond, serif",
+                          fontSize: "clamp(20px, 2.2vw, 26px)",
+                          fontWeight: 400,
+                          color: "#F5F2EC",
+                          lineHeight: 1.45,
+                          fontStyle: "italic",
+                        }}
+                      >
+                        "{item.text}"
+                      </p>
+                      <div style={{ marginTop: "32px", display: "flex", alignItems: "center", gap: "14px" }}>
+                        <div style={{ width: "28px", height: "1px", background: "rgba(200,169,106,0.5)" }} />
+                        <div>
+                          <p style={{ fontFamily: "Manrope, sans-serif", fontSize: "12px", fontWeight: 500, color: "rgba(200,169,106,0.9)", letterSpacing: "1.5px", textTransform: "uppercase" }}>
+                            {item.author}
+                          </p>
+                          <p style={{ fontFamily: "Manrope, sans-serif", fontSize: "12px", fontWeight: 300, color: "rgba(227,222,215,0.4)", marginTop: "3px" }}>
+                            {item.company}
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Progress bar */}
+              <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: "2px", background: "rgba(200,169,106,0.08)" }}>
+                <div
+                  key={activeTestimonial}
+                  style={{ height: "100%", background: "rgba(200,169,106,0.45)", animation: "progressSlide 6s linear forwards" }}
+                />
+              </div>
+            </div>
+          </ScrollReveal>
+
+          {/* Thumbnail nav */}
+          <div style={{ display: "flex", gap: "28px", marginTop: "0px", alignItems: "flex-start", paddingLeft: "4px" }}>
+            {TESTIMONIAL_PORTRAITS.map((src, i) => (
+              <button
+                key={i}
+                onClick={() => { setActiveTestimonial(i); restartTimer(testimonials.length); }}
+                data-testid={`testimonial-nav-${i}`}
+                style={{ background: "none", border: "none", padding: 0, cursor: "pointer", display: "flex", flexDirection: "column", alignItems: "center", gap: "10px" }}
+              >
+                <div
+                  style={{
+                    width: i === activeTestimonial ? "68px" : "56px",
+                    height: i === activeTestimonial ? "68px" : "56px",
+                    borderRadius: "50%",
+                    overflow: "hidden",
+                    border: i === activeTestimonial ? "2px solid #C8A96A" : "2px solid rgba(245,242,236,0.15)",
+                    transform: i === activeTestimonial ? "translateY(-12px)" : "translateY(0)",
+                    transition: "all 0.45s cubic-bezier(0.4, 0, 0.2, 1)",
+                    flexShrink: 0,
+                    boxShadow: i === activeTestimonial ? "0 8px 28px rgba(200,169,106,0.18)" : "none",
+                  }}
+                >
+                  <img
+                    src={src}
+                    alt=""
+                    style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center top", filter: i === activeTestimonial ? "none" : "grayscale(70%)", transition: "filter 0.45s ease" }}
+                  />
+                </div>
+                <span
+                  style={{
+                    fontFamily: "Manrope, sans-serif",
+                    fontSize: "9px",
+                    fontWeight: 500,
+                    letterSpacing: "0.14em",
+                    textTransform: "uppercase",
+                    color: i === activeTestimonial ? "#F5F2EC" : "rgba(245,242,236,0.35)",
+                    transition: "color 0.4s ease",
+                    textAlign: "center",
+                    maxWidth: "88px",
+                    lineHeight: 1.55,
+                  }}
+                >
+                  {testimonials[i]?.author}
+                </span>
+              </button>
+            ))}
+          </div>
+        </div>
+        <style>{`@keyframes progressSlide { from { width: 0%; } to { width: 100%; } }`}</style>
+      </section>
+
+      {/* ══ 8. FINAL CTA — Forest → Ivory gradient ══════════════════════════ */}
+      <section
+        className="ct-section relative overflow-hidden"
+        style={{ background: FOREST_TO_IVORY }}
+        data-testid="advisory-cta"
+      >
+        <NeuralCanvas opacity={0.04} nodeCount={20} />
+        <div className="relative z-10 max-w-[760px] mx-auto px-6">
+          <ScrollReveal>
+            <div
+              style={{
+                background: "rgba(15,26,18,0.92)",
+                backdropFilter: "blur(24px)",
+                WebkitBackdropFilter: "blur(24px)",
+                border: "1px solid rgba(200,169,106,0.22)",
+                borderRadius: "20px",
+                padding: "80px 72px",
+                textAlign: "center",
+                position: "relative",
+                overflow: "hidden",
+              }}
+            >
+              <div style={{ position: "absolute", top: 0, left: 0, width: "48px", height: "1px", background: "rgba(200,169,106,0.45)" }} />
+              <div style={{ position: "absolute", top: 0, left: 0, width: "1px", height: "48px", background: "rgba(200,169,106,0.45)" }} />
+              <div style={{ position: "absolute", bottom: 0, right: 0, width: "48px", height: "1px", background: "rgba(200,169,106,0.45)" }} />
+              <div style={{ position: "absolute", bottom: 0, right: 0, width: "1px", height: "48px", background: "rgba(200,169,106,0.45)" }} />
+
+              <div className="relative z-10">
+                <h2
+                  style={{
+                    fontFamily: "Figtree, sans-serif",
+                    fontSize: "clamp(28px, 3.5vw, 44px)",
+                    fontWeight: 400,
+                    lineHeight: 1.1,
+                    color: "#F5F2EC",
+                  }}
+                >
+                  When Transformation Becomes the Work
+                </h2>
+                <p
+                  style={{
+                    fontFamily: "Manrope, sans-serif",
+                    fontSize: "15px",
+                    fontWeight: 300,
+                    color: "rgba(227,222,215,0.45)",
+                    lineHeight: 1.75,
+                    marginTop: "18px",
+                  }}
+                >
+                  If your organisation is at a point where people, culture, and leadership need to evolve together, I welcome an initial conversation to understand your situation.
+                </p>
+                <Link
+                  to="/contact"
+                  className="btn-secondary inline-block"
+                  style={{ marginTop: "40px", borderRadius: "8px" }}
+                  data-testid="advisory-apply-btn"
+                >
+                  Begin the Conversation
+                </Link>
+              </div>
+            </div>
           </ScrollReveal>
         </div>
       </section>
+
     </div>
   );
 };
