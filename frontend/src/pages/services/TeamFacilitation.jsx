@@ -330,22 +330,19 @@ const TeamFacilitation = () => {
             </h2>
           </ScrollReveal>
 
-          {/* Phases — positioned in the darker forest zone */}
+          {/* Phases — vertical editorial stack */}
           {PROCESS_PHASES.map((phase, i) => (
-            <ScrollReveal key={i} delay={0.14 * i}>
-              <div
-                style={{
-                  display: "flex",
-                  gap: "clamp(32px, 5vw, 80px)",
-                  alignItems: "flex-start",
-                  borderTop: "1px solid rgba(245,242,236,0.12)",
-                  paddingTop: "56px",
-                  paddingBottom: i < PROCESS_PHASES.length - 1 ? "56px" : "0",
-                }}
-                data-testid={`process-phase-${i}`}
-              >
-                {/* Left: number + title */}
-                <div style={{ flex: "0 0 42%" }}>
+            <React.Fragment key={i}>
+              <ScrollReveal delay={0.14 * i}>
+                <div
+                  style={{
+                    borderTop: "1px solid rgba(245,242,236,0.12)",
+                    paddingTop: "64px",
+                    paddingBottom: i < PROCESS_PHASES.length - 1 ? "56px" : "0",
+                    maxWidth: "820px",
+                  }}
+                  data-testid={`process-phase-${i}`}
+                >
                   <span
                     style={{
                       fontFamily: "Manrope, sans-serif",
@@ -355,7 +352,7 @@ const TeamFacilitation = () => {
                       textTransform: "uppercase",
                       color: "rgba(200,169,106,0.75)",
                       display: "block",
-                      marginBottom: "16px",
+                      marginBottom: "20px",
                     }}
                   >
                     {phase.number}
@@ -363,11 +360,11 @@ const TeamFacilitation = () => {
                   <h3
                     style={{
                       fontFamily: "Figtree, sans-serif",
-                      fontSize: "clamp(22px, 2.8vw, 36px)",
+                      fontSize: "clamp(26px, 3.2vw, 42px)",
                       fontWeight: 400,
                       color: "rgba(245,242,236,0.92)",
-                      lineHeight: 1.15,
-                      marginBottom: "12px",
+                      lineHeight: 1.12,
+                      marginBottom: "10px",
                     }}
                   >
                     {phase.title}
@@ -375,42 +372,40 @@ const TeamFacilitation = () => {
                   <p
                     style={{
                       fontFamily: "Cormorant Garamond, serif",
-                      fontSize: "16px",
+                      fontSize: "17px",
                       fontStyle: "italic",
                       color: "rgba(200,169,106,0.55)",
+                      marginBottom: "28px",
                     }}
                   >
                     {phase.subtitle}
                   </p>
-                </div>
-
-                {/* Right: description */}
-                <div style={{ flex: 1, paddingTop: "48px" }}>
                   <p
                     style={{
                       fontFamily: "Manrope, sans-serif",
                       fontSize: "14px",
                       fontWeight: 300,
                       color: "rgba(245,242,236,0.52)",
-                      lineHeight: 1.85,
+                      lineHeight: 1.9,
+                      maxWidth: "620px",
                     }}
                   >
                     {phase.description}
                   </p>
-
-                  {/* Connector between phases */}
-                  {i === 0 && (
-                    <div style={{ marginTop: "48px", display: "flex", alignItems: "center", gap: "14px" }}>
-                      <div style={{ width: "40px", height: "1px", background: "rgba(200,169,106,0.28)" }} />
-                      <svg width="10" height="14" viewBox="0 0 10 14" fill="none">
-                        <path d="M5 0V12M5 12L1 8M5 12L9 8" stroke="rgba(200,169,106,0.4)" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
-                      </svg>
-                      <div style={{ width: "40px", height: "1px", background: "rgba(200,169,106,0.28)" }} />
-                    </div>
-                  )}
                 </div>
-              </div>
-            </ScrollReveal>
+              </ScrollReveal>
+
+              {/* Connector arrow between phases */}
+              {i === 0 && (
+                <div style={{ display: "flex", alignItems: "center", gap: "14px", padding: "32px 0", maxWidth: "820px" }}>
+                  <div style={{ flex: 1, height: "1px", background: "rgba(200,169,106,0.15)" }} />
+                  <svg width="10" height="14" viewBox="0 0 10 14" fill="none">
+                    <path d="M5 0V12M5 12L1 8M5 12L9 8" stroke="rgba(200,169,106,0.38)" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                  <div style={{ flex: 1, height: "1px", background: "rgba(200,169,106,0.15)" }} />
+                </div>
+              )}
+            </React.Fragment>
           ))}
         </div>
       </section>
@@ -691,26 +686,46 @@ const TeamFacilitation = () => {
                       </motion.div>
                     ))}
                   </div>
-                  <motion.div
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ delay: 0.55, duration: 0.4 }}
-                    style={{ marginTop: "36px" }}
-                  >
-                    <Link
-                      to="/contact"
-                      className="btn-primary inline-block"
-                      style={{ borderRadius: "8px" }}
-                      data-testid={`for-whom-cta-${openForWhom}`}
-                    >
-                      Begin the Conversation
-                    </Link>
-                  </motion.div>
                 </motion.div>
               </AnimatePresence>
             </div>
 
           </div>
+
+          {/* Unified CTA — below accordion */}
+          <div
+            style={{
+              marginTop: "56px",
+              paddingTop: "40px",
+              borderTop: "1px solid rgba(245,242,236,0.10)",
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "center",
+              flexWrap: "wrap",
+              gap: "20px",
+            }}
+          >
+            <p
+              style={{
+                fontFamily: "Cormorant Garamond, serif",
+                fontSize: "18px",
+                fontStyle: "italic",
+                color: "rgba(245,242,236,0.38)",
+                lineHeight: 1.5,
+              }}
+            >
+              The work begins with an initial conversation.
+            </p>
+            <Link
+              to="/contact"
+              className="btn-primary"
+              style={{ borderRadius: "8px", flexShrink: 0 }}
+              data-testid="for-whom-unified-cta"
+            >
+              Begin the Conversation
+            </Link>
+          </div>
+
         </div>
       </section>
 
