@@ -285,7 +285,12 @@ Footer (from shared Footer component)
 6. Refactor large page components into smaller section components (P2)
 7. Optionally add Calendly booking integration (P1)
 
-### v2.5 — Section Border Removal (Mar 2026)
+### v2.6 — Foundation Scroll Animation + Border Fix (Mar 2026)
+- Removed all ticker `borderTop`/`borderBottom` properties entirely (not just conditionally)
+- FoundationSection mobile: changed from `height: auto` + `whileInView` to `height: 200vh` with `position: sticky` — now uses full scroll-driven cascade
+- Added mobile-specific `useTransform` values (`mHeadingY/O`, `mPara0Y/O`, `mPara1Y/O`) tuned to 200vh scroll range (triggers at fp=0.18–0.76)
+- Removed `ct-divider` horizontal line from mobile Foundation layout
+- Gold particle canvas now animates during mobile scroll (same as desktop)
 - **Root cause identified:** Outer `<div className="bg-[#F5F2EC]">` wrapper on `Home.jsx` caused sub-pixel rendering gaps between adjacent dark sections to expose ivory background as visible 1px lines
 - **Fix:** Removed `bg-[#F5F2EC]` from Home.jsx outer wrapper. `body { background: #0F1A12 }` in `index.css` already covers the dark bg. All ivory sections (Hero, Ticker, FoundationSection, About Preview, Final CTA) retain their own explicit backgrounds
 - **Also fixed (v2.4):** Brand logo ticker `borderTop`/`borderBottom` + Footer `border-t` now hidden on mobile/tablet (`isNarrow < 1024px`)

@@ -84,6 +84,16 @@ export default function FoundationSection() {
   const para1Y = useTransform(fp, [0.88, 0.97], [80, 0]);
   const para1O = useTransform(fp, [0.88, 0.97], [0, 1]);
 
+  // ── Mobile text cascade — spread over 150vh (earlier trigger points) ──
+  const mHeadingY = useTransform(fp, [0.20, 0.45], [-80, 0]);
+  const mHeadingO = useTransform(fp, [0.18, 0.42], [0, 1]);
+
+  const mPara0Y = useTransform(fp, [0.38, 0.60], [60, 0]);
+  const mPara0O = useTransform(fp, [0.35, 0.58], [0, 1]);
+
+  const mPara1Y = useTransform(fp, [0.55, 0.78], [60, 0]);
+  const mPara1O = useTransform(fp, [0.52, 0.76], [0, 1]);
+
   // ── Particle canvas RAF ────────────────────────────────────────
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -153,20 +163,19 @@ export default function FoundationSection() {
   });
 
   return (
-    // ── Outer section: 300vh on desktop (scroll driver), auto on mobile ──
+    // ── Outer section: 300vh on desktop (scroll driver), 150vh on mobile ──
     <section
       ref={outerRef}
       className="bg-ivory"
-      style={{ height: isDesktop ? "300vh" : "auto" }}
+      style={{ height: isDesktop ? "300vh" : "200vh" }}
       data-testid="philosophy-section"
     >
-      {/* ── Pinned inner frame: sticky on desktop, static on mobile ───── */}
+      {/* ── Pinned inner frame: sticky on both desktop and mobile ───── */}
       <div
         style={{
-          position: isDesktop ? "sticky" : "relative",
+          position: "sticky",
           top: 0,
-          height: isDesktop ? "100vh" : "auto",
-          minHeight: isDesktop ? undefined : "auto",
+          height: "100vh",
           overflow: "hidden",
           background: "#F5F2EC",
         }}
@@ -351,44 +360,62 @@ export default function FoundationSection() {
           </div>
         </div>}
 
-        {/* ── Mobile: text-only with whileInView animation ─────── */}
+        {/* ── Mobile: scroll-driven text cascade (text only, no images) ── */}
         {!isDesktop && (
-          <div style={{ position: "relative", zIndex: 2, padding: `${NAV_H}px 24px 48px`, textAlign: "center" }}>
-            <motion.div
-              initial={{ opacity: 0, y: 32 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.85, ease: [0.25, 0.46, 0.45, 0.94] }}
-              viewport={{ once: true, margin: "-10%" }}
-            >
-              <div className="ct-divider mx-auto mb-8" style={{ background: "rgba(18,18,18,0.2)" }} />
-              <h2
+          <div
+            style={{
+              position: "absolute",
+              inset: 0,
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              justifyContent: "center",
+              padding: `${NAV_H + 20}px 28px 48px`,
+              textAlign: "center",
+              zIndex: 2,
+            }}
+          >
+            {/* Heading — drops from above */}
+            <div style={{ overflow: "hidden", position: "relative", width: "100%" }}>
+              <motion.h2
                 className="leading-[1.15]"
                 style={{
                   fontFamily: "Figtree, sans-serif",
-                  fontSize: "clamp(28px, 6vw, 44px)",
+                  fontSize: "clamp(28px, 7vw, 44px)",
                   fontWeight: 400,
                   background: "linear-gradient(160deg, #121212 30%, #3D2916 100%)",
                   WebkitBackgroundClip: "text",
                   WebkitTextFillColor: "transparent",
                   backgroundClip: "text",
+                  y: mHeadingY,
+                  opacity: mHeadingO,
                 }}
               >
                 {t.home.philosophy.headline}
-              </h2>
-            </motion.div>
-            {t.home.philosophy.body.split("\n\n").map((para, i) => (
-              <motion.p
-                key={i}
-                className="text-charcoal/65 mt-5 leading-relaxed"
-                style={{ fontFamily: "Manrope, sans-serif", fontSize: "16px", fontWeight: 300 }}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.7, delay: 0.15 + i * 0.1, ease: [0.25, 0.46, 0.45, 0.94] }}
-                viewport={{ once: true, margin: "-10%" }}
-              >
-                {para}
-              </motion.p>
-            ))}
+              </motion.h2>
+            </div>
+
+            {/* Paragraphs rise from below */}
+            {t.home.philosophy.body.split("\n\n").map((para, i) => {
+              const py = i === 0 ? mPara0Y : mPara1Y;
+              const po = i === 0 ? mPara0O : mPara1O;
+              return (
+                <div key={i} style={{ overflow: "hidden", position: "relative", width: "100%" }}>
+                  <motion.p
+                    className="text-charcoal/65 mt-5 leading-relaxed"
+                    style={{
+                      fontFamily: "Manrope, sans-serif",
+                      fontSize: "16px",
+                      fontWeight: 300,
+                      y: py,
+                      opacity: po,
+                    }}
+                  >
+                    {para}
+                  </motion.p>
+                </div>
+              );
+            })}
           </div>
         )}
       </div>
