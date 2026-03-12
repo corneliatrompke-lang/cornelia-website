@@ -526,7 +526,7 @@ const MeditationRetreat = () => {
                           fontFamily: "Cormorant Garamond, serif",
                           fontSize: "clamp(56px, 6vw, 80px)",
                           fontWeight: 300,
-                          color: i === 0 ? "#121212" : "#C8A96A",
+                          color: i === 1 ? "#8B5240" : "#121212",
                           lineHeight: 1,
                           marginBottom: "12px",
                         }}
