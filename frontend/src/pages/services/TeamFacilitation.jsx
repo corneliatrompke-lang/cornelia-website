@@ -330,74 +330,81 @@ const TeamFacilitation = () => {
             </h2>
           </ScrollReveal>
 
-          {/* Phases — vertical editorial stack */}
+          {/* Phases — horizontal editorial */}
           {PROCESS_PHASES.map((phase, i) => (
             <React.Fragment key={i}>
               <ScrollReveal delay={0.14 * i}>
                 <div
                   style={{
+                    display: "flex",
+                    gap: "clamp(40px, 6vw, 100px)",
+                    alignItems: "flex-start",
                     borderTop: "1px solid rgba(245,242,236,0.12)",
-                    paddingTop: "64px",
-                    paddingBottom: i < PROCESS_PHASES.length - 1 ? "56px" : "0",
-                    maxWidth: "820px",
+                    paddingTop: "72px",
+                    paddingBottom: i < PROCESS_PHASES.length - 1 ? "72px" : "0",
                   }}
                   data-testid={`process-phase-${i}`}
                 >
-                  <span
-                    style={{
-                      fontFamily: "Manrope, sans-serif",
-                      fontSize: "10px",
-                      fontWeight: 600,
-                      letterSpacing: "2.5px",
-                      textTransform: "uppercase",
-                      color: "rgba(200,169,106,0.75)",
-                      display: "block",
-                      marginBottom: "20px",
-                    }}
-                  >
-                    {phase.number}
-                  </span>
-                  <h3
-                    style={{
-                      fontFamily: "Figtree, sans-serif",
-                      fontSize: "clamp(26px, 3.2vw, 42px)",
-                      fontWeight: 400,
-                      color: "rgba(245,242,236,0.92)",
-                      lineHeight: 1.12,
-                      marginBottom: "10px",
-                    }}
-                  >
-                    {phase.title}
-                  </h3>
-                  <p
-                    style={{
-                      fontFamily: "Cormorant Garamond, serif",
-                      fontSize: "17px",
-                      fontStyle: "italic",
-                      color: "rgba(200,169,106,0.55)",
-                      marginBottom: "28px",
-                    }}
-                  >
-                    {phase.subtitle}
-                  </p>
-                  <p
-                    style={{
-                      fontFamily: "Manrope, sans-serif",
-                      fontSize: "14px",
-                      fontWeight: 300,
-                      color: "rgba(245,242,236,0.52)",
-                      lineHeight: 1.9,
-                      maxWidth: "620px",
-                    }}
-                  >
-                    {phase.description}
-                  </p>
+                  {/* Left: decorative number + title */}
+                  <div style={{ flex: "0 0 42%" }}>
+                    <span
+                      style={{
+                        fontFamily: "Cormorant Garamond, serif",
+                        fontSize: "clamp(80px, 10vw, 120px)",
+                        fontWeight: 300,
+                        color: "rgba(200,169,106,0.10)",
+                        lineHeight: 1,
+                        display: "block",
+                        marginBottom: "-8px",
+                        letterSpacing: "-2px",
+                      }}
+                    >
+                      {phase.number}
+                    </span>
+                    <h3
+                      style={{
+                        fontFamily: "Figtree, sans-serif",
+                        fontSize: "clamp(24px, 2.8vw, 38px)",
+                        fontWeight: 400,
+                        color: "rgba(245,242,236,0.92)",
+                        lineHeight: 1.12,
+                        marginBottom: "12px",
+                      }}
+                    >
+                      {phase.title}
+                    </h3>
+                    <p
+                      style={{
+                        fontFamily: "Cormorant Garamond, serif",
+                        fontSize: "17px",
+                        fontStyle: "italic",
+                        color: "rgba(200,169,106,0.55)",
+                      }}
+                    >
+                      {phase.subtitle}
+                    </p>
+                  </div>
+
+                  {/* Right: description */}
+                  <div style={{ flex: 1, paddingTop: "88px" }}>
+                    <p
+                      style={{
+                        fontFamily: "Manrope, sans-serif",
+                        fontSize: "14px",
+                        fontWeight: 300,
+                        color: "rgba(245,242,236,0.52)",
+                        lineHeight: 1.9,
+                      }}
+                    >
+                      {phase.description}
+                    </p>
+                  </div>
                 </div>
               </ScrollReveal>
 
               {/* Connector arrow between phases */}
               {i === 0 && (
-                <div style={{ display: "flex", alignItems: "center", gap: "14px", padding: "32px 0", maxWidth: "820px" }}>
+                <div style={{ display: "flex", alignItems: "center", gap: "14px", padding: "28px 0", maxWidth: "820px" }}>
                   <div style={{ flex: 1, height: "1px", background: "rgba(200,169,106,0.15)" }} />
                   <svg width="10" height="14" viewBox="0 0 10 14" fill="none">
                     <path d="M5 0V12M5 12L1 8M5 12L9 8" stroke="rgba(200,169,106,0.38)" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
@@ -692,34 +699,18 @@ const TeamFacilitation = () => {
 
           </div>
 
-          {/* Unified CTA — below accordion */}
+          {/* Unified CTA — centered, no divider */}
           <div
             style={{
               marginTop: "56px",
-              paddingTop: "40px",
-              borderTop: "1px solid rgba(245,242,236,0.10)",
               display: "flex",
-              justifyContent: "space-between",
-              alignItems: "center",
-              flexWrap: "wrap",
-              gap: "20px",
+              justifyContent: "center",
             }}
           >
-            <p
-              style={{
-                fontFamily: "Cormorant Garamond, serif",
-                fontSize: "18px",
-                fontStyle: "italic",
-                color: "rgba(245,242,236,0.38)",
-                lineHeight: 1.5,
-              }}
-            >
-              The work begins with an initial conversation.
-            </p>
             <Link
               to="/contact"
               className="btn-primary"
-              style={{ borderRadius: "8px", flexShrink: 0 }}
+              style={{ borderRadius: "8px" }}
               data-testid="for-whom-unified-cta"
             >
               Begin the Conversation
