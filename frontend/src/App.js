@@ -5,6 +5,7 @@ import "./App.css";
 
 import { LanguageProvider } from "./context/LanguageContext";
 import Preloader from "./components/Preloader";
+import GrainOverlay from "./components/GrainOverlay";
 import Navigation from "./components/Navigation";
 import Footer from "./components/Footer";
 
@@ -57,6 +58,7 @@ function App() {
       {ready && (
         <BrowserRouter>
           <div className="App">
+            <GrainOverlay />
             <AppContent />
           </div>
         </BrowserRouter>
