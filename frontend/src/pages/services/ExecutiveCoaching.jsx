@@ -385,7 +385,7 @@ const ExecutiveCoaching = () => {
             { number: "03", title: "Individually Designed Deep-Dive Sessions", description: "Longer format sessions for work that requires more time, depth, or preparation. These are designed around specific edges in your development." },
             { number: "04", title: "Personalized Recordings", description: "Created specifically for you to support self-regulation and integration between sessions. A private resource that travels with you." },
           ].map((item, i) => {
-            const bgOpacity = 0.10 + (i / 3) * 0.08;
+            const bgOpacity = 0.15 + (i / 3) * 0.21;
             return (
               <ScrollReveal key={i} delay={0.08 * i}>
                 <div className="flex items-stretch mb-2" data-testid={`receive-item-${i}`}>
