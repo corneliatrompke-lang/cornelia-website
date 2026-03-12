@@ -415,7 +415,7 @@ const ExecutiveCoaching = () => {
                       {item.title}
                     </p>
                     <p
-                      style={{ fontFamily: "Manrope, sans-serif", fontSize: "13px", fontWeight: 300, color: "rgba(245,242,236,0.42)", lineHeight: 1.7 }}
+                      style={{ fontFamily: "Manrope, sans-serif", fontSize: "13px", fontWeight: 300, color: "rgba(245,242,236,0.80)", lineHeight: 1.7 }}
                     >
                       {item.description}
                     </p>
