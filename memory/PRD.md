@@ -285,7 +285,11 @@ Footer (from shared Footer component)
 6. Refactor large page components into smaller section components (P2)
 7. Optionally add Calendly booking integration (P1)
 
-### v2.6 — Foundation Scroll Animation + Border Fix (Mar 2026)
+### v2.7 — Tablet Layout Refinements (Mar 2026)
+- **About section**: Portrait image now full-width on tablet (`isMobile ? "260px" : "100%"`, maxHeight 500px on tablet); image column changes from `flex justify-center` to `block` on tablet/desktop
+- **Transformation large circle**: Size increased from 465px → 700px (50% larger) on tablet (`isNarrow`)
+- **Transformation summary circles**: Moved up from `top: 40%` → `top: 20%` on tablet, bringing them closer to the section header
+- **Venn→Method gap**: Applied `marginTop: -210px` on Method section on tablet (`isNarrow`) — reduces gap between Venn final state and Method section title by ~70%
 - Removed all ticker `borderTop`/`borderBottom` properties entirely (not just conditionally)
 - FoundationSection mobile: changed from `height: auto` + `whileInView` to `height: 200vh` with `position: sticky` — now uses full scroll-driven cascade
 - Added mobile-specific `useTransform` values (`mHeadingY/O`, `mPara0Y/O`, `mPara1Y/O`) tuned to 200vh scroll range (triggers at fp=0.18–0.76)

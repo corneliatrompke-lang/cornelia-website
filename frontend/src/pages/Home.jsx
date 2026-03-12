@@ -297,11 +297,11 @@ const Home = () => {
             </div>
 
             {/* ── Portrait column — order-1 on mobile so image shows before text ── */}
-            <div className="lg:col-span-4 order-1 lg:order-2 flex justify-center lg:block">
+            <div className={`lg:col-span-4 order-1 lg:order-2 lg:block ${isMobile ? "flex justify-center" : "block"}`}>
               <ScrollReveal delay={0.1} direction="none">
                 <motion.div
                   className="relative overflow-hidden"
-                  style={{ aspectRatio: "3/4", maxHeight: isNarrow ? "380px" : undefined, width: isNarrow ? "260px" : "100%" }}
+                  style={{ aspectRatio: "3/4", maxHeight: isMobile ? "380px" : isNarrow ? "500px" : undefined, width: isMobile ? "260px" : "100%" }}
                   initial={{ opacity: 0, x: 40 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   transition={{ duration: 0.9, ease: [0.25, 0.46, 0.45, 0.94] }}
@@ -341,7 +341,7 @@ const Home = () => {
       <VennDiagram />
 
       {/* ═══ METHOD TEASER ═══ */}
-      <section className="ct-section relative overflow-hidden" style={{ background: "#0F1A12", paddingTop: isNarrow ? "0" : "32px" }} data-testid="method-section">
+      <section className="ct-section relative overflow-hidden" style={{ background: "#0F1A12", paddingTop: isNarrow ? "0" : "32px", marginTop: isNarrow ? "-210px" : undefined }} data-testid="method-section">
         <NeuralCanvas opacity={0.08} nodeCount={40} />
         <div className="relative z-10 max-w-[750px] mx-auto px-6 text-center">
           <ScrollReveal>
