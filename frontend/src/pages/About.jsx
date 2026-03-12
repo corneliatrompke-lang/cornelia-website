@@ -160,7 +160,7 @@ const About = () => {
                   Begin the Conversation
                   <ArrowRight size={13} />
                 </Link>
-                <Link to="/method" className="btn-hero-pill-outline" data-testid="about-hero-cta-secondary">
+                <Link to="/how-i-work" className="btn-hero-pill-outline" data-testid="about-hero-cta-secondary">
                   Explore the Method
                 </Link>
               </div>

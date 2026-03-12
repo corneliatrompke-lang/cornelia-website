@@ -83,8 +83,8 @@ const Footer = () => {
             <ul className="space-y-3">
               {[
                 { to: "/", label: t.nav.home },
-                { to: "/about", label: t.nav.about },
-                { to: "/method", label: t.nav.method },
+                { to: "/about-me", label: t.nav.about },
+                { to: "/how-i-work", label: t.nav.method },
                 { to: "/work-with-me", label: t.nav.workWithMe },
                 { to: "/contact", label: t.nav.contact },
               ].map((item) => (

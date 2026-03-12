@@ -286,7 +286,7 @@ const Home = () => {
               </ScrollReveal>
               <ScrollReveal delay={0.45}>
                 <Link
-                  to="/about"
+                  to="/about-me"
                   className="btn-primary mt-10"
                   style={{ borderRadius: "8px", padding: "10px 22px", display: "inline-block" }}
                   data-testid="about-cta"
@@ -366,7 +366,7 @@ const Home = () => {
           </ScrollReveal>
           <ScrollReveal delay={0.45}>
             <Link
-              to="/method"
+              to="/how-i-work"
               className="btn-secondary mt-10"
               style={{ borderRadius: "8px", padding: "10px 22px", display: "inline-block" }}
               data-testid="method-cta"

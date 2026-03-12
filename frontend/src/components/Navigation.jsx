@@ -60,10 +60,10 @@ const Navigation = () => {
             <Link to="/" className={`nav-pill-link ${isActive("/") ? "active" : ""}`} data-testid="nav-home">
               {t.nav.home}
             </Link>
-            <Link to="/about" className={`nav-pill-link ${isActive("/about") ? "active" : ""}`} data-testid="nav-about">
+            <Link to="/about-me" className={`nav-pill-link ${isActive("/about-me") ? "active" : ""}`} data-testid="nav-about">
               {t.nav.about}
             </Link>
-            <Link to="/method" className={`nav-pill-link ${isActive("/method") ? "active" : ""}`} data-testid="nav-method">
+            <Link to="/how-i-work" className={`nav-pill-link ${isActive("/how-i-work") ? "active" : ""}`} data-testid="nav-method">
               {t.nav.method}
             </Link>
 
@@ -187,8 +187,8 @@ const Navigation = () => {
               <div className="space-y-6">
                 {[
                   { to: "/", label: t.nav.home },
-                  { to: "/about", label: t.nav.about },
-                  { to: "/method", label: t.nav.method },
+                  { to: "/about-me", label: t.nav.about },
+                  { to: "/how-i-work", label: t.nav.method },
                   { to: "/work-with-me", label: t.nav.workWithMe },
                   { to: "/contact", label: t.nav.contact },
                 ].map((item, i) => (

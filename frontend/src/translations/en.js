@@ -1,8 +1,8 @@
 const en = {
   nav: {
     home: "Home",
-    about: "About",
-    method: "The Method",
+    about: "About Me",
+    method: "How I Work",
     workWithMe: "Work With Me",
     contact: "Contact",
     cta: "Begin the Work",
