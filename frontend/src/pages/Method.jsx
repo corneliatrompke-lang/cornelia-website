@@ -699,7 +699,7 @@ const Method = () => {
       {/* ══════════════════════════════════════════════════════════════
           5. TESTIMONIALS — Charcoal (same as Home)
       ══════════════════════════════════════════════════════════════ */}
-      <section className="ct-section relative overflow-hidden" style={{ background: "#0F1A12" }} data-testid="method-testimonials">
+      <section className="ct-section relative overflow-hidden" style={{ background: "#0F1A12", marginTop: "-2px", zIndex: 1, position: "relative" }} data-testid="method-testimonials">
         <NeuralCanvas opacity={0.06} nodeCount={30} />
         <div className="relative z-10 max-w-[1400px] mx-auto px-6 md:px-16">
           <ScrollReveal>
