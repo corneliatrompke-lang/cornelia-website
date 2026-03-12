@@ -54,10 +54,12 @@ const About = () => {
   return (
     <div>
 
+      {/* ══ Ivory wrapper — seals sub-pixel gaps between adjacent ivory sections ══ */}
+      <div style={{ background: "#F5F2EC" }}>
+
       {/* ═══ HERO — rounded card, same as Home / Method / Coaching ═══ */}
       <section
         className="pt-[6px] px-3 md:px-4 pb-3"
-        style={{ background: "#F5F2EC" }}
         data-testid="about-hero"
       >
         <div
@@ -166,7 +168,7 @@ const About = () => {
 
       {/* ═══ ORIGIN STORY — editorial timeline, ivory ═══ */}
       <section
-        style={{ background: "#F5F2EC", paddingTop: "120px", paddingBottom: "120px" }}
+        style={{ paddingTop: "120px", paddingBottom: "120px" }}
         data-testid="about-origin-story"
       >
         <div className="max-w-[1400px] mx-auto px-6 md:px-16">
@@ -312,7 +314,7 @@ const About = () => {
 
       {/* ═══ PHILOSOPHY — ivory, 3 bold two-column statements ═══ */}
       <section
-        style={{ background: "#F5F2EC", paddingTop: "40px", paddingBottom: "100px" }}
+        style={{ paddingTop: "40px", paddingBottom: "100px" }}
         data-testid="about-philosophy"
       >
         <div className="max-w-[1400px] mx-auto px-6 md:px-16">
@@ -330,6 +332,7 @@ const About = () => {
               <ScrollReveal key={i} delay={i * 0.12}>
                 <div
                   style={{
+                    borderTop: "1px solid rgba(18,18,18,0.08)",
                     paddingTop: "56px",
                     paddingBottom: "56px",
                     display: "grid",
@@ -366,10 +369,14 @@ const About = () => {
                 </div>
               </ScrollReveal>
             ))}
-            {/* Bottom border removed */}
+            {/* Bottom border */}
+            <div style={{ borderTop: "1px solid rgba(18,18,18,0.08)" }} />
           </div>
         </div>
       </section>
+
+
+      </div>{/* end ivory wrapper */}
 
 
       {/* ═══ CREDENTIALS — gradient ivory → forest green (visual bridge) ═══ */}
