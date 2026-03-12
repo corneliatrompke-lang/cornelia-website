@@ -1,48 +1,441 @@
-import React from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
-import { CheckCircle2 } from "lucide-react";
+import { motion, AnimatePresence, useScroll, useTransform, useMotionValueEvent } from "framer-motion";
+import NeuralCanvas from "../../components/NeuralCanvas";
 import ScrollReveal from "../../components/ScrollReveal";
 import { useLanguage } from "../../context/LanguageContext";
 
+// ─── Assets ───────────────────────────────────────────────────────────────────
+const HERO_BG =
+  "https://images.unsplash.com/photo-1567640068997-1a54643d85a8?crop=entropy&cs=srgb&fm=jpg&ixlib=rb-4.1.0&q=85";
+
+const GUIDE_BG =
+  "https://images.unsplash.com/photo-1503714009212-36b5b9747566?crop=entropy&cs=srgb&fm=jpg&ixlib=rb-4.1.0&q=85";
+
+const TESTIMONIAL_PORTRAITS = [
+  "https://images.unsplash.com/photo-1560250097-0b93528c311a?crop=entropy&cs=srgb&fm=jpg&ixlib=rb-4.1.0&q=85",
+  "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?crop=entropy&cs=srgb&fm=jpg&ixlib=rb-4.1.0&q=85",
+  "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?crop=entropy&cs=srgb&fm=jpg&ixlib=rb-4.1.0&q=85",
+];
+
+// ─── Content ──────────────────────────────────────────────────────────────────
+const GUIDE_STATS = [
+  { value: "30+", label: "Years of Personal\nMeditation Practice" },
+  { value: "10+", label: "Years Teaching\nMeditation to Leaders" },
+];
+
+const WHAT_OPENS = [
+  {
+    number: "01",
+    title: "Attention",
+    subtitle: "Presence as Precision",
+    body: "Deep practice sharpens the capacity to hold sustained focus in environments of constant fragmentation. Leaders report a qualitative change in the texture of their attention — less reactive, more deliberate.",
+    citation: "Harvard Medical School",
+  },
+  {
+    number: "02",
+    title: "Emotional Regulation",
+    subtitle: "The Regulated Leader",
+    body: "Leaders who regulate their own nervous system change the nervous system of every room they enter. Meditation strengthens the capacity for non-reactive, wise response under even the most demanding conditions.",
+    citation: "Harvard Medical School",
+  },
+  {
+    number: "03",
+    title: "Cognitive Flexibility",
+    subtitle: "Space Between Stimulus and Response",
+    body: "Stillness creates the space between stimulus and response where real choice lives. Regular practice improves the ability to shift perspective, hold complexity, and find novel approaches to intractable problems.",
+    citation: "Harvard Business School",
+  },
+  {
+    number: "04",
+    title: "Creative Capacity",
+    subtitle: "Solutions From Stillness",
+    body: "The clearest solutions rarely arrive in meeting rooms. They emerge in the silence that follows. Meditation activates the kind of thinking that happens when the analytical mind steps aside and a deeper intelligence becomes available.",
+    citation: "Harvard Business School",
+  },
+];
+
+const EXPERIENCE_ELEMENTS = [
+  {
+    number: "01",
+    label: "Quiet Reflection",
+    role: "The Inner Chamber",
+    description:
+      "Unstructured hours where the nervous system settles on its own terms. Not forced silence — genuine stillness. Space for what has been waiting, patiently, to be heard.",
+  },
+  {
+    number: "02",
+    label: "Guided Practice",
+    role: "The Architecture",
+    description:
+      "Instruction in meditation forms suited to the executive mind. Rigorous, intelligent, and adapted to leaders — whether you have never practiced before or have practiced for years.",
+  },
+  {
+    number: "03",
+    label: "Dialogue",
+    role: "The Field",
+    description:
+      "Small-group conversation that allows insights to settle and deepen. The exchange between participants — at this level of openness — often produces its own kind of clarity.",
+  },
+];
+
+const TIMELINE_DAYS = [
+  {
+    day: "Day 1",
+    title: "Arrival & Settling",
+    description:
+      "Evening arrival. First guided session. Transition from operational pace into the conditions for genuine stillness.",
+  },
+  {
+    day: "Day 2",
+    title: "Foundation",
+    description:
+      "Morning and afternoon practice. Establishing the inner architecture. The nervous system begins to settle.",
+  },
+  {
+    day: "Day 3",
+    title: "Deepening",
+    description:
+      "Extended practice periods. The work goes deeper. Insights begin to emerge in the extended quiet.",
+  },
+  {
+    day: "Day 4",
+    title: "Integration",
+    description:
+      "Small-group dialogue. Patterns become visible. Inquiry takes on new depth when met with the stillness of previous days.",
+  },
+  {
+    day: "Day 5",
+    title: "Return",
+    description:
+      "Morning practice. Closing dialogue. Carrying what emerged back into leadership — as changed capacity, not memory.",
+  },
+];
+
+const UPCOMING_RETREATS = [
+  {
+    date: "April 2026",
+    location: "Oman — Muscat Region",
+    duration: "5 days",
+    spots: "4 places remaining",
+    status: "Open",
+  },
+  {
+    date: "September 2026",
+    location: "Costa Rica — Península de Osa",
+    duration: "5 days",
+    spots: "6 places remaining",
+    status: "Open",
+  },
+  {
+    date: "December 2026",
+    location: "Oman — Hajar Mountains",
+    duration: "3 days",
+    spots: "Enquiries welcome",
+    status: "Forming",
+  },
+];
+
+const FORMAT_ITEMS = [
+  { label: "Duration", value: "3 or 5 days residential" },
+  { label: "Location", value: "Oman, Costa Rica, and select European locations — carefully chosen for stillness and focus" },
+  { label: "Group Size", value: "Small groups only — maximum 8 participants" },
+  { label: "Who This Is For", value: "Leaders currently engaged in one of Cornelia's programmes" },
+  { label: "Practice Level", value: "All levels — from complete beginners to experienced practitioners" },
+  { label: "Language", value: "German or English" },
+  { label: "Investment", value: "Shared on application" },
+];
+
+// ─── Concentric Circles (same mechanism as ExecutiveCoaching) ─────────────────
+const CirclesViz = ({ activePhase }) => {
+  const rings = [
+    { inset: "180px", size: "140px" },  // 01 — innermost (Quiet Reflection)
+    { inset: "90px",  size: "320px" },  // 02 — middle (Guided Practice)
+    { inset: "0px",   size: "500px" },  // 03 — outer (Dialogue)
+  ];
+  return (
+    <div style={{ position: "relative", width: "500px", height: "500px", flexShrink: 0 }}>
+      {rings.map((ring, i) => {
+        const lit = activePhase >= i;
+        return (
+          <motion.div
+            key={i}
+            animate={{
+              borderColor: lit
+                ? `rgba(200,169,106,${0.75 - i * 0.18})`
+                : "rgba(200,169,106,0.06)",
+              boxShadow: lit
+                ? `0 0 ${20 + i * 14}px rgba(200,169,106,${0.12 - i * 0.025})`
+                : "none",
+            }}
+            transition={{ duration: 0.9, ease: "easeOut" }}
+            style={{
+              position: "absolute",
+              inset: ring.inset,
+              borderRadius: "50%",
+              border: "1px solid",
+            }}
+          />
+        );
+      })}
+      {/* Label mapping */}
+      {EXPERIENCE_ELEMENTS.map((el, i) => {
+        const angles = [0, -60, -120]; // positions around the rings
+        const radii  = [70, 160, 250];
+        const rad    = (angles[i] * Math.PI) / 180;
+        const x      = 250 + radii[i] * Math.cos(rad);
+        const y      = 250 + radii[i] * Math.sin(rad);
+        return (
+          <motion.span
+            key={i}
+            animate={{ opacity: activePhase >= i ? 0.7 : 0.12 }}
+            transition={{ duration: 0.8 }}
+            style={{
+              position: "absolute",
+              left: x,
+              top: y,
+              transform: "translate(-50%, -50%)",
+              fontFamily: "Manrope, sans-serif",
+              fontSize: "9px",
+              fontWeight: 500,
+              letterSpacing: "1.8px",
+              textTransform: "uppercase",
+              color: "rgba(200,169,106,1)",
+              whiteSpace: "nowrap",
+            }}
+          >
+            {el.label}
+          </motion.span>
+        );
+      })}
+      {/* Center label */}
+      <div
+        style={{
+          position: "absolute",
+          top: "50%",
+          left: "50%",
+          transform: "translate(-50%, -50%)",
+          textAlign: "center",
+        }}
+      >
+        <span
+          style={{
+            fontFamily: "Cormorant Garamond, serif",
+            fontSize: "11px",
+            fontStyle: "italic",
+            color: "rgba(200,169,106,0.4)",
+            whiteSpace: "nowrap",
+          }}
+        >
+          Stillness
+        </span>
+      </div>
+    </div>
+  );
+};
+
+// ─── Page ─────────────────────────────────────────────────────────────────────
 const MeditationRetreat = () => {
   const { t } = useLanguage();
-  const s = t.services.meditationRetreat;
+  const testimonials = t.home.testimonials.items;
+
+  // Hero parallax
+  const heroRef = useRef(null);
+  const { scrollYProgress: heroScroll } = useScroll({
+    target: heroRef,
+    offset: ["start start", "end start"],
+  });
+  const heroBgY = useTransform(heroScroll, [0, 1], ["0%", "-12%"]);
+
+  // Experience circles scroll
+  const circlesRef = useRef(null);
+  const { scrollYProgress: circlesProgress } = useScroll({
+    target: circlesRef,
+    offset: ["start start", "end end"],
+  });
+  const [activeElement, setActiveElement] = useState(-1);
+  useMotionValueEvent(circlesProgress, "change", (v) => {
+    if (v < 0.06)       setActiveElement(-1);
+    else if (v < 0.38)  setActiveElement(0);
+    else if (v < 0.68)  setActiveElement(1);
+    else                setActiveElement(2);
+  });
+
+  // Active "What Opens" item
+  const [activeOpen, setActiveOpen] = useState(null);
+
+  // Testimonial carousel
+  const [activeTestimonial, setActiveTestimonial] = useState(0);
+  const timerRef = useRef(null);
+  const restartTimer = (len) => {
+    clearInterval(timerRef.current);
+    timerRef.current = setInterval(
+      () => setActiveTestimonial((p) => (p + 1) % len),
+      6000
+    );
+  };
+  useEffect(() => {
+    restartTimer(testimonials.length);
+    return () => clearInterval(timerRef.current);
+  }, [testimonials.length]);
 
   return (
-    <div>
-      <section className="bg-charcoal min-h-[65vh] flex items-end pb-20 pt-36" data-testid="retreat-hero">
-        <div className="max-w-[1400px] mx-auto px-6 md:px-16 w-full">
-          <ScrollReveal>
-            <p className="ct-overline text-gold mb-6">{s.hero.overline}</p>
-          </ScrollReveal>
-          <ScrollReveal delay={0.15}>
-            <h1 className="text-ivory leading-[1.05] max-w-[680px]" style={{ fontFamily: "Figtree, sans-serif", fontSize: "clamp(40px, 6vw, 74px)", fontWeight: 400 }}>
-              {s.hero.headline}
-            </h1>
-          </ScrollReveal>
-          <ScrollReveal delay={0.3}>
-            <p className="text-stone/50 mt-5 max-w-[520px]" style={{ fontFamily: "Cormorant Garamond, serif", fontSize: "20px", fontStyle: "italic" }}>
-              {s.hero.subtitle}
-            </p>
-          </ScrollReveal>
+    <div className="bg-[#F5F2EC]">
+
+      {/* ══ 1. HERO ══════════════════════════════════════════════════════════ */}
+      <section
+        className="pt-[6px] px-3 md:px-4 pb-3"
+        style={{ background: "#F5F2EC" }}
+        data-testid="retreat-hero"
+      >
+        <div
+          ref={heroRef}
+          className="relative overflow-hidden w-full"
+          style={{ borderRadius: "20px", minHeight: "96vh" }}
+        >
+          <motion.img
+            src={HERO_BG}
+            alt=""
+            aria-hidden="true"
+            style={{
+              position: "absolute", left: 0, right: 0, top: 0,
+              width: "100%", height: "115%",
+              objectFit: "cover", objectPosition: "center 30%",
+              y: heroBgY,
+            }}
+          />
+          {/* Left-to-right dark gradient overlay */}
+          <div
+            className="absolute inset-0 z-[1]"
+            style={{
+              background:
+                "linear-gradient(to right, rgba(15,26,18,0.96) 0%, rgba(15,26,18,0.88) 22%, rgba(15,26,18,0.72) 42%, rgba(15,26,18,0.30) 62%, rgba(15,26,18,0.08) 100%)",
+            }}
+          />
+          {/* Top fade */}
+          <div
+            className="absolute top-0 left-0 right-0 z-[2]"
+            style={{
+              height: "130px",
+              background:
+                "linear-gradient(to bottom, rgba(15,26,18,0.70) 0%, rgba(15,26,18,0.2) 70%, transparent 100%)",
+            }}
+          />
+          <NeuralCanvas opacity={0.06} nodeCount={35} />
+
+          {/* Content — bottom left */}
+          <div
+            className="absolute bottom-0 left-0 z-10 p-8 md:p-14"
+            style={{ maxWidth: "860px" }}
+          >
+            <ScrollReveal delay={0.1}>
+              <p className="ct-overline text-gold mb-6">02 — Executive Retreat</p>
+            </ScrollReveal>
+            <ScrollReveal delay={0.25}>
+              <h1
+                className="text-ivory leading-[1.04]"
+                style={{
+                  fontFamily: "Figtree, sans-serif",
+                  fontSize: "clamp(40px, 6.5vw, 84px)",
+                  fontWeight: 400,
+                }}
+                data-testid="retreat-hero-headline"
+              >
+                Stillness as a Leadership Practice
+              </h1>
+            </ScrollReveal>
+            <ScrollReveal delay={0.42}>
+              <p
+                className="mt-5 max-w-[520px] leading-relaxed"
+                style={{
+                  fontFamily: "Cormorant Garamond, serif",
+                  fontSize: "22px",
+                  fontStyle: "italic",
+                  color: "rgba(227,222,215,0.65)",
+                }}
+              >
+                Away from operations. Into clarity.
+              </p>
+            </ScrollReveal>
+            <ScrollReveal delay={0.58}>
+              <div style={{ display: "flex", flexDirection: "row", flexWrap: "wrap", gap: "12px", marginTop: "36px", marginBottom: "40px" }}>
+                <Link
+                  to="/contact"
+                  className="btn-hero-pill"
+                  data-testid="retreat-hero-cta"
+                >
+                  Inquire About Retreats
+                </Link>
+              </div>
+            </ScrollReveal>
+          </div>
         </div>
       </section>
 
-      <section className="bg-stone ct-section" data-testid="retreat-description">
+      {/* ══ 2. THE INVITATION — Ivory, editorial two-column ══════════════════ */}
+      <section className="ct-section" style={{ background: "#F5F2EC" }} data-testid="retreat-invitation">
         <div className="max-w-[1400px] mx-auto px-6 md:px-16">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-14">
-            <div className="lg:col-span-5">
+          <div style={{ display: "flex", gap: "80px", alignItems: "flex-start" }}>
+            {/* Left: large pull quote */}
+            <div style={{ flex: "0 0 44%" }}>
               <ScrollReveal>
-                <p className="ct-overline text-charcoal/40 mb-4">{s.description.overline}</p>
-                <h2 className="text-charcoal leading-[1.1]" style={{ fontFamily: "Figtree, sans-serif", fontSize: "clamp(24px, 3vw, 36px)", fontWeight: 400 }}>
-                  {s.description.headline}
-                </h2>
+                <p className="ct-overline text-sage mb-8">The Retreat</p>
+                <p
+                  style={{
+                    fontFamily: "Cormorant Garamond, serif",
+                    fontSize: "clamp(32px, 3.8vw, 52px)",
+                    fontWeight: 400,
+                    fontStyle: "italic",
+                    color: "#121212",
+                    lineHeight: 1.25,
+                  }}
+                >
+                  "Meditation forms a powerful complement to the inner work of the programs."
+                </p>
+                <div
+                  style={{
+                    width: "40px",
+                    height: "1px",
+                    background: "rgba(200,169,106,0.5)",
+                    marginTop: "36px",
+                  }}
+                />
+                <p
+                  style={{
+                    fontFamily: "Manrope, sans-serif",
+                    fontSize: "11px",
+                    fontWeight: 500,
+                    letterSpacing: "2px",
+                    textTransform: "uppercase",
+                    color: "rgba(18,18,18,0.35)",
+                    marginTop: "16px",
+                  }}
+                >
+                  Cornelia Trompke
+                </p>
               </ScrollReveal>
             </div>
-            <div className="lg:col-span-6 lg:col-start-7">
-              {s.description.body.split("\n\n").map((para, i) => (
-                <ScrollReveal key={i} delay={0.1 + i * 0.08}>
-                  <p className="text-charcoal/65 mb-5 leading-relaxed" style={{ fontFamily: "Manrope, sans-serif", fontSize: "15px", fontWeight: 300 }}>{para}</p>
+
+            {/* Right: body */}
+            <div style={{ flex: 1, paddingTop: "68px" }}>
+              {[
+                "For leaders working with me in the programs, I regularly offer 3–5 day executive meditation retreats. I have been practicing meditation for over 30 years and teaching meditation for more than a decade.",
+                "When practiced correctly, meditation strengthens self-regulation, deepens insight, and supports clarity and innovation. In small groups, these retreats create the space for deeper reflection, nervous system regulation, and renewed perspective away from the demands of daily leadership.",
+                "This is not a wellness retreat or a relaxation break. It is an intensive container for inner work — structured reflection, guided practice, and the kind of dialogue that only becomes possible when the noise of operations falls away.",
+              ].map((para, i) => (
+                <ScrollReveal key={i} delay={0.08 * i}>
+                  <p
+                    style={{
+                      fontFamily: "Manrope, sans-serif",
+                      fontSize: "15px",
+                      fontWeight: 300,
+                      color: "rgba(18,18,18,0.55)",
+                      lineHeight: 1.85,
+                      marginBottom: "24px",
+                    }}
+                  >
+                    {para}
+                  </p>
                 </ScrollReveal>
               ))}
             </div>
@@ -50,67 +443,1329 @@ const MeditationRetreat = () => {
         </div>
       </section>
 
-      <section className="bg-charcoal ct-section" data-testid="retreat-for-whom">
-        <div className="max-w-[1400px] mx-auto px-6 md:px-16">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-14">
-            <div className="lg:col-span-5">
-              <ScrollReveal>
-                <p className="ct-overline text-gold mb-4">{s.forWhom.overline}</p>
-                <h2 className="text-ivory leading-[1.1]" style={{ fontFamily: "Figtree, sans-serif", fontSize: "clamp(24px, 3vw, 36px)", fontWeight: 400 }}>
-                  {s.forWhom.headline}
-                </h2>
+      {/* ══ 3. THE GUIDE — Ivory → Forest gradient, authority visuals ════════ */}
+      <section
+        className="relative overflow-hidden"
+        style={{
+          background:
+            "linear-gradient(to bottom, #F5F2EC 0%, #CDD8C4 22%, #8A9A80 42%, #2A3825 62%, #162018 80%, #0F1A12 100%)",
+          paddingTop: "120px",
+          paddingBottom: "140px",
+        }}
+        data-testid="retreat-guide"
+      >
+        {/* Faint large decorative numeral */}
+        <div
+          style={{
+            position: "absolute",
+            right: "-40px",
+            top: "40px",
+            fontFamily: "Cormorant Garamond, serif",
+            fontSize: "420px",
+            fontWeight: 300,
+            color: "rgba(18,18,18,0.025)",
+            lineHeight: 1,
+            pointerEvents: "none",
+            userSelect: "none",
+          }}
+        >
+          30
+        </div>
+
+        <div className="max-w-[1400px] mx-auto px-6 md:px-16 relative z-10">
+
+          {/* Section heading */}
+          <ScrollReveal>
+            <p className="ct-overline text-sage mb-5">The Guide</p>
+            <h2
+              style={{
+                fontFamily: "Figtree, sans-serif",
+                fontSize: "clamp(28px, 3.5vw, 46px)",
+                fontWeight: 400,
+                color: "#121212",
+                lineHeight: 1.1,
+                maxWidth: "680px",
+                marginBottom: "72px",
+              }}
+            >
+              Thirty Years of Practice. A Decade of Teaching.
+            </h2>
+          </ScrollReveal>
+
+          {/* Two-column layout */}
+          <div style={{ display: "flex", gap: "80px", alignItems: "flex-start" }}>
+
+            {/* Left: Stats + quote */}
+            <div style={{ flex: "0 0 42%" }}>
+              {/* Stat blocks */}
+              <div style={{ display: "flex", gap: "2px", marginBottom: "52px" }}>
+                {GUIDE_STATS.map((stat, i) => (
+                  <ScrollReveal key={i} delay={0.12 * i}>
+                    <div
+                      style={{
+                        flex: 1,
+                        background: i === 0
+                          ? "rgba(18,18,18,0.05)"
+                          : "rgba(200,169,106,0.07)",
+                        border: "1px solid rgba(18,18,18,0.08)",
+                        padding: "32px 28px",
+                        marginRight: "2px",
+                      }}
+                    >
+                      <p
+                        style={{
+                          fontFamily: "Cormorant Garamond, serif",
+                          fontSize: "clamp(56px, 6vw, 80px)",
+                          fontWeight: 300,
+                          color: i === 0 ? "#121212" : "#C8A96A",
+                          lineHeight: 1,
+                          marginBottom: "12px",
+                        }}
+                      >
+                        {stat.value}
+                      </p>
+                      <p
+                        style={{
+                          fontFamily: "Manrope, sans-serif",
+                          fontSize: "11px",
+                          fontWeight: 400,
+                          letterSpacing: "1.5px",
+                          textTransform: "uppercase",
+                          color: "rgba(18,18,18,0.45)",
+                          lineHeight: 1.6,
+                          whiteSpace: "pre-line",
+                        }}
+                      >
+                        {stat.label}
+                      </p>
+                    </div>
+                  </ScrollReveal>
+                ))}
+              </div>
+
+              {/* Credential divider */}
+              <ScrollReveal delay={0.25}>
+                <div style={{ display: "flex", alignItems: "center", gap: "16px", marginBottom: "32px" }}>
+                  <div style={{ width: "28px", height: "1px", background: "rgba(200,169,106,0.5)" }} />
+                  <span
+                    style={{
+                      fontFamily: "Manrope, sans-serif",
+                      fontSize: "9px",
+                      fontWeight: 600,
+                      letterSpacing: "2.5px",
+                      textTransform: "uppercase",
+                      color: "rgba(200,169,106,0.65)",
+                    }}
+                  >
+                    NARM · Somatic · Integral · Contemplative
+                  </span>
+                </div>
+              </ScrollReveal>
+
+              {/* Pull quote in transition zone */}
+              <ScrollReveal delay={0.35}>
+                <p
+                  style={{
+                    fontFamily: "Cormorant Garamond, serif",
+                    fontSize: "clamp(20px, 2.2vw, 28px)",
+                    fontWeight: 400,
+                    fontStyle: "italic",
+                    color: "rgba(15,26,18,0.62)",
+                    lineHeight: 1.45,
+                    maxWidth: "480px",
+                  }}
+                >
+                  "What I offer in these retreats is not a wellness programme. It is a rigorous, intelligent introduction to the kind of practice that changes the architecture of leadership."
+                </p>
               </ScrollReveal>
             </div>
-            <div className="lg:col-span-6 lg:col-start-7">
-              <div className="space-y-5">
-                {s.forWhom.items.map((item, i) => (
-                  <ScrollReveal key={i} delay={0.08 * i}>
-                    <div className="flex gap-4 items-start">
-                      <CheckCircle2 size={15} className="text-gold/60 mt-0.5 flex-shrink-0" />
-                      <p className="text-stone/60" style={{ fontFamily: "Manrope, sans-serif", fontSize: "14px", fontWeight: 300 }}>{item}</p>
+
+            {/* Right: atmospheric image + body text */}
+            <div style={{ flex: 1 }}>
+
+              {/* Framed atmospheric image */}
+              <ScrollReveal delay={0.15}>
+                <div
+                  style={{
+                    position: "relative",
+                    borderRadius: "4px",
+                    overflow: "hidden",
+                    marginBottom: "44px",
+                    height: "340px",
+                  }}
+                >
+                  <img
+                    src={GUIDE_BG}
+                    alt="Contemplative forest landscape"
+                    style={{
+                      width: "100%",
+                      height: "100%",
+                      objectFit: "cover",
+                      objectPosition: "center",
+                      filter: "saturate(0.65) brightness(0.88)",
+                    }}
+                  />
+                  {/* Subtle gold border frame */}
+                  <div
+                    style={{
+                      position: "absolute",
+                      inset: "12px",
+                      border: "1px solid rgba(200,169,106,0.22)",
+                      borderRadius: "2px",
+                      pointerEvents: "none",
+                    }}
+                  />
+                  {/* Caption overlay */}
+                  <div
+                    style={{
+                      position: "absolute",
+                      bottom: "20px",
+                      left: "24px",
+                      right: "24px",
+                      display: "flex",
+                      alignItems: "center",
+                      gap: "12px",
+                    }}
+                  >
+                    <div style={{ width: "20px", height: "1px", background: "rgba(200,169,106,0.55)" }} />
+                    <span
+                      style={{
+                        fontFamily: "Manrope, sans-serif",
+                        fontSize: "9px",
+                        fontWeight: 400,
+                        letterSpacing: "2px",
+                        textTransform: "uppercase",
+                        color: "rgba(245,242,236,0.5)",
+                      }}
+                    >
+                      Retreat Environment
+                    </span>
+                  </div>
+                </div>
+              </ScrollReveal>
+
+              {/* Body paragraphs — light colors for gradient midzone */}
+              {[
+                "Meditation is not a technique I use with clients. It is the ground from which this entire body of work emerges. I began practicing in my early twenties and have studied across traditions, completed extended silent retreats, and spent years integrating these practices with the neuroscience of self-regulation.",
+                "Research from Harvard Medical School and Harvard Business School confirms what practitioners have known for centuries: regular meditation practice can improve attention, emotional regulation, cognitive flexibility, and creative problem-solving — capacities essential for leaders operating in complex environments.",
+              ].map((para, i) => (
+                <ScrollReveal key={i} delay={0.2 + i * 0.12}>
+                  <p
+                    style={{
+                      fontFamily: "Manrope, sans-serif",
+                      fontSize: "14px",
+                      fontWeight: 300,
+                      color: "rgba(18,18,18,0.52)",
+                      lineHeight: 1.85,
+                      marginBottom: "22px",
+                    }}
+                  >
+                    {para}
+                  </p>
+                </ScrollReveal>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ══ 4. WHAT OPENS — For Whom accordion style, deep forest ════════════ */}
+      <section
+        className="ct-section"
+        style={{ background: "#0F1A12" }}
+        data-testid="retreat-what-opens"
+      >
+        <div className="max-w-[1400px] mx-auto px-6 md:px-16">
+          <div className="max-w-[600px] mx-auto mb-16 text-center">
+            <ScrollReveal>
+              <p className="ct-overline text-gold/60 mb-5">What Opens</p>
+              <h2
+                style={{
+                  fontFamily: "Figtree, sans-serif",
+                  fontSize: "clamp(28px, 3.5vw, 46px)",
+                  fontWeight: 400,
+                  color: "#F5F2EC",
+                  lineHeight: 1.1,
+                }}
+              >
+                Four Capacities That Emerge
+              </h2>
+            </ScrollReveal>
+          </div>
+
+          {/* Horizontal accordion */}
+          <div className="flex" style={{ height: "420px", overflow: "hidden" }}>
+            {WHAT_OPENS.map((item, i) => {
+              const isActive = activeOpen === i;
+              return (
+                <div
+                  key={i}
+                  onMouseEnter={() => setActiveOpen(i)}
+                  onMouseLeave={() => setActiveOpen(null)}
+                  data-testid={`what-opens-item-${i}`}
+                  style={{
+                    flex: isActive ? 3.5 : 1,
+                    transition: "flex 0.65s cubic-bezier(0.4, 0, 0.2, 1), background 0.4s ease",
+                    position: "relative",
+                    overflow: "hidden",
+                    borderRight:
+                      i < WHAT_OPENS.length - 1
+                        ? "1px solid rgba(245,242,236,0.07)"
+                        : "none",
+                    cursor: "default",
+                    background: isActive ? "rgba(200,169,106,0.04)" : "transparent",
+                  }}
+                >
+                  {/* Collapsed: rotated title */}
+                  <div
+                    style={{
+                      position: "absolute",
+                      inset: 0,
+                      display: "flex",
+                      flexDirection: "column",
+                      alignItems: "center",
+                      padding: "40px 0",
+                      opacity: isActive ? 0 : 1,
+                      transition: "opacity 0.2s ease",
+                      pointerEvents: "none",
+                    }}
+                  >
+                    <span
+                      style={{
+                        writingMode: "vertical-rl",
+                        transform: "rotate(180deg)",
+                        fontFamily: "Figtree, sans-serif",
+                        fontSize: "clamp(13px, 1.6vw, 18px)",
+                        fontWeight: 400,
+                        letterSpacing: "0.08em",
+                        color: "rgba(245,242,236,0.4)",
+                        flex: 1,
+                        display: "flex",
+                        alignItems: "center",
+                      }}
+                    >
+                      {item.title}
+                    </span>
+                    <span
+                      style={{
+                        fontFamily: "Cormorant Garamond, serif",
+                        fontSize: "28px",
+                        fontWeight: 300,
+                        color: "rgba(200,169,106,0.12)",
+                        lineHeight: 1,
+                        paddingBottom: "4px",
+                      }}
+                    >
+                      {item.number}
+                    </span>
+                  </div>
+
+                  {/* Expanded */}
+                  <div
+                    style={{
+                      opacity: isActive ? 1 : 0,
+                      transition: "opacity 0.35s ease 0.22s",
+                      padding: "48px 52px",
+                      height: "100%",
+                      display: "flex",
+                      flexDirection: "column",
+                      justifyContent: "flex-end",
+                      minWidth: "380px",
+                    }}
+                  >
+                    <span
+                      style={{
+                        fontFamily: "Manrope, sans-serif",
+                        fontSize: "10px",
+                        fontWeight: 600,
+                        letterSpacing: "0.25em",
+                        textTransform: "uppercase",
+                        color: "rgba(200,169,106,0.8)",
+                        marginBottom: "8px",
+                        display: "block",
+                      }}
+                    >
+                      {item.number}
+                    </span>
+                    <h3
+                      style={{
+                        fontFamily: "Figtree, sans-serif",
+                        fontSize: "clamp(20px, 2vw, 28px)",
+                        fontWeight: 400,
+                        color: "#F5F2EC",
+                        lineHeight: 1.2,
+                        marginBottom: "6px",
+                      }}
+                    >
+                      {item.title}
+                    </h3>
+                    <p
+                      style={{
+                        fontFamily: "Cormorant Garamond, serif",
+                        fontSize: "14px",
+                        fontStyle: "italic",
+                        color: "rgba(200,169,106,0.6)",
+                        marginBottom: "18px",
+                      }}
+                    >
+                      {item.subtitle}
+                    </p>
+                    <p
+                      style={{
+                        fontFamily: "Manrope, sans-serif",
+                        fontSize: "13px",
+                        fontWeight: 300,
+                        color: "rgba(227,222,215,0.5)",
+                        lineHeight: 1.75,
+                        maxWidth: "360px",
+                        marginBottom: "20px",
+                      }}
+                    >
+                      {item.body}
+                    </p>
+                    <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+                      <div style={{ width: "18px", height: "1px", background: "rgba(200,169,106,0.35)" }} />
+                      <span
+                        style={{
+                          fontFamily: "Manrope, sans-serif",
+                          fontSize: "9px",
+                          fontWeight: 500,
+                          letterSpacing: "2px",
+                          textTransform: "uppercase",
+                          color: "rgba(200,169,106,0.4)",
+                        }}
+                      >
+                        {item.citation}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+
+          {/* Research note */}
+          <ScrollReveal delay={0.2}>
+            <div
+              style={{
+                marginTop: "40px",
+                paddingTop: "24px",
+                borderTop: "1px solid rgba(245,242,236,0.07)",
+                display: "flex",
+                alignItems: "center",
+                gap: "16px",
+              }}
+            >
+              <div style={{ width: "28px", height: "1px", background: "rgba(200,169,106,0.3)" }} />
+              <p
+                style={{
+                  fontFamily: "Manrope, sans-serif",
+                  fontSize: "12px",
+                  fontWeight: 300,
+                  color: "rgba(245,242,236,0.28)",
+                  lineHeight: 1.6,
+                }}
+              >
+                Research drawn from studies at Harvard Medical School and Harvard Business School on the effects of regular meditation practice on executive performance.
+              </p>
+            </div>
+          </ScrollReveal>
+        </div>
+      </section>
+
+      {/* ══ 5. THE EXPERIENCE — Concentric circles, deep forest ══════════════ */}
+      <div
+        ref={circlesRef}
+        style={{ background: "#0F1A12", position: "relative" }}
+        data-testid="retreat-experience"
+      >
+        {/* Section heading */}
+        <div
+          className="max-w-[1400px] mx-auto px-6 md:px-16"
+          style={{ paddingTop: "140px", paddingBottom: "80px" }}
+        >
+          <ScrollReveal>
+            <p className="ct-overline text-gold/60 mb-5">The Experience</p>
+            <h2
+              style={{
+                fontFamily: "Figtree, sans-serif",
+                fontSize: "clamp(28px, 3.5vw, 46px)",
+                fontWeight: 400,
+                color: "#F5F2EC",
+                lineHeight: 1.1,
+              }}
+            >
+              Three Dimensions of the Retreat
+            </h2>
+          </ScrollReveal>
+        </div>
+
+        {/* Sticky scroll — 260vh drives the three-step reveal */}
+        <div style={{ height: "260vh" }}>
+          <div
+            style={{
+              position: "sticky",
+              top: 0,
+              height: "100vh",
+              display: "flex",
+              alignItems: "center",
+              overflow: "hidden",
+            }}
+          >
+            <div className="max-w-[1400px] mx-auto px-6 md:px-16 w-full">
+              <div style={{ display: "flex", alignItems: "center", gap: "0" }}>
+
+                {/* Left: circles */}
+                <div
+                  style={{
+                    flex: "0 0 50%",
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                  }}
+                >
+                  <CirclesViz activePhase={activeElement} />
+                </div>
+
+                {/* Right: element rows */}
+                <div style={{ flex: 1 }}>
+                  {EXPERIENCE_ELEMENTS.map((el, i) => {
+                    const isActive = activeElement >= i;
+                    const isCurrent = activeElement === i;
+                    return (
+                      <div
+                        key={i}
+                        style={{
+                          borderTop: i > 0 ? "1px solid rgba(245,242,236,0.08)" : "none",
+                          paddingTop: i > 0 ? "32px" : "0",
+                          paddingBottom: "32px",
+                          paddingLeft: "20px",
+                          borderLeft: `2px solid ${
+                            isCurrent
+                              ? "rgba(200,169,106,0.65)"
+                              : isActive
+                              ? "rgba(200,169,106,0.3)"
+                              : "rgba(200,169,106,0.07)"
+                          }`,
+                          transition: "border-color 0.6s ease",
+                        }}
+                        data-testid={`experience-row-${i}`}
+                      >
+                        <div
+                          style={{
+                            display: "flex",
+                            alignItems: "baseline",
+                            gap: "12px",
+                            marginBottom: "8px",
+                          }}
+                        >
+                          <span
+                            style={{
+                              fontFamily: "Manrope, sans-serif",
+                              fontSize: "10px",
+                              fontWeight: 600,
+                              letterSpacing: "2px",
+                              textTransform: "uppercase",
+                              color: isActive
+                                ? "rgba(200,169,106,0.85)"
+                                : "rgba(200,169,106,0.18)",
+                              transition: "color 0.6s ease",
+                            }}
+                          >
+                            {el.number}
+                          </span>
+                          <span
+                            style={{
+                              fontFamily: "Manrope, sans-serif",
+                              fontSize: "10px",
+                              fontWeight: 400,
+                              letterSpacing: "1px",
+                              color: isActive
+                                ? "rgba(245,242,236,0.32)"
+                                : "rgba(245,242,236,0.1)",
+                              textTransform: "uppercase",
+                              transition: "color 0.6s ease",
+                            }}
+                          >
+                            {el.role}
+                          </span>
+                        </div>
+                        <h3
+                          style={{
+                            fontFamily: "Figtree, sans-serif",
+                            fontSize: "clamp(18px, 2vw, 26px)",
+                            fontWeight: 400,
+                            color: isActive
+                              ? "rgba(245,242,236,0.88)"
+                              : "rgba(245,242,236,0.18)",
+                            lineHeight: 1.2,
+                            transition: "color 0.6s ease",
+                          }}
+                        >
+                          {el.label}
+                        </h3>
+                        <AnimatePresence>
+                          {isActive && (
+                            <motion.p
+                              initial={{ opacity: 0, height: 0, marginTop: 0 }}
+                              animate={{ opacity: 1, height: "auto", marginTop: "10px" }}
+                              exit={{ opacity: 0, height: 0, marginTop: 0 }}
+                              transition={{ duration: 0.55, delay: 0.12, ease: "easeOut" }}
+                              style={{
+                                fontFamily: "Manrope, sans-serif",
+                                fontSize: "13px",
+                                fontWeight: 300,
+                                color: "rgba(245,242,236,0.42)",
+                                lineHeight: 1.75,
+                                overflow: "hidden",
+                              }}
+                            >
+                              {el.description}
+                            </motion.p>
+                          )}
+                        </AnimatePresence>
+                      </div>
+                    );
+                  })}
+
+                  {/* Closing phrase */}
+                  <AnimatePresence>
+                    {activeElement >= 2 && (
+                      <motion.div
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.7, delay: 0.4 }}
+                        style={{
+                          marginTop: "28px",
+                          paddingLeft: "20px",
+                          borderLeft: "2px solid rgba(200,169,106,0.15)",
+                        }}
+                      >
+                        <p
+                          style={{
+                            fontFamily: "Cormorant Garamond, serif",
+                            fontSize: "18px",
+                            fontStyle: "italic",
+                            color: "rgba(200,169,106,0.45)",
+                            lineHeight: 1.5,
+                          }}
+                        >
+                          "Insights don't just arrive. They settle."
+                        </p>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div style={{ paddingBottom: "80px" }} />
+      </div>
+
+      {/* ══ 6. THE PLACES — Timeline + Upcoming Retreats ═════════════════════ */}
+      <section
+        className="ct-section"
+        style={{ background: "#F5F2EC" }}
+        data-testid="retreat-places"
+      >
+        <div className="max-w-[1400px] mx-auto px-6 md:px-16">
+
+          {/* Part A: 5-day timeline */}
+          <div style={{ marginBottom: "100px" }}>
+            <ScrollReveal>
+              <p className="ct-overline text-sage mb-5">The Five Days</p>
+              <h2
+                style={{
+                  fontFamily: "Figtree, sans-serif",
+                  fontSize: "clamp(28px, 3.2vw, 44px)",
+                  fontWeight: 400,
+                  color: "#121212",
+                  lineHeight: 1.1,
+                  marginBottom: "64px",
+                }}
+              >
+                A Day-by-Day Architecture
+              </h2>
+            </ScrollReveal>
+
+            {/* Horizontal timeline */}
+            <div style={{ position: "relative" }}>
+              {/* Connecting line */}
+              <div
+                style={{
+                  position: "absolute",
+                  top: "24px",
+                  left: "24px",
+                  right: "24px",
+                  height: "1px",
+                  background:
+                    "linear-gradient(to right, rgba(200,169,106,0.5), rgba(200,169,106,0.15), rgba(200,169,106,0.5))",
+                }}
+              />
+
+              <div style={{ display: "flex", gap: "0" }}>
+                {TIMELINE_DAYS.map((day, i) => (
+                  <ScrollReveal key={i} delay={0.08 * i} direction="up">
+                    <div
+                      style={{
+                        flex: 1,
+                        paddingTop: "52px",
+                        paddingRight: i < TIMELINE_DAYS.length - 1 ? "28px" : "0",
+                        paddingLeft: i > 0 ? "28px" : "0",
+                        position: "relative",
+                      }}
+                      data-testid={`timeline-day-${i}`}
+                    >
+                      {/* Day marker dot */}
+                      <div
+                        style={{
+                          position: "absolute",
+                          top: "20px",
+                          left: i > 0 ? "28px" : "0",
+                          width: "9px",
+                          height: "9px",
+                          borderRadius: "50%",
+                          background: "#C8A96A",
+                          border: "2px solid #F5F2EC",
+                          boxShadow: "0 0 0 1px rgba(200,169,106,0.4)",
+                        }}
+                      />
+
+                      <span
+                        style={{
+                          display: "block",
+                          fontFamily: "Manrope, sans-serif",
+                          fontSize: "9px",
+                          fontWeight: 600,
+                          letterSpacing: "2px",
+                          textTransform: "uppercase",
+                          color: "rgba(200,169,106,0.8)",
+                          marginBottom: "10px",
+                        }}
+                      >
+                        {day.day}
+                      </span>
+                      <h4
+                        style={{
+                          fontFamily: "Figtree, sans-serif",
+                          fontSize: "clamp(16px, 1.6vw, 20px)",
+                          fontWeight: 400,
+                          color: "#121212",
+                          lineHeight: 1.2,
+                          marginBottom: "12px",
+                        }}
+                      >
+                        {day.title}
+                      </h4>
+                      <p
+                        style={{
+                          fontFamily: "Manrope, sans-serif",
+                          fontSize: "13px",
+                          fontWeight: 300,
+                          color: "rgba(18,18,18,0.48)",
+                          lineHeight: 1.75,
+                        }}
+                      >
+                        {day.description}
+                      </p>
                     </div>
                   </ScrollReveal>
                 ))}
               </div>
             </div>
           </div>
-        </div>
-      </section>
 
-      <section className="bg-ivory ct-section" data-testid="retreat-format">
-        <div className="max-w-[1400px] mx-auto px-6 md:px-16">
-          <ScrollReveal>
-            <p className="ct-overline text-sage mb-4">{s.format.overline}</p>
-            <h2 className="text-charcoal leading-[1.1] mb-12" style={{ fontFamily: "Figtree, sans-serif", fontSize: "clamp(24px, 3vw, 36px)", fontWeight: 400 }}>
-              {s.format.headline}
-            </h2>
-          </ScrollReveal>
-          <div className="space-y-0">
-            {s.format.items.map((item, i) => (
-              <ScrollReveal key={i} delay={i * 0.06}>
-                <div className="border-t py-6 grid grid-cols-1 md:grid-cols-3 gap-4" style={{ borderColor: "rgba(18,18,18,0.12)" }}>
-                  <p className="ct-overline text-charcoal/40">{item.label}</p>
-                  <p className="md:col-span-2 text-charcoal/70" style={{ fontFamily: "Manrope, sans-serif", fontSize: "14px", fontWeight: 300 }}>{item.value}</p>
+          {/* Divider */}
+          <div
+            style={{
+              height: "1px",
+              background:
+                "linear-gradient(to right, transparent, rgba(18,18,18,0.12), transparent)",
+              marginBottom: "80px",
+            }}
+          />
+
+          {/* Part B: Upcoming retreats */}
+          <div>
+            <ScrollReveal>
+              <div
+                style={{
+                  display: "flex",
+                  alignItems: "baseline",
+                  justifyContent: "space-between",
+                  marginBottom: "40px",
+                }}
+              >
+                <h3
+                  style={{
+                    fontFamily: "Figtree, sans-serif",
+                    fontSize: "clamp(22px, 2.8vw, 36px)",
+                    fontWeight: 400,
+                    color: "#121212",
+                    lineHeight: 1.1,
+                  }}
+                >
+                  Upcoming Retreats
+                </h3>
+                <p
+                  style={{
+                    fontFamily: "Manrope, sans-serif",
+                    fontSize: "12px",
+                    fontWeight: 300,
+                    color: "rgba(18,18,18,0.38)",
+                    letterSpacing: "0.08em",
+                  }}
+                >
+                  Places are limited
+                </p>
+              </div>
+            </ScrollReveal>
+
+            {UPCOMING_RETREATS.map((retreat, i) => (
+              <ScrollReveal key={i} delay={0.1 * i}>
+                <div
+                  style={{
+                    borderTop: "1px solid rgba(18,18,18,0.08)",
+                    padding: "28px 0",
+                    display: "flex",
+                    alignItems: "center",
+                    gap: "32px",
+                  }}
+                  data-testid={`upcoming-retreat-${i}`}
+                >
+                  {/* Date */}
+                  <div style={{ flexShrink: 0, minWidth: "120px" }}>
+                    <p
+                      style={{
+                        fontFamily: "Cormorant Garamond, serif",
+                        fontSize: "22px",
+                        fontWeight: 400,
+                        color: "#121212",
+                        lineHeight: 1.1,
+                      }}
+                    >
+                      {retreat.date}
+                    </p>
+                  </div>
+
+                  {/* Location + duration */}
+                  <div style={{ flex: 1 }}>
+                    <p
+                      style={{
+                        fontFamily: "Figtree, sans-serif",
+                        fontSize: "16px",
+                        fontWeight: 400,
+                        color: "#121212",
+                        marginBottom: "4px",
+                      }}
+                    >
+                      {retreat.location}
+                    </p>
+                    <p
+                      style={{
+                        fontFamily: "Manrope, sans-serif",
+                        fontSize: "12px",
+                        fontWeight: 300,
+                        color: "rgba(18,18,18,0.42)",
+                      }}
+                    >
+                      {retreat.duration}
+                    </p>
+                  </div>
+
+                  {/* Spots */}
+                  <div style={{ flexShrink: 0 }}>
+                    <span
+                      style={{
+                        fontFamily: "Manrope, sans-serif",
+                        fontSize: "11px",
+                        fontWeight: 500,
+                        letterSpacing: "1.5px",
+                        textTransform: "uppercase",
+                        color:
+                          retreat.status === "Open"
+                            ? "rgba(80,130,80,0.9)"
+                            : "rgba(200,169,106,0.8)",
+                        background:
+                          retreat.status === "Open"
+                            ? "rgba(80,130,80,0.08)"
+                            : "rgba(200,169,106,0.08)",
+                        padding: "5px 12px",
+                        borderRadius: "2px",
+                        border: `1px solid ${
+                          retreat.status === "Open"
+                            ? "rgba(80,130,80,0.18)"
+                            : "rgba(200,169,106,0.18)"
+                        }`,
+                      }}
+                    >
+                      {retreat.spots}
+                    </span>
+                  </div>
+
+                  {/* CTA */}
+                  <div style={{ flexShrink: 0 }}>
+                    <Link
+                      to="/contact"
+                      style={{
+                        fontFamily: "Manrope, sans-serif",
+                        fontSize: "11px",
+                        fontWeight: 500,
+                        letterSpacing: "2px",
+                        textTransform: "uppercase",
+                        color: "#C8A96A",
+                        textDecoration: "none",
+                        borderBottom: "1px solid rgba(200,169,106,0.35)",
+                        paddingBottom: "2px",
+                        transition: "border-color 0.25s ease, color 0.25s ease",
+                      }}
+                      data-testid={`retreat-apply-${i}`}
+                    >
+                      Apply
+                    </Link>
+                  </div>
                 </div>
               </ScrollReveal>
             ))}
-            <div className="border-t" style={{ borderColor: "rgba(18,18,18,0.12)" }} />
+
+            {/* Bottom border */}
+            <div style={{ borderTop: "1px solid rgba(18,18,18,0.08)" }} />
           </div>
         </div>
       </section>
 
-      <section className="bg-charcoal ct-section-sm text-center">
-        <div className="max-w-[520px] mx-auto px-6">
+      {/* ══ 7. FORMAT — Deep forest, same label/value rows ═══════════════════ */}
+      <section
+        className="ct-section"
+        style={{ background: "#0F1A12" }}
+        data-testid="retreat-format"
+      >
+        <div className="max-w-[1400px] mx-auto px-6 md:px-16">
+          <div style={{ display: "flex", gap: "80px", alignItems: "flex-start" }}>
+
+            {/* Left: heading */}
+            <div style={{ flex: "0 0 38%" }}>
+              <ScrollReveal>
+                <p className="ct-overline text-gold/60 mb-5">Format</p>
+                <h2
+                  style={{
+                    fontFamily: "Figtree, sans-serif",
+                    fontSize: "clamp(28px, 3.2vw, 44px)",
+                    fontWeight: 400,
+                    color: "#F5F2EC",
+                    lineHeight: 1.1,
+                  }}
+                >
+                  The Structure of a Retreat
+                </h2>
+              </ScrollReveal>
+            </div>
+
+            {/* Right: format rows */}
+            <div style={{ flex: 1, paddingTop: "64px" }}>
+              {FORMAT_ITEMS.map((item, i) => (
+                <ScrollReveal key={i} delay={0.07 * i}>
+                  <div
+                    style={{
+                      borderTop: i > 0 ? "1px solid rgba(245,242,236,0.07)" : "none",
+                      padding: "22px 0",
+                      display: "flex",
+                      gap: "40px",
+                      alignItems: "baseline",
+                    }}
+                    data-testid={`format-row-${i}`}
+                  >
+                    <p
+                      style={{
+                        fontFamily: "Manrope, sans-serif",
+                        fontSize: "10px",
+                        fontWeight: 600,
+                        letterSpacing: "2px",
+                        textTransform: "uppercase",
+                        color: "rgba(200,169,106,0.55)",
+                        flexShrink: 0,
+                        minWidth: "100px",
+                      }}
+                    >
+                      {item.label}
+                    </p>
+                    <p
+                      style={{
+                        fontFamily: "Manrope, sans-serif",
+                        fontSize: "14px",
+                        fontWeight: 300,
+                        color: "rgba(245,242,236,0.6)",
+                        lineHeight: 1.7,
+                      }}
+                    >
+                      {item.value}
+                    </p>
+                  </div>
+                </ScrollReveal>
+              ))}
+              <div style={{ borderTop: "1px solid rgba(245,242,236,0.07)" }} />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ══ 8. TESTIMONIALS — Deep forest, glass card ════════════════════════ */}
+      <section
+        className="ct-section"
+        style={{ background: "#0F1A12" }}
+        data-testid="retreat-testimonials"
+      >
+        <div className="max-w-[1400px] mx-auto px-6 md:px-16">
           <ScrollReveal>
-            <h2 className="text-ivory" style={{ fontFamily: "Figtree, sans-serif", fontSize: "clamp(26px, 3vw, 36px)", fontWeight: 400 }}>
-              {s.cta.headline}
-            </h2>
-            <Link to="/contact" className="btn-secondary mt-8 inline-block" data-testid="retreat-enquire-btn">
-              {s.cta.button}
-            </Link>
+            <p className="ct-overline mb-10" style={{ color: "rgba(200,169,106,0.45)" }}>
+              {t.home.testimonials.overline}
+            </p>
+          </ScrollReveal>
+
+          <ScrollReveal delay={0.1}>
+            <div
+              style={{
+                display: "flex",
+                minHeight: "400px",
+                background: "rgba(245,242,236,0.04)",
+                backdropFilter: "blur(22px)",
+                WebkitBackdropFilter: "blur(22px)",
+                border: "1px solid rgba(200,169,106,0.14)",
+                borderRadius: "16px",
+                overflow: "hidden",
+                position: "relative",
+              }}
+            >
+              {/* Portrait */}
+              <div style={{ width: "38%", flexShrink: 0, position: "relative" }}>
+                {TESTIMONIAL_PORTRAITS.map((src, i) => (
+                  <img
+                    key={i}
+                    src={src}
+                    alt=""
+                    style={{
+                      position: "absolute",
+                      inset: 0,
+                      width: "100%",
+                      height: "100%",
+                      objectFit: "cover",
+                      objectPosition: "center top",
+                      opacity: i === activeTestimonial ? 1 : 0,
+                      transition: "opacity 0.9s ease",
+                      filter: "grayscale(25%) brightness(0.85)",
+                    }}
+                  />
+                ))}
+                <div
+                  style={{
+                    position: "absolute",
+                    right: 0,
+                    top: "15%",
+                    bottom: "15%",
+                    width: "1px",
+                    background:
+                      "linear-gradient(to bottom, transparent, rgba(200,169,106,0.3), transparent)",
+                    zIndex: 2,
+                  }}
+                />
+              </div>
+
+              {/* Quote */}
+              <div
+                style={{
+                  flex: 1,
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "center",
+                  padding: "52px 60px",
+                  position: "relative",
+                }}
+              >
+                <span
+                  style={{
+                    fontFamily: "Cormorant Garamond, serif",
+                    fontSize: "120px",
+                    lineHeight: 1,
+                    color: "rgba(200,169,106,0.05)",
+                    position: "absolute",
+                    top: "16px",
+                    left: "52px",
+                    userSelect: "none",
+                    pointerEvents: "none",
+                  }}
+                >
+                  &ldquo;
+                </span>
+                <div style={{ position: "relative", minHeight: "220px" }}>
+                  {testimonials.map((item, i) => (
+                    <div
+                      key={i}
+                      style={{
+                        position: "absolute",
+                        inset: 0,
+                        display: "flex",
+                        flexDirection: "column",
+                        justifyContent: "center",
+                        opacity: i === activeTestimonial ? 1 : 0,
+                        transform:
+                          i === activeTestimonial ? "translateY(0)" : "translateY(14px)",
+                        transition: "opacity 0.8s ease, transform 0.8s ease",
+                        pointerEvents: i === activeTestimonial ? "auto" : "none",
+                      }}
+                    >
+                      <p
+                        style={{
+                          fontFamily: "Cormorant Garamond, serif",
+                          fontSize: "clamp(20px, 2.2vw, 26px)",
+                          fontWeight: 400,
+                          color: "#F5F2EC",
+                          lineHeight: 1.45,
+                          fontStyle: "italic",
+                        }}
+                      >
+                        "{item.text}"
+                      </p>
+                      <div
+                        style={{
+                          marginTop: "32px",
+                          display: "flex",
+                          alignItems: "center",
+                          gap: "14px",
+                        }}
+                      >
+                        <div
+                          style={{
+                            width: "28px",
+                            height: "1px",
+                            background: "rgba(200,169,106,0.5)",
+                          }}
+                        />
+                        <div>
+                          <p
+                            style={{
+                              fontFamily: "Manrope, sans-serif",
+                              fontSize: "12px",
+                              fontWeight: 500,
+                              color: "rgba(200,169,106,0.9)",
+                              letterSpacing: "1.5px",
+                              textTransform: "uppercase",
+                            }}
+                          >
+                            {item.author}
+                          </p>
+                          <p
+                            style={{
+                              fontFamily: "Manrope, sans-serif",
+                              fontSize: "12px",
+                              fontWeight: 300,
+                              color: "rgba(227,222,215,0.35)",
+                              marginTop: "3px",
+                            }}
+                          >
+                            {item.company}
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Progress bar */}
+              <div
+                style={{
+                  position: "absolute",
+                  bottom: 0,
+                  left: 0,
+                  right: 0,
+                  height: "2px",
+                  background: "rgba(200,169,106,0.07)",
+                }}
+              >
+                <div
+                  key={activeTestimonial}
+                  style={{
+                    height: "100%",
+                    background: "rgba(200,169,106,0.4)",
+                    animation: "progressSlide 6s linear forwards",
+                  }}
+                />
+              </div>
+            </div>
+          </ScrollReveal>
+
+          {/* Thumbnail nav */}
+          <div
+            style={{
+              display: "flex",
+              gap: "28px",
+              marginTop: "0px",
+              alignItems: "flex-start",
+              paddingLeft: "4px",
+            }}
+          >
+            {TESTIMONIAL_PORTRAITS.map((src, i) => (
+              <button
+                key={i}
+                onClick={() => {
+                  setActiveTestimonial(i);
+                  restartTimer(testimonials.length);
+                }}
+                data-testid={`testimonial-nav-${i}`}
+                style={{
+                  background: "none",
+                  border: "none",
+                  padding: 0,
+                  cursor: "pointer",
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
+                  gap: "10px",
+                }}
+              >
+                <div
+                  style={{
+                    width: i === activeTestimonial ? "68px" : "56px",
+                    height: i === activeTestimonial ? "68px" : "56px",
+                    borderRadius: "50%",
+                    overflow: "hidden",
+                    border:
+                      i === activeTestimonial
+                        ? "2px solid #C8A96A"
+                        : "2px solid rgba(245,242,236,0.1)",
+                    transform:
+                      i === activeTestimonial ? "translateY(-12px)" : "translateY(0)",
+                    transition: "all 0.45s cubic-bezier(0.4, 0, 0.2, 1)",
+                    flexShrink: 0,
+                    boxShadow:
+                      i === activeTestimonial
+                        ? "0 8px 28px rgba(200,169,106,0.18)"
+                        : "none",
+                  }}
+                >
+                  <img
+                    src={src}
+                    alt=""
+                    style={{
+                      width: "100%",
+                      height: "100%",
+                      objectFit: "cover",
+                      objectPosition: "center top",
+                      filter:
+                        i === activeTestimonial
+                          ? "brightness(0.88)"
+                          : "grayscale(70%) brightness(0.7)",
+                      transition: "filter 0.45s ease",
+                    }}
+                  />
+                </div>
+                <span
+                  style={{
+                    fontFamily: "Manrope, sans-serif",
+                    fontSize: "9px",
+                    fontWeight: 500,
+                    letterSpacing: "0.14em",
+                    textTransform: "uppercase",
+                    color:
+                      i === activeTestimonial
+                        ? "rgba(245,242,236,0.65)"
+                        : "rgba(245,242,236,0.2)",
+                    transition: "color 0.4s ease",
+                    textAlign: "center",
+                    maxWidth: "88px",
+                    lineHeight: 1.55,
+                  }}
+                >
+                  {testimonials[i]?.author}
+                </span>
+              </button>
+            ))}
+          </div>
+        </div>
+        <style>{`@keyframes progressSlide { from { width: 0%; } to { width: 100%; } }`}</style>
+      </section>
+
+      {/* ══ 9. FINAL CTA — Forest → Ivory gradient ═══════════════════════════ */}
+      <section
+        className="ct-section relative overflow-hidden"
+        style={{
+          background:
+            "linear-gradient(to bottom, #0F1A12 0%, #162018 25%, #2A3825 48%, #8A9A80 68%, #CDD8C4 85%, #F5F2EC 100%)",
+        }}
+        data-testid="retreat-cta"
+      >
+        <NeuralCanvas opacity={0.04} nodeCount={22} />
+        <div className="relative z-10 max-w-[760px] mx-auto px-6">
+          <ScrollReveal>
+            <div
+              style={{
+                background: "rgba(15,26,18,0.92)",
+                backdropFilter: "blur(28px)",
+                WebkitBackdropFilter: "blur(28px)",
+                border: "1px solid rgba(200,169,106,0.25)",
+                borderRadius: "20px",
+                padding: "80px 72px",
+                textAlign: "center",
+                position: "relative",
+                overflow: "hidden",
+              }}
+            >
+              {/* Radial glow */}
+              <div
+                style={{
+                  position: "absolute",
+                  inset: 0,
+                  background:
+                    "radial-gradient(ellipse 80% 60% at 50% 40%, rgba(200,169,106,0.05) 0%, transparent 70%)",
+                  pointerEvents: "none",
+                }}
+              />
+              {/* Corner accents */}
+              <div style={{ position: "absolute", top: 0, left: 0, width: "48px", height: "1px", background: "rgba(200,169,106,0.35)" }} />
+              <div style={{ position: "absolute", top: 0, left: 0, width: "1px", height: "48px", background: "rgba(200,169,106,0.35)" }} />
+              <div style={{ position: "absolute", bottom: 0, right: 0, width: "48px", height: "1px", background: "rgba(200,169,106,0.35)" }} />
+              <div style={{ position: "absolute", bottom: 0, right: 0, width: "1px", height: "48px", background: "rgba(200,169,106,0.35)" }} />
+
+              <div className="relative z-10">
+                <h2
+                  style={{
+                    fontFamily: "Figtree, sans-serif",
+                    fontSize: "clamp(28px, 3.5vw, 44px)",
+                    fontWeight: 400,
+                    lineHeight: 1.1,
+                    color: "#F5F2EC",
+                  }}
+                >
+                  When You're Ready to Go Deeper
+                </h2>
+                <p
+                  style={{
+                    fontFamily: "Manrope, sans-serif",
+                    fontSize: "15px",
+                    fontWeight: 300,
+                    color: "rgba(227,222,215,0.45)",
+                    lineHeight: 1.75,
+                    marginTop: "18px",
+                  }}
+                >
+                  Retreats are offered to leaders engaged in one of Cornelia's programmes. Enquiries are welcomed — to understand whether the timing and format are the right fit.
+                </p>
+                <Link
+                  to="/contact"
+                  className="btn-secondary inline-block"
+                  style={{ marginTop: "40px", borderRadius: "8px" }}
+                  data-testid="retreat-apply-btn"
+                >
+                  Inquire About Retreats
+                </Link>
+              </div>
+            </div>
           </ScrollReveal>
         </div>
       </section>
+
     </div>
   );
 };
