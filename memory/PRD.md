@@ -360,3 +360,8 @@ Footer (from shared Footer component)
 - **TeamFacilitation.jsx**: Added `isMobile` state + useEffect (was missing); added `openWorkMobile`; made Premise, Process grid, Work Addresses, For Whom, Outcome all responsive; testimonials portrait hidden on mobile
 - **MeditationRetreat.jsx**: Added `isMobile` state + useEffect (was missing); added `openWhatOpensMobile`; made Invitation, Guide, What Opens, Experience circles (sticky→whileInView), Timeline (horizontal→vertical), Upcoming Retreats, Format all responsive; testimonials portrait hidden on mobile
 - 100% test pass rate at 390px viewport, no horizontal overflow
+
+### Engagement Arc Mobile Fix — Proper Sticky Scroll (Mar 2026)
+- Replaced `whileInView` approach with proper sticky-scroll (same as desktop): `height: 260vh` container, `position: sticky, height: 100vh` inner panel
+- Mobile layout: CirclesViz (200px) on top, 3 phase rows stacked below — driven by same `activePhase` state from `phasesProgress` scroll hook (not a static activePhase={2})
+- Circles progressively light up ring-by-ring, phases reveal their descriptions as user scrolls

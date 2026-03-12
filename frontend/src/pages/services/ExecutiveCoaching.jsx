@@ -310,45 +310,74 @@ const ExecutiveCoaching = () => {
         </div>
 
         {isMobile ? (
-          /* ── Mobile: circle on top, all phases stacked below ── */
-          <div className="px-6 pb-16">
-            <div style={{ display: "flex", justifyContent: "center", marginBottom: "40px" }}>
-              <CirclesViz activePhase={2} size={260} />
+          /* ── Mobile: same sticky-scroll as desktop, but vertical layout ── */
+          <div style={{ height: "260vh" }}>
+            <div
+              style={{
+                position: "sticky",
+                top: 0,
+                height: "100vh",
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                justifyContent: "center",
+                overflow: "hidden",
+                padding: "0 24px 24px",
+              }}
+            >
+              {/* Circles — update with scroll */}
+              <div style={{ marginBottom: "28px", flexShrink: 0 }}>
+                <CirclesViz activePhase={activePhase} size={200} />
+              </div>
+
+              {/* Phase rows */}
+              <div style={{ width: "100%" }}>
+                {PHASES.map((phase, i) => {
+                  const isActive = activePhase >= i;
+                  const isCurrent = activePhase === i;
+                  return (
+                    <div
+                      key={i}
+                      data-testid={`phase-row-${i}`}
+                      style={{
+                        borderTop: i > 0 ? "1px solid rgba(245,242,236,0.1)" : "none",
+                        paddingTop: i > 0 ? "18px" : "0",
+                        paddingBottom: "18px",
+                        paddingLeft: "16px",
+                        borderLeft: `2px solid ${isCurrent ? "rgba(200,169,106,0.65)" : isActive ? "rgba(200,169,106,0.3)" : "rgba(200,169,106,0.08)"}`,
+                        transition: "border-color 0.6s ease",
+                      }}
+                    >
+                      <div style={{ display: "flex", alignItems: "baseline", gap: "10px", marginBottom: "5px" }}>
+                        <span style={{ fontFamily: "Manrope, sans-serif", fontSize: "9px", fontWeight: 600, letterSpacing: "2px", textTransform: "uppercase", color: isActive ? "rgba(200,169,106,0.85)" : "rgba(200,169,106,0.2)", transition: "color 0.6s ease" }}>
+                          {phase.number}
+                        </span>
+                        <span style={{ fontFamily: "Manrope, sans-serif", fontSize: "9px", fontWeight: 400, letterSpacing: "1px", color: isActive ? "rgba(245,242,236,0.35)" : "rgba(245,242,236,0.12)", textTransform: "uppercase", transition: "color 0.6s ease" }}>
+                          {phase.duration}
+                        </span>
+                      </div>
+                      <h3 style={{ fontFamily: "Figtree, sans-serif", fontSize: "17px", fontWeight: 400, color: isActive ? "rgba(245,242,236,0.88)" : "rgba(245,242,236,0.18)", lineHeight: 1.2, transition: "color 0.6s ease" }}>
+                        {phase.label}
+                      </h3>
+                      <AnimatePresence>
+                        {isActive && (
+                          <motion.p
+                            initial={{ opacity: 0, height: 0, marginTop: 0 }}
+                            animate={{ opacity: 1, height: "auto", marginTop: "7px" }}
+                            exit={{ opacity: 0, height: 0, marginTop: 0 }}
+                            transition={{ duration: 0.45, delay: 0.1, ease: "easeOut" }}
+                            style={{ fontFamily: "Manrope, sans-serif", fontSize: "12px", fontWeight: 300, color: "rgba(245,242,236,0.45)", lineHeight: 1.7, overflow: "hidden" }}
+                          >
+                            {phase.description}
+                          </motion.p>
+                        )}
+                      </AnimatePresence>
+                    </div>
+                  );
+                })}
+              </div>
             </div>
-            <div>
-              {PHASES.map((phase, i) => (
-                <motion.div
-                  key={i}
-                  initial={{ opacity: 0, x: -20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true, margin: "-40px" }}
-                  transition={{ duration: 0.65, ease: [0.25, 0.46, 0.45, 0.94], delay: i * 0.15 }}
-                  style={{
-                    borderTop: i > 0 ? "1px solid rgba(245,242,236,0.1)" : "none",
-                    paddingTop: i > 0 ? "24px" : "0",
-                    paddingBottom: "24px",
-                    paddingLeft: "20px",
-                    borderLeft: "2px solid rgba(200,169,106,0.65)",
-                  }}
-                  data-testid={`phase-row-${i}`}
-                >
-                  <div style={{ display: "flex", alignItems: "baseline", gap: "12px", marginBottom: "8px" }}>
-                    <span style={{ fontFamily: "Manrope, sans-serif", fontSize: "10px", fontWeight: 600, letterSpacing: "2px", textTransform: "uppercase", color: "rgba(200,169,106,0.85)" }}>
-                      {phase.number}
-                    </span>
-                    <span style={{ fontFamily: "Manrope, sans-serif", fontSize: "10px", fontWeight: 400, letterSpacing: "1px", color: "rgba(245,242,236,0.35)", textTransform: "uppercase" }}>
-                      {phase.duration}
-                    </span>
-                  </div>
-                  <h3 style={{ fontFamily: "Figtree, sans-serif", fontSize: "20px", fontWeight: 400, color: "rgba(245,242,236,0.88)", lineHeight: 1.2, marginBottom: "8px" }}>
-                    {phase.label}
-                  </h3>
-                  <p style={{ fontFamily: "Manrope, sans-serif", fontSize: "13px", fontWeight: 300, color: "rgba(245,242,236,0.45)", lineHeight: 1.75 }}>
-                    {phase.description}
-                  </p>
-                </motion.div>
-              ))}
-            </div>
+            <div style={{ paddingBottom: "40px" }} />
           </div>
         ) : (
           /* ── Desktop/tablet: sticky scroll animation ── */
