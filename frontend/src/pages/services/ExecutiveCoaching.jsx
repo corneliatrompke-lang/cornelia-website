@@ -77,7 +77,7 @@ const FOR_WHOM_ITEMS = [
 ];
 
 // ─── Concentric Circles Viz ───────────────────────────────────────────────────
-const PHASE_GRADIENT = "linear-gradient(to bottom, #0F1A12 0%, #162018 20%, #2A3825 42%, #8A9A80 65%, #CDD8C4 82%, #F5F2EC 100%)";
+const PHASE_GRADIENT = "linear-gradient(to bottom, #F5F2EC 0%, #CDD8C4 8%, #8A9A80 16%, #2A3825 28%, #162018 44%, #0F1A12 60%)";
 
 const CirclesViz = ({ activePhase }) => {
   // Rings: index 0 = innermost (01), index 1 = middle (02), index 2 = outermost (03)
@@ -291,8 +291,8 @@ const ExecutiveCoaching = () => {
         {/* Non-sticky heading */}
         <div className="max-w-[1400px] mx-auto px-6 md:px-16" style={{ paddingTop: "140px", paddingBottom: "80px" }}>
           <ScrollReveal>
-            <p className="ct-overline text-gold/60 mb-5">The Engagement Arc</p>
-            <h2 style={{ fontFamily: "Figtree, sans-serif", fontSize: "clamp(28px, 3.5vw, 46px)", fontWeight: 400, color: "#F5F2EC", lineHeight: 1.1 }}>
+            <p className="ct-overline text-sage mb-5">The Engagement Arc</p>
+            <h2 style={{ fontFamily: "Figtree, sans-serif", fontSize: "clamp(28px, 3.5vw, 46px)", fontWeight: 400, color: "#121212", lineHeight: 1.1 }}>
               How the Work Unfolds Over Time
             </h2>
           </ScrollReveal>
