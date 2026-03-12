@@ -414,7 +414,7 @@ const About = () => {
               const isLast = i === a.credentials.items.length - 1;
               return (
                 <ScrollReveal key={i} delay={0.08 * i}>
-                  <div className="flex items-stretch mb-2" data-testid={`credential-${i}`}>
+                  <div className="flex items-stretch mb-2" style={{ marginLeft: `${i * 40}px` }} data-testid={`credential-${i}`}>
                     {/* Number badge */}
                     <div
                       style={{
