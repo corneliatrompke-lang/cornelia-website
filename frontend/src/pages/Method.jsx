@@ -501,13 +501,13 @@ const Method = () => {
                       style={{ width: "100%", display: "flex", alignItems: "center", justifyContent: "space-between", padding: "22px 0", background: "none", border: "none", cursor: "pointer", textAlign: "left", gap: "16px", borderLeft: isOpen ? "2px solid rgba(200,169,106,0.65)" : "2px solid transparent", paddingLeft: "16px", transition: "border-color 0.3s" }}
                     >
                       <div>
-                        <p style={{ fontFamily: "Manrope, sans-serif", fontSize: "10px", fontWeight: 500, letterSpacing: "2.5px", textTransform: "uppercase", color: isOpen ? "rgba(200,169,106,0.85)" : "rgba(200,169,106,0.3)", marginBottom: "6px", transition: "color 0.3s" }}>{item.subtitle}</p>
+                        <p style={{ fontFamily: "Manrope, sans-serif", fontSize: "10px", fontWeight: 500, letterSpacing: "2.5px", textTransform: "uppercase", color: isOpen ? "#5C3317" : "rgba(92,51,23,0.45)", marginBottom: "6px", transition: "color 0.3s" }}>{item.subtitle}</p>
                         <span style={{ fontFamily: "Figtree, sans-serif", fontSize: "20px", fontWeight: 400, color: isOpen ? "#F5F2EC" : "rgba(245,242,236,0.38)", transition: "color 0.3s", lineHeight: 1.15 }}>{item.audience}</span>
                       </div>
                       <span style={{ color: "rgba(200,169,106,0.65)", fontSize: "20px", flexShrink: 0, transition: "transform 0.3s", transform: isOpen ? "rotate(45deg)" : "none" }}>+</span>
                     </button>
                     <div style={{ maxHeight: isOpen ? "600px" : "0", overflow: "hidden", transition: "max-height 0.4s cubic-bezier(0.4,0,0.2,1)", paddingLeft: "18px" }}>
-                      <p style={{ fontFamily: "Manrope, sans-serif", fontSize: "10px", fontWeight: 500, letterSpacing: "2.5px", textTransform: "uppercase", color: "rgba(200,169,106,0.5)", marginBottom: "16px", marginTop: "8px" }}>What shifts</p>
+                      <p style={{ fontFamily: "Manrope, sans-serif", fontSize: "10px", fontWeight: 500, letterSpacing: "2.5px", textTransform: "uppercase", color: "#5C3317", marginBottom: "16px", marginTop: "8px" }}>What shifts</p>
                       <div style={{ display: "flex", flexDirection: "column", gap: "14px", marginBottom: "24px" }}>
                         {item.benefits.map((benefit, j) => (
                           <div key={j} style={{ display: "flex", gap: "14px", alignItems: "baseline" }}>
@@ -546,7 +546,7 @@ const Method = () => {
                       transition: "border-color 0.35s ease",
                     }}
                   >
-                    <p style={{ fontFamily: "Manrope, sans-serif", fontSize: "10px", fontWeight: 500, letterSpacing: "2.5px", textTransform: "uppercase", color: isActive ? "rgba(200,169,106,0.85)" : "rgba(200,169,106,0.3)", marginBottom: "10px", transition: "color 0.35s" }}>{item.subtitle}</p>
+                    <p style={{ fontFamily: "Manrope, sans-serif", fontSize: "10px", fontWeight: 500, letterSpacing: "2.5px", textTransform: "uppercase", color: isActive ? "#5C3317" : "rgba(92,51,23,0.45)", marginBottom: "10px", transition: "color 0.35s" }}>{item.subtitle}</p>
                     <h3 style={{ fontFamily: "Figtree, sans-serif", fontSize: "clamp(20px, 2.4vw, 32px)", fontWeight: 400, color: isActive ? "#F5F2EC" : "rgba(245,242,236,0.38)", transition: "color 0.35s", lineHeight: 1.15 }}>{item.audience}</h3>
                   </div>
                 );
@@ -561,7 +561,7 @@ const Method = () => {
               <AnimatePresence mode="wait">
                 <motion.div key={openAccordion} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -12 }} transition={{ duration: 0.45, ease: [0.25, 0.46, 0.45, 0.94] }}>
                   <div style={{ paddingTop: "0", marginBottom: "32px" }}>
-                    <p style={{ fontFamily: "Manrope, sans-serif", fontSize: "10px", fontWeight: 500, letterSpacing: "2.5px", textTransform: "uppercase", color: "rgba(200,169,106,0.5)" }}>What shifts</p>
+                    <p style={{ fontFamily: "Manrope, sans-serif", fontSize: "10px", fontWeight: 500, letterSpacing: "2.5px", textTransform: "uppercase", color: "#5C3317" }}>What shifts</p>
                   </div>
                   <div style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
                     {m.accordion.items[openAccordion >= 0 ? openAccordion : 0].benefits.map((benefit, j) => (
