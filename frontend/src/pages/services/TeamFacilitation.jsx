@@ -415,6 +415,9 @@ const TeamFacilitation = () => {
         </div>
       </section>
 
+      {/* ── Dark cluster: eliminates sub-pixel gaps between consecutive dark sections ─── */}
+      <div style={{ background: "#0F1A12", marginTop: "-2px" }}>
+
       {/* ══ 4. WHAT THE WORK ADDRESSES — Deep forest, accordion ══════════════ */}
       <section className="ct-section" style={{ background: "#0F1A12" }} data-testid="facilitation-work">
         <div className="max-w-[1400px] mx-auto px-6 md:px-16">
@@ -1152,6 +1155,8 @@ const TeamFacilitation = () => {
           </ScrollReveal>
         </div>
       </section>
+
+      </div>{/* end dark cluster */}
 
     </div>
   );
