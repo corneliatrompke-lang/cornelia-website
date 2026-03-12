@@ -330,7 +330,6 @@ const About = () => {
               <ScrollReveal key={i} delay={i * 0.12}>
                 <div
                   style={{
-                    borderTop: "1px solid rgba(18,18,18,0.08)",
                     paddingTop: "56px",
                     paddingBottom: "56px",
                     display: "grid",
@@ -367,8 +366,7 @@ const About = () => {
                 </div>
               </ScrollReveal>
             ))}
-            {/* Bottom border */}
-            <div style={{ borderTop: "1px solid rgba(18,18,18,0.08)" }} />
+            {/* Bottom border removed */}
           </div>
         </div>
       </section>
@@ -572,7 +570,7 @@ const About = () => {
                     style={{
                       opacity: isActive ? 1 : 0,
                       transition: "opacity 0.35s ease 0.22s",
-                      padding: "48px 52px",
+                      padding: "48px 80px 48px 52px",
                       height: "100%",
                       display: "flex",
                       flexDirection: "column",
