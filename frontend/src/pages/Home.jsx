@@ -84,7 +84,7 @@ const Home = () => {
   };
 
   return (
-    <div className="bg-[#F5F2EC]">
+    <div>
       {/* ═══ HERO — Rounded card wrapper ═══ */}
       <section
         className="pt-[6px] px-3 md:px-4 pb-3"
