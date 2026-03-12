@@ -79,15 +79,16 @@ const FOR_WHOM_ITEMS = [
 // ─── Concentric Circles Viz ───────────────────────────────────────────────────
 const PHASE_GRADIENT = "linear-gradient(to bottom, #F5F2EC 0%, #CDD8C4 8%, #8A9A80 16%, #2A3825 28%, #162018 44%, #0F1A12 60%)";
 
-const CirclesViz = ({ activePhase }) => {
+const CirclesViz = ({ activePhase, size = 500 }) => {
+  const scale = size / 500;
   // Rings: index 0 = innermost (01), index 1 = middle (02), index 2 = outermost (03)
   const rings = [
-    { inset: "180px", size: "140px" },  // 01 — inner
-    { inset: "90px",  size: "320px" },  // 02 — middle
-    { inset: "0px",   size: "500px" },  // 03 — outer
+    { inset: `${Math.round(180 * scale)}px`, size: `${Math.round(140 * scale)}px` },
+    { inset: `${Math.round(90 * scale)}px`,  size: `${Math.round(320 * scale)}px` },
+    { inset: "0px",   size: `${size}px` },
   ];
   return (
-    <div style={{ position: "relative", width: "500px", height: "500px", flexShrink: 0 }}>
+    <div style={{ position: "relative", width: `${size}px`, height: `${size}px`, flexShrink: 0 }}>
       {rings.map((ring, i) => {
         const lit = activePhase >= i;
         return (
@@ -139,6 +140,7 @@ const ExecutiveCoaching = () => {
   });
 
   const [isMobile, setIsMobile] = useState(typeof window !== "undefined" ? window.innerWidth < 768 : false);
+  const [isNarrow, setIsNarrow] = useState(typeof window !== "undefined" ? window.innerWidth < 1024 : false);
 
   // Testimonials
   const testimonials = t.home.testimonials.items;
@@ -149,7 +151,10 @@ const ExecutiveCoaching = () => {
     timerRef.current = setInterval(() => setActiveTestimonial((p) => (p + 1) % len), 6000);
   };
   useEffect(() => {
-    const handleResize = () => setIsMobile(window.innerWidth < 768);
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768);
+      setIsNarrow(window.innerWidth < 1024);
+    };
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
@@ -162,7 +167,7 @@ const ExecutiveCoaching = () => {
   const [activeForWhom, setActiveForWhom] = useState(null);
 
   return (
-    <div className="bg-[#F5F2EC]">
+    <div className="bg-[#0F1A12]">
 
       {/* ══ 1. HERO — rounded-card wrapper matching Home & Method ════════ */}
       <section
@@ -302,14 +307,14 @@ const ExecutiveCoaching = () => {
         <div style={{ height: "260vh" }}>
           <div style={{ position: "sticky", top: 0, height: "100vh", display: "flex", alignItems: "center", overflow: "hidden" }}>
             <div className="max-w-[1400px] mx-auto px-6 md:px-16 w-full">
-              <div style={{ display: "flex", alignItems: "center", gap: "0" }}>
+              <div style={{ display: "flex", alignItems: "center", gap: isNarrow ? "32px" : "0" }}>
 
-                {/* Left: circles — 50% */}
-                <div style={{ flex: "0 0 50%", display: "flex", justifyContent: "center", alignItems: "center" }}>
-                  <CirclesViz activePhase={activePhase} />
+                {/* Left: circles */}
+                <div style={{ flex: isNarrow ? "0 0 42%" : "0 0 50%", display: "flex", justifyContent: "center", alignItems: "center" }}>
+                  <CirclesViz activePhase={activePhase} size={isNarrow ? 360 : 500} />
                 </div>
 
-                {/* Right: phase rows — 50% */}
+                {/* Right: phase rows */}
                 <div style={{ flex: 1 }}>
                   {PHASES.map((phase, i) => {
                     const isActive = activePhase >= i;
@@ -474,7 +479,7 @@ const ExecutiveCoaching = () => {
                   </div>
 
                   {/* Expanded */}
-                  <div style={{ opacity: isActive ? 1 : 0, transition: "opacity 0.35s ease 0.22s", padding: "48px 52px", height: "100%", display: "flex", flexDirection: "column", justifyContent: "flex-end", minWidth: "380px" }}>
+                  <div style={{ opacity: isActive ? 1 : 0, transition: "opacity 0.35s ease 0.22s", padding: "48px 64px 48px 52px", height: "100%", display: "flex", flexDirection: "column", justifyContent: "flex-end", minWidth: "380px" }}>
                     <span style={{ fontFamily: "Manrope, sans-serif", fontSize: "10px", fontWeight: 600, letterSpacing: "0.25em", textTransform: "uppercase", color: "rgba(124,140,130,0.75)", marginBottom: "20px", display: "block" }}>
                       {item.number}
                     </span>
@@ -495,9 +500,9 @@ const ExecutiveCoaching = () => {
       {/* ══ 6. WHAT SHIFTS — Ivory ══════════════════════════════════════════ */}
       <section className="ct-section" style={{ background: "#F5F2EC" }} data-testid="coaching-what-shifts">
         <div className="max-w-[1400px] mx-auto px-6 md:px-16">
-          <div style={{ display: "flex", gap: "80px", alignItems: "flex-start" }}>
+          <div style={{ display: "flex", gap: isNarrow ? "40px" : "80px", alignItems: "flex-start" }}>
             {/* Left: heading */}
-            <div style={{ flex: "0 0 38%" }}>
+            <div style={{ flex: isNarrow ? "0 0 28%" : "0 0 38%" }}>
               <ScrollReveal>
                 <p className="ct-overline text-sage mb-5">What Shifts</p>
                 <h2
