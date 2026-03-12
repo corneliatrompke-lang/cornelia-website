@@ -369,8 +369,7 @@ const About = () => {
                 </div>
               </ScrollReveal>
             ))}
-            {/* Bottom border */}
-            <div style={{ borderTop: "1px solid rgba(18,18,18,0.08)" }} />
+            {/* No bottom border — credentials section gradient picks up seamlessly */}
           </div>
         </div>
       </section>
