@@ -275,6 +275,9 @@ Footer (from shared Footer component)
 
 ---
 
+### v2.9 — Method Page Mobile Foundation Fix (Mar 2026)
+- **Bug Fix: "Two Methodologies" section mobile layout** — The Venn Diagram div had `gridColumn: 2` hard-coded, forcing CSS Grid to create a phantom second column on mobile even with `gridTemplateColumns: "1fr"`. Fixed by conditionally rendering the Venn Diagram: on mobile it appears inline after the intro paragraph (inside col 1), on desktop it remains in grid column 2. Result: clean single-column flow on mobile: heading → intro paragraph → Venn Diagram → METHODOLOGY ONE.
+
 ## Next Tasks
 
 1. Replace all placeholder content with final copy (P0)

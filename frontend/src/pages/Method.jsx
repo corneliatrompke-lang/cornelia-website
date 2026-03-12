@@ -272,7 +272,7 @@ const Method = () => {
             }}
           >
 
-            {/* ── Row 1 Left: heading + subtext ── */}
+            {/* ── Row 1 Left: heading + subtext + [mobile: Venn below text] ── */}
             <div style={{ gridColumn: 1, gridRow: 1 }}>
               <ScrollReveal>
                 <p className="ct-overline text-sage mb-5">{m.whatWeDo.overline}</p>
@@ -291,14 +291,24 @@ const Method = () => {
                   {m.whatWeDo.body}
                 </p>
               </ScrollReveal>
+              {/* Mobile only: Venn diagram appears after intro paragraph, before methodologies */}
+              {isMobile && (
+                <ScrollReveal delay={0.2}>
+                  <div style={{ marginTop: "40px" }} data-testid="method-venn-container">
+                    <VennDiagram showLogo={false} showArrow={false} staticView={true} theme="ivory" />
+                  </div>
+                </ScrollReveal>
+              )}
             </div>
 
-            {/* ── Row 1 Right: Venn on ivory ── */}
-            <div style={{ gridColumn: 2, gridRow: 1 }} data-testid="method-venn-container">
-              <ScrollReveal delay={0.08}>
-                <VennDiagram showLogo={false} showArrow={false} staticView={true} theme="ivory" />
-              </ScrollReveal>
-            </div>
+            {/* ── Row 1 Right: Venn on ivory — desktop only ── */}
+            {!isMobile && (
+              <div style={{ gridColumn: 2, gridRow: 1 }} data-testid="method-venn-container">
+                <ScrollReveal delay={0.08}>
+                  <VennDiagram showLogo={false} showArrow={false} staticView={true} theme="ivory" />
+                </ScrollReveal>
+              </div>
+            )}
 
             {/* ── Row 2: NARM + Integral — stacked on mobile, side-by-side on desktop ── */}
             <div style={{ gridColumn: isMobile ? "1" : "1 / -1" }}>
