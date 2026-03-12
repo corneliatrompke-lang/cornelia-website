@@ -114,8 +114,12 @@ const NarmDiagram = ({ layers }) => (
 
 // Service links for each accordion item (in order)
 const ACCORDION_SERVICE_LINKS = [
-  { label: "Explore Executive Coaching", to: "/executive-coaching" },
-  { label: "Explore Team Facilitation", to: "/leadership-team-facilitation" },
+  {
+    label: "Explore Executive Coaching",
+    to: "/executive-coaching",
+    secondary: { label: "Explore Executive Retreats", to: "/executive-retreats" },
+  },
+  { label: "Explore Leadership Team Facilitation", to: "/leadership-team-facilitation" },
   { label: "Explore Organisational Advisory", to: "/organizational-advisory" },
 ];
 
@@ -229,6 +233,10 @@ const Method = () => {
               <div className="flex flex-col sm:flex-row gap-3 mt-9 mb-10">
                 <Link to="/contact" className="btn-hero-pill" data-testid="method-hero-cta">
                   {m.cta.button}
+                  <ArrowRight size={13} />
+                </Link>
+                <Link to="/work-with-me" className="btn-hero-pill-outline" data-testid="method-hero-cta-secondary">
+                  View All Services
                   <ArrowRight size={13} />
                 </Link>
               </div>
@@ -528,7 +536,7 @@ const Method = () => {
             <ScrollReveal>
               <p className="ct-overline text-sage mb-5">{m.accordion.overline}</p>
               <h2
-                style={{ fontFamily: "Figtree, sans-serif", fontSize: "clamp(28px, 3.5vw, 46px)", fontWeight: 400, color: "#121212" }}
+                style={{ fontFamily: "Figtree, sans-serif", fontSize: "clamp(28px, 3.5vw, 46px)", fontWeight: 400, color: "#5C3317" }}
               >
                 {m.accordion.headline}
               </h2>
@@ -653,7 +661,7 @@ const Method = () => {
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ delay: 0.55, duration: 0.4 }}
-                    style={{ marginTop: "36px" }}
+                    style={{ marginTop: "36px", display: "flex", flexWrap: "wrap", gap: "12px" }}
                   >
                     <Link
                       to={ACCORDION_SERVICE_LINKS[openAccordion >= 0 ? openAccordion : 0].to}
@@ -663,6 +671,16 @@ const Method = () => {
                     >
                       {ACCORDION_SERVICE_LINKS[openAccordion >= 0 ? openAccordion : 0].label}
                     </Link>
+                    {ACCORDION_SERVICE_LINKS[openAccordion >= 0 ? openAccordion : 0].secondary && (
+                      <Link
+                        to={ACCORDION_SERVICE_LINKS[openAccordion >= 0 ? openAccordion : 0].secondary.to}
+                        className="btn-secondary inline-block"
+                        style={{ borderRadius: "8px" }}
+                        data-testid={`accordion-cta-secondary-${openAccordion}`}
+                      >
+                        {ACCORDION_SERVICE_LINKS[openAccordion >= 0 ? openAccordion : 0].secondary.label}
+                      </Link>
+                    )}
                   </motion.div>
                 </motion.div>
               </AnimatePresence>
@@ -800,7 +818,7 @@ const Method = () => {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-14 items-start">
             <div className="lg:col-span-5">
               <ScrollReveal>
-                <p className="ct-overline text-gold mb-5">{m.narm.overline}</p>
+                <p style={{ fontFamily: "Manrope, sans-serif", fontSize: "10px", fontWeight: 600, letterSpacing: "0.2em", textTransform: "uppercase", color: "#C4845A", marginBottom: "20px" }} data-testid="narm-overline">{m.narm.overline}</p>
                 <h2
                   className="text-ivory leading-[1.1]"
                   style={{ fontFamily: "Figtree, sans-serif", fontSize: "clamp(28px, 3.5vw, 44px)", fontWeight: 400 }}
@@ -850,7 +868,7 @@ const Method = () => {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-14 items-start">
             <div className="lg:col-span-5">
               <ScrollReveal>
-                <p className="ct-overline text-gold mb-5">{m.integral.overline}</p>
+                <p style={{ fontFamily: "Manrope, sans-serif", fontSize: "10px", fontWeight: 600, letterSpacing: "0.2em", textTransform: "uppercase", color: "#C4845A", marginBottom: "20px" }} data-testid="integral-overline">{m.integral.overline}</p>
                 <h2
                   className="text-ivory leading-[1.1]"
                   style={{ fontFamily: "Figtree, sans-serif", fontSize: "clamp(28px, 3.5vw, 44px)", fontWeight: 400 }}
