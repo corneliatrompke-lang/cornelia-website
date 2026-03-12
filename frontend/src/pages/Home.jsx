@@ -42,6 +42,16 @@ const Home = () => {
   const { t } = useLanguage();
   const [activeTestimonial, setActiveTestimonial] = useState(0);
   const [activeService, setActiveService] = useState(null);
+  const [isMobile, setIsMobile] = useState(typeof window !== "undefined" ? window.innerWidth < 768 : false);
+  const [isNarrow, setIsNarrow] = useState(typeof window !== "undefined" ? window.innerWidth < 1024 : false);
+  useEffect(() => {
+    const h = () => {
+      setIsMobile(window.innerWidth < 768);
+      setIsNarrow(window.innerWidth < 1024);
+    };
+    window.addEventListener("resize", h);
+    return () => window.removeEventListener("resize", h);
+  }, []);
   const testimonials = t.home.testimonials.items;
   const timerRef = useRef(null);
 
@@ -254,15 +264,15 @@ const Home = () => {
         <div className="max-w-[1400px] mx-auto px-6 md:px-16" style={{ position: "relative", zIndex: 1 }}>
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
 
-            {/* ── Text column ── */}
-            <div className="lg:col-span-6 lg:col-start-2">
+            {/* ── Text column — order-2 on mobile so image appears first ── */}
+            <div className="lg:col-span-6 lg:col-start-2 order-2 lg:order-1">
               <ScrollReveal>
                 <p className="ct-overline mb-6" style={{ color: "#7A4F2D" }}>{t.home.aboutPreview.overline}</p>
               </ScrollReveal>
               <ScrollReveal delay={0.15}>
                 <h2
                   className="leading-[1.15] max-w-[500px]"
-                  style={{ fontFamily: "Figtree, sans-serif", fontSize: "clamp(26px, 3.5vw, 42px)", fontWeight: 400, color: "#F5F2EC" }}
+                  style={{ fontFamily: "Figtree, sans-serif", fontSize: "clamp(26px, 3.5vw, 42px)", fontWeight: 400, color: isNarrow ? "#121212" : "#F5F2EC" }}
                 >
                   {t.home.aboutPreview.headline}
                 </h2>
@@ -270,7 +280,7 @@ const Home = () => {
               <ScrollReveal delay={0.3}>
                 <p
                   className="mt-6 leading-relaxed max-w-[480px]"
-                  style={{ fontFamily: "Manrope, sans-serif", fontSize: "16px", fontWeight: 300, color: "rgba(245,242,236,0.72)" }}
+                  style={{ fontFamily: "Manrope, sans-serif", fontSize: "16px", fontWeight: 300, color: isNarrow ? "rgba(18,18,18,0.72)" : "rgba(245,242,236,0.72)" }}
                 >
                   {t.home.aboutPreview.body}
                 </p>
@@ -287,12 +297,12 @@ const Home = () => {
               </ScrollReveal>
             </div>
 
-            {/* ── Portrait column ── */}
-            <div className="lg:col-span-4">
+            {/* ── Portrait column — order-1 on mobile so image shows before text ── */}
+            <div className="lg:col-span-4 order-1 lg:order-2">
               <ScrollReveal delay={0.1} direction="none">
                 <motion.div
                   className="relative overflow-hidden"
-                  style={{ aspectRatio: "3/4" }}
+                  style={{ aspectRatio: "3/4", maxHeight: isNarrow ? "380px" : undefined }}
                   initial={{ opacity: 0, x: 40 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   transition={{ duration: 0.9, ease: [0.25, 0.46, 0.45, 0.94] }}
@@ -384,7 +394,27 @@ const Home = () => {
             </h2>
           </ScrollReveal>
 
-          {/* Accordion — 4 columns separated by thin lines */}
+          {/* Accordion — desktop/tablet: horizontal | mobile: vertical stack */}
+          {isMobile ? (
+            <div className="flex flex-col mt-10 gap-4">
+              {t.home.services.items.map((service, i) => (
+                <div
+                  key={i}
+                  data-testid={`service-item-${i}`}
+                  style={{
+                    borderTop: "1px solid rgba(245,242,236,0.10)",
+                    paddingTop: "28px",
+                    paddingBottom: "28px",
+                  }}
+                >
+                  <span style={{ fontFamily: "Manrope, sans-serif", fontSize: "10px", fontWeight: 600, letterSpacing: "0.22em", textTransform: "uppercase", color: "rgba(200,169,106,0.65)", marginBottom: "12px", display: "block" }}>{service.number}</span>
+                  <h3 style={{ fontFamily: "Figtree, sans-serif", fontSize: "20px", fontWeight: 400, color: "#F5F2EC", lineHeight: 1.2, marginBottom: "14px" }}>{service.title}</h3>
+                  <p style={{ fontFamily: "Manrope, sans-serif", fontSize: "14px", fontWeight: 300, color: "rgba(245,242,236,0.5)", lineHeight: 1.75, marginBottom: "22px" }}>{service.description}</p>
+                  <Link to={service.link} className="btn-secondary" style={{ borderRadius: "8px", padding: "10px 22px", display: "inline-block" }} data-testid={`service-cta-${i}`}>Explore This Work</Link>
+                </div>
+              ))}
+            </div>
+          ) : (
           <div
             className="flex mt-16"
             style={{ height: "520px" }}
@@ -455,12 +485,12 @@ const Home = () => {
                     style={{
                       opacity: isActive ? 1 : 0,
                       transition: "opacity 0.35s ease 0.22s",
-                      padding: "48px 52px",
+                      padding: isNarrow ? "32px 60px 32px 32px" : "48px 80px 48px 52px",
                       height: "100%",
                       display: "flex",
                       flexDirection: "column",
                       justifyContent: "flex-end",
-                      minWidth: "420px",
+                      minWidth: isNarrow ? "300px" : "420px",
                     }}
                   >
                     <span
@@ -516,6 +546,7 @@ const Home = () => {
               );
             })}
           </div>
+          )}
         </div>
       </section>
 

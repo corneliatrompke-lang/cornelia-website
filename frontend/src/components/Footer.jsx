@@ -2,9 +2,6 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { useLanguage } from "../context/LanguageContext";
 
-const LOGO_VERTICAL =
-  "https://customer-assets.emergentagent.com/job_nervous-system-exec/artifacts/qn22a37e_Cornelia%20Trompke%20Logo%20Vertical-01.png";
-
 const Footer = () => {
   const { t } = useLanguage();
 

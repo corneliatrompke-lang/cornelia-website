@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 
 // Left / right alternating — x:22 = left, x:78 = right
@@ -41,6 +41,15 @@ const CIRCLE_LARGE = 450;
 
 export default function TransformationSection() {
   const sectionRef = useRef(null);
+
+  const [screenW, setScreenW] = useState(typeof window !== "undefined" ? window.innerWidth : 1200);
+  useEffect(() => {
+    const h = () => setScreenW(window.innerWidth);
+    window.addEventListener("resize", h);
+    return () => window.removeEventListener("resize", h);
+  }, []);
+  const isMobile = screenW < 768;
+  const isNarrow = screenW < 1024;
 
   const { scrollYProgress } = useScroll({
     target: sectionRef,
@@ -102,11 +111,11 @@ export default function TransformationSection() {
           overflow: "hidden",
         }}
       >
-        {/* ── Header — pushed below nav bar (~70px) ──────────────── */}
+        {/* ── Header — pushed below nav bar ──────────────────────── */}
         <div
           style={{
             position: "absolute",
-            top: "78px",
+            top: "110px",
             left: 0,
             right: 0,
             textAlign: "center",
@@ -149,7 +158,8 @@ export default function TransformationSection() {
           </p>
         </div>
 
-        {/* ── Wavy nerve segments ─────────────────────────────────── */}
+        {/* ── Wavy nerve segments — desktop only ─────────────────── */}
+        {!isNarrow && (
         <svg
           style={{
             position: "absolute",
@@ -184,15 +194,20 @@ export default function TransformationSection() {
             </React.Fragment>
           ))}
         </svg>
+        )}
 
         {/* ── Individual large circles ─────────────────────────────── */}
-        {ITEMS.map((item, i) => (
+        {ITEMS.map((item, i) => {
+          const circleSize = isMobile ? 240 : isNarrow ? 310 : 450;
+          const xPos = isNarrow ? 50 : item.x;
+          const yPos = isNarrow ? 54 : item.y;
+          return (
           <motion.div
             key={i}
             style={{
               position: "absolute",
-              left: `${item.x}%`,
-              top: `${item.y}%`,
+              left: `${xPos}%`,
+              top: `${yPos}%`,
               translateX: "-50%",
               translateY: "-50%",
               opacity: circles[i].o,
@@ -202,8 +217,8 @@ export default function TransformationSection() {
           >
             <div
               style={{
-                width: `${CIRCLE_LARGE}px`,
-                height: `${CIRCLE_LARGE}px`,
+                width: `${circleSize}px`,
+                height: `${circleSize}px`,
                 borderRadius: "50%",
                 border: "1px solid rgba(200,169,106,0.30)",
                 display: "flex",
@@ -232,7 +247,7 @@ export default function TransformationSection() {
               <span
                 style={{
                   fontFamily: "Figtree, sans-serif",
-                  fontSize: "clamp(24px, 2.4vw, 30px)",
+                  fontSize: isMobile ? "20px" : isNarrow ? "22px" : "clamp(24px, 2.4vw, 30px)",
                   fontWeight: 400,
                   color: "#F5F2EC",
                   lineHeight: 1.26,
@@ -254,7 +269,7 @@ export default function TransformationSection() {
               <p
                 style={{
                   fontFamily: "Manrope, sans-serif",
-                  fontSize: "clamp(14px, 1.4vw, 18px)",
+                  fontSize: isMobile ? "13px" : isNarrow ? "14px" : "clamp(14px, 1.4vw, 18px)",
                   color: "rgba(245,242,236,0.50)",
                   lineHeight: 1.65,
                   maxWidth: "76%",
@@ -265,22 +280,24 @@ export default function TransformationSection() {
               </p>
             </div>
           </motion.div>
-        ))}
+          );
+        })}
 
-        {/* ── Final view: 4 staggered columns (circle + text below) ── */}
+        {/* ── Final view: responsive layout ── */}
         <motion.div
           style={{
             position: "absolute",
-            top: "160px",   // clears nav + full header block
+            top: isMobile ? "130px" : "160px",
             left: 0,
             right: 0,
             bottom: 0,
-            display: "flex",
-            alignItems: "flex-start",
-            justifyContent: "center",
-            gap: "60px",
-            paddingLeft: "40px",
-            paddingRight: "40px",
+            display: isMobile ? "grid" : "flex",
+            gridTemplateColumns: isMobile ? "1fr 1fr" : undefined,
+            alignItems: isMobile ? "start" : "flex-start",
+            justifyContent: isMobile ? undefined : "center",
+            gap: isMobile ? "12px" : "60px",
+            paddingLeft: isMobile ? "20px" : "40px",
+            paddingRight: isMobile ? "20px" : "40px",
             opacity: finalO,
             zIndex: 6,
             pointerEvents: "none",
@@ -293,16 +310,16 @@ export default function TransformationSection() {
                 display: "flex",
                 flexDirection: "column",
                 alignItems: "center",
-                flex: 1,
-                maxWidth: "230px",
-                marginTop: `${FINAL_STAGGER[i]}px`,
+                flex: isMobile ? undefined : 1,
+                maxWidth: isMobile ? "none" : "230px",
+                marginTop: isMobile ? 0 : `${FINAL_STAGGER[i]}px`,
               }}
             >
               {/* Small number circle */}
               <div
                 style={{
-                  width: "120px",
-                  height: "120px",
+                  width: isMobile ? "76px" : "120px",
+                  height: isMobile ? "76px" : "120px",
                   flexShrink: 0,
                   borderRadius: "50%",
                   border: "1px solid rgba(200,169,106,0.28)",
@@ -311,13 +328,13 @@ export default function TransformationSection() {
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "center",
-                  marginBottom: "20px",
+                  marginBottom: "14px",
                 }}
               >
                 <span
                   style={{
                     fontFamily: "Cormorant Garamond, serif",
-                    fontSize: "34px",
+                    fontSize: isMobile ? "24px" : "34px",
                     fontWeight: 300,
                     color: "rgba(200,169,106,0.80)",
                     lineHeight: 1,
@@ -331,14 +348,14 @@ export default function TransformationSection() {
               <h3
                 style={{
                   fontFamily: "Figtree, sans-serif",
-                  fontSize: "16px",
+                  fontSize: isMobile ? "13px" : "16px",
                   fontWeight: 400,
                   color: "#F5F2EC",
                   lineHeight: 1.32,
                   textAlign: "center",
                   whiteSpace: "pre-line",
-                  marginBottom: "12px",
-                  margin: "0 0 12px",
+                  marginBottom: "10px",
+                  margin: "0 0 10px",
                 }}
               >
                 {item.heading}
@@ -350,7 +367,7 @@ export default function TransformationSection() {
                   width: "22px",
                   height: "1px",
                   background: "rgba(200,169,106,0.30)",
-                  marginBottom: "12px",
+                  marginBottom: "10px",
                   flexShrink: 0,
                 }}
               />
@@ -359,7 +376,7 @@ export default function TransformationSection() {
               <p
                 style={{
                   fontFamily: "Manrope, sans-serif",
-                  fontSize: "13px",
+                  fontSize: isMobile ? "11px" : "13px",
                   color: "rgba(245,242,236,0.44)",
                   lineHeight: 1.68,
                   textAlign: "center",

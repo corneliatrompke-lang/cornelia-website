@@ -153,19 +153,20 @@ export default function FoundationSection() {
   });
 
   return (
-    // ── 300vh outer section: scroll driver ──────────────────────
+    // ── Outer section: 300vh on desktop (scroll driver), auto on mobile ──
     <section
       ref={outerRef}
       className="bg-ivory"
-      style={{ height: "300vh" }}
+      style={{ height: isDesktop ? "300vh" : "auto" }}
       data-testid="philosophy-section"
     >
-      {/* ── Pinned inner frame: viewport-locked ───────────────── */}
+      {/* ── Pinned inner frame: sticky on desktop, static on mobile ───── */}
       <div
         style={{
-          position: "sticky",
+          position: isDesktop ? "sticky" : "relative",
           top: 0,
-          height: "100vh",
+          height: isDesktop ? "100vh" : "auto",
+          minHeight: isDesktop ? undefined : "auto",
           overflow: "hidden",
           background: "#F5F2EC",
         }}
@@ -350,9 +351,9 @@ export default function FoundationSection() {
           </div>
         </div>}
 
-        {/* ── Mobile: centred static layout ──────────────────────── */}
+        {/* ── Mobile: static layout ─────────────────────────────── */}
         {!isDesktop && <div
-          style={{ position: "relative", zIndex: 2, paddingTop: NAV_H, display: "flex", alignItems: "center", justifyContent: "center", height: "100%", padding: `${NAV_H}px 24px 24px`, textAlign: "center" }}
+          style={{ position: "relative", zIndex: 2, padding: `${NAV_H}px 24px 48px`, textAlign: "center" }}
         >
           <div>
             <div className="ct-divider mx-auto mb-8" style={{ background: "rgba(18,18,18,0.2)" }} />
