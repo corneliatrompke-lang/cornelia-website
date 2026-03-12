@@ -77,7 +77,7 @@ const FOR_WHOM_ITEMS = [
 ];
 
 // ─── Concentric Circles Viz ───────────────────────────────────────────────────
-const PHASE_GRADIENT = "linear-gradient(to bottom, #F5F2EC 0%, #CDD8C4 15%, #8A9A80 32%, #2A3825 52%, #162018 75%, #0F1A12 100%)";
+const PHASE_GRADIENT = "linear-gradient(to bottom, #0F1A12 0%, #162018 20%, #2A3825 42%, #8A9A80 65%, #CDD8C4 82%, #F5F2EC 100%)";
 
 const CirclesViz = ({ activePhase }) => {
   // Rings: index 0 = innermost (01), index 1 = middle (02), index 2 = outermost (03)
@@ -221,11 +221,10 @@ const ExecutiveCoaching = () => {
               </p>
             </ScrollReveal>
             <ScrollReveal delay={0.58}>
-              <div className="flex flex-col sm:flex-row gap-3 mt-9 mb-10">
+              <div style={{ display: "flex", flexWrap: "wrap", alignItems: "center", gap: "12px", marginTop: "36px", marginBottom: "40px" }}>
                 <Link
                   to="/contact"
-                  className="btn-primary inline-block"
-                  style={{ borderRadius: "8px" }}
+                  className="btn-hero-pill"
                   data-testid="coaching-hero-cta"
                 >
                   Begin an Application
@@ -292,8 +291,8 @@ const ExecutiveCoaching = () => {
         {/* Non-sticky heading */}
         <div className="max-w-[1400px] mx-auto px-6 md:px-16" style={{ paddingTop: "140px", paddingBottom: "80px" }}>
           <ScrollReveal>
-            <p className="ct-overline text-sage mb-5">The Engagement Arc</p>
-            <h2 style={{ fontFamily: "Figtree, sans-serif", fontSize: "clamp(28px, 3.5vw, 46px)", fontWeight: 400, color: "#121212", lineHeight: 1.1 }}>
+            <p className="ct-overline text-gold/60 mb-5">The Engagement Arc</p>
+            <h2 style={{ fontFamily: "Figtree, sans-serif", fontSize: "clamp(28px, 3.5vw, 46px)", fontWeight: 400, color: "#F5F2EC", lineHeight: 1.1 }}>
               How the Work Unfolds Over Time
             </h2>
           </ScrollReveal>
@@ -366,8 +365,8 @@ const ExecutiveCoaching = () => {
         <div style={{ paddingBottom: "80px" }} />
       </div>
 
-      {/* ══ 4. WHAT YOU RECEIVE — Charcoal (NARM-row style) ════════════════ */}
-      <section className="ct-section" style={{ background: "#0F1A12" }} data-testid="coaching-format-detail">
+      {/* ══ 4. WHAT YOU RECEIVE — dark→light gradient ════════════════════════ */}
+      <section className="ct-section" style={{ background: "linear-gradient(to bottom, #0F1A12 0%, #162018 25%, #2A3825 50%, #8A9A80 72%, #F5F2EC 100%)" }} data-testid="coaching-format-detail">
         <div className="max-w-[1400px] mx-auto px-6 md:px-16">
           <div className="max-w-[600px] mb-16">
             <ScrollReveal>
@@ -386,7 +385,7 @@ const ExecutiveCoaching = () => {
             { number: "03", title: "Individually Designed Deep-Dive Sessions", description: "Longer format sessions for work that requires more time, depth, or preparation. These are designed around specific edges in your development." },
             { number: "04", title: "Personalized Recordings", description: "Created specifically for you to support self-regulation and integration between sessions. A private resource that travels with you." },
           ].map((item, i) => {
-            const bgOpacity = 0.04 + (i / 3) * 0.07;
+            const bgOpacity = 0.10 + (i / 3) * 0.08;
             return (
               <ScrollReveal key={i} delay={0.08 * i}>
                 <div className="flex items-stretch mb-2" data-testid={`receive-item-${i}`}>
@@ -428,23 +427,23 @@ const ExecutiveCoaching = () => {
         </div>
       </section>
 
-      {/* ══ 5. FOR WHOM — charcoal→ivory gradient, horizontal hover accordion ══ */}
+      {/* ══ 5. FOR WHOM — Ivory background, horizontal hover accordion ══ */}
       <section
         className="ct-section"
-        style={{ background: "linear-gradient(to bottom, #0F1A12 0%, #162018 25%, #2A3825 48%, #8A9A80 68%, #CDD8C4 85%, #F5F2EC 100%)" }}
+        style={{ background: "#F5F2EC" }}
         data-testid="coaching-for-whom"
       >
         <div className="max-w-[1400px] mx-auto px-6 md:px-16">
           <div className="max-w-[600px] mx-auto mb-16 text-center">
             <ScrollReveal>
-              <p className="ct-overline text-gold/60 mb-5">{s.forWhom.overline}</p>
-              <h2 style={{ fontFamily: "Figtree, sans-serif", fontSize: "clamp(28px, 3.5vw, 46px)", fontWeight: 400, color: "#F5F2EC", lineHeight: 1.1 }}>
+              <p className="ct-overline text-sage mb-5">{s.forWhom.overline}</p>
+              <h2 style={{ fontFamily: "Figtree, sans-serif", fontSize: "clamp(28px, 3.5vw, 46px)", fontWeight: 400, color: "#121212", lineHeight: 1.1 }}>
                 {s.forWhom.headline}
               </h2>
             </ScrollReveal>
           </div>
 
-          {/* Horizontal accordion — dark-adapted colors */}
+          {/* Horizontal accordion — ivory-adapted colors */}
           <div className="flex" style={{ height: "420px", overflow: "hidden" }}>
             {FOR_WHOM_ITEMS.map((item, i) => {
               const isActive = activeForWhom === i;
@@ -459,30 +458,30 @@ const ExecutiveCoaching = () => {
                     transition: "flex 0.65s cubic-bezier(0.4, 0, 0.2, 1), background 0.4s ease",
                     position: "relative",
                     overflow: "hidden",
-                    borderRight: i < FOR_WHOM_ITEMS.length - 1 ? "1px solid rgba(245,242,236,0.08)" : "none",
+                    borderRight: i < FOR_WHOM_ITEMS.length - 1 ? "1px solid rgba(18,18,18,0.07)" : "none",
                     cursor: "default",
-                    background: isActive ? "rgba(245,242,236,0.04)" : "transparent",
+                    background: isActive ? "rgba(18,18,18,0.025)" : "#F5F2EC",
                   }}
                 >
                   {/* Collapsed: rotated title + faint number */}
                   <div style={{ position: "absolute", inset: 0, display: "flex", flexDirection: "column", alignItems: "center", padding: "40px 0", opacity: isActive ? 0 : 1, transition: "opacity 0.2s ease", pointerEvents: "none" }}>
-                    <span style={{ writingMode: "vertical-rl", transform: "rotate(180deg)", fontFamily: "Figtree, sans-serif", fontSize: "clamp(13px, 1.6vw, 18px)", fontWeight: 400, letterSpacing: "0.08em", color: "rgba(245,242,236,0.45)", flex: 1, display: "flex", alignItems: "center" }}>
+                    <span style={{ writingMode: "vertical-rl", transform: "rotate(180deg)", fontFamily: "Figtree, sans-serif", fontSize: "clamp(13px, 1.6vw, 18px)", fontWeight: 400, letterSpacing: "0.08em", color: "rgba(18,18,18,0.45)", flex: 1, display: "flex", alignItems: "center" }}>
                       {item.title}
                     </span>
-                    <span style={{ fontFamily: "Cormorant Garamond, serif", fontSize: "28px", fontWeight: 300, color: "rgba(245,242,236,0.1)", lineHeight: 1, paddingBottom: "4px" }}>
+                    <span style={{ fontFamily: "Cormorant Garamond, serif", fontSize: "28px", fontWeight: 300, color: "rgba(18,18,18,0.1)", lineHeight: 1, paddingBottom: "4px" }}>
                       {item.number}
                     </span>
                   </div>
 
                   {/* Expanded */}
                   <div style={{ opacity: isActive ? 1 : 0, transition: "opacity 0.35s ease 0.22s", padding: "48px 52px", height: "100%", display: "flex", flexDirection: "column", justifyContent: "flex-end", minWidth: "380px" }}>
-                    <span style={{ fontFamily: "Manrope, sans-serif", fontSize: "10px", fontWeight: 600, letterSpacing: "0.25em", textTransform: "uppercase", color: "rgba(200,169,106,0.8)", marginBottom: "20px", display: "block" }}>
+                    <span style={{ fontFamily: "Manrope, sans-serif", fontSize: "10px", fontWeight: 600, letterSpacing: "0.25em", textTransform: "uppercase", color: "rgba(124,140,130,0.75)", marginBottom: "20px", display: "block" }}>
                       {item.number}
                     </span>
-                    <h3 style={{ fontFamily: "Figtree, sans-serif", fontSize: "clamp(20px, 2vw, 28px)", fontWeight: 400, color: "#F5F2EC", lineHeight: 1.2, marginBottom: "18px", maxWidth: "360px" }}>
+                    <h3 style={{ fontFamily: "Figtree, sans-serif", fontSize: "clamp(20px, 2vw, 28px)", fontWeight: 400, color: "#121212", lineHeight: 1.2, marginBottom: "18px", maxWidth: "360px" }}>
                       {item.title}
                     </h3>
-                    <p style={{ fontFamily: "Manrope, sans-serif", fontSize: "14px", fontWeight: 300, color: "rgba(227,222,215,0.55)", lineHeight: 1.75, maxWidth: "360px" }}>
+                    <p style={{ fontFamily: "Manrope, sans-serif", fontSize: "14px", fontWeight: 300, color: "rgba(18,18,18,0.5)", lineHeight: 1.75, maxWidth: "360px" }}>
                       {item.body}
                     </p>
                   </div>
@@ -566,8 +565,8 @@ const ExecutiveCoaching = () => {
         </div>
       </section>
 
-      {/* ══ 7. TESTIMONIALS — Ivory bg, charcoal card ═══════════════════════ */}
-      <section className="ct-section" style={{ background: "#F5F2EC" }} data-testid="coaching-testimonials">
+      {/* ══ 7. TESTIMONIALS — light→dark gradient ═══════════════════════════ */}
+      <section className="ct-section" style={{ background: "linear-gradient(to bottom, #F5F2EC 0%, #CDD8C4 15%, #8A9A80 32%, #2A3825 52%, #162018 75%, #0F1A12 100%)" }} data-testid="coaching-testimonials">
         <div className="max-w-[1400px] mx-auto px-6 md:px-16">
           <ScrollReveal>
             <p className="ct-overline mb-10" style={{ color: "rgba(18,18,18,0.35)" }}>{t.home.testimonials.overline}</p>
@@ -633,7 +632,7 @@ const ExecutiveCoaching = () => {
                 <div style={{ width: i === activeTestimonial ? "68px" : "56px", height: i === activeTestimonial ? "68px" : "56px", borderRadius: "50%", overflow: "hidden", border: i === activeTestimonial ? "2px solid #C8A96A" : "2px solid rgba(18,18,18,0.12)", transform: i === activeTestimonial ? "translateY(-12px)" : "translateY(0)", transition: "all 0.45s cubic-bezier(0.4, 0, 0.2, 1)", flexShrink: 0, boxShadow: i === activeTestimonial ? "0 8px 28px rgba(200,169,106,0.18)" : "none" }}>
                   <img src={src} alt="" style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center top", filter: i === activeTestimonial ? "none" : "grayscale(70%)", transition: "filter 0.45s ease" }} />
                 </div>
-                <span style={{ fontFamily: "Manrope, sans-serif", fontSize: "9px", fontWeight: 500, letterSpacing: "0.14em", textTransform: "uppercase", color: i === activeTestimonial ? "#121212" : "rgba(18,18,18,0.32)", transition: "color 0.4s ease", textAlign: "center", maxWidth: "88px", lineHeight: 1.55 }}>
+                <span style={{ fontFamily: "Manrope, sans-serif", fontSize: "9px", fontWeight: 500, letterSpacing: "0.14em", textTransform: "uppercase", color: i === activeTestimonial ? "#F5F2EC" : "rgba(245,242,236,0.35)", transition: "color 0.4s ease", textAlign: "center", maxWidth: "88px", lineHeight: 1.55 }}>
                   {testimonials[i]?.author}
                 </span>
               </button>
@@ -643,10 +642,10 @@ const ExecutiveCoaching = () => {
         <style>{`@keyframes progressSlide { from { width: 0%; } to { width: 100%; } }`}</style>
       </section>
 
-      {/* ══ 8. ENGAGEMENT DETAILS — Ivory→Charcoal gradient ════════════════ */}
+      {/* ══ 8. ENGAGEMENT DETAILS — Deep Forest Green ════════════════════ */}
       <section
         className="ct-section"
-        style={{ background: "linear-gradient(to bottom, #F5F2EC 0%, #CDD8C4 15%, #8A9A80 32%, #2A3825 52%, #162018 75%, #0F1A12 100%)" }}
+        style={{ background: "#0F1A12" }}
         data-testid="coaching-format"
       >
         <div className="max-w-[1400px] mx-auto px-6 md:px-16">
@@ -654,9 +653,9 @@ const ExecutiveCoaching = () => {
             {/* Left: heading */}
             <div style={{ flex: "0 0 38%" }}>
               <ScrollReveal>
-                <p className="ct-overline text-sage mb-5">{s.format.overline}</p>
+                <p className="ct-overline text-gold/60 mb-5">{s.format.overline}</p>
                 <h2
-                  style={{ fontFamily: "Figtree, sans-serif", fontSize: "clamp(28px, 3.2vw, 44px)", fontWeight: 400, color: "#121212", lineHeight: 1.1 }}
+                  style={{ fontFamily: "Figtree, sans-serif", fontSize: "clamp(28px, 3.2vw, 44px)", fontWeight: 400, color: "#F5F2EC", lineHeight: 1.1 }}
                 >
                   {s.format.headline}
                 </h2>
