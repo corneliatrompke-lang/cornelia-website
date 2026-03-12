@@ -146,15 +146,18 @@ const FORMAT_ITEMS = [
   { label: "Investment", value: "Shared on application" },
 ];
 
-// ─── Concentric Circles (same mechanism as ExecutiveCoaching) ─────────────────
-const CirclesViz = ({ activePhase }) => {
+// ─── Concentric Circles ───────────────────────────────────────────────────────
+const CirclesViz = ({ activePhase, size = 500 }) => {
+  const s = size / 500;
+  const cx = size / 2;
   const rings = [
-    { inset: "180px", size: "140px" },  // 01 — innermost (Quiet Reflection)
-    { inset: "90px",  size: "320px" },  // 02 — middle (Guided Practice)
-    { inset: "0px",   size: "500px" },  // 03 — outer (Dialogue)
+    { inset: `${Math.round(180 * s)}px` },
+    { inset: `${Math.round(90 * s)}px` },
+    { inset: "0px" },
   ];
+  const radii = [70 * s, 160 * s, 250 * s];
   return (
-    <div style={{ position: "relative", width: "500px", height: "500px", flexShrink: 0 }}>
+    <div style={{ position: "relative", width: `${size}px`, height: `${size}px`, flexShrink: 0 }}>
       {rings.map((ring, i) => {
         const lit = activePhase >= i;
         return (
@@ -180,11 +183,10 @@ const CirclesViz = ({ activePhase }) => {
       })}
       {/* Label mapping */}
       {EXPERIENCE_ELEMENTS.map((el, i) => {
-        const angles = [0, -60, -120]; // positions around the rings
-        const radii  = [70, 160, 250];
-        const rad    = (angles[i] * Math.PI) / 180;
-        const x      = 250 + radii[i] * Math.cos(rad);
-        const y      = 250 + radii[i] * Math.sin(rad);
+        const angles = [0, -60, -120];
+        const rad = (angles[i] * Math.PI) / 180;
+        const x = cx + radii[i] * Math.cos(rad);
+        const y = cx + radii[i] * Math.sin(rad);
         return (
           <motion.span
             key={i}
@@ -265,10 +267,14 @@ const MeditationRetreat = () => {
   const [activeOpen, setActiveOpen] = useState(null);
   const [openWhatOpensMobile, setOpenWhatOpensMobile] = useState(0);
 
-  // Mobile
+  // Mobile / Narrow
   const [isMobile, setIsMobile] = useState(typeof window !== "undefined" ? window.innerWidth < 768 : false);
+  const [isNarrow, setIsNarrow] = useState(typeof window !== "undefined" ? window.innerWidth < 1200 : false);
   useEffect(() => {
-    const handleResize = () => setIsMobile(window.innerWidth < 768);
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768);
+      setIsNarrow(window.innerWidth < 1200);
+    };
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
@@ -678,6 +684,9 @@ const MeditationRetreat = () => {
         </div>
       </section>
 
+      {/* ── Dark cluster: eliminates sub-pixel gaps between consecutive dark sections ─── */}
+      <div style={{ background: "#0F1A12", marginTop: "-2px" }}>
+
       {/* ══ 4. WHAT OPENS — For Whom accordion style, deep forest ════════════ */}
       <section
         className="ct-section"
@@ -1011,18 +1020,18 @@ const MeditationRetreat = () => {
             }}
           >
             <div className="max-w-[1400px] mx-auto px-6 md:px-16 w-full">
-              <div style={{ display: "flex", alignItems: "center", gap: "0" }}>
+              <div style={{ display: "flex", alignItems: "center", gap: isNarrow ? "48px" : "0" }}>
 
-                {/* Left: circles */}
+                {/* Left: circles — smaller on tablet to create breathing room */}
                 <div
                   style={{
-                    flex: "0 0 50%",
+                    flex: isNarrow ? "0 0 42%" : "0 0 50%",
                     display: "flex",
                     justifyContent: "center",
                     alignItems: "center",
                   }}
                 >
-                  <CirclesViz activePhase={activeElement} />
+                  <CirclesViz activePhase={activeElement} size={isNarrow ? 380 : 500} />
                 </div>
 
                 {/* Right: element rows */}
@@ -1888,6 +1897,8 @@ const MeditationRetreat = () => {
           </ScrollReveal>
         </div>
       </section>
+
+      </div>{/* end dark cluster */}
 
     </div>
   );
