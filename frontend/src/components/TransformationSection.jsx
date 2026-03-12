@@ -313,7 +313,7 @@ export default function TransformationSection() {
                 alignItems: "center",
                 flex: isMobile ? undefined : isNarrow ? undefined : 1,
                 maxWidth: isNarrow ? "none" : "230px",
-                marginTop: isNarrow ? (i >= 2 ? "120px" : 0) : `${FINAL_STAGGER[i]}px`,
+                marginTop: isNarrow ? (i >= 2 ? "80px" : 0) : `${FINAL_STAGGER[i]}px`,
               }}
             >
               {/* Small number circle */}
