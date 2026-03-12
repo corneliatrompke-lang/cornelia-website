@@ -169,6 +169,9 @@ const ExecutiveCoaching = () => {
   return (
     <div className="bg-[#0F1A12]">
 
+      {/* ── Ivory cluster 1: Hero + Core Premise ──────────────────────────── */}
+      <div style={{ background: "#F5F2EC" }}>
+
       {/* ══ 1. HERO — rounded-card wrapper matching Home & Method ════════ */}
       <section
         className="pt-[6px] px-3 md:px-4 pb-3"
@@ -286,11 +289,13 @@ const ExecutiveCoaching = () => {
         </div>
       </section>
 
+      </div>{/* end ivory cluster 1 */}
+
       {/* ══ 3. HOW THE ENGAGEMENT UNFOLDS — sticky scroll animation ═════ */}
       {/* Outer wrapper tracks scroll for phase activation */}
       <div
         ref={phasesRef}
-        style={{ background: PHASE_GRADIENT, position: "relative" }}
+        style={{ background: PHASE_GRADIENT, position: "relative", marginTop: "-2px" }}
         data-testid="coaching-phases"
       >
         {/* Non-sticky heading */}
@@ -432,6 +437,9 @@ const ExecutiveCoaching = () => {
         </div>
       </section>
 
+      {/* ── Ivory cluster 2: For Whom + What Shifts ───────────────────────── */}
+      <div style={{ background: "#F5F2EC", marginTop: "-2px" }}>
+
       {/* ══ 5. FOR WHOM — Ivory background, horizontal hover accordion ══ */}
       <section
         className="ct-section"
@@ -570,8 +578,10 @@ const ExecutiveCoaching = () => {
         </div>
       </section>
 
+      </div>{/* end ivory cluster 2 */}
+
       {/* ══ 7. TESTIMONIALS — light→dark gradient ═══════════════════════════ */}
-      <section className="ct-section" style={{ background: "linear-gradient(to bottom, #F5F2EC 0%, #CDD8C4 15%, #8A9A80 32%, #2A3825 52%, #162018 75%, #0F1A12 100%)" }} data-testid="coaching-testimonials">
+      <section className="ct-section" style={{ background: "linear-gradient(to bottom, #F5F2EC 0%, #CDD8C4 15%, #8A9A80 32%, #2A3825 52%, #162018 75%, #0F1A12 100%)", marginTop: "-2px" }} data-testid="coaching-testimonials">
         <div className="max-w-[1400px] mx-auto px-6 md:px-16">
           <ScrollReveal>
             <p className="ct-overline mb-10" style={{ color: "rgba(18,18,18,0.35)" }}>{t.home.testimonials.overline}</p>
