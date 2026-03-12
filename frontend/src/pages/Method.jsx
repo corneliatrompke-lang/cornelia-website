@@ -256,7 +256,7 @@ const Method = () => {
           Row 1: [Heading + subtext] | [Venn on ivory]
           Row 2: [NARM card]         | [Integral card]
       ══════════════════════════════════════════════════════════════ */}
-      <section className="ct-section" style={{ background: "#F5F2EC", paddingBottom: "60px" }} data-testid="method-what-we-do">
+      <section className="ct-section" style={{ background: "#F5F2EC" }} data-testid="method-what-we-do">
         <div className="max-w-[1400px] mx-auto px-6 md:px-16">
           <div
             style={{
@@ -305,7 +305,7 @@ const Method = () => {
                   <ScrollReveal delay={0.1}>
                     <div data-testid="narm-card">
                       <div style={{ paddingTop: "0px", marginBottom: "28px" }}>
-                        <p className="ct-overline" style={{ color: "rgba(200,169,106,0.65)" }}>{m.whatWeDo.narmCard.label}</p>
+                        <p className="ct-overline" style={{ color: "#5C3317" }}>{m.whatWeDo.narmCard.label}</p>
                       </div>
                       <h3 style={{ fontFamily: "Figtree, sans-serif", fontSize: "clamp(34px, 3.2vw, 50px)", fontWeight: 400, color: "#121212", lineHeight: 1.0, marginBottom: "10px" }}>
                         {m.whatWeDo.narmCard.title}
@@ -336,7 +336,7 @@ const Method = () => {
                   <ScrollReveal delay={0.18}>
                     <div data-testid="integral-card">
                       <div style={{ paddingTop: "0px", marginBottom: "28px" }}>
-                        <p className="ct-overline" style={{ color: "rgba(124,140,130,0.6)" }}>{m.whatWeDo.integralCard.label}</p>
+                        <p className="ct-overline" style={{ color: "#5C3317" }}>{m.whatWeDo.integralCard.label}</p>
                       </div>
                       <h3 style={{ fontFamily: "Figtree, sans-serif", fontSize: "clamp(34px, 3.2vw, 50px)", fontWeight: 400, color: "#121212", lineHeight: 1.0, marginBottom: "10px" }}>
                         {m.whatWeDo.integralCard.title}
@@ -371,7 +371,7 @@ const Method = () => {
       ══════════════════════════════════════════════════════════════ */}
       <section
         className="ct-section"
-        style={{ background: "#F5F2EC", paddingTop: "60px" }}
+        style={{ background: "#F5F2EC" }}
         data-testid="method-benefits"
       >
         <div className="max-w-[1400px] mx-auto px-6 md:px-16">

@@ -166,12 +166,12 @@ const VennDiagram = ({ showLogo = true, showArrow = true, staticView = false, th
         {/* NARM + Integral Coaching — always visible, move with circles */}
         <text x={lx} y={LY} textAnchor="middle" dominantBaseline="middle"
           fontSize="18" fontFamily="Cormorant Garamond, serif"
-          fontWeight="700" fill={theme === "ivory" ? "#8B6A35" : "#C8A96A"} letterSpacing="2">
+          fontWeight="700" fill="#C8A96A" letterSpacing="2">
           NARM
         </text>
         <text x={rx} y={LY} textAnchor="middle" dominantBaseline="middle"
           fontSize="18" fontFamily="Cormorant Garamond, serif"
-          fontWeight="700" fill={theme === "ivory" ? "#8B6A35" : "#C8A96A"} letterSpacing="2">
+          fontWeight="700" fill="#C8A96A" letterSpacing="2">
           Integral Coaching
         </text>
 
