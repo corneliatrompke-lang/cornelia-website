@@ -570,7 +570,7 @@ const MeditationRetreat = () => {
                     fontSize: "clamp(20px, 2.2vw, 28px)",
                     fontWeight: 400,
                     fontStyle: "italic",
-                    color: "rgba(15,26,18,0.62)",
+                    color: "rgba(245,242,236,0.55)",
                     lineHeight: 1.45,
                     maxWidth: "480px",
                   }}
@@ -655,7 +655,7 @@ const MeditationRetreat = () => {
                       fontFamily: "Manrope, sans-serif",
                       fontSize: "14px",
                       fontWeight: 300,
-                      color: "rgba(18,18,18,0.52)",
+                      color: "rgba(245,242,236,0.52)",
                       lineHeight: 1.85,
                       marginBottom: "22px",
                     }}
