@@ -590,7 +590,8 @@ const Home = () => {
                 position: "relative",
               }}
             >
-              {/* LEFT — cross-fading portrait images */}
+              {/* LEFT — cross-fading portrait images (desktop/tablet only) */}
+              {!isMobile && (
               <div style={{ width: "38%", flexShrink: 0, position: "relative" }}>
                 {TESTIMONIAL_PORTRAITS.map((src, i) => (
                   <img
@@ -623,6 +624,7 @@ const Home = () => {
                   }}
                 />
               </div>
+              )}
 
               {/* RIGHT — quote text, vertically centred */}
               <div
@@ -631,7 +633,7 @@ const Home = () => {
                   display: "flex",
                   flexDirection: "column",
                   justifyContent: "center",
-                  padding: "52px 60px",
+                  padding: isMobile ? "36px 28px" : "52px 60px",
                   position: "relative",
                 }}
               >

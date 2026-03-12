@@ -134,9 +134,8 @@ const Method = () => {
 
   // Accordion
   const [openAccordion, setOpenAccordion] = useState(0);
-
-  // Benefits hover accordion
   const [activeBenefit, setActiveBenefit] = useState(null);
+  const [isMobile, setIsMobile] = useState(typeof window !== "undefined" ? window.innerWidth < 768 : false);
 
   // Testimonials
   const testimonials = t.home.testimonials.items;
@@ -146,6 +145,11 @@ const Method = () => {
     clearInterval(timerRef.current);
     timerRef.current = setInterval(() => setActiveTestimonial((p) => (p + 1) % len), 6000);
   };
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth < 768);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
   useEffect(() => {
     restartTimer(testimonials.length);
     return () => clearInterval(timerRef.current);
@@ -691,16 +695,18 @@ const Method = () => {
                 position: "relative",
               }}
             >
-              {/* Portrait */}
+              {/* Portrait (desktop/tablet only) */}
+              {!isMobile && (
               <div style={{ width: "38%", flexShrink: 0, position: "relative" }}>
                 {TESTIMONIAL_PORTRAITS.map((src, i) => (
                   <img key={i} src={src} alt="" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", objectPosition: "center top", opacity: i === activeTestimonial ? 1 : 0, transition: "opacity 0.9s ease", filter: "grayscale(15%)" }} />
                 ))}
                 <div style={{ position: "absolute", right: 0, top: "15%", bottom: "15%", width: "1px", background: "linear-gradient(to bottom, transparent, rgba(200,169,106,0.45), transparent)", zIndex: 2 }} />
               </div>
+              )}
 
               {/* Quote */}
-              <div style={{ flex: 1, display: "flex", flexDirection: "column", justifyContent: "center", padding: "52px 60px", position: "relative" }}>
+              <div style={{ flex: 1, display: "flex", flexDirection: "column", justifyContent: "center", padding: isMobile ? "36px 28px" : "52px 60px", position: "relative" }}>
                 <span style={{ fontFamily: "Cormorant Garamond, serif", fontSize: "120px", lineHeight: 1, color: "rgba(200,169,106,0.07)", position: "absolute", top: "16px", left: "52px", userSelect: "none", pointerEvents: "none" }}>&ldquo;</span>
                 <div style={{ position: "relative", minHeight: "220px" }}>
                   {testimonials.map((item, i) => (

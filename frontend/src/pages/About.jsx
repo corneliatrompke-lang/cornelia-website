@@ -21,7 +21,9 @@ const About = () => {
   const testimonials = t.home.testimonials.items;
 
   const [activeApproach, setActiveApproach] = useState(null);
+  const [activeMobileApproach, setActiveMobileApproach] = useState(null);
   const [activeTestimonial, setActiveTestimonial] = useState(0);
+  const [isMobile, setIsMobile] = useState(typeof window !== "undefined" ? window.innerWidth < 768 : false);
   const timerRef = useRef(null);
 
   // ── Hero parallax ────────────────────────────────────────────────────────
@@ -39,6 +41,12 @@ const About = () => {
       setActiveTestimonial((prev) => (prev + 1) % count);
     }, 5000);
   };
+
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth < 768);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   useEffect(() => {
     restartTimer(testimonials.length);
@@ -338,8 +346,8 @@ const About = () => {
                     paddingTop: "56px",
                     paddingBottom: "56px",
                     display: "grid",
-                    gridTemplateColumns: "1fr 1fr",
-                    gap: "80px",
+                    gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr",
+                    gap: isMobile ? "16px" : "80px",
                     alignItems: "start",
                   }}
                   data-testid={`philosophy-statement-${i}`}
@@ -417,7 +425,7 @@ const About = () => {
               const isLast = i === a.credentials.items.length - 1;
               return (
                 <ScrollReveal key={i} delay={0.08 * i}>
-                  <div className="flex items-stretch mb-2" style={{ marginLeft: `${i * 40}px` }} data-testid={`credential-${i}`}>
+                  <div className="flex items-stretch mb-2" style={{ marginLeft: isMobile ? 0 : `${i * 40}px` }} data-testid={`credential-${i}`}>
                     {/* Number badge */}
                     <div
                       style={{
@@ -505,7 +513,82 @@ const About = () => {
             </h2>
           </ScrollReveal>
 
-          {/* Horizontal accordion — identical pattern to homepage services */}
+          {/* ── Mobile: vertical expand/collapse accordion ── */}
+          {isMobile ? (
+            <div className="mt-12 flex flex-col" style={{ gap: "2px" }}>
+              {a.approach.items.map((item, i) => {
+                const isOpen = activeMobileApproach === i;
+                return (
+                  <div
+                    key={i}
+                    style={{ borderBottom: "1px solid rgba(245,242,236,0.10)" }}
+                    data-testid={`approach-item-${i}`}
+                  >
+                    {/* Header row */}
+                    <button
+                      onClick={() => setActiveMobileApproach(isOpen ? null : i)}
+                      style={{
+                        width: "100%",
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "space-between",
+                        padding: "20px 0",
+                        background: "none",
+                        border: "none",
+                        cursor: "pointer",
+                        textAlign: "left",
+                        gap: "16px",
+                      }}
+                    >
+                      <div style={{ display: "flex", alignItems: "center", gap: "16px" }}>
+                        <span style={{
+                          fontFamily: "Cormorant Garamond, serif",
+                          fontSize: "13px",
+                          color: "rgba(200,169,106,0.65)",
+                          letterSpacing: "0.12em",
+                          flexShrink: 0,
+                        }}>{item.number}</span>
+                        <span style={{
+                          fontFamily: "Figtree, sans-serif",
+                          fontSize: "17px",
+                          fontWeight: 400,
+                          color: isOpen ? "#F5F2EC" : "rgba(245,242,236,0.65)",
+                          lineHeight: 1.25,
+                          transition: "color 0.25s",
+                        }}>{item.title}</span>
+                      </div>
+                      <span style={{
+                        color: "rgba(200,169,106,0.65)",
+                        fontSize: "20px",
+                        lineHeight: 1,
+                        flexShrink: 0,
+                        transition: "transform 0.3s",
+                        transform: isOpen ? "rotate(45deg)" : "rotate(0deg)",
+                      }}>+</span>
+                    </button>
+
+                    {/* Expandable content */}
+                    <div style={{
+                      maxHeight: isOpen ? "300px" : "0",
+                      overflow: "hidden",
+                      transition: "max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1)",
+                    }}>
+                      <p style={{
+                        fontFamily: "Manrope, sans-serif",
+                        fontSize: "14px",
+                        fontWeight: 300,
+                        color: "rgba(245,242,236,0.5)",
+                        lineHeight: 1.8,
+                        paddingBottom: "24px",
+                        paddingRight: "32px",
+                      }}>{item.description}</p>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          ) : (
+          /* ── Desktop/tablet: horizontal hover accordion ── */
           <div className="flex mt-16" style={{ height: "520px" }}>
             {a.approach.items.map((item, i) => {
               const isActive = activeApproach === i;
@@ -628,6 +711,7 @@ const About = () => {
               );
             })}
           </div>
+          )}
         </div>
       </section>
 
@@ -659,7 +743,8 @@ const About = () => {
                 position: "relative",
               }}
             >
-              {/* LEFT — cross-fading portraits */}
+              {/* LEFT — cross-fading portraits (desktop/tablet only) */}
+              {!isMobile && (
               <div style={{ width: "38%", flexShrink: 0, position: "relative" }}>
                 {TESTIMONIAL_PORTRAITS.map((src, i) => (
                   <img
@@ -693,6 +778,7 @@ const About = () => {
                   }}
                 />
               </div>
+              )}
 
               {/* RIGHT — quote text */}
               <div
@@ -701,7 +787,7 @@ const About = () => {
                   display: "flex",
                   flexDirection: "column",
                   justifyContent: "center",
-                  padding: "52px 60px",
+                  padding: isMobile ? "36px 28px" : "52px 60px",
                   position: "relative",
                 }}
               >

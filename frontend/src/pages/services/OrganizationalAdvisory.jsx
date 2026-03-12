@@ -133,6 +133,7 @@ const OrganizationalAdvisory = () => {
 
   const [openForWhom, setOpenForWhom] = useState(0);
   const [activePhase, setActivePhase] = useState(null);
+  const [isMobile, setIsMobile] = useState(typeof window !== "undefined" ? window.innerWidth < 768 : false);
 
   const [activeTestimonial, setActiveTestimonial] = useState(0);
   const timerRef = useRef(null);
@@ -140,6 +141,11 @@ const OrganizationalAdvisory = () => {
     clearInterval(timerRef.current);
     timerRef.current = setInterval(() => setActiveTestimonial((p) => (p + 1) % len), 6000);
   };
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth < 768);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
   useEffect(() => {
     restartTimer(testimonials.length);
     return () => clearInterval(timerRef.current);
@@ -843,7 +849,8 @@ const OrganizationalAdvisory = () => {
                 position: "relative",
               }}
             >
-              {/* Portrait */}
+              {/* Portrait (desktop/tablet only) */}
+              {!isMobile && (
               <div style={{ width: "38%", flexShrink: 0, position: "relative" }}>
                 {TESTIMONIAL_PORTRAITS.map((src, i) => (
                   <img
@@ -869,6 +876,7 @@ const OrganizationalAdvisory = () => {
                   }}
                 />
               </div>
+              )}
 
               {/* Quote */}
               <div
@@ -877,7 +885,7 @@ const OrganizationalAdvisory = () => {
                   display: "flex",
                   flexDirection: "column",
                   justifyContent: "center",
-                  padding: "52px 60px",
+                  padding: isMobile ? "36px 28px" : "52px 60px",
                   position: "relative",
                 }}
               >
