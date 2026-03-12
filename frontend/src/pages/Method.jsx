@@ -163,6 +163,10 @@ const Method = () => {
   return (
     <div className="bg-[#0F1A12]">
 
+      {/* ══ Ivory wrapper: Hero + What We Do + Benefits + Accordion ══
+          Seals sub-pixel gaps between adjacent ivory/gradient sections. */}
+      <div style={{ background: "#F5F2EC" }}>
+
       {/* ══════════════════════════════════════════════════════════════
           1. HERO — same rounded-card layout as Home
       ══════════════════════════════════════════════════════════════ */}
@@ -690,6 +694,8 @@ const Method = () => {
         </div>
       </section>
 
+      </div>{/* end ivory wrapper */}
+
       {/* ══════════════════════════════════════════════════════════════
           5. TESTIMONIALS — Charcoal (same as Home)
       ══════════════════════════════════════════════════════════════ */}
@@ -1093,7 +1099,7 @@ const Method = () => {
       ══════════════════════════════════════════════════════════════ */}
       <section
         className="ct-section"
-        style={{ background: "#F5F2EC" }}
+        style={{ background: "#F5F2EC", position: "relative", marginTop: "-2px", zIndex: 1 }}
         data-testid="method-final-cta"
       >
         <div className="max-w-[760px] mx-auto px-6">
