@@ -263,6 +263,15 @@ const MeditationRetreat = () => {
 
   // Active "What Opens" item
   const [activeOpen, setActiveOpen] = useState(null);
+  const [openWhatOpensMobile, setOpenWhatOpensMobile] = useState(0);
+
+  // Mobile
+  const [isMobile, setIsMobile] = useState(typeof window !== "undefined" ? window.innerWidth < 768 : false);
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth < 768);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   // Testimonial carousel
   const [activeTestimonial, setActiveTestimonial] = useState(0);
@@ -375,9 +384,9 @@ const MeditationRetreat = () => {
       {/* ══ 2. THE INVITATION — Ivory, editorial two-column ══════════════════ */}
       <section className="ct-section" style={{ background: "#F5F2EC" }} data-testid="retreat-invitation">
         <div className="max-w-[1400px] mx-auto px-6 md:px-16">
-          <div style={{ display: "flex", gap: "80px", alignItems: "flex-start" }}>
+          <div style={{ display: "flex", flexDirection: isMobile ? "column" : "row", gap: isMobile ? "32px" : "80px", alignItems: "flex-start" }}>
             {/* Left: large pull quote */}
-            <div style={{ flex: "0 0 44%" }}>
+            <div style={{ flex: isMobile ? "none" : "0 0 44%" }}>
               <ScrollReveal>
                 <p className="ct-overline text-sage mb-8">The Retreat</p>
                 <p
@@ -417,7 +426,7 @@ const MeditationRetreat = () => {
             </div>
 
             {/* Right: body */}
-            <div style={{ flex: 1, paddingTop: "68px" }}>
+            <div style={{ flex: 1, paddingTop: isMobile ? "0" : "68px" }}>
               {[
                 "For leaders working with me in the programs, I regularly offer 3–5 day executive meditation retreats. I have been practicing meditation for over 30 years and teaching meditation for more than a decade.",
                 "When practiced correctly, meditation strengthens self-regulation, deepens insight, and supports clarity and innovation. In small groups, these retreats create the space for deeper reflection, nervous system regulation, and renewed perspective away from the demands of daily leadership.",
@@ -493,10 +502,10 @@ const MeditationRetreat = () => {
           </ScrollReveal>
 
           {/* Two-column layout */}
-          <div style={{ display: "flex", gap: "80px", alignItems: "flex-start" }}>
+          <div style={{ display: "flex", flexDirection: isMobile ? "column" : "row", gap: isMobile ? "40px" : "80px", alignItems: "flex-start" }}>
 
             {/* Left: Stats + quote */}
-            <div style={{ flex: "0 0 42%" }}>
+            <div style={{ flex: isMobile ? "none" : "0 0 42%" }}>
               {/* Stat blocks */}
               <div style={{ display: "flex", gap: "2px", marginBottom: "52px" }}>
                 {GUIDE_STATS.map((stat, i) => (
@@ -508,7 +517,7 @@ const MeditationRetreat = () => {
                           ? "rgba(18,18,18,0.05)"
                           : "rgba(200,169,106,0.07)",
                         border: "1px solid rgba(18,18,18,0.08)",
-                        padding: "32px 28px",
+                        padding: isMobile ? "24px 20px" : "32px 28px",
                         marginRight: "2px",
                       }}
                     >
@@ -693,7 +702,38 @@ const MeditationRetreat = () => {
             </ScrollReveal>
           </div>
 
-          {/* Horizontal accordion */}
+          {/* Horizontal accordion / Mobile vertical accordion */}
+          {isMobile ? (
+            <div>
+              {WHAT_OPENS.map((item, i) => {
+                const isOpen = openWhatOpensMobile === i;
+                return (
+                  <div key={i} style={{ borderBottom: "1px solid rgba(245,242,236,0.08)" }} data-testid={`what-opens-item-${i}`}>
+                    <button
+                      onClick={() => setOpenWhatOpensMobile(isOpen ? null : i)}
+                      style={{ width: "100%", textAlign: "left", padding: "20px 0", background: "none", border: "none", cursor: "pointer", display: "flex", justifyContent: "space-between", alignItems: "center" }}
+                    >
+                      <div style={{ display: "flex", gap: "14px", alignItems: "baseline" }}>
+                        <span style={{ fontFamily: "Manrope, sans-serif", fontSize: "10px", fontWeight: 600, letterSpacing: "0.25em", textTransform: "uppercase", color: "rgba(200,169,106,0.65)", flexShrink: 0 }}>{item.number}</span>
+                        <span style={{ fontFamily: "Figtree, sans-serif", fontSize: "18px", fontWeight: 400, color: "#F5F2EC", lineHeight: 1.3 }}>{item.title}</span>
+                      </div>
+                      <span style={{ fontFamily: "Manrope, sans-serif", fontSize: "22px", fontWeight: 300, color: "rgba(245,242,236,0.35)", lineHeight: 1, transform: isOpen ? "rotate(45deg)" : "none", transition: "transform 0.3s ease", flexShrink: 0, marginLeft: "12px" }}>+</span>
+                    </button>
+                    {isOpen && (
+                      <div style={{ paddingBottom: "20px", paddingRight: "8px" }}>
+                        <p style={{ fontFamily: "Cormorant Garamond, serif", fontSize: "14px", fontStyle: "italic", color: "rgba(200,169,106,0.6)", marginBottom: "10px" }}>{item.subtitle}</p>
+                        <p style={{ fontFamily: "Manrope, sans-serif", fontSize: "13px", fontWeight: 300, color: "rgba(227,222,215,0.5)", lineHeight: 1.75, marginBottom: "12px" }}>{item.body}</p>
+                        <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+                          <div style={{ width: "16px", height: "1px", background: "rgba(200,169,106,0.35)" }} />
+                          <span style={{ fontFamily: "Manrope, sans-serif", fontSize: "9px", fontWeight: 500, letterSpacing: "2px", textTransform: "uppercase", color: "rgba(200,169,106,0.4)" }}>{item.citation}</span>
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                );
+              })}
+            </div>
+          ) : (
           <div className="flex" style={{ height: "420px", overflow: "hidden" }}>
             {WHAT_OPENS.map((item, i) => {
               const isActive = activeOpen === i;
@@ -843,6 +883,7 @@ const MeditationRetreat = () => {
               );
             })}
           </div>
+          )}{/* end isMobile what-opens conditional */}
 
           {/* Research note */}
           <ScrollReveal delay={0.2}>
@@ -900,7 +941,64 @@ const MeditationRetreat = () => {
           </ScrollReveal>
         </div>
 
-        {/* Sticky scroll — 260vh drives the three-step reveal */}
+        {isMobile ? (
+          /* ── Mobile: circles fully lit + whileInView stacked rows ── */
+          <div className="px-6 pb-16">
+            <div style={{ display: "flex", justifyContent: "center", marginBottom: "40px" }}>
+              <div style={{ position: "relative", width: "260px", height: "260px" }}>
+                {[
+                  { inset: "93.6px", size: "72.8px" },
+                  { inset: "46.8px", size: "166.4px" },
+                  { inset: "0px", size: "260px" },
+                ].map((ring, i) => (
+                  <div
+                    key={i}
+                    style={{
+                      position: "absolute",
+                      inset: ring.inset,
+                      borderRadius: "50%",
+                      border: `1px solid rgba(200,169,106,${0.75 - i * 0.18})`,
+                      boxShadow: `0 0 ${20 + i * 14}px rgba(200,169,106,${0.12 - i * 0.025})`,
+                    }}
+                  />
+                ))}
+                <div style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%, -50%)", textAlign: "center" }}>
+                  <span style={{ fontFamily: "Cormorant Garamond, serif", fontSize: "11px", fontStyle: "italic", color: "rgba(200,169,106,0.45)", whiteSpace: "nowrap" }}>Stillness</span>
+                </div>
+              </div>
+            </div>
+            <div>
+              {EXPERIENCE_ELEMENTS.map((el, i) => (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, x: -20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true, margin: "-40px" }}
+                  transition={{ duration: 0.65, ease: [0.25, 0.46, 0.45, 0.94], delay: i * 0.15 }}
+                  style={{
+                    borderTop: i > 0 ? "1px solid rgba(245,242,236,0.08)" : "none",
+                    paddingTop: i > 0 ? "24px" : "0",
+                    paddingBottom: "24px",
+                    paddingLeft: "20px",
+                    borderLeft: "2px solid rgba(200,169,106,0.65)",
+                  }}
+                  data-testid={`experience-row-${i}`}
+                >
+                  <div style={{ display: "flex", alignItems: "baseline", gap: "12px", marginBottom: "8px" }}>
+                    <span style={{ fontFamily: "Manrope, sans-serif", fontSize: "10px", fontWeight: 600, letterSpacing: "2px", textTransform: "uppercase", color: "rgba(200,169,106,0.85)" }}>{el.number}</span>
+                    <span style={{ fontFamily: "Manrope, sans-serif", fontSize: "10px", fontWeight: 400, letterSpacing: "1px", color: "rgba(245,242,236,0.32)", textTransform: "uppercase" }}>{el.role}</span>
+                  </div>
+                  <h3 style={{ fontFamily: "Figtree, sans-serif", fontSize: "20px", fontWeight: 400, color: "rgba(245,242,236,0.88)", lineHeight: 1.2, marginBottom: "8px" }}>{el.label}</h3>
+                  <p style={{ fontFamily: "Manrope, sans-serif", fontSize: "13px", fontWeight: 300, color: "rgba(245,242,236,0.42)", lineHeight: 1.75 }}>{el.description}</p>
+                </motion.div>
+              ))}
+              <div style={{ marginTop: "24px", paddingLeft: "20px", borderLeft: "2px solid rgba(200,169,106,0.15)" }}>
+                <p style={{ fontFamily: "Cormorant Garamond, serif", fontSize: "17px", fontStyle: "italic", color: "rgba(200,169,106,0.45)", lineHeight: 1.5 }}>"Insights don't just arrive. They settle."</p>
+              </div>
+            </div>
+          </div>
+        ) : (
+        /* ── Desktop/Tablet: sticky scroll — 260vh drives the three-step reveal ── */
         <div style={{ height: "260vh" }}>
           <div
             style={{
@@ -1060,6 +1158,7 @@ const MeditationRetreat = () => {
             </div>
           </div>
         </div>
+        )}{/* end isMobile experience conditional */}
 
         <div style={{ paddingBottom: "80px" }} />
       </div>
@@ -1090,7 +1189,30 @@ const MeditationRetreat = () => {
               </h2>
             </ScrollReveal>
 
-            {/* Horizontal timeline */}
+            {/* Timeline — horizontal on desktop, vertical on mobile */}
+            {isMobile ? (
+              /* Mobile: vertical timeline */
+              <div style={{ paddingLeft: "16px", borderLeft: "1px solid rgba(200,169,106,0.25)" }}>
+                {TIMELINE_DAYS.map((day, i) => (
+                  <motion.div
+                    key={i}
+                    initial={{ opacity: 0, x: -16 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true, margin: "-30px" }}
+                    transition={{ duration: 0.55, ease: "easeOut", delay: i * 0.08 }}
+                    style={{ paddingBottom: "36px", position: "relative" }}
+                    data-testid={`timeline-day-${i}`}
+                  >
+                    {/* Dot */}
+                    <div style={{ position: "absolute", left: "-21px", top: "4px", width: "9px", height: "9px", borderRadius: "50%", background: "#C8A96A", border: "2px solid #0F1A12", boxShadow: "0 0 0 1px rgba(200,169,106,0.4)" }} />
+                    <span style={{ display: "block", fontFamily: "Manrope, sans-serif", fontSize: "9px", fontWeight: 600, letterSpacing: "2px", textTransform: "uppercase", color: "rgba(200,169,106,0.8)", marginBottom: "8px" }}>{day.day}</span>
+                    <h4 style={{ fontFamily: "Figtree, sans-serif", fontSize: "18px", fontWeight: 400, color: "#F5F2EC", lineHeight: 1.2, marginBottom: "10px" }}>{day.title}</h4>
+                    <p style={{ fontFamily: "Manrope, sans-serif", fontSize: "13px", fontWeight: 300, color: "rgba(245,242,236,0.45)", lineHeight: 1.75 }}>{day.description}</p>
+                  </motion.div>
+                ))}
+              </div>
+            ) : (
+            /* Desktop: horizontal timeline */
             <div style={{ position: "relative" }}>
               {/* Connecting line */}
               <div
@@ -1175,6 +1297,7 @@ const MeditationRetreat = () => {
                 ))}
               </div>
             </div>
+            )}{/* end isMobile timeline conditional */}
           </div>
 
           {/* Divider */}
@@ -1230,8 +1353,9 @@ const MeditationRetreat = () => {
                     borderTop: "1px solid rgba(245,242,236,0.08)",
                     padding: "28px 0",
                     display: "flex",
-                    alignItems: "center",
-                    gap: "32px",
+                    flexDirection: isMobile ? "column" : "row",
+                    alignItems: isMobile ? "flex-start" : "center",
+                    gap: isMobile ? "16px" : "32px",
                   }}
                   data-testid={`upcoming-retreat-${i}`}
                 >
@@ -1275,8 +1399,8 @@ const MeditationRetreat = () => {
                     </p>
                   </div>
 
-                  {/* Spots */}
-                  <div style={{ flexShrink: 0 }}>
+                  {/* Spots + CTA row */}
+                  <div style={{ display: "flex", alignItems: "center", gap: "20px", flexShrink: 0 }}>
                     <span
                       style={{
                         fontFamily: "Manrope, sans-serif",
@@ -1303,10 +1427,7 @@ const MeditationRetreat = () => {
                     >
                       {retreat.spots}
                     </span>
-                  </div>
 
-                  {/* CTA */}
-                  <div style={{ flexShrink: 0 }}>
                     <Link
                       to="/contact"
                       style={{
@@ -1343,10 +1464,10 @@ const MeditationRetreat = () => {
         data-testid="retreat-format"
       >
         <div className="max-w-[1400px] mx-auto px-6 md:px-16">
-          <div style={{ display: "flex", gap: "80px", alignItems: "flex-start" }}>
+          <div style={{ display: "flex", flexDirection: isMobile ? "column" : "row", gap: isMobile ? "32px" : "80px", alignItems: "flex-start" }}>
 
             {/* Left: heading */}
-            <div style={{ flex: "0 0 38%" }}>
+            <div style={{ flex: isMobile ? "none" : "0 0 38%" }}>
               <ScrollReveal>
                 <p className="ct-overline text-gold/60 mb-5">Format</p>
                 <h2
@@ -1438,7 +1559,8 @@ const MeditationRetreat = () => {
                 position: "relative",
               }}
             >
-              {/* Portrait */}
+              {/* Portrait (desktop/tablet only) */}
+              {!isMobile && (
               <div style={{ width: "38%", flexShrink: 0, position: "relative" }}>
                 {TESTIMONIAL_PORTRAITS.map((src, i) => (
                   <img
@@ -1471,6 +1593,7 @@ const MeditationRetreat = () => {
                   }}
                 />
               </div>
+              )}
 
               {/* Quote */}
               <div
@@ -1479,7 +1602,7 @@ const MeditationRetreat = () => {
                   display: "flex",
                   flexDirection: "column",
                   justifyContent: "center",
-                  padding: "52px 60px",
+                  padding: isMobile ? "36px 28px" : "52px 60px",
                   position: "relative",
                 }}
               >
@@ -1518,7 +1641,7 @@ const MeditationRetreat = () => {
                       <p
                         style={{
                           fontFamily: "Cormorant Garamond, serif",
-                          fontSize: "clamp(20px, 2.2vw, 26px)",
+                          fontSize: isMobile ? "20px" : "clamp(20px, 2.2vw, 26px)",
                           fontWeight: 400,
                           color: "#F5F2EC",
                           lineHeight: 1.45,

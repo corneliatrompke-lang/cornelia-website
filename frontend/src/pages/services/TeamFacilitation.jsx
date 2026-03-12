@@ -148,6 +148,15 @@ const TeamFacilitation = () => {
   // Accordion states
   const [activeWork, setActiveWork] = useState(null);
   const [openForWhom, setOpenForWhom] = useState(0);
+  const [openWorkMobile, setOpenWorkMobile] = useState(0);
+
+  // Mobile
+  const [isMobile, setIsMobile] = useState(typeof window !== "undefined" ? window.innerWidth < 768 : false);
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth < 768);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   // Testimonials
   const [activeTestimonial, setActiveTestimonial] = useState(0);
@@ -233,9 +242,9 @@ const TeamFacilitation = () => {
       {/* ══ 2. THE PREMISE — Ivory ═══════════════════════════════════════════ */}
       <section className="ct-section" style={{ background: "#F5F2EC" }} data-testid="facilitation-premise">
         <div className="max-w-[1400px] mx-auto px-6 md:px-16">
-          <div style={{ display: "flex", gap: "80px", alignItems: "flex-start" }}>
+          <div style={{ display: "flex", flexDirection: isMobile ? "column" : "row", gap: isMobile ? "32px" : "80px", alignItems: "flex-start" }}>
             {/* Left: pull quote */}
-            <div style={{ flex: "0 0 44%" }}>
+            <div style={{ flex: isMobile ? "none" : "0 0 44%" }}>
               <ScrollReveal>
                 <p className="ct-overline text-sage mb-8">The Premise</p>
                 <p
@@ -267,7 +276,7 @@ const TeamFacilitation = () => {
               </ScrollReveal>
             </div>
             {/* Right: body */}
-            <div style={{ flex: 1, paddingTop: "68px" }}>
+            <div style={{ flex: 1, paddingTop: isMobile ? "0" : "68px" }}>
               {[
                 "In these situations, I support the team by facilitating structured sessions that help leaders align on priorities, improve communication, address tensions, and strengthen collaboration.",
                 "The aim is to move the leadership team from a group of strong individuals to a synchronised leadership unit — capable of making clear decisions and leading the organisation effectively.",
@@ -330,12 +339,12 @@ const TeamFacilitation = () => {
             </h2>
           </ScrollReveal>
 
-          {/* Phases — two columns side by side, content vertical inside each */}
+          {/* Phases — two columns (desktop) or stacked (mobile) */}
           <ScrollReveal>
             <div
               style={{
                 display: "grid",
-                gridTemplateColumns: "1fr 1fr",
+                gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr",
               }}
             >
               {PROCESS_PHASES.map((phase, i) => (
@@ -343,9 +352,11 @@ const TeamFacilitation = () => {
                   key={i}
                   style={{
                     paddingTop: "32px",
-                    paddingRight: i === 0 ? "clamp(40px, 6vw, 80px)" : "0",
-                    paddingLeft: i === 1 ? "clamp(40px, 6vw, 80px)" : "0",
-                    borderRight: i === 0 ? "1px solid rgba(245,242,236,0.10)" : "none",
+                    paddingRight: !isMobile && i === 0 ? "clamp(40px, 6vw, 80px)" : "0",
+                    paddingLeft: !isMobile && i === 1 ? "clamp(40px, 6vw, 80px)" : "0",
+                    paddingBottom: isMobile ? "40px" : "0",
+                    borderRight: !isMobile && i === 0 ? "1px solid rgba(245,242,236,0.10)" : "none",
+                    borderBottom: isMobile && i === 0 ? "1px solid rgba(245,242,236,0.10)" : "none",
                   }}
                   data-testid={`process-phase-${i}`}
                 >
@@ -424,6 +435,34 @@ const TeamFacilitation = () => {
             </ScrollReveal>
           </div>
 
+          {isMobile ? (
+            /* ── Mobile: vertical accordion ── */
+            <div>
+              {WORK_ADDRESSES.map((item, i) => {
+                const isOpen = openWorkMobile === i;
+                return (
+                  <div key={i} style={{ borderBottom: "1px solid rgba(245,242,236,0.08)" }} data-testid={`work-item-${i}`}>
+                    <button
+                      onClick={() => setOpenWorkMobile(isOpen ? null : i)}
+                      style={{ width: "100%", textAlign: "left", padding: "20px 0", background: "none", border: "none", cursor: "pointer", display: "flex", justifyContent: "space-between", alignItems: "center" }}
+                    >
+                      <div style={{ display: "flex", gap: "14px", alignItems: "baseline" }}>
+                        <span style={{ fontFamily: "Manrope, sans-serif", fontSize: "10px", fontWeight: 600, letterSpacing: "0.25em", textTransform: "uppercase", color: "rgba(200,169,106,0.65)", flexShrink: 0 }}>{item.number}</span>
+                        <span style={{ fontFamily: "Figtree, sans-serif", fontSize: "18px", fontWeight: 400, color: "#F5F2EC", lineHeight: 1.3 }}>{item.title}</span>
+                      </div>
+                      <span style={{ fontFamily: "Manrope, sans-serif", fontSize: "22px", fontWeight: 300, color: "rgba(245,242,236,0.35)", lineHeight: 1, transform: isOpen ? "rotate(45deg)" : "none", transition: "transform 0.3s ease", flexShrink: 0, marginLeft: "12px" }}>+</span>
+                    </button>
+                    {isOpen && (
+                      <div style={{ paddingBottom: "20px", paddingRight: "8px" }}>
+                        <p style={{ fontFamily: "Cormorant Garamond, serif", fontSize: "14px", fontStyle: "italic", color: "rgba(200,169,106,0.55)", marginBottom: "10px" }}>{item.subtitle}</p>
+                        <p style={{ fontFamily: "Manrope, sans-serif", fontSize: "13px", fontWeight: 300, color: "rgba(245,242,236,0.52)", lineHeight: 1.75 }}>{item.body}</p>
+                      </div>
+                    )}
+                  </div>
+                );
+              })}
+            </div>
+          ) : (
           <div className="flex" style={{ height: "420px", overflow: "hidden" }}>
             {WORK_ADDRESSES.map((item, i) => {
               const isActive = activeWork === i;
@@ -551,6 +590,7 @@ const TeamFacilitation = () => {
               );
             })}
           </div>
+          )}{/* end isMobile work conditional */}
         </div>
       </section>
 
@@ -568,7 +608,42 @@ const TeamFacilitation = () => {
             </ScrollReveal>
           </div>
 
-          {/* Two-column layout */}
+          {isMobile ? (
+            /* ── Mobile: vertical expand/collapse accordion ── */
+            <div>
+              {FOR_WHOM_ITEMS.map((item, i) => {
+                const isOpen = openForWhom === i;
+                return (
+                  <div key={i} style={{ borderBottom: "1px solid rgba(245,242,236,0.08)" }} data-testid={`for-whom-item-${i}`}>
+                    <button
+                      onClick={() => setOpenForWhom(isOpen ? null : i)}
+                      style={{ width: "100%", textAlign: "left", padding: "20px 0", background: "none", border: "none", cursor: "pointer", display: "flex", justifyContent: "space-between", alignItems: "center" }}
+                    >
+                      <div style={{ display: "flex", flexDirection: "column", gap: "6px" }}>
+                        <span style={{ fontFamily: "Manrope, sans-serif", fontSize: "9px", fontWeight: 600, letterSpacing: "2px", textTransform: "uppercase", color: "rgba(200,169,106,0.65)" }}>{item.subtitle}</span>
+                        <span style={{ fontFamily: "Figtree, sans-serif", fontSize: "18px", fontWeight: 400, color: "#F5F2EC", lineHeight: 1.3 }}>{item.title}</span>
+                      </div>
+                      <span style={{ fontFamily: "Manrope, sans-serif", fontSize: "22px", fontWeight: 300, color: "rgba(245,242,236,0.35)", lineHeight: 1, transform: isOpen ? "rotate(45deg)" : "none", transition: "transform 0.3s ease", flexShrink: 0, marginLeft: "12px" }}>+</span>
+                    </button>
+                    {isOpen && (
+                      <div style={{ paddingBottom: "20px" }}>
+                        <p style={{ fontFamily: "Manrope, sans-serif", fontSize: "10px", fontWeight: 500, letterSpacing: "2px", textTransform: "uppercase", color: "rgba(200,169,106,0.5)", marginBottom: "14px" }}>What this addresses</p>
+                        <div style={{ display: "flex", flexDirection: "column", gap: "14px" }}>
+                          {item.benefits.map((benefit, j) => (
+                            <div key={j} style={{ display: "flex", gap: "14px", alignItems: "baseline" }}>
+                              <span style={{ fontFamily: "Cormorant Garamond, serif", fontSize: "16px", color: "rgba(200,169,106,0.4)", flexShrink: 0, lineHeight: 1 }}>—</span>
+                              <p style={{ fontFamily: "Manrope, sans-serif", fontSize: "13px", fontWeight: 300, color: "rgba(227,222,215,0.65)", lineHeight: 1.75 }}>{benefit}</p>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                );
+              })}
+            </div>
+          ) : (
+          /* ── Desktop: two-column layout ── */
           <div style={{ display: "flex", alignItems: "flex-start", gap: "0" }}>
 
             {/* Left: selector rows (44%) */}
@@ -685,6 +760,7 @@ const TeamFacilitation = () => {
             </div>
 
           </div>
+          )}{/* end isMobile for-whom conditional */}
 
           {/* Unified CTA — centered, no divider */}
           <div
@@ -714,10 +790,10 @@ const TeamFacilitation = () => {
         data-testid="facilitation-outcome"
       >
         <div className="max-w-[1400px] mx-auto px-6 md:px-16">
-          <div style={{ display: "flex", gap: "80px", alignItems: "flex-start" }}>
+          <div style={{ display: "flex", flexDirection: isMobile ? "column" : "row", gap: isMobile ? "32px" : "80px", alignItems: "flex-start" }}>
 
             {/* Left: heading */}
-            <div style={{ flex: "0 0 38%" }}>
+            <div style={{ flex: isMobile ? "none" : "0 0 38%" }}>
               <ScrollReveal>
                 <p className="ct-overline text-gold/60 mb-5">The Outcome</p>
                 <h2
@@ -854,7 +930,8 @@ const TeamFacilitation = () => {
                 position: "relative",
               }}
             >
-              {/* Portrait */}
+              {/* Portrait (desktop/tablet only) */}
+              {!isMobile && (
               <div style={{ width: "38%", flexShrink: 0, position: "relative" }}>
                 {TESTIMONIAL_PORTRAITS.map((src, i) => (
                   <img
@@ -880,6 +957,7 @@ const TeamFacilitation = () => {
                   }}
                 />
               </div>
+              )}
 
               {/* Quote */}
               <div
@@ -888,7 +966,7 @@ const TeamFacilitation = () => {
                   display: "flex",
                   flexDirection: "column",
                   justifyContent: "center",
-                  padding: "52px 60px",
+                  padding: isMobile ? "36px 28px" : "52px 60px",
                   position: "relative",
                 }}
               >

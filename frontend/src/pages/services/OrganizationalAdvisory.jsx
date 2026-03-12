@@ -133,6 +133,7 @@ const OrganizationalAdvisory = () => {
 
   const [openForWhom, setOpenForWhom] = useState(0);
   const [activePhase, setActivePhase] = useState(null);
+  const [openProcessMobile, setOpenProcessMobile] = useState(0);
   const [isMobile, setIsMobile] = useState(typeof window !== "undefined" ? window.innerWidth < 768 : false);
 
   const [activeTestimonial, setActiveTestimonial] = useState(0);
@@ -223,10 +224,10 @@ const OrganizationalAdvisory = () => {
       {/* ══ 2. THE PREMISE — Ivory ═══════════════════════════════════════════ */}
       <section className="ct-section" style={{ background: "#F5F2EC" }} data-testid="advisory-premise">
         <div className="max-w-[1400px] mx-auto px-6 md:px-16">
-          <div style={{ display: "flex", gap: "80px", alignItems: "flex-start" }}>
+          <div style={{ display: "flex", flexDirection: isMobile ? "column" : "row", gap: isMobile ? "32px" : "80px", alignItems: "flex-start" }}>
 
             {/* Left: pull quote */}
-            <div style={{ flex: "0 0 44%" }}>
+            <div style={{ flex: isMobile ? "none" : "0 0 44%" }}>
               <ScrollReveal>
                 <p className="ct-overline text-sage mb-8">The Premise</p>
                 <p
@@ -259,7 +260,7 @@ const OrganizationalAdvisory = () => {
             </div>
 
             {/* Right: body */}
-            <div style={{ flex: 1, paddingTop: "68px" }}>
+            <div style={{ flex: 1, paddingTop: isMobile ? "0" : "68px" }}>
               {[
                 "I support organisations in understanding their current state and identifying the most effective levers for meaningful transformation.",
                 "The work typically begins with stakeholder interviews to understand different perspectives across the organisation. I review existing People & Culture practices, leadership routines, organisational structures, and the intended future state.",
@@ -323,7 +324,7 @@ const OrganizationalAdvisory = () => {
           <div
             style={{
               display: "grid",
-              gridTemplateColumns: "1fr 1px 1fr 1px 1fr",
+              gridTemplateColumns: isMobile ? "1fr" : "1fr 1px 1fr 1px 1fr",
               gap: "0",
             }}
           >
@@ -332,8 +333,10 @@ const OrganizationalAdvisory = () => {
                 <ScrollReveal delay={0.1 * i}>
                   <div
                     style={{
-                      paddingRight: i < DIMENSIONS.length - 1 ? "clamp(32px, 4vw, 64px)" : "0",
-                      paddingLeft: i > 0 ? "clamp(32px, 4vw, 64px)" : "0",
+                      paddingRight: !isMobile && i < DIMENSIONS.length - 1 ? "clamp(32px, 4vw, 64px)" : "0",
+                      paddingLeft: !isMobile && i > 0 ? "clamp(32px, 4vw, 64px)" : "0",
+                      paddingBottom: isMobile ? "40px" : "0",
+                      borderBottom: isMobile && i < DIMENSIONS.length - 1 ? "1px solid rgba(245,242,236,0.10)" : "none",
                     }}
                     data-testid={`dimension-${i}`}
                   >
@@ -387,7 +390,7 @@ const OrganizationalAdvisory = () => {
                     </p>
                   </div>
                 </ScrollReveal>
-                {i < DIMENSIONS.length - 1 && (
+                {i < DIMENSIONS.length - 1 && !isMobile && (
                   <div style={{ background: "rgba(245,242,236,0.10)" }} />
                 )}
               </React.Fragment>
@@ -416,6 +419,34 @@ const OrganizationalAdvisory = () => {
             </ScrollReveal>
           </div>
 
+          {isMobile ? (
+            /* ── Mobile: vertical expand/collapse accordion ── */
+            <div>
+              {PROCESS_PHASES.map((phase, i) => {
+                const isOpen = openProcessMobile === i;
+                return (
+                  <div key={i} style={{ borderBottom: "1px solid rgba(245,242,236,0.08)" }} data-testid={`process-phase-${i}`}>
+                    <button
+                      onClick={() => setOpenProcessMobile(isOpen ? null : i)}
+                      style={{ width: "100%", textAlign: "left", padding: "20px 0", background: "none", border: "none", cursor: "pointer", display: "flex", justifyContent: "space-between", alignItems: "center" }}
+                    >
+                      <div style={{ display: "flex", gap: "14px", alignItems: "baseline" }}>
+                        <span style={{ fontFamily: "Manrope, sans-serif", fontSize: "10px", fontWeight: 600, letterSpacing: "0.25em", textTransform: "uppercase", color: "rgba(200,169,106,0.65)", flexShrink: 0 }}>{phase.number}</span>
+                        <span style={{ fontFamily: "Figtree, sans-serif", fontSize: "18px", fontWeight: 400, color: "#F5F2EC", lineHeight: 1.3 }}>{phase.title}</span>
+                      </div>
+                      <span style={{ fontFamily: "Manrope, sans-serif", fontSize: "22px", fontWeight: 300, color: "rgba(245,242,236,0.35)", lineHeight: 1, transform: isOpen ? "rotate(45deg)" : "none", transition: "transform 0.3s ease", flexShrink: 0, marginLeft: "12px" }}>+</span>
+                    </button>
+                    {isOpen && (
+                      <div style={{ paddingBottom: "20px", paddingRight: "8px" }}>
+                        <p style={{ fontFamily: "Cormorant Garamond, serif", fontSize: "14px", fontStyle: "italic", color: "rgba(200,169,106,0.6)", marginBottom: "12px" }}>{phase.subtitle}</p>
+                        <p style={{ fontFamily: "Manrope, sans-serif", fontSize: "13px", fontWeight: 300, color: "rgba(245,242,236,0.52)", lineHeight: 1.75 }}>{phase.description}</p>
+                      </div>
+                    )}
+                  </div>
+                );
+              })}
+            </div>
+          ) : (
           <div className="flex" style={{ height: "420px", overflow: "hidden" }}>
             {PROCESS_PHASES.map((phase, i) => {
               const isActive = activePhase === i;
@@ -543,16 +574,17 @@ const OrganizationalAdvisory = () => {
               );
             })}
           </div>
+          )}{/* end isMobile process conditional */}
         </div>
       </section>
 
       {/* ══ 5. THE ENGAGEMENT — Deep forest, 2-column ════════════════════════ */}
       <section className="ct-section" style={{ background: "#0F1A12" }} data-testid="advisory-engagement">
         <div className="max-w-[1400px] mx-auto px-6 md:px-16">
-          <div style={{ display: "flex", gap: "80px", alignItems: "flex-start" }}>
+          <div style={{ display: "flex", flexDirection: isMobile ? "column" : "row", gap: isMobile ? "32px" : "80px", alignItems: "flex-start" }}>
 
             {/* Left: duration + context */}
-            <div style={{ flex: "0 0 42%" }}>
+            <div style={{ flex: isMobile ? "none" : "0 0 42%" }}>
               <ScrollReveal>
                 <p className="ct-overline text-gold/60 mb-5">The Format</p>
                 <h2
@@ -618,7 +650,7 @@ const OrganizationalAdvisory = () => {
             </div>
 
             {/* Right: what's included */}
-            <div style={{ flex: 1, paddingTop: "88px" }}>
+            <div style={{ flex: 1, paddingTop: isMobile ? "0" : "88px" }}>
               <p
                 style={{
                   fontFamily: "Manrope, sans-serif",
@@ -695,6 +727,41 @@ const OrganizationalAdvisory = () => {
             </ScrollReveal>
           </div>
 
+          {isMobile ? (
+            /* ── Mobile: vertical expand/collapse accordion ── */
+            <div>
+              {FOR_WHOM_ITEMS.map((item, i) => {
+                const isOpen = openForWhom === i;
+                return (
+                  <div key={i} style={{ borderBottom: "1px solid rgba(245,242,236,0.08)" }} data-testid={`for-whom-item-${i}`}>
+                    <button
+                      onClick={() => setOpenForWhom(isOpen ? null : i)}
+                      style={{ width: "100%", textAlign: "left", padding: "20px 0", background: "none", border: "none", cursor: "pointer", display: "flex", justifyContent: "space-between", alignItems: "center" }}
+                    >
+                      <div style={{ display: "flex", flexDirection: "column", gap: "6px" }}>
+                        <span style={{ fontFamily: "Manrope, sans-serif", fontSize: "9px", fontWeight: 600, letterSpacing: "2px", textTransform: "uppercase", color: "rgba(200,169,106,0.65)" }}>{item.subtitle}</span>
+                        <span style={{ fontFamily: "Figtree, sans-serif", fontSize: "18px", fontWeight: 400, color: "#F5F2EC", lineHeight: 1.3 }}>{item.title}</span>
+                      </div>
+                      <span style={{ fontFamily: "Manrope, sans-serif", fontSize: "22px", fontWeight: 300, color: "rgba(245,242,236,0.35)", lineHeight: 1, transform: isOpen ? "rotate(45deg)" : "none", transition: "transform 0.3s ease", flexShrink: 0, marginLeft: "12px" }}>+</span>
+                    </button>
+                    {isOpen && (
+                      <div style={{ paddingBottom: "20px" }}>
+                        <p style={{ fontFamily: "Manrope, sans-serif", fontSize: "10px", fontWeight: 500, letterSpacing: "2px", textTransform: "uppercase", color: "rgba(200,169,106,0.5)", marginBottom: "14px" }}>What this addresses</p>
+                        <div style={{ display: "flex", flexDirection: "column", gap: "14px" }}>
+                          {item.benefits.map((benefit, j) => (
+                            <div key={j} style={{ display: "flex", gap: "14px", alignItems: "baseline" }}>
+                              <span style={{ fontFamily: "Cormorant Garamond, serif", fontSize: "16px", color: "rgba(200,169,106,0.4)", flexShrink: 0, lineHeight: 1 }}>—</span>
+                              <p style={{ fontFamily: "Manrope, sans-serif", fontSize: "13px", fontWeight: 300, color: "rgba(227,222,215,0.65)", lineHeight: 1.75 }}>{benefit}</p>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                );
+              })}
+            </div>
+          ) : (
           <div style={{ display: "flex", alignItems: "flex-start", gap: "0" }}>
 
             {/* Left: selector rows */}
@@ -810,6 +877,7 @@ const OrganizationalAdvisory = () => {
               </AnimatePresence>
             </div>
           </div>
+          )}{/* end isMobile for-whom conditional */}
 
           {/* Unified CTA */}
           <div style={{ marginTop: "56px", display: "flex", justifyContent: "center" }}>

@@ -317,8 +317,12 @@ const ExecutiveCoaching = () => {
             </div>
             <div>
               {PHASES.map((phase, i) => (
-                <div
+                <motion.div
                   key={i}
+                  initial={{ opacity: 0, x: -20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true, margin: "-40px" }}
+                  transition={{ duration: 0.65, ease: [0.25, 0.46, 0.45, 0.94], delay: i * 0.15 }}
                   style={{
                     borderTop: i > 0 ? "1px solid rgba(245,242,236,0.1)" : "none",
                     paddingTop: i > 0 ? "24px" : "0",
@@ -342,7 +346,7 @@ const ExecutiveCoaching = () => {
                   <p style={{ fontFamily: "Manrope, sans-serif", fontSize: "13px", fontWeight: 300, color: "rgba(245,242,236,0.45)", lineHeight: 1.75 }}>
                     {phase.description}
                   </p>
-                </div>
+                </motion.div>
               ))}
             </div>
           </div>
