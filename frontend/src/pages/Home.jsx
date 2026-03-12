@@ -204,8 +204,8 @@ const Home = () => {
         style={{
           background: "#F5F2EC",
           overflow: "hidden",
-          borderTop: "1px solid rgba(18,18,18,0.07)",
-          borderBottom: "1px solid rgba(18,18,18,0.07)",
+          borderTop: isNarrow ? "none" : "1px solid rgba(18,18,18,0.07)",
+          borderBottom: isNarrow ? "none" : "1px solid rgba(18,18,18,0.07)",
           padding: "18px 0",
         }}
         data-testid="brand-ticker"

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useLanguage } from "../context/LanguageContext";
 
@@ -7,10 +7,16 @@ const LOGO_DARK =
 
 const Footer = () => {
   const { t } = useLanguage();
+  const [isNarrow, setIsNarrow] = useState(typeof window !== "undefined" ? window.innerWidth < 1024 : false);
+  useEffect(() => {
+    const h = () => setIsNarrow(window.innerWidth < 1024);
+    window.addEventListener("resize", h);
+    return () => window.removeEventListener("resize", h);
+  }, []);
 
   return (
     <footer
-      className="border-t"
+      className={isNarrow ? "" : "border-t"}
       style={{ background: "#F5F2EC", borderColor: "rgba(18,18,18,0.08)" }}
       data-testid="footer"
     >

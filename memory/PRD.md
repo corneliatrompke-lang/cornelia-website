@@ -285,6 +285,11 @@ Footer (from shared Footer component)
 6. Refactor large page components into smaller section components (P2)
 7. Optionally add Calendly booking integration (P1)
 
+### v2.4 — Mobile Border Removal (Mar 2026)
+- Brand logo ticker: `borderTop` + `borderBottom` made conditional — hidden on mobile/tablet (`isNarrow < 1024px`), visible on desktop
+- Footer: `border-t` class made conditional — removed on mobile/tablet, kept on desktop
+- Footer now imports `useState` + `useEffect` with resize listener for `isNarrow` state
+
 ## Changelog
 
 ### FoundationSection — Layout Fixes + Gold Heading (Mar 2026)
