@@ -52,7 +52,12 @@ const About = () => {
   };
 
   return (
-    <div style={{ background: "#F5F2EC" }}>
+    <div style={{ background: "#0F1A12" }}>
+
+      {/* ══ Ivory wrapper: Hero + Origin Story + Philosophy + Credentials ══
+          Outer div is dark so gaps between dark sections are seamless.
+          Credentials ends at #0F1A12 — wrapper end → dark sections: seamless. */}
+      <div style={{ background: "#F5F2EC" }}>
 
       {/* ═══ HERO — rounded card, same as Home / Method / Coaching ═══ */}
       <section
@@ -478,6 +483,7 @@ const About = () => {
         </div>
       </section>
 
+      </div>{/* end ivory wrapper */}
 
       {/* ═══ APPROACH + VALUES — deep forest green, horizontal accordion ═══ */}
       <section
