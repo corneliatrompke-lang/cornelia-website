@@ -287,15 +287,15 @@ export default function TransformationSection() {
         <motion.div
           style={{
             position: "absolute",
-            top: isMobile ? "130px" : "160px",
+            top: isMobile ? "240px" : isNarrow ? "50%" : "160px",
             left: 0,
             right: 0,
             bottom: 0,
-            display: isMobile ? "grid" : "flex",
-            gridTemplateColumns: isMobile ? "1fr 1fr" : undefined,
-            alignItems: isMobile ? "start" : "flex-start",
-            justifyContent: isMobile ? undefined : "center",
-            gap: isMobile ? "12px" : "60px",
+            display: isNarrow ? "grid" : "flex",
+            gridTemplateColumns: isNarrow ? "1fr 1fr" : undefined,
+            alignItems: isNarrow ? "start" : "flex-start",
+            justifyContent: isNarrow ? undefined : "center",
+            gap: isMobile ? "12px" : isNarrow ? "16px" : "60px",
             paddingLeft: isMobile ? "20px" : "40px",
             paddingRight: isMobile ? "20px" : "40px",
             opacity: finalO,
@@ -310,9 +310,9 @@ export default function TransformationSection() {
                 display: "flex",
                 flexDirection: "column",
                 alignItems: "center",
-                flex: isMobile ? undefined : 1,
-                maxWidth: isMobile ? "none" : "230px",
-                marginTop: isMobile ? 0 : `${FINAL_STAGGER[i]}px`,
+                flex: isMobile ? undefined : isNarrow ? undefined : 1,
+                maxWidth: isNarrow ? "none" : "230px",
+                marginTop: isNarrow ? 0 : `${FINAL_STAGGER[i]}px`,
               }}
             >
               {/* Small number circle */}

@@ -42,6 +42,7 @@ const Home = () => {
   const { t } = useLanguage();
   const [activeTestimonial, setActiveTestimonial] = useState(0);
   const [activeService, setActiveService] = useState(null);
+  const [activeMobileService, setActiveMobileService] = useState(null);
   const [isMobile, setIsMobile] = useState(typeof window !== "undefined" ? window.innerWidth < 768 : false);
   const [isNarrow, setIsNarrow] = useState(typeof window !== "undefined" ? window.innerWidth < 1024 : false);
   useEffect(() => {
@@ -272,7 +273,7 @@ const Home = () => {
               <ScrollReveal delay={0.15}>
                 <h2
                   className="leading-[1.15] max-w-[500px]"
-                  style={{ fontFamily: "Figtree, sans-serif", fontSize: "clamp(26px, 3.5vw, 42px)", fontWeight: 400, color: isNarrow ? "#121212" : "#F5F2EC" }}
+                  style={{ fontFamily: "Figtree, sans-serif", fontSize: "clamp(26px, 3.5vw, 42px)", fontWeight: 400, color: "#F5F2EC" }}
                 >
                   {t.home.aboutPreview.headline}
                 </h2>
@@ -280,7 +281,7 @@ const Home = () => {
               <ScrollReveal delay={0.3}>
                 <p
                   className="mt-6 leading-relaxed max-w-[480px]"
-                  style={{ fontFamily: "Manrope, sans-serif", fontSize: "16px", fontWeight: 300, color: isNarrow ? "rgba(18,18,18,0.72)" : "rgba(245,242,236,0.72)" }}
+                  style={{ fontFamily: "Manrope, sans-serif", fontSize: "16px", fontWeight: 300, color: "rgba(245,242,236,0.72)" }}
                 >
                   {t.home.aboutPreview.body}
                 </p>
@@ -298,11 +299,11 @@ const Home = () => {
             </div>
 
             {/* ── Portrait column — order-1 on mobile so image shows before text ── */}
-            <div className="lg:col-span-4 order-1 lg:order-2">
+            <div className="lg:col-span-4 order-1 lg:order-2 flex justify-center lg:block">
               <ScrollReveal delay={0.1} direction="none">
                 <motion.div
                   className="relative overflow-hidden"
-                  style={{ aspectRatio: "3/4", maxHeight: isNarrow ? "380px" : undefined }}
+                  style={{ aspectRatio: "3/4", maxHeight: isNarrow ? "380px" : undefined, width: isNarrow ? "260px" : "100%" }}
                   initial={{ opacity: 0, x: 40 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   transition={{ duration: 0.9, ease: [0.25, 0.46, 0.45, 0.94] }}
@@ -342,11 +343,11 @@ const Home = () => {
       <VennDiagram />
 
       {/* ═══ METHOD TEASER ═══ */}
-      <section className="ct-section relative overflow-hidden" style={{ background: "#0F1A12", paddingTop: "32px" }} data-testid="method-section">
+      <section className="ct-section relative overflow-hidden" style={{ background: "#0F1A12", paddingTop: isNarrow ? "0" : "32px" }} data-testid="method-section">
         <NeuralCanvas opacity={0.08} nodeCount={40} />
         <div className="relative z-10 max-w-[750px] mx-auto px-6 text-center">
           <ScrollReveal>
-            <div className="ct-divider mx-auto mb-8" />
+            {!isNarrow && <div className="ct-divider mx-auto mb-8" />}
             <p className="ct-overline text-gold/70 mb-6">{t.home.method.overline}</p>
           </ScrollReveal>
           <ScrollReveal delay={0.15}>
@@ -394,25 +395,39 @@ const Home = () => {
             </h2>
           </ScrollReveal>
 
-          {/* Accordion — desktop/tablet: horizontal | mobile: vertical stack */}
+          {/* Accordion — desktop/tablet: horizontal | mobile: click-to-expand */}
           {isMobile ? (
-            <div className="flex flex-col mt-10 gap-4">
-              {t.home.services.items.map((service, i) => (
-                <div
-                  key={i}
-                  data-testid={`service-item-${i}`}
-                  style={{
-                    borderTop: "1px solid rgba(245,242,236,0.10)",
-                    paddingTop: "28px",
-                    paddingBottom: "28px",
-                  }}
-                >
-                  <span style={{ fontFamily: "Manrope, sans-serif", fontSize: "10px", fontWeight: 600, letterSpacing: "0.22em", textTransform: "uppercase", color: "rgba(200,169,106,0.65)", marginBottom: "12px", display: "block" }}>{service.number}</span>
-                  <h3 style={{ fontFamily: "Figtree, sans-serif", fontSize: "20px", fontWeight: 400, color: "#F5F2EC", lineHeight: 1.2, marginBottom: "14px" }}>{service.title}</h3>
-                  <p style={{ fontFamily: "Manrope, sans-serif", fontSize: "14px", fontWeight: 300, color: "rgba(245,242,236,0.5)", lineHeight: 1.75, marginBottom: "22px" }}>{service.description}</p>
-                  <Link to={service.link} className="btn-secondary" style={{ borderRadius: "8px", padding: "10px 22px", display: "inline-block" }} data-testid={`service-cta-${i}`}>Explore This Work</Link>
-                </div>
-              ))}
+            <div className="flex flex-col mt-10">
+              {t.home.services.items.map((service, i) => {
+                const isOpen = activeMobileService === i;
+                return (
+                  <div
+                    key={i}
+                    data-testid={`service-item-${i}`}
+                    style={{ borderTop: "1px solid rgba(245,242,236,0.10)" }}
+                  >
+                    {/* Collapsed row — always visible */}
+                    <button
+                      onClick={() => setActiveMobileService(isOpen ? null : i)}
+                      style={{ width: "100%", background: "none", border: "none", cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "space-between", padding: "20px 0", textAlign: "left" }}
+                    >
+                      <div>
+                        <span style={{ fontFamily: "Manrope, sans-serif", fontSize: "10px", fontWeight: 600, letterSpacing: "0.22em", textTransform: "uppercase", color: "rgba(200,169,106,0.65)", display: "block", marginBottom: "6px" }}>{service.number}</span>
+                        <span style={{ fontFamily: "Figtree, sans-serif", fontSize: "18px", fontWeight: 400, color: "#F5F2EC", lineHeight: 1.2 }}>{service.title}</span>
+                      </div>
+                      <span style={{ color: "rgba(200,169,106,0.7)", fontSize: "20px", flexShrink: 0, marginLeft: "16px", transform: isOpen ? "rotate(45deg)" : "rotate(0deg)", transition: "transform 0.3s ease", display: "block" }}>+</span>
+                    </button>
+                    {/* Expanded content */}
+                    {isOpen && (
+                      <div style={{ paddingBottom: "24px" }}>
+                        <p style={{ fontFamily: "Manrope, sans-serif", fontSize: "14px", fontWeight: 300, color: "rgba(245,242,236,0.5)", lineHeight: 1.75, marginBottom: "22px" }}>{service.description}</p>
+                        <Link to={service.link} className="btn-secondary" style={{ borderRadius: "8px", padding: "10px 22px", display: "inline-block" }} data-testid={`service-cta-${i}`}>Explore This Work</Link>
+                      </div>
+                    )}
+                  </div>
+                );
+              })}
+              <div style={{ borderTop: "1px solid rgba(245,242,236,0.10)" }} />
             </div>
           ) : (
           <div

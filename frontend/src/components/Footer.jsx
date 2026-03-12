@@ -2,6 +2,9 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { useLanguage } from "../context/LanguageContext";
 
+const LOGO_DARK =
+  "https://customer-assets.emergentagent.com/job_nervous-system-exec/artifacts/qn22a37e_Cornelia%20Trompke%20Logo%20Vertical-01.png";
+
 const Footer = () => {
   const { t } = useLanguage();
 
@@ -19,10 +22,10 @@ const Footer = () => {
           <div className="md:col-span-5">
             <Link to="/" className="inline-block mb-8 no-underline" data-testid="footer-logo">
               <img
-                src="/ct-logo-nav.png"
+                src={LOGO_DARK}
                 alt="Cornelia Trompke Consulting & Coaching"
                 style={{
-                  height: "38px",
+                  height: "44px",
                   width: "auto",
                   objectFit: "contain",
                   display: "block",
