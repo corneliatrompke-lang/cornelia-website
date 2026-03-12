@@ -410,7 +410,7 @@ const About = () => {
           {/* Vertical credential rows — integral coaching pattern */}
           <div className="w-full max-w-[860px]" data-testid="credentials-list">
             {a.credentials.items.map((item, i) => {
-              const bgOpacity = 0.12 + (i / (a.credentials.items.length - 1)) * 0.18;
+              const bgOpacity = [0.20, 0.26, 0.32, 0.40][i] ?? 0.20;
               const isLast = i === a.credentials.items.length - 1;
               return (
                 <ScrollReveal key={i} delay={0.08 * i}>
