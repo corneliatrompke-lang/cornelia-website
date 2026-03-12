@@ -37,9 +37,13 @@ const AppContent = () => (
         <Route path="/method" element={<Method />} />
         <Route path="/work-with-me" element={<WorkWithMe />} />
         <Route path="/work-with-me/executive-coaching" element={<ExecutiveCoaching />} />
+        <Route path="/executive-coaching" element={<ExecutiveCoaching />} />
         <Route path="/work-with-me/meditation-retreat" element={<MeditationRetreat />} />
+        <Route path="/executive-retreats" element={<MeditationRetreat />} />
         <Route path="/work-with-me/team-facilitation" element={<TeamFacilitation />} />
+        <Route path="/leadership-team-facilitation" element={<TeamFacilitation />} />
         <Route path="/work-with-me/organisational-advisory" element={<OrganizationalAdvisory />} />
+        <Route path="/organizational-advisory" element={<OrganizationalAdvisory />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/legal" element={<Legal />} />
       </Routes>

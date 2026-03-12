@@ -114,9 +114,9 @@ const NarmDiagram = ({ layers }) => (
 
 // Service links for each accordion item (in order)
 const ACCORDION_SERVICE_LINKS = [
-  { label: "Explore Executive Coaching", to: "/work-with-me/executive-coaching" },
-  { label: "Explore Team Facilitation", to: "/work-with-me/team-facilitation" },
-  { label: "Explore Organisational Advisory", to: "/work-with-me/organisational-advisory" },
+  { label: "Explore Executive Coaching", to: "/executive-coaching" },
+  { label: "Explore Team Facilitation", to: "/leadership-team-facilitation" },
+  { label: "Explore Organisational Advisory", to: "/organizational-advisory" },
 ];
 
 // ─── Page ─────────────────────────────────────────────────────────────────────

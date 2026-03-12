@@ -118,6 +118,20 @@ Create a cinematic editorial luxury marketing website for Cornelia Trompke — a
 
 ## What's Been Implemented (March 2026)
 
+### v2.3 — Navigation & URL Slug Refactor (Mar 2026)
+1. **Header — "Contact / Apply" removed** from the middle nav pill links. Desktop nav now ends with the "Work With Me" dropdown.
+2. **Header CTA copy** changed from `{t.nav.contact}` ("Contact / Apply") to new `t.nav.cta` key ("Begin an Enquiry" / "Anfrage starten" in DE). CTA is action-oriented and distinct from nav.
+3. **Service names updated** in en.js, de.js:
+   - "1:1 Executive Coaching" → "Executive Coaching & Advisory"
+   - "Executive Meditation Retreat" → "Executive Retreats"
+   - "Leadership Team Facilitation" → unchanged
+   - "Organisational Transformation Advisory" → "Organizational Advisory for People & Culture Transformation"
+4. **URL slugs cleaned** — removed `/work-with-me/` prefix from all service page routes:
+   - `/executive-coaching`, `/executive-retreats`, `/leadership-team-facilitation`, `/organizational-advisory`
+   - Old `/work-with-me/*` routes kept as fallbacks (backward compatibility)
+5. **Method.jsx** 3 hardcoded service links updated to new slugs.
+6. **Navigation `isServicesActive`** updated to match both `/work-with-me` and new root-level service slugs.
+
 ### v2.2 — OrganizationalAdvisory Layout Fixes (Mar 2026)
 1. **Equal-Length Dividers in "The Work" (Three Dimensions) section:** Root cause was `borderRight` applied to inner `<div>`s inside `ScrollReveal` wrappers — those only span content height, not cell height. Fix: changed the CSS grid from `"1fr 1fr 1fr"` to `"1fr 1px 1fr 1px 1fr"` and added dedicated `1px`-wide separator `<div>`s as grid children. CSS Grid's default `align-items: stretch` makes them naturally span the full row height, creating visually equal dividers.
 2. **"The Process" section — Horizontal Accordion:** Replaced the static 3-column grid with the hover-expand accordion pattern from `TeamFacilitation.jsx`'s "The Work" section. Fixed height `420px`, each phase collapses to a rotated vertical title + faint number, expands on hover to reveal full content. Added `activePhase` state.

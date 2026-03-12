@@ -25,7 +25,8 @@ const Navigation = () => {
   }, [location]);
 
   const isActive = (path) => location.pathname === path;
-  const isServicesActive = location.pathname.startsWith("/work-with-me");
+  const isServicesActive = location.pathname.startsWith("/work-with-me") ||
+    ["/executive-coaching", "/executive-retreats", "/leadership-team-facilitation", "/organizational-advisory"].includes(location.pathname);
 
   return (
     <>
@@ -120,17 +121,13 @@ const Navigation = () => {
                 )}
               </AnimatePresence>
             </div>
-
-            <Link to="/contact" className={`nav-pill-link ${isActive("/contact") ? "active" : ""}`} data-testid="nav-contact">
-              {t.nav.contact}
-            </Link>
           </div>
 
           {/* ── RIGHT: CTA → Language switcher (desktop) ── */}
           <div className="hidden lg:flex items-center gap-3 flex-shrink-0">
             {/* CTA — first */}
             <Link to="/contact" className="nav-cta-pill" data-testid="nav-cta-btn">
-              {t.nav.contact}
+              {t.nav.cta}
             </Link>
 
             {/* Language switcher — extreme right */}
