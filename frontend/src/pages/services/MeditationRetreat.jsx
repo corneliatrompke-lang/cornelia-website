@@ -280,12 +280,12 @@ const MeditationRetreat = () => {
   }, [testimonials.length]);
 
   return (
-    <div className="bg-[#F5F2EC]">
+    <div className="bg-[#0F1A12]">
 
       {/* ══ 1. HERO ══════════════════════════════════════════════════════════ */}
       <section
         className="pt-[6px] px-3 md:px-4 pb-3"
-        style={{ background: "#F5F2EC" }}
+        style={{ background: "#0F1A12" }}
         data-testid="retreat-hero"
       >
         <div
@@ -373,20 +373,20 @@ const MeditationRetreat = () => {
       </section>
 
       {/* ══ 2. THE INVITATION — Ivory, editorial two-column ══════════════════ */}
-      <section className="ct-section" style={{ background: "#F5F2EC" }} data-testid="retreat-invitation">
+      <section className="ct-section" style={{ background: "#0F1A12" }} data-testid="retreat-invitation">
         <div className="max-w-[1400px] mx-auto px-6 md:px-16">
           <div style={{ display: "flex", gap: "80px", alignItems: "flex-start" }}>
             {/* Left: large pull quote */}
             <div style={{ flex: "0 0 44%" }}>
               <ScrollReveal>
-                <p className="ct-overline text-sage mb-8">The Retreat</p>
+                <p className="ct-overline text-gold/60 mb-8">The Retreat</p>
                 <p
                   style={{
                     fontFamily: "Cormorant Garamond, serif",
                     fontSize: "clamp(32px, 3.8vw, 52px)",
                     fontWeight: 400,
                     fontStyle: "italic",
-                    color: "#121212",
+                    color: "#F5F2EC",
                     lineHeight: 1.25,
                   }}
                 >
@@ -407,7 +407,7 @@ const MeditationRetreat = () => {
                     fontWeight: 500,
                     letterSpacing: "2px",
                     textTransform: "uppercase",
-                    color: "rgba(18,18,18,0.35)",
+                    color: "rgba(245,242,236,0.35)",
                     marginTop: "16px",
                   }}
                 >
@@ -429,7 +429,7 @@ const MeditationRetreat = () => {
                       fontFamily: "Manrope, sans-serif",
                       fontSize: "15px",
                       fontWeight: 300,
-                      color: "rgba(18,18,18,0.55)",
+                      color: "rgba(245,242,236,0.48)",
                       lineHeight: 1.85,
                       marginBottom: "24px",
                     }}
@@ -447,8 +447,7 @@ const MeditationRetreat = () => {
       <section
         className="relative overflow-hidden"
         style={{
-          background:
-            "linear-gradient(to bottom, #F5F2EC 0%, #CDD8C4 22%, #8A9A80 42%, #2A3825 62%, #162018 80%, #0F1A12 100%)",
+          background: "#0F1A12",
           paddingTop: "120px",
           paddingBottom: "140px",
         }}
@@ -463,7 +462,7 @@ const MeditationRetreat = () => {
             fontFamily: "Cormorant Garamond, serif",
             fontSize: "420px",
             fontWeight: 300,
-            color: "rgba(18,18,18,0.025)",
+            color: "rgba(245,242,236,0.025)",
             lineHeight: 1,
             pointerEvents: "none",
             userSelect: "none",
@@ -476,13 +475,13 @@ const MeditationRetreat = () => {
 
           {/* Section heading */}
           <ScrollReveal>
-            <p className="ct-overline text-sage mb-5">The Guide</p>
+            <p className="ct-overline text-gold/60 mb-5">The Guide</p>
             <h2
               style={{
                 fontFamily: "Figtree, sans-serif",
                 fontSize: "clamp(28px, 3.5vw, 46px)",
                 fontWeight: 400,
-                color: "#121212",
+                color: "#F5F2EC",
                 lineHeight: 1.1,
                 maxWidth: "680px",
                 marginBottom: "72px",
@@ -505,9 +504,9 @@ const MeditationRetreat = () => {
                       style={{
                         flex: 1,
                         background: i === 0
-                          ? "rgba(18,18,18,0.05)"
+                          ? "rgba(245,242,236,0.05)"
                           : "rgba(200,169,106,0.07)",
-                        border: "1px solid rgba(18,18,18,0.08)",
+                        border: "1px solid rgba(245,242,236,0.08)",
                         padding: "32px 28px",
                         marginRight: "2px",
                       }}
@@ -517,7 +516,7 @@ const MeditationRetreat = () => {
                           fontFamily: "Cormorant Garamond, serif",
                           fontSize: "clamp(56px, 6vw, 80px)",
                           fontWeight: 300,
-                          color: i === 0 ? "#121212" : "#C8A96A",
+                          color: i === 0 ? "#F5F2EC" : "#C8A96A",
                           lineHeight: 1,
                           marginBottom: "12px",
                         }}
@@ -531,7 +530,7 @@ const MeditationRetreat = () => {
                           fontWeight: 400,
                           letterSpacing: "1.5px",
                           textTransform: "uppercase",
-                          color: "rgba(18,18,18,0.45)",
+                          color: "rgba(245,242,236,0.45)",
                           lineHeight: 1.6,
                           whiteSpace: "pre-line",
                         }}
@@ -570,7 +569,7 @@ const MeditationRetreat = () => {
                     fontSize: "clamp(20px, 2.2vw, 28px)",
                     fontWeight: 400,
                     fontStyle: "italic",
-                    color: "rgba(15,26,18,0.62)",
+                    color: "rgba(245,242,236,0.55)",
                     lineHeight: 1.45,
                     maxWidth: "480px",
                   }}
@@ -655,7 +654,7 @@ const MeditationRetreat = () => {
                       fontFamily: "Manrope, sans-serif",
                       fontSize: "14px",
                       fontWeight: 300,
-                      color: "rgba(18,18,18,0.52)",
+                      color: "rgba(245,242,236,0.45)",
                       lineHeight: 1.85,
                       marginBottom: "22px",
                     }}
@@ -1067,7 +1066,7 @@ const MeditationRetreat = () => {
       {/* ══ 6. THE PLACES — Timeline + Upcoming Retreats ═════════════════════ */}
       <section
         className="ct-section"
-        style={{ background: "#F5F2EC" }}
+        style={{ background: "#0F1A12" }}
         data-testid="retreat-places"
       >
         <div className="max-w-[1400px] mx-auto px-6 md:px-16">
@@ -1075,13 +1074,13 @@ const MeditationRetreat = () => {
           {/* Part A: 5-day timeline */}
           <div style={{ marginBottom: "100px" }}>
             <ScrollReveal>
-              <p className="ct-overline text-sage mb-5">The Five Days</p>
+              <p className="ct-overline text-gold/60 mb-5">The Five Days</p>
               <h2
                 style={{
                   fontFamily: "Figtree, sans-serif",
                   fontSize: "clamp(28px, 3.2vw, 44px)",
                   fontWeight: 400,
-                  color: "#121212",
+                  color: "#F5F2EC",
                   lineHeight: 1.1,
                   marginBottom: "64px",
                 }}
@@ -1128,7 +1127,7 @@ const MeditationRetreat = () => {
                           height: "9px",
                           borderRadius: "50%",
                           background: "#C8A96A",
-                          border: "2px solid #F5F2EC",
+                          border: "2px solid #0F1A12",
                           boxShadow: "0 0 0 1px rgba(200,169,106,0.4)",
                         }}
                       />
@@ -1152,7 +1151,7 @@ const MeditationRetreat = () => {
                           fontFamily: "Figtree, sans-serif",
                           fontSize: "clamp(16px, 1.6vw, 20px)",
                           fontWeight: 400,
-                          color: "#121212",
+                          color: "#F5F2EC",
                           lineHeight: 1.2,
                           marginBottom: "12px",
                         }}
@@ -1164,7 +1163,7 @@ const MeditationRetreat = () => {
                           fontFamily: "Manrope, sans-serif",
                           fontSize: "13px",
                           fontWeight: 300,
-                          color: "rgba(18,18,18,0.48)",
+                          color: "rgba(245,242,236,0.45)",
                           lineHeight: 1.75,
                         }}
                       >
@@ -1182,7 +1181,7 @@ const MeditationRetreat = () => {
             style={{
               height: "1px",
               background:
-                "linear-gradient(to right, transparent, rgba(18,18,18,0.12), transparent)",
+                "linear-gradient(to right, transparent, rgba(245,242,236,0.12), transparent)",
               marginBottom: "80px",
             }}
           />
@@ -1203,7 +1202,7 @@ const MeditationRetreat = () => {
                     fontFamily: "Figtree, sans-serif",
                     fontSize: "clamp(22px, 2.8vw, 36px)",
                     fontWeight: 400,
-                    color: "#121212",
+                    color: "#F5F2EC",
                     lineHeight: 1.1,
                   }}
                 >
@@ -1214,7 +1213,7 @@ const MeditationRetreat = () => {
                     fontFamily: "Manrope, sans-serif",
                     fontSize: "12px",
                     fontWeight: 300,
-                    color: "rgba(18,18,18,0.38)",
+                    color: "rgba(245,242,236,0.38)",
                     letterSpacing: "0.08em",
                   }}
                 >
@@ -1227,7 +1226,7 @@ const MeditationRetreat = () => {
               <ScrollReveal key={i} delay={0.1 * i}>
                 <div
                   style={{
-                    borderTop: "1px solid rgba(18,18,18,0.08)",
+                    borderTop: "1px solid rgba(245,242,236,0.08)",
                     padding: "28px 0",
                     display: "flex",
                     alignItems: "center",
@@ -1242,7 +1241,7 @@ const MeditationRetreat = () => {
                         fontFamily: "Cormorant Garamond, serif",
                         fontSize: "22px",
                         fontWeight: 400,
-                        color: "#121212",
+                        color: "#F5F2EC",
                         lineHeight: 1.1,
                       }}
                     >
@@ -1257,7 +1256,7 @@ const MeditationRetreat = () => {
                         fontFamily: "Figtree, sans-serif",
                         fontSize: "16px",
                         fontWeight: 400,
-                        color: "#121212",
+                        color: "#F5F2EC",
                         marginBottom: "4px",
                       }}
                     >
@@ -1268,7 +1267,7 @@ const MeditationRetreat = () => {
                         fontFamily: "Manrope, sans-serif",
                         fontSize: "12px",
                         fontWeight: 300,
-                        color: "rgba(18,18,18,0.42)",
+                        color: "rgba(245,242,236,0.42)",
                       }}
                     >
                       {retreat.duration}
@@ -1331,7 +1330,7 @@ const MeditationRetreat = () => {
             ))}
 
             {/* Bottom border */}
-            <div style={{ borderTop: "1px solid rgba(18,18,18,0.08)" }} />
+            <div style={{ borderTop: "1px solid rgba(245,242,236,0.08)" }} />
           </div>
         </div>
       </section>
