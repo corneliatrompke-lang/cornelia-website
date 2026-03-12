@@ -165,6 +165,7 @@ const ExecutiveCoaching = () => {
 
   // For whom active item
   const [activeForWhom, setActiveForWhom] = useState(null);
+  const [openForWhomMobile, setOpenForWhomMobile] = useState(0);
 
   return (
     <div className="bg-[#0F1A12]">
@@ -246,9 +247,9 @@ const ExecutiveCoaching = () => {
       {/* ══ 2. CORE PREMISE — Ivory ══════════════════════════════════════════ */}
       <section className="ct-section" style={{ background: "#F5F2EC" }} data-testid="coaching-premise">
         <div className="max-w-[1400px] mx-auto px-6 md:px-16">
-          <div style={{ display: "flex", gap: "80px", alignItems: "flex-start" }}>
+          <div style={{ display: "flex", flexDirection: isMobile ? "column" : "row", gap: isMobile ? "32px" : "80px", alignItems: "flex-start" }}>
             {/* Left: pull quote */}
-            <div style={{ flex: "0 0 42%" }}>
+            <div style={{ flex: isMobile ? "none" : "0 0 42%" }}>
               <ScrollReveal>
                 <p className="ct-overline text-sage mb-8">{s.description.overline}</p>
                 <p
@@ -267,7 +268,7 @@ const ExecutiveCoaching = () => {
               </ScrollReveal>
             </div>
             {/* Right: body paragraphs */}
-            <div style={{ flex: 1, paddingTop: "64px" }}>
+            <div style={{ flex: 1, paddingTop: isMobile ? "0" : "64px" }}>
               {s.description.body.split("\n\n").map((para, i) => (
                 <ScrollReveal key={i} delay={0.1 + i * 0.1}>
                   <p
@@ -299,7 +300,7 @@ const ExecutiveCoaching = () => {
         data-testid="coaching-phases"
       >
         {/* Non-sticky heading */}
-        <div className="max-w-[1400px] mx-auto px-6 md:px-16" style={{ paddingTop: "140px", paddingBottom: "80px" }}>
+        <div className="max-w-[1400px] mx-auto px-6 md:px-16" style={{ paddingTop: isMobile ? "64px" : "140px", paddingBottom: isMobile ? "40px" : "80px" }}>
           <ScrollReveal>
             <p className="ct-overline text-sage mb-5">The Engagement Arc</p>
             <h2 style={{ fontFamily: "Figtree, sans-serif", fontSize: "clamp(28px, 3.5vw, 46px)", fontWeight: 400, color: "#121212", lineHeight: 1.1 }}>
@@ -308,71 +309,112 @@ const ExecutiveCoaching = () => {
           </ScrollReveal>
         </div>
 
-        {/* Tall container — drives the scroll */}
-        <div style={{ height: "260vh" }}>
-          <div style={{ position: "sticky", top: 0, height: "100vh", display: "flex", alignItems: "center", overflow: "hidden" }}>
-            <div className="max-w-[1400px] mx-auto px-6 md:px-16 w-full">
-              <div style={{ display: "flex", alignItems: "center", gap: isNarrow ? "32px" : "0" }}>
-
-                {/* Left: circles */}
-                <div style={{ flex: isNarrow ? "0 0 42%" : "0 0 50%", display: "flex", justifyContent: "center", alignItems: "center" }}>
-                  <CirclesViz activePhase={activePhase} size={isNarrow ? 360 : 500} />
+        {isMobile ? (
+          /* ── Mobile: circle on top, all phases stacked below ── */
+          <div className="px-6 pb-16">
+            <div style={{ display: "flex", justifyContent: "center", marginBottom: "40px" }}>
+              <CirclesViz activePhase={2} size={260} />
+            </div>
+            <div>
+              {PHASES.map((phase, i) => (
+                <div
+                  key={i}
+                  style={{
+                    borderTop: i > 0 ? "1px solid rgba(245,242,236,0.1)" : "none",
+                    paddingTop: i > 0 ? "24px" : "0",
+                    paddingBottom: "24px",
+                    paddingLeft: "20px",
+                    borderLeft: "2px solid rgba(200,169,106,0.65)",
+                  }}
+                  data-testid={`phase-row-${i}`}
+                >
+                  <div style={{ display: "flex", alignItems: "baseline", gap: "12px", marginBottom: "8px" }}>
+                    <span style={{ fontFamily: "Manrope, sans-serif", fontSize: "10px", fontWeight: 600, letterSpacing: "2px", textTransform: "uppercase", color: "rgba(200,169,106,0.85)" }}>
+                      {phase.number}
+                    </span>
+                    <span style={{ fontFamily: "Manrope, sans-serif", fontSize: "10px", fontWeight: 400, letterSpacing: "1px", color: "rgba(245,242,236,0.35)", textTransform: "uppercase" }}>
+                      {phase.duration}
+                    </span>
+                  </div>
+                  <h3 style={{ fontFamily: "Figtree, sans-serif", fontSize: "20px", fontWeight: 400, color: "rgba(245,242,236,0.88)", lineHeight: 1.2, marginBottom: "8px" }}>
+                    {phase.label}
+                  </h3>
+                  <p style={{ fontFamily: "Manrope, sans-serif", fontSize: "13px", fontWeight: 300, color: "rgba(245,242,236,0.45)", lineHeight: 1.75 }}>
+                    {phase.description}
+                  </p>
                 </div>
-
-                {/* Right: phase rows */}
-                <div style={{ flex: 1 }}>
-                  {PHASES.map((phase, i) => {
-                    const isActive = activePhase >= i;
-                    const isCurrent = activePhase === i;
-                    return (
-                      <div
-                        key={i}
-                        style={{
-                          borderTop: i > 0 ? "1px solid rgba(245,242,236,0.1)" : "none",
-                          paddingTop: i > 0 ? "32px" : "0",
-                          paddingBottom: "32px",
-                          paddingLeft: "20px",
-                          borderLeft: `2px solid ${isCurrent ? "rgba(200,169,106,0.65)" : isActive ? "rgba(200,169,106,0.3)" : "rgba(200,169,106,0.08)"}`,
-                          transition: "border-color 0.6s ease",
-                        }}
-                        data-testid={`phase-row-${i}`}
-                      >
-                        <div style={{ display: "flex", alignItems: "baseline", gap: "12px", marginBottom: "8px" }}>
-                          <span style={{ fontFamily: "Manrope, sans-serif", fontSize: "10px", fontWeight: 600, letterSpacing: "2px", textTransform: "uppercase", color: isActive ? "rgba(200,169,106,0.85)" : "rgba(200,169,106,0.2)", transition: "color 0.6s ease" }}>
-                            {phase.number}
-                          </span>
-                          <span style={{ fontFamily: "Manrope, sans-serif", fontSize: "10px", fontWeight: 400, letterSpacing: "1px", color: isActive ? "rgba(245,242,236,0.35)" : "rgba(245,242,236,0.12)", textTransform: "uppercase", transition: "color 0.6s ease" }}>
-                            {phase.duration}
-                          </span>
-                        </div>
-                        <h3 style={{ fontFamily: "Figtree, sans-serif", fontSize: "clamp(18px, 2vw, 26px)", fontWeight: 400, color: isActive ? "rgba(245,242,236,0.88)" : "rgba(245,242,236,0.2)", lineHeight: 1.2, transition: "color 0.6s ease" }}>
-                          {phase.label}
-                        </h3>
-                        <AnimatePresence>
-                          {isActive && (
-                            <motion.p
-                              initial={{ opacity: 0, height: 0, marginTop: 0 }}
-                              animate={{ opacity: 1, height: "auto", marginTop: "10px" }}
-                              exit={{ opacity: 0, height: 0, marginTop: 0 }}
-                              transition={{ duration: 0.55, delay: 0.12, ease: "easeOut" }}
-                              style={{ fontFamily: "Manrope, sans-serif", fontSize: "13px", fontWeight: 300, color: "rgba(245,242,236,0.45)", lineHeight: 1.75, overflow: "hidden" }}
-                            >
-                              {phase.description}
-                            </motion.p>
-                          )}
-                        </AnimatePresence>
-                      </div>
-                    );
-                  })}
-                </div>
-
-              </div>
+              ))}
             </div>
           </div>
-        </div>
+        ) : (
+          /* ── Desktop/tablet: sticky scroll animation ── */
+          <>
+            <div style={{ height: "260vh" }}>
+              <div style={{ position: "sticky", top: 0, height: "100vh", display: "flex", alignItems: "center", overflow: "hidden" }}>
+                <div className="max-w-[1400px] mx-auto px-6 md:px-16 w-full">
+                  <div style={{ display: "flex", alignItems: "center", gap: isNarrow ? "32px" : "0" }}>
 
-        {/* Bottom spacer so section ends cleanly */}
-        <div style={{ paddingBottom: "80px" }} />
+                    {/* Left: circles */}
+                    <div style={{ flex: isNarrow ? "0 0 42%" : "0 0 50%", display: "flex", justifyContent: "center", alignItems: "center" }}>
+                      <CirclesViz activePhase={activePhase} size={isNarrow ? 360 : 500} />
+                    </div>
+
+                    {/* Right: phase rows */}
+                    <div style={{ flex: 1 }}>
+                      {PHASES.map((phase, i) => {
+                        const isActive = activePhase >= i;
+                        const isCurrent = activePhase === i;
+                        return (
+                          <div
+                            key={i}
+                            style={{
+                              borderTop: i > 0 ? "1px solid rgba(245,242,236,0.1)" : "none",
+                              paddingTop: i > 0 ? "32px" : "0",
+                              paddingBottom: "32px",
+                              paddingLeft: "20px",
+                              borderLeft: `2px solid ${isCurrent ? "rgba(200,169,106,0.65)" : isActive ? "rgba(200,169,106,0.3)" : "rgba(200,169,106,0.08)"}`,
+                              transition: "border-color 0.6s ease",
+                            }}
+                            data-testid={`phase-row-${i}`}
+                          >
+                            <div style={{ display: "flex", alignItems: "baseline", gap: "12px", marginBottom: "8px" }}>
+                              <span style={{ fontFamily: "Manrope, sans-serif", fontSize: "10px", fontWeight: 600, letterSpacing: "2px", textTransform: "uppercase", color: isActive ? "rgba(200,169,106,0.85)" : "rgba(200,169,106,0.2)", transition: "color 0.6s ease" }}>
+                                {phase.number}
+                              </span>
+                              <span style={{ fontFamily: "Manrope, sans-serif", fontSize: "10px", fontWeight: 400, letterSpacing: "1px", color: isActive ? "rgba(245,242,236,0.35)" : "rgba(245,242,236,0.12)", textTransform: "uppercase", transition: "color 0.6s ease" }}>
+                                {phase.duration}
+                              </span>
+                            </div>
+                            <h3 style={{ fontFamily: "Figtree, sans-serif", fontSize: "clamp(18px, 2vw, 26px)", fontWeight: 400, color: isActive ? "rgba(245,242,236,0.88)" : "rgba(245,242,236,0.2)", lineHeight: 1.2, transition: "color 0.6s ease" }}>
+                              {phase.label}
+                            </h3>
+                            <AnimatePresence>
+                              {isActive && (
+                                <motion.p
+                                  initial={{ opacity: 0, height: 0, marginTop: 0 }}
+                                  animate={{ opacity: 1, height: "auto", marginTop: "10px" }}
+                                  exit={{ opacity: 0, height: 0, marginTop: 0 }}
+                                  transition={{ duration: 0.55, delay: 0.12, ease: "easeOut" }}
+                                  style={{ fontFamily: "Manrope, sans-serif", fontSize: "13px", fontWeight: 300, color: "rgba(245,242,236,0.45)", lineHeight: 1.75, overflow: "hidden" }}
+                                >
+                                  {phase.description}
+                                </motion.p>
+                              )}
+                            </AnimatePresence>
+                          </div>
+                        );
+                      })}
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+            {/* Bottom spacer so section ends cleanly */}
+            <div style={{ paddingBottom: "80px" }} />
+          </>
+        )}
+
       </div>
 
       {/* ══ 4. WHAT YOU RECEIVE — dark→light gradient ════════════════════════ */}
@@ -410,17 +452,17 @@ const ExecutiveCoaching = () => {
                       {item.number}
                     </span>
                   </div>
-                  <div
+                <div
                     style={{
-                      flex: 1, padding: "22px 32px",
+                      flex: 1, padding: isMobile ? "16px 20px" : "22px 32px",
                       background: `rgba(200,169,106,${bgOpacity})`,
                       border: "1px solid rgba(200,169,106,0.1)",
                       borderLeft: "none",
-                      display: "flex", gap: "40px", alignItems: "baseline",
+                      display: "flex", flexDirection: isMobile ? "column" : "row", gap: isMobile ? "8px" : "40px", alignItems: isMobile ? "flex-start" : "baseline",
                     }}
                   >
                     <p
-                      style={{ fontFamily: "Figtree, sans-serif", fontSize: "16px", fontWeight: 400, color: "rgba(245,242,236,0.82)", flexShrink: 0, minWidth: "260px" }}
+                      style={{ fontFamily: "Figtree, sans-serif", fontSize: "16px", fontWeight: 400, color: "rgba(245,242,236,0.82)", flexShrink: 0, minWidth: isMobile ? "auto" : "260px" }}
                     >
                       {item.title}
                     </p>
@@ -456,7 +498,34 @@ const ExecutiveCoaching = () => {
             </ScrollReveal>
           </div>
 
-          {/* Horizontal accordion — ivory-adapted colors */}
+          {isMobile ? (
+            /* ── Mobile: vertical expand/collapse accordion ── */
+            <div>
+              {FOR_WHOM_ITEMS.map((item, i) => {
+                const isOpen = openForWhomMobile === i;
+                return (
+                  <div key={i} style={{ borderBottom: "1px solid rgba(18,18,18,0.08)" }} data-testid={`for-whom-item-${i}`}>
+                    <button
+                      onClick={() => setOpenForWhomMobile(isOpen ? null : i)}
+                      style={{ width: "100%", textAlign: "left", padding: "20px 0", background: "none", border: "none", cursor: "pointer", display: "flex", justifyContent: "space-between", alignItems: "center" }}
+                    >
+                      <div style={{ display: "flex", gap: "14px", alignItems: "baseline" }}>
+                        <span style={{ fontFamily: "Manrope, sans-serif", fontSize: "10px", fontWeight: 600, letterSpacing: "0.25em", textTransform: "uppercase", color: "rgba(124,140,130,0.75)", flexShrink: 0 }}>{item.number}</span>
+                        <span style={{ fontFamily: "Figtree, sans-serif", fontSize: "17px", fontWeight: 400, color: "#121212", lineHeight: 1.3 }}>{item.title}</span>
+                      </div>
+                      <span style={{ fontFamily: "Manrope, sans-serif", fontSize: "22px", fontWeight: 300, color: "rgba(18,18,18,0.35)", lineHeight: 1, transform: isOpen ? "rotate(45deg)" : "none", transition: "transform 0.3s ease", flexShrink: 0, marginLeft: "12px" }}>+</span>
+                    </button>
+                    {isOpen && (
+                      <div style={{ paddingBottom: "20px", paddingRight: "16px" }}>
+                        <p style={{ fontFamily: "Manrope, sans-serif", fontSize: "14px", fontWeight: 300, color: "rgba(18,18,18,0.5)", lineHeight: 1.75 }}>{item.body}</p>
+                      </div>
+                    )}
+                  </div>
+                );
+              })}
+            </div>
+          ) : (
+          /* ── Desktop/tablet: horizontal hover accordion ── */
           <div className="flex" style={{ height: "420px", overflow: "hidden" }}>
             {FOR_WHOM_ITEMS.map((item, i) => {
               const isActive = activeForWhom === i;
@@ -502,15 +571,16 @@ const ExecutiveCoaching = () => {
               );
             })}
           </div>
+          )}
         </div>
       </section>
 
       {/* ══ 6. WHAT SHIFTS — Ivory ══════════════════════════════════════════ */}
       <section className="ct-section" style={{ background: "#F5F2EC" }} data-testid="coaching-what-shifts">
         <div className="max-w-[1400px] mx-auto px-6 md:px-16">
-          <div style={{ display: "flex", gap: isNarrow ? "40px" : "80px", alignItems: "flex-start" }}>
+          <div style={{ display: "flex", flexDirection: isMobile ? "column" : "row", gap: isMobile ? "32px" : (isNarrow ? "40px" : "80px"), alignItems: "flex-start" }}>
             {/* Left: heading */}
-            <div style={{ flex: isNarrow ? "0 0 28%" : "0 0 38%" }}>
+            <div style={{ flex: isMobile ? "none" : (isNarrow ? "0 0 28%" : "0 0 38%") }}>
               <ScrollReveal>
                 <p className="ct-overline text-sage mb-5">What Shifts</p>
                 <h2
@@ -664,9 +734,9 @@ const ExecutiveCoaching = () => {
         data-testid="coaching-format"
       >
         <div className="max-w-[1400px] mx-auto px-6 md:px-16">
-          <div style={{ display: "flex", gap: "80px", alignItems: "flex-start" }}>
+          <div style={{ display: "flex", flexDirection: isMobile ? "column" : "row", gap: isMobile ? "32px" : "80px", alignItems: "flex-start" }}>
             {/* Left: heading */}
-            <div style={{ flex: "0 0 38%" }}>
+            <div style={{ flex: isMobile ? "none" : "0 0 38%" }}>
               <ScrollReveal>
                 <p className="ct-overline text-gold/60 mb-5">{s.format.overline}</p>
                 <h2
@@ -677,7 +747,7 @@ const ExecutiveCoaching = () => {
               </ScrollReveal>
             </div>
             {/* Right: format rows */}
-            <div style={{ flex: 1, paddingTop: "64px" }}>
+            <div style={{ flex: 1, paddingTop: isMobile ? "0" : "64px" }}>
               {s.format.items.map((item, i) => (
                 <ScrollReveal key={i} delay={0.08 * i}>
                   <div
