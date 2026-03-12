@@ -294,11 +294,9 @@ export default function TransformationSection() {
             display: isNarrow ? "grid" : "flex",
             gridTemplateColumns: isNarrow ? "1fr 1fr" : undefined,
             alignItems: isNarrow ? "start" : "flex-start",
-            alignContent: (isNarrow && !isMobile) ? "center" : undefined,
+            alignContent: isNarrow ? "center" : undefined,
             justifyContent: isNarrow ? undefined : "center",
-            columnGap: (isNarrow && !isMobile) ? "16px" : undefined,
-            rowGap: (isNarrow && !isMobile) ? "120px" : undefined,
-            gap: (!isNarrow || isMobile) ? (isMobile ? "12px" : "60px") : undefined,
+            gap: isNarrow ? "16px" : isMobile ? "12px" : "60px",
             paddingLeft: isMobile ? "20px" : "40px",
             paddingRight: isMobile ? "20px" : "40px",
             opacity: finalO,
@@ -315,7 +313,7 @@ export default function TransformationSection() {
                 alignItems: "center",
                 flex: isMobile ? undefined : isNarrow ? undefined : 1,
                 maxWidth: isNarrow ? "none" : "230px",
-                marginTop: isNarrow ? 0 : `${FINAL_STAGGER[i]}px`,
+                marginTop: isNarrow ? (i >= 2 ? "120px" : 0) : `${FINAL_STAGGER[i]}px`,
               }}
             >
               {/* Small number circle */}
