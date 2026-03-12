@@ -399,6 +399,9 @@ const OrganizationalAdvisory = () => {
         </div>
       </section>
 
+      {/* ── Dark cluster: eliminates sub-pixel gaps between consecutive dark sections ─── */}
+      <div style={{ background: "#0F1A12", marginTop: "-2px" }}>
+
       {/* ══ 4. HOW THE WORK UNFOLDS — Deep forest, horizontal accordion ══════ */}
       <section className="ct-section" style={{ background: "#0F1A12" }} data-testid="advisory-process">
         <div className="max-w-[1400px] mx-auto px-6 md:px-16">
@@ -1138,6 +1141,8 @@ const OrganizationalAdvisory = () => {
           </ScrollReveal>
         </div>
       </section>
+
+      </div>{/* end dark cluster */}
 
     </div>
   );
