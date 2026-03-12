@@ -396,7 +396,7 @@ const ExecutiveCoaching = () => {
                       borderLeft: "2px solid rgba(200,169,106,0.4)",
                     }}
                   >
-                    <span style={{ fontFamily: "Manrope, sans-serif", fontSize: "10px", fontWeight: 600, color: "#5C3317", letterSpacing: "1px" }}>
+                    <span style={{ fontFamily: "Manrope, sans-serif", fontSize: "10px", fontWeight: 600, color: "#0F1A12", letterSpacing: "1px" }}>
                       {item.number}
                     </span>
                   </div>
