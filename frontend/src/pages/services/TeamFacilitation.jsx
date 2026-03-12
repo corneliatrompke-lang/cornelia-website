@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion";
 import NeuralCanvas from "../../components/NeuralCanvas";
 import ScrollReveal from "../../components/ScrollReveal";
 import { useLanguage } from "../../context/LanguageContext";
@@ -62,23 +62,47 @@ const WORK_ADDRESSES = [
 const FOR_WHOM_ITEMS = [
   {
     number: "01",
+    subtitle: "A CEO and Their Direct Reports",
     title: "The C-Suite",
-    body: "A CEO whose direct reports are individually capable but not functioning as a unified leadership team. Strong individuals. Weak collective.",
+    benefits: [
+      "Establish shared direction and priorities the whole team can act from",
+      "Surface the dynamics that slow or fragment collective decision-making",
+      "Build communication norms that create clarity, not noise",
+      "Develop the team's capacity to address difficulty directly and constructively",
+    ],
   },
   {
     number: "02",
+    subtitle: "Early Ways of Working at Their Limit",
     title: "The Founder's Team",
-    body: "A founding team whose early ways of working no longer serve the organisation at its current scale. The old trust no longer carries the weight it once did.",
+    benefits: [
+      "Navigate the transition from founder-led culture to a structured leadership team",
+      "Establish shared ownership over direction, rather than individual fiefdoms",
+      "Rebuild trust on a more adult, peer basis",
+      "Create decision-making norms that scale with the organisation",
+    ],
   },
   {
     number: "03",
+    subtitle: "Navigating Significant Organisational Change",
     title: "The Transition Team",
-    body: "A leadership team navigating significant organisational change — merger, restructuring, leadership transition. The team needs to find a new operating centre.",
+    benefits: [
+      "Create stability and shared ground during restructuring, merger, or leadership change",
+      "Manage the anxiety of change without suppressing what needs to be addressed",
+      "Realign around new priorities without losing the team's collective intelligence",
+      "Emerge from the transition as a more coherent leadership body than before",
+    ],
   },
   {
     number: "04",
+    subtitle: "Starting from the Ground Up",
     title: "The New Leadership Body",
-    body: "A newly formed team that needs to build trust, working norms, and shared decision-making from the ground up — before pressure forces the question.",
+    benefits: [
+      "Establish working norms and shared expectations before pressure creates them by force",
+      "Build genuine trust — not assumed, but earned through structured work",
+      "Create clarity on how decisions are made and by whom",
+      "Develop a culture of direct and honest peer communication from the outset",
+    ],
   },
 ];
 
@@ -123,7 +147,7 @@ const TeamFacilitation = () => {
 
   // Accordion states
   const [activeWork, setActiveWork] = useState(null);
-  const [activeForWhom, setActiveForWhom] = useState(null);
+  const [openForWhom, setOpenForWhom] = useState(0);
 
   // Testimonials
   const [activeTestimonial, setActiveTestimonial] = useState(0);
@@ -541,142 +565,151 @@ const TeamFacilitation = () => {
         </div>
       </section>
 
-      {/* ══ 5. FOR WHOM — Deep forest, horizontal accordion ══════════════════ */}
+      {/* ══ 5. FOR WHOM — Deep forest, Method-style vertical selector ════════ */}
       <section className="ct-section" style={{ background: "#0F1A12" }} data-testid="facilitation-for-whom">
         <div className="max-w-[1400px] mx-auto px-6 md:px-16">
-          <div className="max-w-[600px] mx-auto mb-16 text-center">
+
+          {/* Section heading */}
+          <div className="max-w-[680px] mb-20">
             <ScrollReveal>
               <p className="ct-overline text-gold/60 mb-5">For Whom</p>
-              <h2
-                style={{
-                  fontFamily: "Figtree, sans-serif",
-                  fontSize: "clamp(28px, 3.5vw, 46px)",
-                  fontWeight: 400,
-                  color: "#F5F2EC",
-                  lineHeight: 1.1,
-                }}
-              >
+              <h2 style={{ fontFamily: "Figtree, sans-serif", fontSize: "clamp(28px, 3.5vw, 46px)", fontWeight: 400, color: "#F5F2EC" }}>
                 The Teams This Work Serves
               </h2>
             </ScrollReveal>
           </div>
 
-          <div className="flex" style={{ height: "420px", overflow: "hidden" }}>
-            {FOR_WHOM_ITEMS.map((item, i) => {
-              const isActive = activeForWhom === i;
-              return (
-                <div
-                  key={i}
-                  onMouseEnter={() => setActiveForWhom(i)}
-                  onMouseLeave={() => setActiveForWhom(null)}
-                  data-testid={`for-whom-item-${i}`}
-                  style={{
-                    flex: isActive ? 3.5 : 1,
-                    transition: "flex 0.65s cubic-bezier(0.4, 0, 0.2, 1), background 0.4s ease",
-                    position: "relative",
-                    overflow: "hidden",
-                    borderRight: i < FOR_WHOM_ITEMS.length - 1 ? "1px solid rgba(245,242,236,0.07)" : "none",
-                    cursor: "default",
-                    background: isActive ? "rgba(245,242,236,0.04)" : "transparent",
-                  }}
-                >
-                  {/* Collapsed */}
-                  <div
-                    style={{
-                      position: "absolute", inset: 0,
-                      display: "flex", flexDirection: "column", alignItems: "center",
-                      padding: "40px 0",
-                      opacity: isActive ? 0 : 1,
-                      transition: "opacity 0.2s ease",
-                      pointerEvents: "none",
-                    }}
-                  >
-                    <span
-                      style={{
-                        writingMode: "vertical-rl",
-                        transform: "rotate(180deg)",
-                        fontFamily: "Figtree, sans-serif",
-                        fontSize: "clamp(13px, 1.6vw, 18px)",
-                        fontWeight: 400,
-                        letterSpacing: "0.08em",
-                        color: "rgba(245,242,236,0.42)",
-                        flex: 1,
-                        display: "flex",
-                        alignItems: "center",
-                      }}
-                    >
-                      {item.title}
-                    </span>
-                    <span
-                      style={{
-                        fontFamily: "Cormorant Garamond, serif",
-                        fontSize: "28px",
-                        fontWeight: 300,
-                        color: "rgba(245,242,236,0.08)",
-                        lineHeight: 1,
-                        paddingBottom: "4px",
-                      }}
-                    >
-                      {item.number}
-                    </span>
-                  </div>
+          {/* Two-column layout */}
+          <div style={{ display: "flex", alignItems: "flex-start", gap: "0" }}>
 
-                  {/* Expanded */}
+            {/* Left: selector rows (44%) */}
+            <div style={{ flex: "0 0 44%", paddingRight: "80px" }}>
+              {FOR_WHOM_ITEMS.map((item, i) => {
+                const isActive = openForWhom === i;
+                return (
                   <div
+                    key={i}
+                    onClick={() => setOpenForWhom(i)}
+                    data-testid={`for-whom-item-${i}`}
                     style={{
-                      opacity: isActive ? 1 : 0,
-                      transition: "opacity 0.35s ease 0.22s",
-                      padding: "48px 52px",
-                      height: "100%",
-                      display: "flex",
-                      flexDirection: "column",
-                      justifyContent: "flex-end",
-                      minWidth: "380px",
+                      borderTop: i > 0 ? "1px solid rgba(245,242,236,0.10)" : "none",
+                      padding: "28px 0 28px 20px",
+                      cursor: "pointer",
+                      borderLeft: isActive ? "2px solid rgba(200,169,106,0.65)" : "2px solid transparent",
+                      transition: "border-color 0.35s ease",
                     }}
                   >
-                    <span
+                    <p
                       style={{
                         fontFamily: "Manrope, sans-serif",
                         fontSize: "10px",
-                        fontWeight: 600,
-                        letterSpacing: "0.25em",
+                        fontWeight: 500,
+                        letterSpacing: "2.5px",
                         textTransform: "uppercase",
-                        color: "rgba(200,169,106,0.8)",
-                        marginBottom: "20px",
-                        display: "block",
+                        color: isActive ? "rgba(200,169,106,0.85)" : "rgba(200,169,106,0.28)",
+                        marginBottom: "10px",
+                        transition: "color 0.35s",
                       }}
                     >
-                      {item.number}
-                    </span>
+                      {item.subtitle}
+                    </p>
                     <h3
                       style={{
                         fontFamily: "Figtree, sans-serif",
-                        fontSize: "clamp(20px, 2vw, 28px)",
+                        fontSize: "clamp(20px, 2.4vw, 32px)",
                         fontWeight: 400,
-                        color: "#F5F2EC",
-                        lineHeight: 1.2,
-                        marginBottom: "18px",
-                        maxWidth: "360px",
+                        color: isActive ? "#F5F2EC" : "rgba(245,242,236,0.32)",
+                        transition: "color 0.35s",
+                        lineHeight: 1.15,
                       }}
                     >
                       {item.title}
                     </h3>
+                  </div>
+                );
+              })}
+            </div>
+
+            {/* Thin vertical divider */}
+            <div style={{ width: "1px", background: "rgba(245,242,236,0.08)", flexShrink: 0, alignSelf: "stretch" }} />
+
+            {/* Right: benefits panel (56%) — sticky */}
+            <div style={{ flex: 1, paddingLeft: "80px", position: "sticky", top: "100px" }}>
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={openForWhom}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -12 }}
+                  transition={{ duration: 0.45, ease: [0.25, 0.46, 0.45, 0.94] }}
+                >
+                  <div style={{ marginBottom: "32px" }}>
                     <p
                       style={{
                         fontFamily: "Manrope, sans-serif",
-                        fontSize: "14px",
-                        fontWeight: 300,
-                        color: "rgba(227,222,215,0.55)",
-                        lineHeight: 1.75,
-                        maxWidth: "360px",
+                        fontSize: "10px",
+                        fontWeight: 500,
+                        letterSpacing: "2.5px",
+                        textTransform: "uppercase",
+                        color: "rgba(200,169,106,0.5)",
                       }}
                     >
-                      {item.body}
+                      What this addresses
                     </p>
                   </div>
-                </div>
-              );
-            })}
+                  <div style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
+                    {FOR_WHOM_ITEMS[openForWhom].benefits.map((benefit, j) => (
+                      <motion.div
+                        key={j}
+                        initial={{ opacity: 0, x: 14 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ delay: j * 0.07, duration: 0.38, ease: "easeOut" }}
+                        style={{ display: "flex", gap: "18px", alignItems: "baseline" }}
+                      >
+                        <span
+                          style={{
+                            fontFamily: "Cormorant Garamond, serif",
+                            fontSize: "18px",
+                            color: "rgba(200,169,106,0.4)",
+                            flexShrink: 0,
+                            lineHeight: 1,
+                          }}
+                        >
+                          —
+                        </span>
+                        <p
+                          style={{
+                            fontFamily: "Manrope, sans-serif",
+                            fontSize: "14px",
+                            fontWeight: 300,
+                            color: "rgba(227,222,215,0.65)",
+                            lineHeight: 1.8,
+                          }}
+                        >
+                          {benefit}
+                        </p>
+                      </motion.div>
+                    ))}
+                  </div>
+                  <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: 0.55, duration: 0.4 }}
+                    style={{ marginTop: "36px" }}
+                  >
+                    <Link
+                      to="/contact"
+                      className="btn-primary inline-block"
+                      style={{ borderRadius: "8px" }}
+                      data-testid={`for-whom-cta-${openForWhom}`}
+                    >
+                      Begin the Conversation
+                    </Link>
+                  </motion.div>
+                </motion.div>
+              </AnimatePresence>
+            </div>
+
           </div>
         </div>
       </section>
@@ -684,7 +717,7 @@ const TeamFacilitation = () => {
       {/* ══ 6. WHAT CHANGES — Forest → Ivory gradient ════════════════════════ */}
       <section
         className="ct-section"
-        style={{ background: OUTCOME_GRADIENT }}
+        style={{ background: "#0F1A12" }}
         data-testid="facilitation-outcome"
       >
         <div className="max-w-[1400px] mx-auto px-6 md:px-16">
@@ -805,11 +838,12 @@ const TeamFacilitation = () => {
         </div>
       </section>
 
-      {/* ══ 7. TESTIMONIALS — Ivory bg, charcoal card ════════════════════════ */}
-      <section className="ct-section" style={{ background: "#F5F2EC" }} data-testid="facilitation-testimonials">
-        <div className="max-w-[1400px] mx-auto px-6 md:px-16">
+      {/* ══ 7. TESTIMONIALS — Deep forest, glassmorphic card ════════════════ */}
+      <section className="ct-section relative overflow-hidden" style={{ background: "#0F1A12" }} data-testid="facilitation-testimonials">
+        <NeuralCanvas opacity={0.05} nodeCount={28} />
+        <div className="relative z-10 max-w-[1400px] mx-auto px-6 md:px-16">
           <ScrollReveal>
-            <p className="ct-overline mb-10" style={{ color: "rgba(18,18,18,0.35)" }}>
+            <p className="ct-overline text-gold/60 mb-10">
               {t.home.testimonials.overline}
             </p>
           </ScrollReveal>
@@ -818,7 +852,7 @@ const TeamFacilitation = () => {
               style={{
                 display: "flex",
                 minHeight: "400px",
-                background: "rgba(18,18,18,0.95)",
+                background: "rgba(245,242,236,0.04)",
                 backdropFilter: "blur(22px)",
                 WebkitBackdropFilter: "blur(22px)",
                 border: "1px solid rgba(200,169,106,0.12)",
@@ -946,7 +980,7 @@ const TeamFacilitation = () => {
                     height: i === activeTestimonial ? "68px" : "56px",
                     borderRadius: "50%",
                     overflow: "hidden",
-                    border: i === activeTestimonial ? "2px solid #C8A96A" : "2px solid rgba(18,18,18,0.12)",
+                    border: i === activeTestimonial ? "2px solid #C8A96A" : "2px solid rgba(245,242,236,0.15)",
                     transform: i === activeTestimonial ? "translateY(-12px)" : "translateY(0)",
                     transition: "all 0.45s cubic-bezier(0.4, 0, 0.2, 1)",
                     flexShrink: 0,
@@ -966,7 +1000,7 @@ const TeamFacilitation = () => {
                     fontWeight: 500,
                     letterSpacing: "0.14em",
                     textTransform: "uppercase",
-                    color: i === activeTestimonial ? "#121212" : "rgba(18,18,18,0.32)",
+                    color: i === activeTestimonial ? "#F5F2EC" : "rgba(245,242,236,0.35)",
                     transition: "color 0.4s ease",
                     textAlign: "center",
                     maxWidth: "88px",
@@ -982,14 +1016,21 @@ const TeamFacilitation = () => {
         <style>{`@keyframes progressSlide { from { width: 0%; } to { width: 100%; } }`}</style>
       </section>
 
-      {/* ══ 8. FINAL CTA — Ivory ════════════════════════════════════════════ */}
-      <section className="ct-section" style={{ background: "#F5F2EC" }} data-testid="facilitation-cta">
-        <div className="max-w-[760px] mx-auto px-6">
+      {/* ══ 8. FINAL CTA — Forest → Ivory gradient ══════════════════════════ */}
+      <section
+        className="ct-section relative overflow-hidden"
+        style={{ background: "linear-gradient(to bottom, #0F1A12 0%, #162018 25%, #2A3825 48%, #8A9A80 68%, #CDD8C4 85%, #F5F2EC 100%)" }}
+        data-testid="facilitation-cta"
+      >
+        <NeuralCanvas opacity={0.04} nodeCount={20} />
+        <div className="relative z-10 max-w-[760px] mx-auto px-6">
           <ScrollReveal>
             <div
               style={{
-                background: "rgba(15,26,18,0.055)",
-                border: "1px solid rgba(15,26,18,0.13)",
+                background: "rgba(15,26,18,0.92)",
+                backdropFilter: "blur(24px)",
+                WebkitBackdropFilter: "blur(24px)",
+                border: "1px solid rgba(200,169,106,0.22)",
                 borderRadius: "20px",
                 padding: "80px 72px",
                 textAlign: "center",
@@ -1010,7 +1051,7 @@ const TeamFacilitation = () => {
                     fontSize: "clamp(28px, 3.5vw, 44px)",
                     fontWeight: 400,
                     lineHeight: 1.1,
-                    color: "#121212",
+                    color: "#F5F2EC",
                   }}
                 >
                   When Your Team Is Ready
@@ -1020,7 +1061,7 @@ const TeamFacilitation = () => {
                     fontFamily: "Manrope, sans-serif",
                     fontSize: "15px",
                     fontWeight: 300,
-                    color: "rgba(18,18,18,0.48)",
+                    color: "rgba(227,222,215,0.45)",
                     lineHeight: 1.75,
                     marginTop: "18px",
                   }}
@@ -1029,7 +1070,7 @@ const TeamFacilitation = () => {
                 </p>
                 <Link
                   to="/contact"
-                  className="btn-dark inline-block"
+                  className="btn-secondary inline-block"
                   style={{ marginTop: "40px", borderRadius: "8px" }}
                   data-testid="facilitation-apply-btn"
                 >
