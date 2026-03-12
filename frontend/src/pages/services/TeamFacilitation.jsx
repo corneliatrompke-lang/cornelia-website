@@ -330,90 +330,78 @@ const TeamFacilitation = () => {
             </h2>
           </ScrollReveal>
 
-          {/* Phases — horizontal editorial */}
-          {PROCESS_PHASES.map((phase, i) => (
-            <React.Fragment key={i}>
-              <ScrollReveal delay={0.14 * i}>
+          {/* Phases — two columns side by side, content vertical inside each */}
+          <ScrollReveal>
+            <div
+              style={{
+                display: "grid",
+                gridTemplateColumns: "1fr 1fr",
+                borderTop: "1px solid rgba(245,242,236,0.12)",
+              }}
+            >
+              {PROCESS_PHASES.map((phase, i) => (
                 <div
+                  key={i}
                   style={{
-                    display: "flex",
-                    gap: "clamp(40px, 6vw, 100px)",
-                    alignItems: "flex-start",
-                    borderTop: "1px solid rgba(245,242,236,0.12)",
-                    paddingTop: "72px",
-                    paddingBottom: i < PROCESS_PHASES.length - 1 ? "72px" : "0",
+                    paddingTop: "64px",
+                    paddingRight: i === 0 ? "clamp(40px, 6vw, 80px)" : "0",
+                    paddingLeft: i === 1 ? "clamp(40px, 6vw, 80px)" : "0",
+                    borderRight: i === 0 ? "1px solid rgba(245,242,236,0.10)" : "none",
                   }}
                   data-testid={`process-phase-${i}`}
                 >
-                  {/* Left: decorative number + title */}
-                  <div style={{ flex: "0 0 42%" }}>
-                    <span
-                      style={{
-                        fontFamily: "Cormorant Garamond, serif",
-                        fontSize: "clamp(80px, 10vw, 120px)",
-                        fontWeight: 300,
-                        color: "rgba(200,169,106,0.10)",
-                        lineHeight: 1,
-                        display: "block",
-                        marginBottom: "-8px",
-                        letterSpacing: "-2px",
-                      }}
-                    >
-                      {phase.number}
-                    </span>
-                    <h3
-                      style={{
-                        fontFamily: "Figtree, sans-serif",
-                        fontSize: "clamp(24px, 2.8vw, 38px)",
-                        fontWeight: 400,
-                        color: "rgba(245,242,236,0.92)",
-                        lineHeight: 1.12,
-                        marginBottom: "12px",
-                      }}
-                    >
-                      {phase.title}
-                    </h3>
-                    <p
-                      style={{
-                        fontFamily: "Cormorant Garamond, serif",
-                        fontSize: "17px",
-                        fontStyle: "italic",
-                        color: "rgba(200,169,106,0.55)",
-                      }}
-                    >
-                      {phase.subtitle}
-                    </p>
-                  </div>
-
-                  {/* Right: description */}
-                  <div style={{ flex: 1, paddingTop: "88px" }}>
-                    <p
-                      style={{
-                        fontFamily: "Manrope, sans-serif",
-                        fontSize: "14px",
-                        fontWeight: 300,
-                        color: "rgba(245,242,236,0.52)",
-                        lineHeight: 1.9,
-                      }}
-                    >
-                      {phase.description}
-                    </p>
-                  </div>
+                  <span
+                    style={{
+                      fontFamily: "Cormorant Garamond, serif",
+                      fontSize: "clamp(72px, 9vw, 110px)",
+                      fontWeight: 300,
+                      color: "rgba(200,169,106,0.10)",
+                      lineHeight: 1,
+                      display: "block",
+                      marginBottom: "-6px",
+                      letterSpacing: "-2px",
+                    }}
+                  >
+                    {phase.number}
+                  </span>
+                  <h3
+                    style={{
+                      fontFamily: "Figtree, sans-serif",
+                      fontSize: "clamp(22px, 2.4vw, 34px)",
+                      fontWeight: 400,
+                      color: "rgba(245,242,236,0.92)",
+                      lineHeight: 1.12,
+                      marginBottom: "12px",
+                    }}
+                  >
+                    {phase.title}
+                  </h3>
+                  <p
+                    style={{
+                      fontFamily: "Cormorant Garamond, serif",
+                      fontSize: "16px",
+                      fontStyle: "italic",
+                      color: "rgba(200,169,106,0.55)",
+                      marginBottom: "28px",
+                    }}
+                  >
+                    {phase.subtitle}
+                  </p>
+                  <p
+                    style={{
+                      fontFamily: "Manrope, sans-serif",
+                      fontSize: "14px",
+                      fontWeight: 300,
+                      color: "rgba(245,242,236,0.52)",
+                      lineHeight: 1.9,
+                    }}
+                  >
+                    {phase.description}
+                  </p>
                 </div>
-              </ScrollReveal>
-
-              {/* Connector arrow between phases */}
-              {i === 0 && (
-                <div style={{ display: "flex", alignItems: "center", gap: "14px", padding: "28px 0", maxWidth: "820px" }}>
-                  <div style={{ flex: 1, height: "1px", background: "rgba(200,169,106,0.15)" }} />
-                  <svg width="10" height="14" viewBox="0 0 10 14" fill="none">
-                    <path d="M5 0V12M5 12L1 8M5 12L9 8" stroke="rgba(200,169,106,0.38)" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
-                  </svg>
-                  <div style={{ flex: 1, height: "1px", background: "rgba(200,169,106,0.15)" }} />
-                </div>
-              )}
-            </React.Fragment>
-          ))}
+              ))}
+            </div>
+          </ScrollReveal>
         </div>
       </section>
 
@@ -636,7 +624,7 @@ const TeamFacilitation = () => {
             <div style={{ width: "1px", background: "rgba(245,242,236,0.08)", flexShrink: 0, alignSelf: "stretch" }} />
 
             {/* Right: benefits panel (56%) — sticky */}
-            <div style={{ flex: 1, paddingLeft: "80px", position: "sticky", top: "100px" }}>
+            <div style={{ flex: 1, paddingLeft: "80px" }}>
               <AnimatePresence mode="wait">
                 <motion.div
                   key={openForWhom}
