@@ -397,7 +397,7 @@ const About = () => {
                 fontFamily: "Figtree, sans-serif",
                 fontSize: "clamp(24px, 3vw, 38px)",
                 fontWeight: 400,
-                color: "#121212",
+                color: "#5C3317",
                 lineHeight: 1.1,
                 maxWidth: "460px",
                 marginBottom: "90px",
@@ -410,7 +410,7 @@ const About = () => {
           {/* Vertical credential rows — integral coaching pattern */}
           <div className="w-full max-w-[860px]" data-testid="credentials-list">
             {a.credentials.items.map((item, i) => {
-              const bgOpacity = 0.04 + (i / (a.credentials.items.length - 1)) * 0.08;
+              const bgOpacity = 0.12 + (i / (a.credentials.items.length - 1)) * 0.10;
               const isLast = i === a.credentials.items.length - 1;
               return (
                 <ScrollReveal key={i} delay={0.08 * i}>
