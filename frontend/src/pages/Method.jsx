@@ -161,7 +161,7 @@ const Method = () => {
   }, [testimonials.length]);
 
   return (
-    <div className="bg-[#F5F2EC]">
+    <div className="bg-[#0F1A12]">
 
       {/* ══════════════════════════════════════════════════════════════
           1. HERO — same rounded-card layout as Home
