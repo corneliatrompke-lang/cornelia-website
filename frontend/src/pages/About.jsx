@@ -52,10 +52,7 @@ const About = () => {
   };
 
   return (
-    <div>
-
-      {/* ══ Ivory wrapper — seals sub-pixel gaps between adjacent ivory sections ══ */}
-      <div style={{ background: "#F5F2EC" }}>
+    <div style={{ background: "#F5F2EC" }}>
 
       {/* ═══ HERO — rounded card, same as Home / Method / Coaching ═══ */}
       <section
@@ -373,9 +370,6 @@ const About = () => {
           </div>
         </div>
       </section>
-
-
-      </div>{/* end ivory wrapper */}
 
 
       {/* ═══ CREDENTIALS — gradient ivory → forest green (visual bridge) ═══ */}
