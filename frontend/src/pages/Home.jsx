@@ -114,7 +114,9 @@ const Home = () => {
           style={{
             borderRadius: "20px",
             minHeight: "96vh",
+            cursor: showContactForm ? "default" : "default",
           }}
+          onClick={showContactForm ? () => setShowContactForm(false) : undefined}
         >
           {/* Background image — parallax drift */}
           <motion.img
@@ -244,6 +246,7 @@ const Home = () => {
                   animate={{ opacity: 1, x: 0 }}
                   exit={{ opacity: 0, x: "100%" }}
                   transition={{ duration: 0.55, ease: [0.25, 0.46, 0.45, 0.94] }}
+                  onClick={e => e.stopPropagation()}
                   style={{
                     position: "absolute",
                     right: "clamp(24px, 4vw, 56px)",
@@ -914,6 +917,7 @@ const Home = () => {
           background: "linear-gradient(to bottom, #0F1A12 0%, #162018 25%, #2A3825 48%, #8A9A80 68%, #CDD8C4 85%, #F5F2EC 100%)",
         }}
         data-testid="final-cta-section"
+        onClick={showFinalForm ? () => setShowFinalForm(false) : undefined}
       >
         <NeuralCanvas opacity={0.04} nodeCount={22} />
         <div className="relative z-10 max-w-[760px] mx-auto px-6">
@@ -926,6 +930,7 @@ const Home = () => {
                 textAlign: showFinalForm ? "left" : "center",
               }}
               transition={{ duration: 0.45, ease: [0.25, 0.46, 0.45, 0.94] }}
+              onClick={e => e.stopPropagation()}
               style={{
                 background: "rgba(15,26,18,0.60)",
                 backdropFilter: "blur(28px)",
