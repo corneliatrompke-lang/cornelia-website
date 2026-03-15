@@ -712,6 +712,32 @@ const Method = () => {
 
         <style>{`@keyframes progressSlide { from { width: 0%; } to { width: 100%; } }`}</style>
       </section>
+
+      {/* ══ INTRO BRIDGE: Most Leadership Development Doesn't Go Deep Enough ══ */}
+      <section className="ct-section" style={{ background: "#0F1A12" }} data-testid="method-intro">
+        <div className="max-w-[1400px] mx-auto px-6 md:px-16">
+          <div className="max-w-[800px]">
+            <ScrollReveal>
+              <p style={{ fontFamily: "Manrope, sans-serif", fontSize: "10px", fontWeight: 600, letterSpacing: "0.2em", textTransform: "uppercase", color: "#C8A96A", marginBottom: "20px" }}>
+                {m.intro.overline}
+              </p>
+            </ScrollReveal>
+            <ScrollReveal delay={0.08}>
+              <h2 style={{ fontFamily: "Figtree, sans-serif", fontSize: "clamp(28px, 3.5vw, 48px)", fontWeight: 400, color: "#F5F2EC", lineHeight: 1.1, marginBottom: "36px" }} data-testid="method-intro-headline">
+                {m.intro.headline}
+              </h2>
+            </ScrollReveal>
+            {m.intro.body.split("\n\n").map((para, i) => (
+              <ScrollReveal key={i} delay={0.12 + i * 0.06}>
+                <p style={{ fontFamily: "Manrope, sans-serif", fontSize: "15px", fontWeight: 300, color: "rgba(245,242,236,0.55)", lineHeight: 1.85, marginBottom: "20px" }}>
+                  {para}
+                </p>
+              </ScrollReveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
       <section className="ct-section relative overflow-hidden" style={{ background: "#0F1A12" }} data-testid="method-narm-deep">
         <NeuralCanvas opacity={0.07} nodeCount={35} />
         <div className="relative z-10 max-w-[1400px] mx-auto px-6 md:px-16">

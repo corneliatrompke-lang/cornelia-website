@@ -259,7 +259,7 @@ const TeamFacilitation = () => {
                     lineHeight: 1.28,
                   }}
                 >
-                  "In my 1:1 work with leaders, it often becomes clear that challenges are not only individual."
+                  "In my 1:1 work with leaders, it becomes clear again and again that the most persistent challenges are rarely individual — they live in the space between people."
                 </p>
                 <div style={{ width: "40px", height: "1px", background: "rgba(200,169,106,0.5)", marginTop: "36px" }} />
                 <p
@@ -280,9 +280,9 @@ const TeamFacilitation = () => {
             {/* Right: body */}
             <div style={{ flex: 1, paddingTop: isMobile ? "0" : "68px" }}>
               {[
-                "In these situations, I support the team by facilitating structured sessions that help leaders align on priorities, improve communication, address tensions, and strengthen collaboration.",
-                "The aim is to move the leadership team from a group of strong individuals to a synchronised leadership unit — capable of making clear decisions and leading the organisation effectively.",
-                "This work sits alongside and extends the 1:1 work. It operates at the level of the team as a system, not only at the level of each individual within it.",
+                "In my work with leadership teams, I help leaders align on shared priorities, improve how they communicate under pressure, address what has gone unsaid, and build the kind of trust that enables real collective decisions.",
+                "The goal is not harmony for its own sake. It is to move the leadership team from a group of strong individuals — each optimising separately — to a genuinely synchronised leadership body capable of leading the organisation with clarity and authority.",
+                "This work operates at the level of the team as a system, not only at the level of each individual within it. That distinction is everything.",
               ].map((para, i) => (
                 <ScrollReveal key={i} delay={0.08 * i}>
                   <p
@@ -435,7 +435,7 @@ const TeamFacilitation = () => {
                   lineHeight: 1.1,
                 }}
               >
-                Four Dimensions of Team Alignment
+                Four Dimensions of Genuine Team Alignment
               </h2>
             </ScrollReveal>
           </div>
@@ -608,7 +608,7 @@ const TeamFacilitation = () => {
             <ScrollReveal>
               <p className="ct-overline text-gold/60 mb-5">For Whom</p>
               <h2 style={{ fontFamily: "Figtree, sans-serif", fontSize: "clamp(28px, 3.5vw, 46px)", fontWeight: 400, color: "#F5F2EC" }}>
-                The Teams This Work Serves
+                The Teams This Work Is Built For
               </h2>
             </ScrollReveal>
           </div>
@@ -811,7 +811,7 @@ const TeamFacilitation = () => {
                     marginBottom: "28px",
                   }}
                 >
-                  What the Work Creates
+                  What the Work Actually Creates
                 </h2>
                 <p
                   style={{

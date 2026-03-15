@@ -407,7 +407,7 @@ const MeditationRetreat = () => {
                     lineHeight: 1.25,
                   }}
                 >
-                  "Meditation forms a powerful complement to the inner work of the programs."
+                  "Stillness is not a retreat from leadership. It is one of the most powerful tools a leader can develop."
                 </p>
                 <div
                   style={{
@@ -436,9 +436,9 @@ const MeditationRetreat = () => {
             {/* Right: body */}
             <div style={{ flex: 1, paddingTop: isMobile ? "0" : "68px" }}>
               {[
-                "For leaders working with me in the programs, I regularly offer 3–5 day executive meditation retreats. I have been practicing meditation for over 30 years and teaching meditation for more than a decade.",
-                "When practiced correctly, meditation strengthens self-regulation, deepens insight, and supports clarity and innovation. In small groups, these retreats create the space for deeper reflection, nervous system regulation, and renewed perspective away from the demands of daily leadership.",
-                "This is not a wellness retreat or a relaxation break. It is an intensive container for inner work — structured reflection, guided practice, and the kind of dialogue that only becomes possible when the noise of operations falls away.",
+                "For leaders working with me in programmes, I regularly offer 3–5 day executive meditation retreats. I have practiced meditation for over 30 years and have been teaching it to leaders for more than a decade.",
+                "When practiced with real rigour and genuine guidance, meditation strengthens self-regulation, deepens insight, and creates the clarity and cognitive flexibility that leadership at the highest level demands. These retreats create the conditions that daily operational life cannot.",
+                "What I offer in these retreats is not a wellness programme. It is a structured, intelligent, and personally guided introduction to the kind of practice that changes the architecture of how you lead — from the inside out.",
               ].map((para, i) => (
                 <ScrollReveal key={i} delay={0.08 * i}>
                   <p
@@ -505,7 +505,7 @@ const MeditationRetreat = () => {
                 marginBottom: "72px",
               }}
             >
-              Thirty Years of Practice. A Decade of Teaching.
+              Thirty Years of Practice. A Decade of Teaching Leaders.
             </h2>
           </ScrollReveal>
 

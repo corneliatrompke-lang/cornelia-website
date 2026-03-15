@@ -242,7 +242,7 @@ const OrganizationalAdvisory = () => {
                     lineHeight: 1.28,
                   }}
                 >
-                  "Organisations evolve when leadership, people practices, and culture develop together — rarely when only one changes in isolation."
+                  "Organisations evolve when leadership, people practices, and culture develop in the same direction — rarely when only one changes while the others stay fixed."
                 </p>
                 <div style={{ width: "40px", height: "1px", background: "rgba(200,169,106,0.5)", marginTop: "36px" }} />
                 <p
@@ -264,9 +264,9 @@ const OrganizationalAdvisory = () => {
             {/* Right: body */}
             <div style={{ flex: 1, paddingTop: isMobile ? "0" : "68px" }}>
               {[
-                "I support organisations in understanding their current state and identifying the most effective levers for meaningful transformation.",
-                "The work typically begins with stakeholder interviews to understand different perspectives across the organisation. I review existing People & Culture practices, leadership routines, organisational structures, and the intended future state.",
-                "Based on these insights, I develop a presentation outlining potential transformation levers, priority focus areas, and options for supporting the transformation journey.",
+                "My work with organisations addresses the three dimensions that must evolve together for transformation to hold: leadership, people systems, and culture. When only one changes, the system restabilises around its old patterns.",
+                "The engagement typically begins with a listening phase — structured conversations across the organisation to surface what the data cannot capture and what the official narrative consistently leaves out.",
+                "Based on this, I develop a clear picture of where your current systems and practices support the direction you intend — and where they actively work against it. What follows is a frank strategic conversation about what needs to change, and how.",
               ].map((para, i) => (
                 <ScrollReveal key={i} delay={0.08 * i}>
                   <p
@@ -319,7 +319,7 @@ const OrganizationalAdvisory = () => {
                 marginBottom: "100px",
               }}
             >
-              Three Dimensions That Must Evolve Together
+              Three Dimensions That Must Move Together
             </h2>
           </ScrollReveal>
 
@@ -419,7 +419,7 @@ const OrganizationalAdvisory = () => {
                   lineHeight: 1.1,
                 }}
               >
-                Three Phases. One Coherent View.
+                Three Phases. One Coherent Transformation.
               </h2>
             </ScrollReveal>
           </div>
@@ -727,7 +727,7 @@ const OrganizationalAdvisory = () => {
                   color: "#F5F2EC",
                 }}
               >
-                The Organisations This Work Serves
+                The Organisations This Work Is Built For
               </h2>
             </ScrollReveal>
           </div>

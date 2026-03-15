@@ -292,7 +292,19 @@ Footer (from shared Footer component)
 10. Refactor large page components into smaller section components (P2)
 11. Optionally add Calendly booking integration (P1)
 
-### v3.3 — Mobile Layout Fix: About Preview / Method Overlap (Mar 2026)
+### v3.4 — Full Site Copy Refresh (Mar 2026)
+- **Scope**: All pages except About rewritten with bold, warm, welcoming, insightful + SEO-friendly tone
+- **en.js**: Complete rewrite of `home`, `method`, `workWithMe`, `services` (all 4), `contact`, `legal`, `footer` sections; `about` kept untouched
+- **Service page hardcoded arrays updated**:
+  - `ExecutiveCoaching.jsx`: PHASES, WHAT_SHIFTS, FOR_WHOM_ITEMS, "What You Receive" descriptions
+  - `OrganizationalAdvisory.jsx`: DIMENSIONS, PROCESS_PHASES, ENGAGEMENT_ITEMS, FOR_WHOM_ITEMS, pull quote, body paragraphs, section headlines
+  - `TeamFacilitation.jsx`: PROCESS_PHASES, WORK_ADDRESSES, FOR_WHOM_ITEMS, OUTCOME_ROWS, pull quote, body paragraphs, section headlines
+  - `MeditationRetreat.jsx`: WHAT_OPENS, EXPERIENCE_ELEMENTS, TIMELINE_DAYS, pull quote, body paragraphs
+- **Method.jsx**: Added `m.intro` section rendering ("Most Leadership Development Doesn't Go Deep Enough")
+- **SEO keywords** naturally woven in: "executive coaching Berlin", "trauma-informed leadership", "nervous system", "NARM coaching", "leadership team facilitation", "executive retreat Germany"
+- **Tested**: Frontend lint ✅, copy renders across all pages (iteration_12.json reference)
+
+
 - **Root cause**: `marginTop: isNarrow ? "-210px" : undefined` on the Method Teaser section was applied to ALL screens < 1024px including mobile. On mobile, the Venn Diagram shows only a ~15px marquee ticker (not the full 200vh sticky animation), so -210px dragged the Method section 210px into the About Preview section.
 - **Fix**: `marginTop: (!isMobile && isNarrow) ? "-210px" : undefined` — negative margin now only applies at tablet (768–1023px)
 - **Also fixed**: `paddingTop` override now uses `isMobile ? undefined : (isNarrow ? "0" : "32px")`, restoring the ct-section's 72px default top-padding on mobile
