@@ -20,66 +20,66 @@ const DIMENSIONS = [
   {
     number: "01",
     title: "Leadership",
-    subtitle: "How Leaders Operate",
-    body: "Leadership is the primary lever of organisational change. Who leads, how they lead, and what they model creates the conditions — or the constraints — for everything else. We examine leadership maturity, decision-making patterns, and the gap between stated values and enacted behaviour. Where leadership is not aligned with the intended future state, the transformation stalls.",
+    subtitle: "How Leaders Actually Operate",
+    body: "Leadership is the primary lever of every meaningful organisational change. Who leads, how they lead, and what they model creates the conditions — or the constraints — for everything else. We examine leadership maturity, decision-making patterns, and the gap between what is stated and what is actually lived. Where leadership is not genuinely aligned with the intended future, the transformation stalls. Always.",
   },
   {
     number: "02",
     title: "People Systems",
     subtitle: "The Architecture of Work",
-    body: "People practices are the operating system of an organisation. Performance processes, talent frameworks, ways of hiring, developing, and recognising people — these are not administrative functions. They are the structural encoding of what an organisation truly values. We review what your current systems produce, where they constrain the culture you are trying to build, and what needs to change.",
+    body: "People practices are the operating system of your organisation. Performance processes, talent frameworks, how you hire, develop, and recognise people — these are not administrative functions. They are the structural encoding of what the organisation truly values. We examine what your current systems actually produce, where they constrain the culture you are trying to build, and what specifically needs to change.",
   },
   {
     number: "03",
     title: "Culture",
-    subtitle: "What the Organisation Lives",
-    body: "Culture is not a programme or a set of values on a wall. It is the sum of what is rewarded, what is tolerated, and what goes unsaid. Understanding your current culture — honestly — is the foundation for changing it. We examine the lived experience of people across the organisation and identify the patterns, habits, and norms that shape how work actually gets done.",
+    subtitle: "What the Organisation Actually Lives",
+    body: "Culture is not a programme or a set of values printed on a wall. It is the sum of what is rewarded, what is tolerated, and what goes permanently unsaid. Understanding your current culture — honestly, without consolation — is the foundation for changing it. We examine the lived experience of people across the organisation and identify the patterns and norms shaping how work actually gets done.",
   },
 ];
 
 const PROCESS_PHASES = [
   {
     number: "01",
-    title: "Stakeholder Interviews",
-    subtitle: "Understanding Different Perspectives",
+    title: "Stakeholder Conversations",
+    subtitle: "Listening With Real Depth",
     description:
-      "The engagement begins with structured conversations across the organisation — with leadership, managers, and key stakeholders. These interviews surface different perspectives on the current state, the challenges, and the distance between where the organisation is and where it intends to go.",
+      "Before anything is diagnosed or recommended, we listen. Individual conversations across levels of the organisation — designed to surface what the data cannot capture and what the official narrative consistently leaves out.",
   },
   {
     number: "02",
-    title: "Analysis & Review",
-    subtitle: "Mapping What Exists",
+    title: "Systemic Analysis",
+    subtitle: "Mapping What Is Actually Happening",
     description:
-      "I review existing People & Culture practices, leadership routines, organisational structures, and the articulated future state. This creates a clear picture of where your current systems and practices support the intended direction — and where they work against it.",
+      "A rigorous examination of current structures, cultural patterns, and leadership dynamics. Not what the organisation says it is — but what it actually is, beneath the layer of stated intention and curated presentation.",
   },
   {
     number: "03",
     title: "Strategic Guidance",
-    subtitle: "Clarity on the Path Forward",
+    subtitle: "A Clear Path Forward",
     description:
-      "Based on the analysis, I develop a presentation outlining potential transformation levers, priority focus areas, and options for supporting the journey. Where the engagement continues, I provide strategic guidance and regular check-ins to support the teams responsible for implementation.",
+      "Concrete recommendations grounded in what the system can absorb and genuinely sustain. Not a slide deck — but a real advisory presence that stays with the organisation through the full complexity of meaningful change.",
   },
 ];
 
 const ENGAGEMENT_ITEMS = [
-  "Stakeholder interview series across the organisation",
-  "Review of People & Culture practices and leadership routines",
-  "Transformation levers presentation with priority focus areas",
-  "Options for the transformation journey",
-  "Regular strategic check-ins with implementation teams",
-  "Conceptual and strategic guidance throughout",
+  "Stakeholder conversation series across levels of the organisation",
+  "Review of People & Culture practices and leadership routines in depth",
+  "Transformation levers presentation with clear priority focus areas",
+  "Structured options for the transformation journey ahead",
+  "Regular strategic check-ins with the teams driving implementation",
+  "Conceptual and strategic guidance throughout — not just at the beginning",
 ];
 
 const FOR_WHOM_ITEMS = [
   {
     number: "01",
-    subtitle: "Driving Change from Within",
+    subtitle: "Leading Change From the Inside",
     title: "The CHRO / People Leader",
     benefits: [
-      "Create a coherent transformation strategy grounded in the organisation's actual current state",
-      "Build a shared language with leadership for what change requires and what it costs",
-      "Identify where people systems are reinforcing the culture you are trying to move away from",
-      "Develop a clear and credible narrative for the transformation journey",
+      "Build a coherent transformation strategy grounded in the organisation's actual current state — not the intended one",
+      "Create a shared language with leadership for what real change requires and what it genuinely costs",
+      "Identify where people systems are actively reinforcing the culture you are trying to move away from",
+      "Develop a clear, credible, and honest narrative for the transformation journey ahead",
     ],
   },
   {
@@ -88,9 +88,9 @@ const FOR_WHOM_ITEMS = [
     title: "The CEO",
     benefits: [
       "Understand what your organisation actually needs — beyond the symptoms presenting on the surface",
-      "Build alignment across the leadership team on direction and priorities",
-      "Identify where leadership behaviour is the lever — and where systems need to change",
-      "Create a transformation roadmap that is realistic about what the organisation can absorb",
+      "Build genuine alignment across the leadership team on direction, priorities, and what each person is accountable for",
+      "Identify where leadership behaviour is the real lever — and where the systems themselves need to change",
+      "Create a transformation roadmap that is honest and realistic about what the organisation can absorb",
     ],
   },
   {
@@ -98,10 +98,10 @@ const FOR_WHOM_ITEMS = [
     subtitle: "Scaling, Merging, or Reinventing",
     title: "The Organisation at Inflection Point",
     benefits: [
-      "Navigate significant growth, merger, or strategic pivot without losing organisational cohesion",
-      "Align people practices with the organisation you are becoming, not the one you were",
-      "Address the cultural drift that often accompanies rapid scale",
-      "Build the leadership and people infrastructure for the next stage",
+      "Navigate significant growth, merger, or strategic pivot without losing organisational coherence and trust",
+      "Align people practices with the organisation you are genuinely becoming — not the one you were",
+      "Address the cultural drift that almost always accompanies rapid scale before it becomes embedded",
+      "Build the leadership and people infrastructure the next stage of growth actually requires",
     ],
   },
   {
@@ -109,10 +109,10 @@ const FOR_WHOM_ITEMS = [
     subtitle: "Moving Beyond Founder-Led Culture",
     title: "The Scale-up",
     benefits: [
-      "Replace informal people practices with structured systems that support a growing organisation",
-      "Retain what made the company successful while building the infrastructure for scale",
-      "Develop leaders who can manage, not just build",
-      "Create clarity around performance, development, and expectations without losing agility",
+      "Replace informal people practices with structured systems that genuinely support a growing organisation",
+      "Retain what made the company exceptional while building the infrastructure required for scale",
+      "Develop leaders who can manage and lead — not just build and execute",
+      "Create real clarity around performance, development, and expectations without losing the agility that matters",
     ],
   },
 ];

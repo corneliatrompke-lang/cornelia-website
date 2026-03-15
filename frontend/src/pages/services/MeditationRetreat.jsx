@@ -30,28 +30,28 @@ const WHAT_OPENS = [
     number: "01",
     title: "Attention",
     subtitle: "Presence as Precision",
-    body: "Deep practice sharpens the capacity to hold sustained focus in environments of constant fragmentation. Leaders report a qualitative change in the texture of their attention — less reactive, more deliberate.",
+    body: "Deep practice sharpens your capacity to hold sustained focus in environments of constant fragmentation. Leaders who have done this work consistently report a qualitative shift in their attention — less reactive, more deliberate, more genuinely available to what matters.",
     citation: "Harvard Medical School",
   },
   {
     number: "02",
     title: "Emotional Regulation",
     subtitle: "The Regulated Leader",
-    body: "Leaders who regulate their own nervous system change the nervous system of every room they enter. Meditation strengthens the capacity for non-reactive, wise response under even the most demanding conditions.",
+    body: "When you regulate your own nervous system, you change the nervous system of every room you walk into. Meditation builds the genuine capacity for non-reactive, wise response — even under the most demanding and high-stakes conditions you face.",
     citation: "Harvard Medical School",
   },
   {
     number: "03",
     title: "Cognitive Flexibility",
     subtitle: "Space Between Stimulus and Response",
-    body: "Stillness creates the space between stimulus and response where real choice lives. Regular practice improves the ability to shift perspective, hold complexity, and find novel approaches to intractable problems.",
+    body: "Stillness creates the space between stimulus and response where real choice actually lives. Regular practice improves your ability to shift perspective, hold complexity without collapse, and find genuinely novel approaches to the problems that won't budge.",
     citation: "Harvard Business School",
   },
   {
     number: "04",
     title: "Creative Capacity",
-    subtitle: "Solutions From Stillness",
-    body: "The clearest solutions rarely arrive in meeting rooms. They emerge in the silence that follows. Meditation activates the kind of thinking that happens when the analytical mind steps aside and a deeper intelligence becomes available.",
+    subtitle: "Solutions That Come From Stillness",
+    body: "The clearest solutions rarely arrive in meeting rooms. They emerge in the silence that follows. Meditation activates the kind of thinking that becomes available when the analytical mind steps aside and a deeper intelligence has room to speak.",
     citation: "Harvard Business School",
   },
 ];
@@ -62,21 +62,21 @@ const EXPERIENCE_ELEMENTS = [
     label: "Quiet Reflection",
     role: "The Inner Chamber",
     description:
-      "Unstructured hours where the nervous system settles on its own terms. Not forced silence — genuine stillness. Space for what has been waiting, patiently, to be heard.",
+      "Unstructured hours where your nervous system settles on its own terms. Not forced silence — genuine stillness. Space for what has been waiting, patiently and quietly, to finally be heard.",
   },
   {
     number: "02",
     label: "Guided Practice",
     role: "The Architecture",
     description:
-      "Instruction in meditation forms suited to the executive mind. Rigorous, intelligent, and adapted to leaders — whether you have never practiced before or have practiced for years.",
+      "Instruction in meditation forms suited to the executive mind — rigorous, intelligent, and adapted to leaders. Whether you have never practiced before or have practiced for years, the guidance meets you exactly where you are.",
   },
   {
     number: "03",
     label: "Dialogue",
     role: "The Field",
     description:
-      "Small-group conversation that allows insights to settle and deepen. The exchange between participants — at this level of openness — often produces its own kind of clarity.",
+      "Small-group conversation that allows insights to settle and deepen through exchange. The quality of connection between participants — at this level of openness — often produces its own profound kind of clarity.",
   },
 ];
 
@@ -85,31 +85,31 @@ const TIMELINE_DAYS = [
     day: "Day 1",
     title: "Arrival & Settling",
     description:
-      "Evening arrival. First guided session. Transition from operational pace into the conditions for genuine stillness.",
+      "Evening arrival. First guided session together. The transition from operational pace into the conditions for genuine stillness — slower than you expect, and exactly what you need.",
   },
   {
     day: "Day 2",
     title: "Foundation",
     description:
-      "Morning and afternoon practice. Establishing the inner architecture. The nervous system begins to settle.",
+      "Morning and afternoon practice. Establishing the inner architecture. Your nervous system begins to settle in ways that the pace of normal life doesn't permit.",
   },
   {
     day: "Day 3",
     title: "Deepening",
     description:
-      "Extended practice periods. The work goes deeper. Insights begin to emerge in the extended quiet.",
+      "Extended practice periods. The work goes deeper. Insights begin to emerge — not forced, but arising naturally in the extended quiet of a mind that is finally still.",
   },
   {
     day: "Day 4",
     title: "Integration",
     description:
-      "Small-group dialogue. Patterns become visible. Inquiry takes on new depth when met with the stillness of previous days.",
+      "Small-group dialogue. Patterns become visible when shared. Inquiry takes on new depth and honesty when met with the stillness of the previous days.",
   },
   {
     day: "Day 5",
     title: "Return",
     description:
-      "Morning practice. Closing dialogue. Carrying what emerged back into leadership — as changed capacity, not memory.",
+      "Morning practice. Closing dialogue. Carrying what has genuinely shifted back into leadership — as changed capacity and presence, not just as memory.",
   },
 ];
 
@@ -708,7 +708,7 @@ const MeditationRetreat = () => {
                   lineHeight: 1.1,
                 }}
               >
-                Four Capacities That Emerge
+                Four Capacities That Open in You
               </h2>
             </ScrollReveal>
           </div>

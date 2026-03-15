@@ -22,58 +22,58 @@ const PHASES = [
     label: "Orientation & Mirroring",
     duration: "Months 1–3",
     description:
-      "Establishing the reflective space. Mapping the landscape of your leadership. The work begins with what is most present and pressing — not with a framework imposed from outside.",
+      "We begin with what is most present — not a framework imposed from outside. Together, we establish the reflective space and map the landscape of your leadership: the patterns, the edges, the places where something important has been waiting to shift.",
   },
   {
     number: "02",
     label: "Deepening",
     duration: "Months 4–8",
     description:
-      "Patterns emerge. The nervous system work begins. What was invisible becomes visible — and workable. This is where the real change takes root.",
+      "The real work begins here. Patterns become visible. The nervous system work takes root. What was invisible — and unavailable — starts to move. This is where change stops being conceptual and becomes lived.",
   },
   {
     number: "03",
     label: "Integration",
     duration: "Months 9–12",
     description:
-      "The changes consolidate. New ways of leading become structural, not effortful. The work moves from insight to embodied capacity.",
+      "The changes consolidate into something structural. New ways of leading stop feeling effortful and begin to feel like you. The work moves from insight into embodied capacity — and that is what holds over time.",
   },
 ];
 
 const WHAT_SHIFTS = [
-  "The inner architecture of decision-making becomes transparent — and available to change",
-  "Leadership presence deepens from performance to genuine, embodied authority",
-  "The capacity to hold high complexity without losing clarity or regulation",
-  "Relationships marked by depth, directness, and genuine trust",
-  "The ability to act from your own centre, even under the most demanding conditions",
-  "A quality of inner spaciousness that changes the texture of leadership entirely",
+  "The inner architecture of how you make decisions becomes transparent — and genuinely available to change",
+  "Leadership presence deepens from performance to real, embodied authority that others can feel",
+  "The capacity to hold high complexity without losing clarity, steadiness, or inner regulation",
+  "Relationships built on genuine depth, directness, and real trust — not managed distance",
+  "The ability to act from your own centre, even under the most demanding and pressured conditions",
+  "A quality of inner spaciousness that changes the entire texture of how you lead and relate",
 ];
 
 const FOR_WHOM_ITEMS = [
   {
     number: "01",
-    title: "The Leader Who Has Outgrown Coaching",
-    body: "You are a senior executive, founder, or board member. Standard coaching no longer reaches the level at which your real limitations operate.",
+    title: "You've Outgrown Standard Coaching",
+    body: "You are a senior executive, founder, or board member. You have done the personal development work before. Standard coaching no longer reaches the level where your real limitations actually live.",
   },
   {
     number: "02",
-    title: "When Strategy Is Not the Answer",
-    body: "You sense that what is holding you back is not strategic — it is structural. The pattern runs deeper than any framework can reach.",
+    title: "The Pattern Runs Deeper Than Strategy",
+    body: "You sense that what is holding you back is not a strategic or tactical problem — it is structural. The pattern recurs across different contexts and roles. No framework has yet reached it.",
   },
   {
     number: "03",
-    title: "Navigating Real Complexity",
-    body: "You are in the middle of a major transition — organisational, professional, or personal — and need an advisor who can hold the full weight of it.",
+    title: "You're Navigating Real Complexity",
+    body: "You are in the middle of something significant — organisationally, professionally, or personally — and you need an advisor who can hold the full weight of it without minimising or reducing it.",
   },
   {
     number: "04",
-    title: "Leading From Wholeness",
-    body: "You want to lead from a genuine centre — not from performance, anxiety, or exhaustion. You are looking for something more than optimisation.",
+    title: "You Want to Lead From Wholeness",
+    body: "You want to lead from a genuine centre — not from performance, anxiety, or depletion. You are looking for something more than optimisation, and you already know what that means.",
   },
   {
     number: "05",
-    title: "Ready to Work at Depth",
-    body: "You are prepared to commit sustained time and attention. Real change is not quick, and you already understand that.",
+    title: "You Are Ready to Work at Depth",
+    body: "You understand that real change takes time and genuine commitment. You are prepared to invest sustained attention in something that actually changes you — not just how you present yourself.",
   },
 ];
 
@@ -467,10 +467,10 @@ const ExecutiveCoaching = () => {
           </div>
 
           {[
-            { number: "01", title: "Regular 1:1 Sessions", description: "Biweekly 90-minute sessions. Structured and held. A dedicated space for whatever is most present — not a fixed curriculum, but a living relationship with your development." },
-            { number: "02", title: "Direct Messenger Access", description: "Between sessions, for brief check-ins and to capture emerging themes before they dissolve. The work doesn't pause between calls." },
-            { number: "03", title: "Individually Designed Deep-Dive Sessions", description: "Longer format sessions for work that requires more time, depth, or preparation. These are designed around specific edges in your development." },
-            { number: "04", title: "Personalized Recordings", description: "Created specifically for you to support self-regulation and integration between sessions. A private resource that travels with you." },
+            { number: "01", title: "Regular 1:1 Sessions", description: "Biweekly 90-minute sessions — structured, held, and never rushed. A dedicated space for whatever is most present and alive in your development. Not a fixed curriculum delivered on schedule, but a living relationship with your actual growth." },
+            { number: "02", title: "Direct Messenger Access", description: "Between sessions, for brief check-ins and to capture emerging insights before they dissolve. The development doesn't pause between calls — and neither does the support." },
+            { number: "03", title: "Individually Designed Deep-Dive Sessions", description: "Longer format sessions for the work that requires more time, more depth, or specific preparation — designed entirely around the edges in your development that matter most right now." },
+            { number: "04", title: "Personalized Recordings", description: "Created specifically for you to support self-regulation and integration between sessions. A private resource, built around your actual nervous system, that travels wherever you go." },
           ].map((item, i) => {
             const bgOpacity = 0.15 + (i / 3) * 0.21;
             return (
@@ -621,12 +621,12 @@ const ExecutiveCoaching = () => {
                 <h2
                   style={{ fontFamily: "Figtree, sans-serif", fontSize: "clamp(28px, 3.2vw, 44px)", fontWeight: 400, color: "#121212", lineHeight: 1.1 }}
                 >
-                  The Changes That Become Structural
+                  The Shifts That Actually Hold
                 </h2>
                 <p
                   style={{ fontFamily: "Manrope, sans-serif", fontSize: "14px", fontWeight: 300, color: "rgba(18,18,18,0.45)", lineHeight: 1.8, marginTop: "20px" }}
                 >
-                  Sustained engagement changes the architecture of how you lead — not through effort, but through structural transformation.
+                  A sustained engagement changes the architecture of how you lead — not through effort, but through transformation that is genuinely structural.
                 </p>
               </ScrollReveal>
             </div>

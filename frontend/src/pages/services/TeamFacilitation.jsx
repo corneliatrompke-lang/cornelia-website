@@ -22,14 +22,14 @@ const PROCESS_PHASES = [
     title: "Individual Sessions",
     subtitle: "Listening Beneath the Surface",
     description:
-      "The work begins with individual conversations with each member of the leadership team. These sessions allow each person to share their perspective, priorities, and experience of the team — without constraint. What emerges is a fuller picture of the team's dynamics, strengths, and the areas where alignment is absent.",
+      "The work begins with individual conversations with each member of the leadership team. These sessions give each person space to share their perspective, their experience of the team, and what they sense is most needed — without constraint. What emerges is always a fuller and more honest picture than the group dynamic alone reveals.",
   },
   {
     number: "02",
     title: "Facilitated Team Sessions",
-    subtitle: "Creating the Conditions for Alignment",
+    subtitle: "Creating the Conditions for Real Alignment",
     description:
-      "Based on these insights, I facilitate structured sessions with the full leadership team. These create space to address what is real — priorities, communication patterns, unresolved tensions, and how decisions are made. The sessions are direct, well-structured, and held with care.",
+      "Drawing on those individual insights, the facilitated sessions bring the full leadership team together to address what is actually real — priorities, communication patterns, unresolved tensions, and how decisions are genuinely made. The sessions are direct, carefully structured, and held with both challenge and care.",
   },
 ];
 
@@ -38,25 +38,25 @@ const WORK_ADDRESSES = [
     number: "01",
     title: "Priorities",
     subtitle: "Shared Direction",
-    body: "Leadership teams often carry strong, separately-optimising individual agendas. The work creates shared clarity on what matters most — and why. This alignment becomes the foundation for every decision and direction that follows.",
+    body: "Leadership teams often carry strong, separately-optimising individual agendas that fragment collective direction. This work creates genuine shared clarity on what matters most — and why. That alignment becomes the foundation from which every decision and every direction that follows can be made with real authority.",
   },
   {
     number: "02",
     title: "Communication",
-    subtitle: "How the Team Speaks",
-    body: "How leaders speak to each other in a room determines how the organisation functions below. The work surfaces patterns, removes blockages, and creates more direct, cleaner communication across the leadership body.",
+    subtitle: "How the Team Actually Speaks",
+    body: "How leaders speak to each other in a room determines how the organisation functions at every level below. This work surfaces the patterns that slow, distort, and bypass real exchange — and creates the conditions for more direct, honest, and genuinely productive communication across the leadership body.",
   },
   {
     number: "03",
     title: "Tensions",
-    subtitle: "What Is in the Room",
-    body: "Unaddressed tensions cost organisations enormous energy. The facilitated sessions create conditions in which what has been unsayable can be said — and worked through constructively, rather than managed around indefinitely.",
+    subtitle: "What Is Really in the Room",
+    body: "Unaddressed tensions cost organisations enormous energy, clarity, and trust. The facilitated sessions create conditions in which what has been unsayable can finally be said — and worked through constructively, rather than managed around indefinitely at great invisible cost.",
   },
   {
     number: "04",
     title: "Decision-Making",
     subtitle: "From Discussion to Commitment",
-    body: "Strong individuals often stall collective decisions. The work builds a shared framework for how the team decides together — creating speed, accountability, and clarity in how the organisation is actually led.",
+    body: "Strong individuals often inadvertently stall the collective decisions that need to move. This work builds a shared framework for how the team decides together — creating speed, genuine accountability, and clarity in how the organisation is actually led from the top.",
   },
 ];
 
@@ -66,10 +66,10 @@ const FOR_WHOM_ITEMS = [
     subtitle: "A CEO and Their Direct Reports",
     title: "The C-Suite",
     benefits: [
-      "Establish shared direction and priorities the whole team can act from",
-      "Surface the dynamics that slow or fragment collective decision-making",
-      "Build communication norms that create clarity, not noise",
-      "Develop the team's capacity to address difficulty directly and constructively",
+      "Establish shared direction and genuine priorities the whole team can actually act from",
+      "Surface the dynamics that are slowing or fragmenting collective decision-making",
+      "Build communication norms that create real clarity — not more noise",
+      "Develop the team's real capacity to address difficulty directly and constructively",
     ],
   },
   {
@@ -77,10 +77,10 @@ const FOR_WHOM_ITEMS = [
     subtitle: "Early Ways of Working at Their Limit",
     title: "The Founder's Team",
     benefits: [
-      "Navigate the transition from founder-led culture to a structured leadership team",
-      "Establish shared ownership over direction, rather than individual fiefdoms",
-      "Rebuild trust on a more adult, peer basis",
-      "Create decision-making norms that scale with the organisation",
+      "Navigate the transition from founder-led culture to a genuinely structured leadership team",
+      "Establish shared ownership over direction — rather than competing individual fiefdoms",
+      "Rebuild trust on a more honest, adult, peer basis than the early culture allowed",
+      "Create decision-making norms that scale with the organisation as it grows",
     ],
   },
   {
@@ -88,10 +88,10 @@ const FOR_WHOM_ITEMS = [
     subtitle: "Navigating Significant Organisational Change",
     title: "The Transition Team",
     benefits: [
-      "Create stability and shared ground during restructuring, merger, or leadership change",
-      "Manage the anxiety of change without suppressing what needs to be addressed",
-      "Realign around new priorities without losing the team's collective intelligence",
-      "Emerge from the transition as a more coherent leadership body than before",
+      "Create stability and shared ground during restructuring, merger, or leadership transition",
+      "Manage the anxiety of change without suppressing what genuinely needs to be addressed",
+      "Realign around new priorities without losing the team's hard-won collective intelligence",
+      "Emerge from the transition as a more coherent and capable leadership body than before",
     ],
   },
   {
@@ -100,9 +100,9 @@ const FOR_WHOM_ITEMS = [
     title: "The New Leadership Body",
     benefits: [
       "Establish working norms and shared expectations before pressure creates them by force",
-      "Build genuine trust — not assumed, but earned through structured work",
-      "Create clarity on how decisions are made and by whom",
-      "Develop a culture of direct and honest peer communication from the outset",
+      "Build genuine trust — not assumed from day one, but earned through real structured work",
+      "Create clarity on how decisions are made, by whom, and on what basis",
+      "Develop a culture of direct and honest peer communication from the very outset",
     ],
   },
 ];
@@ -111,21 +111,21 @@ const OUTCOME_ROWS = [
   {
     label: "Priorities",
     before: "Strong, separately-optimising individual agendas",
-    after: "Shared direction the whole team can act from",
+    after: "Shared direction the whole team can genuinely act from",
   },
   {
     label: "Communication",
     before: "Patterns that slow, distort, or bypass real exchange",
-    after: "Direct, clean communication between peers",
+    after: "Direct, honest communication between peers",
   },
   {
     label: "Tensions",
-    before: "Energy consumed in what goes unsaid",
+    before: "Energy consumed by what goes permanently unsaid",
     after: "Difficulty addressed directly and constructively",
   },
   {
     label: "Decisions",
-    before: "Slow, recursive, or avoided collective decisions",
+    before: "Slow, recursive, or quietly avoided collective decisions",
     after: "Clear, fast decisions made from a shared framework",
   },
 ];
