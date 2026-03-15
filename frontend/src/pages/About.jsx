@@ -122,7 +122,7 @@ const About = () => {
               top: 0,
               width: "100%",
               height: "115%",
-              objectFit: "contain",
+              objectFit: isMobile ? "cover" : "contain",
               objectPosition: "center top",
               y: heroBgY,
             }}
