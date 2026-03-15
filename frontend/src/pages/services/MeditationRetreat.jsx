@@ -15,7 +15,7 @@ const HERO_VIDEO_MOBILE =
   "https://customer-assets.emergentagent.com/job_nervous-system-exec/artifacts/j6z9yj5l_Hero%20-%20mobile.mp4";
 
 const GUIDE_BG =
-  "https://images.unsplash.com/photo-1503714009212-36b5b9747566?crop=entropy&cs=srgb&fm=jpg&ixlib=rb-4.1.0&q=85";
+  "https://customer-assets.emergentagent.com/job_nervous-system-exec/artifacts/mix18bkw_Cornelia%20Trompke_0691.jpg";
 
 // ─── Content ──────────────────────────────────────────────────────────────────
 const GUIDE_STATS = [

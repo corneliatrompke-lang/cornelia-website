@@ -12,7 +12,7 @@ import SEOHead from "../components/SEOHead";
 
 // ─── Assets ─────────────────────────────────────────────────────────────────
 const METHOD_HERO_VIDEO_DESKTOP =
-  "https://customer-assets.emergentagent.com/job_nervous-system-exec/artifacts/wxhp0n59_Hero%20-%20Desktop.mov";
+  "https://customer-assets.emergentagent.com/job_nervous-system-exec/artifacts/zf6q6tqy_Hero%202%20-%20Desktop.mp4";
 const METHOD_HERO_VIDEO_MOBILE =
   "https://customer-assets.emergentagent.com/job_nervous-system-exec/artifacts/872iapnk_Hero%20-%20mobile.mp4";
 
