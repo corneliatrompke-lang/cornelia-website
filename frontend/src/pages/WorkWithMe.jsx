@@ -65,6 +65,17 @@ const WorkWithMe = () => {
               {w.hero.subtitle}
             </p>
           </ScrollReveal>
+          <ScrollReveal delay={0.45}>
+            <div style={{ display: "flex", flexWrap: "wrap", gap: "12px", marginTop: "36px" }}>
+              <button
+                onClick={() => openForm(null, 'Work With Me')}
+                className="btn-hero-pill"
+                data-testid="work-hero-cta-primary"
+              >
+                Begin the Conversation
+              </button>
+            </div>
+          </ScrollReveal>
         </div>
       </section>
 
