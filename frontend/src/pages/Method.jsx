@@ -4,6 +4,7 @@ import { ArrowRight } from "lucide-react";
 import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion";
 import NeuralCanvas from "../components/NeuralCanvas";
 import ScrollReveal from "../components/ScrollReveal";
+import HeroContactForm from "../components/HeroContactForm";
 import VennDiagram from "../components/VennDiagram";
 import { useLanguage } from "../context/LanguageContext";
 import { useContactForm } from "../context/ContactFormContext";
@@ -12,12 +13,6 @@ import SEOHead from "../components/SEOHead";
 // ─── Assets ─────────────────────────────────────────────────────────────────
 const METHOD_HERO_BG =
   "https://images.unsplash.com/photo-1754663575934-7964717934c1?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjAzMzJ8MHwxfHNlYXJjaHwxfHx3b21hbiUyMGV4ZWN1dGl2ZSUyMGNvbnRlbXBsYXRpdmUlMjB3aW5kb3clMjBsaWdodCUyMG1vb2R5JTIwcG9ydHJhaXR8ZW58MHx8fHwxNzczMTQyOTA3fDA&ixlib=rb-4.1.0&q=85";
-
-const TESTIMONIAL_PORTRAITS = [
-  "https://images.unsplash.com/photo-1560250097-0b93528c311a?crop=entropy&cs=srgb&fm=jpg&ixlib=rb-4.1.0&q=85",
-  "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?crop=entropy&cs=srgb&fm=jpg&ixlib=rb-4.1.0&q=85",
-  "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?crop=entropy&cs=srgb&fm=jpg&ixlib=rb-4.1.0&q=85",
-];
 
 // ─── NARM Diagram ────────────────────────────────────────────────────────────
 const NarmDiagram = ({ layers, isMobile = false }) => (
@@ -128,7 +123,7 @@ const ACCORDION_SERVICE_LINKS = [
 // ─── Page ─────────────────────────────────────────────────────────────────────
 const Method = () => {
   const { t } = useLanguage();
-  const { openForm } = useContactForm();
+  const { heroOpenFn, finalCtaOpenFn } = useContactForm();
   const m = t.method;
 
   // Hero parallax
@@ -144,6 +139,8 @@ const Method = () => {
   const [activeBenefit, setActiveBenefit] = useState(null);
   const [activeMobileBenefit, setActiveMobileBenefit] = useState(null);
   const [isMobile, setIsMobile] = useState(typeof window !== "undefined" ? window.innerWidth < 768 : false);
+  const [showContactForm, setShowContactForm] = useState(false);
+  const [showFinalForm, setShowFinalForm] = useState(false);
 
   // Testimonials
   const testimonials = t.home.testimonials.items;
@@ -163,6 +160,26 @@ const Method = () => {
     return () => clearInterval(timerRef.current);
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [testimonials.length]);
+
+  // ── Register section-specific openers ─────────────────────────────────────
+  useEffect(() => {
+    heroOpenFn.current     = () => setShowContactForm(true);
+    finalCtaOpenFn.current = () => setShowFinalForm(true);
+    return () => {
+      heroOpenFn.current     = null;
+      finalCtaOpenFn.current = null;
+    };
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  // ── Escape key ────────────────────────────────────────────────────────────
+  useEffect(() => {
+    const onKeyDown = (e) => {
+      if (e.key === "Escape") { setShowContactForm(false); setShowFinalForm(false); }
+    };
+    document.addEventListener("keydown", onKeyDown);
+    return () => document.removeEventListener("keydown", onKeyDown);
+  }, []);
 
   return (
     <div className="bg-[#0F1A12]">
@@ -197,12 +214,13 @@ const Method = () => {
       <section
         className="pt-[6px] px-3 md:px-4 pb-3"
         style={{ background: "#F5F2EC" }}
-        data-testid="method-hero"
+        data-testid="hero-section"
       >
         <div
           ref={heroRef}
           className="relative overflow-hidden w-full"
           style={{ borderRadius: "20px", minHeight: "96vh" }}
+          onClick={showContactForm ? () => setShowContactForm(false) : undefined}
         >
           <motion.img
             src={METHOD_HERO_BG}
@@ -235,8 +253,13 @@ const Method = () => {
           />
           <NeuralCanvas opacity={0.08} nodeCount={40} />
 
-          {/* Bottom-left text */}
-          <div className="absolute bottom-0 left-0 z-10 p-8 md:p-14" style={{ maxWidth: "860px" }}>
+          {/* Text — full height, bottom-aligned, clips overflow at top */}
+          <motion.div
+            className="absolute inset-y-0 left-0 z-10 p-8 md:p-14"
+            style={{ overflowY: "hidden", display: "flex", flexDirection: "column", justifyContent: "flex-end" }}
+            animate={{ maxWidth: showContactForm ? "580px" : "860px" }}
+            transition={{ duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] }}
+          >
             <ScrollReveal delay={0.1}>
               <p className="ct-overline text-gold mb-6" data-testid="method-hero-overline">
                 {m.hero.overline}
@@ -245,7 +268,14 @@ const Method = () => {
             <ScrollReveal delay={0.25}>
               <h1
                 className="text-ivory leading-[1.04]"
-                style={{ fontFamily: "Figtree, sans-serif", fontSize: "clamp(40px, 6.5vw, 84px)", fontWeight: 400 }}
+                style={{
+                  fontFamily: "Figtree, sans-serif",
+                  fontSize: showContactForm
+                    ? (isMobile ? "30px" : "55px")
+                    : "clamp(40px, 6.5vw, 84px)",
+                  fontWeight: 400,
+                  transition: "font-size 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
+                }}
                 data-testid="method-hero-headline"
               >
                 {m.hero.headline}
@@ -261,7 +291,12 @@ const Method = () => {
             </ScrollReveal>
             <ScrollReveal delay={0.58}>
               <div className="flex flex-wrap items-center gap-3 mt-9 mb-10">
-                <button onClick={() => openForm(null, 'How I Work')} className="btn-hero-pill" data-testid="method-hero-cta">
+                <button
+                  onClick={() => setShowContactForm(true)}
+                  className="btn-hero-pill"
+                  data-testid="method-hero-cta"
+                  style={{ border: "none", cursor: "pointer" }}
+                >
                   {m.cta.button}
                   <ArrowRight size={13} />
                 </button>
@@ -271,13 +306,51 @@ const Method = () => {
                 </Link>
               </div>
             </ScrollReveal>
-          </div>
+          </motion.div>
 
           {/* Scroll indicator */}
           <div className="absolute bottom-10 right-10 z-10 flex flex-col items-center gap-2">
             <span className="ct-overline text-white/25" style={{ fontSize: "9px" }}>Scroll</span>
             <div className="scroll-line" />
           </div>
+
+          {/* ── Glassmorphic form panel ── */}
+          <AnimatePresence>
+            {showContactForm && (
+              <>
+                <motion.div
+                  key="method-form-veil"
+                  initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
+                  transition={{ duration: 0.45 }}
+                  style={{ position: "absolute", inset: 0, zIndex: 15, background: "linear-gradient(to right, transparent 30%, rgba(5,10,7,0.55) 70%)", pointerEvents: "none" }}
+                />
+                <motion.div
+                  key="method-form-panel"
+                  initial={{ opacity: 0, x: "100%" }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: "100%" }}
+                  transition={{ duration: 0.55, ease: [0.25, 0.46, 0.45, 0.94] }}
+                  onClick={e => e.stopPropagation()}
+                  style={{
+                    position: "absolute",
+                    right: "clamp(24px, 4vw, 56px)",
+                    top: "10%", height: "80%",
+                    width: "clamp(360px, 40%, 520px)",
+                    borderRadius: "16px",
+                    background: "rgba(8,16,11,0.25)",
+                    backdropFilter: "blur(28px) saturate(1.6)",
+                    WebkitBackdropFilter: "blur(28px) saturate(1.6)",
+                    border: "1px solid rgba(200,169,106,0.18)",
+                    zIndex: 20, overflowY: "auto",
+                  }}
+                  data-testid="method-contact-form-panel"
+                >
+                  <HeroContactForm onClose={() => setShowContactForm(false)} sendFrom="How I Work — Hero Section" />
+                </motion.div>
+              </>
+            )}
+          </AnimatePresence>
+
         </div>
       </section>
 
@@ -636,18 +709,8 @@ const Method = () => {
                 position: "relative",
               }}
             >
-              {/* Portrait (desktop/tablet only) */}
-              {!isMobile && (
-              <div style={{ width: "38%", flexShrink: 0, position: "relative" }}>
-                {TESTIMONIAL_PORTRAITS.map((src, i) => (
-                  <img key={i} src={src} alt="" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", objectPosition: "center top", opacity: i === activeTestimonial ? 1 : 0, transition: "opacity 0.9s ease", filter: "grayscale(15%)" }} />
-                ))}
-                <div style={{ position: "absolute", right: 0, top: "15%", bottom: "15%", width: "1px", background: "linear-gradient(to bottom, transparent, rgba(200,169,106,0.45), transparent)", zIndex: 2 }} />
-              </div>
-              )}
-
-              {/* Quote */}
-              <div style={{ flex: 1, display: "flex", flexDirection: "column", justifyContent: "center", padding: isMobile ? "36px 28px" : "52px 60px", position: "relative" }}>
+              {/* Quote — full width */}
+              <div style={{ flex: 1, display: "flex", flexDirection: "column", justifyContent: "center", padding: isMobile ? "48px 36px" : "64px 80px", position: "relative" }}>
                 <span style={{ fontFamily: "Cormorant Garamond, serif", fontSize: "120px", lineHeight: 1, color: "rgba(200,169,106,0.07)", position: "absolute", top: "16px", left: "52px", userSelect: "none", pointerEvents: "none" }}>&ldquo;</span>
                 <div style={{ position: "relative", minHeight: "220px" }}>
                   {testimonials.map((item, i) => (
@@ -683,51 +746,22 @@ const Method = () => {
             </div>
           </ScrollReveal>
 
-          {/* Thumbnail navigation — outside the card, matches Home.jsx */}
-          <div style={{ display: "flex", gap: "28px", marginTop: "0px", alignItems: "flex-start", paddingLeft: "4px" }}>
-            {TESTIMONIAL_PORTRAITS.map((src, i) => (
+          {/* Text-based author navigation */}
+          <div style={{ display: "flex", flexWrap: "wrap", gap: "0", marginTop: "4px", paddingLeft: "4px", borderTop: "1px solid rgba(200,169,106,0.12)" }}>
+            {testimonials.map((item, i) => (
               <button
                 key={i}
                 onClick={() => { setActiveTestimonial(i); restartTimer(testimonials.length); }}
                 data-testid={`testimonial-nav-${i}`}
-                style={{ background: "none", border: "none", padding: 0, cursor: "pointer", display: "flex", flexDirection: "column", alignItems: "center", gap: "10px" }}
+                style={{ background: "none", border: "none", padding: "20px 32px 20px 0", cursor: "pointer", textAlign: "left", position: "relative" }}
               >
-                <div
-                  style={{
-                    width: i === activeTestimonial ? "68px" : "56px",
-                    height: i === activeTestimonial ? "68px" : "56px",
-                    borderRadius: "50%",
-                    overflow: "hidden",
-                    border: i === activeTestimonial ? "2px solid #C8A96A" : "2px solid rgba(245,242,236,0.12)",
-                    transform: i === activeTestimonial ? "translateY(-12px)" : "translateY(0)",
-                    transition: "all 0.45s cubic-bezier(0.4, 0, 0.2, 1)",
-                    flexShrink: 0,
-                    boxShadow: i === activeTestimonial ? "0 8px 28px rgba(200,169,106,0.22)" : "none",
-                  }}
-                >
-                  <img
-                    src={src}
-                    alt=""
-                    style={{
-                      width: "100%", height: "100%",
-                      objectFit: "cover", objectPosition: "center top",
-                      filter: i === activeTestimonial ? "none" : "grayscale(70%)",
-                      transition: "filter 0.45s ease",
-                    }}
-                  />
-                </div>
-                <span
-                  style={{
-                    fontFamily: "Manrope, sans-serif",
-                    fontSize: "9px", fontWeight: 500,
-                    letterSpacing: "0.14em", textTransform: "uppercase",
-                    color: i === activeTestimonial ? "#F5F2EC" : "rgba(245,242,236,0.32)",
-                    transition: "color 0.4s ease",
-                    textAlign: "center", maxWidth: "88px", lineHeight: 1.55,
-                  }}
-                >
-                  {testimonials[i]?.author}
-                </span>
+                <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: "2px", background: i === activeTestimonial ? "rgba(200,169,106,0.65)" : "transparent", transition: "background 0.4s ease" }} />
+                <p style={{ fontFamily: "Manrope, sans-serif", fontSize: "10px", fontWeight: 600, letterSpacing: "0.20em", textTransform: "uppercase", color: i === activeTestimonial ? "#F5F2EC" : "rgba(245,242,236,0.28)", transition: "color 0.4s ease", marginBottom: "4px" }}>
+                  {item.author}
+                </p>
+                <p style={{ fontFamily: "Manrope, sans-serif", fontSize: "10px", fontWeight: 300, color: i === activeTestimonial ? "rgba(200,169,106,0.70)" : "rgba(200,169,106,0.22)", transition: "color 0.4s ease", letterSpacing: "0.05em" }}>
+                  {item.company}
+                </p>
               </button>
             ))}
           </div>
@@ -1043,50 +1077,73 @@ const Method = () => {
       <section
         className="ct-section"
         style={{ background: "#F5F2EC", position: "relative", marginTop: "-2px", zIndex: 1 }}
-        data-testid="method-final-cta"
+        data-testid="final-cta-section"
+        onClick={showFinalForm ? () => setShowFinalForm(false) : undefined}
       >
         <div className="max-w-[760px] mx-auto px-6">
           <ScrollReveal>
-            <div
+            <motion.div
+              animate={{
+                padding: showFinalForm
+                  ? isMobile ? "32px 28px 36px" : "36px 56px 44px"
+                  : isMobile ? "52px 28px" : "80px 72px",
+                textAlign: showFinalForm ? "left" : "center",
+              }}
+              transition={{ duration: 0.45, ease: [0.25, 0.46, 0.45, 0.94] }}
+              onClick={e => e.stopPropagation()}
               style={{
                 background: "rgba(15,26,18,0.96)",
                 backdropFilter: "blur(28px)",
                 WebkitBackdropFilter: "blur(28px)",
                 border: "1px solid rgba(200,169,106,0.2)",
                 borderRadius: "20px",
-                padding: "80px 72px",
-                textAlign: "center",
                 position: "relative",
-                overflow: "hidden",
+                overflow: showFinalForm ? "auto" : "hidden",
               }}
+              data-testid="method-final-cta-card"
             >
-              {/* Inner radial shimmer */}
-              <div style={{ position: "absolute", inset: 0, background: "radial-gradient(ellipse 80% 60% at 50% 40%, rgba(200,169,106,0.05) 0%, transparent 70%)", pointerEvents: "none" }} />
-              {/* Corner accent lines */}
-              <div style={{ position: "absolute", top: 0, left: 0, width: "48px", height: "1px", background: "rgba(200,169,106,0.35)" }} />
-              <div style={{ position: "absolute", top: 0, left: 0, width: "1px", height: "48px", background: "rgba(200,169,106,0.35)" }} />
-              <div style={{ position: "absolute", bottom: 0, right: 0, width: "48px", height: "1px", background: "rgba(200,169,106,0.35)" }} />
-              <div style={{ position: "absolute", bottom: 0, right: 0, width: "1px", height: "48px", background: "rgba(200,169,106,0.35)" }} />
+              {/* Shimmer + corner accents */}
+              <div style={{ position: "absolute", inset: 0, background: "radial-gradient(ellipse 80% 60% at 50% 40%, rgba(200,169,106,0.05) 0%, transparent 70%)", pointerEvents: "none", zIndex: 0 }} />
+              <div style={{ position: "absolute", top: 0, left: 0, width: "48px", height: "1px", background: "rgba(200,169,106,0.35)", zIndex: 1 }} />
+              <div style={{ position: "absolute", top: 0, left: 0, width: "1px", height: "48px", background: "rgba(200,169,106,0.35)", zIndex: 1 }} />
+              <div style={{ position: "absolute", bottom: 0, right: 0, width: "48px", height: "1px", background: "rgba(200,169,106,0.35)", zIndex: 1 }} />
+              <div style={{ position: "absolute", bottom: 0, right: 0, width: "1px", height: "48px", background: "rgba(200,169,106,0.35)", zIndex: 1 }} />
 
-              <div className="relative z-10">
-                <h2
-                  style={{ fontFamily: "Figtree, sans-serif", fontSize: "clamp(28px, 3.5vw, 44px)", fontWeight: 400, lineHeight: 1.1, color: "#F5F2EC" }}
-                >
-                  {m.cta.headline}
-                </h2>
-                <p style={{ fontFamily: "Manrope, sans-serif", fontSize: "15px", fontWeight: 300, color: "rgba(227,222,215,0.5)", lineHeight: 1.75, marginTop: "20px" }}>
-                  {m.cta.body}
-                </p>
-                <button
-                  onClick={() => openForm(null, 'How I Work')}
-                  className="btn-secondary"
-                  style={{ marginTop: "40px", borderRadius: "8px", display: "inline-block", cursor: "pointer" }}
-                  data-testid="method-cta-btn"
-                >
-                  {m.cta.button}
-                </button>
+              <div style={{ position: "relative", zIndex: 10 }}>
+                <AnimatePresence mode="wait">
+                  {!showFinalForm ? (
+                    <motion.div
+                      key="method-cta-content"
+                      initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }}
+                      transition={{ duration: 0.3 }}
+                    >
+                      <h2 style={{ fontFamily: "Figtree, sans-serif", fontSize: "clamp(28px, 3.5vw, 44px)", fontWeight: 400, lineHeight: 1.1, color: "#F5F2EC" }}>
+                        {m.cta.headline}
+                      </h2>
+                      <p style={{ fontFamily: "Manrope, sans-serif", fontSize: "15px", fontWeight: 300, color: "rgba(227,222,215,0.5)", lineHeight: 1.75, marginTop: "20px" }}>
+                        {m.cta.body}
+                      </p>
+                      <button
+                        onClick={() => setShowFinalForm(true)}
+                        className="btn-secondary"
+                        style={{ marginTop: "40px", borderRadius: "8px", display: "inline-block", cursor: "pointer" }}
+                        data-testid="method-cta-btn"
+                      >
+                        {m.cta.button}
+                      </button>
+                    </motion.div>
+                  ) : (
+                    <motion.div
+                      key="method-form-content"
+                      initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }}
+                      transition={{ duration: 0.3 }}
+                    >
+                      <HeroContactForm onClose={() => setShowFinalForm(false)} noPadding sendFrom="How I Work — Final CTA Section" />
+                    </motion.div>
+                  )}
+                </AnimatePresence>
               </div>
-            </div>
+            </motion.div>
           </ScrollReveal>
         </div>
       </section>
