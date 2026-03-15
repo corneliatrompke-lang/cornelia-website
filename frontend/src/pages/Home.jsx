@@ -29,10 +29,11 @@ const TICKER_ITEMS = [
   { src: "https://cdn.simpleicons.org/sap",       alt: "SAP"       },
 ];
 
-// Hero placeholder image — replace with client's own photography
-
-const HERO_BG =
-  "https://images.unsplash.com/photo-1729250829395-864b0d9489c2?crop=entropy&cs=srgb&fm=jpg&q=85";
+// Hero videos — desktop and mobile variants
+const HERO_VIDEO_DESKTOP =
+  "https://customer-assets.emergentagent.com/job_nervous-system-exec/artifacts/ihle29r5_Hero%20video%202%20-%20desktop.mp4";
+const HERO_VIDEO_MOBILE =
+  "https://customer-assets.emergentagent.com/job_nervous-system-exec/artifacts/x84hoo3c_Hero%20video%202%20-%20mobile.mp4";
 
 const Home = () => {
   const { t } = useLanguage();
@@ -162,10 +163,13 @@ const Home = () => {
           }}
           onClick={showContactForm ? () => setShowContactForm(false) : undefined}
         >
-          {/* Background image — parallax drift */}
-          <motion.img
-            src={HERO_BG}
-            alt=""
+          {/* Background video — parallax drift, autoplay muted loop */}
+          <motion.video
+            key={isMobile ? "hero-mobile" : "hero-desktop"}
+            autoPlay
+            muted
+            loop
+            playsInline
             aria-hidden="true"
             style={{
               position: "absolute",
@@ -178,7 +182,12 @@ const Home = () => {
               objectPosition: "center",
               y: heroBgY,
             }}
-          />
+          >
+            <source
+              src={isMobile ? HERO_VIDEO_MOBILE : HERO_VIDEO_DESKTOP}
+              type="video/mp4"
+            />
+          </motion.video>
 
           {/* Left-to-right charcoal gradient: near-black on left → ~1% on right */}
           <div
