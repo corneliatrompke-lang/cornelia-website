@@ -642,7 +642,7 @@ const MeditationRetreat = () => {
                         fontWeight: 400,
                         letterSpacing: "2px",
                         textTransform: "uppercase",
-                        color: "rgba(245,242,236,0.5)",
+                        color: "#6B3A2A",
                       }}
                     >
                       Retreat Environment
