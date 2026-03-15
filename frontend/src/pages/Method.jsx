@@ -207,7 +207,6 @@ const Method = () => {
           ],
         }}
       />
-          Seals sub-pixel gaps between adjacent ivory/gradient sections. */}
       <div style={{ background: "#F5F2EC" }}>
 
       {/* ══════════════════════════════════════════════════════════════

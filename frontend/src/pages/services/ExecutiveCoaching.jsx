@@ -9,8 +9,10 @@ import { useContactForm } from "../../context/ContactFormContext";
 import SEOHead from "../../components/SEOHead";
 
 // ─── Constants ────────────────────────────────────────────────────────────────
-const HERO_BG =
-  "https://images.unsplash.com/photo-1754663575934-7964717934c1?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjAzMzJ8MHwxfHNlYXJjaHwxfHx3b21hbiUyMGV4ZWN1dGl2ZSUyMGNvbnRlbXBsYXRpdmUlMjB3aW5kb3clMjBsaWdodCUyMG1vb2R5JTIwcG9ydHJhaXR8ZW58MHx8fHwxNzczMTQyOTA3fDA&ixlib=rb-4.1.0&q=85";
+const HERO_VIDEO_DESKTOP =
+  "https://customer-assets.emergentagent.com/job_nervous-system-exec/artifacts/9i70gx6z_Hero%20-%20desktop.mp4";
+const HERO_VIDEO_MOBILE =
+  "https://customer-assets.emergentagent.com/job_nervous-system-exec/artifacts/i0lzwodo_Hero%20-%20mobile.mp4";
 
 const PHASES = [
   {
@@ -205,7 +207,17 @@ const ExecutiveCoaching = () => {
       <section className="pt-[6px] px-3 md:px-4 pb-3" style={{ background: "#F5F2EC" }} data-testid="hero-section">
         <div ref={heroRef} className="relative overflow-hidden w-full" style={{ borderRadius: "20px", minHeight: "96vh" }}
           onClick={showContactForm ? () => setShowContactForm(false) : undefined}>
-          <motion.img src={HERO_BG} alt="" aria-hidden="true" style={{ position: "absolute", left: 0, right: 0, top: 0, width: "100%", height: "115%", objectFit: "cover", objectPosition: "center top", y: heroBgY }} />
+          <motion.video
+            key={isMobile ? "coaching-mobile" : "coaching-desktop"}
+            autoPlay
+            muted
+            loop
+            playsInline
+            aria-hidden="true"
+            style={{ position: "absolute", left: 0, right: 0, top: 0, width: "100%", height: "115%", objectFit: "cover", objectPosition: "center top", y: heroBgY }}
+          >
+            <source src={isMobile ? HERO_VIDEO_MOBILE : HERO_VIDEO_DESKTOP} type="video/mp4" />
+          </motion.video>
           {/* Directional gradient: left→right on desktop, bottom→top on mobile */}
           <div className="absolute inset-0 z-[1]" style={{ background: isMobile ? "linear-gradient(to top, rgba(18,18,18,1.00) 0%, rgba(18,18,18,0.90) 20%, rgba(18,18,18,0.75) 40%, rgba(18,18,18,0.30) 60%, rgba(18,18,18,0.15) 80%, rgba(18,18,18,0.01) 100%)" : "linear-gradient(to right, rgba(18,18,18,1.00) 0%, rgba(18,18,18,0.90) 20%, rgba(18,18,18,0.75) 40%, rgba(18,18,18,0.30) 60%, rgba(18,18,18,0.15) 80%, rgba(18,18,18,0.01) 100%)" }} />
           {/* Top strip */}
