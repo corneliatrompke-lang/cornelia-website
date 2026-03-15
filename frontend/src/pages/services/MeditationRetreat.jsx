@@ -15,12 +15,6 @@ const HERO_BG =
 const GUIDE_BG =
   "https://images.unsplash.com/photo-1503714009212-36b5b9747566?crop=entropy&cs=srgb&fm=jpg&ixlib=rb-4.1.0&q=85";
 
-const TESTIMONIAL_PORTRAITS = [
-  "https://images.unsplash.com/photo-1560250097-0b93528c311a?crop=entropy&cs=srgb&fm=jpg&ixlib=rb-4.1.0&q=85",
-  "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?crop=entropy&cs=srgb&fm=jpg&ixlib=rb-4.1.0&q=85",
-  "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?crop=entropy&cs=srgb&fm=jpg&ixlib=rb-4.1.0&q=85",
-];
-
 // ─── Content ──────────────────────────────────────────────────────────────────
 const GUIDE_STATS = [
   { value: "30+", label: "Years of Personal\nMeditation Practice" },
@@ -1438,7 +1432,7 @@ const MeditationRetreat = () => {
                     </span>
 
                     <button
-                      onClick={() => openForm('executive-retreats', 'Executive Retreats')}
+                      onClick={() => setShowFinalForm(true)}
                       style={{
                         fontFamily: "Manrope, sans-serif",
                         fontSize: "11px",
@@ -1543,19 +1537,19 @@ const MeditationRetreat = () => {
         </div>
       </section>
 
-      {/* ══ 8. TESTIMONIALS — Deep forest, glass card ════════════════════════ */}
+      {/* ══ 8. TESTIMONIALS — Deep forest, glassmorphic card ════════════════ */}
       <section
-        className="ct-section"
+        className="ct-section relative overflow-hidden"
         style={{ background: "#0F1A12" }}
         data-testid="retreat-testimonials"
       >
-        <div className="max-w-[1400px] mx-auto px-6 md:px-16">
+        <NeuralCanvas opacity={0.05} nodeCount={28} />
+        <div className="relative z-10 max-w-[1400px] mx-auto px-6 md:px-16">
           <ScrollReveal>
             <p className="ct-overline mb-10" style={{ color: "rgba(200,169,106,0.45)" }}>
               {t.home.testimonials.overline}
             </p>
           </ScrollReveal>
-
           <ScrollReveal delay={0.1}>
             <div
               style={{
@@ -1570,250 +1564,48 @@ const MeditationRetreat = () => {
                 position: "relative",
               }}
             >
-              {/* Portrait (desktop/tablet only) */}
-              {!isMobile && (
-              <div style={{ width: "38%", flexShrink: 0, position: "relative" }}>
-                {TESTIMONIAL_PORTRAITS.map((src, i) => (
-                  <img
-                    key={i}
-                    src={src}
-                    alt=""
-                    style={{
-                      position: "absolute",
-                      inset: 0,
-                      width: "100%",
-                      height: "100%",
-                      objectFit: "cover",
-                      objectPosition: "center top",
-                      opacity: i === activeTestimonial ? 1 : 0,
-                      transition: "opacity 0.9s ease",
-                      filter: "grayscale(25%) brightness(0.85)",
-                    }}
-                  />
-                ))}
-                <div
-                  style={{
-                    position: "absolute",
-                    right: 0,
-                    top: "15%",
-                    bottom: "15%",
-                    width: "1px",
-                    background:
-                      "linear-gradient(to bottom, transparent, rgba(200,169,106,0.3), transparent)",
-                    zIndex: 2,
-                  }}
-                />
-              </div>
-              )}
-
-              {/* Quote */}
-              <div
-                style={{
-                  flex: 1,
-                  display: "flex",
-                  flexDirection: "column",
-                  justifyContent: "center",
-                  padding: isMobile ? "36px 28px" : "52px 60px",
-                  position: "relative",
-                }}
-              >
-                <span
-                  style={{
-                    fontFamily: "Cormorant Garamond, serif",
-                    fontSize: "120px",
-                    lineHeight: 1,
-                    color: "rgba(200,169,106,0.05)",
-                    position: "absolute",
-                    top: "16px",
-                    left: "52px",
-                    userSelect: "none",
-                    pointerEvents: "none",
-                  }}
-                >
-                  &ldquo;
-                </span>
+              {/* Quote — full width */}
+              <div style={{ flex: 1, display: "flex", flexDirection: "column", justifyContent: "center", padding: isMobile ? "48px 36px" : "64px 80px", position: "relative" }}>
+                <span style={{ fontFamily: "Cormorant Garamond, serif", fontSize: "120px", lineHeight: 1, color: "rgba(200,169,106,0.06)", position: "absolute", top: "16px", left: "52px", userSelect: "none", pointerEvents: "none" }}>&ldquo;</span>
                 <div style={{ position: "relative", minHeight: "220px" }}>
                   {testimonials.map((item, i) => (
-                    <div
-                      key={i}
-                      style={{
-                        position: "absolute",
-                        inset: 0,
-                        display: "flex",
-                        flexDirection: "column",
-                        justifyContent: "center",
-                        opacity: i === activeTestimonial ? 1 : 0,
-                        transform:
-                          i === activeTestimonial ? "translateY(0)" : "translateY(14px)",
-                        transition: "opacity 0.8s ease, transform 0.8s ease",
-                        pointerEvents: i === activeTestimonial ? "auto" : "none",
-                      }}
-                    >
-                      <p
-                        style={{
-                          fontFamily: "Cormorant Garamond, serif",
-                          fontSize: isMobile ? "20px" : "clamp(20px, 2.2vw, 26px)",
-                          fontWeight: 400,
-                          color: "#F5F2EC",
-                          lineHeight: 1.45,
-                          fontStyle: "italic",
-                        }}
-                      >
+                    <div key={i} style={{ position: "absolute", inset: 0, display: "flex", flexDirection: "column", justifyContent: "center", opacity: i === activeTestimonial ? 1 : 0, transform: i === activeTestimonial ? "translateY(0)" : "translateY(14px)", transition: "opacity 0.8s ease, transform 0.8s ease", pointerEvents: i === activeTestimonial ? "auto" : "none" }}>
+                      <p style={{ fontFamily: "Cormorant Garamond, serif", fontSize: "clamp(20px, 2.2vw, 26px)", fontWeight: 400, color: "#F5F2EC", lineHeight: 1.45, fontStyle: "italic" }}>
                         "{item.text}"
                       </p>
-                      <div
-                        style={{
-                          marginTop: "32px",
-                          display: "flex",
-                          alignItems: "center",
-                          gap: "14px",
-                        }}
-                      >
-                        <div
-                          style={{
-                            width: "28px",
-                            height: "1px",
-                            background: "rgba(200,169,106,0.5)",
-                          }}
-                        />
+                      <div style={{ marginTop: "32px", display: "flex", alignItems: "center", gap: "14px" }}>
+                        <div style={{ width: "28px", height: "1px", background: "rgba(200,169,106,0.5)" }} />
                         <div>
-                          <p
-                            style={{
-                              fontFamily: "Manrope, sans-serif",
-                              fontSize: "12px",
-                              fontWeight: 500,
-                              color: "rgba(200,169,106,0.9)",
-                              letterSpacing: "1.5px",
-                              textTransform: "uppercase",
-                            }}
-                          >
-                            {item.author}
-                          </p>
-                          <p
-                            style={{
-                              fontFamily: "Manrope, sans-serif",
-                              fontSize: "12px",
-                              fontWeight: 300,
-                              color: "rgba(227,222,215,0.35)",
-                              marginTop: "3px",
-                            }}
-                          >
-                            {item.company}
-                          </p>
+                          <p style={{ fontFamily: "Manrope, sans-serif", fontSize: "12px", fontWeight: 500, color: "rgba(200,169,106,0.9)", letterSpacing: "1.5px", textTransform: "uppercase" }}>{item.author}</p>
+                          <p style={{ fontFamily: "Manrope, sans-serif", fontSize: "12px", fontWeight: 300, color: "rgba(227,222,215,0.4)", marginTop: "3px" }}>{item.company}</p>
                         </div>
                       </div>
                     </div>
                   ))}
                 </div>
               </div>
-
               {/* Progress bar */}
-              <div
-                style={{
-                  position: "absolute",
-                  bottom: 0,
-                  left: 0,
-                  right: 0,
-                  height: "2px",
-                  background: "rgba(200,169,106,0.07)",
-                }}
-              >
-                <div
-                  key={activeTestimonial}
-                  style={{
-                    height: "100%",
-                    background: "rgba(200,169,106,0.4)",
-                    animation: "progressSlide 6s linear forwards",
-                  }}
-                />
+              <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: "2px", background: "rgba(200,169,106,0.07)" }}>
+                <div key={activeTestimonial} style={{ height: "100%", background: "rgba(200,169,106,0.4)", animation: "progressSlide 6s linear forwards" }} />
               </div>
             </div>
           </ScrollReveal>
-
-          {/* Thumbnail nav */}
-          <div
-            style={{
-              display: "flex",
-              gap: "28px",
-              marginTop: "0px",
-              alignItems: "flex-start",
-              paddingLeft: "4px",
-            }}
-          >
-            {TESTIMONIAL_PORTRAITS.map((src, i) => (
+          {/* Text-based author navigation */}
+          <div style={{ display: "flex", flexWrap: "wrap", gap: "0", marginTop: "4px", paddingLeft: "4px", borderTop: "1px solid rgba(200,169,106,0.12)" }}>
+            {testimonials.map((item, i) => (
               <button
                 key={i}
-                onClick={() => {
-                  setActiveTestimonial(i);
-                  restartTimer(testimonials.length);
-                }}
+                onClick={() => { setActiveTestimonial(i); restartTimer(testimonials.length); }}
                 data-testid={`testimonial-nav-${i}`}
-                style={{
-                  background: "none",
-                  border: "none",
-                  padding: 0,
-                  cursor: "pointer",
-                  display: "flex",
-                  flexDirection: "column",
-                  alignItems: "center",
-                  gap: "10px",
-                }}
+                style={{ background: "none", border: "none", padding: "20px 32px 20px 0", cursor: "pointer", textAlign: "left", position: "relative" }}
               >
-                <div
-                  style={{
-                    width: i === activeTestimonial ? "68px" : "56px",
-                    height: i === activeTestimonial ? "68px" : "56px",
-                    borderRadius: "50%",
-                    overflow: "hidden",
-                    border:
-                      i === activeTestimonial
-                        ? "2px solid #C8A96A"
-                        : "2px solid rgba(245,242,236,0.1)",
-                    transform:
-                      i === activeTestimonial ? "translateY(-12px)" : "translateY(0)",
-                    transition: "all 0.45s cubic-bezier(0.4, 0, 0.2, 1)",
-                    flexShrink: 0,
-                    boxShadow:
-                      i === activeTestimonial
-                        ? "0 8px 28px rgba(200,169,106,0.18)"
-                        : "none",
-                  }}
-                >
-                  <img
-                    src={src}
-                    alt=""
-                    style={{
-                      width: "100%",
-                      height: "100%",
-                      objectFit: "cover",
-                      objectPosition: "center top",
-                      filter:
-                        i === activeTestimonial
-                          ? "brightness(0.88)"
-                          : "grayscale(70%) brightness(0.7)",
-                      transition: "filter 0.45s ease",
-                    }}
-                  />
-                </div>
-                <span
-                  style={{
-                    fontFamily: "Manrope, sans-serif",
-                    fontSize: "9px",
-                    fontWeight: 500,
-                    letterSpacing: "0.14em",
-                    textTransform: "uppercase",
-                    color:
-                      i === activeTestimonial
-                        ? "rgba(245,242,236,0.65)"
-                        : "rgba(245,242,236,0.2)",
-                    transition: "color 0.4s ease",
-                    textAlign: "center",
-                    maxWidth: "88px",
-                    lineHeight: 1.55,
-                  }}
-                >
-                  {testimonials[i]?.author}
-                </span>
+                <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: "2px", background: i === activeTestimonial ? "rgba(200,169,106,0.65)" : "transparent", transition: "background 0.4s ease" }} />
+                <p style={{ fontFamily: "Manrope, sans-serif", fontSize: "10px", fontWeight: 600, letterSpacing: "0.20em", textTransform: "uppercase", color: i === activeTestimonial ? "#F5F2EC" : "rgba(245,242,236,0.28)", transition: "color 0.4s ease", marginBottom: "4px" }}>
+                  {item.author}
+                </p>
+                <p style={{ fontFamily: "Manrope, sans-serif", fontSize: "10px", fontWeight: 300, color: i === activeTestimonial ? "rgba(200,169,106,0.70)" : "rgba(200,169,106,0.22)", transition: "color 0.4s ease", letterSpacing: "0.05em" }}>
+                  {item.company}
+                </p>
               </button>
             ))}
           </div>
@@ -1829,73 +1621,71 @@ const MeditationRetreat = () => {
             "linear-gradient(to bottom, #0F1A12 0%, #162018 25%, #2A3825 48%, #8A9A80 68%, #CDD8C4 85%, #F5F2EC 100%)",
         }}
         data-testid="retreat-cta"
+        onClick={showFinalForm ? () => setShowFinalForm(false) : undefined}
       >
         <NeuralCanvas opacity={0.04} nodeCount={22} />
         <div className="relative z-10 max-w-[760px] mx-auto px-6">
           <ScrollReveal>
-            <div
+            <motion.div
+              animate={{
+                padding: showFinalForm
+                  ? isMobile ? "32px 28px 36px" : "36px 56px 44px"
+                  : isMobile ? "52px 28px" : "80px 72px",
+                textAlign: showFinalForm ? "left" : "center",
+              }}
+              transition={{ duration: 0.45, ease: [0.25, 0.46, 0.45, 0.94] }}
+              onClick={e => e.stopPropagation()}
               style={{
                 background: "rgba(15,26,18,0.92)",
                 backdropFilter: "blur(28px)",
                 WebkitBackdropFilter: "blur(28px)",
                 border: "1px solid rgba(200,169,106,0.25)",
                 borderRadius: "20px",
-                padding: "80px 72px",
-                textAlign: "center",
                 position: "relative",
-                overflow: "hidden",
+                overflow: showFinalForm ? "auto" : "hidden",
               }}
+              data-testid="retreat-final-cta-card"
             >
-              {/* Radial glow */}
-              <div
-                style={{
-                  position: "absolute",
-                  inset: 0,
-                  background:
-                    "radial-gradient(ellipse 80% 60% at 50% 40%, rgba(200,169,106,0.05) 0%, transparent 70%)",
-                  pointerEvents: "none",
-                }}
-              />
-              {/* Corner accents */}
-              <div style={{ position: "absolute", top: 0, left: 0, width: "48px", height: "1px", background: "rgba(200,169,106,0.35)" }} />
-              <div style={{ position: "absolute", top: 0, left: 0, width: "1px", height: "48px", background: "rgba(200,169,106,0.35)" }} />
-              <div style={{ position: "absolute", bottom: 0, right: 0, width: "48px", height: "1px", background: "rgba(200,169,106,0.35)" }} />
-              <div style={{ position: "absolute", bottom: 0, right: 0, width: "1px", height: "48px", background: "rgba(200,169,106,0.35)" }} />
-
-              <div className="relative z-10">
-                <h2
-                  style={{
-                    fontFamily: "Figtree, sans-serif",
-                    fontSize: "clamp(28px, 3.5vw, 44px)",
-                    fontWeight: 400,
-                    lineHeight: 1.1,
-                    color: "#F5F2EC",
-                  }}
-                >
-                  When You're Ready to Go Deeper
-                </h2>
-                <p
-                  style={{
-                    fontFamily: "Manrope, sans-serif",
-                    fontSize: "15px",
-                    fontWeight: 300,
-                    color: "rgba(227,222,215,0.45)",
-                    lineHeight: 1.75,
-                    marginTop: "18px",
-                  }}
-                >
-                  Retreats are offered to leaders engaged in one of Cornelia's programmes. Enquiries are welcomed — to understand whether the timing and format are the right fit.
-                </p>
-                <button
-                  onClick={() => openForm('executive-retreats', 'Executive Retreats')}
-                  className="btn-secondary"
-                  style={{ marginTop: "40px", borderRadius: "8px", display: "inline-block", cursor: "pointer" }}
-                  data-testid="retreat-apply-btn"
-                >
-                  Inquire About Retreats
-                </button>
+              <div style={{ position: "absolute", inset: 0, background: "radial-gradient(ellipse 80% 60% at 50% 40%, rgba(200,169,106,0.05) 0%, transparent 70%)", pointerEvents: "none", zIndex: 0 }} />
+              <div style={{ position: "absolute", top: 0, left: 0, width: "48px", height: "1px", background: "rgba(200,169,106,0.35)", zIndex: 1 }} />
+              <div style={{ position: "absolute", top: 0, left: 0, width: "1px", height: "48px", background: "rgba(200,169,106,0.35)", zIndex: 1 }} />
+              <div style={{ position: "absolute", bottom: 0, right: 0, width: "48px", height: "1px", background: "rgba(200,169,106,0.35)", zIndex: 1 }} />
+              <div style={{ position: "absolute", bottom: 0, right: 0, width: "1px", height: "48px", background: "rgba(200,169,106,0.35)", zIndex: 1 }} />
+              <div style={{ position: "relative", zIndex: 10 }}>
+                <AnimatePresence mode="wait">
+                  {!showFinalForm ? (
+                    <motion.div
+                      key="retreat-cta-content"
+                      initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }}
+                      transition={{ duration: 0.3 }}
+                    >
+                      <h2 style={{ fontFamily: "Figtree, sans-serif", fontSize: "clamp(28px, 3.5vw, 44px)", fontWeight: 400, lineHeight: 1.1, color: "#F5F2EC" }}>
+                        When You're Ready to Go Deeper
+                      </h2>
+                      <p style={{ fontFamily: "Manrope, sans-serif", fontSize: "15px", fontWeight: 300, color: "rgba(227,222,215,0.45)", lineHeight: 1.75, marginTop: "18px" }}>
+                        Retreats are offered to leaders engaged in one of Cornelia's programmes. Enquiries are welcomed — to understand whether the timing and format are the right fit.
+                      </p>
+                      <button
+                        onClick={() => setShowFinalForm(true)}
+                        className="btn-secondary"
+                        style={{ marginTop: "40px", borderRadius: "8px", display: "inline-block", cursor: "pointer" }}
+                        data-testid="retreat-apply-btn"
+                      >
+                        Inquire About Retreats
+                      </button>
+                    </motion.div>
+                  ) : (
+                    <motion.div
+                      key="retreat-form-content"
+                      initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }}
+                      transition={{ duration: 0.3 }}
+                    >
+                      <HeroContactForm onClose={() => setShowFinalForm(false)} noPadding sendFrom="Executive Retreat — Final CTA Section" />
+                    </motion.div>
+                  )}
+                </AnimatePresence>
               </div>
-            </div>
+            </motion.div>
           </ScrollReveal>
         </div>
       </section>

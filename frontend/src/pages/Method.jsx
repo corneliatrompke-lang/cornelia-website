@@ -11,8 +11,10 @@ import { useContactForm } from "../context/ContactFormContext";
 import SEOHead from "../components/SEOHead";
 
 // ─── Assets ─────────────────────────────────────────────────────────────────
-const METHOD_HERO_BG =
-  "https://images.unsplash.com/photo-1754663575934-7964717934c1?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjAzMzJ8MHwxfHNlYXJjaHwxfHx3b21hbiUyMGV4ZWN1dGl2ZSUyMGNvbnRlbXBsYXRpdmUlMjB3aW5kb3clMjBsaWdodCUyMG1vb2R5JTIwcG9ydHJhaXR8ZW58MHx8fHwxNzczMTQyOTA3fDA&ixlib=rb-4.1.0&q=85";
+const METHOD_HERO_VIDEO_DESKTOP =
+  "https://customer-assets.emergentagent.com/job_nervous-system-exec/artifacts/wxhp0n59_Hero%20-%20Desktop.mov";
+const METHOD_HERO_VIDEO_MOBILE =
+  "https://customer-assets.emergentagent.com/job_nervous-system-exec/artifacts/872iapnk_Hero%20-%20mobile.mp4";
 
 // ─── NARM Diagram ────────────────────────────────────────────────────────────
 const NarmDiagram = ({ layers, isMobile = false }) => (
@@ -222,17 +224,31 @@ const Method = () => {
           style={{ borderRadius: "20px", minHeight: "96vh" }}
           onClick={showContactForm ? () => setShowContactForm(false) : undefined}
         >
-          <motion.img
-            src={METHOD_HERO_BG}
-            alt=""
+          {/* Background video — parallax drift, autoplay muted loop */}
+          <motion.video
+            key={isMobile ? "method-mobile" : "method-desktop"}
+            autoPlay
+            muted
+            loop
+            playsInline
             aria-hidden="true"
             style={{
-              position: "absolute", left: 0, right: 0, top: 0,
-              width: "100%", height: "115%",
-              objectFit: "cover", objectPosition: "center",
+              position: "absolute",
+              left: 0,
+              right: 0,
+              top: 0,
+              width: "100%",
+              height: "115%",
+              objectFit: "cover",
+              objectPosition: "center",
               y: heroBgY,
             }}
-          />
+          >
+            <source
+              src={isMobile ? METHOD_HERO_VIDEO_MOBILE : METHOD_HERO_VIDEO_DESKTOP}
+              type="video/mp4"
+            />
+          </motion.video>
           {/* Left dark gradient */}
           {/* Directional gradient: left→right on desktop, bottom→top on mobile */}
           <div

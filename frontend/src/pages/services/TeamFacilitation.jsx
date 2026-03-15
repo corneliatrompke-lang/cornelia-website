@@ -786,7 +786,7 @@ const TeamFacilitation = () => {
             }}
           >
             <button
-              onClick={() => openForm('team-facilitation', 'Leadership Team Facilitation')}
+              onClick={() => setShowFinalForm(true)}
               className="btn-primary"
               style={{ borderRadius: "8px", cursor: "pointer" }}
               data-testid="for-whom-unified-cta"
@@ -1050,63 +1050,70 @@ const TeamFacilitation = () => {
         className="ct-section relative overflow-hidden"
         style={{ background: "linear-gradient(to bottom, #0F1A12 0%, #162018 25%, #2A3825 48%, #8A9A80 68%, #CDD8C4 85%, #F5F2EC 100%)" }}
         data-testid="facilitation-cta"
+        onClick={showFinalForm ? () => setShowFinalForm(false) : undefined}
       >
         <NeuralCanvas opacity={0.04} nodeCount={20} />
         <div className="relative z-10 max-w-[760px] mx-auto px-6">
           <ScrollReveal>
-            <div
+            <motion.div
+              animate={{
+                padding: showFinalForm
+                  ? isMobile ? "32px 28px 36px" : "36px 56px 44px"
+                  : isMobile ? "52px 28px" : "80px 72px",
+                textAlign: showFinalForm ? "left" : "center",
+              }}
+              transition={{ duration: 0.45, ease: [0.25, 0.46, 0.45, 0.94] }}
+              onClick={e => e.stopPropagation()}
               style={{
                 background: "rgba(15,26,18,0.92)",
                 backdropFilter: "blur(24px)",
                 WebkitBackdropFilter: "blur(24px)",
                 border: "1px solid rgba(200,169,106,0.22)",
                 borderRadius: "20px",
-                padding: "80px 72px",
-                textAlign: "center",
                 position: "relative",
-                overflow: "hidden",
+                overflow: showFinalForm ? "auto" : "hidden",
               }}
+              data-testid="facilitation-final-cta-card"
             >
-              {/* Corner accents */}
-              <div style={{ position: "absolute", top: 0, left: 0, width: "48px", height: "1px", background: "rgba(200,169,106,0.45)" }} />
-              <div style={{ position: "absolute", top: 0, left: 0, width: "1px", height: "48px", background: "rgba(200,169,106,0.45)" }} />
-              <div style={{ position: "absolute", bottom: 0, right: 0, width: "48px", height: "1px", background: "rgba(200,169,106,0.45)" }} />
-              <div style={{ position: "absolute", bottom: 0, right: 0, width: "1px", height: "48px", background: "rgba(200,169,106,0.45)" }} />
-
-              <div className="relative z-10">
-                <h2
-                  style={{
-                    fontFamily: "Figtree, sans-serif",
-                    fontSize: "clamp(28px, 3.5vw, 44px)",
-                    fontWeight: 400,
-                    lineHeight: 1.1,
-                    color: "#F5F2EC",
-                  }}
-                >
-                  When Your Team Is Ready
-                </h2>
-                <p
-                  style={{
-                    fontFamily: "Manrope, sans-serif",
-                    fontSize: "15px",
-                    fontWeight: 300,
-                    color: "rgba(227,222,215,0.45)",
-                    lineHeight: 1.75,
-                    marginTop: "18px",
-                  }}
-                >
-                  The work begins with a conversation. If you are facing challenges at the level of your leadership team, I welcome an initial exchange to understand the situation.
-                </p>
-                <button
-                  onClick={() => openForm('team-facilitation', 'Leadership Team Facilitation')}
-                  className="btn-secondary"
-                  style={{ marginTop: "40px", borderRadius: "8px", display: "inline-block", cursor: "pointer" }}
-                  data-testid="facilitation-apply-btn"
-                >
-                  Begin the Conversation
-                </button>
+              <div style={{ position: "absolute", top: 0, left: 0, width: "48px", height: "1px", background: "rgba(200,169,106,0.45)", zIndex: 1 }} />
+              <div style={{ position: "absolute", top: 0, left: 0, width: "1px", height: "48px", background: "rgba(200,169,106,0.45)", zIndex: 1 }} />
+              <div style={{ position: "absolute", bottom: 0, right: 0, width: "48px", height: "1px", background: "rgba(200,169,106,0.45)", zIndex: 1 }} />
+              <div style={{ position: "absolute", bottom: 0, right: 0, width: "1px", height: "48px", background: "rgba(200,169,106,0.45)", zIndex: 1 }} />
+              <div style={{ position: "relative", zIndex: 10 }}>
+                <AnimatePresence mode="wait">
+                  {!showFinalForm ? (
+                    <motion.div
+                      key="facilitation-cta-content"
+                      initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }}
+                      transition={{ duration: 0.3 }}
+                    >
+                      <h2 style={{ fontFamily: "Figtree, sans-serif", fontSize: "clamp(28px, 3.5vw, 44px)", fontWeight: 400, lineHeight: 1.1, color: "#F5F2EC" }}>
+                        When Your Team Is Ready
+                      </h2>
+                      <p style={{ fontFamily: "Manrope, sans-serif", fontSize: "15px", fontWeight: 300, color: "rgba(227,222,215,0.45)", lineHeight: 1.75, marginTop: "18px" }}>
+                        The work begins with a conversation. If you are facing challenges at the level of your leadership team, I welcome an initial exchange to understand the situation.
+                      </p>
+                      <button
+                        onClick={() => setShowFinalForm(true)}
+                        className="btn-secondary"
+                        style={{ marginTop: "40px", borderRadius: "8px", display: "inline-block", cursor: "pointer" }}
+                        data-testid="facilitation-apply-btn"
+                      >
+                        Begin the Conversation
+                      </button>
+                    </motion.div>
+                  ) : (
+                    <motion.div
+                      key="facilitation-form-content"
+                      initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }}
+                      transition={{ duration: 0.3 }}
+                    >
+                      <HeroContactForm onClose={() => setShowFinalForm(false)} noPadding sendFrom="Team Facilitation — Final CTA Section" />
+                    </motion.div>
+                  )}
+                </AnimatePresence>
               </div>
-            </div>
+            </motion.div>
           </ScrollReveal>
         </div>
       </section>
