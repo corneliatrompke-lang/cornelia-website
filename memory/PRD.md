@@ -292,7 +292,16 @@ Footer (from shared Footer component)
 10. Refactor large page components into smaller section components (P2)
 11. Optionally add Calendly booking integration (P1)
 
-### v3.4 — Full Site Copy Refresh (Mar 2026)
+### v3.5 — SEO, Favicon & Lead Tracking (Mar 2026)
+- **send_from hidden field**: `openForm(serviceId, sendFrom)` signature; each CTA passes page name; Navigation CTA derives page from `useLocation()`; hidden `<input name="send_from">` in all form variants; submission payload logs `send_from` (ready for backend)
+- **Meta tags**: Installed `react-helmet-async@3.0.0`; `SEOHead.jsx` component; `HelmetProvider` in `App.js`; unique title + description + Open Graph tags on all 10 pages
+- **Favicon**: Downloaded CT Logo Mark PNG → `/public/favicon.png`; referenced in `index.html` and as Apple Touch Icon; `theme-color` updated to `#0F1A12`
+- **sitemap.xml**: All 10 pages at `corneliatrompke.com` with `changefreq` and `priority`
+- **robots.txt**: Allows all bots, disallows `/api/`, references Sitemap
+- **llms.txt**: Full AI-readable site description with service summaries, methodology, key facts
+- **Tested**: 100% pass, all 11 tests (iteration_13.json) — send_from values confirmed, SEO titles confirmed, all static files 200
+
+
 - **Scope**: All pages except About rewritten with bold, warm, welcoming, insightful + SEO-friendly tone
 - **en.js**: Complete rewrite of `home`, `method`, `workWithMe`, `services` (all 4), `contact`, `legal`, `footer` sections; `about` kept untouched
 - **Service page hardcoded arrays updated**:
