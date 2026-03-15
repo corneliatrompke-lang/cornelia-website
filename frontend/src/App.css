@@ -313,7 +313,7 @@
   user-select: none;
 }
 
-html { scroll-behavior: smooth; }
+html { scroll-behavior: auto; }
 
 /* ---- Venn Diagram — orbit animations ---- */
 @keyframes vennOrbitCW {
