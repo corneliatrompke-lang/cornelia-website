@@ -214,7 +214,7 @@ const ExecutiveCoaching = () => {
             loop
             playsInline
             aria-hidden="true"
-            style={{ position: "absolute", left: 0, right: 0, top: 0, width: "100%", height: "115%", objectFit: "contain", objectPosition: "center top", y: heroBgY }}
+            style={{ position: "absolute", left: 0, right: 0, top: 0, width: "100%", height: "115%", objectFit: isMobile ? "cover" : "contain", objectPosition: "center top", y: heroBgY }}
           >
             <source src={isMobile ? HERO_VIDEO_MOBILE : HERO_VIDEO_DESKTOP} type="video/mp4" />
           </motion.video>
