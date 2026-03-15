@@ -9,8 +9,10 @@ import { useContactForm } from "../../context/ContactFormContext";
 import SEOHead from "../../components/SEOHead";
 
 // ─── Constants ────────────────────────────────────────────────────────────────
-const HERO_BG =
-  "https://images.unsplash.com/photo-1771270759486-1f7703945072?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDk1ODB8MHwxfHNlYXJjaHwxfHxjb3Jwb3JhdGUlMjBtZWV0aW5nJTIwcm9vbSUyMGV4ZWN1dGl2ZXMlMjBkYXJrJTIwcHJvZmVzc2lvbmFsfGVufDB8fHx8MTc3MzMwODA2M3ww&ixlib=rb-4.1.0&q=85";
+const HERO_VIDEO_DESKTOP =
+  "https://customer-assets.emergentagent.com/job_nervous-system-exec/artifacts/j538qa02_Hero%202%20-%20desktop.mp4";
+const HERO_VIDEO_MOBILE =
+  "https://customer-assets.emergentagent.com/job_nervous-system-exec/artifacts/6wshf0lt_Hero%202%20-%20mobiile.mp4";
 
 const PROCESS_PHASES = [
   {
@@ -205,7 +207,17 @@ const TeamFacilitation = () => {
       <section className="pt-[6px] px-3 md:px-4 pb-3" style={{ background: "#F5F2EC" }} data-testid="hero-section">
         <div ref={heroRef} className="relative overflow-hidden w-full" style={{ borderRadius: "20px", minHeight: "96vh" }}
           onClick={showContactForm ? () => setShowContactForm(false) : undefined}>
-          <motion.img src={HERO_BG} alt="" aria-hidden="true" style={{ position: "absolute", left: 0, right: 0, top: 0, width: "100%", height: "115%", objectFit: "cover", objectPosition: "center 40%", y: heroBgY }} />
+          <motion.video
+            key={isMobile ? "facilitation-mobile" : "facilitation-desktop"}
+            autoPlay
+            muted
+            loop
+            playsInline
+            aria-hidden="true"
+            style={{ position: "absolute", left: 0, right: 0, top: 0, width: "100%", height: "115%", objectFit: "cover", objectPosition: "center 40%", y: heroBgY }}
+          >
+            <source src={isMobile ? HERO_VIDEO_MOBILE : HERO_VIDEO_DESKTOP} type="video/mp4" />
+          </motion.video>
           {/* Directional gradient */}
           <div className="absolute inset-0 z-[1]" style={{ background: isMobile ? "linear-gradient(to top, rgba(15,26,18,0.97) 0%, rgba(15,26,18,0.90) 25%, rgba(15,26,18,0.72) 48%, rgba(15,26,18,0.28) 68%, rgba(15,26,18,0.06) 100%)" : "linear-gradient(to right, rgba(15,26,18,0.97) 0%, rgba(15,26,18,0.90) 25%, rgba(15,26,18,0.72) 48%, rgba(15,26,18,0.28) 68%, rgba(15,26,18,0.06) 100%)" }} />
           <div className="absolute top-0 left-0 right-0 z-[2]" style={{ height: "130px", background: "linear-gradient(to bottom, rgba(15,26,18,0.70) 0%, rgba(15,26,18,0.2) 70%, transparent 100%)" }} />
