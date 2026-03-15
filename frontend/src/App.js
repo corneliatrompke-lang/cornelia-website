@@ -36,7 +36,9 @@ const AppContent = () => (
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about-me" element={<About />} />
+        <Route path="/about" element={<About />} />
         <Route path="/how-i-work" element={<Method />} />
+        <Route path="/method" element={<Method />} />
         <Route path="/work-with-me" element={<WorkWithMe />} />
         <Route path="/work-with-me/executive-coaching" element={<ExecutiveCoaching />} />
         <Route path="/executive-coaching" element={<ExecutiveCoaching />} />

@@ -280,8 +280,8 @@ Footer (from shared Footer component)
 
 ## Next Tasks
 
-1. Wire nav "BEGIN THE WORK" button to open contact form globally (React Context) (P0)
-2. Replace service page CTAs to trigger the contact form (P0)
+1. ~~Wire nav "BEGIN THE WORK" button to open contact form globally (React Context) (P0)~~ ✅ Done
+2. ~~Replace service page CTAs to trigger the contact form (P0)~~ ✅ Done
 3. Build "Work With Me" landing page at `/work-with-me` (P1)
 4. Add WhatsApp floating button (P2)
 5. Wire contact form to `/api/contact` backend endpoint (P3)
@@ -292,7 +292,19 @@ Footer (from shared Footer component)
 10. Refactor large page components into smaller section components (P2)
 11. Optionally add Calendly booking integration (P1)
 
-### v3.1 — Context-Aware Nav CTA (Mar 2026)
+### v3.2 — Global Form Rollout + Escape Key (Mar 2026)
+- **Escape key**: Added global `keydown` listener in `ContactFormContext.jsx` (closes modal) and in `Home.jsx` (closes hero panel + final CTA card)
+- **Service pre-selection**: `openForm(serviceId)` stores `selectedService` in context; `ContactFormModal` passes it as `preselectedService` prop to `HeroContactForm`; `HeroContactForm` initializes `services` state from `preselectedService`
+- **Pages updated** — all `<Link to="/contact">` replaced with `<button onClick={() => openForm(serviceId)}>`:
+  - `ExecutiveCoaching.jsx` → pre-selects `'executive-coaching'`
+  - `OrganizationalAdvisory.jsx` → pre-selects `'org-advisory'` (3 CTAs)
+  - `TeamFacilitation.jsx` → pre-selects `'team-facilitation'` (3 CTAs)
+  - `MeditationRetreat.jsx` → pre-selects `'executive-retreats'` (hero + apply cards + final CTA)
+  - `About.jsx`, `Method.jsx`, `WorkWithMe.jsx` → no pre-selection
+- **Route aliases added**: `/about` → `About.jsx`, `/method` → `Method.jsx`
+- **100% test pass rate** (testing agent iteration_10.json)
+
+
 - **`ContactFormContext`** (`/src/context/ContactFormContext.jsx`): Holds `openForm()` + `heroOpenFn`/`finalCtaOpenFn` refs. No async state — uses real-time `getBoundingClientRect()` check at click time to avoid race conditions.
 - **`ContactFormModal`** (`/src/components/ContactFormModal.jsx`): Global modal rendered in `App.js` inside `ContactFormProvider`. Glassmorphic dark panel, backdrop-blur overlay, AnimatePresence enter/exit.
 - **Nav CTA behavior (3 states):**
