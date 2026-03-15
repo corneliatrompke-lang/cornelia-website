@@ -229,7 +229,7 @@ const Home = () => {
                 style={{
                   fontFamily: "Figtree, sans-serif",
                   fontSize: showContactForm
-                    ? (isMobile ? "26px" : "38px")
+                    ? (isMobile ? "30px" : "42px")
                     : "clamp(40px, 6.5vw, 84px)",
                   fontWeight: 400,
                   transition: "font-size 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
