@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { motion, AnimatePresence, useScroll, useTransform, useMotionValueEvent } from "framer-motion";
 import NeuralCanvas from "../../components/NeuralCanvas";
 import ScrollReveal from "../../components/ScrollReveal";
+import HeroContactForm from "../../components/HeroContactForm";
 import { useLanguage } from "../../context/LanguageContext";
 import { useContactForm } from "../../context/ContactFormContext";
 import SEOHead from "../../components/SEOHead";
@@ -241,23 +242,15 @@ const CirclesViz = ({ activePhase, size = 500 }) => {
 // ─── Page ─────────────────────────────────────────────────────────────────────
 const MeditationRetreat = () => {
   const { t } = useLanguage();
-  const { openForm } = useContactForm();
+  const { heroOpenFn, finalCtaOpenFn } = useContactForm();
   const testimonials = t.home.testimonials.items;
 
-  // Hero parallax
   const heroRef = useRef(null);
-  const { scrollYProgress: heroScroll } = useScroll({
-    target: heroRef,
-    offset: ["start start", "end start"],
-  });
+  const { scrollYProgress: heroScroll } = useScroll({ target: heroRef, offset: ["start start", "end start"] });
   const heroBgY = useTransform(heroScroll, [0, 1], ["0%", "-12%"]);
 
-  // Experience circles scroll
   const circlesRef = useRef(null);
-  const { scrollYProgress: circlesProgress } = useScroll({
-    target: circlesRef,
-    offset: ["start start", "end end"],
-  });
+  const { scrollYProgress: circlesProgress } = useScroll({ target: circlesRef, offset: ["start start", "end end"] });
   const [activeElement, setActiveElement] = useState(-1);
   useMotionValueEvent(circlesProgress, "change", (v) => {
     if (v < 0.06)       setActiveElement(-1);
@@ -266,37 +259,38 @@ const MeditationRetreat = () => {
     else                setActiveElement(2);
   });
 
-  // Active "What Opens" item
   const [activeOpen, setActiveOpen] = useState(null);
   const [openWhatOpensMobile, setOpenWhatOpensMobile] = useState(0);
-
-  // Mobile / Narrow
   const [isMobile, setIsMobile] = useState(typeof window !== "undefined" ? window.innerWidth < 768 : false);
   const [isNarrow, setIsNarrow] = useState(typeof window !== "undefined" ? window.innerWidth < 1200 : false);
+  const [showContactForm, setShowContactForm] = useState(false);
+  const [showFinalForm, setShowFinalForm] = useState(false);
+
   useEffect(() => {
-    const handleResize = () => {
-      setIsMobile(window.innerWidth < 768);
-      setIsNarrow(window.innerWidth < 1200);
-    };
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
+    const h = () => { setIsMobile(window.innerWidth < 768); setIsNarrow(window.innerWidth < 1200); };
+    window.addEventListener("resize", h);
+    return () => window.removeEventListener("resize", h);
   }, []);
 
-  // Testimonial carousel
   const [activeTestimonial, setActiveTestimonial] = useState(0);
   const timerRef = useRef(null);
   const restartTimer = (len) => {
     clearInterval(timerRef.current);
-    timerRef.current = setInterval(
-      () => setActiveTestimonial((p) => (p + 1) % len),
-      6000
-    );
+    timerRef.current = setInterval(() => setActiveTestimonial((p) => (p + 1) % len), 6000);
   };
+  useEffect(() => { restartTimer(testimonials.length); return () => clearInterval(timerRef.current); }, [testimonials.length]);
   useEffect(() => {
-    restartTimer(testimonials.length);
-    return () => clearInterval(timerRef.current);
-  }, [testimonials.length]);
-
+    heroOpenFn.current     = () => setShowContactForm(true);
+    finalCtaOpenFn.current = () => setShowFinalForm(true);
+    return () => { heroOpenFn.current = null; finalCtaOpenFn.current = null; };
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+  useEffect(() => {
+    const onKey = (e) => { if (e.key === "Escape") { setShowContactForm(false); setShowFinalForm(false); } };
+    document.addEventListener("keydown", onKey);
+    return () => document.removeEventListener("keydown", onKey);
+  }, []);
+      
   return (
     <div className="bg-[#F5F2EC]">
       <SEOHead
@@ -330,89 +324,52 @@ const MeditationRetreat = () => {
           ],
         }}
       />
-      <section>
-        <div
-          ref={heroRef}
-          className="relative overflow-hidden w-full"
-          style={{ borderRadius: "20px", minHeight: "96vh" }}
-        >
-          <motion.img
-            src={HERO_BG}
-            alt=""
-            aria-hidden="true"
-            style={{
-              position: "absolute", left: 0, right: 0, top: 0,
-              width: "100%", height: "115%",
-              objectFit: "cover", objectPosition: "center 30%",
-              y: heroBgY,
-            }}
-          />
-          {/* Directional gradient: left→right on desktop, bottom→top on mobile */}
-          <div
-            className="absolute inset-0 z-[1]"
-            style={{
-              background: isMobile
-                ? "linear-gradient(to top, rgba(15,26,18,0.96) 0%, rgba(15,26,18,0.88) 22%, rgba(15,26,18,0.72) 42%, rgba(15,26,18,0.30) 62%, rgba(15,26,18,0.08) 100%)"
-                : "linear-gradient(to right, rgba(15,26,18,0.96) 0%, rgba(15,26,18,0.88) 22%, rgba(15,26,18,0.72) 42%, rgba(15,26,18,0.30) 62%, rgba(15,26,18,0.08) 100%)",
-            }}
-          />
-          {/* Top fade */}
-          <div
-            className="absolute top-0 left-0 right-0 z-[2]"
-            style={{
-              height: "130px",
-              background:
-                "linear-gradient(to bottom, rgba(15,26,18,0.70) 0%, rgba(15,26,18,0.2) 70%, transparent 100%)",
-            }}
-          />
+      <section className="pt-[6px] px-3 md:px-4 pb-3" style={{ background: "#F5F2EC" }} data-testid="hero-section">
+        <div ref={heroRef} className="relative overflow-hidden w-full" style={{ borderRadius: "20px", minHeight: "96vh" }}
+          onClick={showContactForm ? () => setShowContactForm(false) : undefined}>
+          <motion.img src={HERO_BG} alt="" aria-hidden="true" style={{ position: "absolute", left: 0, right: 0, top: 0, width: "100%", height: "115%", objectFit: "cover", objectPosition: "center 30%", y: heroBgY }} />
+          {/* Directional gradient */}
+          <div className="absolute inset-0 z-[1]" style={{ background: isMobile ? "linear-gradient(to top, rgba(15,26,18,0.96) 0%, rgba(15,26,18,0.88) 22%, rgba(15,26,18,0.72) 42%, rgba(15,26,18,0.30) 62%, rgba(15,26,18,0.08) 100%)" : "linear-gradient(to right, rgba(15,26,18,0.96) 0%, rgba(15,26,18,0.88) 22%, rgba(15,26,18,0.72) 42%, rgba(15,26,18,0.30) 62%, rgba(15,26,18,0.08) 100%)" }} />
+          <div className="absolute top-0 left-0 right-0 z-[2]" style={{ height: "130px", background: "linear-gradient(to bottom, rgba(15,26,18,0.70) 0%, rgba(15,26,18,0.2) 70%, transparent 100%)" }} />
           <NeuralCanvas opacity={0.06} nodeCount={35} />
 
-          {/* Content — bottom left */}
-          <div
-            className="absolute bottom-0 left-0 z-10 p-8 md:p-14"
-            style={{ maxWidth: "860px" }}
-          >
-            <ScrollReveal delay={0.1}>
-              <p className="ct-overline text-gold mb-6">02 — Executive Retreat</p>
-            </ScrollReveal>
+          <motion.div className="absolute inset-y-0 left-0 z-10 p-8 md:p-14"
+            style={{ overflowY: "hidden", display: "flex", flexDirection: "column", justifyContent: "flex-end" }}
+            animate={{ maxWidth: showContactForm ? "580px" : "860px" }}
+            transition={{ duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] }}>
+            <ScrollReveal delay={0.1}><p className="ct-overline text-gold mb-6">02 — Executive Retreat</p></ScrollReveal>
             <ScrollReveal delay={0.25}>
-              <h1
-                className="text-ivory leading-[1.04]"
-                style={{
-                  fontFamily: "Figtree, sans-serif",
-                  fontSize: "clamp(40px, 6.5vw, 84px)",
-                  fontWeight: 400,
-                }}
-                data-testid="retreat-hero-headline"
-              >
+              <h1 className="text-ivory leading-[1.04]" data-testid="retreat-hero-headline"
+                style={{ fontFamily: "Figtree, sans-serif", fontSize: showContactForm ? (isMobile ? "30px" : "55px") : "clamp(40px, 6.5vw, 84px)", fontWeight: 400, transition: "font-size 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)" }}>
                 Stillness as a Leadership Practice
               </h1>
             </ScrollReveal>
             <ScrollReveal delay={0.42}>
-              <p
-                className="mt-5 max-w-[520px] leading-relaxed"
-                style={{
-                  fontFamily: "Cormorant Garamond, serif",
-                  fontSize: "22px",
-                  fontStyle: "italic",
-                  color: "rgba(227,222,215,0.65)",
-                }}
-              >
+              <p className="mt-5 max-w-[520px] leading-relaxed" style={{ fontFamily: "Cormorant Garamond, serif", fontSize: "22px", fontStyle: "italic", color: "rgba(227,222,215,0.65)" }}>
                 Away from operations. Into clarity.
               </p>
             </ScrollReveal>
             <ScrollReveal delay={0.58}>
               <div style={{ display: "flex", flexDirection: "row", flexWrap: "wrap", gap: "12px", marginTop: "36px", marginBottom: "40px" }}>
-                <button
-                  onClick={() => openForm('executive-retreats', 'Executive Retreats')}
-                  className="btn-hero-pill"
-                  data-testid="retreat-hero-cta"
-                >
+                <button onClick={() => setShowContactForm(true)} className="btn-hero-pill" data-testid="retreat-hero-cta" style={{ border: "none", cursor: "pointer" }}>
                   Inquire About Retreats
                 </button>
               </div>
             </ScrollReveal>
-          </div>
+          </motion.div>
+
+          <AnimatePresence>
+            {showContactForm && (<>
+              <motion.div key="mr-veil" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.45 }}
+                style={{ position: "absolute", inset: 0, zIndex: 15, background: "linear-gradient(to right, transparent 30%, rgba(5,10,7,0.55) 70%)", pointerEvents: "none" }} />
+              <motion.div key="mr-panel" initial={{ opacity: 0, x: "100%" }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: "100%" }}
+                transition={{ duration: 0.55, ease: [0.25, 0.46, 0.45, 0.94] }} onClick={e => e.stopPropagation()}
+                style={{ position: "absolute", right: "clamp(24px, 4vw, 56px)", top: "10%", height: "80%", width: "clamp(360px, 40%, 520px)", borderRadius: "16px", background: "rgba(8,16,11,0.25)", backdropFilter: "blur(28px) saturate(1.6)", WebkitBackdropFilter: "blur(28px) saturate(1.6)", border: "1px solid rgba(200,169,106,0.18)", zIndex: 20, overflowY: "auto" }}
+                data-testid="retreat-contact-form-panel">
+                <HeroContactForm onClose={() => setShowContactForm(false)} sendFrom="Executive Retreat — Hero Section" />
+              </motion.div>
+            </>)}
+          </AnimatePresence>
         </div>
       </section>
 

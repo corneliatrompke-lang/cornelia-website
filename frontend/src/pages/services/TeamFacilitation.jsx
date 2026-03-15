@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion";
 import NeuralCanvas from "../../components/NeuralCanvas";
 import ScrollReveal from "../../components/ScrollReveal";
+import HeroContactForm from "../../components/HeroContactForm";
 import { useLanguage } from "../../context/LanguageContext";
 import { useContactForm } from "../../context/ContactFormContext";
 import SEOHead from "../../components/SEOHead";
@@ -134,38 +135,40 @@ const OUTCOME_GRADIENT =
 // ─── Page ─────────────────────────────────────────────────────────────────────
 const TeamFacilitation = () => {
   const { t } = useLanguage();
-  const { openForm } = useContactForm();
+  const { heroOpenFn, finalCtaOpenFn } = useContactForm();
   const testimonials = t.home.testimonials.items;
 
-  // Hero parallax
   const heroRef = useRef(null);
   const { scrollYProgress: heroScroll } = useScroll({ target: heroRef, offset: ["start start", "end start"] });
   const heroBgY = useTransform(heroScroll, [0, 1], ["0%", "-12%"]);
 
-  // Accordion states
   const [activeWork, setActiveWork] = useState(null);
   const [openForWhom, setOpenForWhom] = useState(0);
   const [openWorkMobile, setOpenWorkMobile] = useState(0);
-
-  // Mobile
   const [isMobile, setIsMobile] = useState(typeof window !== "undefined" ? window.innerWidth < 768 : false);
-  useEffect(() => {
-    const handleResize = () => setIsMobile(window.innerWidth < 768);
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
+  const [showContactForm, setShowContactForm] = useState(false);
+  const [showFinalForm, setShowFinalForm] = useState(false);
 
-  // Testimonials
+  useEffect(() => { const h = () => setIsMobile(window.innerWidth < 768); window.addEventListener("resize", h); return () => window.removeEventListener("resize", h); }, []);
+
   const [activeTestimonial, setActiveTestimonial] = useState(0);
   const timerRef = useRef(null);
   const restartTimer = (len) => {
     clearInterval(timerRef.current);
     timerRef.current = setInterval(() => setActiveTestimonial((p) => (p + 1) % len), 6000);
   };
+  useEffect(() => { restartTimer(testimonials.length); return () => clearInterval(timerRef.current); }, [testimonials.length]);
   useEffect(() => {
-    restartTimer(testimonials.length);
-    return () => clearInterval(timerRef.current);
-  }, [testimonials.length]);
+    heroOpenFn.current     = () => setShowContactForm(true);
+    finalCtaOpenFn.current = () => setShowFinalForm(true);
+    return () => { heroOpenFn.current = null; finalCtaOpenFn.current = null; };
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+  useEffect(() => {
+    const onKey = (e) => { if (e.key === "Escape") { setShowContactForm(false); setShowFinalForm(false); } };
+    document.addEventListener("keydown", onKey);
+    return () => document.removeEventListener("keydown", onKey);
+  }, []);
 
   return (
     <div className="bg-[#F5F2EC]">
@@ -199,66 +202,52 @@ const TeamFacilitation = () => {
           ],
         }}
       />
-      <section>
-        <div
-          ref={heroRef}
-          className="relative overflow-hidden w-full"
-          style={{ borderRadius: "20px", minHeight: "96vh" }}
-        >
-          <motion.img
-            src={HERO_BG}
-            alt=""
-            aria-hidden="true"
-            style={{
-              position: "absolute", left: 0, right: 0, top: 0,
-              width: "100%", height: "115%",
-              objectFit: "cover", objectPosition: "center 40%",
-              y: heroBgY,
-            }}
-          />
-          {/* Directional gradient: left→right on desktop, bottom→top on mobile */}
-          <div
-            className="absolute inset-0 z-[1]"
-            style={{
-              background: isMobile
-                ? "linear-gradient(to top, rgba(15,26,18,0.97) 0%, rgba(15,26,18,0.90) 25%, rgba(15,26,18,0.72) 48%, rgba(15,26,18,0.28) 68%, rgba(15,26,18,0.06) 100%)"
-                : "linear-gradient(to right, rgba(15,26,18,0.97) 0%, rgba(15,26,18,0.90) 25%, rgba(15,26,18,0.72) 48%, rgba(15,26,18,0.28) 68%, rgba(15,26,18,0.06) 100%)",
-            }}
-          />
-          <div
-            className="absolute top-0 left-0 right-0 z-[2]"
-            style={{ height: "130px", background: "linear-gradient(to bottom, rgba(15,26,18,0.70) 0%, rgba(15,26,18,0.2) 70%, transparent 100%)" }}
-          />
+      <section className="pt-[6px] px-3 md:px-4 pb-3" style={{ background: "#F5F2EC" }} data-testid="hero-section">
+        <div ref={heroRef} className="relative overflow-hidden w-full" style={{ borderRadius: "20px", minHeight: "96vh" }}
+          onClick={showContactForm ? () => setShowContactForm(false) : undefined}>
+          <motion.img src={HERO_BG} alt="" aria-hidden="true" style={{ position: "absolute", left: 0, right: 0, top: 0, width: "100%", height: "115%", objectFit: "cover", objectPosition: "center 40%", y: heroBgY }} />
+          {/* Directional gradient */}
+          <div className="absolute inset-0 z-[1]" style={{ background: isMobile ? "linear-gradient(to top, rgba(15,26,18,0.97) 0%, rgba(15,26,18,0.90) 25%, rgba(15,26,18,0.72) 48%, rgba(15,26,18,0.28) 68%, rgba(15,26,18,0.06) 100%)" : "linear-gradient(to right, rgba(15,26,18,0.97) 0%, rgba(15,26,18,0.90) 25%, rgba(15,26,18,0.72) 48%, rgba(15,26,18,0.28) 68%, rgba(15,26,18,0.06) 100%)" }} />
+          <div className="absolute top-0 left-0 right-0 z-[2]" style={{ height: "130px", background: "linear-gradient(to bottom, rgba(15,26,18,0.70) 0%, rgba(15,26,18,0.2) 70%, transparent 100%)" }} />
           <NeuralCanvas opacity={0.05} nodeCount={30} />
-          <div className="absolute bottom-0 left-0 z-10 p-8 md:p-14" style={{ maxWidth: "860px" }}>
-            <ScrollReveal delay={0.1}>
-              <p className="ct-overline text-gold mb-6">02 — Team Facilitation</p>
-            </ScrollReveal>
+
+          <motion.div className="absolute inset-y-0 left-0 z-10 p-8 md:p-14"
+            style={{ overflowY: "hidden", display: "flex", flexDirection: "column", justifyContent: "flex-end" }}
+            animate={{ maxWidth: showContactForm ? "580px" : "860px" }}
+            transition={{ duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] }}>
+            <ScrollReveal delay={0.1}><p className="ct-overline text-gold mb-6">02 — Team Facilitation</p></ScrollReveal>
             <ScrollReveal delay={0.25}>
-              <h1
-                className="text-ivory leading-[1.04]"
-                style={{ fontFamily: "Figtree, sans-serif", fontSize: "clamp(40px, 6.5vw, 84px)", fontWeight: 400 }}
-                data-testid="facilitation-hero-headline"
-              >
+              <h1 className="text-ivory leading-[1.04]" data-testid="facilitation-hero-headline"
+                style={{ fontFamily: "Figtree, sans-serif", fontSize: showContactForm ? (isMobile ? "30px" : "55px") : "clamp(40px, 6.5vw, 84px)", fontWeight: 400, transition: "font-size 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)" }}>
                 From Strong Individuals to a Coherent Leadership Unit
               </h1>
             </ScrollReveal>
             <ScrollReveal delay={0.42}>
-              <p
-                className="mt-5 max-w-[520px] leading-relaxed"
-                style={{ fontFamily: "Cormorant Garamond, serif", fontSize: "22px", fontStyle: "italic", color: "rgba(227,222,215,0.65)" }}
-              >
+              <p className="mt-5 max-w-[520px] leading-relaxed" style={{ fontFamily: "Cormorant Garamond, serif", fontSize: "22px", fontStyle: "italic", color: "rgba(227,222,215,0.65)" }}>
                 Alignment. Clarity. Decision-making authority.
               </p>
             </ScrollReveal>
             <ScrollReveal delay={0.58}>
               <div style={{ display: "flex", flexWrap: "wrap", gap: "12px", marginTop: "36px", marginBottom: "40px" }}>
-                <button onClick={() => openForm('team-facilitation', 'Leadership Team Facilitation')} className="btn-hero-pill" data-testid="facilitation-hero-cta">
+                <button onClick={() => setShowContactForm(true)} className="btn-hero-pill" data-testid="facilitation-hero-cta" style={{ border: "none", cursor: "pointer" }}>
                   Begin the Conversation
                 </button>
               </div>
             </ScrollReveal>
-          </div>
+          </motion.div>
+
+          <AnimatePresence>
+            {showContactForm && (<>
+              <motion.div key="tf-veil" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.45 }}
+                style={{ position: "absolute", inset: 0, zIndex: 15, background: "linear-gradient(to right, transparent 30%, rgba(5,10,7,0.55) 70%)", pointerEvents: "none" }} />
+              <motion.div key="tf-panel" initial={{ opacity: 0, x: "100%" }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: "100%" }}
+                transition={{ duration: 0.55, ease: [0.25, 0.46, 0.45, 0.94] }} onClick={e => e.stopPropagation()}
+                style={{ position: "absolute", right: "clamp(24px, 4vw, 56px)", top: "10%", height: "80%", width: "clamp(360px, 40%, 520px)", borderRadius: "16px", background: "rgba(8,16,11,0.25)", backdropFilter: "blur(28px) saturate(1.6)", WebkitBackdropFilter: "blur(28px) saturate(1.6)", border: "1px solid rgba(200,169,106,0.18)", zIndex: 20, overflowY: "auto" }}
+                data-testid="facilitation-contact-form-panel">
+                <HeroContactForm onClose={() => setShowContactForm(false)} sendFrom="Team Facilitation — Hero Section" />
+              </motion.div>
+            </>)}
+          </AnimatePresence>
         </div>
       </section>
 
