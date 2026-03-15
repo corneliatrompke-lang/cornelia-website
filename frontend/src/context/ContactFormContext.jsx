@@ -31,7 +31,7 @@ export const ContactFormProvider = ({ children }) => {
 
     if (heroOpenFn.current && check('[data-testid="hero-section"]')) {
       heroOpenFn.current();
-    } else if (finalCtaOpenFn.current && check('[data-testid="final-cta-section"]')) {
+    } else if (finalCtaOpenFn.current && (check('[data-testid="final-cta-section"]') || check('[data-final-cta="true"]'))) {
       finalCtaOpenFn.current();
     } else {
       setModalOpen(true);

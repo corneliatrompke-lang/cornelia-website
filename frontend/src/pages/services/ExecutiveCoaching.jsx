@@ -821,7 +821,7 @@ const ExecutiveCoaching = () => {
       </section>
 
       {/* ══ 9. FINAL CTA — Forest green → ivory gradient ══════════════ */}
-      <section className="ct-section relative overflow-hidden" style={{ background: "linear-gradient(to bottom, #0F1A12 0%, #162018 25%, #2A3825 48%, #8A9A80 68%, #CDD8C4 85%, #F5F2EC 100%)" }} data-testid="coaching-cta"
+      <section className="ct-section relative overflow-hidden" style={{ background: "linear-gradient(to bottom, #0F1A12 0%, #162018 25%, #2A3825 48%, #8A9A80 68%, #CDD8C4 85%, #F5F2EC 100%)" }} data-testid="coaching-cta" data-final-cta="true"
         onClick={showFinalForm ? () => setShowFinalForm(false) : undefined}>
         <NeuralCanvas opacity={0.04} nodeCount={22} />
         <div className="relative z-10 max-w-[760px] mx-auto px-6">

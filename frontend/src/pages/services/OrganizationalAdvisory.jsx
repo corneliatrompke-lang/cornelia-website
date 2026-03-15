@@ -1053,6 +1053,7 @@ const OrganizationalAdvisory = () => {
         className="ct-section relative overflow-hidden"
         style={{ background: FOREST_TO_IVORY }}
         data-testid="advisory-cta"
+        data-final-cta="true"
         onClick={showFinalForm ? () => setShowFinalForm(false) : undefined}
       >
         <NeuralCanvas opacity={0.04} nodeCount={20} />

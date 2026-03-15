@@ -1062,6 +1062,7 @@ const TeamFacilitation = () => {
         className="ct-section relative overflow-hidden"
         style={{ background: "linear-gradient(to bottom, #0F1A12 0%, #162018 25%, #2A3825 48%, #8A9A80 68%, #CDD8C4 85%, #F5F2EC 100%)" }}
         data-testid="facilitation-cta"
+        data-final-cta="true"
         onClick={showFinalForm ? () => setShowFinalForm(false) : undefined}
       >
         <NeuralCanvas opacity={0.04} nodeCount={20} />
