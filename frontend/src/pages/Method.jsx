@@ -6,6 +6,7 @@ import NeuralCanvas from "../components/NeuralCanvas";
 import ScrollReveal from "../components/ScrollReveal";
 import VennDiagram from "../components/VennDiagram";
 import { useLanguage } from "../context/LanguageContext";
+import { useContactForm } from "../context/ContactFormContext";
 
 // ─── Assets ─────────────────────────────────────────────────────────────────
 const METHOD_HERO_BG =
@@ -126,6 +127,7 @@ const ACCORDION_SERVICE_LINKS = [
 // ─── Page ─────────────────────────────────────────────────────────────────────
 const Method = () => {
   const { t } = useLanguage();
+  const { openForm } = useContactForm();
   const m = t.method;
 
   // Hero parallax
@@ -236,10 +238,10 @@ const Method = () => {
             </ScrollReveal>
             <ScrollReveal delay={0.58}>
               <div className="flex flex-wrap items-center gap-3 mt-9 mb-10">
-                <Link to="/contact" className="btn-hero-pill" data-testid="method-hero-cta">
+                <button onClick={() => openForm()} className="btn-hero-pill" data-testid="method-hero-cta">
                   {m.cta.button}
                   <ArrowRight size={13} />
-                </Link>
+                </button>
                 <Link to="/work-with-me" className="btn-hero-pill-outline" data-testid="method-hero-cta-secondary">
                   View All Services
                   <ArrowRight size={13} />
@@ -1026,14 +1028,14 @@ const Method = () => {
                 <p style={{ fontFamily: "Manrope, sans-serif", fontSize: "15px", fontWeight: 300, color: "rgba(227,222,215,0.5)", lineHeight: 1.75, marginTop: "20px" }}>
                   {m.cta.body}
                 </p>
-                <Link
-                  to="/contact"
-                  className="btn-secondary inline-block"
-                  style={{ marginTop: "40px", borderRadius: "8px" }}
+                <button
+                  onClick={() => openForm()}
+                  className="btn-secondary"
+                  style={{ marginTop: "40px", borderRadius: "8px", display: "inline-block", cursor: "pointer" }}
                   data-testid="method-cta-btn"
                 >
                   {m.cta.button}
-                </Link>
+                </button>
               </div>
             </div>
           </ScrollReveal>

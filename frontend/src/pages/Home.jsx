@@ -81,6 +81,18 @@ const Home = () => {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  // Escape key to close hero / final-CTA panels
+  useEffect(() => {
+    const onKeyDown = (e) => {
+      if (e.key === "Escape") {
+        setShowContactForm(false);
+        setShowFinalForm(false);
+      }
+    };
+    document.addEventListener("keydown", onKeyDown);
+    return () => document.removeEventListener("keydown", onKeyDown);
+  }, []);
+
   const restartTimer = (count) => {
     clearInterval(timerRef.current);
     timerRef.current = setInterval(() => {

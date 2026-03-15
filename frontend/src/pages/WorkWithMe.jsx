@@ -3,9 +3,11 @@ import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
 import ScrollReveal from "../components/ScrollReveal";
 import { useLanguage } from "../context/LanguageContext";
+import { useContactForm } from "../context/ContactFormContext";
 
 const WorkWithMe = () => {
   const { t } = useLanguage();
+  const { openForm } = useContactForm();
   const w = t.workWithMe;
 
   return (
@@ -122,9 +124,9 @@ const WorkWithMe = () => {
             >
               {w.cta.body}
             </p>
-            <Link to="/contact" className="btn-secondary mt-8 inline-block" data-testid="work-contact-cta">
+            <button onClick={() => openForm()} className="btn-secondary mt-8" style={{ display: "inline-block", cursor: "pointer" }} data-testid="work-contact-cta">
               {w.cta.button}
-            </Link>
+            </button>
           </ScrollReveal>
         </div>
       </section>

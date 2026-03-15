@@ -89,10 +89,20 @@ const SuccessView = ({ name, onClose, noPadding }) => (
 );
 
 // ─── Main Form Component ───────────────────────────────────────────────────────
-export const HeroContactForm = ({ onClose, noPadding = false }) => {
+export const HeroContactForm = ({ onClose, noPadding = false, preselectedService = null }) => {
   const [form, setForm] = useState({
-    name: "", email: "", countryCode: "+49", phone: "", services: [], notes: "", agreeTC: false,
+    name: "", email: "", countryCode: "+49", phone: "",
+    services: preselectedService ? [preselectedService] : [],
+    notes: "", agreeTC: false,
   });
+
+  // Sync when preselectedService changes (e.g. modal reopened for different service)
+  useEffect(() => {
+    if (preselectedService) {
+      setForm(p => ({ ...p, services: p.services.includes(preselectedService) ? p.services : [preselectedService, ...p.services] }));
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [preselectedService]);
   const [servicesOpen, setServicesOpen] = useState(false);
   const [submitted, setSubmitted]       = useState(false);
   const [errors, setErrors]             = useState({});

@@ -4,6 +4,7 @@ import { motion, AnimatePresence, useScroll, useTransform, useMotionValueEvent }
 import NeuralCanvas from "../../components/NeuralCanvas";
 import ScrollReveal from "../../components/ScrollReveal";
 import { useLanguage } from "../../context/LanguageContext";
+import { useContactForm } from "../../context/ContactFormContext";
 
 // ─── Constants ────────────────────────────────────────────────────────────────
 const HERO_BG =
@@ -121,6 +122,7 @@ const CirclesViz = ({ activePhase, size = 500 }) => {
 // ─── Page ─────────────────────────────────────────────────────────────────────
 const ExecutiveCoaching = () => {
   const { t } = useLanguage();
+  const { openForm } = useContactForm();
   const s = t.services.executiveCoaching;
 
   // Hero parallax
@@ -231,13 +233,13 @@ const ExecutiveCoaching = () => {
             </ScrollReveal>
             <ScrollReveal delay={0.58}>
               <div style={{ display: "flex", flexWrap: "wrap", alignItems: "center", gap: "12px", marginTop: "36px", marginBottom: "40px" }}>
-                <Link
-                  to="/contact"
+                <button
+                  onClick={() => openForm('executive-coaching')}
                   className="btn-hero-pill"
                   data-testid="coaching-hero-cta"
                 >
                   Begin an Application
-                </Link>
+                </button>
               </div>
             </ScrollReveal>
           </div>
@@ -840,14 +842,14 @@ const ExecutiveCoaching = () => {
                 <p style={{ fontFamily: "Manrope, sans-serif", fontSize: "15px", fontWeight: 300, color: "rgba(227,222,215,0.45)", lineHeight: 1.75, marginTop: "18px" }}>
                   All engagements begin with a conversation. There is no obligation — only the beginning of understanding whether this is the right fit.
                 </p>
-                <Link
-                  to="/contact"
-                  className="btn-secondary inline-block"
-                  style={{ marginTop: "40px", borderRadius: "8px" }}
+                <button
+                  onClick={() => openForm('executive-coaching')}
+                  className="btn-secondary"
+                  style={{ marginTop: "40px", borderRadius: "8px", display: "inline-block", cursor: "pointer" }}
                   data-testid="coaching-apply-btn"
                 >
                   {s.cta.button}
-                </Link>
+                </button>
               </div>
             </div>
           </ScrollReveal>

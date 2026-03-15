@@ -4,6 +4,7 @@ import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion"
 import NeuralCanvas from "../../components/NeuralCanvas";
 import ScrollReveal from "../../components/ScrollReveal";
 import { useLanguage } from "../../context/LanguageContext";
+import { useContactForm } from "../../context/ContactFormContext";
 
 // ─── Constants ────────────────────────────────────────────────────────────────
 const HERO_BG =
@@ -125,6 +126,7 @@ const FOREST_TO_IVORY =
 // ─── Page ─────────────────────────────────────────────────────────────────────
 const OrganizationalAdvisory = () => {
   const { t } = useLanguage();
+  const { openForm } = useContactForm();
   const testimonials = t.home.testimonials.items;
 
   const heroRef = useRef(null);
@@ -212,9 +214,9 @@ const OrganizationalAdvisory = () => {
             </ScrollReveal>
             <ScrollReveal delay={0.58}>
               <div style={{ display: "flex", flexWrap: "wrap", gap: "12px", marginTop: "36px", marginBottom: "40px" }}>
-                <Link to="/contact" className="btn-hero-pill" data-testid="advisory-hero-cta">
+                <button onClick={() => openForm('org-advisory')} className="btn-hero-pill" data-testid="advisory-hero-cta">
                   Begin the Conversation
-                </Link>
+                </button>
               </div>
             </ScrollReveal>
           </div>
@@ -884,14 +886,14 @@ const OrganizationalAdvisory = () => {
 
           {/* Unified CTA */}
           <div style={{ marginTop: "56px", display: "flex", justifyContent: "center" }}>
-            <Link
-              to="/contact"
+            <button
+              onClick={() => openForm('org-advisory')}
               className="btn-primary"
-              style={{ borderRadius: "8px" }}
+              style={{ borderRadius: "8px", cursor: "pointer" }}
               data-testid="advisory-for-whom-cta"
             >
               Begin the Conversation
-            </Link>
+            </button>
           </div>
 
         </div>
@@ -1128,14 +1130,14 @@ const OrganizationalAdvisory = () => {
                 >
                   If your organisation is at a point where people, culture, and leadership need to evolve together, I welcome an initial conversation to understand your situation.
                 </p>
-                <Link
-                  to="/contact"
-                  className="btn-secondary inline-block"
-                  style={{ marginTop: "40px", borderRadius: "8px" }}
+                <button
+                  onClick={() => openForm('org-advisory')}
+                  className="btn-secondary"
+                  style={{ marginTop: "40px", borderRadius: "8px", display: "inline-block", cursor: "pointer" }}
                   data-testid="advisory-apply-btn"
                 >
                   Begin the Conversation
-                </Link>
+                </button>
               </div>
             </div>
           </ScrollReveal>

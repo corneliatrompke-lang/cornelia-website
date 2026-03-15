@@ -4,6 +4,7 @@ import { motion, AnimatePresence, useScroll, useTransform, useMotionValueEvent }
 import NeuralCanvas from "../../components/NeuralCanvas";
 import ScrollReveal from "../../components/ScrollReveal";
 import { useLanguage } from "../../context/LanguageContext";
+import { useContactForm } from "../../context/ContactFormContext";
 
 // ─── Assets ───────────────────────────────────────────────────────────────────
 const HERO_BG =
@@ -239,6 +240,7 @@ const CirclesViz = ({ activePhase, size = 500 }) => {
 // ─── Page ─────────────────────────────────────────────────────────────────────
 const MeditationRetreat = () => {
   const { t } = useLanguage();
+  const { openForm } = useContactForm();
   const testimonials = t.home.testimonials.items;
 
   // Hero parallax
@@ -374,13 +376,13 @@ const MeditationRetreat = () => {
             </ScrollReveal>
             <ScrollReveal delay={0.58}>
               <div style={{ display: "flex", flexDirection: "row", flexWrap: "wrap", gap: "12px", marginTop: "36px", marginBottom: "40px" }}>
-                <Link
-                  to="/contact"
+                <button
+                  onClick={() => openForm('executive-retreats')}
                   className="btn-hero-pill"
                   data-testid="retreat-hero-cta"
                 >
                   Inquire About Retreats
-                </Link>
+                </button>
               </div>
             </ScrollReveal>
           </div>
@@ -1451,8 +1453,8 @@ const MeditationRetreat = () => {
                       {retreat.spots}
                     </span>
 
-                    <Link
-                      to="/contact"
+                    <button
+                      onClick={() => openForm('executive-retreats')}
                       style={{
                         fontFamily: "Manrope, sans-serif",
                         fontSize: "11px",
@@ -1460,15 +1462,17 @@ const MeditationRetreat = () => {
                         letterSpacing: "2px",
                         textTransform: "uppercase",
                         color: "#C8A96A",
-                        textDecoration: "none",
+                        background: "none",
+                        border: "none",
                         borderBottom: "1px solid rgba(200,169,106,0.35)",
                         paddingBottom: "2px",
                         transition: "border-color 0.25s ease, color 0.25s ease",
+                        cursor: "pointer",
                       }}
                       data-testid={`retreat-apply-${i}`}
                     >
                       Apply
-                    </Link>
+                    </button>
                   </div>
                 </div>
               </ScrollReveal>
@@ -1898,14 +1902,14 @@ const MeditationRetreat = () => {
                 >
                   Retreats are offered to leaders engaged in one of Cornelia's programmes. Enquiries are welcomed — to understand whether the timing and format are the right fit.
                 </p>
-                <Link
-                  to="/contact"
-                  className="btn-secondary inline-block"
-                  style={{ marginTop: "40px", borderRadius: "8px" }}
+                <button
+                  onClick={() => openForm('executive-retreats')}
+                  className="btn-secondary"
+                  style={{ marginTop: "40px", borderRadius: "8px", display: "inline-block", cursor: "pointer" }}
                   data-testid="retreat-apply-btn"
                 >
                   Inquire About Retreats
-                </Link>
+                </button>
               </div>
             </div>
           </ScrollReveal>

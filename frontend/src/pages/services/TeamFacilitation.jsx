@@ -4,6 +4,7 @@ import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion"
 import NeuralCanvas from "../../components/NeuralCanvas";
 import ScrollReveal from "../../components/ScrollReveal";
 import { useLanguage } from "../../context/LanguageContext";
+import { useContactForm } from "../../context/ContactFormContext";
 
 // ─── Constants ────────────────────────────────────────────────────────────────
 const HERO_BG =
@@ -138,6 +139,7 @@ const OUTCOME_GRADIENT =
 // ─── Page ─────────────────────────────────────────────────────────────────────
 const TeamFacilitation = () => {
   const { t } = useLanguage();
+  const { openForm } = useContactForm();
   const testimonials = t.home.testimonials.items;
 
   // Hero parallax
@@ -230,9 +232,9 @@ const TeamFacilitation = () => {
             </ScrollReveal>
             <ScrollReveal delay={0.58}>
               <div style={{ display: "flex", flexWrap: "wrap", gap: "12px", marginTop: "36px", marginBottom: "40px" }}>
-                <Link to="/contact" className="btn-hero-pill" data-testid="facilitation-hero-cta">
+                <button onClick={() => openForm('team-facilitation')} className="btn-hero-pill" data-testid="facilitation-hero-cta">
                   Begin the Conversation
-                </Link>
+                </button>
               </div>
             </ScrollReveal>
           </div>
@@ -773,14 +775,14 @@ const TeamFacilitation = () => {
               justifyContent: "center",
             }}
           >
-            <Link
-              to="/contact"
+            <button
+              onClick={() => openForm('team-facilitation')}
               className="btn-primary"
-              style={{ borderRadius: "8px" }}
+              style={{ borderRadius: "8px", cursor: "pointer" }}
               data-testid="for-whom-unified-cta"
             >
               Begin the Conversation
-            </Link>
+            </button>
           </div>
 
         </div>
@@ -1142,14 +1144,14 @@ const TeamFacilitation = () => {
                 >
                   The work begins with a conversation. If you are facing challenges at the level of your leadership team, I welcome an initial exchange to understand the situation.
                 </p>
-                <Link
-                  to="/contact"
-                  className="btn-secondary inline-block"
-                  style={{ marginTop: "40px", borderRadius: "8px" }}
+                <button
+                  onClick={() => openForm('team-facilitation')}
+                  className="btn-secondary"
+                  style={{ marginTop: "40px", borderRadius: "8px", display: "inline-block", cursor: "pointer" }}
                   data-testid="facilitation-apply-btn"
                 >
                   Begin the Conversation
-                </Link>
+                </button>
               </div>
             </div>
           </ScrollReveal>

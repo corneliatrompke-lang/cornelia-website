@@ -4,7 +4,7 @@ import { HeroContactForm } from "./HeroContactForm";
 import { useContactForm } from "../context/ContactFormContext";
 
 export const ContactFormModal = () => {
-  const { modalOpen, setModalOpen } = useContactForm();
+  const { modalOpen, setModalOpen, selectedService } = useContactForm();
 
   return (
     <AnimatePresence>
@@ -55,7 +55,7 @@ export const ContactFormModal = () => {
             <div style={{ position: "absolute", top: 0, left: 0, width: "1px", height: "36px", background: "rgba(200,169,106,0.35)", zIndex: 1 }} />
             <div style={{ position: "absolute", bottom: 0, right: 0, width: "36px", height: "1px", background: "rgba(200,169,106,0.35)", zIndex: 1 }} />
             <div style={{ position: "absolute", bottom: 0, right: 0, width: "1px", height: "36px", background: "rgba(200,169,106,0.35)", zIndex: 1 }} />
-            <HeroContactForm onClose={() => setModalOpen(false)} />
+            <HeroContactForm onClose={() => setModalOpen(false)} preselectedService={selectedService} />
           </motion.div>
         </motion.div>
       )}

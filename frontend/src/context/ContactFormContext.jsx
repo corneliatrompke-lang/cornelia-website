@@ -1,15 +1,24 @@
-import React, { createContext, useContext, useState, useRef } from "react";
+import React, { createContext, useContext, useState, useRef, useEffect, useCallback } from "react";
 
 const ContactFormContext = createContext();
 
 export const ContactFormProvider = ({ children }) => {
-  const [modalOpen, setModalOpen] = useState(false);
+  const [modalOpen, setModalOpen]           = useState(false);
+  const [selectedService, setSelectedService] = useState(null);
 
   // Callbacks registered by Home.jsx to trigger section-specific forms
-  const heroOpenFn    = useRef(null);
+  const heroOpenFn     = useRef(null);
   const finalCtaOpenFn = useRef(null);
 
-  const openForm = () => {
+  const closeForm = useCallback(() => {
+    setModalOpen(false);
+    // Hero / finalCTA close is handled by Home.jsx's own state
+    // We can't close those from here directly, but Escape is handled below
+  }, []);
+
+  const openForm = useCallback((serviceId = null) => {
+    setSelectedService(serviceId);
+
     // Real-time viewport check at the moment of click — no async state lag
     const check = (selector) => {
       const el = document.querySelector(selector);
@@ -25,15 +34,27 @@ export const ContactFormProvider = ({ children }) => {
     } else {
       setModalOpen(true);
     }
-  };
+  }, []);
+
+  // Global Escape key listener — dismisses the modal
+  // Hero/finalCTA panels are closed by Home.jsx's own Escape handler
+  useEffect(() => {
+    const onKeyDown = (e) => {
+      if (e.key === "Escape") setModalOpen(false);
+    };
+    document.addEventListener("keydown", onKeyDown);
+    return () => document.removeEventListener("keydown", onKeyDown);
+  }, []);
 
   return (
     <ContactFormContext.Provider value={{
       modalOpen,
       setModalOpen,
+      selectedService,
       heroOpenFn,
       finalCtaOpenFn,
       openForm,
+      closeForm,
     }}>
       {children}
     </ContactFormContext.Provider>
@@ -41,3 +62,4 @@ export const ContactFormProvider = ({ children }) => {
 };
 
 export const useContactForm = () => useContext(ContactFormContext);
+
