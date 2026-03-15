@@ -45,6 +45,7 @@ const Home = () => {
   const [activeService, setActiveService] = useState(null);
   const [activeMobileService, setActiveMobileService] = useState(null);
   const [showContactForm, setShowContactForm] = useState(false);
+  const [showFinalForm, setShowFinalForm] = useState(false);
   const [isMobile, setIsMobile] = useState(typeof window !== "undefined" ? window.innerWidth < 768 : false);
   const [isNarrow, setIsNarrow] = useState(typeof window !== "undefined" ? window.innerWidth < 1024 : false);
   useEffect(() => {
@@ -904,18 +905,24 @@ const Home = () => {
         <NeuralCanvas opacity={0.04} nodeCount={22} />
         <div className="relative z-10 max-w-[760px] mx-auto px-6">
           <ScrollReveal>
-            <div
+            <motion.div
+              animate={{
+                padding: showFinalForm
+                  ? isMobile ? "32px 28px 36px" : "36px 56px 44px"
+                  : isMobile ? "52px 28px" : "80px 72px",
+                textAlign: showFinalForm ? "left" : "center",
+              }}
+              transition={{ duration: 0.45, ease: [0.25, 0.46, 0.45, 0.94] }}
               style={{
                 background: "rgba(15,26,18,0.60)",
                 backdropFilter: "blur(28px)",
                 WebkitBackdropFilter: "blur(28px)",
                 border: "1px solid rgba(200,169,106,0.18)",
                 borderRadius: "20px",
-                padding: "80px 72px",
-                textAlign: "center",
                 position: "relative",
-                overflow: "hidden",
+                overflow: showFinalForm ? "auto" : "hidden",
               }}
+              data-testid="final-cta-card"
             >
               {/* Inner radial shimmer */}
               <div
@@ -924,32 +931,64 @@ const Home = () => {
                   inset: 0,
                   background: "radial-gradient(ellipse 80% 60% at 50% 40%, rgba(200,169,106,0.05) 0%, transparent 70%)",
                   pointerEvents: "none",
+                  zIndex: 0,
                 }}
               />
               {/* Corner accent lines */}
-              <div style={{ position: "absolute", top: 0, left: 0, width: "48px", height: "1px", background: "rgba(200,169,106,0.35)" }} />
-              <div style={{ position: "absolute", top: 0, left: 0, width: "1px", height: "48px", background: "rgba(200,169,106,0.35)" }} />
-              <div style={{ position: "absolute", bottom: 0, right: 0, width: "48px", height: "1px", background: "rgba(200,169,106,0.35)" }} />
-              <div style={{ position: "absolute", bottom: 0, right: 0, width: "1px", height: "48px", background: "rgba(200,169,106,0.35)" }} />
+              <div style={{ position: "absolute", top: 0, left: 0, width: "48px", height: "1px", background: "rgba(200,169,106,0.35)", zIndex: 1 }} />
+              <div style={{ position: "absolute", top: 0, left: 0, width: "1px", height: "48px", background: "rgba(200,169,106,0.35)", zIndex: 1 }} />
+              <div style={{ position: "absolute", bottom: 0, right: 0, width: "48px", height: "1px", background: "rgba(200,169,106,0.35)", zIndex: 1 }} />
+              <div style={{ position: "absolute", bottom: 0, right: 0, width: "1px", height: "48px", background: "rgba(200,169,106,0.35)", zIndex: 1 }} />
 
-              <div className="relative z-10">
-                <h2
-                  className="text-ivory leading-[1.1]"
-                  style={{ fontFamily: "Figtree, sans-serif", fontSize: "clamp(32px, 5vw, 60px)", fontWeight: 400 }}
-                >
-                  {t.home.cta.headline}
-                </h2>
-                <p
-                  className="text-stone/50 mt-6 leading-relaxed"
-                  style={{ fontFamily: "Manrope, sans-serif", fontSize: "16px", fontWeight: 300 }}
-                >
-                  {t.home.cta.body}
-                </p>
-                <Link to="/contact" className="btn-secondary mt-10 inline-block" style={{ borderRadius: "8px" }} data-testid="final-cta-btn">
-                  {t.home.cta.cta}
-                </Link>
+              {/* Animated inner content */}
+              <div style={{ position: "relative", zIndex: 10 }}>
+                <AnimatePresence mode="wait">
+                  {!showFinalForm ? (
+                    <motion.div
+                      key="cta-content"
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -10 }}
+                      transition={{ duration: 0.3, ease: "easeOut" }}
+                    >
+                      <h2
+                        className="text-ivory leading-[1.1]"
+                        style={{ fontFamily: "Figtree, sans-serif", fontSize: "clamp(32px, 5vw, 60px)", fontWeight: 400 }}
+                      >
+                        {t.home.cta.headline}
+                      </h2>
+                      <p
+                        className="text-stone/50 mt-6 leading-relaxed"
+                        style={{ fontFamily: "Manrope, sans-serif", fontSize: "16px", fontWeight: 300 }}
+                      >
+                        {t.home.cta.body}
+                      </p>
+                      <button
+                        onClick={() => setShowFinalForm(true)}
+                        className="btn-secondary mt-10 inline-block"
+                        style={{ borderRadius: "8px", cursor: "pointer" }}
+                        data-testid="final-cta-btn"
+                      >
+                        {t.home.cta.cta}
+                      </button>
+                    </motion.div>
+                  ) : (
+                    <motion.div
+                      key="form-content"
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -10 }}
+                      transition={{ duration: 0.3, ease: "easeOut" }}
+                    >
+                      <HeroContactForm
+                        onClose={() => setShowFinalForm(false)}
+                        noPadding
+                      />
+                    </motion.div>
+                  )}
+                </AnimatePresence>
               </div>
-            </div>
+            </motion.div>
           </ScrollReveal>
         </div>
       </section>

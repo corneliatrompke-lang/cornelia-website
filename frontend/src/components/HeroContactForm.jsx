@@ -57,12 +57,12 @@ const INPUT = {
 };
 
 // ─── Success Screen ────────────────────────────────────────────────────────────
-const SuccessView = ({ name, onClose }) => (
+const SuccessView = ({ name, onClose, noPadding }) => (
   <motion.div
     initial={{ opacity: 0, scale: 0.97 }}
     animate={{ opacity: 1, scale: 1 }}
     transition={{ duration: 0.45, ease: "easeOut" }}
-    style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", height: "100%", padding: "48px 40px", textAlign: "center" }}
+    style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", height: "100%", padding: noPadding ? "24px 0" : "48px 40px", textAlign: "center" }}
   >
     <motion.div
       initial={{ scale: 0 }}
@@ -89,7 +89,7 @@ const SuccessView = ({ name, onClose }) => (
 );
 
 // ─── Main Form Component ───────────────────────────────────────────────────────
-export const HeroContactForm = ({ onClose }) => {
+export const HeroContactForm = ({ onClose, noPadding = false }) => {
   const [form, setForm] = useState({
     name: "", email: "", countryCode: "+49", phone: "", services: [], notes: "", agreeTC: false,
   });
@@ -129,10 +129,10 @@ export const HeroContactForm = ({ onClose }) => {
 
   const field = (hasErr) => ({ ...INPUT, borderColor: hasErr ? "rgba(210,80,80,0.55)" : "rgba(200,169,106,0.22)" });
 
-  if (submitted) return <SuccessView name={form.name} onClose={onClose} />;
+  if (submitted) return <SuccessView name={form.name} onClose={onClose} noPadding={noPadding} />;
 
   return (
-    <div style={{ padding: "32px 32px 28px", scrollbarWidth: "none" }}>
+    <div style={{ padding: noPadding ? "0" : "32px 32px 28px", scrollbarWidth: "none" }}>
       <style>{`
         .ct-form-scroll::-webkit-scrollbar { display: none; }
         .ct-input:focus { border-color: rgba(200,169,106,0.55) !important; }

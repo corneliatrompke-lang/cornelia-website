@@ -280,13 +280,26 @@ Footer (from shared Footer component)
 
 ## Next Tasks
 
-1. Replace all placeholder content with final copy (P0)
-2. Upload Cornelia's real portrait photo (P0)
-3. Update WhatsApp number and legal details (P0)
-4. Configure custom domain (P0)
-5. Implement WhatsApp floating button (P1)
-6. Refactor large page components into smaller section components (P2)
-7. Optionally add Calendly booking integration (P1)
+1. Wire nav "BEGIN THE WORK" button to open contact form globally (React Context) (P0)
+2. Replace service page CTAs to trigger the contact form (P0)
+3. Build "Work With Me" landing page at `/work-with-me` (P1)
+4. Add WhatsApp floating button (P2)
+5. Wire contact form to `/api/contact` backend endpoint (P3)
+6. Replace placeholder copy with final client copy (P0)
+7. Upload Cornelia's real portrait photo (P0)
+8. Update WhatsApp number and legal details (P0)
+9. Configure custom domain (P0)
+10. Refactor large page components into smaller section components (P2)
+11. Optionally add Calendly booking integration (P1)
+
+### v3.0 — Final CTA Card In-Place Form Transformation (Mar 2026)
+- **Feature:** Final CTA section glassmorphic card now transforms in-place to show contact form when CTA button is clicked.
+- **No layout change:** Card wrapper (glassmorphic bg, border, border-radius, corner accent lines, gradient background section) stays identical.
+- **AnimatePresence:** `mode="wait"` cross-fades between CTA content ("Ready to Begin?" headline + button) and form content ("Start a Conversation" + all fields).
+- **`motion.div` card:** Padding animates from `80px 72px` → `36px 56px 44px` to give form breathing room within the same wrapper.
+- **`HeroContactForm` updated:** New `noPadding` prop strips the component's internal padding when rendered inside an already-padded container.
+- **Close button:** X button in form header returns card to default CTA state (`setShowFinalForm(false)`).
+- **Hero contact form styling confirmed:** 80% height, 0.25 opacity background, "Begin The Work" title removed (these were applied in the previous session and verified now).
 
 ### v2.8 — Transformation Section Tablet Refinements (Mar 2026)
 - **Large individual circles (tablet)**: Reduced size from 698px → 560px (-20%); increased heading font from 22px → 30px and subtext from 14px → 16px for improved readability
