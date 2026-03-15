@@ -232,13 +232,15 @@ const Home = () => {
                   transition={{ duration: 0.55, ease: [0.25, 0.46, 0.45, 0.94] }}
                   style={{
                     position: "absolute",
-                    right: 0, top: 0, bottom: 0,
-                    width: "clamp(380px, 42%, 560px)",
-                    borderRadius: "0 20px 20px 0",
-                    background: "rgba(8,16,11,0.76)",
+                    right: "clamp(24px, 4vw, 56px)",
+                    top: "12.5%",
+                    height: "75%",
+                    width: "clamp(360px, 40%, 520px)",
+                    borderRadius: "16px",
+                    background: "rgba(8,16,11,0.38)",
                     backdropFilter: "blur(28px) saturate(1.6)",
                     WebkitBackdropFilter: "blur(28px) saturate(1.6)",
-                    borderLeft: "1px solid rgba(200,169,106,0.18)",
+                    border: "1px solid rgba(200,169,106,0.18)",
                     zIndex: 20,
                     overflowY: "auto",
                   }}
