@@ -347,12 +347,13 @@ const MeditationRetreat = () => {
               y: heroBgY,
             }}
           />
-          {/* Left-to-right dark gradient overlay */}
+          {/* Directional gradient: left→right on desktop, bottom→top on mobile */}
           <div
             className="absolute inset-0 z-[1]"
             style={{
-              background:
-                "linear-gradient(to right, rgba(15,26,18,0.96) 0%, rgba(15,26,18,0.88) 22%, rgba(15,26,18,0.72) 42%, rgba(15,26,18,0.30) 62%, rgba(15,26,18,0.08) 100%)",
+              background: isMobile
+                ? "linear-gradient(to top, rgba(15,26,18,0.96) 0%, rgba(15,26,18,0.88) 22%, rgba(15,26,18,0.72) 42%, rgba(15,26,18,0.30) 62%, rgba(15,26,18,0.08) 100%)"
+                : "linear-gradient(to right, rgba(15,26,18,0.96) 0%, rgba(15,26,18,0.88) 22%, rgba(15,26,18,0.72) 42%, rgba(15,26,18,0.30) 62%, rgba(15,26,18,0.08) 100%)",
             }}
           />
           {/* Top fade */}

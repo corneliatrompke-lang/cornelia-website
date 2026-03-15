@@ -216,11 +216,13 @@ const Method = () => {
             }}
           />
           {/* Left dark gradient */}
+          {/* Directional gradient: left→right on desktop, bottom→top on mobile */}
           <div
             className="absolute inset-0 z-[1]"
             style={{
-              background:
-                "linear-gradient(to right, rgba(18,18,18,1.00) 0%, rgba(18,18,18,0.90) 20%, rgba(18,18,18,0.75) 40%, rgba(18,18,18,0.30) 60%, rgba(18,18,18,0.15) 80%, rgba(18,18,18,0.01) 100%)",
+              background: isMobile
+                ? "linear-gradient(to top, rgba(18,18,18,1.00) 0%, rgba(18,18,18,0.90) 20%, rgba(18,18,18,0.75) 40%, rgba(18,18,18,0.30) 60%, rgba(18,18,18,0.15) 80%, rgba(18,18,18,0.01) 100%)"
+                : "linear-gradient(to right, rgba(18,18,18,1.00) 0%, rgba(18,18,18,0.90) 20%, rgba(18,18,18,0.75) 40%, rgba(18,18,18,0.30) 60%, rgba(18,18,18,0.15) 80%, rgba(18,18,18,0.01) 100%)",
             }}
           />
           {/* Top strip */}

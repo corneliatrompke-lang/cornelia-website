@@ -202,11 +202,13 @@ const OrganizationalAdvisory = () => {
               y: heroBgY,
             }}
           />
+          {/* Directional gradient: left→right on desktop, bottom→top on mobile */}
           <div
             className="absolute inset-0 z-[1]"
             style={{
-              background:
-                "linear-gradient(to right, rgba(15,26,18,0.97) 0%, rgba(15,26,18,0.90) 25%, rgba(15,26,18,0.72) 48%, rgba(15,26,18,0.28) 68%, rgba(15,26,18,0.06) 100%)",
+              background: isMobile
+                ? "linear-gradient(to top, rgba(15,26,18,0.97) 0%, rgba(15,26,18,0.90) 25%, rgba(15,26,18,0.72) 48%, rgba(15,26,18,0.28) 68%, rgba(15,26,18,0.06) 100%)"
+                : "linear-gradient(to right, rgba(15,26,18,0.97) 0%, rgba(15,26,18,0.90) 25%, rgba(15,26,18,0.72) 48%, rgba(15,26,18,0.28) 68%, rgba(15,26,18,0.06) 100%)",
             }}
           />
           <div
