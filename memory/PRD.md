@@ -394,6 +394,15 @@ Footer (from shared Footer component)
 - Portrait (right column) sits against arc boundary — charcoal visible in lower section area ✓
 - Removed `.about-blob` CSS class from App.css (no longer needed)
 
+### v3.7 — Text-Only Testimonials (Feb 2026)
+- **All 4 testimonial sections** redesigned to be purely text-based (no images):
+  - Deleted `TESTIMONIAL_PORTRAITS` arrays from `Home.jsx`, `ExecutiveCoaching.jsx`, `OrganizationalAdvisory.jsx`, `TeamFacilitation.jsx`
+  - Removed portrait image column (left 38% of card) from desktop layout — testimonial card now full-width
+  - Replaced circular thumbnail nav buttons with elegant text-based author name + company navigation: active item highlighted by gold top-border indicator + full-brightness text
+  - Increased card padding to `48px 36px` (mobile) / `64px 80px` (desktop) to use full width
+  - Auto-cycling rotation logic and progress bar preserved unchanged
+- **Tested**: 100% pass (iteration_14.json)
+
 ### Testimonials Section Redesign (Mar 2026)
 - Background changed to charcoal (#121212)
 - Glassmorphic card: left portrait image (cross-fade) + right quote text (vertically centred)
