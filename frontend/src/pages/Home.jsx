@@ -425,7 +425,7 @@ const Home = () => {
       <VennDiagram />
 
       {/* ═══ METHOD TEASER ═══ */}
-      <section className="ct-section relative overflow-hidden" style={{ background: "#0F1A12", paddingTop: isNarrow ? "0" : "32px", marginTop: isNarrow ? "-210px" : undefined }} data-testid="method-section">
+      <section className="ct-section relative overflow-hidden" style={{ background: "#0F1A12", paddingTop: isMobile ? undefined : (isNarrow ? "0" : "32px"), marginTop: (!isMobile && isNarrow) ? "-210px" : undefined }} data-testid="method-section">
         <NeuralCanvas opacity={0.08} nodeCount={40} />
         <div className="relative z-10 max-w-[750px] mx-auto px-6 text-center">
           <ScrollReveal>

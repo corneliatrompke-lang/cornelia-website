@@ -1,0 +1,31 @@
+{
+  "summary": "Tested the mobile layout overlap fix between About Preview and Method Teaser sections at 390px, 768px viewports. The fix (!isMobile && isNarrow) ? '-210px' : undefined correctly prevents the negative margin from applying on mobile.",
+  "backend_issues": {
+    "critical": [],
+    "minor": []
+  },
+  "frontend_issues": {
+    "ui_bugs": [],
+    "integration_issues": [],
+    "design_issues": []
+  },
+  "test_results": {
+    "mobile_390px": {
+      "overlap": "PASS - No overlap. Method section (y=113) starts after About section ends",
+      "marquee_ticker": "PASS - Marquee ticker visible between About Preview and Method Teaser (y=78, height=15)",
+      "method_teaser": "PASS - 'Grounded in Science. Guided by Depth.' renders correctly below marquee",
+      "section_order": "PASS - About Preview → Marquee → Method Teaser sequential, no overlap"
+    },
+    "tablet_768px": {
+      "method_section": "PASS - Method section at y=5371px (after Venn diagram sticky scroll zone)",
+      "venn_diagram": "Venn diagram sticky scroll zone visible (dark background area)"
+    }
+  },
+  "test_report_links": ["/app/test_reports/iteration_11.json"],
+  "action_items": [],
+  "updated_files": [],
+  "success_rate": {"frontend": "100%"},
+  "retest_needed": false,
+  "should_main_agent_self_test": false,
+  "context_for_next_testing_agent": "Bug fix for mobile layout overlap verified working. The marginTop fix (!isMobile && isNarrow) ? '-210px' : undefined is correct and applied properly."
+}
