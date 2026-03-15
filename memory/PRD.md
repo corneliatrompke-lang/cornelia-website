@@ -394,6 +394,14 @@ Footer (from shared Footer component)
 - Portrait (right column) sits against arc boundary — charcoal visible in lower section area ✓
 - Removed `.about-blob` CSS class from App.css (no longer needed)
 
+### v3.8 — Hero Video Background (Feb 2026)
+- Replaced static Unsplash hero background image with client-provided responsive videos
+- Desktop: `ihle29r5_Hero video 2 - desktop.mp4`, Mobile: `x84hoo3c_Hero video 2 - mobile.mp4`
+- Implemented as `motion.video` with `autoPlay`, `muted`, `loop`, `playsInline` — no controls
+- `key={isMobile ? 'hero-mobile' : 'hero-desktop'}` forces remount when viewport switches
+- Existing parallax `y` drift and all overlay gradients/text content preserved
+- Tested: 100% pass (iteration_15.json)
+
 ### v3.7 — Text-Only Testimonials (Feb 2026)
 - **All 4 testimonial sections** redesigned to be purely text-based (no images):
   - Deleted `TESTIMONIAL_PORTRAITS` arrays from `Home.jsx`, `ExecutiveCoaching.jsx`, `OrganizationalAdvisory.jsx`, `TeamFacilitation.jsx`
