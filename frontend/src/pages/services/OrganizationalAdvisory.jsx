@@ -124,7 +124,7 @@ const FOREST_TO_IVORY =
 // ─── Page ─────────────────────────────────────────────────────────────────────
 const OrganizationalAdvisory = () => {
   const { t } = useLanguage();
-  const { heroOpenFn, finalCtaOpenFn } = useContactForm();
+  const { heroOpenFn, finalCtaOpenFn, setModalOpen } = useContactForm();
   const testimonials = t.home.testimonials.items;
 
   const heroRef = useRef(null);
@@ -913,7 +913,7 @@ const OrganizationalAdvisory = () => {
           {/* Unified CTA */}
           <div style={{ marginTop: "56px", display: "flex", justifyContent: "center" }}>
             <button
-              onClick={() => setShowFinalForm(true)}
+              onClick={() => setModalOpen(true)}
               className="btn-primary"
               style={{ borderRadius: "8px", cursor: "pointer" }}
               data-testid="advisory-for-whom-cta"

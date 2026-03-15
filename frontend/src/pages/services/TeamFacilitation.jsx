@@ -137,7 +137,7 @@ const OUTCOME_GRADIENT =
 // ─── Page ─────────────────────────────────────────────────────────────────────
 const TeamFacilitation = () => {
   const { t } = useLanguage();
-  const { heroOpenFn, finalCtaOpenFn } = useContactForm();
+  const { heroOpenFn, finalCtaOpenFn, setModalOpen } = useContactForm();
   const testimonials = t.home.testimonials.items;
 
   const heroRef = useRef(null);
@@ -798,7 +798,7 @@ const TeamFacilitation = () => {
             }}
           >
             <button
-              onClick={() => setShowFinalForm(true)}
+              onClick={() => setModalOpen(true)}
               className="btn-primary"
               style={{ borderRadius: "8px", cursor: "pointer" }}
               data-testid="for-whom-unified-cta"
