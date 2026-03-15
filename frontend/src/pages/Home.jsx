@@ -9,6 +9,7 @@ import TransformationSection from "../components/TransformationSection";
 import FoundationSection from "../components/home/FoundationSection";
 import HeroContactForm from "../components/HeroContactForm";
 import { useLanguage } from "../context/LanguageContext";
+import { useContactForm } from "../context/ContactFormContext";
 
 const PORTRAIT =
   "https://customer-assets.emergentagent.com/job_nervous-system-exec/artifacts/za4j3pc7_Cornelia%2BTrompke_0436.webp";
@@ -41,6 +42,7 @@ const HERO_BG =
 
 const Home = () => {
   const { t } = useLanguage();
+  const { heroOpenFn, finalCtaOpenFn } = useContactForm();
   const [activeTestimonial, setActiveTestimonial] = useState(0);
   const [activeService, setActiveService] = useState(null);
   const [activeMobileService, setActiveMobileService] = useState(null);
@@ -67,6 +69,17 @@ const Home = () => {
   });
   // Background image drifts upward -12% as hero scrolls out of view
   const heroBgY = useTransform(heroScroll, [0, 1], ["0%", "-12%"]);
+
+  // ── Register section-specific openers ─────────────────────────────────
+  useEffect(() => {
+    heroOpenFn.current     = () => setShowContactForm(true);
+    finalCtaOpenFn.current = () => setShowFinalForm(true);
+    return () => {
+      heroOpenFn.current     = null;
+      finalCtaOpenFn.current = null;
+    };
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const restartTimer = (count) => {
     clearInterval(timerRef.current);

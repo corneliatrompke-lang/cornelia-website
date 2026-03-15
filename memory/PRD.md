@@ -292,7 +292,15 @@ Footer (from shared Footer component)
 10. Refactor large page components into smaller section components (P2)
 11. Optionally add Calendly booking integration (P1)
 
-### v3.0 — Final CTA Card In-Place Form Transformation (Mar 2026)
+### v3.1 — Context-Aware Nav CTA (Mar 2026)
+- **`ContactFormContext`** (`/src/context/ContactFormContext.jsx`): Holds `openForm()` + `heroOpenFn`/`finalCtaOpenFn` refs. No async state — uses real-time `getBoundingClientRect()` check at click time to avoid race conditions.
+- **`ContactFormModal`** (`/src/components/ContactFormModal.jsx`): Global modal rendered in `App.js` inside `ContactFormProvider`. Glassmorphic dark panel, backdrop-blur overlay, AnimatePresence enter/exit.
+- **Nav CTA behavior (3 states):**
+  1. Hero section ≥25% in viewport → slides in hero panel (right column of hero image)
+  2. Final CTA section ≥25% in viewport → transforms the CTA card in-place
+  3. All other contexts (other pages, mid-scroll) → centered modal overlay
+- **Home.jsx**: Registers `heroOpenFn.current` / `finalCtaOpenFn.current` on mount; cleanup on unmount
+- **Navigation.jsx**: CTA `<Link>` replaced with `<button onClick={openForm}>` (desktop + mobile menu)
 - **Feature:** Final CTA section glassmorphic card now transforms in-place to show contact form when CTA button is clicked.
 - **No layout change:** Card wrapper (glassmorphic bg, border, border-radius, corner accent lines, gradient background section) stays identical.
 - **AnimatePresence:** `mode="wait"` cross-fades between CTA content ("Ready to Begin?" headline + button) and form content ("Start a Conversation" + all fields).

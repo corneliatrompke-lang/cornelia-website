@@ -3,11 +3,13 @@ import { Link, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, ChevronDown, Globe } from "lucide-react";
 import { useLanguage } from "../context/LanguageContext";
+import { useContactForm } from "../context/ContactFormContext";
 
 const LOGO_NAV = "/ct-logo-nav.png";
 
 const Navigation = () => {
   const { lang, setLang, t } = useLanguage();
+  const { openForm } = useContactForm();
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [servicesOpen, setServicesOpen] = useState(false);
@@ -126,9 +128,14 @@ const Navigation = () => {
           {/* ── RIGHT: CTA → Language switcher (desktop) ── */}
           <div className="hidden lg:flex items-center gap-3 flex-shrink-0">
             {/* CTA — first */}
-            <Link to="/contact" className="nav-cta-pill" data-testid="nav-cta-btn">
+            <button
+              onClick={openForm}
+              className="nav-cta-pill"
+              data-testid="nav-cta-btn"
+              style={{ cursor: "pointer", border: "none" }}
+            >
               {t.nav.cta}
-            </Link>
+            </button>
 
             {/* Language switcher — extreme right */}
             <div
@@ -190,7 +197,6 @@ const Navigation = () => {
                   { to: "/about-me", label: t.nav.about },
                   { to: "/how-i-work", label: t.nav.method },
                   { to: "/work-with-me", label: t.nav.workWithMe },
-                  { to: "/contact", label: t.nav.contact },
                 ].map((item, i) => (
                   <motion.div
                     key={item.to}
@@ -208,6 +214,21 @@ const Navigation = () => {
                     </Link>
                   </motion.div>
                 ))}
+                {/* Mobile CTA — opens form */}
+                <motion.div
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 4 * 0.07, duration: 0.4 }}
+                >
+                  <button
+                    onClick={() => { setMobileOpen(false); openForm(); }}
+                    className="text-ivory/80 hover:text-ivory block transition-colors"
+                    style={{ fontFamily: "Figtree, sans-serif", fontSize: "28px", fontWeight: 400, background: "none", border: "none", cursor: "pointer", padding: 0 }}
+                    data-testid="mobile-cta-btn"
+                  >
+                    {t.nav.cta}
+                  </button>
+                </motion.div>
               </div>
 
               <div className="mt-10 space-y-2 border-t border-white/10 pt-8">
