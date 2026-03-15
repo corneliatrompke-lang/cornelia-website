@@ -5,6 +5,7 @@ import NeuralCanvas from "../../components/NeuralCanvas";
 import ScrollReveal from "../../components/ScrollReveal";
 import { useLanguage } from "../../context/LanguageContext";
 import { useContactForm } from "../../context/ContactFormContext";
+import SEOHead from "../../components/SEOHead";
 
 // ─── Constants ────────────────────────────────────────────────────────────────
 const HERO_BG =
@@ -156,8 +157,11 @@ const OrganizationalAdvisory = () => {
 
   return (
     <div className="bg-[#F5F2EC]">
-
-      {/* ══ 1. HERO ══════════════════════════════════════════════════════════ */}
+      <SEOHead
+        title="Organisational Transformation Advisory — People & Culture"
+        description="Strategic advisory for organisations at inflection points — addressing leadership, people systems, and culture simultaneously. Real transformation requires all three dimensions to move together."
+        path="/organizational-advisory"
+      />
       <section
         className="pt-[6px] px-3 md:px-4 pb-3"
         style={{ background: "#F5F2EC" }}
@@ -214,7 +218,7 @@ const OrganizationalAdvisory = () => {
             </ScrollReveal>
             <ScrollReveal delay={0.58}>
               <div style={{ display: "flex", flexWrap: "wrap", gap: "12px", marginTop: "36px", marginBottom: "40px" }}>
-                <button onClick={() => openForm('org-advisory')} className="btn-hero-pill" data-testid="advisory-hero-cta">
+                <button onClick={() => openForm('org-advisory', 'Organizational Advisory')} className="btn-hero-pill" data-testid="advisory-hero-cta">
                   Begin the Conversation
                 </button>
               </div>
@@ -887,7 +891,7 @@ const OrganizationalAdvisory = () => {
           {/* Unified CTA */}
           <div style={{ marginTop: "56px", display: "flex", justifyContent: "center" }}>
             <button
-              onClick={() => openForm('org-advisory')}
+              onClick={() => openForm('org-advisory', 'Organizational Advisory')}
               className="btn-primary"
               style={{ borderRadius: "8px", cursor: "pointer" }}
               data-testid="advisory-for-whom-cta"
@@ -1131,7 +1135,7 @@ const OrganizationalAdvisory = () => {
                   If your organisation is at a point where people, culture, and leadership need to evolve together, I welcome an initial conversation to understand your situation.
                 </p>
                 <button
-                  onClick={() => openForm('org-advisory')}
+                  onClick={() => openForm('org-advisory', 'Organizational Advisory')}
                   className="btn-secondary"
                   style={{ marginTop: "40px", borderRadius: "8px", display: "inline-block", cursor: "pointer" }}
                   data-testid="advisory-apply-btn"

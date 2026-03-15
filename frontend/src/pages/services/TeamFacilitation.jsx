@@ -5,6 +5,7 @@ import NeuralCanvas from "../../components/NeuralCanvas";
 import ScrollReveal from "../../components/ScrollReveal";
 import { useLanguage } from "../../context/LanguageContext";
 import { useContactForm } from "../../context/ContactFormContext";
+import SEOHead from "../../components/SEOHead";
 
 // ─── Constants ────────────────────────────────────────────────────────────────
 const HERO_BG =
@@ -174,13 +175,12 @@ const TeamFacilitation = () => {
 
   return (
     <div className="bg-[#F5F2EC]">
-
-      {/* ══ 1. HERO ══════════════════════════════════════════════════════════ */}
-      <section
-        className="pt-[6px] px-3 md:px-4 pb-3"
-        style={{ background: "#F5F2EC" }}
-        data-testid="facilitation-hero"
-      >
+      <SEOHead
+        title="Leadership Team Facilitation — Deep Team Process Work"
+        description="Facilitation work that makes the invisible relational dynamics shaping your leadership team visible — and workable. Designed for executive teams of 4–12 navigating complexity, conflict, and transformation."
+        path="/leadership-team-facilitation"
+      />
+      <section>
         <div
           ref={heroRef}
           className="relative overflow-hidden w-full"
@@ -232,7 +232,7 @@ const TeamFacilitation = () => {
             </ScrollReveal>
             <ScrollReveal delay={0.58}>
               <div style={{ display: "flex", flexWrap: "wrap", gap: "12px", marginTop: "36px", marginBottom: "40px" }}>
-                <button onClick={() => openForm('team-facilitation')} className="btn-hero-pill" data-testid="facilitation-hero-cta">
+                <button onClick={() => openForm('team-facilitation', 'Leadership Team Facilitation')} className="btn-hero-pill" data-testid="facilitation-hero-cta">
                   Begin the Conversation
                 </button>
               </div>
@@ -776,7 +776,7 @@ const TeamFacilitation = () => {
             }}
           >
             <button
-              onClick={() => openForm('team-facilitation')}
+              onClick={() => openForm('team-facilitation', 'Leadership Team Facilitation')}
               className="btn-primary"
               style={{ borderRadius: "8px", cursor: "pointer" }}
               data-testid="for-whom-unified-cta"
@@ -1145,7 +1145,7 @@ const TeamFacilitation = () => {
                   The work begins with a conversation. If you are facing challenges at the level of your leadership team, I welcome an initial exchange to understand the situation.
                 </p>
                 <button
-                  onClick={() => openForm('team-facilitation')}
+                  onClick={() => openForm('team-facilitation', 'Leadership Team Facilitation')}
                   className="btn-secondary"
                   style={{ marginTop: "40px", borderRadius: "8px", display: "inline-block", cursor: "pointer" }}
                   data-testid="facilitation-apply-btn"

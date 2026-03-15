@@ -7,6 +7,7 @@ import ScrollReveal from "../components/ScrollReveal";
 import VennDiagram from "../components/VennDiagram";
 import { useLanguage } from "../context/LanguageContext";
 import { useContactForm } from "../context/ContactFormContext";
+import SEOHead from "../components/SEOHead";
 
 // ─── Assets ─────────────────────────────────────────────────────────────────
 const METHOD_HERO_BG =
@@ -165,8 +166,11 @@ const Method = () => {
 
   return (
     <div className="bg-[#0F1A12]">
-
-      {/* ══ Ivory wrapper: Hero + What We Do + Benefits + Accordion ══
+      <SEOHead
+        title="The Method — NARM & Integral Coaching for Executive Leaders"
+        description="Where neuroscience meets executive depth. Discover NARM (NeuroAffective Relational Model) and Integral Coaching — two world-class methodologies integrated for lasting leadership transformation."
+        path="/how-i-work"
+      />
           Seals sub-pixel gaps between adjacent ivory/gradient sections. */}
       <div style={{ background: "#F5F2EC" }}>
 
@@ -238,7 +242,7 @@ const Method = () => {
             </ScrollReveal>
             <ScrollReveal delay={0.58}>
               <div className="flex flex-wrap items-center gap-3 mt-9 mb-10">
-                <button onClick={() => openForm()} className="btn-hero-pill" data-testid="method-hero-cta">
+                <button onClick={() => openForm(null, 'How I Work')} className="btn-hero-pill" data-testid="method-hero-cta">
                   {m.cta.button}
                   <ArrowRight size={13} />
                 </button>
@@ -1055,7 +1059,7 @@ const Method = () => {
                   {m.cta.body}
                 </p>
                 <button
-                  onClick={() => openForm()}
+                  onClick={() => openForm(null, 'How I Work')}
                   className="btn-secondary"
                   style={{ marginTop: "40px", borderRadius: "8px", display: "inline-block", cursor: "pointer" }}
                   data-testid="method-cta-btn"

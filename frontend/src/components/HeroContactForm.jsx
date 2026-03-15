@@ -89,11 +89,12 @@ const SuccessView = ({ name, onClose, noPadding }) => (
 );
 
 // ─── Main Form Component ───────────────────────────────────────────────────────
-export const HeroContactForm = ({ onClose, noPadding = false, preselectedService = null }) => {
+export const HeroContactForm = ({ onClose, noPadding = false, preselectedService = null, sendFrom = null }) => {
   const [form, setForm] = useState({
     name: "", email: "", countryCode: "+49", phone: "",
     services: preselectedService ? [preselectedService] : [],
     notes: "", agreeTC: false,
+    sendFrom: sendFrom || "",
   });
 
   // Sync when preselectedService changes (e.g. modal reopened for different service)
@@ -103,6 +104,11 @@ export const HeroContactForm = ({ onClose, noPadding = false, preselectedService
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [preselectedService]);
+
+  // Sync sendFrom when it changes
+  useEffect(() => {
+    setForm(p => ({ ...p, sendFrom: sendFrom || "" }));
+  }, [sendFrom]);
   const [servicesOpen, setServicesOpen] = useState(false);
   const [submitted, setSubmitted]       = useState(false);
   const [errors, setErrors]             = useState({});
@@ -131,7 +137,17 @@ export const HeroContactForm = ({ onClose, noPadding = false, preselectedService
     const errs = validate();
     if (Object.keys(errs).length > 0) { setErrors(errs); return; }
     setSubmitting(true);
-    // TODO: POST to /api/contact when backend is ready
+    // Submission payload includes send_from for lead source tracking
+    const payload = {
+      name: form.name,
+      email: form.email,
+      phone: form.countryCode + form.phone,
+      services: form.services,
+      notes: form.notes,
+      send_from: form.sendFrom,
+    };
+    // TODO: POST payload to /api/contact when backend is ready
+    console.log("Form submission:", payload);
     await new Promise(r => setTimeout(r, 800));
     setSubmitting(false);
     setSubmitted(true);
@@ -343,6 +359,9 @@ export const HeroContactForm = ({ onClose, noPadding = false, preselectedService
             </a>
           </p>
         </div>
+
+        {/* Hidden: send_from tracking */}
+        <input type="hidden" name="send_from" value={form.sendFrom} />
 
         {/* Submit */}
         <motion.button

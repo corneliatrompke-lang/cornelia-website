@@ -6,6 +6,7 @@ import NeuralCanvas from "../components/NeuralCanvas";
 import ScrollReveal from "../components/ScrollReveal";
 import { useLanguage } from "../context/LanguageContext";
 import { useContactForm } from "../context/ContactFormContext";
+import SEOHead from "../components/SEOHead";
 
 const HERO_BG =
   "https://images.unsplash.com/photo-1686078803106-7c6684f62158?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA1NTJ8MHwxfHNlYXJjaHwyfHxwcm9mZXNzaW9uYWwlMjBzZW5pb3IlMjB3b21hbiUyMGV4ZWN1dGl2ZSUyMHBvcnRyYWl0JTIwYmxhY2slMjB3aGl0ZSUyMGVkaXRvcmlhbHxlbnwwfHx8fDE3NzI3ODc5NjB8MA&ixlib=rb-4.1.0&q=85";
@@ -63,9 +64,12 @@ const About = () => {
 
   return (
     <div style={{ background: "#0F1A12" }}>
-
-      {/* ══ Ivory wrapper: Hero + Origin Story + Philosophy + Credentials ══
-          Outer div is dark so gaps between dark sections are seamless.
+      <SEOHead
+        title="About Cornelia Trompke — Executive Coach & Advisor"
+        description="Two decades at the intersection of executive leadership, depth psychology, and neuroscience. Meet Cornelia Trompke — trauma-informed executive coach, systemic thinker, and advisor to senior leaders worldwide."
+        path="/about-me"
+      />
+      {/* Outer div is dark so gaps between dark sections are seamless.
           Credentials ends at #0F1A12 — wrapper end → dark sections: seamless. */}
       <div style={{ background: "#F5F2EC" }}>
 
@@ -158,7 +162,7 @@ const About = () => {
 
             <ScrollReveal delay={0.58}>
               <div style={{ display: "flex", flexDirection: "row", flexWrap: "wrap", gap: "12px", marginTop: "36px", marginBottom: "40px" }}>
-                <button onClick={() => openForm()} className="btn-hero-pill" data-testid="about-hero-cta-primary">
+                <button onClick={() => openForm(null, 'About Me')} className="btn-hero-pill" data-testid="about-hero-cta-primary">
                   Begin the Conversation
                   <ArrowRight size={13} />
                 </button>
@@ -1059,7 +1063,7 @@ const About = () => {
                   {a.cta.body}
                 </p>
                 <button
-                  onClick={() => openForm()}
+                  onClick={() => openForm(null, 'About Me')}
                   className="btn-secondary mt-10"
                   style={{ borderRadius: "8px", display: "inline-block", cursor: "pointer" }}
                   data-testid="about-contact-cta"

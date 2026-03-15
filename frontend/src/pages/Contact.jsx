@@ -3,6 +3,7 @@ import axios from "axios";
 import { MessageCircle, MapPin, Languages, Clock } from "lucide-react";
 import ScrollReveal from "../components/ScrollReveal";
 import { useLanguage } from "../context/LanguageContext";
+import SEOHead from "../components/SEOHead";
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 const WHATSAPP_NUMBER = "49030000000"; // Placeholder – update with real number
@@ -35,7 +36,11 @@ const Contact = () => {
 
   return (
     <div>
-      {/* ═══ HERO ═══ */}
+      <SEOHead
+        title="Contact & Apply — Start the Conversation"
+        description="Begin the conversation. Every engagement starts with understanding. All enquiries to Cornelia Trompke receive a personal response within 2–3 business days. Based in Berlin, working in German and English."
+        path="/contact"
+      />
       <section className="bg-charcoal min-h-[55vh] flex items-end pb-20 pt-36" data-testid="contact-hero">
         <div className="max-w-[1400px] mx-auto px-6 md:px-16 w-full">
           <ScrollReveal>

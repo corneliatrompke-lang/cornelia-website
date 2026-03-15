@@ -5,6 +5,7 @@ const ContactFormContext = createContext();
 export const ContactFormProvider = ({ children }) => {
   const [modalOpen, setModalOpen]           = useState(false);
   const [selectedService, setSelectedService] = useState(null);
+  const [sendFrom, setSendFrom]             = useState(null);
 
   // Callbacks registered by Home.jsx to trigger section-specific forms
   const heroOpenFn     = useRef(null);
@@ -16,8 +17,9 @@ export const ContactFormProvider = ({ children }) => {
     // We can't close those from here directly, but Escape is handled below
   }, []);
 
-  const openForm = useCallback((serviceId = null) => {
+  const openForm = useCallback((serviceId = null, sendFrom = null) => {
     setSelectedService(serviceId);
+    setSendFrom(sendFrom);
 
     // Real-time viewport check at the moment of click — no async state lag
     const check = (selector) => {
@@ -51,6 +53,7 @@ export const ContactFormProvider = ({ children }) => {
       modalOpen,
       setModalOpen,
       selectedService,
+      sendFrom,
       heroOpenFn,
       finalCtaOpenFn,
       openForm,

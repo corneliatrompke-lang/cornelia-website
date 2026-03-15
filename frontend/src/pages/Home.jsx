@@ -10,6 +10,7 @@ import FoundationSection from "../components/home/FoundationSection";
 import HeroContactForm from "../components/HeroContactForm";
 import { useLanguage } from "../context/LanguageContext";
 import { useContactForm } from "../context/ContactFormContext";
+import SEOHead from "../components/SEOHead";
 
 const PORTRAIT =
   "https://customer-assets.emergentagent.com/job_nervous-system-exec/artifacts/za4j3pc7_Cornelia%2BTrompke_0436.webp";
@@ -113,7 +114,11 @@ const Home = () => {
 
   return (
     <div>
-      {/* ═══ HERO — Rounded card wrapper ═══ */}
+      <SEOHead
+        title="Executive Leadership Coaching Berlin & Worldwide"
+        description="Trauma-informed executive coaching and leadership development for senior leaders — grounded in nervous system science, designed for transformation that actually lasts. By Cornelia Trompke."
+        path="/"
+      />
       <section
         className="pt-[6px] px-3 md:px-4 pb-3"
         style={{ background: "#F5F2EC" }}
@@ -275,7 +280,7 @@ const Home = () => {
                   }}
                   data-testid="hero-contact-form-panel"
                 >
-                  <HeroContactForm onClose={() => setShowContactForm(false)} />
+                  <HeroContactForm onClose={() => setShowContactForm(false)} sendFrom="Homepage — Hero Section" />
                 </motion.div>
               </>
             )}
@@ -1013,6 +1018,7 @@ const Home = () => {
                       <HeroContactForm
                         onClose={() => setShowFinalForm(false)}
                         noPadding
+                        sendFrom="Homepage — Final CTA Section"
                       />
                     </motion.div>
                   )}

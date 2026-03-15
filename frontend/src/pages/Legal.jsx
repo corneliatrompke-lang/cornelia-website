@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import ScrollReveal from "../components/ScrollReveal";
 import { useLanguage } from "../context/LanguageContext";
+import SEOHead from "../components/SEOHead";
 
 const Legal = () => {
   const { t } = useLanguage();
@@ -17,6 +18,12 @@ const Legal = () => {
 
   return (
     <div className="bg-ivory min-h-screen pt-32">
+      <SEOHead
+        title="Legal — Impressum, Privacy Policy & Terms"
+        description="Impressum, Privacy Policy, and Terms of Service for Cornelia Trompke Consulting & Coaching. Based in Berlin, Germany."
+        path="/legal"
+        noIndex
+      />
       <div className="max-w-[900px] mx-auto px-6 md:px-16 pb-24">
         {/* Tabs */}
         <div className="flex gap-0 border-b mb-16" style={{ borderColor: "rgba(18,18,18,0.12)" }}>

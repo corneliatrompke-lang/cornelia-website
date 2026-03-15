@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import { AnimatePresence } from "framer-motion";
+import { HelmetProvider } from "react-helmet-async";
 import "./App.css";
 
 import { LanguageProvider } from "./context/LanguageContext";
@@ -61,20 +62,22 @@ function App() {
   const handleComplete = useCallback(() => setReady(true), []);
 
   return (
-    <LanguageProvider>
-      {!ready && <Preloader onComplete={handleComplete} />}
-      {ready && (
-        <BrowserRouter>
-          <ContactFormProvider>
-            <div className="App">
-              <GrainOverlay />
-              <AppContent />
-              <ContactFormModal />
-            </div>
-          </ContactFormProvider>
-        </BrowserRouter>
-      )}
-    </LanguageProvider>
+    <HelmetProvider>
+      <LanguageProvider>
+        {!ready && <Preloader onComplete={handleComplete} />}
+        {ready && (
+          <BrowserRouter>
+            <ContactFormProvider>
+              <div className="App">
+                <GrainOverlay />
+                <AppContent />
+                <ContactFormModal />
+              </div>
+            </ContactFormProvider>
+          </BrowserRouter>
+        )}
+      </LanguageProvider>
+    </HelmetProvider>
   );
 }
 

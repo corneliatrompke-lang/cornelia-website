@@ -5,6 +5,7 @@ import NeuralCanvas from "../../components/NeuralCanvas";
 import ScrollReveal from "../../components/ScrollReveal";
 import { useLanguage } from "../../context/LanguageContext";
 import { useContactForm } from "../../context/ContactFormContext";
+import SEOHead from "../../components/SEOHead";
 
 // ─── Constants ────────────────────────────────────────────────────────────────
 const HERO_BG =
@@ -171,8 +172,11 @@ const ExecutiveCoaching = () => {
 
   return (
     <div className="bg-[#0F1A12]">
-
-      {/* ── Ivory cluster 1: Hero + Core Premise ──────────────────────────── */}
+      <SEOHead
+        title="Executive Coaching & Advisory — 1:1 Coaching for Senior Leaders"
+        description="A deeply confidential 1:1 executive coaching partnership for senior executives, founders, and board members — grounded in nervous system science and integral coaching methodology. Based in Berlin, working globally."
+        path="/executive-coaching"
+      />
       <div style={{ background: "#F5F2EC" }}>
 
       {/* ══ 1. HERO — rounded-card wrapper matching Home & Method ════════ */}
@@ -234,7 +238,7 @@ const ExecutiveCoaching = () => {
             <ScrollReveal delay={0.58}>
               <div style={{ display: "flex", flexWrap: "wrap", alignItems: "center", gap: "12px", marginTop: "36px", marginBottom: "40px" }}>
                 <button
-                  onClick={() => openForm('executive-coaching')}
+                  onClick={() => openForm('executive-coaching', 'Executive Coaching & Advisory')}
                   className="btn-hero-pill"
                   data-testid="coaching-hero-cta"
                 >
@@ -843,7 +847,7 @@ const ExecutiveCoaching = () => {
                   All engagements begin with a conversation. There is no obligation — only the beginning of understanding whether this is the right fit.
                 </p>
                 <button
-                  onClick={() => openForm('executive-coaching')}
+                  onClick={() => openForm('executive-coaching', 'Executive Coaching & Advisory')}
                   className="btn-secondary"
                   style={{ marginTop: "40px", borderRadius: "8px", display: "inline-block", cursor: "pointer" }}
                   data-testid="coaching-apply-btn"

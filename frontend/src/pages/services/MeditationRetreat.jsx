@@ -5,6 +5,7 @@ import NeuralCanvas from "../../components/NeuralCanvas";
 import ScrollReveal from "../../components/ScrollReveal";
 import { useLanguage } from "../../context/LanguageContext";
 import { useContactForm } from "../../context/ContactFormContext";
+import SEOHead from "../../components/SEOHead";
 
 // ─── Assets ───────────────────────────────────────────────────────────────────
 const HERO_BG =
@@ -298,13 +299,12 @@ const MeditationRetreat = () => {
 
   return (
     <div className="bg-[#F5F2EC]">
-
-      {/* ══ 1. HERO ══════════════════════════════════════════════════════════ */}
-      <section
-        className="pt-[6px] px-3 md:px-4 pb-3"
-        style={{ background: "#F5F2EC" }}
-        data-testid="retreat-hero"
-      >
+      <SEOHead
+        title="Executive Meditation Retreat — Leadership Retreat Germany & Europe"
+        description="An immersive 3–5 day residential executive retreat for leaders ready to step outside operations. Guided meditation, structured reflection, and deep dialogue at selected locations in Germany and Europe."
+        path="/executive-retreats"
+      />
+      <section>
         <div
           ref={heroRef}
           className="relative overflow-hidden w-full"
@@ -377,7 +377,7 @@ const MeditationRetreat = () => {
             <ScrollReveal delay={0.58}>
               <div style={{ display: "flex", flexDirection: "row", flexWrap: "wrap", gap: "12px", marginTop: "36px", marginBottom: "40px" }}>
                 <button
-                  onClick={() => openForm('executive-retreats')}
+                  onClick={() => openForm('executive-retreats', 'Executive Retreats')}
                   className="btn-hero-pill"
                   data-testid="retreat-hero-cta"
                 >
@@ -1454,7 +1454,7 @@ const MeditationRetreat = () => {
                     </span>
 
                     <button
-                      onClick={() => openForm('executive-retreats')}
+                      onClick={() => openForm('executive-retreats', 'Executive Retreats')}
                       style={{
                         fontFamily: "Manrope, sans-serif",
                         fontSize: "11px",
@@ -1903,7 +1903,7 @@ const MeditationRetreat = () => {
                   Retreats are offered to leaders engaged in one of Cornelia's programmes. Enquiries are welcomed — to understand whether the timing and format are the right fit.
                 </p>
                 <button
-                  onClick={() => openForm('executive-retreats')}
+                  onClick={() => openForm('executive-retreats', 'Executive Retreats')}
                   className="btn-secondary"
                   style={{ marginTop: "40px", borderRadius: "8px", display: "inline-block", cursor: "pointer" }}
                   data-testid="retreat-apply-btn"

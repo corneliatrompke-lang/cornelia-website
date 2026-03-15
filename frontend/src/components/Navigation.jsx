@@ -10,10 +10,10 @@ const LOGO_NAV = "/ct-logo-nav.png";
 const Navigation = () => {
   const { lang, setLang, t } = useLanguage();
   const { openForm } = useContactForm();
+  const location = useLocation();
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [servicesOpen, setServicesOpen] = useState(false);
-  const location = useLocation();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 60);
@@ -29,6 +29,24 @@ const Navigation = () => {
   const isActive = (path) => location.pathname === path;
   const isServicesActive = location.pathname.startsWith("/work-with-me") ||
     ["/executive-coaching", "/executive-retreats", "/leadership-team-facilitation", "/organizational-advisory"].includes(location.pathname);
+
+  // Derive human-readable page name for send_from tracking
+  const getNavSendFrom = () => {
+    const map = {
+      "/": "Homepage",
+      "/about-me": "About Me",
+      "/about": "About Me",
+      "/how-i-work": "How I Work",
+      "/method": "How I Work",
+      "/work-with-me": "Work With Me",
+      "/executive-coaching": "Executive Coaching & Advisory",
+      "/executive-retreats": "Executive Retreats",
+      "/leadership-team-facilitation": "Leadership Team Facilitation",
+      "/organizational-advisory": "Organizational Advisory",
+      "/contact": "Contact",
+    };
+    return `Navigation CTA — ${map[location.pathname] || location.pathname}`;
+  };
 
   return (
     <>
@@ -129,7 +147,7 @@ const Navigation = () => {
           <div className="hidden lg:flex items-center gap-3 flex-shrink-0">
             {/* CTA — first */}
             <button
-              onClick={openForm}
+              onClick={() => openForm(null, getNavSendFrom())}
               className="nav-cta-pill"
               data-testid="nav-cta-btn"
               style={{ cursor: "pointer", border: "none" }}
@@ -221,7 +239,7 @@ const Navigation = () => {
                   transition={{ delay: 4 * 0.07, duration: 0.4 }}
                 >
                   <button
-                    onClick={() => { setMobileOpen(false); openForm(); }}
+                    onClick={() => { setMobileOpen(false); openForm(null, getNavSendFrom()); }}
                     className="text-ivory/80 hover:text-ivory block transition-colors"
                     style={{ fontFamily: "Figtree, sans-serif", fontSize: "28px", fontWeight: 400, background: "none", border: "none", cursor: "pointer", padding: 0 }}
                     data-testid="mobile-cta-btn"

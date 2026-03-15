@@ -4,6 +4,7 @@ import { ArrowRight } from "lucide-react";
 import ScrollReveal from "../components/ScrollReveal";
 import { useLanguage } from "../context/LanguageContext";
 import { useContactForm } from "../context/ContactFormContext";
+import SEOHead from "../components/SEOHead";
 
 const WorkWithMe = () => {
   const { t } = useLanguage();
@@ -12,7 +13,11 @@ const WorkWithMe = () => {
 
   return (
     <div>
-      {/* ═══ HERO ═══ */}
+      <SEOHead
+        title="Work With Me — 4 Engagement Formats"
+        description="Four ways to work with Cornelia Trompke: 1:1 executive coaching, executive retreats, leadership team facilitation, and organisational advisory. All engagements begin with a conversation."
+        path="/work-with-me"
+      />
       <section
         className="bg-charcoal min-h-[65vh] flex items-end pb-20 pt-36"
         data-testid="work-hero"
@@ -124,7 +129,7 @@ const WorkWithMe = () => {
             >
               {w.cta.body}
             </p>
-            <button onClick={() => openForm()} className="btn-secondary mt-8" style={{ display: "inline-block", cursor: "pointer" }} data-testid="work-contact-cta">
+            <button onClick={() => openForm(null, 'Work With Me')} className="btn-secondary mt-8" style={{ display: "inline-block", cursor: "pointer" }} data-testid="work-contact-cta">
               {w.cta.button}
             </button>
           </ScrollReveal>
