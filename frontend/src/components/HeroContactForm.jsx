@@ -132,7 +132,7 @@ export const HeroContactForm = ({ onClose }) => {
   if (submitted) return <SuccessView name={form.name} onClose={onClose} />;
 
   return (
-    <div style={{ height: "100%", overflowY: "auto", padding: "44px 36px 36px", scrollbarWidth: "none" }}>
+    <div style={{ padding: "32px 32px 28px", scrollbarWidth: "none" }}>
       <style>{`
         .ct-form-scroll::-webkit-scrollbar { display: none; }
         .ct-input:focus { border-color: rgba(200,169,106,0.55) !important; }
@@ -142,13 +142,10 @@ export const HeroContactForm = ({ onClose }) => {
       `}</style>
 
       {/* Header */}
-      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: "30px" }}>
-        <div>
-          <p style={{ ...LABEL, marginBottom: "10px" }}>Begin the work</p>
-          <h3 style={{ fontFamily: "Figtree, sans-serif", fontSize: "22px", fontWeight: 400, color: "#F5F2EC", lineHeight: 1.15 }}>
-            Start a Conversation
-          </h3>
-        </div>
+      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: "24px" }}>
+        <h3 style={{ fontFamily: "Figtree, sans-serif", fontSize: "22px", fontWeight: 400, color: "#F5F2EC", lineHeight: 1.15 }}>
+          Start a Conversation
+        </h3>
         <button
           onClick={onClose}
           data-testid="contact-form-close"
@@ -158,7 +155,7 @@ export const HeroContactForm = ({ onClose }) => {
         </button>
       </div>
 
-      <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
+      <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: "14px" }}>
 
         {/* Name */}
         <div>
