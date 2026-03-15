@@ -210,9 +210,10 @@ const Home = () => {
           {/* Neural canvas */}
           <NeuralCanvas opacity={0.08} nodeCount={40} />
 
-          {/* ── Text: bottom-left ── */}
+          {/* ── Text: bottom-left — spans full height so overflow clips at top ── */}
           <motion.div
-            className="absolute bottom-0 left-0 z-10 p-8 md:p-14"
+            className="absolute inset-y-0 left-0 z-10 p-8 md:p-14"
+            style={{ overflowY: "hidden", display: "flex", flexDirection: "column", justifyContent: "flex-end" }}
             animate={{ maxWidth: showContactForm ? "580px" : "860px" }}
             transition={{ duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] }}
           >
