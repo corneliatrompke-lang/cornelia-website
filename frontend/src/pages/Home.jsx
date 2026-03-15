@@ -1,12 +1,13 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
 import NeuralCanvas from "../components/NeuralCanvas";
 import ScrollReveal from "../components/ScrollReveal";
 import VennDiagram from "../components/VennDiagram";
 import TransformationSection from "../components/TransformationSection";
 import FoundationSection from "../components/home/FoundationSection";
+import HeroContactForm from "../components/HeroContactForm";
 import { useLanguage } from "../context/LanguageContext";
 
 const PORTRAIT =
@@ -43,6 +44,7 @@ const Home = () => {
   const [activeTestimonial, setActiveTestimonial] = useState(0);
   const [activeService, setActiveService] = useState(null);
   const [activeMobileService, setActiveMobileService] = useState(null);
+  const [showContactForm, setShowContactForm] = useState(false);
   const [isMobile, setIsMobile] = useState(typeof window !== "undefined" ? window.innerWidth < 768 : false);
   const [isNarrow, setIsNarrow] = useState(typeof window !== "undefined" ? window.innerWidth < 1024 : false);
   useEffect(() => {
@@ -140,9 +142,10 @@ const Home = () => {
           <NeuralCanvas opacity={0.08} nodeCount={40} />
 
           {/* ── Text: bottom-left ── */}
-          <div
+          <motion.div
             className="absolute bottom-0 left-0 z-10 p-8 md:p-14"
-            style={{ maxWidth: "860px" }}
+            animate={{ maxWidth: showContactForm ? "580px" : "860px" }}
+            transition={{ duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] }}
           >
             <ScrollReveal delay={0.1}>
               <p className="ct-overline text-gold mb-6" data-testid="hero-overline">
@@ -180,22 +183,72 @@ const Home = () => {
 
             <ScrollReveal delay={0.58}>
               <div style={{ display: "flex", flexDirection: "row", flexWrap: "wrap", gap: "12px", marginTop: "36px", marginBottom: "40px" }}>
-                <Link to="/contact" className="btn-hero-pill" data-testid="hero-cta-primary">
+                <button
+                  onClick={() => setShowContactForm(true)}
+                  className="btn-hero-pill"
+                  data-testid="hero-cta-primary"
+                  style={{ cursor: "pointer", border: "none" }}
+                >
                   {t.home.hero.cta}
                   <ArrowRight size={13} />
-                </Link>
+                </button>
                 <Link to="/work-with-me" className="btn-hero-pill-outline" data-testid="hero-cta-secondary">
                   {t.home.hero.ctaSecondary}
                 </Link>
               </div>
             </ScrollReveal>
-          </div>
+          </motion.div>
 
           {/* Scroll indicator — bottom right */}
           <div className="absolute bottom-10 right-10 z-10 flex flex-col items-center gap-2">
             <span className="ct-overline text-white/25" style={{ fontSize: "9px" }}>Scroll</span>
             <div className="scroll-line" />
           </div>
+
+          {/* ── Contact Form Panel (slides in from right) ── */}
+          <AnimatePresence>
+            {showContactForm && (
+              <>
+                {/* Subtle dark veil over the hero image (right half) — deepens focus on form */}
+                <motion.div
+                  key="form-veil"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.45 }}
+                  style={{
+                    position: "absolute", inset: 0, zIndex: 15,
+                    background: "linear-gradient(to right, transparent 30%, rgba(5,10,7,0.55) 70%)",
+                    pointerEvents: "none",
+                  }}
+                />
+
+                {/* Glassmorphic form panel */}
+                <motion.div
+                  key="form-panel"
+                  initial={{ opacity: 0, x: "100%" }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: "100%" }}
+                  transition={{ duration: 0.55, ease: [0.25, 0.46, 0.45, 0.94] }}
+                  style={{
+                    position: "absolute",
+                    right: 0, top: 0, bottom: 0,
+                    width: "clamp(380px, 42%, 560px)",
+                    borderRadius: "0 20px 20px 0",
+                    background: "rgba(8,16,11,0.76)",
+                    backdropFilter: "blur(28px) saturate(1.6)",
+                    WebkitBackdropFilter: "blur(28px) saturate(1.6)",
+                    borderLeft: "1px solid rgba(200,169,106,0.18)",
+                    zIndex: 20,
+                    overflowY: "auto",
+                  }}
+                  data-testid="hero-contact-form-panel"
+                >
+                  <HeroContactForm onClose={() => setShowContactForm(false)} />
+                </motion.div>
+              </>
+            )}
+          </AnimatePresence>
         </div>
       </section>
 
