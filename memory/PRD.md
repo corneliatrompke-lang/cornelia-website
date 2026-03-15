@@ -46,6 +46,13 @@ Create a cinematic editorial luxury marketing website for Cornelia Trompke — a
 
 ## Key Features Implemented
 
+### Interactive Form System (COMPLETE — All Pages)
+- **Hero CTA → Glassmorphic Panel:** Clicking the hero CTA on any page slides in a glassmorphic form panel in the right column of the hero section. ✅ All pages (Home, About, Method, all 4 service pages).
+- **Final CTA → In-Place Transform:** Clicking the CTA in the bottom section of any page transforms the card in-place using AnimatePresence (no modal/navigation). ✅ All pages.
+- **Intermediate CTAs:** "For Whom" section CTAs on Organizational Advisory and Team Facilitation pages also trigger the form. ✅
+- **Method Page Video Hero:** Replaced static image with responsive videos (.mov desktop / .mp4 mobile). ✅
+- **Testimonials Text-Only (All Pages):** All testimonial sections use text-based navigation (no portrait images). ✅ Including MeditationRetreat (was using old portrait design — now fixed Feb 2026).
+
 ### Design System
 - Cinematic Editorial Luxury visual language
 - Playfair Display serif headlines + Manrope body copy
