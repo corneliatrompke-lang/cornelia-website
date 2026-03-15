@@ -292,7 +292,13 @@ Footer (from shared Footer component)
 10. Refactor large page components into smaller section components (P2)
 11. Optionally add Calendly booking integration (P1)
 
-### v3.2 — Global Form Rollout + Escape Key (Mar 2026)
+### v3.3 — Mobile Layout Fix: About Preview / Method Overlap (Mar 2026)
+- **Root cause**: `marginTop: isNarrow ? "-210px" : undefined` on the Method Teaser section was applied to ALL screens < 1024px including mobile. On mobile, the Venn Diagram shows only a ~15px marquee ticker (not the full 200vh sticky animation), so -210px dragged the Method section 210px into the About Preview section.
+- **Fix**: `marginTop: (!isMobile && isNarrow) ? "-210px" : undefined` — negative margin now only applies at tablet (768–1023px)
+- **Also fixed**: `paddingTop` override now uses `isMobile ? undefined : (isNarrow ? "0" : "32px")`, restoring the ct-section's 72px default top-padding on mobile
+- **Tested**: 100% pass at 390px (no overlap), 768px (Venn diagram + correct gap)
+
+
 - **Escape key**: Added global `keydown` listener in `ContactFormContext.jsx` (closes modal) and in `Home.jsx` (closes hero panel + final CTA card)
 - **Service pre-selection**: `openForm(serviceId)` stores `selectedService` in context; `ContactFormModal` passes it as `preselectedService` prop to `HeroContactForm`; `HeroContactForm` initializes `services` state from `preselectedService`
 - **Pages updated** — all `<Link to="/contact">` replaced with `<button onClick={() => openForm(serviceId)}>`:
