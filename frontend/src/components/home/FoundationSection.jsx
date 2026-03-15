@@ -3,11 +3,11 @@ import { motion, useScroll, useTransform, useMotionValueEvent } from "framer-mot
 import { useLanguage } from "../../context/LanguageContext";
 
 const BANNER_SRC =
-  "https://images.unsplash.com/photo-1671735250135-fc322596644a?crop=entropy&cs=srgb&fm=jpg&ixlib=rb-4.1.0&q=85";
+  "https://customer-assets.emergentagent.com/job_nervous-system-exec/artifacts/9y106yhn_Banner%20Image.jpg";
 const CIRCLE_SRC =
-  "https://images.unsplash.com/photo-1572866649630-bd38af3d527c?crop=entropy&cs=srgb&fm=jpg&ixlib=rb-4.1.0&q=85";
+  "https://customer-assets.emergentagent.com/job_nervous-system-exec/artifacts/sfldgsxg_Circle%20Image.jpg";
 const SQUARE_SRC =
-  "https://images.unsplash.com/photo-1684963948721-e24aa0d82911?crop=entropy&cs=srgb&fm=jpg&ixlib=rb-4.1.0&q=85";
+  "https://customer-assets.emergentagent.com/job_nervous-system-exec/artifacts/ahttcgam_Square%20Image.jpg";
 
 // Fixed nav height — sticky inner content starts below this
 const NAV_H = 80;
