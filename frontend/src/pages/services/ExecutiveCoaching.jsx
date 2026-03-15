@@ -176,6 +176,31 @@ const ExecutiveCoaching = () => {
         title="Executive Coaching & Advisory — 1:1 Coaching for Senior Leaders"
         description="A deeply confidential 1:1 executive coaching partnership for senior executives, founders, and board members — grounded in nervous system science and integral coaching methodology. Based in Berlin, working globally."
         path="/executive-coaching"
+        jsonLd={{
+          "@context": "https://schema.org",
+          "@graph": [
+            {
+              "@type": "Service",
+              "@id": "https://corneliatrompke.com/executive-coaching#service",
+              "name": "Executive Coaching & Advisory",
+              "description": "A deeply confidential 1:1 executive coaching partnership for senior executives, founders, and board members — grounded in nervous system science and integral coaching methodology.",
+              "url": "https://corneliatrompke.com/executive-coaching",
+              "serviceType": "Executive Coaching",
+              "provider": { "@id": "https://corneliatrompke.com/#organization" },
+              "areaServed": "Worldwide",
+              "availableLanguage": [{ "@type": "Language", "name": "German" }, { "@type": "Language", "name": "English" }],
+              "offers": { "@type": "Offer", "description": "6 to 12 months engagement, biweekly 90-minute sessions, in person or virtual" },
+            },
+            {
+              "@type": "BreadcrumbList",
+              "itemListElement": [
+                { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://corneliatrompke.com" },
+                { "@type": "ListItem", "position": 2, "name": "Work With Me", "item": "https://corneliatrompke.com/work-with-me" },
+                { "@type": "ListItem", "position": 3, "name": "Executive Coaching & Advisory", "item": "https://corneliatrompke.com/executive-coaching" },
+              ],
+            },
+          ],
+        }}
       />
       <div style={{ background: "#F5F2EC" }}>
 

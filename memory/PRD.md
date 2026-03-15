@@ -292,7 +292,12 @@ Footer (from shared Footer component)
 10. Refactor large page components into smaller section components (P2)
 11. Optionally add Calendly booking integration (P1)
 
-### v3.5 — SEO, Favicon & Lead Tracking (Mar 2026)
+### v3.6 — JSON-LD Structured Data (Mar 2026)
+- **All 10 pages** have JSON-LD: `Organization` + `WebSite` + `WebPage` (homepage), `Person` with credentials (About), `WebPage` + topic subjects (Method), `ItemList` (Work With Me), `Service` + `BreadcrumbList` (all 4 service pages), `ContactPage` (Contact), `WebPage` (Legal)
+- **SEOHead.jsx** updated to accept optional `jsonLd` prop, rendered as `<script type="application/ld+json">`
+- **`<html lang="en">`** confirmed in index.html
+
+
 - **send_from hidden field**: `openForm(serviceId, sendFrom)` signature; each CTA passes page name; Navigation CTA derives page from `useLocation()`; hidden `<input name="send_from">` in all form variants; submission payload logs `send_from` (ready for backend)
 - **Meta tags**: Installed `react-helmet-async@3.0.0`; `SEOHead.jsx` component; `HelmetProvider` in `App.js`; unique title + description + Open Graph tags on all 10 pages
 - **Favicon**: Downloaded CT Logo Mark PNG → `/public/favicon.png`; referenced in `index.html` and as Apple Touch Icon; `theme-color` updated to `#0F1A12`

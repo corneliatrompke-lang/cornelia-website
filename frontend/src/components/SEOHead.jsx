@@ -4,7 +4,7 @@ const BASE_URL = "https://corneliatrompke.com";
 const SITE_NAME = "Cornelia Trompke Consulting & Coaching";
 const OG_IMAGE = `${BASE_URL}/favicon.png`;
 
-export default function SEOHead({ title, description, path = "/", noIndex = false }) {
+export default function SEOHead({ title, description, path = "/", noIndex = false, jsonLd = null }) {
   const fullTitle = title
     ? `${title} | ${SITE_NAME}`
     : `${SITE_NAME} | Executive Leadership Coaching Berlin`;
@@ -30,6 +30,13 @@ export default function SEOHead({ title, description, path = "/", noIndex = fals
       <meta name="twitter:title" content={fullTitle} />
       <meta name="twitter:description" content={description} />
       <meta name="twitter:image" content={OG_IMAGE} />
+
+      {/* JSON-LD Structured Data */}
+      {jsonLd && (
+        <script type="application/ld+json">
+          {JSON.stringify(jsonLd)}
+        </script>
+      )}
     </Helmet>
   );
 }

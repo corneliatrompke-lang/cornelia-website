@@ -23,6 +23,14 @@ const Legal = () => {
         description="Impressum, Privacy Policy, and Terms of Service for Cornelia Trompke Consulting & Coaching. Based in Berlin, Germany."
         path="/legal"
         noIndex
+        jsonLd={{
+          "@context": "https://schema.org",
+          "@type": "WebPage",
+          "@id": "https://corneliatrompke.com/legal#webpage",
+          "url": "https://corneliatrompke.com/legal",
+          "name": "Legal — Cornelia Trompke Consulting & Coaching",
+          "isPartOf": { "@id": "https://corneliatrompke.com/#website" },
+        }}
       />
       <div className="max-w-[900px] mx-auto px-6 md:px-16 pb-24">
         {/* Tabs */}

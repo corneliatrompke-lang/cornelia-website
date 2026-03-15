@@ -17,6 +17,29 @@ const WorkWithMe = () => {
         title="Work With Me — 4 Engagement Formats"
         description="Four ways to work with Cornelia Trompke: 1:1 executive coaching, executive retreats, leadership team facilitation, and organisational advisory. All engagements begin with a conversation."
         path="/work-with-me"
+        jsonLd={{
+          "@context": "https://schema.org",
+          "@graph": [
+            {
+              "@type": "WebPage",
+              "@id": "https://corneliatrompke.com/work-with-me#webpage",
+              "url": "https://corneliatrompke.com/work-with-me",
+              "name": "Work With Me — 4 Engagement Formats | Cornelia Trompke",
+              "isPartOf": { "@id": "https://corneliatrompke.com/#website" },
+            },
+            {
+              "@type": "ItemList",
+              "name": "Services Offered by Cornelia Trompke",
+              "description": "Four engagement formats for executive leadership development.",
+              "itemListElement": [
+                { "@type": "ListItem", "position": 1, "name": "Executive Coaching & Advisory", "url": "https://corneliatrompke.com/executive-coaching" },
+                { "@type": "ListItem", "position": 2, "name": "Executive Retreats", "url": "https://corneliatrompke.com/executive-retreats" },
+                { "@type": "ListItem", "position": 3, "name": "Leadership Team Facilitation", "url": "https://corneliatrompke.com/leadership-team-facilitation" },
+                { "@type": "ListItem", "position": 4, "name": "Organisational Advisory for People & Culture Transformation", "url": "https://corneliatrompke.com/organizational-advisory" },
+              ],
+            },
+          ],
+        }}
       />
       <section
         className="bg-charcoal min-h-[65vh] flex items-end pb-20 pt-36"

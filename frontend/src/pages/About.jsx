@@ -68,6 +68,36 @@ const About = () => {
         title="About Cornelia Trompke — Executive Coach & Advisor"
         description="Two decades at the intersection of executive leadership, depth psychology, and neuroscience. Meet Cornelia Trompke — trauma-informed executive coach, systemic thinker, and advisor to senior leaders worldwide."
         path="/about-me"
+        jsonLd={{
+          "@context": "https://schema.org",
+          "@graph": [
+            {
+              "@type": "Person",
+              "@id": "https://corneliatrompke.com/about-me#person",
+              "name": "Cornelia Trompke",
+              "jobTitle": "Executive Coach & Advisor",
+              "description": "Trauma-informed executive coach, systemic thinker, and advisor with over two decades at the intersection of executive leadership, depth psychology, and neuroscience.",
+              "url": "https://corneliatrompke.com/about-me",
+              "image": "https://corneliatrompke.com/favicon.png",
+              "address": { "@type": "PostalAddress", "addressLocality": "Berlin", "addressCountry": "DE" },
+              "knowsAbout": ["Executive Coaching", "NARM — NeuroAffective Relational Model", "Integral Coaching", "Leadership Development", "Nervous System Science", "Trauma-Informed Coaching", "Organisational Development", "Depth Psychology"],
+              "hasCredential": [
+                { "@type": "EducationalOccupationalCredential", "name": "NARM Practitioner", "description": "Certified in the NeuroAffective Relational Model, developed by Dr. Laurence Heller" },
+                { "@type": "EducationalOccupationalCredential", "name": "Integral Coach", "description": "Trained at New Ventures West Institute, San Francisco" },
+                { "@type": "EducationalOccupationalCredential", "name": "Systemic Facilitator", "description": "Advanced training in systemic organisational constellations and team dynamics" },
+              ],
+              "worksFor": { "@id": "https://corneliatrompke.com/#organization" },
+            },
+            {
+              "@type": "WebPage",
+              "@id": "https://corneliatrompke.com/about-me#webpage",
+              "url": "https://corneliatrompke.com/about-me",
+              "name": "About Cornelia Trompke — Executive Coach & Advisor",
+              "about": { "@id": "https://corneliatrompke.com/about-me#person" },
+              "isPartOf": { "@id": "https://corneliatrompke.com/#website" },
+            },
+          ],
+        }}
       />
       {/* Outer div is dark so gaps between dark sections are seamless.
           Credentials ends at #0F1A12 — wrapper end → dark sections: seamless. */}

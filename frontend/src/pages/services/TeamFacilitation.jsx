@@ -179,6 +179,31 @@ const TeamFacilitation = () => {
         title="Leadership Team Facilitation — Deep Team Process Work"
         description="Facilitation work that makes the invisible relational dynamics shaping your leadership team visible — and workable. Designed for executive teams of 4–12 navigating complexity, conflict, and transformation."
         path="/leadership-team-facilitation"
+        jsonLd={{
+          "@context": "https://schema.org",
+          "@graph": [
+            {
+              "@type": "Service",
+              "@id": "https://corneliatrompke.com/leadership-team-facilitation#service",
+              "name": "Leadership Team Facilitation",
+              "description": "Deep facilitation work with executive leadership teams of 4–12 navigating complexity, conflict, and the invisible dynamics shaping collective performance.",
+              "url": "https://corneliatrompke.com/leadership-team-facilitation",
+              "serviceType": "Team Facilitation",
+              "provider": { "@id": "https://corneliatrompke.com/#organization" },
+              "areaServed": "Worldwide",
+              "availableLanguage": [{ "@type": "Language", "name": "German" }, { "@type": "Language", "name": "English" }],
+              "offers": { "@type": "Offer", "description": "2 to 3-day intensive off-site, with optional follow-on sessions. 4–12 participants." },
+            },
+            {
+              "@type": "BreadcrumbList",
+              "itemListElement": [
+                { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://corneliatrompke.com" },
+                { "@type": "ListItem", "position": 2, "name": "Work With Me", "item": "https://corneliatrompke.com/work-with-me" },
+                { "@type": "ListItem", "position": 3, "name": "Leadership Team Facilitation", "item": "https://corneliatrompke.com/leadership-team-facilitation" },
+              ],
+            },
+          ],
+        }}
       />
       <section>
         <div

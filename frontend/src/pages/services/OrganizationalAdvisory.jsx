@@ -161,6 +161,31 @@ const OrganizationalAdvisory = () => {
         title="Organisational Transformation Advisory — People & Culture"
         description="Strategic advisory for organisations at inflection points — addressing leadership, people systems, and culture simultaneously. Real transformation requires all three dimensions to move together."
         path="/organizational-advisory"
+        jsonLd={{
+          "@context": "https://schema.org",
+          "@graph": [
+            {
+              "@type": "Service",
+              "@id": "https://corneliatrompke.com/organizational-advisory#service",
+              "name": "Organisational Advisory for People & Culture Transformation",
+              "description": "Strategic advisory for organisations at inflection points — addressing leadership, people systems, and culture simultaneously.",
+              "url": "https://corneliatrompke.com/organizational-advisory",
+              "serviceType": "Organisational Consulting",
+              "provider": { "@id": "https://corneliatrompke.com/#organization" },
+              "areaServed": "Worldwide",
+              "availableLanguage": [{ "@type": "Language", "name": "German" }, { "@type": "Language", "name": "English" }],
+              "offers": { "@type": "Offer", "description": "Minimum 6 months, typically 12–18 months. Diagnostic phase, systemic mapping, leadership architecture, sustained advisory presence." },
+            },
+            {
+              "@type": "BreadcrumbList",
+              "itemListElement": [
+                { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://corneliatrompke.com" },
+                { "@type": "ListItem", "position": 2, "name": "Work With Me", "item": "https://corneliatrompke.com/work-with-me" },
+                { "@type": "ListItem", "position": 3, "name": "Organisational Advisory", "item": "https://corneliatrompke.com/organizational-advisory" },
+              ],
+            },
+          ],
+        }}
       />
       <section
         className="pt-[6px] px-3 md:px-4 pb-3"

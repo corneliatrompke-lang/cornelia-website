@@ -118,6 +118,40 @@ const Home = () => {
         title="Executive Leadership Coaching Berlin & Worldwide"
         description="Trauma-informed executive coaching and leadership development for senior leaders — grounded in nervous system science, designed for transformation that actually lasts. By Cornelia Trompke."
         path="/"
+        jsonLd={{
+          "@context": "https://schema.org",
+          "@graph": [
+            {
+              "@type": "Organization",
+              "@id": "https://corneliatrompke.com/#organization",
+              "name": "Cornelia Trompke Consulting & Coaching",
+              "url": "https://corneliatrompke.com",
+              "logo": { "@type": "ImageObject", "url": "https://corneliatrompke.com/favicon.png" },
+              "description": "Trauma-informed executive coaching and leadership development for senior leaders — grounded in nervous system science.",
+              "address": { "@type": "PostalAddress", "addressLocality": "Berlin", "addressCountry": "DE" },
+              "areaServed": "Worldwide",
+              "knowsLanguage": ["de", "en"],
+              "founder": { "@id": "https://corneliatrompke.com/about-me#person" },
+            },
+            {
+              "@type": "WebSite",
+              "@id": "https://corneliatrompke.com/#website",
+              "url": "https://corneliatrompke.com",
+              "name": "Cornelia Trompke Consulting & Coaching",
+              "publisher": { "@id": "https://corneliatrompke.com/#organization" },
+              "inLanguage": ["en", "de"],
+            },
+            {
+              "@type": "WebPage",
+              "@id": "https://corneliatrompke.com/#webpage",
+              "url": "https://corneliatrompke.com",
+              "name": "Executive Leadership Coaching Berlin & Worldwide | Cornelia Trompke Consulting & Coaching",
+              "isPartOf": { "@id": "https://corneliatrompke.com/#website" },
+              "about": { "@id": "https://corneliatrompke.com/#organization" },
+              "description": "Trauma-informed executive coaching and leadership development for senior leaders.",
+            },
+          ],
+        }}
       />
       <section
         className="pt-[6px] px-3 md:px-4 pb-3"

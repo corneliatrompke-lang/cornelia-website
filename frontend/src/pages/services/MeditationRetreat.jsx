@@ -303,6 +303,32 @@ const MeditationRetreat = () => {
         title="Executive Meditation Retreat — Leadership Retreat Germany & Europe"
         description="An immersive 3–5 day residential executive retreat for leaders ready to step outside operations. Guided meditation, structured reflection, and deep dialogue at selected locations in Germany and Europe."
         path="/executive-retreats"
+        jsonLd={{
+          "@context": "https://schema.org",
+          "@graph": [
+            {
+              "@type": "Service",
+              "@id": "https://corneliatrompke.com/executive-retreats#service",
+              "name": "Executive Meditation Retreat",
+              "description": "An immersive 3–5 day residential retreat for leaders ready to step outside the pace of operations — guided meditation, structured reflection, and deep dialogue.",
+              "url": "https://corneliatrompke.com/executive-retreats",
+              "serviceType": "Executive Retreat",
+              "provider": { "@id": "https://corneliatrompke.com/#organization" },
+              "areaServed": "Europe",
+              "availableLanguage": [{ "@type": "Language", "name": "German" }, { "@type": "Language", "name": "English" }],
+              "offers": { "@type": "Offer", "description": "3 or 5 days residential. Individual or small group (2–4 participants). Selected locations across Germany and Europe." },
+              "location": { "@type": "VirtualLocation", "name": "Selected retreat locations across Germany and Europe" },
+            },
+            {
+              "@type": "BreadcrumbList",
+              "itemListElement": [
+                { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://corneliatrompke.com" },
+                { "@type": "ListItem", "position": 2, "name": "Work With Me", "item": "https://corneliatrompke.com/work-with-me" },
+                { "@type": "ListItem", "position": 3, "name": "Executive Retreats", "item": "https://corneliatrompke.com/executive-retreats" },
+              ],
+            },
+          ],
+        }}
       />
       <section>
         <div

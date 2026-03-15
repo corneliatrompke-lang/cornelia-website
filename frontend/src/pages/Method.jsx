@@ -170,6 +170,23 @@ const Method = () => {
         title="The Method — NARM & Integral Coaching for Executive Leaders"
         description="Where neuroscience meets executive depth. Discover NARM (NeuroAffective Relational Model) and Integral Coaching — two world-class methodologies integrated for lasting leadership transformation."
         path="/how-i-work"
+        jsonLd={{
+          "@context": "https://schema.org",
+          "@graph": [
+            {
+              "@type": "WebPage",
+              "@id": "https://corneliatrompke.com/how-i-work#webpage",
+              "url": "https://corneliatrompke.com/how-i-work",
+              "name": "The Method — NARM & Integral Coaching for Executive Leaders",
+              "description": "Where neuroscience meets executive depth. NARM and Integral Coaching integrated for lasting leadership transformation.",
+              "isPartOf": { "@id": "https://corneliatrompke.com/#website" },
+              "about": [
+                { "@type": "Thing", "name": "NeuroAffective Relational Model (NARM)", "description": "A leading trauma-informed approach to human development working at the intersection of neuroscience, developmental psychology, and somatic awareness, developed by Dr. Laurence Heller." },
+                { "@type": "Thing", "name": "Integral Coaching", "description": "Developed at New Ventures West, engaging the whole human being using Ken Wilber's Integral Theory and Robert Kegan's developmental framework." },
+              ],
+            },
+          ],
+        }}
       />
           Seals sub-pixel gaps between adjacent ivory/gradient sections. */}
       <div style={{ background: "#F5F2EC" }}>
