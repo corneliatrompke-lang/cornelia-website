@@ -2,7 +2,7 @@ import { Helmet } from "react-helmet-async";
 
 const BASE_URL = "https://www.corneliatrompke.com";
 const SITE_NAME = "Cornelia Trompke Consulting & Coaching";
-const OG_IMAGE = "https://customer-assets.emergentagent.com/job_nervous-system-exec/artifacts/y8e2ch2k_About%20Hero%20-%20Desktop.jpg";
+const OG_IMAGE = "https://www.corneliatrompke.com/og-image.png";
 
 export default function SEOHead({ title, description, path = "/", noIndex = false, jsonLd = null }) {
   const fullTitle = title
