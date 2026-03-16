@@ -111,28 +111,10 @@ const TIMELINE_DAYS = [
   },
 ];
 
-const UPCOMING_RETREATS = [
-  {
-    date: "April 2026",
-    location: "Oman — Muscat Region",
-    duration: "5 days",
-    spots: "4 places remaining",
-    status: "Open",
-  },
-  {
-    date: "September 2026",
-    location: "Costa Rica — Península de Osa",
-    duration: "5 days",
-    spots: "6 places remaining",
-    status: "Open",
-  },
-  {
-    date: "December 2026",
-    location: "Oman — Hajar Mountains",
-    duration: "3 days",
-    spots: "Enquiries welcome",
-    status: "Forming",
-  },
+const FALLBACK_RETREATS = [
+  { date: "April 2026",    location: "Oman — Muscat Region",          duration: "5 days", spots: "4 places remaining", status: "Open"    },
+  { date: "September 2026",location: "Costa Rica — Península de Osa", duration: "5 days", spots: "6 places remaining", status: "Open"    },
+  { date: "December 2026", location: "Oman — Hajar Mountains",        duration: "3 days", spots: "Enquiries welcome",  status: "Forming" },
 ];
 
 const FORMAT_ITEMS = [
@@ -261,6 +243,19 @@ const MeditationRetreat = () => {
   const [isNarrow, setIsNarrow] = useState(typeof window !== "undefined" ? window.innerWidth < 1200 : false);
   const [showContactForm, setShowContactForm] = useState(false);
   const [showFinalForm, setShowFinalForm] = useState(false);
+  const [upcomingRetreats, setUpcomingRetreats] = useState(FALLBACK_RETREATS);
+
+  // Fetch retreats dynamically from Google Sheet via backend
+  useEffect(() => {
+    fetch(`${process.env.REACT_APP_BACKEND_URL}/api/retreats`)
+      .then(r => r.ok ? r.json() : null)
+      .then(data => {
+        if (data?.retreats?.length > 0) {
+          setUpcomingRetreats(data.retreats);
+        }
+      })
+      .catch(() => {}); // silently fall back to static data
+  }, []);
 
   useEffect(() => {
     const h = () => { setIsMobile(window.innerWidth < 768); setIsNarrow(window.innerWidth < 1200); };
@@ -1381,7 +1376,7 @@ const MeditationRetreat = () => {
               </div>
             </ScrollReveal>
 
-            {UPCOMING_RETREATS.map((retreat, i) => (
+            {upcomingRetreats.map((retreat, i) => (
               <ScrollReveal key={i} delay={0.1 * i}>
                 <div
                   style={{

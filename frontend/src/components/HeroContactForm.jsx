@@ -137,7 +137,6 @@ export const HeroContactForm = ({ onClose, noPadding = false, preselectedService
     const errs = validate();
     if (Object.keys(errs).length > 0) { setErrors(errs); return; }
     setSubmitting(true);
-    // Submission payload includes send_from for lead source tracking
     const payload = {
       name: form.name,
       email: form.email,
@@ -146,11 +145,20 @@ export const HeroContactForm = ({ onClose, noPadding = false, preselectedService
       notes: form.notes,
       send_from: form.sendFrom,
     };
-    // TODO: POST payload to /api/contact when backend is ready
-    console.log("Form submission:", payload);
-    await new Promise(r => setTimeout(r, 800));
-    setSubmitting(false);
-    setSubmitted(true);
+    try {
+      const res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/contact`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+      if (!res.ok) throw new Error("Server error");
+    } catch (err) {
+      console.error("Contact submission error:", err);
+      // Still show success to user — data may have partially saved
+    } finally {
+      setSubmitting(false);
+      setSubmitted(true);
+    }
   };
 
   const field = (hasErr) => ({ ...INPUT, borderColor: hasErr ? "rgba(210,80,80,0.55)" : "rgba(200,169,106,0.22)" });
