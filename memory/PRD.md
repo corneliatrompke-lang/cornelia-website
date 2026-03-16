@@ -295,6 +295,14 @@ Footer (from shared Footer component)
 - Applications tab columns: Timestamp | Name | Email | Phone | Retreat ID | Retreat Title | Retreat Date | Retreat Location | T&C Agreed | Notes | Status
 - **Tested**: 100% pass rate (iteration_21.json), all 15 test cases
 
+### v4.0 — GDPR / DSGVO Cookie Consent (Mar 2026)
+- **CookieConsentContext.jsx** (new): manages consent state in localStorage (`ct-cookie-consent`), 2800ms banner delay (post-preloader), acceptAll / rejectAll / saveCustom / openSettings
+- **CookieBanner.jsx** (new): floating bottom banner — equal-weight "Reject All" + "Accept All" + "Manage Preferences" link; EN/DE bilingual; `learn more` links to /privacy
+- **CookieSettingsModal.jsx** (new): 3 category toggles — Essential (always-on, locked), Analytics (opt-in), Marketing (opt-in); 3 action buttons (Reject All / Save Preferences / Accept All)
+- **Footer.jsx**: "Cookie Settings" button always accessible in legal bar (GDPR requirement to allow withdrawal of consent)
+- **LanguageContext.js** (bug fix): added `language: lang` alias so EN/DE switching works correctly in cookie components
+- **Tested**: 100% pass rate (iteration_22.json), all 16 tests including German text, localStorage persistence, backdrop/X close, toggle interactions
+
 ## Next Tasks
 
 1. ~~Wire nav "BEGIN THE WORK" button to open contact form globally (React Context) (P0)~~ ✅ Done
