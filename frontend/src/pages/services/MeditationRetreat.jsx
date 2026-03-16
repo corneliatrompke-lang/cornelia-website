@@ -111,11 +111,7 @@ const TIMELINE_DAYS = [
   },
 ];
 
-const FALLBACK_RETREATS = [
-  { date: "April 2026",    location: "Oman — Muscat Region",          duration: "5 days", spots: "4 places remaining", status: "Open"    },
-  { date: "September 2026",location: "Costa Rica — Península de Osa", duration: "5 days", spots: "6 places remaining", status: "Open"    },
-  { date: "December 2026", location: "Oman — Hajar Mountains",        duration: "3 days", spots: "Enquiries welcome",  status: "Forming" },
-];
+const FALLBACK_RETREATS = [];
 
 const FORMAT_ITEMS = [
   { label: "Duration", value: "3 or 5 days residential" },
@@ -250,13 +246,11 @@ const MeditationRetreat = () => {
     fetch(`${process.env.REACT_APP_BACKEND_URL}/api/retreats`)
       .then(r => r.ok ? r.json() : null)
       .then(data => {
-        if (data?.source === "google_sheet") {
-          // Sheet fetch succeeded — use its data even if empty (intentional empty state)
+        if (data?.retreats !== undefined) {
           setUpcomingRetreats(data.retreats);
         }
-        // If source is fallback_* (error/permissions) — keep FALLBACK_RETREATS as-is
       })
-      .catch(() => {}); // silently fall back to static data
+      .catch(() => {}); // keep as [] on network failure
   }, []);
 
   useEffect(() => {
@@ -1384,29 +1378,50 @@ const MeditationRetreat = () => {
                   style={{
                     borderTop: "1px solid rgba(245,242,236,0.08)",
                     borderBottom: "1px solid rgba(245,242,236,0.08)",
-                    padding: "52px 0",
+                    padding: isMobile ? "48px 0" : "64px 0",
                     display: "flex",
                     flexDirection: isMobile ? "column" : "row",
                     alignItems: isMobile ? "flex-start" : "center",
                     justifyContent: "space-between",
-                    gap: "32px",
+                    gap: "40px",
                   }}
-                  data-testid="retreats-empty-state"
+                  data-testid="retreats-notify-banner"
                 >
-                  <div>
-                    <p style={{ fontFamily: "Cormorant Garamond, serif", fontSize: "clamp(20px, 2.2vw, 28px)", fontWeight: 400, fontStyle: "italic", color: "rgba(245,242,236,0.55)", lineHeight: 1.45, marginBottom: "12px" }}>
-                      No upcoming retreats are scheduled at this time.
+                  <div style={{ maxWidth: "520px" }}>
+                    <p style={{ fontFamily: "Manrope, sans-serif", fontSize: "9px", fontWeight: 600, letterSpacing: "2.5px", textTransform: "uppercase", color: "rgba(200,169,106,0.6)", marginBottom: "14px" }}>
+                      Coming Soon
                     </p>
-                    <p style={{ fontFamily: "Manrope, sans-serif", fontSize: "12px", fontWeight: 300, color: "rgba(245,242,236,0.3)", lineHeight: 1.7 }}>
-                      New dates are announced to those who have enquired. Reach out to be kept informed.
+                    <p style={{ fontFamily: "Cormorant Garamond, serif", fontSize: "clamp(22px, 2.4vw, 30px)", fontWeight: 400, fontStyle: "italic", color: "rgba(245,242,236,0.75)", lineHeight: 1.45, marginBottom: "14px" }}>
+                      New retreats are being planned.
+                    </p>
+                    <p style={{ fontFamily: "Manrope, sans-serif", fontSize: "13px", fontWeight: 300, color: "rgba(245,242,236,0.35)", lineHeight: 1.8 }}>
+                      Dates and locations will be announced soon. Be the first to know when they go live.
                     </p>
                   </div>
                   <button
-                    onClick={() => setShowContactForm(true)}
-                    style={{ fontFamily: "Manrope, sans-serif", fontSize: "10px", fontWeight: 600, letterSpacing: "2px", textTransform: "uppercase", color: "#C8A96A", background: "none", border: "1px solid rgba(200,169,106,0.35)", borderRadius: "4px", padding: "12px 24px", cursor: "pointer", flexShrink: 0, transition: "background 0.2s, border-color 0.2s", whiteSpace: "nowrap" }}
-                    data-testid="retreats-empty-enquire-btn"
+                    onClick={() => openApplicationForm(
+                      { id: "notify-me", title: "Notify Me", date: "Future dates — to be announced", location: "" },
+                      [{ id: "notify-me", title: "Notify Me — Future retreat dates", date: "To be announced", location: "" }]
+                    )}
+                    style={{
+                      fontFamily: "Manrope, sans-serif",
+                      fontSize: "10px",
+                      fontWeight: 600,
+                      letterSpacing: "2px",
+                      textTransform: "uppercase",
+                      color: "#C8A96A",
+                      background: "rgba(200,169,106,0.07)",
+                      border: "1px solid rgba(200,169,106,0.35)",
+                      borderRadius: "4px",
+                      padding: "14px 28px",
+                      cursor: "pointer",
+                      flexShrink: 0,
+                      whiteSpace: "nowrap",
+                      transition: "background 0.2s, border-color 0.2s",
+                    }}
+                    data-testid="retreats-notify-me-btn"
                   >
-                    Enquire About Future Dates
+                    Notify Me
                   </button>
                 </div>
               </ScrollReveal>

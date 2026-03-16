@@ -102,27 +102,20 @@ async def get_contacts():
 
 @api_router.get("/retreats")
 async def get_retreats():
-    """Fetch upcoming retreats from Google Sheet via Apps Script. Falls back to static data if unavailable."""
-    FALLBACK = [
-        {"date": "April 2026",     "location": "Oman — Muscat Region",          "duration": "5 days", "spots": "4 places remaining", "status": "Open"},
-        {"date": "September 2026", "location": "Costa Rica — Península de Osa", "duration": "5 days", "spots": "6 places remaining", "status": "Open"},
-        {"date": "December 2026",  "location": "Oman — Hajar Mountains",        "duration": "3 days", "spots": "Enquiries welcome",  "status": "Forming"},
-    ]
+    """Fetch upcoming retreats from Google Sheet via Apps Script."""
     if not APPS_SCRIPT_URL:
-        return {"retreats": FALLBACK, "source": "fallback"}
+        return {"retreats": [], "source": "no_config"}
     try:
         async with httpx.AsyncClient(timeout=10.0, follow_redirects=True) as http:
             resp = await http.get(APPS_SCRIPT_URL)
-            # If redirected to a login/access-denied page, content-type will be text/html
             if "text/html" in resp.headers.get("content-type", ""):
                 logger.warning("Apps Script returned HTML — check deployment access settings")
-                return {"retreats": FALLBACK, "source": "fallback_redirect"}
+                return {"retreats": [], "source": "error_redirect"}
             data = resp.json()
-            retreats = data.get("retreats", [])
-            return {"retreats": retreats, "source": "google_sheet"}
+            return {"retreats": data.get("retreats", []), "source": "google_sheet"}
     except Exception as e:
         logger.warning(f"Failed to fetch retreats from Google Sheet: {e}")
-        return {"retreats": FALLBACK, "source": "fallback_error"}
+        return {"retreats": [], "source": "error"}
 
 
 @api_router.post("/status", response_model=StatusCheck)
