@@ -250,9 +250,11 @@ const MeditationRetreat = () => {
     fetch(`${process.env.REACT_APP_BACKEND_URL}/api/retreats`)
       .then(r => r.ok ? r.json() : null)
       .then(data => {
-        if (data?.retreats?.length > 0) {
+        if (data?.source === "google_sheet") {
+          // Sheet fetch succeeded — use its data even if empty (intentional empty state)
           setUpcomingRetreats(data.retreats);
         }
+        // If source is fallback_* (error/permissions) — keep FALLBACK_RETREATS as-is
       })
       .catch(() => {}); // silently fall back to static data
   }, []);
@@ -1376,7 +1378,39 @@ const MeditationRetreat = () => {
               </div>
             </ScrollReveal>
 
-            {upcomingRetreats.map((retreat, i) => (
+            {upcomingRetreats.length === 0 ? (
+              <ScrollReveal>
+                <div
+                  style={{
+                    borderTop: "1px solid rgba(245,242,236,0.08)",
+                    borderBottom: "1px solid rgba(245,242,236,0.08)",
+                    padding: "52px 0",
+                    display: "flex",
+                    flexDirection: isMobile ? "column" : "row",
+                    alignItems: isMobile ? "flex-start" : "center",
+                    justifyContent: "space-between",
+                    gap: "32px",
+                  }}
+                  data-testid="retreats-empty-state"
+                >
+                  <div>
+                    <p style={{ fontFamily: "Cormorant Garamond, serif", fontSize: "clamp(20px, 2.2vw, 28px)", fontWeight: 400, fontStyle: "italic", color: "rgba(245,242,236,0.55)", lineHeight: 1.45, marginBottom: "12px" }}>
+                      No upcoming retreats are scheduled at this time.
+                    </p>
+                    <p style={{ fontFamily: "Manrope, sans-serif", fontSize: "12px", fontWeight: 300, color: "rgba(245,242,236,0.3)", lineHeight: 1.7 }}>
+                      New dates are announced to those who have enquired. Reach out to be kept informed.
+                    </p>
+                  </div>
+                  <button
+                    onClick={() => setShowContactForm(true)}
+                    style={{ fontFamily: "Manrope, sans-serif", fontSize: "10px", fontWeight: 600, letterSpacing: "2px", textTransform: "uppercase", color: "#C8A96A", background: "none", border: "1px solid rgba(200,169,106,0.35)", borderRadius: "4px", padding: "12px 24px", cursor: "pointer", flexShrink: 0, transition: "background 0.2s, border-color 0.2s", whiteSpace: "nowrap" }}
+                    data-testid="retreats-empty-enquire-btn"
+                  >
+                    Enquire About Future Dates
+                  </button>
+                </div>
+              </ScrollReveal>
+            ) : upcomingRetreats.map((retreat, i) => (
               <ScrollReveal key={i} delay={0.1 * i}>
                 <div
                   style={{

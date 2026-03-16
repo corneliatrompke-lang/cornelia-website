@@ -119,8 +119,6 @@ async def get_retreats():
                 return {"retreats": FALLBACK, "source": "fallback_redirect"}
             data = resp.json()
             retreats = data.get("retreats", [])
-            if not retreats:
-                return {"retreats": FALLBACK, "source": "fallback_empty"}
             return {"retreats": retreats, "source": "google_sheet"}
     except Exception as e:
         logger.warning(f"Failed to fetch retreats from Google Sheet: {e}")
