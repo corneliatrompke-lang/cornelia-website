@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from "react";
-import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate, useLocation } from "react-router-dom";
 import { AnimatePresence } from "framer-motion";
 import { HelmetProvider } from "react-helmet-async";
 import "./App.css";
@@ -21,7 +21,9 @@ import MeditationRetreat from "./pages/services/MeditationRetreat";
 import TeamFacilitation from "./pages/services/TeamFacilitation";
 import OrganizationalAdvisory from "./pages/services/OrganizationalAdvisory";
 import Contact from "./pages/Contact";
-import Legal from "./pages/Legal";
+import Impressum from "./pages/legal/Impressum";
+import PrivacyPolicy from "./pages/legal/PrivacyPolicy";
+import Terms from "./pages/legal/Terms";
 
 const ScrollToTop = () => {
   const { pathname } = useLocation();
@@ -45,20 +47,24 @@ const AppContent = () => (
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about-me" element={<About />} />
-        <Route path="/about" element={<About />} />
         <Route path="/how-i-work" element={<Method />} />
-        <Route path="/method" element={<Method />} />
         <Route path="/work-with-me" element={<WorkWithMe />} />
-        <Route path="/work-with-me/executive-coaching" element={<ExecutiveCoaching />} />
         <Route path="/executive-coaching" element={<ExecutiveCoaching />} />
-        <Route path="/work-with-me/meditation-retreat" element={<MeditationRetreat />} />
         <Route path="/executive-retreats" element={<MeditationRetreat />} />
-        <Route path="/work-with-me/team-facilitation" element={<TeamFacilitation />} />
         <Route path="/leadership-team-facilitation" element={<TeamFacilitation />} />
-        <Route path="/work-with-me/organisational-advisory" element={<OrganizationalAdvisory />} />
         <Route path="/organizational-advisory" element={<OrganizationalAdvisory />} />
         <Route path="/contact" element={<Contact />} />
-        <Route path="/legal" element={<Legal />} />
+        <Route path="/impressum" element={<Impressum />} />
+        <Route path="/privacy" element={<PrivacyPolicy />} />
+        <Route path="/terms" element={<Terms />} />
+        {/* Redirects for old/duplicate routes */}
+        <Route path="/about" element={<Navigate to="/about-me" replace />} />
+        <Route path="/method" element={<Navigate to="/how-i-work" replace />} />
+        <Route path="/work-with-me/executive-coaching" element={<Navigate to="/executive-coaching" replace />} />
+        <Route path="/work-with-me/meditation-retreat" element={<Navigate to="/executive-retreats" replace />} />
+        <Route path="/work-with-me/team-facilitation" element={<Navigate to="/leadership-team-facilitation" replace />} />
+        <Route path="/work-with-me/organisational-advisory" element={<Navigate to="/organizational-advisory" replace />} />
+        <Route path="/legal" element={<Navigate to="/impressum" replace />} />
       </Routes>
     </main>
     <Footer />

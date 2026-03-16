@@ -161,9 +161,9 @@ const Footer = () => {
           </p>
           <div className="flex gap-6">
             {[
-              { to: "/legal?tab=impressum", label: t.legal.nav.impressum },
-              { to: "/legal?tab=privacy", label: t.legal.nav.privacy },
-              { to: "/legal?tab=terms", label: t.legal.nav.terms },
+              { to: "/impressum", label: t.legal.nav.impressum },
+              { to: "/privacy", label: t.legal.nav.privacy },
+              { to: "/terms", label: t.legal.nav.terms },
             ].map((item) => (
               <Link
                 key={item.to}

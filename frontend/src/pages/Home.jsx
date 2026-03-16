@@ -144,6 +144,63 @@ const Home = () => {
               "about": { "@id": "https://corneliatrompke.com/#organization" },
               "description": "Trauma-informed executive coaching and leadership development for senior leaders.",
             },
+            {
+              "@type": "ProfessionalService",
+              "@id": "https://corneliatrompke.com/#service",
+              "name": "Cornelia Trompke Consulting & Coaching",
+              "url": "https://corneliatrompke.com",
+              "description": "Trauma-informed executive coaching and leadership development for senior leaders, founders, and board members — grounded in nervous system science.",
+              "address": { "@type": "PostalAddress", "addressLocality": "Berlin", "addressCountry": "DE" },
+              "areaServed": "Worldwide",
+              "knowsLanguage": ["de", "en"],
+              "hasOfferCatalog": {
+                "@type": "OfferCatalog",
+                "name": "Executive Leadership Services",
+                "itemListElement": [
+                  { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "1:1 Executive Coaching", "url": "https://corneliatrompke.com/executive-coaching" } },
+                  { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Organisational Advisory", "url": "https://corneliatrompke.com/organizational-advisory" } },
+                  { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Leadership Team Facilitation", "url": "https://corneliatrompke.com/leadership-team-facilitation" } },
+                  { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Executive Meditation Retreats", "url": "https://corneliatrompke.com/executive-retreats" } },
+                ],
+              },
+              "aggregateRating": {
+                "@type": "AggregateRating",
+                "ratingValue": "5",
+                "reviewCount": "3",
+                "bestRating": "5",
+              },
+            },
+            {
+              "@type": "ItemList",
+              "@id": "https://corneliatrompke.com/#reviews",
+              "name": "Client Reviews",
+              "itemListElement": [
+                {
+                  "@type": "Review",
+                  "position": 1,
+                  "reviewBody": "What Cornelia offers is not coaching in any conventional sense. It is a form of deep accompaniment that changes the quality of every decision you make.",
+                  "author": { "@type": "Person", "name": "Chief Executive Officer, DAX-listed Financial Services Group" },
+                  "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
+                  "itemReviewed": { "@id": "https://corneliatrompke.com/#service" },
+                },
+                {
+                  "@type": "Review",
+                  "position": 2,
+                  "reviewBody": "Our entire executive team shifted after the retreat. The way we meet, the way we disagree, the way we lead — all of it changed.",
+                  "author": { "@type": "Person", "name": "Founder & CEO, Global Technology Company" },
+                  "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
+                  "itemReviewed": { "@id": "https://corneliatrompke.com/#service" },
+                },
+                {
+                  "@type": "Review",
+                  "position": 3,
+                  "reviewBody": "I have worked with many coaches and advisors over 25 years. Nothing compares to the depth and systemic intelligence Cornelia brings.",
+                  "author": { "@type": "Person", "name": "Board Chair, European Foundation" },
+                  "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
+                  "itemReviewed": { "@id": "https://corneliatrompke.com/#service" },
+                },
+              ],
+            },
           ],
         }}
       />

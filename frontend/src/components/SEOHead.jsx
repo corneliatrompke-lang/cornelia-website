@@ -2,7 +2,7 @@ import { Helmet } from "react-helmet-async";
 
 const BASE_URL = "https://corneliatrompke.com";
 const SITE_NAME = "Cornelia Trompke Consulting & Coaching";
-const OG_IMAGE = `${BASE_URL}/favicon.png`;
+const OG_IMAGE = "https://customer-assets.emergentagent.com/job_nervous-system-exec/artifacts/y8e2ch2k_About%20Hero%20-%20Desktop.jpg";
 
 export default function SEOHead({ title, description, path = "/", noIndex = false, jsonLd = null }) {
   const fullTitle = title
@@ -17,6 +17,11 @@ export default function SEOHead({ title, description, path = "/", noIndex = fals
       {noIndex && <meta name="robots" content="noindex, nofollow" />}
       <link rel="canonical" href={canonical} />
 
+      {/* hreflang — EN/DE bilingual */}
+      <link rel="alternate" hreflang="en" href={canonical} />
+      <link rel="alternate" hreflang="de" href={`${canonical}?lang=de`} />
+      <link rel="alternate" hreflang="x-default" href={canonical} />
+
       {/* Open Graph */}
       <meta property="og:type" content="website" />
       <meta property="og:site_name" content={SITE_NAME} />
@@ -24,6 +29,10 @@ export default function SEOHead({ title, description, path = "/", noIndex = fals
       <meta property="og:description" content={description} />
       <meta property="og:url" content={canonical} />
       <meta property="og:image" content={OG_IMAGE} />
+      <meta property="og:image:width" content="1200" />
+      <meta property="og:image:height" content="630" />
+      <meta property="og:locale" content="en_US" />
+      <meta property="og:locale:alternate" content="de_DE" />
 
       {/* Twitter Card */}
       <meta name="twitter:card" content="summary_large_image" />
