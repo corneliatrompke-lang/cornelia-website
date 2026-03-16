@@ -106,13 +106,12 @@ async def get_retreats():
     if not APPS_SCRIPT_URL:
         return {"retreats": FALLBACK, "source": "fallback"}
     try:
-        async with httpx.AsyncClient(timeout=10.0, follow_redirects=False) as http:
+        async with httpx.AsyncClient(timeout=10.0, follow_redirects=True) as http:
             resp = await http.get(APPS_SCRIPT_URL)
-            # Google Workspace scripts return a redirect to login when access is restricted
-            if resp.status_code in (301, 302, 303, 307, 308):
-                logger.warning("Apps Script redirected — check deployment access is set to 'Anyone'")
+            # If redirected to a login/access-denied page, content-type will be text/html
+            if "text/html" in resp.headers.get("content-type", ""):
+                logger.warning("Apps Script returned HTML — check deployment access settings")
                 return {"retreats": FALLBACK, "source": "fallback_redirect"}
-            resp.raise_for_status()
             data = resp.json()
             retreats = data.get("retreats", [])
             if not retreats:
