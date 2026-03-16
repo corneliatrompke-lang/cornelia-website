@@ -29,9 +29,8 @@ export const CookieBanner = () => {
           style={{
             position: "fixed",
             bottom: "24px",
-            left: "50%",
-            transform: "translateX(-50%)",
-            width: "min(780px, calc(100vw - 32px))",
+            right: "max(16px, calc((100vw - 1400px) / 2))",
+            width: "min(460px, calc(100vw - 32px))",
             zIndex: 1200,
             background: "rgba(8, 16, 11, 0.97)",
             backdropFilter: "blur(24px)",
@@ -72,7 +71,7 @@ export const CookieBanner = () => {
             </div>
 
             {/* Bottom row — actions */}
-            <div style={{ display: "flex", alignItems: "center", justifyContent: "flex-end", gap: "10px", flexWrap: "wrap" }}>
+            <div style={{ display: "flex", alignItems: "center", justifyContent: "flex-end", gap: "8px", flexWrap: "wrap" }}>
               {/* Manage */}
               <button
                 onClick={openSettings}
