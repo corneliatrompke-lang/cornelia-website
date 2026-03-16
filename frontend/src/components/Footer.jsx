@@ -1,12 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useLanguage } from "../context/LanguageContext";
+import { useCookieConsent } from "../context/CookieConsentContext";
 
 const LOGO_DARK =
   "https://customer-assets.emergentagent.com/job_nervous-system-exec/artifacts/qn22a37e_Cornelia%20Trompke%20Logo%20Vertical-01.png";
 
 const Footer = () => {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
+  const { openSettings } = useCookieConsent();
+  const isDE = language === "de";
   const [isNarrow, setIsNarrow] = useState(typeof window !== "undefined" ? window.innerWidth < 1024 : false);
   useEffect(() => {
     const h = () => setIsNarrow(window.innerWidth < 1024);
@@ -181,6 +184,26 @@ const Footer = () => {
                 {item.label}
               </Link>
             ))}
+            {/* Cookie settings — always accessible for GDPR compliance */}
+            <button
+              onClick={openSettings}
+              data-testid="footer-cookie-settings"
+              style={{
+                fontFamily: "Manrope, sans-serif",
+                fontSize: "11px",
+                letterSpacing: "0.08em",
+                color: "rgba(18,18,18,0.35)",
+                background: "none",
+                border: "none",
+                padding: 0,
+                cursor: "pointer",
+                transition: "color 0.2s",
+              }}
+              onMouseEnter={(e) => (e.target.style.color = "rgba(18,18,18,0.65)")}
+              onMouseLeave={(e) => (e.target.style.color = "rgba(18,18,18,0.35)")}
+            >
+              {isDE ? "Cookie-Einstellungen" : "Cookie Settings"}
+            </button>
           </div>
         </div>
       </div>

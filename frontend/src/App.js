@@ -9,6 +9,9 @@ import { ContactFormProvider } from "./context/ContactFormContext";
 import { ContactFormModal } from "./components/ContactFormModal";
 import { RetreatApplicationModal } from "./components/RetreatApplicationModal";
 import { WhatsAppButton } from "./components/WhatsAppButton";
+import { CookieBanner } from "./components/CookieBanner";
+import { CookieSettingsModal } from "./components/CookieSettingsModal";
+import { CookieConsentProvider } from "./context/CookieConsentContext";
 import Preloader from "./components/Preloader";
 import GrainOverlay from "./components/GrainOverlay";
 import Navigation from "./components/Navigation";
@@ -80,20 +83,24 @@ function App() {
   return (
     <HelmetProvider>
       <LanguageProvider>
-        {!ready && <Preloader onComplete={handleComplete} />}
-        {ready && (
-          <BrowserRouter>
-            <ContactFormProvider>
-              <div className="App">
-                <GrainOverlay />
-                <AppContent />
-                <ContactFormModal />
-                <RetreatApplicationModal />
-                <WhatsAppButton />
-              </div>
-            </ContactFormProvider>
-          </BrowserRouter>
-        )}
+        <CookieConsentProvider>
+          {!ready && <Preloader onComplete={handleComplete} />}
+          {ready && (
+            <BrowserRouter>
+              <ContactFormProvider>
+                <div className="App">
+                  <GrainOverlay />
+                  <AppContent />
+                  <ContactFormModal />
+                  <RetreatApplicationModal />
+                  <WhatsAppButton />
+                  <CookieBanner />
+                  <CookieSettingsModal />
+                </div>
+              </ContactFormProvider>
+            </BrowserRouter>
+          )}
+        </CookieConsentProvider>
       </LanguageProvider>
     </HelmetProvider>
   );
