@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400&family=Manrope:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    width: 1200px;
+    height: 630px;
+    overflow: hidden;
+    background: #0F1A12;
+    display: flex;
+    font-family: 'Manrope', sans-serif;
+  }
+
+  /* LEFT — neural canvas + text overlay */
+  .left {
+    width: 600px;
+    height: 630px;
+    position: relative;
+    flex-shrink: 0;
+    background: #0F1A12;
+  }
+  canvas#neural {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.55;
+  }
+  /* Right-edge gradient fade on left panel so portrait blends in */
+  .left::after {
+    content: '';
+    position: absolute;
+    top: 0; right: 0;
+    width: 120px; height: 100%;
+    background: linear-gradient(to right, transparent, #0F1A12);
+    z-index: 2;
+  }
+  .text-layer {
+    position: absolute;
+    inset: 0;
+    z-index: 3;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 60px 64px;
+  }
+  .name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 72px;
+    font-weight: 400;
+    color: #F5F2EC;
+    line-height: 1.0;
+    letter-spacing: -0.5px;
+    margin-bottom: 18px;
+  }
+  .subtitle {
+    font-family: 'Manrope', sans-serif;
+    font-size: 15px;
+    font-weight: 300;
+    color: rgba(245,242,236,0.5);
+    letter-spacing: 0.1em;
+    margin-bottom: 28px;
+  }
+  .rule {
+    width: 44px;
+    height: 1px;
+    background: #C8A96A;
+    margin-bottom: 20px;
+  }
+  .tagline {
+    font-family: 'Manrope', sans-serif;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: rgba(200,169,106,0.7);
+  }
+  .domain {
+    position: absolute;
+    bottom: 44px;
+    left: 64px;
+    font-family: 'Manrope', sans-serif;
+    font-size: 11px;
+    font-weight: 300;
+    color: rgba(200,169,106,0.4);
+    letter-spacing: 0.12em;
+    z-index: 4;
+  }
+
+  /* Gold divider */
+  .divider {
+    width: 1px;
+    height: 100%;
+    background: linear-gradient(to bottom,
+      transparent 0%,
+      rgba(200,169,106,0.4) 20%,
+      rgba(200,169,106,0.4) 80%,
+      transparent 100%);
+    flex-shrink: 0;
+    z-index: 5;
+  }
+
+  /* RIGHT — portrait */
+  .right {
+    flex: 1;
+    position: relative;
+    overflow: hidden;
+  }
+  .right img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    filter: brightness(0.85) saturate(0.88);
+  }
+  .right::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to right, #0F1A12 0%, transparent 22%);
+  }
+</style>
+</head>
+<body>
+  <div class="left">
+    <canvas id="neural"></canvas>
+    <div class="text-layer">
+      <div class="name">Cornelia<br>Trompke</div>
+      <div class="subtitle">Consulting &amp; Coaching</div>
+      <div class="rule"></div>
+      <div class="tagline">Executive Leadership &nbsp;&middot;&nbsp; Berlin &nbsp;&middot;&nbsp; Worldwide</div>
+    </div>
+    <div class="domain">corneliatrompke.com</div>
+  </div>
+  <div class="divider"></div>
+  <div class="right">
+    <img src="/cornelia-portrait-og.jpg" alt="Cornelia Trompke" />
+  </div>
+
+  <script>
+    const canvas = document.getElementById('neural');
+    const ctx = canvas.getContext('2d');
+    canvas.width = 600;
+    canvas.height = 630;
+
+    const NODES = 38;
+    const nodes = [];
+
+    // Seed deterministic positions
+    function seededRand(seed) {
+      let s = seed;
+      return function() {
+        s = (s * 16807 + 0) % 2147483647;
+        return (s - 1) / 2147483646;
+      };
+    }
+    const rand = seededRand(42);
+
+    for (let i = 0; i < NODES; i++) {
+      nodes.push({
+        x: rand() * 600,
+        y: rand() * 630,
+        r: 1.2 + rand() * 2.2,
+      });
+    }
+
+    // Draw connections
+    ctx.clearRect(0, 0, 600, 630);
+    nodes.forEach((a, i) => {
+      nodes.forEach((b, j) => {
+        if (j <= i) return;
+        const dx = a.x - b.x, dy = a.y - b.y;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        if (dist < 145) {
+          const alpha = (1 - dist / 145) * 0.38;
+          ctx.beginPath();
+          ctx.moveTo(a.x, a.y);
+          ctx.lineTo(b.x, b.y);
+          ctx.strokeStyle = `rgba(200,169,106,${alpha})`;
+          ctx.lineWidth = 0.6;
+          ctx.stroke();
+        }
+      });
+    });
+
+    // Draw nodes
+    nodes.forEach(n => {
+      // glow
+      const g = ctx.createRadialGradient(n.x, n.y, 0, n.x, n.y, n.r * 5);
+      g.addColorStop(0, 'rgba(200,169,106,0.18)');
+      g.addColorStop(1, 'rgba(200,169,106,0)');
+      ctx.beginPath();
+      ctx.arc(n.x, n.y, n.r * 5, 0, Math.PI * 2);
+      ctx.fillStyle = g;
+      ctx.fill();
+      // dot
+      ctx.beginPath();
+      ctx.arc(n.x, n.y, n.r, 0, Math.PI * 2);
+      ctx.fillStyle = 'rgba(200,169,106,0.65)';
+      ctx.fill();
+    });
+  </script>
+</body>
+</html>
