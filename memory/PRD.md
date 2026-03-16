@@ -285,6 +285,16 @@ Footer (from shared Footer component)
 ### v2.9 — Method Page Mobile Foundation Fix (Mar 2026)
 - **Bug Fix: "Two Methodologies" section mobile layout** — The Venn Diagram div had `gridColumn: 2` hard-coded, forcing CSS Grid to create a phantom second column on mobile even with `gridTemplateColumns: "1fr"`. Fixed by conditionally rendering the Venn Diagram: on mobile it appears inline after the intro paragraph (inside col 1), on desktop it remains in grid column 2. Result: clean single-column flow on mobile: heading → intro paragraph → Venn Diagram → METHODOLOGY ONE.
 
+### v3.9 — Retreat Application Modal (Mar 2026)
+- **RetreatApplicationForm.jsx** (new): Name, Email, Phone, Retreat dropdown (pre-selected from clicked card, changeable to any visible retreat), T&C checkbox, Message, Submit
+- **RetreatApplicationModal.jsx** (new): Glassmorphic modal wrapper (zIndex 1100), matching ContactFormModal aesthetic
+- **ContactFormContext.jsx** updated: added `openApplicationForm(retreat, allRetreats)`, `closeApplicationForm`, `applicationModalOpen`, `selectedRetreat`, `availableRetreats` state
+- **MeditationRetreat.jsx**: Apply button now calls `openApplicationForm(retreat, upcomingRetreats)` instead of the general contact form
+- **App.js**: Added `<RetreatApplicationModal />` globally rendered alongside `<ContactFormModal />`
+- **google_apps_script.js** updated: `doPost` now routes payload to `Applications` tab (new sheet) when `retreat_id` is present, otherwise routes to `Leads` tab as before
+- Applications tab columns: Timestamp | Name | Email | Phone | Retreat ID | Retreat Title | Retreat Date | Retreat Location | T&C Agreed | Notes | Status
+- **Tested**: 100% pass rate (iteration_21.json), all 15 test cases
+
 ## Next Tasks
 
 1. ~~Wire nav "BEGIN THE WORK" button to open contact form globally (React Context) (P0)~~ ✅ Done
