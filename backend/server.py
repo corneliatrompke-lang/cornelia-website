@@ -37,6 +37,11 @@ class ContactSubmission(BaseModel):
     services: Optional[List[str]] = []
     notes: Optional[str] = None
     send_from: Optional[str] = None
+    # Retreat application fields (present only when retreat_id is set)
+    retreat_id: Optional[str] = None
+    retreat_title: Optional[str] = None
+    retreat_date: Optional[str] = None
+    retreat_location: Optional[str] = None
 
 class ContactRecord(BaseModel):
     model_config = ConfigDict(extra="ignore")
@@ -79,8 +84,8 @@ async def submit_contact(submission: ContactSubmission):
     # 2. Forward to Google Apps Script → Google Sheet
     if APPS_SCRIPT_URL:
         try:
-            async with httpx.AsyncClient(timeout=10.0) as http:
-                payload = submission.model_dump()
+            async with httpx.AsyncClient(timeout=10.0, follow_redirects=True) as http:
+                payload = submission.model_dump(exclude_none=True)
                 await http.post(APPS_SCRIPT_URL, json=payload)
         except Exception as e:
             logger.warning(f"Google Sheet sync failed (non-fatal): {e}")
