@@ -7,14 +7,27 @@ export const ContactFormProvider = ({ children }) => {
   const [selectedService, setSelectedService] = useState(null);
   const [sendFrom, setSendFrom]             = useState(null);
 
+  // Retreat application modal state
+  const [applicationModalOpen, setApplicationModalOpen] = useState(false);
+  const [selectedRetreat, setSelectedRetreat]           = useState(null);
+  const [availableRetreats, setAvailableRetreats]       = useState([]);
+
   // Callbacks registered by Home.jsx to trigger section-specific forms
   const heroOpenFn     = useRef(null);
   const finalCtaOpenFn = useRef(null);
 
   const closeForm = useCallback(() => {
     setModalOpen(false);
-    // Hero / finalCTA close is handled by Home.jsx's own state
-    // We can't close those from here directly, but Escape is handled below
+  }, []);
+
+  const openApplicationForm = useCallback((retreat, allRetreats = []) => {
+    setSelectedRetreat(retreat);
+    setAvailableRetreats(allRetreats);
+    setApplicationModalOpen(true);
+  }, []);
+
+  const closeApplicationForm = useCallback(() => {
+    setApplicationModalOpen(false);
   }, []);
 
   const openForm = useCallback((serviceId = null, sendFrom = null) => {
@@ -38,11 +51,13 @@ export const ContactFormProvider = ({ children }) => {
     }
   }, []);
 
-  // Global Escape key listener — dismisses the modal
-  // Hero/finalCTA panels are closed by Home.jsx's own Escape handler
+  // Global Escape key listener — dismisses both modals
   useEffect(() => {
     const onKeyDown = (e) => {
-      if (e.key === "Escape") setModalOpen(false);
+      if (e.key === "Escape") {
+        setModalOpen(false);
+        setApplicationModalOpen(false);
+      }
     };
     document.addEventListener("keydown", onKeyDown);
     return () => document.removeEventListener("keydown", onKeyDown);
@@ -58,6 +73,11 @@ export const ContactFormProvider = ({ children }) => {
       finalCtaOpenFn,
       openForm,
       closeForm,
+      applicationModalOpen,
+      selectedRetreat,
+      availableRetreats,
+      openApplicationForm,
+      closeApplicationForm,
     }}>
       {children}
     </ContactFormContext.Provider>

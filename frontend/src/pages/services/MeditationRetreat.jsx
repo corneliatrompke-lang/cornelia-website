@@ -220,7 +220,7 @@ const CirclesViz = ({ activePhase, size = 500 }) => {
 // ─── Page ─────────────────────────────────────────────────────────────────────
 const MeditationRetreat = () => {
   const { t } = useLanguage();
-  const { heroOpenFn, finalCtaOpenFn } = useContactForm();
+  const { heroOpenFn, finalCtaOpenFn, openApplicationForm } = useContactForm();
   const testimonials = t.home.testimonials.items;
 
   const heroRef = useRef(null);
@@ -1439,7 +1439,7 @@ const MeditationRetreat = () => {
                     </span>
 
                     <button
-                      onClick={() => setShowFinalForm(true)}
+                      onClick={() => openApplicationForm(retreat, upcomingRetreats)}
                       style={{
                         fontFamily: "Manrope, sans-serif",
                         fontSize: "11px",
