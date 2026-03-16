@@ -183,12 +183,12 @@ const TeamFacilitation = () => {
           "@graph": [
             {
               "@type": "Service",
-              "@id": "https://corneliatrompke.com/leadership-team-facilitation#service",
+              "@id": "https://www.corneliatrompke.com/leadership-team-facilitation#service",
               "name": "Leadership Team Facilitation",
               "description": "Deep facilitation work with executive leadership teams of 4–12 navigating complexity, conflict, and the invisible dynamics shaping collective performance.",
-              "url": "https://corneliatrompke.com/leadership-team-facilitation",
+              "url": "https://www.corneliatrompke.com/leadership-team-facilitation",
               "serviceType": "Team Facilitation",
-              "provider": { "@id": "https://corneliatrompke.com/#organization" },
+              "provider": { "@id": "https://www.corneliatrompke.com/#organization" },
               "areaServed": "Worldwide",
               "availableLanguage": [{ "@type": "Language", "name": "German" }, { "@type": "Language", "name": "English" }],
               "offers": { "@type": "Offer", "description": "2 to 3-day intensive off-site, with optional follow-on sessions. 4–12 participants." },
@@ -196,9 +196,29 @@ const TeamFacilitation = () => {
             {
               "@type": "BreadcrumbList",
               "itemListElement": [
-                { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://corneliatrompke.com" },
-                { "@type": "ListItem", "position": 2, "name": "Work With Me", "item": "https://corneliatrompke.com/work-with-me" },
-                { "@type": "ListItem", "position": 3, "name": "Leadership Team Facilitation", "item": "https://corneliatrompke.com/leadership-team-facilitation" },
+                { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.corneliatrompke.com" },
+                { "@type": "ListItem", "position": 2, "name": "Work With Me", "item": "https://www.corneliatrompke.com/work-with-me" },
+                { "@type": "ListItem", "position": 3, "name": "Leadership Team Facilitation", "item": "https://www.corneliatrompke.com/leadership-team-facilitation" },
+              ],
+            },
+            {
+              "@type": "FAQPage",
+              "mainEntity": [
+                {
+                  "@type": "Question",
+                  "name": "Who is leadership team facilitation for?",
+                  "acceptedAnswer": { "@type": "Answer", "text": "This work is designed for executive leadership teams of 4–12 people navigating complexity, conflict, or a significant turning point — including boards at strategic junctures, teams experiencing persistent underperformance despite structural interventions, and newly formed senior teams building the relational foundations needed to perform." },
+                },
+                {
+                  "@type": "Question",
+                  "name": "What does leadership team facilitation address?",
+                  "acceptedAnswer": { "@type": "Answer", "text": "Most team problems are not actually team problems — they originate in the relational field: invisible patterns of power, anxiety, protection, and unspoken history beneath the surface. This facilitation makes that field visible and workable, shifting the foundation from which the team operates together." },
+                },
+                {
+                  "@type": "Question",
+                  "name": "How long does a leadership team facilitation engagement last?",
+                  "acceptedAnswer": { "@type": "Answer", "text": "Engagements are tailored to the team's situation and objectives. They typically include an initial diagnostic phase, structured facilitated sessions over several months, and ongoing advisory support to sustain the shifts achieved." },
+                },
               ],
             },
           ],

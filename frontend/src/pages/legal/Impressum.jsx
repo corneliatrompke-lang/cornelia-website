@@ -18,10 +18,10 @@ const Impressum = () => {
         jsonLd={{
           "@context": "https://schema.org",
           "@type": "WebPage",
-          "@id": "https://corneliatrompke.com/impressum#webpage",
-          "url": "https://corneliatrompke.com/impressum",
+          "@id": "https://www.corneliatrompke.com/impressum#webpage",
+          "url": "https://www.corneliatrompke.com/impressum",
           "name": "Impressum — Cornelia Trompke Consulting & Coaching",
-          "isPartOf": { "@id": "https://corneliatrompke.com/#website" },
+          "isPartOf": { "@id": "https://www.corneliatrompke.com/#website" },
         }}
       />
       <div className="max-w-[900px] mx-auto px-6 md:px-16 pb-24">

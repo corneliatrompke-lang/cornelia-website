@@ -26,10 +26,10 @@ const Legal = () => {
         jsonLd={{
           "@context": "https://schema.org",
           "@type": "WebPage",
-          "@id": "https://corneliatrompke.com/legal#webpage",
-          "url": "https://corneliatrompke.com/legal",
+          "@id": "https://www.corneliatrompke.com/legal#webpage",
+          "url": "https://www.corneliatrompke.com/legal",
           "name": "Legal — Cornelia Trompke Consulting & Coaching",
-          "isPartOf": { "@id": "https://corneliatrompke.com/#website" },
+          "isPartOf": { "@id": "https://www.corneliatrompke.com/#website" },
         }}
       />
       <div className="max-w-[900px] mx-auto px-6 md:px-16 pb-24">

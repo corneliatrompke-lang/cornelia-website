@@ -18,10 +18,10 @@ const PrivacyPolicy = () => {
         jsonLd={{
           "@context": "https://schema.org",
           "@type": "WebPage",
-          "@id": "https://corneliatrompke.com/privacy#webpage",
-          "url": "https://corneliatrompke.com/privacy",
+          "@id": "https://www.corneliatrompke.com/privacy#webpage",
+          "url": "https://www.corneliatrompke.com/privacy",
           "name": "Privacy Policy — Cornelia Trompke Consulting & Coaching",
-          "isPartOf": { "@id": "https://corneliatrompke.com/#website" },
+          "isPartOf": { "@id": "https://www.corneliatrompke.com/#website" },
         }}
       />
       <div className="max-w-[900px] mx-auto px-6 md:px-16 pb-24">

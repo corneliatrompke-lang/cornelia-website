@@ -181,12 +181,12 @@ const ExecutiveCoaching = () => {
           "@graph": [
             {
               "@type": "Service",
-              "@id": "https://corneliatrompke.com/executive-coaching#service",
+              "@id": "https://www.corneliatrompke.com/executive-coaching#service",
               "name": "Executive Coaching & Advisory",
               "description": "A deeply confidential 1:1 executive coaching partnership for senior executives, founders, and board members — grounded in nervous system science and integral coaching methodology.",
-              "url": "https://corneliatrompke.com/executive-coaching",
+              "url": "https://www.corneliatrompke.com/executive-coaching",
               "serviceType": "Executive Coaching",
-              "provider": { "@id": "https://corneliatrompke.com/#organization" },
+              "provider": { "@id": "https://www.corneliatrompke.com/#organization" },
               "areaServed": "Worldwide",
               "availableLanguage": [{ "@type": "Language", "name": "German" }, { "@type": "Language", "name": "English" }],
               "offers": { "@type": "Offer", "description": "6 to 12 months engagement, biweekly 90-minute sessions, in person or virtual" },
@@ -194,9 +194,29 @@ const ExecutiveCoaching = () => {
             {
               "@type": "BreadcrumbList",
               "itemListElement": [
-                { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://corneliatrompke.com" },
-                { "@type": "ListItem", "position": 2, "name": "Work With Me", "item": "https://corneliatrompke.com/work-with-me" },
-                { "@type": "ListItem", "position": 3, "name": "Executive Coaching & Advisory", "item": "https://corneliatrompke.com/executive-coaching" },
+                { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.corneliatrompke.com" },
+                { "@type": "ListItem", "position": 2, "name": "Work With Me", "item": "https://www.corneliatrompke.com/work-with-me" },
+                { "@type": "ListItem", "position": 3, "name": "Executive Coaching & Advisory", "item": "https://www.corneliatrompke.com/executive-coaching" },
+              ],
+            },
+            {
+              "@type": "FAQPage",
+              "mainEntity": [
+                {
+                  "@type": "Question",
+                  "name": "Who is 1:1 executive coaching for?",
+                  "acceptedAnswer": { "@type": "Answer", "text": "This work is for senior executives, founders, and board members ready for something that goes deeper than standard coaching — particularly those navigating major transitions, sensing that what holds them back runs deeper than any framework has reached, or wanting to lead from wholeness rather than performance or anxiety." },
+                },
+                {
+                  "@type": "Question",
+                  "name": "How long does an executive coaching engagement last?",
+                  "acceptedAnswer": { "@type": "Answer", "text": "Engagements typically run 6 to 12 months with biweekly 90-minute sessions, conducted in person or virtually. The duration is set to allow for the depth of work required for lasting transformation." },
+                },
+                {
+                  "@type": "Question",
+                  "name": "What methodology does Cornelia Trompke use in executive coaching?",
+                  "acceptedAnswer": { "@type": "Answer", "text": "Cornelia integrates NARM (NeuroAffective Relational Model) — a leading trauma-informed approach grounded in neuroscience and developmental psychology — with Integral Coaching, which engages the whole person using Ken Wilber's Integral Theory and Robert Kegan's developmental framework." },
+                },
               ],
             },
           ],

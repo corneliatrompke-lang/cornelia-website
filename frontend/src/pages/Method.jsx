@@ -194,11 +194,11 @@ const Method = () => {
           "@graph": [
             {
               "@type": "WebPage",
-              "@id": "https://corneliatrompke.com/how-i-work#webpage",
-              "url": "https://corneliatrompke.com/how-i-work",
+              "@id": "https://www.corneliatrompke.com/how-i-work#webpage",
+              "url": "https://www.corneliatrompke.com/how-i-work",
               "name": "The Method — NARM & Integral Coaching for Executive Leaders",
               "description": "Where neuroscience meets executive depth. NARM and Integral Coaching integrated for lasting leadership transformation.",
-              "isPartOf": { "@id": "https://corneliatrompke.com/#website" },
+              "isPartOf": { "@id": "https://www.corneliatrompke.com/#website" },
               "about": [
                 { "@type": "Thing", "name": "NeuroAffective Relational Model (NARM)", "description": "A leading trauma-informed approach to human development working at the intersection of neuroscience, developmental psychology, and somatic awareness, developed by Dr. Laurence Heller." },
                 { "@type": "Thing", "name": "Integral Coaching", "description": "Developed at New Ventures West, engaging the whole human being using Ken Wilber's Integral Theory and Robert Kegan's developmental framework." },

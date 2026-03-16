@@ -2,4 +2,4 @@ User-agent: *
 Allow: /
 Disallow: /api/
 
-Sitemap: https://corneliatrompke.com/sitemap.xml
+Sitemap: https://www.corneliatrompke.com/sitemap.xml

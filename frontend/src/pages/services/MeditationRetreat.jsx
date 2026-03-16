@@ -298,12 +298,12 @@ const MeditationRetreat = () => {
           "@graph": [
             {
               "@type": "Service",
-              "@id": "https://corneliatrompke.com/executive-retreats#service",
+              "@id": "https://www.corneliatrompke.com/executive-retreats#service",
               "name": "Executive Meditation Retreat",
               "description": "An immersive 3–5 day residential retreat for leaders ready to step outside the pace of operations — guided meditation, structured reflection, and deep dialogue.",
-              "url": "https://corneliatrompke.com/executive-retreats",
+              "url": "https://www.corneliatrompke.com/executive-retreats",
               "serviceType": "Executive Retreat",
-              "provider": { "@id": "https://corneliatrompke.com/#organization" },
+              "provider": { "@id": "https://www.corneliatrompke.com/#organization" },
               "areaServed": "Europe",
               "availableLanguage": [{ "@type": "Language", "name": "German" }, { "@type": "Language", "name": "English" }],
               "offers": { "@type": "Offer", "description": "3 or 5 days residential. Individual or small group (2–4 participants). Selected locations across Germany and Europe." },
@@ -312,9 +312,29 @@ const MeditationRetreat = () => {
             {
               "@type": "BreadcrumbList",
               "itemListElement": [
-                { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://corneliatrompke.com" },
-                { "@type": "ListItem", "position": 2, "name": "Work With Me", "item": "https://corneliatrompke.com/work-with-me" },
-                { "@type": "ListItem", "position": 3, "name": "Executive Retreats", "item": "https://corneliatrompke.com/executive-retreats" },
+                { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.corneliatrompke.com" },
+                { "@type": "ListItem", "position": 2, "name": "Work With Me", "item": "https://www.corneliatrompke.com/work-with-me" },
+                { "@type": "ListItem", "position": 3, "name": "Executive Retreats", "item": "https://www.corneliatrompke.com/executive-retreats" },
+              ],
+            },
+            {
+              "@type": "FAQPage",
+              "mainEntity": [
+                {
+                  "@type": "Question",
+                  "name": "What is an executive meditation retreat?",
+                  "acceptedAnswer": { "@type": "Answer", "text": "An executive meditation retreat is an immersive, silent or semi-silent retreat programme specifically designed for senior leaders. It integrates evidence-based meditation practice with nervous system regulation, providing leaders with tools to sustain high performance, clarity, and presence under sustained pressure." },
+                },
+                {
+                  "@type": "Question",
+                  "name": "Who are executive retreats for?",
+                  "acceptedAnswer": { "@type": "Answer", "text": "Retreats are offered to senior leaders who are engaged in one of Cornelia's ongoing coaching or advisory programmes and who are ready to go deeper — creating sustained space for the inner work that drives lasting leadership transformation." },
+                },
+                {
+                  "@type": "Question",
+                  "name": "Where are the executive meditation retreats held?",
+                  "acceptedAnswer": { "@type": "Answer", "text": "Retreats are held at carefully selected retreat environments in Europe, chosen for their capacity to support deep stillness and genuine rest. Exact locations are shared with participants upon confirmation of attendance." },
+                },
               ],
             },
           ],

@@ -43,12 +43,12 @@ const Contact = () => {
         jsonLd={{
           "@context": "https://schema.org",
           "@type": "ContactPage",
-          "@id": "https://corneliatrompke.com/contact#webpage",
-          "url": "https://corneliatrompke.com/contact",
+          "@id": "https://www.corneliatrompke.com/contact#webpage",
+          "url": "https://www.corneliatrompke.com/contact",
           "name": "Contact Cornelia Trompke — Start the Conversation",
           "description": "All enquiries receive a personal response within 2–3 business days.",
-          "isPartOf": { "@id": "https://corneliatrompke.com/#website" },
-          "about": { "@id": "https://corneliatrompke.com/#organization" },
+          "isPartOf": { "@id": "https://www.corneliatrompke.com/#website" },
+          "about": { "@id": "https://www.corneliatrompke.com/#organization" },
         }}
       />
       <section className="bg-charcoal min-h-[55vh] flex items-end pb-20 pt-36" data-testid="contact-hero">

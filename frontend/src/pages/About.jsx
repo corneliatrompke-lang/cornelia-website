@@ -95,12 +95,12 @@ const About = () => {
           "@graph": [
             {
               "@type": "Person",
-              "@id": "https://corneliatrompke.com/about-me#person",
+              "@id": "https://www.corneliatrompke.com/about-me#person",
               "name": "Cornelia Trompke",
               "jobTitle": "Executive Coach & Advisor",
               "description": "Trauma-informed executive coach, systemic thinker, and advisor with over two decades at the intersection of executive leadership, depth psychology, and neuroscience.",
-              "url": "https://corneliatrompke.com/about-me",
-              "image": "https://corneliatrompke.com/favicon.png",
+              "url": "https://www.corneliatrompke.com/about-me",
+              "image": "https://www.corneliatrompke.com/favicon.png",
               "address": { "@type": "PostalAddress", "addressLocality": "Berlin", "addressCountry": "DE" },
               "knowsAbout": ["Executive Coaching", "NARM — NeuroAffective Relational Model", "Integral Coaching", "Leadership Development", "Nervous System Science", "Trauma-Informed Coaching", "Organisational Development", "Depth Psychology"],
               "hasCredential": [
@@ -108,15 +108,15 @@ const About = () => {
                 { "@type": "EducationalOccupationalCredential", "name": "Integral Coach", "description": "Trained at New Ventures West Institute, San Francisco" },
                 { "@type": "EducationalOccupationalCredential", "name": "Systemic Facilitator", "description": "Advanced training in systemic organisational constellations and team dynamics" },
               ],
-              "worksFor": { "@id": "https://corneliatrompke.com/#organization" },
+              "worksFor": { "@id": "https://www.corneliatrompke.com/#organization" },
             },
             {
               "@type": "WebPage",
-              "@id": "https://corneliatrompke.com/about-me#webpage",
-              "url": "https://corneliatrompke.com/about-me",
+              "@id": "https://www.corneliatrompke.com/about-me#webpage",
+              "url": "https://www.corneliatrompke.com/about-me",
               "name": "About Cornelia Trompke — Executive Coach & Advisor",
-              "about": { "@id": "https://corneliatrompke.com/about-me#person" },
-              "isPartOf": { "@id": "https://corneliatrompke.com/#website" },
+              "about": { "@id": "https://www.corneliatrompke.com/about-me#person" },
+              "isPartOf": { "@id": "https://www.corneliatrompke.com/#website" },
             },
           ],
         }}

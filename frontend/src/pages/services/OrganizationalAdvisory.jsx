@@ -169,12 +169,12 @@ const OrganizationalAdvisory = () => {
           "@graph": [
             {
               "@type": "Service",
-              "@id": "https://corneliatrompke.com/organizational-advisory#service",
+              "@id": "https://www.corneliatrompke.com/organizational-advisory#service",
               "name": "Organisational Advisory for People & Culture Transformation",
               "description": "Strategic advisory for organisations at inflection points — addressing leadership, people systems, and culture simultaneously.",
-              "url": "https://corneliatrompke.com/organizational-advisory",
+              "url": "https://www.corneliatrompke.com/organizational-advisory",
               "serviceType": "Organisational Consulting",
-              "provider": { "@id": "https://corneliatrompke.com/#organization" },
+              "provider": { "@id": "https://www.corneliatrompke.com/#organization" },
               "areaServed": "Worldwide",
               "availableLanguage": [{ "@type": "Language", "name": "German" }, { "@type": "Language", "name": "English" }],
               "offers": { "@type": "Offer", "description": "Minimum 6 months, typically 12–18 months. Diagnostic phase, systemic mapping, leadership architecture, sustained advisory presence." },
@@ -182,9 +182,29 @@ const OrganizationalAdvisory = () => {
             {
               "@type": "BreadcrumbList",
               "itemListElement": [
-                { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://corneliatrompke.com" },
-                { "@type": "ListItem", "position": 2, "name": "Work With Me", "item": "https://corneliatrompke.com/work-with-me" },
-                { "@type": "ListItem", "position": 3, "name": "Organisational Advisory", "item": "https://corneliatrompke.com/organizational-advisory" },
+                { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.corneliatrompke.com" },
+                { "@type": "ListItem", "position": 2, "name": "Work With Me", "item": "https://www.corneliatrompke.com/work-with-me" },
+                { "@type": "ListItem", "position": 3, "name": "Organisational Advisory", "item": "https://www.corneliatrompke.com/organizational-advisory" },
+              ],
+            },
+            {
+              "@type": "FAQPage",
+              "mainEntity": [
+                {
+                  "@type": "Question",
+                  "name": "Who is organisational advisory for?",
+                  "acceptedAnswer": { "@type": "Answer", "text": "Organisational advisory is designed for organisations at genuine inflection points — mergers, restructuring, leadership transitions — where cultural transformation has stalled despite structural investment, or where strategy is clear but execution consistently fails. It also serves founders transitioning from founder-led to leadership-led organisations." },
+                },
+                {
+                  "@type": "Question",
+                  "name": "What does organisational advisory involve?",
+                  "acceptedAnswer": { "@type": "Answer", "text": "The engagement works at the intersection of leadership, culture, and organisational systems. It combines systemic diagnostics, executive team work, and sustained advisory over time to create lasting organisational transformation — addressing the human and relational dynamics that structural interventions cannot reach." },
+                },
+                {
+                  "@type": "Question",
+                  "name": "How is Cornelia's organisational advisory different from standard consulting?",
+                  "acceptedAnswer": { "@type": "Answer", "text": "Unlike conventional consulting that delivers frameworks and recommendations, this advisory works at the level of the relational field — the invisible patterns of power, anxiety, and unspoken dynamics that actually drive organisational behaviour. The focus is on lasting systemic change, not short-term restructuring." },
+                },
               ],
             },
           ],
