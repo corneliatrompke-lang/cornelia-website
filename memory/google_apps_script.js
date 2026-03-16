@@ -1,18 +1,15 @@
 /**
  * Cornelia Trompke — Google Apps Script
- * 
- * Handles two operations:
- *   POST → writes a contact form submission to the "Leads" sheet
- *   GET  → returns upcoming retreats from the "Retreats" sheet as JSON
  *
- * SETUP:
- *   1. Open your Google Sheet → Extensions → Apps Script
- *   2. Paste this entire file, replacing any existing code
- *   3. Click Deploy → New deployment → Web app
- *      - Execute as: Me
- *      - Who has access: Anyone
- *   4. Copy the Web App URL
- *   5. Paste it into backend/.env as APPS_SCRIPT_URL=<your-url>
+ * POST → writes contact form submission to "Leads" sheet
+ * GET  → returns upcoming retreats from "Retreats" sheet as JSON
+ *
+ * RETREATS sheet expected columns (row 1 = headers):
+ *   A: ID | B: Date | C: Location | D: Region | E: Duration
+ *   F: Spots | G: Status | H: Visible | I: Title | J: Theme | K: Price | L: Notes
+ *
+ *   Visible must be TRUE for a row to appear on the website.
+ *   Status values: Open | Forming | Full | Cancelled
  */
 
 const LEADS_TAB    = "Leads";
@@ -21,11 +18,10 @@ const RETREATS_TAB = "Retreats";
 // ── POST — write contact form submission ──────────────────────────────────────
 function doPost(e) {
   try {
-    const data = JSON.parse(e.postData.contents);
+    const data  = JSON.parse(e.postData.contents);
     const ss    = SpreadsheetApp.getActiveSpreadsheet();
     let sheet   = ss.getSheetByName(LEADS_TAB);
 
-    // Create sheet + headers if it doesn't exist yet
     if (!sheet) {
       sheet = ss.insertSheet(LEADS_TAB);
     }
@@ -39,12 +35,12 @@ function doPost(e) {
 
     sheet.appendRow([
       new Date().toLocaleString("de-DE", { timeZone: "Europe/Berlin" }),
-      data.name     || "",
-      data.email    || "",
-      data.phone    || "",
+      data.name      || "",
+      data.email     || "",
+      data.phone     || "",
       (data.services || []).join(", "),
-      data.notes    || "",
-      data.send_from|| "",
+      data.notes     || "",
+      data.send_from || "",
       "New",
     ]);
 
@@ -77,14 +73,16 @@ function doGet(e) {
 
     const retreats = rows
       .slice(1)
-      // Only include rows where Visible (column H, index 7) is TRUE
       .filter(row => {
+        // Visible column (H, index 7) must be TRUE
         const visible = row[7];
         return visible === true || visible === "TRUE" || visible === "true";
       })
       .map(row => {
         const obj = {};
-        headers.forEach((h, i) => { obj[h] = row[i] !== undefined ? String(row[i]) : ""; });
+        headers.forEach((h, i) => {
+          obj[h] = row[i] !== undefined ? String(row[i]) : "";
+        });
         return obj;
       });
 

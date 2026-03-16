@@ -1390,46 +1390,30 @@ const MeditationRetreat = () => {
                   data-testid={`upcoming-retreat-${i}`}
                 >
                   {/* Date */}
-                  <div style={{ flexShrink: 0, minWidth: "120px" }}>
-                    <p
-                      style={{
-                        fontFamily: "Cormorant Garamond, serif",
-                        fontSize: "22px",
-                        fontWeight: 400,
-                        color: "#F5F2EC",
-                        lineHeight: 1.1,
-                      }}
-                    >
+                  <div style={{ flexShrink: 0, minWidth: "130px" }}>
+                    <p style={{ fontFamily: "Cormorant Garamond, serif", fontSize: "22px", fontWeight: 400, color: "#F5F2EC", lineHeight: 1.1 }}>
                       {retreat.date}
                     </p>
                   </div>
 
-                  {/* Location + duration */}
+                  {/* Title + Theme + Location · Duration */}
                   <div style={{ flex: 1 }}>
-                    <p
-                      style={{
-                        fontFamily: "Figtree, sans-serif",
-                        fontSize: "16px",
-                        fontWeight: 400,
-                        color: "#F5F2EC",
-                        marginBottom: "4px",
-                      }}
-                    >
-                      {retreat.location}
-                    </p>
-                    <p
-                      style={{
-                        fontFamily: "Manrope, sans-serif",
-                        fontSize: "12px",
-                        fontWeight: 300,
-                        color: "rgba(245,242,236,0.42)",
-                      }}
-                    >
-                      {retreat.duration}
+                    {retreat.title && (
+                      <p style={{ fontFamily: "Figtree, sans-serif", fontSize: "16px", fontWeight: 400, color: "#F5F2EC", marginBottom: "4px" }}>
+                        {retreat.title}
+                      </p>
+                    )}
+                    {retreat.theme && (
+                      <p style={{ fontFamily: "Cormorant Garamond, serif", fontSize: "15px", fontWeight: 400, fontStyle: "italic", color: "rgba(200,169,106,0.75)", marginBottom: "6px" }}>
+                        {retreat.theme}
+                      </p>
+                    )}
+                    <p style={{ fontFamily: "Manrope, sans-serif", fontSize: "11px", fontWeight: 300, color: "rgba(245,242,236,0.38)", letterSpacing: "0.06em" }}>
+                      {[retreat.location, retreat.duration].filter(Boolean).join(" · ")}
                     </p>
                   </div>
 
-                  {/* Spots + CTA row */}
+                  {/* Spots + CTA */}
                   <div style={{ display: "flex", alignItems: "center", justifyContent: isMobile ? "space-between" : "flex-start", gap: isMobile ? "0" : "20px", width: isMobile ? "100%" : "auto", flexShrink: 0 }}>
                     <span
                       style={{
@@ -1438,21 +1422,11 @@ const MeditationRetreat = () => {
                         fontWeight: 500,
                         letterSpacing: "1.5px",
                         textTransform: "uppercase",
-                        color:
-                          retreat.status === "Open"
-                            ? "rgba(80,130,80,0.9)"
-                            : "rgba(200,169,106,0.8)",
-                        background:
-                          retreat.status === "Open"
-                            ? "rgba(80,130,80,0.08)"
-                            : "rgba(200,169,106,0.08)",
+                        color: retreat.status === "Open" ? "rgba(80,130,80,0.9)" : retreat.status === "Full" ? "rgba(180,80,80,0.8)" : "rgba(200,169,106,0.8)",
+                        background: retreat.status === "Open" ? "rgba(80,130,80,0.08)" : retreat.status === "Full" ? "rgba(180,80,80,0.08)" : "rgba(200,169,106,0.08)",
                         padding: "5px 12px",
                         borderRadius: "2px",
-                        border: `1px solid ${
-                          retreat.status === "Open"
-                            ? "rgba(80,130,80,0.18)"
-                            : "rgba(200,169,106,0.18)"
-                        }`,
+                        border: `1px solid ${retreat.status === "Open" ? "rgba(80,130,80,0.18)" : retreat.status === "Full" ? "rgba(180,80,80,0.18)" : "rgba(200,169,106,0.18)"}`,
                       }}
                     >
                       {retreat.spots}
