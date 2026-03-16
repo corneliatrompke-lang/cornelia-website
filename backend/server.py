@@ -97,18 +97,30 @@ async def get_contacts():
 
 @api_router.get("/retreats")
 async def get_retreats():
-    """Fetch upcoming retreats from Google Sheet via Apps Script."""
+    """Fetch upcoming retreats from Google Sheet via Apps Script. Falls back to static data if unavailable."""
+    FALLBACK = [
+        {"date": "April 2026",     "location": "Oman — Muscat Region",          "duration": "5 days", "spots": "4 places remaining", "status": "Open"},
+        {"date": "September 2026", "location": "Costa Rica — Península de Osa", "duration": "5 days", "spots": "6 places remaining", "status": "Open"},
+        {"date": "December 2026",  "location": "Oman — Hajar Mountains",        "duration": "3 days", "spots": "Enquiries welcome",  "status": "Forming"},
+    ]
     if not APPS_SCRIPT_URL:
-        return {"retreats": [], "source": "no_script_url"}
+        return {"retreats": FALLBACK, "source": "fallback"}
     try:
-        async with httpx.AsyncClient(timeout=10.0) as http:
+        async with httpx.AsyncClient(timeout=10.0, follow_redirects=False) as http:
             resp = await http.get(APPS_SCRIPT_URL)
+            # Google Workspace scripts return a redirect to login when access is restricted
+            if resp.status_code in (301, 302, 303, 307, 308):
+                logger.warning("Apps Script redirected — check deployment access is set to 'Anyone'")
+                return {"retreats": FALLBACK, "source": "fallback_redirect"}
             resp.raise_for_status()
             data = resp.json()
-            return {"retreats": data.get("retreats", []), "source": "google_sheet"}
+            retreats = data.get("retreats", [])
+            if not retreats:
+                return {"retreats": FALLBACK, "source": "fallback_empty"}
+            return {"retreats": retreats, "source": "google_sheet"}
     except Exception as e:
         logger.warning(f"Failed to fetch retreats from Google Sheet: {e}")
-        raise HTTPException(status_code=503, detail="Retreat data temporarily unavailable")
+        return {"retreats": FALLBACK, "source": "fallback_error"}
 
 
 @api_router.post("/status", response_model=StatusCheck)
