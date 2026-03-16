@@ -1413,22 +1413,28 @@ const MeditationRetreat = () => {
                     </p>
                   </div>
 
-                  {/* Spots + CTA */}
-                  <div style={{ display: "flex", alignItems: "center", justifyContent: isMobile ? "space-between" : "flex-start", gap: isMobile ? "0" : "20px", width: isMobile ? "100%" : "auto", flexShrink: 0 }}>
-                    <span
-                      style={{
-                        fontFamily: "Manrope, sans-serif",
-                        fontSize: "11px",
-                        fontWeight: 500,
-                        letterSpacing: "1.5px",
-                        textTransform: "uppercase",
-                        color: retreat.status === "Open" ? "rgba(80,130,80,0.9)" : retreat.status === "Full" ? "rgba(180,80,80,0.8)" : "rgba(200,169,106,0.8)",
-                        background: retreat.status === "Open" ? "rgba(80,130,80,0.08)" : retreat.status === "Full" ? "rgba(180,80,80,0.08)" : "rgba(200,169,106,0.08)",
-                        padding: "5px 12px",
-                        borderRadius: "2px",
-                        border: `1px solid ${retreat.status === "Open" ? "rgba(80,130,80,0.18)" : retreat.status === "Full" ? "rgba(180,80,80,0.18)" : "rgba(200,169,106,0.18)"}`,
-                      }}
-                    >
+                  {/* Status + Spots + CTA */}
+                  <div style={{ display: "flex", alignItems: "center", justifyContent: isMobile ? "space-between" : "flex-start", gap: isMobile ? "0" : "16px", width: isMobile ? "100%" : "auto", flexShrink: 0 }}>
+
+                    {/* Status badge — colour-coded */}
+                    <span style={{
+                      fontFamily: "Manrope, sans-serif", fontSize: "10px", fontWeight: 500,
+                      letterSpacing: "1.5px", textTransform: "uppercase",
+                      color: retreat.status === "Open" ? "rgba(80,130,80,0.9)" : retreat.status === "Full" ? "rgba(180,80,80,0.8)" : "rgba(200,169,106,0.8)",
+                      background: retreat.status === "Open" ? "rgba(80,130,80,0.08)" : retreat.status === "Full" ? "rgba(180,80,80,0.08)" : "rgba(200,169,106,0.08)",
+                      padding: "4px 10px", borderRadius: "2px",
+                      border: `1px solid ${retreat.status === "Open" ? "rgba(80,130,80,0.22)" : retreat.status === "Full" ? "rgba(180,80,80,0.22)" : "rgba(200,169,106,0.22)"}`,
+                    }}>
+                      {retreat.status}
+                    </span>
+
+                    {/* Spots — static gold tag */}
+                    <span style={{
+                      fontFamily: "Manrope, sans-serif", fontSize: "10px", fontWeight: 400,
+                      letterSpacing: "0.08em", color: "rgba(200,169,106,0.75)",
+                      background: "rgba(200,169,106,0.06)", padding: "4px 10px", borderRadius: "2px",
+                      border: "1px solid rgba(200,169,106,0.18)",
+                    }}>
                       {retreat.spots}
                     </span>
 
