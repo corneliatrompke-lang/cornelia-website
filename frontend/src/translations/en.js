@@ -16,8 +16,8 @@ const en = {
   home: {
     hero: {
       overline: "Executive Coaching & Leadership Development · Berlin & Worldwide",
-      tagline: "The Work That Changes How You Lead — From the Inside Out",
-      subtitle: "Trauma-informed executive coaching and leadership development for senior leaders — grounded in nervous system science, designed for transformation that actually lasts.",
+      tagline: "Redefine How You Lead — and What Your Organisation Can Become",
+      subtitle: "Executive coaching, organisational advisory, team facilitation, and retreat programmes for leaders committed to lasting change.",
       cta: "Begin the Conversation",
       ctaSecondary: "Explore the Work",
     },

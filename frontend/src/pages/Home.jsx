@@ -110,7 +110,7 @@ const Home = () => {
     <div>
       <SEOHead
         title="Executive Leadership Coaching Berlin & Worldwide"
-        description="Trauma-informed executive coaching and leadership development for senior leaders — grounded in nervous system science, designed for transformation that actually lasts. By Cornelia Trompke."
+        description="Executive coaching, organisational advisory, team facilitation, and retreat programmes for leaders committed to lasting change. By Cornelia Trompke."
         path="/"
         jsonLd={{
           "@context": "https://schema.org",
@@ -121,7 +121,7 @@ const Home = () => {
               "name": "Cornelia Trompke Consulting & Coaching",
               "url": "https://www.corneliatrompke.com",
               "logo": { "@type": "ImageObject", "url": "https://www.corneliatrompke.com/favicon.png" },
-              "description": "Trauma-informed executive coaching and leadership development for senior leaders — grounded in nervous system science.",
+              "description": "Executive coaching, organisational advisory, team facilitation, and retreat programmes for senior leaders committed to lasting change.",
               "address": { "@type": "PostalAddress", "addressLocality": "Berlin", "addressCountry": "DE" },
               "areaServed": "Worldwide",
               "knowsLanguage": ["de", "en"],
@@ -142,14 +142,14 @@ const Home = () => {
               "name": "Executive Leadership Coaching Berlin & Worldwide | Cornelia Trompke Consulting & Coaching",
               "isPartOf": { "@id": "https://www.corneliatrompke.com/#website" },
               "about": { "@id": "https://www.corneliatrompke.com/#organization" },
-              "description": "Trauma-informed executive coaching and leadership development for senior leaders.",
+              "description": "Executive coaching, organisational advisory, team facilitation, and retreat programmes for senior leaders committed to lasting change.",
             },
             {
               "@type": "ProfessionalService",
               "@id": "https://www.corneliatrompke.com/#service",
               "name": "Cornelia Trompke Consulting & Coaching",
               "url": "https://www.corneliatrompke.com",
-              "description": "Trauma-informed executive coaching and leadership development for senior leaders, founders, and board members — grounded in nervous system science.",
+              "description": "Executive coaching, organisational advisory, team facilitation, and retreat programmes for senior leaders, founders, and board members committed to lasting change.",
               "address": { "@type": "PostalAddress", "addressLocality": "Berlin", "addressCountry": "DE" },
               "areaServed": "Worldwide",
               "knowsLanguage": ["de", "en"],
