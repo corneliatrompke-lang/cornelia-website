@@ -55,6 +55,7 @@ const Home = () => {
   }, []);
   const testimonials = t.home.testimonials.items;
   const timerRef = useRef(null);
+  const videoRef = useRef(null);
 
   // ── Hero parallax ────────────────────────────────────────────────────────
   const heroRef = useRef(null);
@@ -100,6 +101,13 @@ const Home = () => {
     return () => clearInterval(timerRef.current);
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [testimonials.length]);
+
+  // ── Desktop hero video — slow playback to 0.7x ───────────────────────────
+  useEffect(() => {
+    if (!isMobile && videoRef.current) {
+      videoRef.current.playbackRate = 0.7;
+    }
+  }, [isMobile]);
 
   const handleTestimonialClick = (i) => {
     setActiveTestimonial(i);
@@ -222,12 +230,16 @@ const Home = () => {
         >
           {/* Background video — parallax drift, autoplay muted loop */}
           <motion.video
+            ref={videoRef}
             key={isMobile ? "hero-mobile" : "hero-desktop"}
             autoPlay
             muted
             loop
             playsInline
             aria-hidden="true"
+            onLoadedData={() => {
+              if (!isMobile && videoRef.current) videoRef.current.playbackRate = 0.7;
+            }}
             style={{
               position: "absolute",
               left: 0,
