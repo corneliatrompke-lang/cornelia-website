@@ -117,7 +117,7 @@ const en = {
           number: "02",
           role: "Integrative Practice",
           period: "The Deepening",
-          description: "A move toward the intersection of performance and inner reality. Weaving together systemic thinking, depth psychology, and somatic wisdom — and the lived recognition that what sounds compelling and what actually holds in real relationships, real decisions, are rarely the same thing.",
+          description: "A move toward the intersection of performance and inner reality. Weaving together systemic thinking, trauma-informed psychology, and somatic wisdom — and the lived recognition that what sounds compelling and what actually holds in real relationships, real decisions, are rarely the same thing.",
         },
         {
           number: "03",

@@ -30,7 +30,7 @@ const de = {
     aboutPreview: {
       overline: "Cornelia Trompke",
       headline: "Eine Beraterin, die auf der Ebene arbeitet, die wirklich zählt",
-      body: "Mit über zwei Jahrzehnten Erfahrung an der Schnittstelle von Executive Leadership, Tiefenpsychologie und Neurowissenschaft bringt Cornelia Trompke etwas Seltenes: die Strenge systemischen Denkens, die Präzision traumainformierter Psychologie und eine ruhige Autorität, die durch tausende Stunden tiefer Arbeit mit Führungskräften entstanden ist.",
+      body: "Mit über zwei Jahrzehnten Erfahrung an der Schnittstelle von Executive Leadership, traumainformierter Psychologie und Integral Coaching bringt Cornelia Trompke etwas Seltenes: die Strenge systemischen Denkens, die Präzision NARM-basierter Entwicklungsarbeit und eine ruhige Autorität, die durch tausende Stunden tiefer Arbeit mit Führungskräften entstanden ist.",
       cta: "Über Cornelia",
     },
     services: {
@@ -84,7 +84,7 @@ const de = {
           number: "02",
           role: "Integrative Praxis",
           period: "Die Vertiefung",
-          description: "Eine Hinwendung zur Schnittstelle von Performance und innerer Realität. Das Verweben von systemischem Denken, Tiefenpsychologie und somatischer Weisheit – und die gelebte Erkenntnis, dass was überzeugend klingt und was wirklich trägt selten dasselbe ist.",
+          description: "Eine Hinwendung zur Schnittstelle von Performance und innerer Realität. Das Verweben von systemischem Denken, traumainformierter Psychologie und somatischer Weisheit – und die gelebte Erkenntnis, dass was überzeugend klingt und was wirklich trägt selten dasselbe ist.",
         },
         {
           number: "03",
@@ -116,7 +116,7 @@ const de = {
       headline: "Eine Praxis, aufgebaut auf Jahrzehnten von Tiefe",
       items: [
         { title: "NARM Practitioner", description: "Zertifiziert im NeuroAffective Relational Model von Dr. Laurence Heller – einem führenden traumainformierten Ansatz für Entwicklung und Identität" },
-        { title: "Integral Coach", description: "Ausgebildet in Integral Coaching Methodik – systemisches Denken, Tiefenpsychologie und somatische Weisheit in einer einheitlichen Praxis verwoben" },
+        { title: "Integral Coach", description: "Ausgebildet in Integral Coaching Methodik – systemisches Denken, traumainformierte Psychologie und somatische Weisheit in einer einheitlichen Praxis verwoben" },
         { title: "Schülerin von Thomas Hübl", description: "Langjährige Arbeit mit dem Bewusstseinslehrer Thomas Hübl – kontemplative Tiefe und kollektives Bewusstsein in die Führungsarbeit integriert" },
         { title: "Corporate HR Hintergrund", description: "Jahre in internationalen Organisationen, bevor sie eine unabhängige Praxis gründete – mit einem Ersthand-Verständnis dafür, was Führung wirklich fordert" },
       ],
