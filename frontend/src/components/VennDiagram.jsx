@@ -17,8 +17,9 @@ const RX_START = 1300;
 const circPath = (cx, cy, r) =>
   `M ${cx - r} ${cy} A ${r} ${r} 0 0 1 ${cx + r} ${cy} A ${r} ${r} 0 0 1 ${cx - r} ${cy}`;
 
-const L_BASE = "NERVOUS SYSTEM   ·   EMBODIED LEADERSHIP   ·   EXECUTIVE DEPTH   ·   AGENCY   ·   ";
-const R_BASE = "SYSTEMIC CLARITY   ·   AQAL   ·   CULTURAL TRANSFORMATION   ·   SOMATIC INTELLIGENCE   ·   ";
+const SEP = "\u00A0\u00A0\u00A0\u00A0\u00A0\u00B7\u00A0\u00A0\u00A0\u00A0\u00A0"; // non-breaking spaces — never collapsed
+const L_BASE = "NERVOUS SYSTEM" + SEP + "EMBODIED LEADERSHIP" + SEP + "EXECUTIVE DEPTH" + SEP + "AGENCY" + SEP;
+const R_BASE = "SYSTEMIC CLARITY" + SEP + "AQAL" + SEP + "CULTURAL TRANSFORMATION" + SEP + "SOMATIC INTELLIGENCE" + SEP;
 const L_TEXT = L_BASE.repeat(2);
 const R_TEXT = R_BASE.repeat(2);
 
@@ -116,7 +117,6 @@ const VennDiagram = ({ showLogo = true, showArrow = true, staticView = false, th
     fill: theme === "ivory" ? "rgba(18,18,18,0.22)" : "rgba(245,242,236,0.35)",
     fontFamily: "Manrope, sans-serif",
     letterSpacing: "3.5",
-    xmlSpace: "preserve",
   };
 
   // ── Shared SVG content ────────────────────────────────────────────────────
