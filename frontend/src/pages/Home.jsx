@@ -954,6 +954,9 @@ const Home = () => {
                 >
                   {item.author}
                 </p>
+                <p style={{ fontFamily: "Manrope, sans-serif", fontSize: "9px", fontWeight: 400, letterSpacing: "0.08em", color: i === activeTestimonial ? "rgba(200,169,106,0.7)" : "rgba(200,169,106,0.25)", transition: "color 0.4s ease", marginTop: "5px", whiteSpace: "nowrap" }}>
+                  {item.role}
+                </p>
               </button>
             ))}
           </div>

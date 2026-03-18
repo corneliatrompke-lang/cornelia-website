@@ -993,6 +993,9 @@ const About = () => {
                 <p style={{ fontFamily: "Manrope, sans-serif", fontSize: "10px", fontWeight: 600, letterSpacing: "0.20em", textTransform: "uppercase", color: i === activeTestimonial ? "#F5F2EC" : "rgba(245,242,236,0.28)", transition: "color 0.4s ease, border-color 0.4s ease", borderBottom: "2px solid", borderColor: i === activeTestimonial ? "rgba(200,169,106,0.65)" : "transparent", paddingBottom: "4px", margin: 0, whiteSpace: "nowrap" }}>
                   {item.author}
                 </p>
+                <p style={{ fontFamily: "Manrope, sans-serif", fontSize: "9px", fontWeight: 400, letterSpacing: "0.08em", color: i === activeTestimonial ? "rgba(200,169,106,0.7)" : "rgba(200,169,106,0.25)", transition: "color 0.4s ease", marginTop: "5px", whiteSpace: "nowrap" }}>
+                  {item.role}
+                </p>
               </button>
             ))}
           </div>
