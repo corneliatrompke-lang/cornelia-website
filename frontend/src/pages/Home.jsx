@@ -17,16 +17,14 @@ const PORTRAIT =
 
 // Brand logo ticker — Simple Icons CDN, rendered as black marks on ivory
 const TICKER_ITEMS = [
-  { src: "https://cdn.simpleicons.org/microsoft", alt: "Microsoft" },
-  { src: "https://cdn.simpleicons.org/google",    alt: "Google"    },
-  { src: "https://cdn.simpleicons.org/amazon",    alt: "Amazon"    },
-  { src: "https://cdn.simpleicons.org/apple",     alt: "Apple"     },
-  { src: "https://cdn.simpleicons.org/meta",      alt: "Meta"      },
-  { src: "https://cdn.simpleicons.org/netflix",   alt: "Netflix"   },
-  { src: "https://cdn.simpleicons.org/tesla",     alt: "Tesla"     },
-  { src: "https://cdn.simpleicons.org/bmw",       alt: "BMW"       },
-  { src: "https://cdn.simpleicons.org/siemens",   alt: "Siemens"   },
-  { src: "https://cdn.simpleicons.org/sap",       alt: "SAP"       },
+  { name: "Metro AG",                  domain: "metro-cc.com"      },
+  { name: "Metro.digital",             domain: "metro.digital"     },
+  { name: "Tom Tailor",                domain: "tom-tailor.de"     },
+  { name: "KWS",                       domain: "kws.com"           },
+  { name: "Beiersdorf",                domain: "beiersdorf.com"    },
+  { name: "A. Lange & Söhne",          domain: "alange-soehne.com" },
+  { name: "Fashion Digital",           domain: "fashiondigital.de" },
+  { name: "Unite",                     domain: "unite.eu"          },
 ];
 
 // Hero videos — desktop and mobile variants
@@ -400,52 +398,80 @@ const Home = () => {
 
       {/* ═══ BRAND LOGOS TICKER ═══ */}
       <div
-        style={{
-          background: "#F5F2EC",
-          overflow: "hidden",
-          padding: "18px 0",
-        }}
+        style={{ background: "#F5F2EC", overflow: "hidden", padding: "22px 0" }}
         data-testid="brand-ticker"
       >
         <div
           style={{
             display: "flex",
             width: "max-content",
-            animation: "logoTicker 70s linear infinite",
+            animation: "logoTicker 40s linear infinite",
           }}
         >
-          {[...TICKER_ITEMS, ...TICKER_ITEMS].map((item, idx) => {
-            return (
-              <div
-                key={idx}
+          {[...TICKER_ITEMS, ...TICKER_ITEMS].map((item, idx) => (
+            <div
+              key={idx}
+              style={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                padding: "0 56px",
+                flexShrink: 0,
+                height: "36px",
+              }}
+            >
+              <img
+                src={`https://img.logo.dev/${item.domain}?size=128`}
+                alt={item.name}
+                style={{ height: "28px", width: "auto", filter: "brightness(0)", opacity: 0.35, display: "block" }}
+                onError={e => {
+                  e.currentTarget.style.display = "none";
+                  e.currentTarget.nextElementSibling.style.display = "block";
+                }}
+              />
+              <span
                 style={{
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  padding: "0 64px",
-                  flexShrink: 0,
+                  display: "none",
+                  fontFamily: "Manrope, sans-serif",
+                  fontSize: "11px",
+                  fontWeight: 600,
+                  letterSpacing: "0.12em",
+                  textTransform: "uppercase",
+                  color: "rgba(15,26,18,0.35)",
+                  whiteSpace: "nowrap",
                 }}
               >
-                <img
-                  src={item.src}
-                  alt={item.alt}
-                  style={{
-                    height: "60px",
-                    width: "auto",
-                    filter: "brightness(0)",
-                    opacity: 0.22,
-                  }}
-                />
-              </div>
-            );
-          })}
+                {item.name}
+              </span>
+            </div>
+          ))}
         </div>
         <style>{`
           @keyframes logoTicker {
             0%   { transform: translateX(0); }
             100% { transform: translateX(-50%); }
           }
+          [data-testid="brand-ticker"]:hover div {
+            animation-play-state: paused;
+          }
         `}</style>
+        {/* Logo.dev attribution — required by free tier */}
+        <div style={{ textAlign: "center", marginTop: "6px" }}>
+          <a
+            href="https://www.logo.dev"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{
+              fontFamily: "Manrope, sans-serif",
+              fontSize: "9px",
+              color: "rgba(15,26,18,0.25)",
+              textDecoration: "none",
+              letterSpacing: "0.08em",
+            }}
+          >
+            Logos provided by Logo.dev
+          </a>
+        </div>
       </div>
 
       <FoundationSection />
