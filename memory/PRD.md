@@ -303,6 +303,11 @@ Footer (from shared Footer component)
 - **LanguageContext.js** (bug fix): added `language: lang` alias so EN/DE switching works correctly in cookie components
 - **Tested**: 100% pass rate (iteration_22.json), all 16 tests including German text, localStorage persistence, backdrop/X close, toggle interactions
 
+### v4.2 — Impressum Page Updated with Real Legal Data (Mar 2026)
+- **EN:** Legal Notice / Information according to § 5 TMG / Full address (Stargarder Str. 36, 10437 Berlin) / Phone +49 (0) 162 2363466 / Email info@corneliatrompke.com / VAT ID DE325822364 / Editorial responsibility per § 18 MStV / EU Dispute Resolution with ODR link
+- **DE:** Impressum / Angaben gemäß § 5 TMG / Full German address / Telefon 0162-2363466 / Umsatzsteuer-ID DE325822364 / Redaktionell verantwortlich / EU-Streitschlichtung
+- **Files changed:** `legal/Impressum.jsx` (new layout), `translations/en.js` + `translations/de.js` (impressum section expanded)
+
 ### v4.1 — A.Lange & Söhne Logo Fix (Mar 2026)
 - **Issue:** Previous `a-lange-soehne.webp` had a black background, causing it to render as a solid black box in the ivory ticker due to `mix-blend-mode: multiply` incompatibility.
 - **Fix:** Replaced with new client-provided PNG (`10gzvm2e_A.-Lange-and-Sohne-logo.png`). The new PNG already has a transparent background with dark gray text (~RGB 35,35,35), which renders correctly with `mix-blend-mode: multiply` on the ivory ticker background.

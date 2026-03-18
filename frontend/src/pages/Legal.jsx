@@ -60,25 +60,57 @@ const Legal = () => {
         {/* Impressum */}
         {activeTab === "impressum" && (
           <ScrollReveal key="impressum">
-            <h1 className="text-charcoal mb-10" style={{ fontFamily: "Figtree, sans-serif", fontSize: "clamp(32px, 4vw, 48px)", fontWeight: 400 }}>
+            <h1 className="text-charcoal mb-2" style={{ fontFamily: "Playfair Display, serif", fontSize: "clamp(28px, 3.5vw, 42px)", fontWeight: 400 }}>
               {l.impressum.headline}
             </h1>
-            <div className="space-y-4">
-              {[
-                { label: "Name", value: l.impressum.name },
-                { label: "Address", value: l.impressum.address },
-                { label: "Email", value: l.impressum.email },
-              ].map((item) => (
-                <div key={item.label} className="grid grid-cols-3 gap-4 py-4 border-b" style={{ borderColor: "rgba(18,18,18,0.08)" }}>
-                  <p className="ct-overline text-charcoal/40">{item.label}</p>
-                  <p className="col-span-2 text-charcoal/70" style={{ fontFamily: "Manrope, sans-serif", fontSize: "14px", fontWeight: 300 }}>{item.value}</p>
-                </div>
-              ))}
+            <p className="ct-overline text-charcoal/40 mb-10" style={{ fontSize: "11px" }}>{l.impressum.intro}</p>
+
+            {/* Name & Address */}
+            <div className="mb-8 pb-8" style={{ borderBottom: "1px solid rgba(18,18,18,0.08)" }}>
+              <p style={{ fontFamily: "Manrope, sans-serif", fontSize: "15px", fontWeight: 400, color: "rgba(18,18,18,0.75)", lineHeight: 1.9 }}>
+                {l.impressum.name}<br />
+                {l.impressum.street}<br />
+                {l.impressum.city}<br />
+                {l.impressum.country}
+              </p>
             </div>
-            <div className="mt-10 p-6" style={{ background: "rgba(18,18,18,0.03)", border: "1px solid rgba(18,18,18,0.06)" }}>
-              <p className="ct-overline text-charcoal/40 mb-3">{l.impressum.vatNote}</p>
-              <p className="text-charcoal/55" style={{ fontFamily: "Manrope, sans-serif", fontSize: "13px", fontWeight: 300, lineHeight: 1.7 }}>
-                {l.impressum.disclaimer}
+
+            {/* Contact */}
+            <div className="mb-8 pb-8" style={{ borderBottom: "1px solid rgba(18,18,18,0.08)" }}>
+              <p className="ct-overline text-charcoal/40 mb-4" style={{ fontSize: "11px" }}>{l.impressum.contactHeading}</p>
+              <p style={{ fontFamily: "Manrope, sans-serif", fontSize: "15px", fontWeight: 300, color: "rgba(18,18,18,0.70)", lineHeight: 1.9 }}>
+                {l.impressum.phoneLabel}: {l.impressum.phone}<br />
+                {l.impressum.emailLabel}: <a href={`mailto:${l.impressum.email}`} style={{ color: "#C8A96A", textDecoration: "none" }}>{l.impressum.email}</a>
+              </p>
+            </div>
+
+            {/* VAT ID */}
+            <div className="mb-8 pb-8" style={{ borderBottom: "1px solid rgba(18,18,18,0.08)" }}>
+              <p className="ct-overline text-charcoal/40 mb-4" style={{ fontSize: "11px" }}>{l.impressum.vatHeading}</p>
+              <p style={{ fontFamily: "Manrope, sans-serif", fontSize: "13px", fontWeight: 300, color: "rgba(18,18,18,0.55)", lineHeight: 1.7 }}>{l.impressum.vatNote}</p>
+              <p style={{ fontFamily: "Manrope, sans-serif", fontSize: "15px", fontWeight: 400, color: "rgba(18,18,18,0.75)", marginTop: "8px" }}>{l.impressum.vatId}</p>
+            </div>
+
+            {/* Editorial Responsibility */}
+            <div className="mb-8 pb-8" style={{ borderBottom: "1px solid rgba(18,18,18,0.08)" }}>
+              <p className="ct-overline text-charcoal/40 mb-4" style={{ fontSize: "11px" }}>{l.impressum.editorialHeading}</p>
+              <p style={{ fontFamily: "Manrope, sans-serif", fontSize: "13px", fontWeight: 300, color: "rgba(18,18,18,0.55)", lineHeight: 1.7 }}>{l.impressum.editorialNote}</p>
+              <p style={{ fontFamily: "Manrope, sans-serif", fontSize: "15px", fontWeight: 400, color: "rgba(18,18,18,0.75)", marginTop: "8px", lineHeight: 1.9 }}>
+                {l.impressum.editorialName}<br />
+                {l.impressum.editorialStreet}<br />
+                {l.impressum.editorialCity}
+              </p>
+            </div>
+
+            {/* EU Dispute Resolution */}
+            <div>
+              <p className="ct-overline text-charcoal/40 mb-4" style={{ fontSize: "11px" }}>{l.impressum.disputeHeading}</p>
+              <p style={{ fontFamily: "Manrope, sans-serif", fontSize: "14px", fontWeight: 300, color: "rgba(18,18,18,0.60)", lineHeight: 1.8 }}>
+                {l.impressum.disputeText}{" "}
+                <a href={l.impressum.disputeUrl} target="_blank" rel="noopener noreferrer" style={{ color: "#C8A96A", textDecoration: "none", wordBreak: "break-all" }}>
+                  {l.impressum.disputeUrl}
+                </a>
+                {". "}{l.impressum.disputeSuffix}
               </p>
             </div>
           </ScrollReveal>
