@@ -57,13 +57,13 @@ const en = {
           text: "In her collaboration at the executive level, Cornelia Trompke convinces through integrity, confidentiality, and strategic clarity. She acts as a true sparring partner at eye level and purposefully strengthens leaders in their impact and decision-making—particularly in demanding transformation processes and cultural change phases.",
           author: "Timo Salzsieder",
           role: "CEO & CIO",
-          company: "CEO at Metro.digital & CIO at Metro AG",
+          company: "Collaborated while CEO at Metro.digital & CIO at Metro AG",
         },
         {
           text: "I had the pleasure to work with Cornelia in two large companies, both occasions on the topic of defining HR structures and processes on an organization level. She's always been a trusted partner and a strategic thinker, while supporting our leadership team being better and more effective leaders.",
           author: "Vahid Gharavi",
           role: "Managing Director",
-          company: "Director Engineering at Metro.digital & Managing Director at Fashion Digital GmbH",
+          company: "Collaborated while Director Engineering at Metro.digital & Managing Director at Fashion Digital GmbH",
         },
         {
           text: "I had the privilege of working very closely and trustfully with Cornelia over an extended period. Her expertise in mediations and conflict resolution was a great help — and her ability to contribute both professional expertise and personal composure made a significant contribution to our successful transformation.",
@@ -81,7 +81,7 @@ const en = {
           text: "Cornelia views coaching less as self-optimization and more as providing individual guidance to executives with great human clarity at the decisive personal leverage points for effective and sustainable change. This modern understanding of leadership is an excellent fit for our values.",
           author: "Silke Breithaupt",
           role: "Senior Manager Org Development",
-          company: "Senior Manager Organisation Development at Unite Procurement Deutschland AG",
+          company: "Collaborated while Senior Manager Organisation Development at Unite Procurement Deutschland AG",
         },
         {
           text: "Inner peace is a gift. Thank you for guiding me so valuably on my path there with your empathetically posed questions—even though you did not know the answers.",
