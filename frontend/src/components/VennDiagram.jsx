@@ -17,9 +17,9 @@ const RX_START = 1300;
 const circPath = (cx, cy, r) =>
   `M ${cx - r} ${cy} A ${r} ${r} 0 0 1 ${cx + r} ${cy} A ${r} ${r} 0 0 1 ${cx - r} ${cy}`;
 
-const SEP = "\u00A0\u00A0\u00A0\u00A0\u00A0\u00B7\u00A0\u00A0\u00A0\u00A0\u00A0"; // non-breaking spaces — never collapsed
-const L_BASE = "NERVOUS SYSTEM" + SEP + "EMBODIED LEADERSHIP" + SEP + "EXECUTIVE DEPTH" + SEP + "AGENCY" + SEP;
-const R_BASE = "SYSTEMIC CLARITY" + SEP + "AQAL" + SEP + "CULTURAL TRANSFORMATION" + SEP + "SOMATIC INTELLIGENCE" + SEP;
+const SEP = "\u00A0\u00A0\u00A0\u00A0\u00A0\u00B7\u00A0\u00A0\u00A0\u00A0\u00A0";
+const L_BASE = "NERVOUS\u00A0SYSTEM" + SEP + "EMBODIED\u00A0LEADERSHIP" + SEP + "EXECUTIVE\u00A0DEPTH" + SEP + "AGENCY" + SEP;
+const R_BASE = "SYSTEMIC\u00A0CLARITY" + SEP + "AQAL" + SEP + "CULTURAL\u00A0TRANSFORMATION" + SEP + "SOMATIC\u00A0INTELLIGENCE" + SEP;
 const L_TEXT = L_BASE.repeat(2);
 const R_TEXT = R_BASE.repeat(2);
 
