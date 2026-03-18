@@ -89,6 +89,12 @@ const en = {
           role: "Senior Manager",
           company: "Senior Manager",
         },
+        {
+          text: "Cornelia supported me in building my team and in transforming the marketing organisation. I experienced her as highly knowledgeable, reflective, and solution oriented — her coaching and strategic thinking were particularly valuable in demanding situations. I especially appreciated her empathetic and attentive approach. I could rely on her at all times, which was extremely valuable to me during that phase.",
+          author: "Philipp Gutmann",
+          role: "Head of Global Brand & Marketing",
+          company: "Collaborated while Head of Global Brand & Marketing at A. Lange & Söhne",
+        },
       ],
     },
     cta: {

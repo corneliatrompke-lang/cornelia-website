@@ -56,6 +56,12 @@ const de = {
         { text: "Was Cornelia anbietet, ist kein Coaching im konventionellen Sinne. Es ist eine Form tiefer Begleitung, die die Qualität jeder Entscheidung verändert.", author: "Chief Executive Officer", company: "DAX-gelistete Finanzdienstleistungsgruppe" },
         { text: "Unser gesamtes Führungsteam hat sich nach dem Retreat verändert. Die Art, wie wir uns treffen, wie wir führen — alles hat sich verändert.", author: "Gründer & CEO", company: "Globales Technologieunternehmen" },
         { text: "Ich habe in 25 Jahren mit vielen Coaches und Beratern gearbeitet. Nichts kommt an die Tiefe und systemische Intelligenz heran, die Cornelia einbringt.", author: "Aufsichtsratsvorsitzender", company: "Europäische Stiftung" },
+        {
+          text: "Cornelia hat mich beim Aufbau meines Teams und bei der Transformation der Marketingorganisation begleitet. Ich habe sie als äußerst kenntnisreich, reflektiert und lösungsorientiert erlebt — ihr Coaching und ihr strategisches Denken waren gerade in anspruchsvollen Situationen besonders wertvoll. Besonders geschätzt habe ich ihre empathische und aufmerksame Herangehensweise. Ich konnte mich jederzeit auf sie verlassen, was mir in dieser Phase außerordentlich wichtig war.",
+          author: "Philipp Gutmann",
+          role: "Head of Global Brand & Marketing",
+          company: "Zusammenarbeit als Head of Global Brand & Marketing bei A. Lange & Söhne",
+        },
       ],
     },
     cta: {
