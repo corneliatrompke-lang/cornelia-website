@@ -303,6 +303,11 @@ Footer (from shared Footer component)
 - **LanguageContext.js** (bug fix): added `language: lang` alias so EN/DE switching works correctly in cookie components
 - **Tested**: 100% pass rate (iteration_22.json), all 16 tests including German text, localStorage persistence, backdrop/X close, toggle interactions
 
+### v4.1 — A.Lange & Söhne Logo Fix (Mar 2026)
+- **Issue:** Previous `a-lange-soehne.webp` had a black background, causing it to render as a solid black box in the ivory ticker due to `mix-blend-mode: multiply` incompatibility.
+- **Fix:** Replaced with new client-provided PNG (`10gzvm2e_A.-Lange-and-Sohne-logo.png`). The new PNG already has a transparent background with dark gray text (~RGB 35,35,35), which renders correctly with `mix-blend-mode: multiply` on the ivory ticker background.
+- **Files changed:** `Home.jsx` (updated src reference from `.webp` to `.png`), `public/logos/a-lange-soehne.png` (new file replacing old webp).
+
 ## Next Tasks
 
 1. ~~Wire nav "BEGIN THE WORK" button to open contact form globally (React Context) (P0)~~ ✅ Done
