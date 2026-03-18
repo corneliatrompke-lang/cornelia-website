@@ -72,25 +72,25 @@ const de = {
     },
     originStory: {
       overline: "Der Weg",
-      headline: "Zwei Jahrzehnte. Eine Richtung.",
+      headline: "Von Innen Heraus Gebaut.",
       milestones: [
         {
           number: "01",
-          role: "Corporate Leadership",
-          period: "Frühe Karriere",
-          description: "Cornelia begann in den Institutionen, die sie später beraten würde — mit einem Insider-Verständnis dafür, was Senior Leaders wirklich antreibt, erschöpft und trägt.",
+          role: "Corporate HR",
+          period: "Das Fundament",
+          description: "Jahre in internationalen Organisationen gaben Cornelia ein Insider-Verständnis dafür, was Führung zum Gedeihen bringt – und was sie von innen heraus aushöhlt: Führungskräfte, die funktionieren, aber nicht mehr wirklich präsent sind. Teams, die liefern, aber nicht wirklich verbunden sind.",
         },
         {
           number: "02",
-          role: "Organisationsentwicklung",
-          period: "Der Übergang",
-          description: "Eine Wendung zur systemischen Arbeit. Transformation über Teams, Kulturen und Führungsstrukturen — die Erkenntnis, wo Wandel wurzelt und wo er an der Oberfläche bleibt.",
+          role: "Integrative Praxis",
+          period: "Die Vertiefung",
+          description: "Eine Hinwendung zur Schnittstelle von Performance und innerer Realität. Das Verweben von systemischem Denken, Tiefenpsychologie und somatischer Weisheit – und die gelebte Erkenntnis, dass was überzeugend klingt und was wirklich trägt selten dasselbe ist.",
         },
         {
           number: "03",
-          role: "Executive Coach & Beraterin",
+          role: "Coach · Entwicklerin · Facilitatorin",
           period: "Heute",
-          description: "Die Integration: Tiefenpsychologie, Nervensystemwissenschaft und Integral-Methodik vereint in einer einzigartigen Praxis für Führungskräfte, die bereit sind, aus Ganzheit heraus zu führen.",
+          description: "Zertifizierte NARM Practitioner (Dr. Laurence Heller), ausgebildete Integral Coach und langjährige Studentin des Bewusstseinslehrers Thomas Hübl. Eine einzigartige Praxis für Führungskräfte, die bereit sind, wirklich in die Tiefe zu gehen.",
         },
       ],
     },
@@ -98,16 +98,16 @@ const de = {
       overline: "Philosophie",
       statements: [
         {
-          text: "Führung ist keine Performance. Sie ist ein Seinsszustand.",
-          note: "Die Fähigkeit, mit echter Autorität zu führen, lässt sich nicht einüben. Sie entsteht von innen — durch Nervensystemregulation, Selbsterkenntnis und die Fähigkeit, auch unter größtem Druck präsent zu bleiben.",
+          text: "Echter Wandel kommt von innen.",
+          note: "Führung, die wirklich Bestand hat, beginnt immer bei der Person, die sie ausübt – nicht bei dem Framework, das sie anwendet, oder der Strategie, die sie verfolgt. Hier beginnt die Arbeit, und hier geht sie am tiefsten.",
         },
         {
-          text: "Das Nervensystem entscheidet, bevor der Verstand gefragt wird.",
-          note: "Affektive Neurowissenschaft zeigt, dass unsere folgenreichsten Reaktionen aus subkortikalen Prozessen entstehen — nicht aus bewusstem Denken. Das Arbeiten auf dieser Ebene unterscheidet echte Entwicklung von Verhaltensveränderung.",
+          text: "Was überzeugend klingt und was wirklich funktioniert, ist selten dasselbe.",
+          note: "Was diese Praxis antreibt, ist eine einzige Frage: Was hält im echten Leben stand – in echten Beziehungen, in echten Entscheidungsmomenten? Nicht was theoretisch schlüssig ist – sondern was lebendig wahr ist.",
         },
         {
-          text: "Die bedeutsamsten Verschiebungen in der Führung sind unsichtbar, bevor sie strukturell werden.",
-          note: "Echte Entwicklung ist kein neues Framework und kein verändertes Verhalten. Es ist eine Reorganisation des Selbst — subtil, verkörpert und dauerhaft. Auf dieser Ebene operiert diese Arbeit.",
+          text: "Innere Arbeit und äußere Wirkung sind keine Gegensätze – sie brauchen einander.",
+          note: "Eine langjährige Meditationspraxis ist kein Zusatz zu dieser Arbeit – sie ist Teil des Fundaments. Stille, die klärt. Tiefe, die trägt und nährt. Die gelebte Erkenntnis, dass beide Richtungen der Entwicklung in Wirklichkeit eine sind.",
         },
       ],
     },
@@ -115,10 +115,10 @@ const de = {
       overline: "Ausbildung & Qualifikationen",
       headline: "Eine Praxis, aufgebaut auf Jahrzehnten von Tiefe",
       items: [
-        { title: "NARM Practitioner", description: "Zertifiziert im NeuroAffective Relational Model — einer führenden traumainformierten Entwicklungsmethodik" },
-        { title: "Integral Coach", description: "Ausgebildet in Integral Coaching am New Ventures West Institute, San Francisco" },
-        { title: "Systemische Facilitatorin", description: "Fortgeschrittene Ausbildung in systemischen Organisationsaufstellungen und Teamdynamiken" },
-        { title: "Executive Erfahrung", description: "Über 20 Jahre Arbeit innerhalb und neben internationalen Führungsteams und Vorständen" },
+        { title: "NARM Practitioner", description: "Zertifiziert im NeuroAffective Relational Model von Dr. Laurence Heller – einem führenden traumainformierten Ansatz für Entwicklung und Identität" },
+        { title: "Integral Coach", description: "Ausgebildet in Integral Coaching Methodik – systemisches Denken, Tiefenpsychologie und somatische Weisheit in einer einheitlichen Praxis verwoben" },
+        { title: "Schülerin von Thomas Hübl", description: "Langjährige Arbeit mit dem Bewusstseinslehrer Thomas Hübl – kontemplative Tiefe und kollektives Bewusstsein in die Führungsarbeit integriert" },
+        { title: "Corporate HR Hintergrund", description: "Jahre in internationalen Organisationen, bevor sie eine unabhängige Praxis gründete – mit einem Ersthand-Verständnis dafür, was Führung wirklich fordert" },
       ],
     },
     approach: {
@@ -128,7 +128,7 @@ const de = {
         {
           number: "01",
           title: "Selektives Engagement",
-          description: "Jedes Engagement beginnt mit einem sorgfältigen Gespräch. Die Arbeit erfordert echte Bereitschaft — nicht nur Verfügbarkeit oder Budget.",
+          description: "Jedes Engagement beginnt mit einem sorgfältigen Gespräch zur Klärung echter gegenseitiger Passung. Die Arbeit erfordert echte Bereitschaft – nicht nur Verfügbarkeit oder Budget.",
         },
         {
           number: "02",
@@ -138,12 +138,12 @@ const de = {
         {
           number: "03",
           title: "Maßgeschneiderter Prozess",
-          description: "Es gibt keine Vorlagen, keine Standardprogramme. Jedes Engagement wird vollständig von dem geformt, was am lebendigsten und nötigsten ist — auf der Ebene der Person, nicht der Rolle.",
+          description: "Es gibt keine Vorlagen, keine Standardprogramme. Jedes Engagement wird vollständig von dem geformt, was am lebendigsten und nötigsten ist – auf der Ebene der Person, nicht der Rolle.",
         },
         {
           number: "04",
           title: "Integrität über alles",
-          description: "Cornelia bringt tiefe persönliche Werte in jedes Engagement: intellektuelle Ehrlichkeit, emotionalen Mut und eine unerschütterliche Verpflichtung zur echten Entwicklung des Klienten.",
+          description: "Intellektuelle Ehrlichkeit, emotionaler Mut und eine unerschütterliche Verpflichtung zur echten Entwicklung – das bringt Cornelia in jedes Engagement, ausnahmslos.",
         },
       ],
     },

@@ -105,25 +105,25 @@ const en = {
     },
     originStory: {
       overline: "The Journey",
-      headline: "Two Decades. One Direction.",
+      headline: "Built From the Inside Out.",
       milestones: [
         {
           number: "01",
-          role: "Corporate Leadership",
-          period: "Early Career",
-          description: "Cornelia began inside the institutions she would later advise — gaining an insider's understanding of what drives, drains, and ultimately sustains senior leaders across complex global organisations.",
+          role: "Corporate HR",
+          period: "The Foundation",
+          description: "Years inside international organisations gave Cornelia a firsthand understanding of what makes leadership thrive — and what quietly hollows it out from within: leaders who are functional but no longer present. Teams that deliver but don't truly connect. Structures that scale but lack roots.",
         },
         {
           number: "02",
-          role: "Organisation Development",
-          period: "The Transition",
-          description: "A shift toward systems-level work. Facilitating transformation across teams, cultures, and leadership structures — learning where change takes root and where it stays only at the surface.",
+          role: "Integrative Practice",
+          period: "The Deepening",
+          description: "A move toward the intersection of performance and inner reality. Weaving together systemic thinking, depth psychology, and somatic wisdom — and the lived recognition that what sounds compelling and what actually holds in real relationships, real decisions, are rarely the same thing.",
         },
         {
           number: "03",
-          role: "Executive Coach & Advisor",
+          role: "Coach · Developer · Facilitator",
           period: "Today",
-          description: "The integration: depth psychology, nervous system science, and integral methodology combined into a singular practice for executives ready to lead from wholeness rather than performance.",
+          description: "Certified NARM Practitioner (Dr. Laurence Heller), trained Integral Coach, and longtime student of consciousness teacher Thomas Hübl. A singular practice for leaders who are ready to go deep — and stay there.",
         },
       ],
     },
@@ -131,16 +131,16 @@ const en = {
       overline: "Philosophy",
       statements: [
         {
-          text: "Leadership is not a performance. It is a state of being.",
-          note: "The capacity to lead with genuine authority cannot be rehearsed. It emerges from within — from nervous system regulation, self-knowledge, and the ability to remain present under the most demanding conditions.",
+          text: "Real change comes from within.",
+          note: "Leadership that truly endures always begins with the person exercising it — not with the framework they apply or the strategy they adopt. This is where the work starts, and where it goes deepest.",
         },
         {
-          text: "The nervous system decides before the mind is asked.",
-          note: "Research in affective neuroscience shows that our most consequential responses arise from subcortical processes — not conscious reasoning. Working with this layer is what distinguishes real development from behavioural change.",
+          text: "What sounds compelling and what actually works are rarely the same.",
+          note: "What drives this practice is a single question: what holds up in real life, in real relationships, in real moments of decision? Not what is theoretically sound — but what is livingly true.",
         },
         {
-          text: "The most significant shifts in leadership are invisible before they become structural.",
-          note: "Real development is not a new framework or a changed behaviour. It is a reorganisation of the self — subtle, embodied, and enduring. This is the level at which this work operates.",
+          text: "Inner work and outer impact are not opposites — they need each other.",
+          note: "A long-standing meditation practice is not an add-on to this work — it is part of the foundation. Stillness that clarifies. Depth that sustains. The understanding that the two directions of development are, in fact, one.",
         },
       ],
     },
@@ -148,10 +148,10 @@ const en = {
       overline: "Training & Credentials",
       headline: "A Practice Built on Decades of Depth",
       items: [
-        { title: "NARM Practitioner", description: "Certified in the NeuroAffective Relational Model — a leading trauma-informed developmental methodology" },
-        { title: "Integral Coach", description: "Trained in Integral Coaching at New Ventures West Institute, San Francisco" },
-        { title: "Systemic Facilitator", description: "Advanced training in systemic organisational constellations and team dynamics" },
-        { title: "Executive Experience", description: "Over 20 years working within and alongside international leadership teams and boards" },
+        { title: "NARM Practitioner", description: "Certified in the NeuroAffective Relational Model developed by Dr. Laurence Heller — a leading trauma-informed approach to development and identity" },
+        { title: "Integral Coach", description: "Trained in Integral Coaching methodology, weaving systemic thinking, depth psychology, and somatic wisdom into a unified practice" },
+        { title: "Student of Thomas Hübl", description: "Many years working with consciousness teacher Thomas Hübl — integrating contemplative depth and collective awareness into leadership work" },
+        { title: "Corporate HR Background", description: "Years working inside international organisations before founding an independent practice — with a firsthand understanding of what leadership actually demands" },
       ],
     },
     approach: {
@@ -176,7 +176,7 @@ const en = {
         {
           number: "04",
           title: "Integrity Above All",
-          description: "Cornelia brings deep personal values to every engagement: intellectual honesty, emotional courage, and an unwavering commitment to the client's genuine development over any surface metric.",
+          description: "Intellectual honesty, emotional courage, and an unwavering commitment to genuine development over surface metrics. This is what Cornelia brings to every engagement, without exception.",
         },
       ],
     },
