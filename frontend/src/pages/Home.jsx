@@ -17,14 +17,14 @@ const PORTRAIT =
 
 // Brand logo ticker — Simple Icons CDN, rendered as black marks on ivory
 const TICKER_ITEMS = [
-  { name: "Metro AG",                  domain: "metro-cc.com"      },
-  { name: "Metro.digital",             domain: "metro.digital"     },
-  { name: "Tom Tailor",                domain: "tom-tailor.de"     },
-  { name: "KWS",                       domain: "kws.com"           },
-  { name: "Beiersdorf",                domain: "beiersdorf.com"    },
-  { name: "A. Lange & Söhne",          domain: "alange-soehne.com" },
-  { name: "Fashion Digital",           domain: "fashiondigital.de" },
-  { name: "Unite",                     domain: "unite.eu"          },
+  { name: "Metro AG",                  src: "/logos/metro-ag.png"        },
+  { name: "Metro.digital",             src: "/logos/metro-digital.png"   },
+  { name: "Tom Tailor",                src: "/logos/tom-tailor.avif"     },
+  { name: "KWS",                       src: "/logos/kws.jpg"             },
+  { name: "Beiersdorf",                src: "/logos/beiersdorf.png"      },
+  { name: "A. Lange & Söhne",          src: "/logos/a-lange-soehne.webp" },
+  { name: "Fashion Digital",           src: "/logos/fashion-digital.jpg" },
+  { name: "Unite",                     src: "/logos/unite.png"           },
 ];
 
 // Hero videos — desktop and mobile variants
@@ -421,7 +421,7 @@ const Home = () => {
               }}
             >
               <img
-                src={`https://img.logo.dev/${item.domain}?size=128`}
+                src={item.src}
                 alt={item.name}
                 style={{ height: "28px", width: "auto", filter: "brightness(0)", opacity: 0.35, display: "block" }}
                 onError={e => {
@@ -455,23 +455,6 @@ const Home = () => {
             animation-play-state: paused;
           }
         `}</style>
-        {/* Logo.dev attribution — required by free tier */}
-        <div style={{ textAlign: "center", marginTop: "6px" }}>
-          <a
-            href="https://www.logo.dev"
-            target="_blank"
-            rel="noopener noreferrer"
-            style={{
-              fontFamily: "Manrope, sans-serif",
-              fontSize: "9px",
-              color: "rgba(15,26,18,0.25)",
-              textDecoration: "none",
-              letterSpacing: "0.08em",
-            }}
-          >
-            Logos provided by Logo.dev
-          </a>
-        </div>
       </div>
 
       <FoundationSection />
