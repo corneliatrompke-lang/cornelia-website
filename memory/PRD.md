@@ -303,6 +303,10 @@ Footer (from shared Footer component)
 - **LanguageContext.js** (bug fix): added `language: lang` alias so EN/DE switching works correctly in cookie components
 - **Tested**: 100% pass rate (iteration_22.json), all 16 tests including German text, localStorage persistence, backdrop/X close, toggle interactions
 
+### v4.3 — Privacy Policy Updated (Mar 2026)
+- **EN & DE:** Full 5-section privacy policy rendered via translations (not hardcoded): General Information, Controller, Hosting & Infrastructure (Emergent), Contact via Email, Your Rights
+- **Files changed:** `legal/PrivacyPolicy.jsx`, `translations/en.js`, `translations/de.js`
+
 ### v4.2 — Impressum Page Updated with Real Legal Data (Mar 2026)
 - **EN:** Legal Notice / Information according to § 5 TMG / Full address (Stargarder Str. 36, 10437 Berlin) / Phone +49 (0) 162 2363466 / Email info@corneliatrompke.com / VAT ID DE325822364 / Editorial responsibility per § 18 MStV / EU Dispute Resolution with ODR link
 - **DE:** Impressum / Angaben gemäß § 5 TMG / Full German address / Telefon 0162-2363466 / Umsatzsteuer-ID DE325822364 / Redaktionell verantwortlich / EU-Streitschlichtung

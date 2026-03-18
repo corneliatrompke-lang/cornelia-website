@@ -264,7 +264,36 @@ const de = {
       disputeUrl: "https://ec.europa.eu/consumers/odr/",
       disputeSuffix: "Unsere E-Mail-Adresse finden Sie oben im Impressum.",
     },
-    privacy: { headline: "Datenschutzerklärung", content: "Diese Datenschutzerklärung informiert Sie über Art, Umfang und Zweck der Verarbeitung personenbezogener Daten innerhalb dieses Onlineangebots gemäß der Datenschutz-Grundverordnung (DSGVO). Personenbezogene Daten werden nur wie hier beschrieben verarbeitet. Über das Kontaktformular erhobene Daten werden ausschließlich zur Beantwortung Ihrer Anfrage genutzt und nicht an Dritte weitergegeben." },
+    privacy: {
+      headline: "Datenschutzerklärung",
+      sections: [
+        {
+          number: "1",
+          title: "Allgemeine Hinweise",
+          text: "Diese Datenschutzerklärung informiert Sie über die Art, den Umfang und Zweck der Verarbeitung von personenbezogenen Daten auf unserer Website.",
+        },
+        {
+          number: "2",
+          title: "Verantwortliche Stelle",
+          text: "Verantwortlich für die Datenverarbeitung ist die im Impressum genannte Person.",
+        },
+        {
+          number: "3",
+          title: "Hosting und Infrastruktur (Emergent)",
+          text: "Unsere Webseite wird mit der Plattform Emergent erstellt und gehostet. Um die Webseite sicher und effizient bereitzustellen, erhebt Emergent technische Daten (z. B. IP-Adressen, Browsertyp, Zeitstempel) in Server-Logfiles. Dies erfolgt auf Grundlage unseres berechtigten Interesses an der technischen Bereitstellung und Sicherheit der Webseite (Art. 6 Abs. 1 lit. f DSGVO).",
+        },
+        {
+          number: "4",
+          title: "Kontaktaufnahme per E-Mail",
+          text: "Wenn Sie uns per E-Mail kontaktieren, werden Ihre Angaben (E-Mail-Adresse, Name, Inhalt der Nachricht) zur Bearbeitung der Anfrage gespeichert. Rechtsgrundlage ist Art. 6 Abs. 1 lit. b DSGVO (vorvertragliche oder vertragliche Maßnahmen) oder Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse). Ihre Daten werden nach abschließender Bearbeitung gelöscht, sofern keine gesetzlichen Aufbewahrungspflichten entgegenstehen.",
+        },
+        {
+          number: "5",
+          title: "Ihre Rechte",
+          text: "Sie haben jederzeit das Recht auf Auskunft, Berichtigung, Löschung oder Einschränkung der Verarbeitung Ihrer Daten. Zudem haben Sie ein Recht auf Datenübertragbarkeit sowie ein Beschwerderecht bei einer Aufsichtsbehörde.",
+        },
+      ],
+    },
     terms: { headline: "Allgemeine Geschäftsbedingungen", content: "Diese Bedingungen regeln die Nutzung dieser Website und der Leistungen von Cornelia Trompke Consulting & Coaching. Mit der Nutzung dieser Website stimmen Sie diesen Bedingungen zu. Alle Inhalte sind urheberrechtlich geschützt. Leistungen werden vorbehaltlich individueller Vereinbarung erbracht." },
   },
   footer: {

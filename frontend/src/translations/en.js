@@ -410,7 +410,36 @@ const en = {
       disputeUrl: "https://ec.europa.eu/consumers/odr/",
       disputeSuffix: "Our e-mail address can be found above in the legal notice.",
     },
-    privacy: { headline: "Privacy Policy", content: "This privacy policy informs you about the nature, scope, and purpose of the processing of personal data within this online offering in accordance with the General Data Protection Regulation (GDPR). Personal data is processed only as described herein. Data collected via the contact form is used solely to respond to your enquiry and is never passed to third parties." },
+    privacy: {
+      headline: "Privacy Policy",
+      sections: [
+        {
+          number: "1",
+          title: "General Information",
+          text: "This privacy policy informs you about the nature, scope, and purpose of the processing of personal data on our website.",
+        },
+        {
+          number: "2",
+          title: "Controller",
+          text: "The controller responsible for data processing is the person named in the Legal Notice above.",
+        },
+        {
+          number: "3",
+          title: "Hosting and Infrastructure (Emergent)",
+          text: "Our website is created and hosted using the platform Emergent. To provide the website securely and efficiently, Emergent collects technical data (e.g., IP addresses, browser types, timestamps) in server log files. This is based on our legitimate interest in the technical provision and security of the website (Art. 6 (1) (f) GDPR).",
+        },
+        {
+          number: "4",
+          title: "Contact via Email",
+          text: "If you contact us by email, the data you provide (e.g., email address, name, content of the message) will be stored to process your inquiry. The legal basis is Art. 6 (1) (b) GDPR (pre-contractual or contractual measures) or Art. 6 (1) (f) GDPR (legitimate interest). Your data will be deleted once the request has been finalized, provided no legal retention obligations apply.",
+        },
+        {
+          number: "5",
+          title: "Your Rights",
+          text: "You have the right to access, rectify, delete, or restrict the processing of your personal data at any time. You also have the right to data portability and the right to lodge a complaint with a supervisory authority.",
+        },
+      ],
+    },
     terms: { headline: "Terms of Service", content: "These terms govern the use of this website and the services of Cornelia Trompke Consulting & Coaching. By using this website, you agree to these terms. All content is protected by copyright. Services are provided subject to individual agreement." },
   },
   footer: {
