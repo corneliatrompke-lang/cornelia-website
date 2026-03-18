@@ -27,9 +27,10 @@ const PrivacyPolicy = () => {
       <div className="max-w-[900px] mx-auto px-6 md:px-16 pb-24">
         <LegalNav active="privacy" />
         <ScrollReveal>
-          <h1 className="text-charcoal mb-10" style={{ fontFamily: "Playfair Display, serif", fontSize: "clamp(28px, 3.5vw, 42px)", fontWeight: 400 }}>
+          <h1 className="text-charcoal mb-2" style={{ fontFamily: "Playfair Display, serif", fontSize: "clamp(28px, 3.5vw, 42px)", fontWeight: 400 }}>
             {l.privacy.headline}
           </h1>
+          <p style={{ fontFamily: "Manrope, sans-serif", fontSize: "12px", color: "rgba(18,18,18,0.35)", marginBottom: "40px" }}>{l.lastUpdated}</p>
           <div className="space-y-0">
             {l.privacy.sections.map((section) => (
               <div key={section.number} className="py-8" style={{ borderBottom: "1px solid rgba(18,18,18,0.08)" }}>

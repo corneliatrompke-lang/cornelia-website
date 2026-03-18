@@ -385,6 +385,7 @@ const en = {
   },
   legal: {
     nav: { impressum: "Impressum", privacy: "Privacy Policy", terms: "Terms of Service" },
+    lastUpdated: "Last updated: March 2026",
     impressum: {
       headline: "Legal Notice",
       intro: "Information according to § 5 TMG",

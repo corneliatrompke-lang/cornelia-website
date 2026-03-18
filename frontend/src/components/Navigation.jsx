@@ -29,6 +29,8 @@ const Navigation = () => {
   const isActive = (path) => location.pathname === path;
   const isServicesActive = location.pathname.startsWith("/work-with-me") ||
     ["/executive-coaching", "/executive-retreats", "/leadership-team-facilitation", "/organizational-advisory"].includes(location.pathname);
+  const isLegalPage = ["/impressum", "/privacy", "/terms"].some(p => location.pathname.startsWith(p));
+  const showDark = scrolled || isLegalPage;
 
   // Derive human-readable page name for send_from tracking
   const getNavSendFrom = () => {
@@ -55,9 +57,9 @@ const Navigation = () => {
         className="fixed top-0 left-0 right-0 z-[900] transition-all duration-500"
         style={{
           padding: "16px 24px",
-          background: scrolled ? "rgba(15,26,18,0.82)" : "transparent",
-          backdropFilter: scrolled ? "blur(28px)" : "none",
-          borderBottom: scrolled ? "1px solid rgba(255,255,255,0.06)" : "none",
+          background: showDark ? "rgba(15,26,18,0.82)" : "transparent",
+          backdropFilter: showDark ? "blur(28px)" : "none",
+          borderBottom: showDark ? "1px solid rgba(255,255,255,0.06)" : "none",
         }}
       >
         <div

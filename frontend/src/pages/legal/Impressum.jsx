@@ -31,7 +31,8 @@ const Impressum = () => {
           <h1 className="text-charcoal mb-2" style={{ fontFamily: "Playfair Display, serif", fontSize: "clamp(28px, 3.5vw, 42px)", fontWeight: 400 }}>
             {i.headline}
           </h1>
-          <p className="ct-overline text-charcoal/40 mb-10" style={{ fontSize: "11px" }}>{i.intro}</p>
+          <p className="ct-overline text-charcoal/40 mb-1" style={{ fontSize: "11px" }}>{i.intro}</p>
+          <p style={{ fontFamily: "Manrope, sans-serif", fontSize: "12px", color: "rgba(18,18,18,0.35)", marginBottom: "40px" }}>{l.lastUpdated}</p>
 
           {/* Name & Address */}
           <div className="mb-8 pb-8" style={{ borderBottom: "1px solid rgba(18,18,18,0.08)" }}>

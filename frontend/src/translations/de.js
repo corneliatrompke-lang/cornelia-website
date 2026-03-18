@@ -239,6 +239,7 @@ const de = {
   },
   legal: {
     nav: { impressum: "Impressum", privacy: "Datenschutz", terms: "AGB" },
+    lastUpdated: "Zuletzt aktualisiert: März 2026",
     impressum: {
       headline: "Impressum",
       intro: "Angaben gemäß § 5 TMG",
