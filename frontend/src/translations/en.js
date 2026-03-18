@@ -99,9 +99,9 @@ const en = {
   },
   about: {
     hero: {
-      overline: "About",
+      overline: "About Me",
       headline: "Cornelia Trompke",
-      subheadline: "Executive Advisor · Trauma-Informed Coach · Systemic Thinker",
+      subheadline: "Executive Coach · Organizational Developer · Leadership Team Facilitator · Executive Meditation Retreats",
     },
     originStory: {
       overline: "The Journey",

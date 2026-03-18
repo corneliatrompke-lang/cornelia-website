@@ -66,9 +66,9 @@ const de = {
   },
   about: {
     hero: {
-      overline: "Über Cornelia",
+      overline: "Über mich",
       headline: "Cornelia Trompke",
-      subheadline: "Executive Beraterin · Traumainformierte Coach · Systemische Denkerin",
+      subheadline: "Executive Coach · Organisationsentwicklung · Leadership Team Facilitatorin · Executive Meditation Retreats",
     },
     originStory: {
       overline: "Der Weg",
