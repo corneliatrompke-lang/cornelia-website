@@ -175,7 +175,7 @@ const de = {
     integral: {
       overline: "Methodik Zwei",
       headline: "Integral Coaching",
-      body: "Integral Coaching, entwickelt an New Ventures West, erfasst den ganzen Menschen in seinem vollständigsten Kontext — nicht nur die professionelle Persona, sondern die gesamte Struktur, wie eine Person ihre Welt versteht, sich zu anderen verhält und wächst. Es basiert auf Ken Wilbers Integraler Theorie und Robert Kegans Entwicklungsarbeit.\n\nIntegral Coaching baut nicht einfach neue Verhaltensweisen auf — es entwickelt neue Kapazitäten. Es arbeitet mit dem, was eine Person sehen, tun und sein kann — und erweitert dann diese Kante in allen Dimensionen gleichzeitig.",
+      body: "Integral Coaching, entwickelt von Integral Coaching Canada, erfasst den ganzen Menschen in seinem vollständigsten Kontext — nicht nur die professionelle Persona, sondern die gesamte Struktur, wie eine Person ihre Welt versteht, sich zu anderen verhält und wächst. Es basiert auf Ken Wilbers Integraler Theorie und Robert Kegans Entwicklungsarbeit.\n\nIntegral Coaching baut nicht einfach neue Verhaltensweisen auf — es entwickelt neue Kapazitäten. Es arbeitet mit dem, was eine Person sehen, tun und sein kann — und erweitert dann diese Kante in allen Dimensionen gleichzeitig.",
       points: ["Entwicklung des gesamten Menschen, nicht nur beruflicher Kompetenzen", "Arbeit mit der aktuellen Weltanschauung der Führungskraft und Erweiterung ihrer Grenzen", "Nachhaltige Transformation über Zeit, keine temporären Leistungsverbesserungen", "Coaching, das Kontext, Kultur, Verkörperung und Bedeutung berücksichtigt"],
     },
     integration: {

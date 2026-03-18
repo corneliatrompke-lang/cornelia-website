@@ -212,7 +212,7 @@ const en = {
       integralCard: {
         label: "Methodology Two",
         title: "Integral Coaching",
-        subtitle: "Developed at New Ventures West",
+        subtitle: "Licensed by Integral Coaching Canada",
         description: "Built on Ken Wilber's Integral Theory and Robert Kegan's developmental framework — Integral Coaching expands the very structure through which you make sense of the world, rather than simply layering new skills on top of old patterns.",
         points: ["Expanded meaning-making and perspective", "Development of the whole person in context", "Sustained structural change — not temporary improvement"],
       },
@@ -293,7 +293,7 @@ const en = {
     integral: {
       overline: "Methodology Two",
       headline: "Integral Coaching",
-      body: "Integral Coaching, developed at New Ventures West in San Francisco, engages the whole human being within their fullest context — not just the professional persona, but the entire structure of how you make sense of your world, relate to others, and grow over time. It draws on Ken Wilber's Integral Theory and Robert Kegan's foundational developmental psychology.\n\nIntegral Coaching doesn't simply build new behaviours — it develops new capacities. It expands what you can see, what you can do, and who you can be — simultaneously, across all dimensions of your life and leadership.",
+      body: "Integral Coaching, developed by Integral Coaching Canada, engages the whole human being within their fullest context — not just the professional persona, but the entire structure of how you make sense of your world, relate to others, and grow over time. It draws on Ken Wilber's Integral Theory and Robert Kegan's foundational developmental psychology.\n\nIntegral Coaching doesn't simply build new behaviours — it develops new capacities. It expands what you can see, what you can do, and who you can be — simultaneously, across all dimensions of your life and leadership.",
       points: [
         "Developing the full human being — not just professional competencies",
         "Working with your current worldview and genuinely expanding its leading edge",
