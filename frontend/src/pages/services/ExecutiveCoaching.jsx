@@ -767,21 +767,17 @@ const ExecutiveCoaching = () => {
             </div>
           </ScrollReveal>
 
-          {/* Text-based author navigation */}
-          <div style={{ display: "flex", flexWrap: "wrap", gap: "0", marginTop: "4px", paddingLeft: "4px", borderTop: "1px solid rgba(200,169,106,0.12)" }}>
+          {/* Author navigation — single row, names only */}
+          <div style={{ display: "flex", flexWrap: "nowrap", overflowX: "auto", scrollbarWidth: "none", gap: "0", marginTop: "4px", borderTop: "1px solid rgba(200,169,106,0.12)" }}>
             {testimonials.map((item, i) => (
               <button
                 key={i}
                 onClick={() => { setActiveTestimonial(i); restartTimer(testimonials.length); }}
                 data-testid={`testimonial-nav-${i}`}
-                style={{ background: "none", border: "none", padding: "20px 32px 20px 0", cursor: "pointer", textAlign: "left", position: "relative" }}
+                style={{ background: "none", border: "none", padding: "16px 28px 14px 0", cursor: "pointer", textAlign: "left", flexShrink: 0 }}
               >
-                <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: "2px", background: i === activeTestimonial ? "rgba(200,169,106,0.65)" : "transparent", transition: "background 0.4s ease" }} />
-                <p style={{ fontFamily: "Manrope, sans-serif", fontSize: "10px", fontWeight: 600, letterSpacing: "0.20em", textTransform: "uppercase", color: i === activeTestimonial ? "#F5F2EC" : "rgba(245,242,236,0.28)", transition: "color 0.4s ease", marginBottom: "4px" }}>
+                <p style={{ fontFamily: "Manrope, sans-serif", fontSize: "10px", fontWeight: 600, letterSpacing: "0.20em", textTransform: "uppercase", color: i === activeTestimonial ? "#F5F2EC" : "rgba(245,242,236,0.28)", transition: "color 0.4s ease, border-color 0.4s ease", borderBottom: "2px solid", borderColor: i === activeTestimonial ? "rgba(200,169,106,0.65)" : "transparent", paddingBottom: "4px", margin: 0, whiteSpace: "nowrap" }}>
                   {item.author}
-                </p>
-                <p style={{ fontFamily: "Manrope, sans-serif", fontSize: "10px", fontWeight: 300, color: i === activeTestimonial ? "rgba(200,169,106,0.70)" : "rgba(200,169,106,0.22)", transition: "color 0.4s ease", letterSpacing: "0.05em" }}>
-                  {item.company}
                 </p>
               </button>
             ))}
