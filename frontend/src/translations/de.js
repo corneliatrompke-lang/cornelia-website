@@ -38,7 +38,7 @@ const de = {
       headline: "Vier Formate. Eine Richtung.",
       items: [
         { number: "01", title: "1:1 Executive Coaching", description: "Ein vertraulicher Rahmen für tiefe individuelle Arbeit. Für Führungskräfte, die bereit sind, aus Ganzheit heraus zu führen — nicht aus Performance.", link: "/executive-coaching" },
-        { number: "02", title: "Executive Meditations-Retreat", description: "Ein immersives Wohnformat, das Raum für die Fragen schafft, die im Tempo des Alltags nie auftauchen.", link: "/executive-retreats" },
+        { number: "02", title: "Executive Meditations-Retreat", description: "Ein immersives Intensivformat, das Raum für die Fragen schafft, die im Tempo des Alltags nie auftauchen.", link: "/executive-retreats" },
         { number: "03", title: "Facilitation für Führungsteams", description: "Tiefe Prozessarbeit mit Führungsteams, die Komplexität, Konflikte und die unsichtbaren Dynamiken kollektiver Performance navigieren.", link: "/leadership-team-facilitation" },
         { number: "04", title: "Beratung für organisationalen Wandel", description: "Strategische Beratung für Organisationen an Wendepunkten — Kultur, Struktur und Führungsarchitektur durch eine Nervensystemlinse.", link: "/organizational-advisory" },
       ],
@@ -189,7 +189,7 @@ const de = {
     hero: { overline: "Zusammenarbeiten", headline: "Vier Wege der Zusammenarbeit", subtitle: "Alle Engagements sind maßgeschneidert. Alle beginnen mit einem Gespräch." },
     services: [
       { number: "01", title: "1:1 Executive Coaching", description: "Eine nachhaltige, vertrauliche Partnerschaft für Senior Executives und Gründer, die bereit sind, von innen heraus zu entwickeln.", link: "/executive-coaching", cta: "Mehr erfahren" },
-      { number: "02", title: "Executive Meditations-Retreat", description: "Ein immersives Wohnformat, das Raum für die Fragen schafft, die kein operativer Kalender erlaubt.", link: "/executive-retreats", cta: "Mehr erfahren" },
+      { number: "02", title: "Executive Meditations-Retreat", description: "Ein immersives Intensivformat, das Raum für die Fragen schafft, die kein operativer Kalender erlaubt.", link: "/executive-retreats", cta: "Mehr erfahren" },
       { number: "03", title: "Facilitation für Führungsteams", description: "Tiefe Facilitationsarbeit mit Führungsteams, die Komplexität und kollektive Transformation navigieren.", link: "/leadership-team-facilitation", cta: "Mehr erfahren" },
       { number: "04", title: "Beratung für organisationalen Wandel", description: "Strategische Beratung für Organisationen an kritischen Wendepunkten — Kultur, Struktur und Führung auf Tiefe geprüft.", link: "/organizational-advisory", cta: "Mehr erfahren" },
     ],
@@ -206,9 +206,9 @@ const de = {
     },
     meditationRetreat: {
       hero: { overline: "02 — Executive Retreat", headline: "Executive Meditations-Retreat", subtitle: "Weg vom Betrieb. In die Klarheit." },
-      description: { overline: "Das Retreat", headline: "Raum für Fragen, die der Alltag unmöglich macht", body: "Das Executive Meditations-Retreat ist ein immersives Wohnformat für Führungskräfte, die echten Raum brauchen — um aus dem Tempo ihres operativen Lebens herauszutreten und den tieferen Fragen zu begegnen.\n\nDies ist kein Wellness-Retreat oder eine Entspannungspause. Es ist ein intensives Gefäß für innere Arbeit, strukturierte Reflexion und jene Art von Dialog, die nur möglich wird, wenn der Lärm des täglichen Betriebs verstummt." },
+      description: { overline: "Das Retreat", headline: "Raum für Fragen, die der Alltag unmöglich macht", body: "Das Executive Meditations-Retreat ist ein immersives Intensivformat für Führungskräfte, die echten Raum brauchen — um aus dem Tempo ihres operativen Lebens herauszutreten und den tieferen Fragen zu begegnen.\n\nDies ist kein Wellness-Retreat oder eine Entspannungspause. Es ist ein intensives Gefäß für innere Arbeit, strukturierte Reflexion und jene Art von Dialog, die nur möglich wird, wenn der Lärm des täglichen Betriebs verstummt." },
       forWhom: { overline: "Für wen", headline: "Dieses Format ist für...", items: ["Einzelne Führungskräfte an kritischen persönlichen oder beruflichen Wendepunkten", "Kleine Führungspaare oder Triaden, die eine gemeinsame Herausforderung bearbeiten", "Executives, die noch nie Raum für ihr eigenes inneres Leben hatten", "Führungskräfte an Wendepunkten, die Tiefe brauchen, nicht nur Strategie"] },
-      format: { overline: "Format", headline: "Die Struktur", items: [{ label: "Dauer", value: "3 oder 5 Tage Wohnformat" }, { label: "Ort", value: "Ausgewählte Retreat-Orte in Deutschland und Europa" }, { label: "Format", value: "Einzeln oder Kleingruppe (2–4 Teilnehmer)" }, { label: "Struktur", value: "Wechsel von geführter Praxis, tiefem Dialog und strukturierter Stille" }, { label: "Sprache", value: "Deutsch oder Englisch" }] },
+      format: { overline: "Format", headline: "Die Struktur", items: [{ label: "Dauer", value: "3 oder 5 Tage Intensivformat" }, { label: "Ort", value: "Ausgewählte Retreat-Orte in Deutschland und Europa" }, { label: "Format", value: "Einzeln oder Kleingruppe (2–4 Teilnehmer)" }, { label: "Struktur", value: "Wechsel von geführter Praxis, tiefem Dialog und strukturierter Stille" }, { label: "Sprache", value: "Deutsch oder Englisch" }] },
       cta: { headline: "Retreat anfragen", button: "Anfrage stellen" },
     },
     teamFacilitation: {
