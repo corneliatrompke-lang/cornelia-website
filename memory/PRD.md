@@ -303,6 +303,10 @@ Footer (from shared Footer component)
 - **LanguageContext.js** (bug fix): added `language: lang` alias so EN/DE switching works correctly in cookie components
 - **Tested**: 100% pass rate (iteration_22.json), all 16 tests including German text, localStorage persistence, backdrop/X close, toggle interactions
 
+### v4.4 — Terms of Service (AGB) Updated (Mar 2026)
+- **EN & DE:** Full 6-section T&C: Scope, No Guarantee of Success, Payment Terms, Cancellation Policy, Confidentiality, Copyright/IP
+- **Files changed:** `legal/Terms.jsx`, `translations/en.js`, `translations/de.js`
+
 ### v4.3 — Privacy Policy Updated (Mar 2026)
 - **EN & DE:** Full 5-section privacy policy rendered via translations (not hardcoded): General Information, Controller, Hosting & Infrastructure (Emergent), Contact via Email, Your Rights
 - **Files changed:** `legal/PrivacyPolicy.jsx`, `translations/en.js`, `translations/de.js`

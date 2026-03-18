@@ -294,7 +294,41 @@ const de = {
         },
       ],
     },
-    terms: { headline: "Allgemeine Geschäftsbedingungen", content: "Diese Bedingungen regeln die Nutzung dieser Website und der Leistungen von Cornelia Trompke Consulting & Coaching. Mit der Nutzung dieser Website stimmen Sie diesen Bedingungen zu. Alle Inhalte sind urheberrechtlich geschützt. Leistungen werden vorbehaltlich individueller Vereinbarung erbracht." },
+    terms: {
+      headline: "Allgemeine Geschäftsbedingungen",
+      sections: [
+        {
+          number: "1",
+          title: "Geltungsbereich",
+          text: "Diese Geschäftsbedingungen gelten für alle Coaching-, Beratungs- und Dienstleistungsverträge zwischen Cornelia Trompke und ihren Klienten.",
+        },
+        {
+          number: "2",
+          title: "Keine Erfolgsgarantie",
+          text: "Die angebotenen Leistungen sind ein Dienstvertrag. Die Beraterin schuldet die Erbringung der vereinbarten Leistung, jedoch keinen spezifischen Erfolg oder ein bestimmtes Ergebnis. Die Verantwortung für die Umsetzung der Inhalte liegt allein beim Klienten.",
+        },
+        {
+          number: "3",
+          title: "Zahlungsbedingungen",
+          text: "Rechnungen sind innerhalb von 7 Tagen ab Rechnungsdatum ohne Abzug zur Zahlung fällig.",
+        },
+        {
+          number: "4",
+          title: "Stornoregelung",
+          text: "Vereinbarte Termine müssen mindestens 48 Stunden im Voraus abgesagt werden. Bei einer späteren Stornierung oder Nichterscheinen wird das volle Honorar als Ausfallgebühr in Rechnung gestellt, da der Termin exklusiv für den Klienten reserviert wurde.",
+        },
+        {
+          number: "5",
+          title: "Vertraulichkeit und Schweigepflicht",
+          text: "Die Beraterin verpflichtet sich zu absolutem Stillschweigen über alle privaten und beruflichen Angelegenheiten des Klienten, die im Rahmen der Beratung bekannt werden. Diese Schweigepflicht besteht auch über die Beendigung des Vertrages hinaus. Unterlagen und Informationen werden nur mit ausdrücklicher Zustimmung des Klienten an Dritte weitergegeben.",
+        },
+        {
+          number: "6",
+          title: "Urheberrecht und Geistiges Eigentum",
+          text: "Alle bereitgestellten Unterlagen, Materialien und Methoden (digital oder physisch) sind urheberrechtlich geschützt. Sie sind nur für den persönlichen Gebrauch des Klienten bestimmt. Jede Vervielfältigung, Weitergabe oder gewerbliche Nutzung bedarf der vorherigen schriftlichen Zustimmung.",
+        },
+      ],
+    },
   },
   footer: {
     tagline: "Traumainformierte Führungsentwicklung für Senior Executives.",

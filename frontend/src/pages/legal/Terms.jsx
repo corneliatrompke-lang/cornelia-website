@@ -27,22 +27,21 @@ const Terms = () => {
       <div className="max-w-[900px] mx-auto px-6 md:px-16 pb-24">
         <LegalNav active="terms" />
         <ScrollReveal>
-          <h1 className="text-charcoal mb-8" style={{ fontFamily: "Figtree, sans-serif", fontSize: "clamp(32px, 4vw, 48px)", fontWeight: 400 }}>
+          <h1 className="text-charcoal mb-10" style={{ fontFamily: "Playfair Display, serif", fontSize: "clamp(28px, 3.5vw, 42px)", fontWeight: 400 }}>
             {l.terms.headline}
           </h1>
-          <p className="text-charcoal/65 leading-relaxed mb-10" style={{ fontFamily: "Manrope, sans-serif", fontSize: "15px", fontWeight: 300 }}>
-            {l.terms.content}
-          </p>
-          <div className="space-y-6">
-            {[
-              { title: "Scope of Services", text: "All services provided by Cornelia Trompke Consulting & Coaching are subject to individual agreement. The scope, duration, and fees of any engagement are defined in a separate written agreement." },
-              { title: "Intellectual Property", text: "All content on this website — including texts, images, and design elements — is protected by copyright. Reproduction or distribution without prior written consent is prohibited." },
-              { title: "Limitation of Liability", text: "Cornelia Trompke Consulting & Coaching accepts no liability for the accuracy of content on third-party websites linked from this site. Links are provided for informational purposes only." },
-              { title: "Governing Law", text: "These terms are governed by the laws of the Federal Republic of Germany. The place of jurisdiction is Berlin, Germany." },
-            ].map((item) => (
-              <div key={item.title} className="border-t pt-6" style={{ borderColor: "rgba(18,18,18,0.08)" }}>
-                <p className="ct-overline text-charcoal/50 mb-3">{item.title}</p>
-                <p className="text-charcoal/60" style={{ fontFamily: "Manrope, sans-serif", fontSize: "14px", fontWeight: 300, lineHeight: 1.7 }}>{item.text}</p>
+          <div className="space-y-0">
+            {l.terms.sections.map((section) => (
+              <div key={section.number} className="py-8" style={{ borderBottom: "1px solid rgba(18,18,18,0.08)" }}>
+                <div style={{ display: "flex", alignItems: "baseline", gap: "16px", marginBottom: "12px" }}>
+                  <span style={{ fontFamily: "Manrope, sans-serif", fontSize: "11px", fontWeight: 500, letterSpacing: "0.15em", color: "#C8A96A" }}>
+                    {section.number}.
+                  </span>
+                  <p className="ct-overline text-charcoal/50" style={{ fontSize: "11px" }}>{section.title}</p>
+                </div>
+                <p style={{ fontFamily: "Manrope, sans-serif", fontSize: "14px", fontWeight: 300, color: "rgba(18,18,18,0.65)", lineHeight: 1.85, paddingLeft: "27px" }}>
+                  {section.text}
+                </p>
               </div>
             ))}
           </div>

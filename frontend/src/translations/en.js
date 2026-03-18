@@ -440,7 +440,41 @@ const en = {
         },
       ],
     },
-    terms: { headline: "Terms of Service", content: "These terms govern the use of this website and the services of Cornelia Trompke Consulting & Coaching. By using this website, you agree to these terms. All content is protected by copyright. Services are provided subject to individual agreement." },
+    terms: {
+      headline: "General Terms and Conditions",
+      sections: [
+        {
+          number: "1",
+          title: "Scope",
+          text: "These terms and conditions apply to all coaching, consulting, and service contracts between Cornelia Trompke and her clients.",
+        },
+        {
+          number: "2",
+          title: "No Guarantee of Success",
+          text: "The services provided constitute a service contract. The consultant owes the provision of the agreed service, but not a specific success or result. The responsibility for implementing the results lies solely with the client.",
+        },
+        {
+          number: "3",
+          title: "Payment Terms",
+          text: "Invoices are due for payment within 7 days of the invoice date without any deductions.",
+        },
+        {
+          number: "4",
+          title: "Cancellation Policy",
+          text: "Agreed appointments must be cancelled at least 48 hours in advance. In the event of late cancellation or no-show, the full fee will be charged as a cancellation fee, as the slot was reserved exclusively for the client.",
+        },
+        {
+          number: "5",
+          title: "Confidentiality and Professional Secrecy",
+          text: "The consultant is committed to absolute confidentiality regarding all private and professional matters of the client that become known during the consulting process. This obligation remains in effect even after the termination of the contract. Documents and information will only be shared with third parties with the client's explicit consent.",
+        },
+        {
+          number: "6",
+          title: "Copyright and Intellectual Property",
+          text: "All documents, materials, and methods provided (digital or physical) are protected by copyright. They are intended for the client's personal use only. Any duplication, distribution, or commercial use requires prior written consent.",
+        },
+      ],
+    },
   },
   footer: {
     tagline: "Trauma-Informed Leadership Development for Senior Executives — Berlin & Worldwide.",
