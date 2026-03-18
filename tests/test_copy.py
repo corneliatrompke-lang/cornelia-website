@@ -1,7 +1,7 @@
 import asyncio
 from playwright.async_api import async_playwright
 
-APP_URL = "https://nervous-system-exec.preview.emergentagent.com"
+APP_URL = "https://cornelia-coaching.preview.emergentagent.com"
 
 async def check_page(page, url, checks, page_name):
     print(f"\n--- Testing {page_name} ---")
