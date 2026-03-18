@@ -17,8 +17,8 @@ const RX_START = 1300;
 const circPath = (cx, cy, r) =>
   `M ${cx - r} ${cy} A ${r} ${r} 0 0 1 ${cx + r} ${cy} A ${r} ${r} 0 0 1 ${cx - r} ${cy}`;
 
-const L_BASE = "LEADERSHIP  ·  EXECUTIVE DEPTH  ·  SYSTEMIC CLARITY  ·  ORGANISATIONAL CHANGE  ·  ";
-const R_BASE = "NERVOUS SYSTEM  ·  TRANSFORMATION  ·  NARM  ·  INTEGRAL COACHING  ·  SOMATIC AWARENESS  ·  ";
+const L_BASE = "NERVOUS SYSTEM  ·  EMBODIED LEADERSHIP  ·  EXECUTIVE DEPTH  ·  AGENCY  ·  ";
+const R_BASE = "SYSTEMIC CLARITY  ·  ALL QUADRANTS ALL LINES  ·  CULTURAL TRANSFORMATION  ·  SOMATIC INTELLIGENCE  ·  ";
 const L_TEXT = L_BASE.repeat(2);
 const R_TEXT = R_BASE.repeat(2);
 
