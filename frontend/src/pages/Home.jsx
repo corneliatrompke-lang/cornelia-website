@@ -20,9 +20,9 @@ const TICKER_ITEMS = [
   { name: "Metro AG",                  src: "/logos/metro-ag.png"        },
   { name: "Metro.digital",             src: "/logos/metro-digital.png"   },
   { name: "Tom Tailor",                src: "/logos/tom-tailor.avif"     },
-  { name: "KWS",                       src: "/logos/kws.jpg"             },
+  { name: "KWS",                       src: "/logos/kws.jpg",       h: 38 },
   { name: "Beiersdorf",                src: "/logos/beiersdorf.png"      },
-  { name: "A. Lange & Söhne",          src: "/logos/a-lange-soehne.webp" },
+  { name: "A. Lange & Söhne",          src: "/logos/a-lange-soehne.webp", h: 48 },
   { name: "Fashion Digital",           src: "/logos/fashion-digital.jpg" },
   { name: "Unite",                     src: "/logos/unite.png"           },
 ];
@@ -423,7 +423,14 @@ const Home = () => {
               <img
                 src={item.src}
                 alt={item.name}
-                style={{ height: "28px", width: "auto", filter: "brightness(0)", opacity: 0.35, display: "block" }}
+                style={{
+                  height: `${item.h || 28}px`,
+                  width: "auto",
+                  filter: "grayscale(1)",
+                  mixBlendMode: "multiply",
+                  opacity: 0.6,
+                  display: "block",
+                }}
                 onError={e => {
                   e.currentTarget.style.display = "none";
                   e.currentTarget.nextElementSibling.style.display = "block";
