@@ -22,7 +22,7 @@ const TICKER_ITEMS = [
   { name: "Tom Tailor",                src: "/logos/tom-tailor.avif"     },
   { name: "KWS",                       src: "/logos/kws.jpg",       h: 38 },
   { name: "Beiersdorf",                src: "/logos/beiersdorf.png"      },
-  { name: "A. Lange & Söhne",          src: "/logos/a-lange-soehne.png",  h: 48 },
+  { name: "A. Lange & Söhne",          src: "/logos/a-lange-soehne.svg",  h: 48 },
   { name: "Fashion Digital",           src: "/logos/fashion-digital.jpg" },
   { name: "Unite",                     src: "/logos/unite.png"           },
 ];
