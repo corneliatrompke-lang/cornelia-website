@@ -149,7 +149,7 @@ const en = {
       headline: "A Practice Built on Decades of Depth",
       items: [
         { title: "NARM Practitioner", description: "Certified in the NeuroAffective Relational Model developed by Dr. Laurence Heller — a leading trauma-informed approach to development and identity" },
-        { title: "Integral Coach", description: "Trained in Integral Coaching methodology, weaving systemic thinking, depth psychology, and somatic wisdom into a unified practice" },
+        { title: "Integral Coach", description: "Trained in Integral Coaching methodology, weaving systemic thinking, integral psychology, and somatic wisdom into a unified practice" },
         { title: "Student of Thomas Hübl", description: "Many years working with consciousness teacher Thomas Hübl — integrating contemplative depth and collective awareness into leadership work" },
         { title: "Corporate HR Background", description: "Years working inside international organisations before founding an independent practice — with a firsthand understanding of what leadership actually demands" },
       ],
