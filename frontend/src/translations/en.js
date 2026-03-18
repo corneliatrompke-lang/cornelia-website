@@ -53,9 +53,36 @@ const en = {
     testimonials: {
       overline: "What Leaders Say",
       items: [
-        { text: "What Cornelia offers is not coaching in any conventional sense. It is a form of deep accompaniment that changes the quality of every decision you make.", author: "Chief Executive Officer", company: "DAX-listed Financial Services Group" },
-        { text: "Our entire executive team shifted after the retreat. The way we meet, the way we disagree, the way we lead — all of it changed.", author: "Founder & CEO", company: "Global Technology Company" },
-        { text: "I have worked with many coaches and advisors over 25 years. Nothing compares to the depth and systemic intelligence Cornelia brings.", author: "Board Chair", company: "European Foundation" },
+        {
+          text: "In her collaboration at the executive level, Cornelia Trompke convinces through integrity, confidentiality, and strategic clarity. She acts as a true sparring partner at eye level and purposefully strengthens leaders in their impact and decision-making—particularly in demanding transformation processes and cultural change phases.",
+          author: "Timo Salzsieder",
+          company: "CEO at Metro.digital & CIO at Metro AG",
+        },
+        {
+          text: "I had the pleasure to work with Cornelia in two large companies, both occasions on the topic of defining HR structures and processes on an organization level. She's always been a trusted partner and a strategic thinker, while supporting our leadership team being better and more effective leaders.",
+          author: "Vahid Gharavi",
+          company: "Director Engineering at Metro.digital & Managing Director at Fashion Digital GmbH",
+        },
+        {
+          text: "I had the privilege of working very closely and trustfully with Cornelia over an extended period. Her expertise in mediations and conflict resolution was a great help — and her ability to contribute both professional expertise and personal composure made a significant contribution to our successful transformation.",
+          author: "Patrick Mittmann",
+          company: "Director of People at Tom Tailor GmbH",
+        },
+        {
+          text: "I experienced the collaboration with Cornelia Trompke as highly professional, clear, and at the same time exceptionally appreciative. The workshops she moderated combined methodical confidence with depth of content, creating a space for genuine participation and clarity.",
+          author: "Melanie Eisinger",
+          company: "Head of Global HR at KWS Saat SE & Co. KGaA",
+        },
+        {
+          text: "Cornelia views coaching less as self-optimization and more as providing individual guidance to executives with great human clarity at the decisive personal leverage points for effective and sustainable change. This modern understanding of leadership is an excellent fit for our values.",
+          author: "Silke Breithaupt",
+          company: "Senior Manager Organisation Development at Unite Procurement Deutschland AG",
+        },
+        {
+          text: "Inner peace is a gift. Thank you for guiding me so valuably on my path there with your empathetically posed questions—even though you did not know the answers.",
+          author: "Renate M.",
+          company: "Senior Manager",
+        },
       ],
     },
     cta: {
