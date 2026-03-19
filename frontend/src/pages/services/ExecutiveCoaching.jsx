@@ -275,7 +275,7 @@ const ExecutiveCoaching = () => {
                 transition={{ duration: 0.55, ease: [0.25, 0.46, 0.45, 0.94] }} onClick={e => e.stopPropagation()}
                 style={{ position: "absolute", right: "clamp(24px, 4vw, 56px)", top: "10%", height: "80%", width: "clamp(360px, 40%, 520px)", borderRadius: "16px", background: "rgba(8,16,11,0.25)", backdropFilter: "blur(28px) saturate(1.6)", WebkitBackdropFilter: "blur(28px) saturate(1.6)", border: "1px solid rgba(200,169,106,0.18)", zIndex: 20, overflowY: "auto" }}
                 data-testid="coaching-contact-form-panel">
-                <HeroContactForm onClose={() => setShowContactForm(false)} sendFrom="Executive Coaching — Hero Section" />
+                <HeroContactForm onClose={() => setShowContactForm(false)} preselectedService="executive-coaching" sendFrom="Executive Coaching — Hero Section" />
               </motion.div>
             </>)}
           </AnimatePresence>
@@ -899,7 +899,7 @@ const ExecutiveCoaching = () => {
                       initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }}
                       transition={{ duration: 0.3 }}
                     >
-                      <HeroContactForm onClose={() => setShowFinalForm(false)} noPadding sendFrom="Executive Coaching — Final CTA Section" />
+                      <HeroContactForm onClose={() => setShowFinalForm(false)} noPadding preselectedService="executive-coaching" sendFrom="Executive Coaching — Final CTA Section" />
                     </motion.div>
                   )}
                 </AnimatePresence>
