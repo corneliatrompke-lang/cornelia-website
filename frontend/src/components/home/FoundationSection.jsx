@@ -56,11 +56,8 @@ export default function FoundationSection() {
     offset: ["start start", "end end"],
   });
 
-  // ── Images assemble over first ~58% ────────────────────────────
-  // Banner starts close to final position and fades in quickly (eliminates dead zone)
-  const bannerY = useTransform(fp, [0.00, 0.35], [-100, 0]);
-  const bannerO = useTransform(fp, [0.00, 0.05], [0, 1]);
-
+  // ── Banner is always visible — serves as visual anchor during natural scroll ──
+  // Circle/square animate cinematically after section pins
   const circleX = useTransform(fp, [0.05, 0.58], [620, 0]);
   const circleO = useTransform(fp, [0.03, 0.10], [0, 1]);
 
@@ -214,8 +211,8 @@ export default function FoundationSection() {
               height: "100%",
             }}
           >
-            {/* Banner — drops 240px from above, slightly inset from sides */}
-            <motion.div
+            {/* Banner — always visible, serves as anchor during natural scroll */}
+            <div
               style={{
                 position: "absolute",
                 top: 0,
@@ -223,8 +220,6 @@ export default function FoundationSection() {
                 right: "13%",
                 height: 450,
                 overflow: "hidden",
-                y: bannerY,
-                opacity: bannerO,
               }}
             >
               <img
@@ -232,7 +227,7 @@ export default function FoundationSection() {
                 alt=""
                 style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center center" }}
               />
-            </motion.div>
+            </div>
 
             {/* Circle — 260px, sweeps 620px from the right */}
             <motion.div
