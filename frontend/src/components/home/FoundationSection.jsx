@@ -57,15 +57,16 @@ export default function FoundationSection() {
   });
 
   // ── Images assemble over first ~58% ────────────────────────────
-  const bannerY = useTransform(fp, [0.00, 0.55], [-240, 0]);
-  const bannerO = useTransform(fp, [0.00, 0.22], [0, 1]);
+  // Banner starts close to final position and fades in quickly (eliminates dead zone)
+  const bannerY = useTransform(fp, [0.00, 0.35], [-100, 0]);
+  const bannerO = useTransform(fp, [0.00, 0.05], [0, 1]);
 
   const circleX = useTransform(fp, [0.05, 0.58], [620, 0]);
-  const circleO = useTransform(fp, [0.05, 0.28], [0, 1]);
+  const circleO = useTransform(fp, [0.03, 0.10], [0, 1]);
 
   const squareX = useTransform(fp, [0.05, 0.58], [-560, 0]);
   const squareY = useTransform(fp, [0.05, 0.58], [160, 0]);
-  const squareO = useTransform(fp, [0.05, 0.26], [0, 1]);
+  const squareO = useTransform(fp, [0.03, 0.10], [0, 1]);
 
   // ── Card rises after images settle ─────────────────────────────
   const cardY = useTransform(fp, [0.50, 0.70], [180, 0]);
