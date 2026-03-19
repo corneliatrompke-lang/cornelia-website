@@ -362,7 +362,7 @@ const en = {
       ]},
       whatYouReceive: { overline: "What You Receive", headline: "The Structure of the Engagement", items: [
         { title: "Regular 1:1 Sessions", description: "Biweekly 90-minute sessions — structured, held, and never rushed. A dedicated space for whatever is most present and alive in your development. Not a fixed curriculum delivered on schedule, but a living relationship with your actual growth." },
-        { title: "Direct Messenger Access", description: "Between sessions, for brief check-ins and to capture emerging insights before they dissolve. The development doesn't pause between calls — and neither does the support." },
+        { title: "Direct Messenger Access", description: "Between sessions, for when something lands and you need a sounding board — not next week, but now. The development doesn't pause between calls — and neither does the support." },
         { title: "Individually Designed Deep-Dive Sessions", description: "Longer format sessions for the work that requires more time, more depth, or specific preparation — designed entirely around the edges in your development that matter most right now." },
         { title: "Personalized Recordings", description: "Created specifically for you to support self-regulation and integration between sessions. A private resource, built around your actual nervous system, that travels wherever you go." },
       ]},

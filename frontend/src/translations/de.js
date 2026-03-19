@@ -216,7 +216,7 @@ const de = {
       ]},
       whatYouReceive: { overline: "Was Sie erhalten", headline: "Die Struktur des Engagements", items: [
         { title: "Regelmäßige 1:1-Sitzungen", description: "Zweiwöchentliche 90-minütige Sitzungen — strukturiert, gehalten und nie gehetzt. Ein dedizierter Raum für das, was in Ihrer Entwicklung gerade am präsentesten und lebendigsten ist. Kein festes Curriculum nach Zeitplan, sondern eine lebendige Beziehung zu Ihrem tatsächlichen Wachstum." },
-        { title: "Direkter Messenger-Zugang", description: "Zwischen den Sitzungen, für kurze Check-ins und um aufkommende Erkenntnisse festzuhalten, bevor sie sich auflösen. Die Entwicklung pausiert nicht zwischen den Gesprächen — und die Begleitung auch nicht." },
+        { title: "Direkter Messenger-Zugang", description: "Zwischen den Sitzungen, für Momente, in denen etwas klar wird und Sie ein Gegenüber brauchen — nicht nächste Woche, sondern jetzt. Die Entwicklung pausiert nicht zwischen den Gesprächen — und die Begleitung auch nicht." },
         { title: "Individuell gestaltete Vertiefungssitzungen", description: "Längere Sitzungsformate für die Arbeit, die mehr Zeit, mehr Tiefe oder spezifische Vorbereitung erfordert — ganz und gar um die Entwicklungskanten herum gestaltet, die gerade am wichtigsten sind." },
         { title: "Personalisierte Aufnahmen", description: "Speziell für Sie erstellt, um Selbstregulation und Integration zwischen den Sitzungen zu unterstützen. Eine private Ressource, die um Ihr tatsächliches Nervensystem herum aufgebaut ist und Sie überallhin begleitet." },
       ]},
