@@ -61,9 +61,9 @@ export default function FoundationSection() {
   // Animations mapped so after-pin range = old total range → identical scroll speed
 
   // ── Banner slide-down reveal: starts showing bottom ~30%, slides to full ──
-  // At y=-427 → only bottom 135px (30%) visible through sticky frame overflow
+  // At y=-518 → only bottom ~10% (45px) visible through sticky frame overflow
   // At y=0 → fully visible at natural position
-  const bannerSlide = useTransform(fp, [0, 0.333], [-427, 0]);
+  const bannerSlide = useTransform(fp, [0, 0.333], [-518, 0]);
 
   // ── Desktop: images assemble after section pins ──────────────
   const circleX = useTransform(fp, [0.37, 0.72], [620, 0]);
