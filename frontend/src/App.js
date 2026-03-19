@@ -11,7 +11,18 @@ import { RetreatApplicationModal } from "./components/RetreatApplicationModal";
 import { WhatsAppButton } from "./components/WhatsAppButton";
 import { CookieBanner } from "./components/CookieBanner";
 import { CookieSettingsModal } from "./components/CookieSettingsModal";
-import { CookieConsentProvider } from "./context/CookieConsentContext";
+import { CookieConsentProvider, useCookieConsent } from "./context/CookieConsentContext";
+
+const GA4PageViewTracker = () => {
+  const { pathname } = useLocation();
+  const { consent } = useCookieConsent();
+  useEffect(() => {
+    if (consent.given && consent.analytics && typeof window.gtag === "function") {
+      window.gtag("event", "page_view", { page_path: pathname, page_location: window.location.href });
+    }
+  }, [pathname, consent]);
+  return null;
+};
 import Preloader from "./components/Preloader";
 import GrainOverlay from "./components/GrainOverlay";
 import Navigation from "./components/Navigation";
@@ -47,6 +58,7 @@ const ScrollToTop = () => {
 const AppContent = () => (
   <>
     <ScrollToTop />
+    <GA4PageViewTracker />
     <Navigation />
     <main>
       <Routes>

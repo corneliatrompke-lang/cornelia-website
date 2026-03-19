@@ -36,6 +36,20 @@ export const CookieConsentProvider = ({ children }) => {
     setSettingsOpen(false);
   }, []);
 
+  // Sync GA4 consent mode whenever consent state changes
+  useEffect(() => {
+    if (typeof window.gtag !== "function") return;
+    const granted = consent.given && consent.analytics;
+    window.gtag("consent", "update", {
+      analytics_storage: granted ? "granted" : "denied",
+      ad_storage: consent.given && consent.marketing ? "granted" : "denied",
+    });
+    // Fire initial page view when analytics first granted
+    if (granted) {
+      window.gtag("event", "page_view", { page_location: window.location.href });
+    }
+  }, [consent]);
+
   const acceptAll  = useCallback(() => save({ analytics: true,  marketing: true  }), [save]);
   const rejectAll  = useCallback(() => save({ analytics: false, marketing: false }), [save]);
   const saveCustom = useCallback((prefs) => save(prefs), [save]);
