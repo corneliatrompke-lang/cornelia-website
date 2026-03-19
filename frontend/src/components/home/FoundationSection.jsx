@@ -1,5 +1,5 @@
 import React, { useRef, useEffect, useState } from "react";
-import { motion, useScroll, useTransform, useMotionValueEvent, useMotionTemplate } from "framer-motion";
+import { motion, useScroll, useTransform, useMotionValueEvent } from "framer-motion";
 import { useLanguage } from "../../context/LanguageContext";
 
 const BANNER_SRC =
@@ -60,9 +60,10 @@ export default function FoundationSection() {
   // Mobile  pins at fp ≈ 0.500 (100vh / 200vh)
   // Animations mapped so after-pin range = old total range → identical scroll speed
 
-  // ── Banner clip reveal during natural scroll-in (pre-pin) ──
-  const bannerClipTop = useTransform(fp, [0, 0.333], [70, 0]);
-  const bannerClip = useMotionTemplate`inset(${bannerClipTop}% 0 0 0)`;
+  // ── Banner slide-down reveal: starts showing bottom ~30%, slides to full ──
+  // At y=-427 → only bottom 135px (30%) visible through sticky frame overflow
+  // At y=0 → fully visible at natural position
+  const bannerSlide = useTransform(fp, [0, 0.333], [-427, 0]);
 
   // ── Desktop: images assemble after section pins ──────────────
   const circleX = useTransform(fp, [0.37, 0.72], [620, 0]);
@@ -218,7 +219,7 @@ export default function FoundationSection() {
               height: "100%",
             }}
           >
-            {/* Banner — reveals from bottom 30% upward as user scrolls */}
+            {/* Banner — slides down from above, revealing bottom-first */}
             <motion.div
               style={{
                 position: "absolute",
@@ -227,7 +228,7 @@ export default function FoundationSection() {
                 right: "13%",
                 height: 450,
                 overflow: "hidden",
-                clipPath: bannerClip,
+                y: bannerSlide,
               }}
             >
               <img
