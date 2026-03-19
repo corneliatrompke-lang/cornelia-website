@@ -46,6 +46,7 @@ const VennDiagram = ({ showLogo = true, showArrow = true, staticView = false, th
   const [lx, setLx] = useState(LX_START);
   const [rx, setRx] = useState(RX_START);
   const [paused, setPaused] = useState(false);
+  const [lensShowLeft, setLensShowLeft] = useState(true);
   const { t } = useLanguage();
 
   const [isNarrow, setIsNarrow] = useState(typeof window !== "undefined" ? window.innerWidth < 1024 : false);
@@ -53,6 +54,12 @@ const VennDiagram = ({ showLogo = true, showArrow = true, staticView = false, th
     const h = () => setIsNarrow(window.innerWidth < 1024);
     window.addEventListener("resize", h);
     return () => window.removeEventListener("resize", h);
+  }, []);
+
+  // ── Alternating lens toggle — swap which text shows in intersection ──
+  useEffect(() => {
+    const id = setInterval(() => setLensShowLeft((p) => !p), 15000);
+    return () => clearInterval(id);
   }, []);
 
   // ── Scroll-driven mode ────────────────────────────────────────────────────
@@ -101,8 +108,10 @@ const VennDiagram = ({ showLogo = true, showArrow = true, staticView = false, th
 
   const leftPath   = circPath(lx, LY, R);
   const rightPath  = circPath(rx, LY, R);
-  const bottomLens = overlap && lEdge < rEdge
-    ? `M ${rEdge} ${LY} A ${R} ${R} 0 0 1 ${intX} ${botY} A ${R} ${R} 0 0 1 ${lEdge} ${LY} Z`
+  const topY       = LY - hLens;
+  // Full lens (intersection of both circles) for alternating mask
+  const fullLens = overlap && hLens > 0
+    ? `M ${intX} ${topY} A ${R} ${R} 0 0 1 ${intX} ${botY} A ${R} ${R} 0 0 1 ${intX} ${topY} Z`
     : "M 0 0 Z";
 
   const orbit = (side) => ({
@@ -122,7 +131,9 @@ const VennDiagram = ({ showLogo = true, showArrow = true, staticView = false, th
   // ── Shared SVG content ────────────────────────────────────────────────────
   // clipPath IDs must be unique when two Venns live on the same page
   const clipId = staticView ? "vennViewClipStatic" : "vennViewClip";
-  const maskId = staticView ? "bottomLensMaskStatic" : "bottomLensMask";
+  const leftExclId  = staticView ? "leftExclStatic"  : "leftExcl";
+  const rightExclId = staticView ? "rightExclStatic" : "rightExcl";
+  const lensId      = staticView ? "lensMaskStatic"  : "lensMask";
 
   const svgContent = (
     <svg
@@ -138,30 +149,55 @@ const VennDiagram = ({ showLogo = true, showArrow = true, staticView = false, th
         </clipPath>
         <path id={staticView ? "vennLeftStatic"  : "vennLeft"}  d={leftPath}  />
         <path id={staticView ? "vennRightStatic" : "vennRight"} d={rightPath} />
-        <mask id={maskId}>
+        {/* Left exclusive: visible everywhere except inside right circle */}
+        <mask id={leftExclId}>
+          <rect width={W} height={H} fill="white" />
+          <circle cx={rx} cy={LY} r={R} fill="black" />
+        </mask>
+        {/* Right exclusive: visible everywhere except inside left circle */}
+        <mask id={rightExclId}>
+          <rect width={W} height={H} fill="white" />
+          <circle cx={lx} cy={LY} r={R} fill="black" />
+        </mask>
+        {/* Intersection only: visible only in the lens zone */}
+        <mask id={lensId}>
           <rect width={W} height={H} fill="black" />
-          <path d={bottomLens} fill="white" />
+          <path d={fullLens} fill="white" />
         </mask>
       </defs>
 
       <g clipPath={`url(#${clipId})`}>
-        {/* Right orbit */}
-        <g style={orbit("right")}>
-          <text {...textAttrs}>
-            <textPath href={`#${staticView ? "vennRightStatic" : "vennRight"}`}>{R_TEXT}</textPath>
-          </text>
+        {/* Left orbit — exclusive area only (outside right circle) */}
+        <g mask={`url(#${leftExclId})`}>
+          <g style={orbit("left")}>
+            <text {...textAttrs}>
+              <textPath href={`#${staticView ? "vennLeftStatic" : "vennLeft"}`}>{L_TEXT}</textPath>
+            </text>
+          </g>
         </g>
-        {/* Left orbit */}
-        <g style={orbit("left")}>
-          <text {...textAttrs}>
-            <textPath href={`#${staticView ? "vennLeftStatic" : "vennLeft"}`}>{L_TEXT}</textPath>
-          </text>
+        {/* Right orbit — exclusive area only (outside left circle) */}
+        <g mask={`url(#${rightExclId})`}>
+          <g style={orbit("right")}>
+            <text {...textAttrs}>
+              <textPath href={`#${staticView ? "vennRightStatic" : "vennRight"}`}>{R_TEXT}</textPath>
+            </text>
+          </g>
         </g>
-        {/* Right orbit masked to bottom lens (interlocking illusion) */}
-        <g mask={`url(#${maskId})`} style={orbit("right")}>
-          <text {...textAttrs}>
-            <textPath href={`#${staticView ? "vennRightStatic" : "vennRight"}`}>{R_TEXT}</textPath>
-          </text>
+        {/* Left orbit in intersection — alternates visibility */}
+        <g mask={`url(#${lensId})`} style={{ opacity: lensShowLeft ? 1 : 0, transition: "opacity 1.5s ease-in-out" }}>
+          <g style={orbit("left")}>
+            <text {...textAttrs}>
+              <textPath href={`#${staticView ? "vennLeftStatic" : "vennLeft"}`}>{L_TEXT}</textPath>
+            </text>
+          </g>
+        </g>
+        {/* Right orbit in intersection — inverse of left */}
+        <g mask={`url(#${lensId})`} style={{ opacity: lensShowLeft ? 0 : 1, transition: "opacity 1.5s ease-in-out" }}>
+          <g style={orbit("right")}>
+            <text {...textAttrs}>
+              <textPath href={`#${staticView ? "vennRightStatic" : "vennRight"}`}>{R_TEXT}</textPath>
+            </text>
+          </g>
         </g>
 
         {/* NARM + Integral Coaching — always visible, move with circles */}
