@@ -261,7 +261,7 @@ const ExecutiveCoaching = () => {
             <ScrollReveal delay={0.58}>
               <div style={{ display: "flex", flexWrap: "wrap", alignItems: "center", gap: "12px", marginTop: "36px", marginBottom: "40px" }}>
                 <button onClick={() => setShowContactForm(true)} className="btn-hero-pill" data-testid="coaching-hero-cta" style={{ border: "none", cursor: "pointer" }}>
-                  Begin an Application
+                  {s.cta.button}
                 </button>
               </div>
             </ScrollReveal>
