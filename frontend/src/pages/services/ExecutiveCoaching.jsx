@@ -14,66 +14,15 @@ const HERO_VIDEO_DESKTOP =
 const HERO_VIDEO_MOBILE =
   "https://customer-assets.emergentagent.com/job_nervous-system-exec/artifacts/i0lzwodo_Hero%20-%20mobile.mp4";
 
-const PHASES = [
-  {
-    number: "01",
-    label: "Orientation & Mirroring",
-    duration: "Months 1–3",
-    description:
-      "We begin with what is most present — not a framework imposed from outside. Together, we establish the reflective space and map the landscape of your leadership: the patterns, the edges, the places where something important has been waiting to shift.",
-  },
-  {
-    number: "02",
-    label: "Deepening",
-    duration: "Months 4–8",
-    description:
-      "The real work begins here. Patterns become visible. The nervous system work takes root. What was invisible — and unavailable — starts to move. This is where change stops being conceptual and becomes lived.",
-  },
-  {
-    number: "03",
-    label: "Integration",
-    duration: "Months 9–12",
-    description:
-      "The changes consolidate into something structural. New ways of leading stop feeling effortful and begin to feel like you. The work moves from insight into embodied capacity — and that is what holds over time.",
-  },
+const PHASES_EN = [
+  { number: "01" },
+  { number: "02" },
+  { number: "03" },
 ];
 
-const WHAT_SHIFTS = [
-  "The inner architecture of how you make decisions becomes transparent — and genuinely available to change",
-  "Leadership presence deepens from performance to real, embodied authority that others can feel",
-  "The capacity to hold high complexity without losing clarity, steadiness, or inner regulation",
-  "Relationships built on genuine depth, directness, and real trust — not managed distance",
-  "The ability to act from your own centre, even under the most demanding and pressured conditions",
-  "A quality of inner spaciousness that changes the entire texture of how you lead and relate",
-];
+// (What Shifts items now come from translations)
 
-const FOR_WHOM_ITEMS = [
-  {
-    number: "01",
-    title: "You've Outgrown Standard Coaching",
-    body: "You are a senior executive, founder, or board member. You have done the personal development work before. Standard coaching no longer reaches the level where your real limitations actually live.",
-  },
-  {
-    number: "02",
-    title: "The Pattern Runs Deeper Than Strategy",
-    body: "You sense that what is holding you back is not a strategic or tactical problem — it is structural. The pattern recurs across different contexts and roles. No framework has yet reached it.",
-  },
-  {
-    number: "03",
-    title: "You're Navigating Real Complexity",
-    body: "You are in the middle of something significant — organisationally, professionally, or personally — and you need an advisor who can hold the full weight of it without minimising or reducing it.",
-  },
-  {
-    number: "04",
-    title: "You Want to Lead From Wholeness",
-    body: "You want to lead from a genuine centre — not from performance, anxiety, or depletion. You are looking for something more than optimisation, and you already know what that means.",
-  },
-  {
-    number: "05",
-    title: "You Are Ready to Work at Depth",
-    body: "You understand that real change takes time and genuine commitment. You are prepared to invest sustained attention in something that actually changes you — not just how you present yourself.",
-  },
-];
+const FOR_WHOM_NUMBERS = ["01", "02", "03", "04", "05"];
 
 // ─── Concentric Circles Viz ───────────────────────────────────────────────────
 const PHASE_GRADIENT = "linear-gradient(to bottom, #F5F2EC 0%, #CDD8C4 8%, #8A9A80 16%, #2A3825 28%, #162018 44%, #0F1A12 60%)";
@@ -340,9 +289,9 @@ const ExecutiveCoaching = () => {
         {/* Non-sticky heading */}
         <div className="max-w-[1400px] mx-auto px-6 md:px-16" style={{ paddingTop: isMobile ? "64px" : "140px", paddingBottom: isMobile ? "40px" : "80px" }}>
           <ScrollReveal>
-            <p className="ct-overline text-sage mb-5">The Engagement Arc</p>
+            <p className="ct-overline text-sage mb-5">{s.engagementArc.overline}</p>
             <h2 style={{ fontFamily: "Figtree, sans-serif", fontSize: "clamp(28px, 3.5vw, 46px)", fontWeight: 400, color: "#121212", lineHeight: 1.1 }}>
-              How the Work Unfolds Over Time
+              {s.engagementArc.headline}
             </h2>
           </ScrollReveal>
         </div>
@@ -370,7 +319,7 @@ const ExecutiveCoaching = () => {
 
               {/* Phase rows */}
               <div style={{ width: "100%" }}>
-                {PHASES.map((phase, i) => {
+                {s.engagementArc.phases.map((phase, i) => {
                   const isActive = activePhase >= i;
                   const isCurrent = activePhase === i;
                   return (
@@ -388,7 +337,7 @@ const ExecutiveCoaching = () => {
                     >
                       <div style={{ display: "flex", alignItems: "baseline", gap: "10px", marginBottom: "5px" }}>
                         <span style={{ fontFamily: "Manrope, sans-serif", fontSize: "9px", fontWeight: 600, letterSpacing: "2px", textTransform: "uppercase", color: isActive ? "rgba(200,169,106,0.85)" : "rgba(200,169,106,0.2)", transition: "color 0.6s ease" }}>
-                          {phase.number}
+                          {PHASES_EN[i].number}
                         </span>
                         <span style={{ fontFamily: "Manrope, sans-serif", fontSize: "9px", fontWeight: 400, letterSpacing: "1px", color: isActive ? "rgba(245,242,236,0.35)" : "rgba(245,242,236,0.12)", textTransform: "uppercase", transition: "color 0.6s ease" }}>
                           {phase.duration}
@@ -432,7 +381,7 @@ const ExecutiveCoaching = () => {
 
                     {/* Right: phase rows */}
                     <div style={{ flex: 1 }}>
-                      {PHASES.map((phase, i) => {
+                      {s.engagementArc.phases.map((phase, i) => {
                         const isActive = activePhase >= i;
                         const isCurrent = activePhase === i;
                         return (
@@ -450,7 +399,7 @@ const ExecutiveCoaching = () => {
                           >
                             <div style={{ display: "flex", alignItems: "baseline", gap: "12px", marginBottom: "8px" }}>
                               <span style={{ fontFamily: "Manrope, sans-serif", fontSize: "10px", fontWeight: 600, letterSpacing: "2px", textTransform: "uppercase", color: isActive ? "rgba(200,169,106,0.85)" : "rgba(200,169,106,0.2)", transition: "color 0.6s ease" }}>
-                                {phase.number}
+                                {PHASES_EN[i].number}
                               </span>
                               <span style={{ fontFamily: "Manrope, sans-serif", fontSize: "10px", fontWeight: 400, letterSpacing: "1px", color: isActive ? "rgba(245,242,236,0.35)" : "rgba(245,242,236,0.12)", textTransform: "uppercase", transition: "color 0.6s ease" }}>
                                 {phase.duration}
@@ -493,21 +442,16 @@ const ExecutiveCoaching = () => {
         <div className="max-w-[1400px] mx-auto px-6 md:px-16">
           <div className="max-w-[600px] mb-16">
             <ScrollReveal>
-              <p className="ct-overline text-gold/60 mb-5">What You Receive</p>
+              <p className="ct-overline text-gold/60 mb-5">{s.whatYouReceive.overline}</p>
               <h2
                 style={{ fontFamily: "Figtree, sans-serif", fontSize: "clamp(28px, 3.5vw, 44px)", fontWeight: 400, color: "#F5F2EC", lineHeight: 1.1 }}
               >
-                The Structure of the Engagement
+                {s.whatYouReceive.headline}
               </h2>
             </ScrollReveal>
           </div>
 
-          {[
-            { number: "01", title: "Regular 1:1 Sessions", description: "Biweekly 90-minute sessions — structured, held, and never rushed. A dedicated space for whatever is most present and alive in your development. Not a fixed curriculum delivered on schedule, but a living relationship with your actual growth." },
-            { number: "02", title: "Direct Messenger Access", description: "Between sessions, for brief check-ins and to capture emerging insights before they dissolve. The development doesn't pause between calls — and neither does the support." },
-            { number: "03", title: "Individually Designed Deep-Dive Sessions", description: "Longer format sessions for the work that requires more time, more depth, or specific preparation — designed entirely around the edges in your development that matter most right now." },
-            { number: "04", title: "Personalized Recordings", description: "Created specifically for you to support self-regulation and integration between sessions. A private resource, built around your actual nervous system, that travels wherever you go." },
-          ].map((item, i) => {
+          {s.whatYouReceive.items.map((item, i) => {
             const bgOpacity = 0.15 + (i / 3) * 0.21;
             return (
               <ScrollReveal key={i} delay={0.08 * i}>
@@ -520,7 +464,7 @@ const ExecutiveCoaching = () => {
                     }}
                   >
                     <span style={{ fontFamily: "Manrope, sans-serif", fontSize: "10px", fontWeight: 600, color: "#0F1A12", letterSpacing: "1px" }}>
-                      {item.number}
+                      {String(i + 1).padStart(2, '0')}
                     </span>
                   </div>
                 <div
@@ -572,7 +516,7 @@ const ExecutiveCoaching = () => {
           {isMobile ? (
             /* ── Mobile: vertical expand/collapse accordion ── */
             <div>
-              {FOR_WHOM_ITEMS.map((item, i) => {
+              {s.forWhom.items.map((item, i) => {
                 const isOpen = openForWhomMobile === i;
                 return (
                   <div key={i} style={{ borderBottom: "1px solid rgba(18,18,18,0.08)" }} data-testid={`for-whom-item-${i}`}>
@@ -581,7 +525,7 @@ const ExecutiveCoaching = () => {
                       style={{ width: "100%", textAlign: "left", padding: "20px 0", background: "none", border: "none", cursor: "pointer", display: "flex", justifyContent: "space-between", alignItems: "center" }}
                     >
                       <div style={{ display: "flex", gap: "14px", alignItems: "baseline" }}>
-                        <span style={{ fontFamily: "Manrope, sans-serif", fontSize: "10px", fontWeight: 600, letterSpacing: "0.25em", textTransform: "uppercase", color: "rgba(124,140,130,0.75)", flexShrink: 0 }}>{item.number}</span>
+                        <span style={{ fontFamily: "Manrope, sans-serif", fontSize: "10px", fontWeight: 600, letterSpacing: "0.25em", textTransform: "uppercase", color: "rgba(124,140,130,0.75)", flexShrink: 0 }}>{FOR_WHOM_NUMBERS[i]}</span>
                         <span style={{ fontFamily: "Figtree, sans-serif", fontSize: "17px", fontWeight: 400, color: "#121212", lineHeight: 1.3 }}>{item.title}</span>
                       </div>
                       <span style={{ fontFamily: "Manrope, sans-serif", fontSize: "22px", fontWeight: 300, color: "rgba(18,18,18,0.35)", lineHeight: 1, transform: isOpen ? "rotate(45deg)" : "none", transition: "transform 0.3s ease", flexShrink: 0, marginLeft: "12px" }}>+</span>
@@ -598,7 +542,7 @@ const ExecutiveCoaching = () => {
           ) : (
           /* ── Desktop/tablet: horizontal hover accordion ── */
           <div className="flex" style={{ height: "420px", overflow: "hidden" }}>
-            {FOR_WHOM_ITEMS.map((item, i) => {
+            {s.forWhom.items.map((item, i) => {
               const isActive = activeForWhom === i;
               return (
                 <div
@@ -611,7 +555,7 @@ const ExecutiveCoaching = () => {
                     transition: "flex 0.65s cubic-bezier(0.4, 0, 0.2, 1), background 0.4s ease",
                     position: "relative",
                     overflow: "hidden",
-                    borderRight: i < FOR_WHOM_ITEMS.length - 1 ? "1px solid rgba(18,18,18,0.07)" : "none",
+                    borderRight: i < s.forWhom.items.length - 1 ? "1px solid rgba(18,18,18,0.07)" : "none",
                     cursor: "default",
                     background: isActive ? "rgba(18,18,18,0.025)" : "#F5F2EC",
                   }}
@@ -622,14 +566,14 @@ const ExecutiveCoaching = () => {
                       {item.title}
                     </span>
                     <span style={{ fontFamily: "Cormorant Garamond, serif", fontSize: "28px", fontWeight: 300, color: "rgba(18,18,18,0.1)", lineHeight: 1, paddingBottom: "4px" }}>
-                      {item.number}
+                      {FOR_WHOM_NUMBERS[i]}
                     </span>
                   </div>
 
                   {/* Expanded */}
                   <div style={{ opacity: isActive ? 1 : 0, transition: "opacity 0.35s ease 0.22s", padding: "48px 64px 48px 52px", height: "100%", display: "flex", flexDirection: "column", justifyContent: "flex-end", minWidth: "380px" }}>
                     <span style={{ fontFamily: "Manrope, sans-serif", fontSize: "10px", fontWeight: 600, letterSpacing: "0.25em", textTransform: "uppercase", color: "rgba(124,140,130,0.75)", marginBottom: "20px", display: "block" }}>
-                      {item.number}
+                      {FOR_WHOM_NUMBERS[i]}
                     </span>
                     <h3 style={{ fontFamily: "Figtree, sans-serif", fontSize: "clamp(20px, 2vw, 28px)", fontWeight: 400, color: "#121212", lineHeight: 1.2, marginBottom: "18px", maxWidth: "360px" }}>
                       {item.title}
@@ -653,16 +597,16 @@ const ExecutiveCoaching = () => {
             {/* Left: heading */}
             <div style={{ flex: isMobile ? "none" : (isNarrow ? "0 0 28%" : "0 0 38%") }}>
               <ScrollReveal>
-                <p className="ct-overline text-sage mb-5">What Shifts</p>
+                <p className="ct-overline text-sage mb-5">{s.whatShifts.overline}</p>
                 <h2
                   style={{ fontFamily: "Figtree, sans-serif", fontSize: "clamp(28px, 3.2vw, 44px)", fontWeight: 400, color: "#121212", lineHeight: 1.1 }}
                 >
-                  The Shifts That Actually Hold
+                  {s.whatShifts.headline}
                 </h2>
                 <p
                   style={{ fontFamily: "Manrope, sans-serif", fontSize: "14px", fontWeight: 300, color: "rgba(18,18,18,0.45)", lineHeight: 1.8, marginTop: "20px" }}
                 >
-                  A sustained engagement changes the architecture of how you lead — not through effort, but through transformation that is genuinely structural.
+                  {s.whatShifts.subtitle}
                 </p>
               </ScrollReveal>
             </div>
@@ -670,8 +614,8 @@ const ExecutiveCoaching = () => {
             <div style={{ width: "1px", background: "rgba(18,18,18,0.08)", flexShrink: 0, alignSelf: "stretch" }} />
             {/* Right: numbered row blocks (Integral-diagram style, ivory-adapted) */}
             <div style={{ flex: 1 }}>
-              {WHAT_SHIFTS.map((item, i) => {
-                const bgOpacity = 0.025 + (i / (WHAT_SHIFTS.length - 1)) * 0.04;
+              {s.whatShifts.items.map((item, i) => {
+                const bgOpacity = 0.025 + (i / (s.whatShifts.items.length - 1)) * 0.04;
                 return (
                   <ScrollReveal key={i} delay={0.07 * i}>
                     <div className="flex items-stretch mb-2" data-testid={`shift-item-${i}`}>
@@ -710,7 +654,7 @@ const ExecutiveCoaching = () => {
                 <div className="flex items-center gap-3 mt-6">
                   <div style={{ width: "1px", height: "32px", background: "rgba(18,18,18,0.2)" }} />
                   <span style={{ fontFamily: "Cormorant Garamond, serif", fontSize: "14px", fontStyle: "italic", color: "rgba(18,18,18,0.35)" }}>
-                    Sustained engagement changes the architecture of how you lead
+                    {s.whatShifts.footer}
                   </span>
                 </div>
               </ScrollReveal>
@@ -882,7 +826,7 @@ const ExecutiveCoaching = () => {
                         {s.cta.headline}
                       </h2>
                       <p style={{ fontFamily: "Manrope, sans-serif", fontSize: "15px", fontWeight: 300, color: "rgba(227,222,215,0.45)", lineHeight: 1.75, marginTop: "18px" }}>
-                        All engagements begin with a conversation. There is no obligation — only the beginning of understanding whether this is the right fit.
+                        {s.cta.description}
                       </p>
                       <button
                         onClick={() => setShowFinalForm(true)}

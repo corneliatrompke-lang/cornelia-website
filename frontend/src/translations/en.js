@@ -346,9 +346,34 @@ const en = {
     executiveCoaching: {
       hero: { overline: "Executive Coaching & Advisory", headline: "1:1 Executive Coaching for Senior Leaders", subtitle: "The most private form of this work. A sustained partnership that goes where most advisors never reach." },
       description: { overline: "The Engagement", headline: "A Container for the Work That Actually Matters", body: "Executive coaching with Cornelia Trompke is not a structured programme with pre-defined outcomes. It is a sustained, confidential partnership built entirely around your actual development — the patterns you keep encountering, the edges you cannot move past, the capacities your leadership most needs right now.\n\nThe work draws on NARM and Integral Coaching to go beyond behavioural strategies — into the nervous system and identity structures that actually drive how you lead. It is precise, rigorous, and profoundly private." },
-      forWhom: { overline: "For Whom", headline: "This Work Is For You If...", items: ["You are a senior executive, founder, or board member ready for something that goes deeper than standard coaching", "You sense that what is holding you back is not strategic — it runs deeper than any framework has yet reached", "You are navigating a major transition and need an advisor who can hold the full complexity of it with you", "You want to lead from wholeness — not performance, anxiety, or depletion", "You are ready to commit real time and genuine attention to work that actually changes you"] },
+      forWhom: { overline: "For Whom", headline: "This Work Is For You If...", items: [
+        { title: "You've Outgrown Standard Coaching", body: "You are a senior executive, founder, or board member. You have done the personal development work before. Standard coaching no longer reaches the level where your real limitations actually live." },
+        { title: "The Pattern Runs Deeper Than Strategy", body: "You sense that what is holding you back is not a strategic or tactical problem — it is structural. The pattern recurs across different contexts and roles. No framework has yet reached it." },
+        { title: "You're Navigating Real Complexity", body: "You are in the middle of something significant — organisationally, professionally, or personally — and you need an advisor who can hold the full weight of it without minimising or reducing it." },
+        { title: "You Want to Lead From Wholeness", body: "You want to lead from a genuine centre — not from performance, anxiety, or depletion. You are looking for something more than optimisation, and you already know what that means." },
+        { title: "You Are Ready to Work at Depth", body: "You understand that real change takes time and genuine commitment. You are prepared to invest sustained attention in something that actually changes you — not just how you present yourself." },
+      ]},
       format: { overline: "Format", headline: "Structure of the Engagement", items: [{ label: "Duration", value: "3 to 12 months" }, { label: "Frequency", value: "Biweekly 60-minute sessions + deep dive sessions of 2 hours (number depends on program length)" }, { label: "Location", value: "Virtual" }, { label: "Language", value: "German or English" }, { label: "Intake", value: "By application and preliminary conversation" }] },
-      cta: { headline: "Ready to Begin?", button: "Begin an Application" },
+      cta: { headline: "Ready to Begin?", button: "Begin an Application", description: "All engagements begin with a conversation. There is no obligation — only the beginning of understanding whether this is the right fit." },
+      engagementArc: { overline: "The Engagement Arc", headline: "How the Work Unfolds Over Time", phases: [
+        { label: "Foundation", duration: "Months 1–3", description: "The ground is established — trust is built, patterns are mapped, and the real work comes into focus. The first sessions reveal not just what you want to change, but the deeper architecture of why it has not yet changed." },
+        { label: "Deepening", duration: "Months 4–8", description: "The real work begins here. Patterns become visible. The nervous system work takes root. What was invisible — and unavailable — starts to move. This is where change stops being conceptual and becomes lived." },
+        { label: "Integration", duration: "Months 9–12", description: "The changes consolidate into something structural. New ways of leading stop feeling effortful and begin to feel like you. The work moves from insight into embodied capacity — and that is what holds over time." },
+      ]},
+      whatYouReceive: { overline: "What You Receive", headline: "The Structure of the Engagement", items: [
+        { title: "Regular 1:1 Sessions", description: "Biweekly 90-minute sessions — structured, held, and never rushed. A dedicated space for whatever is most present and alive in your development. Not a fixed curriculum delivered on schedule, but a living relationship with your actual growth." },
+        { title: "Direct Messenger Access", description: "Between sessions, for brief check-ins and to capture emerging insights before they dissolve. The development doesn't pause between calls — and neither does the support." },
+        { title: "Individually Designed Deep-Dive Sessions", description: "Longer format sessions for the work that requires more time, more depth, or specific preparation — designed entirely around the edges in your development that matter most right now." },
+        { title: "Personalized Recordings", description: "Created specifically for you to support self-regulation and integration between sessions. A private resource, built around your actual nervous system, that travels wherever you go." },
+      ]},
+      whatShifts: { overline: "What Shifts", headline: "The Shifts That Actually Hold", subtitle: "A sustained engagement changes the architecture of how you lead — not through effort, but through transformation that is genuinely structural.", footer: "Sustained engagement changes the architecture of how you lead", items: [
+        "The inner architecture of how you make decisions becomes transparent — and genuinely available to change",
+        "Leadership presence deepens from performance to real, embodied authority that others can feel",
+        "The capacity to hold high complexity without losing clarity, steadiness, or inner regulation",
+        "Relationships built on genuine depth, directness, and real trust — not managed distance",
+        "The ability to act from your own centre, even under the most demanding and pressured conditions",
+        "A quality of inner spaciousness that changes the entire texture of how you lead and relate",
+      ]},
     },
     meditationRetreat: {
       hero: { overline: "Executive Retreats", headline: "Executive Meditation Retreat", subtitle: "Away from operations. Into the questions that actually matter." },
