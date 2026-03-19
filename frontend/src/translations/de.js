@@ -3,7 +3,7 @@ const de = {
     home: "Home",
     about: "Über Cornelia",
     method: "Die Methode",
-    workWithMe: "Zusammenarbeiten",
+    workWithMe: "Zusammenarbeit",
     contact: "Kontakt",
     cta: "Gespräch beginnen",
     workWithMeLinks: [
@@ -186,7 +186,7 @@ const de = {
     cta: { headline: "Bereit, die Arbeit zu erleben?", body: "Alle Engagements beginnen mit einem Gespräch. Erkunden Sie, welches Format für Sie am besten geeignet ist.", button: "Gespräch beginnen" },
   },
   workWithMe: {
-    hero: { overline: "Zusammenarbeiten", headline: "Vier Wege der Zusammenarbeit", subtitle: "Alle Engagements sind maßgeschneidert. Alle beginnen mit einem Gespräch." },
+    hero: { overline: "Zusammenarbeit", headline: "Vier Wege der Zusammenarbeit", subtitle: "Alle Engagements sind maßgeschneidert. Alle beginnen mit einem Gespräch." },
     services: [
       { number: "01", title: "1:1 Executive Coaching", description: "Eine nachhaltige, vertrauliche Partnerschaft für Senior Executives und Gründer, die bereit sind, von innen heraus zu entwickeln.", link: "/executive-coaching", cta: "Mehr erfahren" },
       { number: "02", title: "Executive Meditations-Retreat", description: "Ein immersives Intensivformat, das Raum für die Fragen schafft, die kein operativer Kalender erlaubt.", link: "/executive-retreats", cta: "Mehr erfahren" },
