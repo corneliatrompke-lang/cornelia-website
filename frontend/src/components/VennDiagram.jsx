@@ -149,25 +149,26 @@ const VennDiagram = ({ showLogo = true, showArrow = true, staticView = false, th
         </clipPath>
         <path id={staticView ? "vennLeftStatic"  : "vennLeft"}  d={leftPath}  />
         <path id={staticView ? "vennRightStatic" : "vennRight"} d={rightPath} />
-        {/* Left exclusive: visible everywhere except inside right circle */}
+        {/* Tiny ~40px masks at the two crossing nodes only */}
         <mask id={leftExclId}>
           <rect width={W} height={H} fill="white" />
-          <circle cx={rx} cy={LY} r={R} fill="black" />
+          <circle cx={intX} cy={topY} r={40} fill="black" />
+          <circle cx={intX} cy={botY} r={40} fill="black" />
         </mask>
-        {/* Right exclusive: visible everywhere except inside left circle */}
         <mask id={rightExclId}>
           <rect width={W} height={H} fill="white" />
-          <circle cx={lx} cy={LY} r={R} fill="black" />
+          <circle cx={intX} cy={topY} r={40} fill="black" />
+          <circle cx={intX} cy={botY} r={40} fill="black" />
         </mask>
-        {/* Intersection only: visible only in the lens zone */}
         <mask id={lensId}>
           <rect width={W} height={H} fill="black" />
-          <path d={fullLens} fill="white" />
+          <circle cx={intX} cy={topY} r={40} fill="white" />
+          <circle cx={intX} cy={botY} r={40} fill="white" />
         </mask>
       </defs>
 
       <g clipPath={`url(#${clipId})`}>
-        {/* Left orbit — exclusive area only (outside right circle) */}
+        {/* Left orbit — full circle minus the two tiny crossing nodes */}
         <g mask={`url(#${leftExclId})`}>
           <g style={orbit("left")}>
             <text {...textAttrs}>
@@ -175,7 +176,7 @@ const VennDiagram = ({ showLogo = true, showArrow = true, staticView = false, th
             </text>
           </g>
         </g>
-        {/* Right orbit — exclusive area only (outside left circle) */}
+        {/* Right orbit — full circle minus the two tiny crossing nodes */}
         <g mask={`url(#${rightExclId})`}>
           <g style={orbit("right")}>
             <text {...textAttrs}>
@@ -183,7 +184,7 @@ const VennDiagram = ({ showLogo = true, showArrow = true, staticView = false, th
             </text>
           </g>
         </g>
-        {/* Left orbit in intersection — alternates visibility */}
+        {/* Left orbit at crossing nodes — alternates in */}
         <g mask={`url(#${lensId})`} style={{ opacity: lensShowLeft ? 1 : 0, transition: "opacity 1.5s ease-in-out" }}>
           <g style={orbit("left")}>
             <text {...textAttrs}>
@@ -191,7 +192,7 @@ const VennDiagram = ({ showLogo = true, showArrow = true, staticView = false, th
             </text>
           </g>
         </g>
-        {/* Right orbit in intersection — inverse of left */}
+        {/* Right orbit at crossing nodes — alternates in (inverse) */}
         <g mask={`url(#${lensId})`} style={{ opacity: lensShowLeft ? 0 : 1, transition: "opacity 1.5s ease-in-out" }}>
           <g style={orbit("right")}>
             <text {...textAttrs}>
