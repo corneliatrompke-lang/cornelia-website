@@ -10,7 +10,7 @@ import SEOHead from "../../components/SEOHead";
 
 // ─── Assets ───────────────────────────────────────────────────────────────────
 const HERO_VIDEO_DESKTOP =
-  "https://customer-assets.emergentagent.com/job_nervous-system-exec/artifacts/mglao982_Hero%202%20-%20desktop.mp4";
+  "https://customer-assets.emergentagent.com/job_7c54d528-9ec4-446c-a068-82b34262f2cf/artifacts/i6p280t8_0_Meditation_Yoga_1920x1010.mp4";
 const HERO_VIDEO_MOBILE =
   "https://customer-assets.emergentagent.com/job_nervous-system-exec/artifacts/j6z9yj5l_Hero%20-%20mobile.mp4";
 
