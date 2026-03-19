@@ -477,7 +477,7 @@ const ExecutiveCoaching = () => {
                     }}
                   >
                     <p
-                      style={{ fontFamily: "Figtree, sans-serif", fontSize: "16px", fontWeight: 400, color: "rgba(245,242,236,0.82)", flexShrink: 0, minWidth: isMobile ? "auto" : "260px" }}
+                      style={{ fontFamily: "Figtree, sans-serif", fontSize: "16px", fontWeight: 400, color: "rgba(245,242,236,0.82)", flexShrink: 0, width: isMobile ? "auto" : "280px" }}
                     >
                       {item.title}
                     </p>
