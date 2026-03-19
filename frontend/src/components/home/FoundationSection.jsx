@@ -1,5 +1,5 @@
 import React, { useRef, useEffect, useState } from "react";
-import { motion, useScroll, useTransform, useMotionValueEvent } from "framer-motion";
+import { motion, useScroll, useTransform, useMotionValueEvent, useMotionTemplate } from "framer-motion";
 import { useLanguage } from "../../context/LanguageContext";
 
 const BANNER_SRC =
@@ -53,44 +53,51 @@ export default function FoundationSection() {
 
   const { scrollYProgress: fp } = useScroll({
     target: outerRef,
-    offset: ["start start", "end end"],
+    offset: ["start end", "end end"],
   });
 
-  // ── Banner is always visible — serves as visual anchor during natural scroll ──
-  // Circle/square animate cinematically after section pins
-  const circleX = useTransform(fp, [0.05, 0.58], [620, 0]);
-  const circleO = useTransform(fp, [0.03, 0.10], [0, 1]);
+  // Desktop pins at fp ≈ 0.333 (100vh / 300vh)
+  // Mobile  pins at fp ≈ 0.500 (100vh / 200vh)
+  // Animations mapped so after-pin range = old total range → identical scroll speed
 
-  const squareX = useTransform(fp, [0.05, 0.58], [-560, 0]);
-  const squareY = useTransform(fp, [0.05, 0.58], [160, 0]);
-  const squareO = useTransform(fp, [0.03, 0.10], [0, 1]);
+  // ── Banner clip reveal during natural scroll-in (pre-pin) ──
+  const bannerClipTop = useTransform(fp, [0, 0.333], [70, 0]);
+  const bannerClip = useMotionTemplate`inset(${bannerClipTop}% 0 0 0)`;
+
+  // ── Desktop: images assemble after section pins ──────────────
+  const circleX = useTransform(fp, [0.37, 0.72], [620, 0]);
+  const circleO = useTransform(fp, [0.37, 0.52], [0, 1]);
+
+  const squareX = useTransform(fp, [0.37, 0.72], [-560, 0]);
+  const squareY = useTransform(fp, [0.37, 0.72], [160, 0]);
+  const squareO = useTransform(fp, [0.37, 0.51], [0, 1]);
 
   // ── Card rises after images settle ─────────────────────────────
-  const cardY = useTransform(fp, [0.50, 0.70], [180, 0]);
-  const cardO = useTransform(fp, [0.50, 0.66], [0, 1]);
+  const cardY = useTransform(fp, [0.67, 0.80], [180, 0]);
+  const cardO = useTransform(fp, [0.67, 0.77], [0, 1]);
 
   // ── Text cascade ───────────────────────────────────────────────
-  const dividerScaleX = useTransform(fp, [0.68, 0.80], [0, 1]);
-  const dividerO      = useTransform(fp, [0.68, 0.78], [0, 1]);
+  const dividerScaleX = useTransform(fp, [0.79, 0.87], [0, 1]);
+  const dividerO      = useTransform(fp, [0.79, 0.85], [0, 1]);
 
-  const headingY = useTransform(fp, [0.73, 0.86], [-100, 0]);
-  const headingO = useTransform(fp, [0.73, 0.86], [0, 1]);
+  const headingY = useTransform(fp, [0.82, 0.91], [-100, 0]);
+  const headingO = useTransform(fp, [0.82, 0.91], [0, 1]);
 
-  const para0Y = useTransform(fp, [0.82, 0.92], [80, 0]);
-  const para0O = useTransform(fp, [0.82, 0.92], [0, 1]);
+  const para0Y = useTransform(fp, [0.88, 0.95], [80, 0]);
+  const para0O = useTransform(fp, [0.88, 0.95], [0, 1]);
 
-  const para1Y = useTransform(fp, [0.88, 0.97], [80, 0]);
-  const para1O = useTransform(fp, [0.88, 0.97], [0, 1]);
+  const para1Y = useTransform(fp, [0.92, 0.98], [80, 0]);
+  const para1O = useTransform(fp, [0.92, 0.98], [0, 1]);
 
-  // ── Mobile text cascade — spread over 150vh (earlier trigger points) ──
-  const mHeadingY = useTransform(fp, [0.20, 0.45], [-80, 0]);
-  const mHeadingO = useTransform(fp, [0.18, 0.42], [0, 1]);
+  // ── Mobile: text cascade after pin (fp=0.5) ─────────────────
+  const mHeadingY = useTransform(fp, [0.60, 0.73], [-80, 0]);
+  const mHeadingO = useTransform(fp, [0.59, 0.71], [0, 1]);
 
-  const mPara0Y = useTransform(fp, [0.38, 0.60], [60, 0]);
-  const mPara0O = useTransform(fp, [0.35, 0.58], [0, 1]);
+  const mPara0Y = useTransform(fp, [0.69, 0.80], [60, 0]);
+  const mPara0O = useTransform(fp, [0.68, 0.79], [0, 1]);
 
-  const mPara1Y = useTransform(fp, [0.55, 0.78], [60, 0]);
-  const mPara1O = useTransform(fp, [0.52, 0.76], [0, 1]);
+  const mPara1Y = useTransform(fp, [0.78, 0.89], [60, 0]);
+  const mPara1O = useTransform(fp, [0.76, 0.88], [0, 1]);
 
   // ── Particle canvas RAF ────────────────────────────────────────
   useEffect(() => {
@@ -211,8 +218,8 @@ export default function FoundationSection() {
               height: "100%",
             }}
           >
-            {/* Banner — always visible, serves as anchor during natural scroll */}
-            <div
+            {/* Banner — reveals from bottom 30% upward as user scrolls */}
+            <motion.div
               style={{
                 position: "absolute",
                 top: 0,
@@ -220,6 +227,7 @@ export default function FoundationSection() {
                 right: "13%",
                 height: 450,
                 overflow: "hidden",
+                clipPath: bannerClip,
               }}
             >
               <img
@@ -227,7 +235,7 @@ export default function FoundationSection() {
                 alt=""
                 style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center center" }}
               />
-            </div>
+            </motion.div>
 
             {/* Circle — 260px, sweeps 620px from the right */}
             <motion.div
