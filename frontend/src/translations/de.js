@@ -220,7 +220,7 @@ const de = {
         { title: "Individuell gestaltete Vertiefungssitzungen", description: "Längere Sitzungsformate für die Arbeit, die mehr Zeit, mehr Tiefe oder spezifische Vorbereitung erfordert — vollständig um die Bereiche Ihrer Entwicklung herum gestaltet, die gerade am wesentlichsten sind." },
         { title: "Personalisierte Aufnahmen", description: "Speziell für Sie erstellt, um Selbstregulation und Integration zwischen den Sitzungen zu unterstützen. Eine private Ressource, die um Ihr tatsächliches Nervensystem herum aufgebaut ist und Sie überallhin begleitet." },
       ]},
-      whatShifts: { overline: "Was sich verändert", headline: "Die Veränderungen, die wirklich Bestand haben", subtitle: "Ein nachhaltiges Engagement verändert die Architektur Ihrer Führung — nicht durch Anstrengung, sondern durch Transformation, die wirklich strukturell ist.", footer: "Nachhaltiges Engagement verändert die Architektur Ihrer Führung", items: [
+      whatShifts: { overline: "Was sich verändert", headline: "Veränderungen, die nachhaltig sind", subtitle: "Langfristige Begleitung verändert die Art, wie Sie führen — nicht durch Anstrengung, sondern durch Wandel, der wirklich greift.", footer: "Nachhaltiges Engagement verändert die Architektur Ihrer Führung", items: [
         "Die innere Architektur Ihrer Entscheidungsfindung wird transparent — und wirklich veränderbar",
         "Führungspräsenz vertieft sich von Performance zu echter, verkörperter Autorität, die andere spüren können",
         "Die Fähigkeit, hohe Komplexität zu halten, ohne Klarheit, Stabilität oder innere Regulation zu verlieren",

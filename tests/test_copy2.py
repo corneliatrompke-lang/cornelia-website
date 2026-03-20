@@ -1,7 +1,7 @@
 import asyncio
 from playwright.async_api import async_playwright
 
-APP_URL = "https://cornelia-coaching.preview.emergentagent.com"
+APP_URL = "https://executive-luxury-1.preview.emergentagent.com"
 
 async def get_page_text(page, url):
     await page.goto(url)
