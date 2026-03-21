@@ -30,7 +30,7 @@ const en = {
     aboutPreview: {
       overline: "Meet Cornelia",
       headline: "An Advisor Who Works Where Most Never Go",
-      body: "With over two decades at the intersection of executive leadership, trauma-informed psychology, and integral coaching, Cornelia Trompke brings something genuinely rare: the rigour of systems thinking, the precision of NARM-based developmental work, and a quiet authority built through thousands of hours alongside senior leaders navigating what truly matters.",
+      body: "With over two decades at the intersection of executive leadership, trauma-informed psychology, and integral coaching, Cornelia Trompke brings something genuinely rare: the depth of systems thinking, the precision of NARM-based developmental work, and a quiet authority built through thousands of hours alongside senior leaders navigating what truly matters.",
       cta: "Meet Cornelia",
     },
     services: {
