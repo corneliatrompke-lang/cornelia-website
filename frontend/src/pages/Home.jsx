@@ -116,7 +116,7 @@ const Home = () => {
     <div>
       <SEOHead
         title="Executive Leadership Coaching Berlin & Worldwide"
-        description="Executive coaching, organisational advisory, team facilitation, and retreat programmes for leaders committed to lasting change. By Cornelia Trompke."
+        description="Executive coaching, advisory, and retreats for leaders committed to lasting change. By Cornelia Trompke."
         path="/"
         jsonLd={{
           "@context": "https://schema.org",
