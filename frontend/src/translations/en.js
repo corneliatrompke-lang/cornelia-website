@@ -15,7 +15,7 @@ const en = {
   },
   home: {
     hero: {
-      overline: "Executive Coaching & Leadership Development · Berlin & Worldwide",
+      overline: "Executive Coaching & Leadership Advisory · Berlin & Worldwide",
       tagline: "Redefine How You Lead — and What Your Organisation Can Become",
       subtitle: "Executive coaching, advisory, and retreats for leaders committed to lasting change.",
       cta: "Begin the Conversation",
