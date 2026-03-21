@@ -164,26 +164,26 @@ const de = {
     intro: {
       overline: "Die Integration",
       headline: "Die meisten Führungsentwicklungsprogramme arbeiten an der Oberfläche",
-      body: "Strategien, Rahmenwerke, Kompetenzmodelle und Feedback-Systeme — diese Werkzeuge arbeiten auf der Verhaltensebene. Sie können Performance am Rand verbessern. Sie verändern selten die Führungskraft.\n\nDie hier angebotene Arbeit operiert auf einer anderen Ebene: auf der Ebene von Identität, Nervensystem und den tiefen Mustern von Verbindung und Trennung, die das Führungsverhalten unter Druck tatsächlich prägen.",
+      body: "Strategien, Rahmenwerke, Kompetenzmodelle und Feedback-Systeme — diese Werkzeuge arbeiten auf der Verhaltensebene. Sie können Performance an der Oberfläche verbessern. Sie verändern selten die Führungskraft.\n\nDie hier angebotene Arbeit operiert auf einer anderen Ebene: auf der Ebene von Identität, Nervensystem und den tiefen Mustern von Verbindung und Trennung, die das Führungsverhalten unter Druck tatsächlich prägen.",
     },
     narm: {
       overline: "Methodik Eins",
       headline: "NARM — NeuroAffective Relational Model",
-      body: "Von Dr. Laurence Heller entwickelt, ist NARM ein führender traumainformierter Ansatz zur menschlichen Entwicklung, der an der Schnittstelle von Neurowissenschaft, Entwicklungspsychologie und somatischem Gewahrsein arbeitet. Anders als klassische Traumatherapie geht es bei NARM nicht um die Verarbeitung der Vergangenheit — es geht darum, die adaptiven Überlebensstrategien loszulassen, die uns einst dienten, aber jetzt unsere Kapazität einschränken, mit voller Präsenz zu führen und in Beziehung zu treten.\n\nFür Führungskräfte bedeutet das eine tiefgreifende Verschiebung: von reaktiver zu regulierter Führung; von leistungsbasierter Identität zu authentischer Autorität.",
+      body: "Von Dr. Laurence Heller entwickelt, ist NARM ein führender traumainformierter Ansatz zur menschlichen Entwicklung, der an der Schnittstelle von Neurowissenschaft, Entwicklungspsychologie und somatischem Gewahrsein arbeitet. Anders als klassische Traumatherapie geht es bei NARM nicht um die Verarbeitung der Vergangenheit — es geht darum, die adaptiven Überlebensstrategien loszulassen, die uns einst dienten, aber jetzt unsere Fähigkeit einschränken, mit voller Präsenz zu führen und in Beziehung zu treten.\n\nFür Führungskräfte bedeutet das eine tiefgreifende Verschiebung: von reaktiver zu regulierter Führung; von leistungsbasierter Identität zu authentischer Autorität.",
       points: ["Nervensystemregulation und Kapazitätsaufbau", "Arbeit mit adaptiven Überlebensstrategien, die Führungseffektivität einschränken", "Wiederherstellung des Zugangs zu Verbindung, Lebendigkeit und authentischer Präsenz", "Resilienzentwicklung durch echte Kapazität — nicht durch Unterdrückung"],
     },
     integral: {
       overline: "Methodik Zwei",
       headline: "Integral Coaching",
-      body: "Integral Coaching, entwickelt von Integral Coaching Canada, erfasst den ganzen Menschen in seinem vollständigsten Kontext — nicht nur die professionelle Persona, sondern die gesamte Struktur, wie eine Person ihre Welt versteht, sich zu anderen verhält und wächst. Es basiert auf Ken Wilbers Integraler Theorie und Robert Kegans Entwicklungsarbeit.\n\nIntegral Coaching baut nicht einfach neue Verhaltensweisen auf — es entwickelt neue Kapazitäten. Es arbeitet mit dem, was eine Person sehen, tun und sein kann — und erweitert dann diese Kante in allen Dimensionen gleichzeitig.",
+      body: "Integral Coaching, entwickelt von Integral Coaching Canada, erfasst den ganzen Menschen in seinem vollständigsten Kontext — nicht nur die professionelle Persona, sondern die gesamte Struktur, wie eine Person ihre Welt versteht, sich zu anderen verhält und wächst. Es basiert auf Ken Wilbers Integraler Theorie und Robert Kegans Entwicklungsarbeit.\n\nIntegral Coaching baut nicht einfach neue Verhaltensweisen auf — es entwickelt neue Kapazitäten. Es arbeitet mit dem, was eine Person sehen, tun und sein kann — und erweitert diese Grenze in allen Dimensionen gleichzeitig.",
       points: ["Entwicklung des gesamten Menschen, nicht nur beruflicher Kompetenzen", "Arbeit mit der aktuellen Weltanschauung der Führungskraft und Erweiterung ihrer Grenzen", "Nachhaltige Transformation über Zeit, keine temporären Leistungsverbesserungen", "Coaching, das Kontext, Kultur, Verkörperung und Bedeutung berücksichtigt"],
     },
     integration: {
       overline: "Die Synthese",
       headline: "Zusammen schaffen sie etwas Seltenes",
-      body: "Wenn NARM und Integral Coaching integriert werden, entsteht eine Form der Arbeit, die die volle Tiefe der Führungsentwicklung adressiert — das Biologische, das Psychologische, das Relationale und das Strukturelle. Es ist diese Integration, die der Arbeit ihre besondere Qualität verleiht: still transformativ, tiefgreifend präzise und dauerhaft.",
+      body: "Wenn NARM und Integral Coaching integriert werden, entsteht eine Form der Arbeit, die die volle Tiefe der Führungsentwicklung adressiert — das Biologische, das Psychologische, das Relationale und das Strukturelle. Es ist diese Integration, die der Arbeit ihre besondere Qualität verleiht: leise transformativ, tiefgreifend präzise und dauerhaft.",
     },
-    cta: { headline: "Bereit, die Arbeit zu erleben?", body: "Alle Engagements beginnen mit einem Gespräch. Erkunden Sie, welches Format für Sie am besten geeignet ist.", button: "Gespräch beginnen" },
+    cta: { headline: "Bereit für den nächsten Schritt?", body: "Alle Engagements beginnen mit einem Gespräch. Erkunden Sie, welches Format für Sie am besten geeignet ist.", button: "Gespräch beginnen" },
   },
   workWithMe: {
     hero: { overline: "Zusammenarbeit", headline: "Vier Wege der Zusammenarbeit", subtitle: "Alle Engagements sind maßgeschneidert. Alle beginnen mit einem Gespräch." },
