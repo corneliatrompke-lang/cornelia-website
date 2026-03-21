@@ -15,9 +15,9 @@ const de = {
   },
   home: {
     hero: {
-      overline: "Cornelia Trompke Consulting & Coaching",
-      tagline: "Was sich in Ihnen verändert, verändert alles",
-      subtitle: "Traumainformierte Führungsentwicklung für Senior Executives und Führungsteams — durch Nervensystemregulation und Integral Coaching.",
+      overline: "Executive Coaching & Führungsentwicklung · Berlin & Weltweit",
+      tagline: "Verändern Sie, wie Sie führen — und was Ihre Organisation werden kann",
+      subtitle: "Executive Coaching, Beratung und Retreats für Führungskräfte, die auf nachhaltige Veränderung setzen.",
       cta: "Gespräch beginnen",
       ctaSecondary: "Leistungen erkunden",
     },
