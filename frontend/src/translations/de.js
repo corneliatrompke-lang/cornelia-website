@@ -197,7 +197,7 @@ const de = {
     intro: {
       overline: "Die Integration",
       headline: "Die meisten Führungsentwicklungsprogramme arbeiten an der Oberfläche",
-      body: "Strategien, Rahmenwerke, Kompetenzmodelle und Feedback-Systeme — diese Werkzeuge arbeiten auf der Verhaltensebene. Sie können Performance an der Oberfläche verbessern. Sie verändern selten die Führungskraft.\n\nDie hier angebotene Arbeit operiert auf einer anderen Ebene: auf der Ebene von Identität, Nervensystem und den tiefen Mustern von Verbindung und Trennung, die das Führungsverhalten unter Druck tatsächlich prägen.",
+      body: "Strategien, Rahmenwerke, Kompetenzmodelle und Feedback-Systeme — diese Werkzeuge arbeiten auf der Verhaltensebene. Sie können Performance an der Oberfläche verbessern. Sie verändern selten die Führungskraft.\n\nDie hier angebotene Arbeit wirkt auf einer anderen Ebene: auf der Ebene von Identität, Nervensystem und den tiefen Mustern von Verbindung und Trennung, die das Führungsverhalten unter Druck tatsächlich prägen.",
     },
     narm: {
       overline: "Methodik Eins",
@@ -208,7 +208,7 @@ const de = {
     integral: {
       overline: "Methodik Zwei",
       headline: "Integral Coaching",
-      body: "Integral Coaching, entwickelt von Integral Coaching Canada, erfasst den ganzen Menschen in seinem vollständigsten Kontext — nicht nur die professionelle Persona, sondern die gesamte Struktur, wie eine Person ihre Welt versteht, sich zu anderen verhält und wächst. Es basiert auf Ken Wilbers Integraler Theorie und Robert Kegans Entwicklungsarbeit.\n\nIntegral Coaching baut nicht einfach neue Verhaltensweisen auf — es entwickelt neue Kapazitäten. Es arbeitet mit dem, was eine Person sehen, tun und sein kann — und erweitert diese Grenze in allen Dimensionen gleichzeitig.",
+      body: "Integral Coaching, entwickelt von Integral Coaching Canada, erfasst den ganzen Menschen in seinem vollständigsten Kontext — nicht nur die professionelle Persona, sondern die gesamte Struktur, wie eine Person ihre Welt versteht, sich zu anderen verhält und wächst. Es basiert auf Ken Wilbers Integraler Theorie und Robert Kegans Entwicklungsarbeit.\n\nIntegral Coaching baut nicht einfach neue Verhaltensweisen auf — es entwickelt neue Fähigkeiten. Es arbeitet mit dem, was eine Person sehen, tun und sein kann — und erweitert diese Grenze in allen Dimensionen gleichzeitig.",
       points: ["Entwicklung des gesamten Menschen, nicht nur beruflicher Kompetenzen", "Arbeit mit der aktuellen Weltanschauung der Führungskraft und Erweiterung ihrer Grenzen", "Nachhaltige Transformation über Zeit, keine temporären Leistungsverbesserungen", "Coaching, das Kontext, Kultur, Verkörperung und Bedeutung berücksichtigt"],
     },
     integration: {
@@ -272,20 +272,20 @@ const de = {
     teamFacilitation: {
       hero: { overline: "03 — Team Facilitation", headline: "Facilitation für Führungsteams", subtitle: "Die unsichtbaren Dynamiken von Teams — sichtbar gemacht, bearbeitbar und transformativ." },
       description: { overline: "Das Engagement", headline: "Die meisten Teamprobleme sind keine Teamprobleme", body: "Die meisten Führungsteam-Interventionen konzentrieren sich auf Kommunikation, Alignment und Entscheidungsprozesse. Das sind echte Herausforderungen — aber selten die Quelle des Problems. Die Quelle ist fast immer das relationale Feld: die unsichtbaren Muster von Macht, Angst, Schutz und Geschichte, die unter der Oberfläche jedes Teams wirken.\n\nDiese Arbeit macht dieses Feld sichtbar. Und bearbeitbar." },
-      forWhom: { overline: "Für wen", headline: "Die richtige Passung", items: ["Executive Führungsteams (4–12 Personen), die Komplexität oder Konflikt navigieren", "Vorstände oder Beratungsgremien an kritischen strategischen Wendepunkten", "Teams mit anhaltender Unterperformance trotz struktureller Interventionen", "Neu geformte Führungsteams, die tiefe relationale Grundlagen brauchen"] },
+      forWhom: { overline: "Für wen", headline: "Die richtige Passung", items: ["Executive Führungsteams (4–12 Personen), die Komplexität oder Konflikt navigieren", "Vorstände oder Beratungsgremien an kritischen strategischen Wendepunkten", "Teams mit anhaltender Unterperformance trotz struktureller Interventionen", "Neu zusammengesetzte Führungsteams, die ein tragfähiges Beziehungsfundament brauchen"] },
       format: { overline: "Format", headline: "Engagement-Design", items: [{ label: "Dauer", value: "2 bis 3-tägiges Intensiv mit optionalen Folgesitzungen" }, { label: "Vorbereitung", value: "Individuelle Vorgespräche mit jedem Teammitglied" }, { label: "Ort", value: "Auswärts in einem ausgewählten Wohn- oder Retreat-Venue" }, { label: "Gruppengröße", value: "4 bis 12 Teilnehmer" }, { label: "Sprache", value: "Deutsch oder Englisch" }] },
       cta: { headline: "Dieses Format erkunden", button: "Gespräch beginnen" },
     },
     organisationalAdvisory: {
       hero: { overline: "04 — Advisory", headline: "Beratung für organisationalen Wandel", subtitle: "Strategische Intelligenz, die berücksichtigt, was die meisten Beratungsansätze verfehlen." },
       description: { overline: "Die Beratung", headline: "Organisationen haben auch Nervensysteme", body: "Jede Organisation hat ein Nervensystem — ein Netzwerk von Reaktionsmustern, relationalen Dynamiken und Überlebensstrategien, das unterhalb der Ebene von Strategie und Struktur wirkt. Die meisten Transformationsprojekte adressieren die strukturelle Ebene. Die kulturelle Ebene. Selten die tiefere Ebene, wo Muster tatsächlich kodiert sind.\n\nCornelia Trompkes Beratungsarbeit wirkt auf allen drei Ebenen gleichzeitig." },
-      forWhom: { overline: "Für wen", headline: "Strategische Beratung für...", items: ["Organisationen an strategischen Wendepunkten: Fusionen, Restrukturierungen, Führungswechsel", "Unternehmen, wo kulturelle Transformation trotz struktureller Veränderung ins Stocken geraten ist", "Führungsteams, wo Strategieklarheit vorhanden ist, aber Umsetzung konsistent scheitert", "Gründer beim Übergang von gründergeführten zu führungsgeführten Organisationen", "Vorstände, die komplexe Führungsnachfolge und Kulturtransformation navigieren"] },
+      forWhom: { overline: "Für wen", headline: "Strategische Beratung für...", items: ["Organisationen an strategischen Wendepunkten: Fusionen, Restrukturierungen, Führungswechsel", "Unternehmen, wo kulturelle Transformation trotz struktureller Veränderung ins Stocken geraten ist", "Führungsteams, wo Strategieklarheit vorhanden ist, aber die Umsetzung immer wieder scheitert", "Gründer beim Übergang von gründergeführten zu führungsgeführten Organisationen", "Vorstände, die komplexe Führungsnachfolge und Kulturtransformation navigieren"] },
       format: { overline: "Format", headline: "Beratungsstruktur", items: [{ label: "Dauer", value: "Mindestens 6 Monate, typischerweise 12–18 Monate" }, { label: "Umfang", value: "Diagnostikphase, systemisches Mapping, Führungsarchitektur, nachhaltige Begleitung" }, { label: "Zugang", value: "Direkter Zugang zum Senior Leadership Team und Vorstand" }, { label: "Ansatz", value: "Hybrid: persönliche Intensivphasen + virtuelle Beratungspräsenz" }, { label: "Sprache", value: "Deutsch oder Englisch" }] },
       cta: { headline: "Beratungsgespräch beginnen", button: "Anfrage stellen" },
     },
   },
   contact: {
-    hero: { overline: "Kontakt / Anfrage", headline: "Gespräch beginnen", subtitle: "Engagements sind selektiv und beginnen mit Verständnis. Alle Anfragen werden persönlich beantwortet." },
+    hero: { overline: "Kontakt / Anfrage", headline: "Gespräch beginnen", subtitle: "Zusammenarbeit entsteht bewusst — und beginnt mit Verständnis. Alle Anfragen werden persönlich beantwortet." },
     form: {
       headline: "Anfrage senden",
       name: "Vollständiger Name",
@@ -293,7 +293,7 @@ const de = {
       organisation: "Organisation",
       role: "Ihre Rolle / Titel",
       message: "Was bringt Sie hierher?",
-      messagePlaceholder: "Beschreiben Sie kurz, was Sie gerade navigieren und warum diese Arbeit relevant sein könnte...",
+      messagePlaceholder: "Beschreiben Sie kurz, womit Sie sich gerade auseinandersetzen und warum diese Arbeit relevant sein könnte...",
       submit: "Anfrage absenden",
       success: "Vielen Dank. Ihre Anfrage wurde erhalten. Cornelia wird persönlich innerhalb von 2–3 Werktagen antworten.",
       error: "Etwas ist schiefgegangen. Bitte versuchen Sie es erneut oder kontaktieren Sie uns direkt über WhatsApp.",
