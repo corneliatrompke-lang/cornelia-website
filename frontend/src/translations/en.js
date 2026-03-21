@@ -10,14 +10,14 @@ const en = {
       { title: "Executive Coaching & Advisory", path: "/executive-coaching" },
       { title: "Executive Retreats", path: "/executive-retreats" },
       { title: "Leadership Team Facilitation", path: "/leadership-team-facilitation" },
-      { title: "Organizational Advisory for People & Culture Transformation", path: "/organizational-advisory" },
+      { title: "Organisational Advisory for People & Culture Transformation", path: "/organizational-advisory" },
     ],
   },
   home: {
     hero: {
       overline: "Executive Coaching & Leadership Advisory · Berlin & Worldwide",
       tagline: "Redefine How You Lead — and What Your Organisation Can Become",
-      subtitle: "Executive coaching, advisory, and retreats for leaders committed to lasting change.",
+      subtitle: "Executive coaching, organisational advisory, and retreats for leaders committed to lasting change.",
       cta: "Begin the Conversation",
       ctaSecondary: "Explore the Work",
     },
@@ -40,7 +40,7 @@ const en = {
         { number: "01", title: "Executive Coaching & Advisory", description: "A deeply confidential 1:1 partnership for individual transformation. Designed for executives who are ready to lead from wholeness — not performance.", link: "/executive-coaching" },
         { number: "02", title: "Executive Retreats", description: "An immersive residential format that creates the space for the questions that never surface in the pace of daily operations.", link: "/executive-retreats" },
         { number: "03", title: "Leadership Team Facilitation", description: "Deep process work with leadership teams navigating complexity, conflict, and the invisible dynamics shaping how they perform together.", link: "/leadership-team-facilitation" },
-        { number: "04", title: "Organizational Advisory for People & Culture Transformation", description: "Strategic advisory for organisations at inflection points — culture, structure, and leadership architecture examined at genuine depth.", link: "/organizational-advisory" },
+        { number: "04", title: "Organisational Advisory for People & Culture Transformation", description: "Strategic advisory for organisations at inflection points — culture, structure, and leadership architecture examined at genuine depth.", link: "/organizational-advisory" },
       ],
       cta: "View All Engagements",
     },
@@ -107,7 +107,7 @@ const en = {
     hero: {
       overline: "About Me",
       headline: "Cornelia Trompke",
-      subheadline: "Executive Coach · Organizational Developer · Leadership Team Facilitator · Executive Meditation Retreats",
+      subheadline: "Executive Coach · Organisational Developer · Leadership Team Facilitator · Executive Meditation Retreats",
     },
     originStory: {
       overline: "The Journey",
@@ -337,7 +337,7 @@ const en = {
       { number: "01", title: "Executive Coaching & Advisory", description: "A sustained, deeply confidential 1:1 partnership for senior executives and founders ready to develop from the inside out — not just sharpen the outside.", link: "/executive-coaching", cta: "Explore This Work" },
       { number: "02", title: "Executive Retreats", description: "An immersive residential retreat format that creates the space for the questions no operational calendar ever makes room for.", link: "/executive-retreats", cta: "Explore This Work" },
       { number: "03", title: "Leadership Team Facilitation", description: "Deep facilitation work with executive leadership teams navigating complexity, conflict, and the dynamics shaping how they perform together.", link: "/leadership-team-facilitation", cta: "Explore This Work" },
-      { number: "04", title: "Organizational Advisory for People & Culture Transformation", description: "Strategic advisory for organisations at critical inflection points — culture, structure, and leadership examined at genuine depth.", link: "/organizational-advisory", cta: "Explore This Work" },
+      { number: "04", title: "Organisational Advisory for People & Culture Transformation", description: "Strategic advisory for organisations at critical inflection points — culture, structure, and leadership examined at genuine depth.", link: "/organizational-advisory", cta: "Explore This Work" },
     ],
     note: "Every engagement begins with a real conversation. Cornelia works with a deliberately small number of clients and organisations at any time — because this work requires depth, not volume.",
     cta: { headline: "Not Sure Where to Begin?", body: "That is completely normal. The first conversation is simply about understanding where you are and what you need. No pressure, no agenda — just an honest exchange about what might be right for you.", button: "Start a Conversation" },
@@ -390,7 +390,7 @@ const en = {
       cta: { headline: "Want to Explore This?", button: "Begin a Conversation" },
     },
     organisationalAdvisory: {
-      hero: { overline: "Organizational Advisory", headline: "Organisational Transformation Advisory", subtitle: "Strategic intelligence that accounts for what most consulting never reaches." },
+      hero: { overline: "Organisational Advisory", headline: "Organisational Transformation Advisory", subtitle: "Strategic intelligence that accounts for what most consulting never reaches." },
       description: { overline: "The Advisory", headline: "Your Organisation Has a Nervous System, Too", body: "Every organisation has a nervous system — a network of response patterns, relational dynamics, and survival strategies operating beneath the level of strategy and structure. Most transformation projects address the structural layer. Some reach the cultural layer. Rarely does the work go to the deeper level — where the patterns are actually encoded and where real change becomes possible.\n\nCornelia Trompke's advisory engages all three levels simultaneously. And that is precisely why it creates change that holds." },
       forWhom: { overline: "For Whom", headline: "Strategic Advisory for Organisations That Are Ready", items: ["Organisations at genuine inflection points: mergers, restructuring, leadership transitions that matter", "Companies where cultural transformation has stalled despite significant structural investment", "Leadership teams where strategy is clear but execution consistently and puzzlingly fails to follow", "Founders navigating the transition from founder-led to genuinely leadership-led organisation", "Boards navigating complex leadership succession and culture transformation simultaneously"] },
       format: { overline: "Format", headline: "Advisory Structure", items: [{ label: "Duration", value: "Minimum 6 months, typically 12–18 months" }, { label: "Scope", value: "Diagnostic phase, systemic mapping, leadership architecture, sustained advisory presence" }, { label: "Access", value: "Direct access to senior leadership team and board" }, { label: "Approach", value: "Hybrid: in-person intensives combined with ongoing virtual advisory" }, { label: "Language", value: "German or English" }] },
