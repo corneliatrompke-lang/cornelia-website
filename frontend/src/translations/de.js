@@ -363,7 +363,7 @@ const de = {
     },
   },
   footer: {
-    tagline: "Traumainformierte Führungsentwicklung für Senior Executives.",
+    tagline: "Executive Coaching, Beratung und Retreats für Führungskräfte.",
     navigation: "Navigation",
     services: "Leistungen",
     legal: "Rechtliches",
