@@ -53,9 +53,42 @@ const de = {
     testimonials: {
       overline: "Was Führungskräfte sagen",
       items: [
-        { text: "Was Cornelia anbietet, ist kein Coaching im konventionellen Sinne. Es ist eine Form tiefer Begleitung, die die Qualität jeder Entscheidung verändert.", author: "Chief Executive Officer", company: "DAX-gelistete Finanzdienstleistungsgruppe" },
-        { text: "Unser gesamtes Führungsteam hat sich nach dem Retreat verändert. Die Art, wie wir uns treffen, wie wir führen — alles hat sich verändert.", author: "Gründer & CEO", company: "Globales Technologieunternehmen" },
-        { text: "Ich habe in 25 Jahren mit vielen Coaches und Beratern gearbeitet. Nichts kommt an die Tiefe und systemische Intelligenz heran, die Cornelia einbringt.", author: "Aufsichtsratsvorsitzender", company: "Europäische Stiftung" },
+        {
+          text: "In der Zusammenarbeit auf Executive-Ebene überzeugt Cornelia Trompke durch Integrität, Vertraulichkeit und strategische Klarheit. Sie agiert als echte Sparringspartnerin auf Augenhöhe und stärkt Führungskräfte gezielt in ihrer Wirkung und Entscheidungsfähigkeit — besonders in anspruchsvollen Transformationsprozessen und Phasen kulturellen Wandels.",
+          author: "Timo Salzsieder",
+          role: "CEO & CIO",
+          company: "Zusammenarbeit als CEO bei Metro.digital & CIO bei Metro AG",
+        },
+        {
+          text: "Ich hatte das Vergnügen, mit Cornelia in zwei großen Unternehmen zusammenzuarbeiten — beide Male zum Thema HR-Strukturen und Prozesse auf Organisationsebene. Sie war stets eine vertrauensvolle Partnerin und strategische Denkerin, die unser Führungsteam dabei unterstützt hat, wirkungsvoller und effektiver zu führen.",
+          author: "Vahid Gharavi",
+          role: "Managing Director",
+          company: "Zusammenarbeit als Director Engineering bei Metro.digital & Managing Director bei Fashion Digital GmbH",
+        },
+        {
+          text: "Ich hatte das Privileg, über einen längeren Zeitraum sehr eng und vertrauensvoll mit Cornelia zusammenzuarbeiten. Ihre Expertise in Mediationen und Konfliktlösung war eine große Hilfe — und ihre Fähigkeit, sowohl fachliche Kompetenz als auch persönliche Ruhe einzubringen, hat wesentlich zu unserer erfolgreichen Transformation beigetragen.",
+          author: "Patrick Mittmann",
+          role: "Director of People",
+          company: "Director of People bei Tom Tailor GmbH",
+        },
+        {
+          text: "Die Zusammenarbeit mit Cornelia Trompke habe ich als hochprofessionell, klar und zugleich außergewöhnlich wertschätzend erlebt. Die von ihr moderierten Workshops verbanden methodische Sicherheit mit inhaltlicher Tiefe und schufen Raum für echte Beteiligung und Klarheit.",
+          author: "Melanie Eisinger",
+          role: "Head of Global HR",
+          company: "Head of Global HR bei KWS Saat SE & Co. KGaA",
+        },
+        {
+          text: "Cornelia versteht Coaching weniger als Selbstoptimierung, sondern vielmehr als individuelle Begleitung von Führungskräften — mit großer menschlicher Klarheit an den entscheidenden persönlichen Hebelpunkten für wirksame und nachhaltige Veränderung. Dieses moderne Führungsverständnis passt hervorragend zu unseren Werten.",
+          author: "Silke Breithaupt",
+          role: "Senior Manager Org Development",
+          company: "Zusammenarbeit als Senior Manager Organisation Development bei Unite Procurement Deutschland AG",
+        },
+        {
+          text: "Innerer Frieden ist ein Geschenk. Danke, dass Sie mich mit Ihren einfühlsam gestellten Fragen so wertvoll auf meinem Weg dorthin begleitet haben — auch wenn Sie die Antworten nicht kannten.",
+          author: "Renate M.",
+          role: "Senior Manager",
+          company: "Senior Manager",
+        },
         {
           text: "Cornelia hat mich beim Aufbau meines Teams und bei der Transformation der Marketingorganisation begleitet. Ich habe sie als äußerst kenntnisreich, reflektiert und lösungsorientiert erlebt — ihr Coaching und ihr strategisches Denken waren gerade in anspruchsvollen Situationen besonders wertvoll. Besonders geschätzt habe ich ihre empathische und aufmerksame Herangehensweise. Ich konnte mich jederzeit auf sie verlassen, was mir in dieser Phase außerordentlich wichtig war.",
           author: "Philipp Gutmann",
@@ -193,13 +226,13 @@ const de = {
       { number: "03", title: "Facilitation für Führungsteams", description: "Tiefe Facilitationsarbeit mit Führungsteams, die Komplexität und kollektive Transformation navigieren.", link: "/leadership-team-facilitation", cta: "Mehr erfahren" },
       { number: "04", title: "Beratung für organisationalen Wandel", description: "Strategische Beratung für Organisationen an kritischen Wendepunkten — Kultur, Struktur und Führung auf Tiefe geprüft.", link: "/organizational-advisory", cta: "Mehr erfahren" },
     ],
-    note: "Alle Engagements beginnen mit einem ersten Gespräch. Cornelia arbeitet zu jedem Zeitpunkt mit einer begrenzten Anzahl von Klienten und Organisationen, um die von dieser Arbeit geforderte Tiefe zu gewährleisten.",
-    cta: { headline: "Nicht sicher, wo Sie beginnen sollen?", body: "Beginnen Sie mit einem Gespräch. Wir finden gemeinsam das richtige Format.", button: "Gespräch beginnen" },
+    note: "Alle Engagements beginnen mit einem ersten Gespräch. Cornelia arbeitet zu jedem Zeitpunkt mit einer begrenzten Anzahl von Klienten und Organisationen, um die Tiefe zu gewährleisten, die diese Arbeit erfordert.",
+    cta: { headline: "Sie wissen noch nicht, welches Format passt?", body: "Beginnen Sie mit einem Gespräch. Wir finden gemeinsam das richtige Format.", button: "Gespräch beginnen" },
   },
   services: {
     executiveCoaching: {
       hero: { overline: "01 — Executive Coaching", headline: "1:1 Executive Coaching", subtitle: "Die privateste Form dieser Arbeit. Eine nachhaltige Partnerschaft, die Ebenen erreicht, die die meisten Executive Coaches nicht berühren." },
-      description: { overline: "Das Engagement", headline: "Ein Raum für die Arbeit, die sonst nirgendwo stattfinden kann", body: "Executive Coaching mit Cornelia Trompke ist kein strukturiertes Programm mit vordefinierten Ergebnissen. Es ist eine nachhaltige, vertrauliche Partnerschaft, die um Ihre tatsächliche Entwicklung herum aufgebaut ist — die Muster, denen Sie immer wieder begegnen, die Grenzen, über die Sie sich nicht hinausbewegen können, die Kapazitäten, die Ihre Führung jetzt am meisten braucht.\n\nDie Arbeit schöpft aus NARM und Integral Coaching, um über Verhaltensstrategien hinaus in die Nervensystem- und Identitätsstrukturen zu gehen, die das Führungsverhalten tatsächlich antreiben." },
+      description: { overline: "Das Engagement", headline: "Ein Raum für die Arbeit, die sonst nirgendwo stattfinden kann", body: "Executive Coaching mit Cornelia Trompke ist kein strukturiertes Programm mit vordefinierten Ergebnissen. Es ist eine nachhaltige, vertrauliche Partnerschaft, die um Ihre tatsächliche Entwicklung herum aufgebaut ist — die Muster, denen Sie immer wieder begegnen, die Grenzen, über die Sie sich nicht hinausbewegen können, die Fähigkeiten, die Ihre Führung jetzt am meisten braucht.\n\nDie Arbeit schöpft aus NARM und Integral Coaching, um über Verhaltensstrategien hinaus in die Nervensystem- und Identitätsstrukturen zu gehen, die das Führungsverhalten tatsächlich antreiben." },
       forWhom: { overline: "Für wen", headline: "Diese Arbeit passt zu Ihnen, wenn...", items: [
         { title: "Standard-Coaching nicht mehr reicht", body: "Sie sind Senior Executive, Gründer:in oder Beiratsmitglied. Sie haben bereits an Ihrer persönlichen Entwicklung gearbeitet. Standard-Coaching erreicht nicht mehr die Ebene, auf der Ihre eigentlichen Grenzen liegen." },
         { title: "das Muster tiefer liegt als jede Strategie", body: "Sie spüren, dass das, was Sie zurückhält, kein strategisches oder taktisches Problem ist — es ist strukturell. Das Muster wiederholt sich über verschiedene Kontexte und Rollen hinweg. Kein Framework hat es bisher erreicht." },
@@ -211,7 +244,7 @@ const de = {
       cta: { headline: "Bewerbung beginnen", button: "Jetzt bewerben", description: "Alle Engagements beginnen mit einem Gespräch. Es gibt keine Verpflichtung — nur der Anfang eines Verständnisses, ob dies die richtige Zusammenarbeit ist." },
       engagementArc: { overline: "Der Engagement-Bogen", headline: "Wie sich die Arbeit über die Zeit entfaltet", phases: [
         { label: "Fundament", duration: "Monate 1–3", description: "Der Boden wird bereitet — Vertrauen wird aufgebaut, Muster werden sichtbar gemacht, und die eigentliche Arbeit kommt in den Fokus. Die ersten Sitzungen zeigen nicht nur, was Sie verändern möchten, sondern die tiefere Architektur, warum es sich bisher nicht verändert hat." },
-        { label: "Vertiefung", duration: "Monate 4–8", description: "Hier beginnt die eigentliche Arbeit. Muster werden sichtbar. Die Arbeit mit dem Nervensystem greift. Was unsichtbar und unzugänglich war, beginnt sich zu bewegen. Hier hört Veränderung auf, konzeptuell zu sein, und wird gelebt." },
+        { label: "Vertiefung", duration: "Monate 4–8", description: "Hier beginnt die eigentliche Arbeit. Muster werden sichtbar. Die Arbeit mit dem Nervensystem greift. Was unsichtbar und unzugänglich war, beginnt sich zu bewegen. Hier wird Veränderung greifbar — nicht mehr Konzept, sondern gelebte Erfahrung." },
         { label: "Integration", duration: "Monate 9–12", description: "Die Veränderungen festigen sich zu etwas Strukturellem. Neue Arten der Führung fühlen sich nicht mehr anstrengend an, sondern beginnen sich anzufühlen wie Sie selbst. Die Arbeit bewegt sich von Einsicht zu verkörperter Kompetenz — und das ist es, was über die Zeit Bestand hat." },
       ]},
       whatYouReceive: { overline: "Was Sie erhalten", headline: "Die Struktur des Engagements", items: [
@@ -220,7 +253,7 @@ const de = {
         { title: "Individuell gestaltete Vertiefungssitzungen", description: "Längere Sitzungsformate für die Arbeit, die mehr Zeit, mehr Tiefe oder spezifische Vorbereitung erfordert — vollständig um die Bereiche Ihrer Entwicklung herum gestaltet, die gerade am wesentlichsten sind." },
         { title: "Personalisierte Aufnahmen", description: "Speziell für Sie erstellt, um Selbstregulation und Integration zwischen den Sitzungen zu unterstützen. Eine private Ressource, die um Ihr tatsächliches Nervensystem herum aufgebaut ist und Sie überallhin begleitet." },
       ]},
-      whatShifts: { overline: "Was sich verändert", headline: "Veränderungen, die nachhaltig sind", subtitle: "Langfristige Begleitung verändert die Art, wie Sie führen — nicht durch Anstrengung, sondern durch Wandel, der wirklich greift.", footer: "Nachhaltiges Engagement verändert die Architektur Ihrer Führung", items: [
+      whatShifts: { overline: "Was sich verändert", headline: "Veränderungen, die nachhaltig sind", subtitle: "Langfristige Begleitung verändert die Art, wie Sie führen — nicht durch Anstrengung, sondern durch Wandel, der wirklich greift.", footer: "Nachhaltige Begleitung verändert die Grundstruktur Ihrer Führung", items: [
         "Die innere Architektur Ihrer Entscheidungsfindung wird transparent — und wirklich veränderbar",
         "Führungspräsenz vertieft sich von Performance zu echter, verkörperter Autorität, die andere spüren können",
         "Die Fähigkeit, hohe Komplexität zu halten, ohne Klarheit, Stabilität oder innere Regulation zu verlieren",
@@ -245,7 +278,7 @@ const de = {
     },
     organisationalAdvisory: {
       hero: { overline: "04 — Advisory", headline: "Beratung für organisationalen Wandel", subtitle: "Strategische Intelligenz, die berücksichtigt, was die meisten Beratungsansätze verfehlen." },
-      description: { overline: "Die Beratung", headline: "Organisationen haben auch Nervensysteme", body: "Jede Organisation hat ein Nervensystem — ein Netzwerk von Reaktionsmustern, relationalen Dynamiken und Überlebensstrategien, das unterhalb der Ebene von Strategie und Struktur wirkt. Die meisten Transformationsprojekte adressieren die strukturelle Ebene. Die kulturelle Ebene. Selten die tiefere Ebene, wo Muster tatsächlich kodiert sind.\n\nCornelia Trompkes Beratungsarbeit operiert gleichzeitig auf allen drei Ebenen." },
+      description: { overline: "Die Beratung", headline: "Organisationen haben auch Nervensysteme", body: "Jede Organisation hat ein Nervensystem — ein Netzwerk von Reaktionsmustern, relationalen Dynamiken und Überlebensstrategien, das unterhalb der Ebene von Strategie und Struktur wirkt. Die meisten Transformationsprojekte adressieren die strukturelle Ebene. Die kulturelle Ebene. Selten die tiefere Ebene, wo Muster tatsächlich kodiert sind.\n\nCornelia Trompkes Beratungsarbeit wirkt auf allen drei Ebenen gleichzeitig." },
       forWhom: { overline: "Für wen", headline: "Strategische Beratung für...", items: ["Organisationen an strategischen Wendepunkten: Fusionen, Restrukturierungen, Führungswechsel", "Unternehmen, wo kulturelle Transformation trotz struktureller Veränderung ins Stocken geraten ist", "Führungsteams, wo Strategieklarheit vorhanden ist, aber Umsetzung konsistent scheitert", "Gründer beim Übergang von gründergeführten zu führungsgeführten Organisationen", "Vorstände, die komplexe Führungsnachfolge und Kulturtransformation navigieren"] },
       format: { overline: "Format", headline: "Beratungsstruktur", items: [{ label: "Dauer", value: "Mindestens 6 Monate, typischerweise 12–18 Monate" }, { label: "Umfang", value: "Diagnostikphase, systemisches Mapping, Führungsarchitektur, nachhaltige Begleitung" }, { label: "Zugang", value: "Direkter Zugang zum Senior Leadership Team und Vorstand" }, { label: "Ansatz", value: "Hybrid: persönliche Intensivphasen + virtuelle Beratungspräsenz" }, { label: "Sprache", value: "Deutsch oder Englisch" }] },
       cta: { headline: "Beratungsgespräch beginnen", button: "Anfrage stellen" },
