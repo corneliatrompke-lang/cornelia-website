@@ -19,19 +19,19 @@ const DIMENSIONS = [
     number: "01",
     title: "Leadership",
     subtitle: "How Leaders Actually Operate",
-    body: "Leadership is the primary lever of every meaningful organisational change. Who leads, how they lead, and what they model creates the conditions — or the constraints — for everything else. We examine leadership maturity, decision-making patterns, and the gap between what is stated and what is actually lived. Where leadership is not genuinely aligned with the intended future, the transformation stalls. Always.",
+    body: "Leadership is the primary lever of every meaningful organizational change. Who leads, how they lead, and what they model creates the conditions — or the constraints — for everything else. We examine leadership maturity, decision-making patterns, and the gap between what is stated and what is actually lived. Where leadership is not genuinely aligned with the intended future, the transformation stalls. Always.",
   },
   {
     number: "02",
     title: "People Systems",
     subtitle: "The Architecture of Work",
-    body: "People practices are the operating system of your organisation. Performance processes, talent frameworks, how you hire, develop, and recognise people — these are not administrative functions. They are the structural encoding of what the organisation truly values. We examine what your current systems actually produce, where they constrain the culture you are trying to build, and what specifically needs to change.",
+    body: "People practices are the operating system of your organization. Performance processes, talent frameworks, how you hire, develop, and recognise people — these are not administrative functions. They are the structural encoding of what the organization truly values. We examine what your current systems actually produce, where they constrain the culture you are trying to build, and what specifically needs to change.",
   },
   {
     number: "03",
     title: "Culture",
-    subtitle: "What the Organisation Actually Lives",
-    body: "Culture is not a programme or a set of values printed on a wall. It is the sum of what is rewarded, what is tolerated, and what goes permanently unsaid. Understanding your current culture — honestly, without consolation — is the foundation for changing it. We examine the lived experience of people across the organisation and identify the patterns and norms shaping how work actually gets done.",
+    subtitle: "What the Organization Actually Lives",
+    body: "Culture is not a program or a set of values printed on a wall. It is the sum of what is rewarded, what is tolerated, and what goes permanently unsaid. Understanding your current culture — honestly, without consolation — is the foundation for changing it. We examine the lived experience of people across the organization and identify the patterns and norms shaping how work actually gets done.",
   },
 ];
 
@@ -41,26 +41,26 @@ const PROCESS_PHASES = [
     title: "Stakeholder Conversations",
     subtitle: "Listening With Real Depth",
     description:
-      "Before anything is diagnosed or recommended, we listen. Individual conversations across levels of the organisation — designed to surface what the data cannot capture and what the official narrative consistently leaves out.",
+      "Before anything is diagnosed or recommended, we listen. Individual conversations across levels of the organization — designed to surface what the data cannot capture and what the official narrative consistently leaves out.",
   },
   {
     number: "02",
     title: "Systemic Analysis",
     subtitle: "Mapping What Is Actually Happening",
     description:
-      "A rigorous examination of current structures, cultural patterns, and leadership dynamics. Not what the organisation says it is — but what it actually is, beneath the layer of stated intention and curated presentation.",
+      "A rigorous examination of current structures, cultural patterns, and leadership dynamics. Not what the organization says it is — but what it actually is, beneath the layer of stated intention and curated presentation.",
   },
   {
     number: "03",
     title: "Strategic Guidance",
     subtitle: "A Clear Path Forward",
     description:
-      "Concrete recommendations grounded in what the system can absorb and genuinely sustain. Not a slide deck — but a real advisory presence that stays with the organisation through the full complexity of meaningful change.",
+      "Concrete recommendations grounded in what the system can absorb and genuinely sustain. Not a slide deck — but a real advisory presence that stays with the organization through the full complexity of meaningful change.",
   },
 ];
 
 const ENGAGEMENT_ITEMS = [
-  "Stakeholder conversation series across levels of the organisation",
+  "Stakeholder conversation series across levels of the organization",
   "Review of People & Culture practices and leadership routines in depth",
   "Transformation levers presentation with clear priority focus areas",
   "Structured options for the transformation journey ahead",
@@ -74,7 +74,7 @@ const FOR_WHOM_ITEMS = [
     subtitle: "Leading Change From the Inside",
     title: "The CHRO / People Leader",
     benefits: [
-      "Build a coherent transformation strategy grounded in the organisation's actual current state — not the intended one",
+      "Build a coherent transformation strategy grounded in the organization's actual current state — not the intended one",
       "Create a shared language with leadership for what real change requires and what it genuinely costs",
       "Identify where people systems are actively reinforcing the culture you are trying to move away from",
       "Develop a clear, credible, and honest narrative for the transformation journey ahead",
@@ -82,22 +82,22 @@ const FOR_WHOM_ITEMS = [
   },
   {
     number: "02",
-    subtitle: "Leading an Organisation Through Change",
+    subtitle: "Leading an Organization Through Change",
     title: "The CEO",
     benefits: [
-      "Understand what your organisation actually needs — beyond the symptoms presenting on the surface",
+      "Understand what your organization actually needs — beyond the symptoms presenting on the surface",
       "Build genuine alignment across the leadership team on direction, priorities, and what each person is accountable for",
-      "Identify where leadership behaviour is the real lever — and where the systems themselves need to change",
-      "Create a transformation roadmap that is honest and realistic about what the organisation can absorb",
+      "Identify where leadership behavior is the real lever — and where the systems themselves need to change",
+      "Create a transformation roadmap that is honest and realistic about what the organization can absorb",
     ],
   },
   {
     number: "03",
     subtitle: "Scaling, Merging, or Reinventing",
-    title: "The Organisation at Inflection Point",
+    title: "The Organization at Inflection Point",
     benefits: [
-      "Navigate significant growth, merger, or strategic pivot without losing organisational coherence and trust",
-      "Align people practices with the organisation you are genuinely becoming — not the one you were",
+      "Navigate significant growth, merger, or strategic pivot without losing organizational coherence and trust",
+      "Align people practices with the organization you are genuinely becoming — not the one you were",
       "Address the cultural drift that almost always accompanies rapid scale before it becomes embedded",
       "Build the leadership and people infrastructure the next stage of growth actually requires",
     ],
@@ -107,7 +107,7 @@ const FOR_WHOM_ITEMS = [
     subtitle: "Moving Beyond Founder-Led Culture",
     title: "The Scale-up",
     benefits: [
-      "Replace informal people practices with structured systems that genuinely support a growing organisation",
+      "Replace informal people practices with structured systems that genuinely support a growing organization",
       "Retain what made the company exceptional while building the infrastructure required for scale",
       "Develop leaders who can manage and lead — not just build and execute",
       "Create real clarity around performance, development, and expectations without losing the agility that matters",
@@ -161,8 +161,8 @@ const OrganizationalAdvisory = () => {
   return (
     <div className="bg-[#F5F2EC]">
       <SEOHead
-        title="Organisational Transformation Advisory — People & Culture"
-        description="Strategic advisory for organisations at inflection points — addressing leadership, people systems, and culture simultaneously. Real transformation requires all three dimensions to move together."
+        title="Organizational Transformation Advisory — People & Culture"
+        description="Strategic advisory for organizations at inflection points — addressing leadership, people systems, and culture simultaneously. Real transformation requires all three dimensions to move together."
         path="/organizational-advisory"
         jsonLd={{
           "@context": "https://schema.org",
@@ -170,10 +170,10 @@ const OrganizationalAdvisory = () => {
             {
               "@type": "Service",
               "@id": "https://www.corneliatrompke.com/organizational-advisory#service",
-              "name": "Organisational Advisory for People & Culture Transformation",
-              "description": "Strategic advisory for organisations at inflection points — addressing leadership, people systems, and culture simultaneously.",
+              "name": "Organizational Advisory for People & Culture Transformation",
+              "description": "Strategic advisory for organizations at inflection points — addressing leadership, people systems, and culture simultaneously.",
               "url": "https://www.corneliatrompke.com/organizational-advisory",
-              "serviceType": "Organisational Consulting",
+              "serviceType": "Organizational Consulting",
               "provider": { "@id": "https://www.corneliatrompke.com/#organization" },
               "areaServed": "Worldwide",
               "availableLanguage": [{ "@type": "Language", "name": "German" }, { "@type": "Language", "name": "English" }],
@@ -184,7 +184,7 @@ const OrganizationalAdvisory = () => {
               "itemListElement": [
                 { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.corneliatrompke.com" },
                 { "@type": "ListItem", "position": 2, "name": "Work With Me", "item": "https://www.corneliatrompke.com/work-with-me" },
-                { "@type": "ListItem", "position": 3, "name": "Organisational Advisory", "item": "https://www.corneliatrompke.com/organizational-advisory" },
+                { "@type": "ListItem", "position": 3, "name": "Organizational Advisory", "item": "https://www.corneliatrompke.com/organizational-advisory" },
               ],
             },
             {
@@ -192,18 +192,18 @@ const OrganizationalAdvisory = () => {
               "mainEntity": [
                 {
                   "@type": "Question",
-                  "name": "Who is organisational advisory for?",
-                  "acceptedAnswer": { "@type": "Answer", "text": "Organisational advisory is designed for organisations at genuine inflection points — mergers, restructuring, leadership transitions — where cultural transformation has stalled despite structural investment, or where strategy is clear but execution consistently fails. It also serves founders transitioning from founder-led to leadership-led organisations." },
+                  "name": "Who is organizational advisory for?",
+                  "acceptedAnswer": { "@type": "Answer", "text": "Organizational advisory is designed for organizations at genuine inflection points — mergers, restructuring, leadership transitions — where cultural transformation has stalled despite structural investment, or where strategy is clear but execution consistently fails. It also serves founders transitioning from founder-led to leadership-led organizations." },
                 },
                 {
                   "@type": "Question",
-                  "name": "What does organisational advisory involve?",
-                  "acceptedAnswer": { "@type": "Answer", "text": "The engagement works at the intersection of leadership, culture, and organisational systems. It combines systemic diagnostics, executive team work, and sustained advisory over time to create lasting organisational transformation — addressing the human and relational dynamics that structural interventions cannot reach." },
+                  "name": "What does organizational advisory involve?",
+                  "acceptedAnswer": { "@type": "Answer", "text": "The engagement works at the intersection of leadership, culture, and organizational systems. It combines systemic diagnostics, executive team work, and sustained advisory over time to create lasting organizational transformation — addressing the human and relational dynamics that structural interventions cannot reach." },
                 },
                 {
                   "@type": "Question",
-                  "name": "How is Cornelia's organisational advisory different from standard consulting?",
-                  "acceptedAnswer": { "@type": "Answer", "text": "Unlike conventional consulting that delivers frameworks and recommendations, this advisory works at the level of the relational field — the invisible patterns of power, anxiety, and unspoken dynamics that actually drive organisational behaviour. The focus is on lasting systemic change, not short-term restructuring." },
+                  "name": "How is Cornelia's organizational advisory different from standard consulting?",
+                  "acceptedAnswer": { "@type": "Answer", "text": "Unlike conventional consulting that delivers frameworks and recommendations, this advisory works at the level of the relational field — the invisible patterns of power, anxiety, and unspoken dynamics that actually drive organizational behavior. The focus is on lasting systemic change, not short-term restructuring." },
                 },
               ],
             },
@@ -233,7 +233,7 @@ const OrganizationalAdvisory = () => {
             style={{ overflowY: "hidden", display: "flex", flexDirection: "column", justifyContent: "flex-end" }}
             animate={{ maxWidth: showContactForm ? "580px" : "900px" }}
             transition={{ duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] }}>
-            <ScrollReveal delay={0.1}><p className="ct-overline text-gold mb-6">03 — Organisational Advisory</p></ScrollReveal>
+            <ScrollReveal delay={0.1}><p className="ct-overline text-gold mb-6">03 — Organizational Advisory</p></ScrollReveal>
             <ScrollReveal delay={0.25}>
               <h1 className="text-ivory leading-[1.04]" data-testid="advisory-hero-headline"
                 style={{ fontFamily: "Figtree, sans-serif", fontSize: showContactForm ? (isMobile ? "30px" : "55px") : "clamp(38px, 6vw, 80px)", fontWeight: 400, transition: "font-size 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)" }}>
@@ -242,7 +242,7 @@ const OrganizationalAdvisory = () => {
             </ScrollReveal>
             <ScrollReveal delay={0.42}>
               <p className="mt-5 max-w-[540px] leading-relaxed" style={{ fontFamily: "Cormorant Garamond, serif", fontSize: "22px", fontStyle: "italic", color: "rgba(227,222,215,0.65)" }}>
-                Strategic guidance for organisations at points of meaningful transformation.
+                Strategic guidance for organizations at points of meaningful transformation.
               </p>
             </ScrollReveal>
             <ScrollReveal delay={0.58}>
@@ -262,7 +262,7 @@ const OrganizationalAdvisory = () => {
                 transition={{ duration: 0.55, ease: [0.25, 0.46, 0.45, 0.94] }} onClick={e => e.stopPropagation()}
                 style={{ position: "absolute", right: "clamp(24px, 4vw, 56px)", top: "10%", height: "80%", width: "clamp(360px, 40%, 520px)", borderRadius: "16px", background: "rgba(8,16,11,0.25)", backdropFilter: "blur(28px) saturate(1.6)", WebkitBackdropFilter: "blur(28px) saturate(1.6)", border: "1px solid rgba(200,169,106,0.18)", zIndex: 20, overflowY: "auto" }}
                 data-testid="advisory-contact-form-panel">
-                <HeroContactForm onClose={() => setShowContactForm(false)} preselectedService="org-advisory" sendFrom="Organisational Advisory — Hero Section" />
+                <HeroContactForm onClose={() => setShowContactForm(false)} preselectedService="org-advisory" sendFrom="Organizational Advisory — Hero Section" />
               </motion.div>
             </>)}
           </AnimatePresence>
@@ -288,7 +288,7 @@ const OrganizationalAdvisory = () => {
                     lineHeight: 1.28,
                   }}
                 >
-                  "Organisations evolve when leadership, people practices, and culture develop in the same direction — rarely when only one changes while the others stay fixed."
+                  "Organizations evolve when leadership, people practices, and culture develop in the same direction — rarely when only one changes while the others stay fixed."
                 </p>
                 <div style={{ width: "40px", height: "1px", background: "rgba(200,169,106,0.5)", marginTop: "36px" }} />
                 <p
@@ -310,8 +310,8 @@ const OrganizationalAdvisory = () => {
             {/* Right: body */}
             <div style={{ flex: 1, paddingTop: isMobile ? "0" : "68px" }}>
               {[
-                "My work with organisations addresses the three dimensions that must evolve together for transformation to hold: leadership, people systems, and culture. When only one changes, the system restabilises around its old patterns.",
-                "The engagement typically begins with a listening phase — structured conversations across the organisation to surface what the data cannot capture and what the official narrative consistently leaves out.",
+                "My work with organizations addresses the three dimensions that must evolve together for transformation to hold: leadership, people systems, and culture. When only one changes, the system restabilises around its old patterns.",
+                "The engagement typically begins with a listening phase — structured conversations across the organization to surface what the data cannot capture and what the official narrative consistently leaves out.",
                 "Based on this, I develop a clear picture of where your current systems and practices support the direction you intend — and where they actively work against it. What follows is a frank strategic conversation about what needs to change, and how.",
               ].map((para, i) => (
                 <ScrollReveal key={i} delay={0.08 * i}>
@@ -695,7 +695,7 @@ const OrganizationalAdvisory = () => {
                     lineHeight: 1.85,
                   }}
                 >
-                  The structure adapts to what the organisation needs — from intensive diagnostic work at the front to lighter-touch strategic support during implementation.
+                  The structure adapts to what the organization needs — from intensive diagnostic work at the front to lighter-touch strategic support during implementation.
                 </p>
               </ScrollReveal>
             </div>
@@ -773,7 +773,7 @@ const OrganizationalAdvisory = () => {
                   color: "#F5F2EC",
                 }}
               >
-                The Organisations This Work Is Built For
+                The Organizations This Work Is Built For
               </h2>
             </ScrollReveal>
           </div>
@@ -1114,7 +1114,7 @@ const OrganizationalAdvisory = () => {
                         When Transformation Becomes the Work
                       </h2>
                       <p style={{ fontFamily: "Manrope, sans-serif", fontSize: "15px", fontWeight: 300, color: "rgba(227,222,215,0.45)", lineHeight: 1.75, marginTop: "18px" }}>
-                        If your organisation is at a point where people, culture, and leadership need to evolve together, I welcome an initial conversation to understand your situation.
+                        If your organization is at a point where people, culture, and leadership need to evolve together, I welcome an initial conversation to understand your situation.
                       </p>
                       <button
                         onClick={() => setShowFinalForm(true)}
@@ -1131,7 +1131,7 @@ const OrganizationalAdvisory = () => {
                       initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }}
                       transition={{ duration: 0.3 }}
                     >
-                      <HeroContactForm onClose={() => setShowFinalForm(false)} noPadding preselectedService="org-advisory" sendFrom="Organisational Advisory — Final CTA Section" />
+                      <HeroContactForm onClose={() => setShowFinalForm(false)} noPadding preselectedService="org-advisory" sendFrom="Organizational Advisory — Final CTA Section" />
                     </motion.div>
                   )}
                 </AnimatePresence>

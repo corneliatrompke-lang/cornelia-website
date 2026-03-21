@@ -10,14 +10,14 @@ const en = {
       { title: "Executive Coaching & Advisory", path: "/executive-coaching" },
       { title: "Executive Retreats", path: "/executive-retreats" },
       { title: "Leadership Team Facilitation", path: "/leadership-team-facilitation" },
-      { title: "Organisational Advisory for People & Culture Transformation", path: "/organizational-advisory" },
+      { title: "Organizational Advisory for People & Culture Transformation", path: "/organizational-advisory" },
     ],
   },
   home: {
     hero: {
       overline: "Executive Coaching & Leadership Advisory · Berlin & Worldwide",
-      tagline: "Redefine How You Lead — and What Your Organisation Can Become",
-      subtitle: "Executive coaching, organisational advisory, and retreats for leaders committed to lasting change.",
+      tagline: "Redefine How You Lead — and What Your Organization Can Become",
+      subtitle: "Executive coaching, organizational advisory, and retreats for leaders committed to lasting change.",
       cta: "Begin the Conversation",
       ctaSecondary: "Explore the Work",
     },
@@ -40,14 +40,14 @@ const en = {
         { number: "01", title: "Executive Coaching & Advisory", description: "A deeply confidential 1:1 partnership for individual transformation. Designed for executives who are ready to lead from wholeness — not performance.", link: "/executive-coaching" },
         { number: "02", title: "Executive Retreats", description: "An immersive residential format that creates the space for the questions that never surface in the pace of daily operations.", link: "/executive-retreats" },
         { number: "03", title: "Leadership Team Facilitation", description: "Deep process work with leadership teams navigating complexity, conflict, and the invisible dynamics shaping how they perform together.", link: "/leadership-team-facilitation" },
-        { number: "04", title: "Organisational Advisory for People & Culture Transformation", description: "Strategic advisory for organisations at inflection points — culture, structure, and leadership architecture examined at genuine depth.", link: "/organizational-advisory" },
+        { number: "04", title: "Organizational Advisory for People & Culture Transformation", description: "Strategic advisory for organizations at inflection points — culture, structure, and leadership architecture examined at genuine depth.", link: "/organizational-advisory" },
       ],
       cta: "View All Engagements",
     },
     method: {
       overline: "The Methodology",
       headline: "Grounded in Science. Guided by Depth.",
-      body: "This work brings together two of the most sophisticated methodologies available for deep leadership and organisational change: NARM — the NeuroAffective Relational Model — and Integral Coaching. Together, they create a unique capacity to work with what is most alive in both the leader and the system — simultaneously, at depth.",
+      body: "This work brings together two of the most sophisticated methodologies available for deep leadership and organizational change: NARM — the NeuroAffective Relational Model — and Integral Coaching. Together, they create a unique capacity to work with what is most alive in both the leader and the system — simultaneously, at depth.",
       cta: "Explore the Method",
     },
     testimonials: {
@@ -81,7 +81,7 @@ const en = {
           text: "Cornelia views coaching less as self-optimization and more as providing individual guidance to executives with great human clarity at the decisive personal leverage points for effective and sustainable change. This modern understanding of leadership is an excellent fit for our values.",
           author: "Silke Breithaupt",
           role: "Senior Manager Org Development",
-          company: "Collaborated while Senior Manager Organisation Development at Unite Procurement Deutschland AG",
+          company: "Collaborated while Senior Manager Organization Development at Unite Procurement Deutschland AG",
         },
         {
           text: "Inner peace is a gift. Thank you for guiding me so valuably on my path there with your empathetically posed questions—even though you did not know the answers.",
@@ -90,7 +90,7 @@ const en = {
           company: "Senior Manager",
         },
         {
-          text: "Cornelia supported me in building my team and in transforming the marketing organisation. I experienced her as highly knowledgeable, reflective, and solution oriented — her coaching and strategic thinking were particularly valuable in demanding situations. I especially appreciated her empathetic and attentive approach. I could rely on her at all times, which was extremely valuable to me during that phase.",
+          text: "Cornelia supported me in building my team and in transforming the marketing organization. I experienced her as highly knowledgeable, reflective, and solution oriented — her coaching and strategic thinking were particularly valuable in demanding situations. I especially appreciated her empathetic and attentive approach. I could rely on her at all times, which was extremely valuable to me during that phase.",
           author: "Philipp Gutmann",
           role: "Head of Global Brand & Marketing",
           company: "Collaborated while Head of Global Brand & Marketing at A. Lange & Söhne",
@@ -107,7 +107,7 @@ const en = {
     hero: {
       overline: "About Me",
       headline: "Cornelia Trompke",
-      subheadline: "Executive Coach · Organisational Developer · Leadership Team Facilitator · Executive Meditation Retreats",
+      subheadline: "Executive Coach · Organizational Developer · Leadership Team Facilitator · Executive Meditation Retreats",
     },
     originStory: {
       overline: "The Journey",
@@ -117,7 +117,7 @@ const en = {
           number: "01",
           role: "Corporate HR",
           period: "The Foundation",
-          description: "Years inside international organisations gave Cornelia a firsthand understanding of what makes leadership thrive — and what quietly hollows it out from within: leaders who are functional but no longer present. Teams that deliver but don't truly connect. Structures that scale but lack roots.",
+          description: "Years inside international organizations gave Cornelia a firsthand understanding of what makes leadership thrive — and what quietly hollows it out from within: leaders who are functional but no longer present. Teams that deliver but don't truly connect. Structures that scale but lack roots.",
         },
         {
           number: "02",
@@ -157,7 +157,7 @@ const en = {
         { title: "NARM Practitioner", description: "Certified in the NeuroAffective Relational Model developed by Dr. Laurence Heller — a leading trauma-informed approach to development and identity" },
         { title: "Integral Coach", description: "Trained in Integral Coaching methodology, weaving systemic thinking, integral psychology, and somatic wisdom into a unified practice" },
         { title: "Student of Thomas Hübl", description: "Many years working with consciousness teacher Thomas Hübl — integrating contemplative depth and collective awareness into leadership work" },
-        { title: "Corporate HR Background", description: "Years working inside international organisations before founding an independent practice — with a firsthand understanding of what leadership actually demands" },
+        { title: "Corporate HR Background", description: "Years working inside international organizations before founding an independent practice — with a firsthand understanding of what leadership actually demands" },
       ],
     },
     approach: {
@@ -177,7 +177,7 @@ const en = {
         {
           number: "03",
           title: "Bespoke Process",
-          description: "There are no templates, no standard programmes. Each engagement is shaped entirely by what is most alive and most needed — at the level of the person, not the role.",
+          description: "There are no templates, no standard programs. Each engagement is shaped entirely by what is most alive and most needed — at the level of the person, not the role.",
         },
         {
           number: "04",
@@ -188,7 +188,7 @@ const en = {
     },
     cta: {
       headline: "Begin a Conversation",
-      body: "If you sense this work might be relevant — for yourself or your organisation — the first step is always a conversation.",
+      body: "If you sense this work might be relevant — for yourself or your organization — the first step is always a conversation.",
       button: "Contact / Apply",
     },
   },
@@ -196,7 +196,7 @@ const en = {
     hero: {
       overline: "The Method — NARM & Integral Coaching for Executive Leaders",
       headline: "Where Neuroscience Meets Executive Depth",
-      subtitle: "Two world-class methodologies. One integrated approach to leadership transformation that goes deeper than anything behavioural alone can reach.",
+      subtitle: "Two world-class methodologies. One integrated approach to leadership transformation that goes deeper than anything behavioral alone can reach.",
     },
     whatWeDo: {
       overline: "The Foundation",
@@ -254,10 +254,10 @@ const en = {
           ],
         },
         {
-          audience: "For Organisations as a Whole",
-          subtitle: "The organisation at a genuine turning point",
+          audience: "For Organizations as a Whole",
+          subtitle: "The organization at a genuine turning point",
           benefits: [
-            "Access the deeper architecture shaping culture and collective behaviour",
+            "Access the deeper architecture shaping culture and collective behavior",
             "Transform at the level where change actually sticks — not just the structural layer",
             "Build leadership capacity throughout the system — not only at the top",
             "Navigate complexity and uncertainty with real systemic intelligence",
@@ -269,7 +269,7 @@ const en = {
     intro: {
       overline: "The Integration",
       headline: "Most Leadership Development Doesn't Go Deep Enough",
-      body: "Strategies, frameworks, competency models, and feedback systems — these tools operate at the level of behaviour. They can improve performance at the margins. They rarely change the leader.\n\nThe work offered here operates differently: at the level of identity, nervous system, and the deep patterns of connection and disconnection that shape how you function under the pressure that actually counts.",
+      body: "Strategies, frameworks, competency models, and feedback systems — these tools operate at the level of behavior. They can improve performance at the margins. They rarely change the leader.\n\nThe work offered here operates differently: at the level of identity, nervous system, and the deep patterns of connection and disconnection that shape how you function under the pressure that actually counts.",
     },
     narm: {
       overline: "Methodology One",
@@ -283,7 +283,7 @@ const en = {
       ],
       diagramTitle: "The NARM Layers",
       diagramLayers: [
-        { level: "01", name: "Biological", description: "Nervous system states — the physiological foundation of all leadership behaviour" },
+        { level: "01", name: "Biological", description: "Nervous system states — the physiological foundation of all leadership behavior" },
         { level: "02", name: "Psychological", description: "Adaptive survival patterns — the fixed strategies that once protected, now constrain" },
         { level: "03", name: "Relational", description: "Connection themes — how you relate to yourself, to others, and to what you lead" },
         { level: "04", name: "Identity", description: "The structures of self — what you believe is genuinely possible for you as a leader" },
@@ -293,12 +293,12 @@ const en = {
     integral: {
       overline: "Methodology Two",
       headline: "Integral Coaching",
-      body: "Integral Coaching, developed by Integral Coaching Canada, engages the whole human being within their fullest context — not just the professional persona, but the entire structure of how you make sense of your world, relate to others, and grow over time. It draws on Ken Wilber's Integral Theory and Robert Kegan's foundational developmental psychology.\n\nIntegral Coaching doesn't simply build new behaviours — it develops new capacities. It expands what you can see, what you can do, and who you can be — simultaneously, across all dimensions of your life and leadership.",
+      body: "Integral Coaching, developed by Integral Coaching Canada, engages the whole human being within their fullest context — not just the professional persona, but the entire structure of how you make sense of your world, relate to others, and grow over time. It draws on Ken Wilber's Integral Theory and Robert Kegan's foundational developmental psychology.\n\nIntegral Coaching doesn't simply build new behaviors — it develops new capacities. It expands what you can see, what you can do, and who you can be — simultaneously, across all dimensions of your life and leadership.",
       points: [
         "Developing the full human being — not just professional competencies",
         "Working with your current worldview and genuinely expanding its leading edge",
         "Sustained transformation over time — not temporary performance improvements",
-        "Coaching that honours context, culture, embodiment, and meaning",
+        "Coaching that honors context, culture, embodiment, and meaning",
       ],
     },
     integration: {
@@ -337,20 +337,20 @@ const en = {
       { number: "01", title: "Executive Coaching & Advisory", description: "A sustained, deeply confidential 1:1 partnership for senior executives and founders ready to develop from the inside out — not just sharpen the outside.", link: "/executive-coaching", cta: "Explore This Work" },
       { number: "02", title: "Executive Retreats", description: "An immersive residential retreat format that creates the space for the questions no operational calendar ever makes room for.", link: "/executive-retreats", cta: "Explore This Work" },
       { number: "03", title: "Leadership Team Facilitation", description: "Deep facilitation work with executive leadership teams navigating complexity, conflict, and the dynamics shaping how they perform together.", link: "/leadership-team-facilitation", cta: "Explore This Work" },
-      { number: "04", title: "Organisational Advisory for People & Culture Transformation", description: "Strategic advisory for organisations at critical inflection points — culture, structure, and leadership examined at genuine depth.", link: "/organizational-advisory", cta: "Explore This Work" },
+      { number: "04", title: "Organizational Advisory for People & Culture Transformation", description: "Strategic advisory for organizations at critical inflection points — culture, structure, and leadership examined at genuine depth.", link: "/organizational-advisory", cta: "Explore This Work" },
     ],
-    note: "Every engagement begins with a real conversation. Cornelia works with a deliberately small number of clients and organisations at any time — because this work requires depth, not volume.",
+    note: "Every engagement begins with a real conversation. Cornelia works with a deliberately small number of clients and organizations at any time — because this work requires depth, not volume.",
     cta: { headline: "Not Sure Where to Begin?", body: "That is completely normal. The first conversation is simply about understanding where you are and what you need. No pressure, no agenda — just an honest exchange about what might be right for you.", button: "Start a Conversation" },
   },
   services: {
     executiveCoaching: {
       hero: { overline: "Executive Coaching & Advisory", headline: "1:1 Executive Coaching for Senior Leaders", subtitle: "The most private form of this work. A sustained partnership that goes where most advisors never reach." },
-      description: { overline: "The Engagement", headline: "A Container for the Work That Actually Matters", body: "Executive coaching with Cornelia Trompke is not a structured programme with pre-defined outcomes. It is a sustained, confidential partnership built entirely around your actual development — the patterns you keep encountering, the edges you cannot move past, the capacities your leadership most needs right now.\n\nThe work draws on NARM and Integral Coaching to go beyond behavioural strategies — into the nervous system and identity structures that actually drive how you lead. It is precise, rigorous, and profoundly private." },
+      description: { overline: "The Engagement", headline: "A Container for the Work That Actually Matters", body: "Executive coaching with Cornelia Trompke is not a structured program with pre-defined outcomes. It is a sustained, confidential partnership built entirely around your actual development — the patterns you keep encountering, the edges you cannot move past, the capacities your leadership most needs right now.\n\nThe work draws on NARM and Integral Coaching to go beyond behavioral strategies — into the nervous system and identity structures that actually drive how you lead. It is precise, rigorous, and profoundly private." },
       forWhom: { overline: "For Whom", headline: "This Work Is For You If...", items: [
         { title: "You've Outgrown Standard Coaching", body: "You are a senior executive, founder, or board member. You have done the personal development work before. Standard coaching no longer reaches the level where your real limitations actually live." },
         { title: "The Pattern Runs Deeper Than Strategy", body: "You sense that what is holding you back is not a strategic or tactical problem — it is structural. The pattern recurs across different contexts and roles. No framework has yet reached it." },
-        { title: "You're Navigating Real Complexity", body: "You are in the middle of something significant — organisationally, professionally, or personally — and you need an advisor who can hold the full weight of it without minimising or reducing it." },
-        { title: "You Want to Lead From Wholeness", body: "You want to lead from a genuine centre — not from performance, anxiety, or depletion. You are looking for something more than optimisation, and you already know what that means." },
+        { title: "You're Navigating Real Complexity", body: "You are in the middle of something significant — organizationally, professionally, or personally — and you need an advisor who can hold the full weight of it without minimizing or reducing it." },
+        { title: "You Want to Lead From Wholeness", body: "You want to lead from a genuine center — not from performance, anxiety, or depletion. You are looking for something more than optimization, and you already know what that means." },
         { title: "You Are Ready to Work at Depth", body: "You understand that real change takes time and genuine commitment. You are prepared to invest sustained attention in something that actually changes you — not just how you present yourself." },
       ]},
       format: { overline: "Format", headline: "Structure of the Engagement", items: [{ label: "Duration", value: "3 to 12 months" }, { label: "Frequency", value: "Biweekly 60-minute sessions + deep dive sessions of 2 hours (number depends on program length)" }, { label: "Location", value: "Virtual" }, { label: "Language", value: "German or English" }, { label: "Intake", value: "By application and preliminary conversation" }] },
@@ -371,7 +371,7 @@ const en = {
         "Leadership presence deepens from performance to real, embodied authority that others can feel",
         "The capacity to hold high complexity without losing clarity, steadiness, or inner regulation",
         "Relationships built on genuine depth, directness, and real trust — not managed distance",
-        "The ability to act from your own centre, even under the most demanding and pressured conditions",
+        "The ability to act from your own center, even under the most demanding and pressured conditions",
         "A quality of inner spaciousness that changes the entire texture of how you lead and relate",
       ]},
     },
@@ -389,26 +389,26 @@ const en = {
       format: { overline: "Format", headline: "How We Work Together", items: [{ label: "Duration", value: "2 to 3-day intensive with optional follow-on sessions" }, { label: "Preparation", value: "Individual pre-conversations with each team member" }, { label: "Location", value: "Off-site at a selected residential or retreat venue" }, { label: "Group Size", value: "4 to 12 participants" }, { label: "Language", value: "German or English" }] },
       cta: { headline: "Want to Explore This?", button: "Begin a Conversation" },
     },
-    organisationalAdvisory: {
-      hero: { overline: "Organisational Advisory", headline: "Organisational Transformation Advisory", subtitle: "Strategic intelligence that accounts for what most consulting never reaches." },
-      description: { overline: "The Advisory", headline: "Your Organisation Has a Nervous System, Too", body: "Every organisation has a nervous system — a network of response patterns, relational dynamics, and survival strategies operating beneath the level of strategy and structure. Most transformation projects address the structural layer. Some reach the cultural layer. Rarely does the work go to the deeper level — where the patterns are actually encoded and where real change becomes possible.\n\nCornelia Trompke's advisory engages all three levels simultaneously. And that is precisely why it creates change that holds." },
-      forWhom: { overline: "For Whom", headline: "Strategic Advisory for Organisations That Are Ready", items: ["Organisations at genuine inflection points: mergers, restructuring, leadership transitions that matter", "Companies where cultural transformation has stalled despite significant structural investment", "Leadership teams where strategy is clear but execution consistently and puzzlingly fails to follow", "Founders navigating the transition from founder-led to genuinely leadership-led organisation", "Boards navigating complex leadership succession and culture transformation simultaneously"] },
+    organizationalAdvisory: {
+      hero: { overline: "Organizational Advisory", headline: "Organizational Transformation Advisory", subtitle: "Strategic intelligence that accounts for what most consulting never reaches." },
+      description: { overline: "The Advisory", headline: "Your Organization Has a Nervous System, Too", body: "Every organization has a nervous system — a network of response patterns, relational dynamics, and survival strategies operating beneath the level of strategy and structure. Most transformation projects address the structural layer. Some reach the cultural layer. Rarely does the work go to the deeper level — where the patterns are actually encoded and where real change becomes possible.\n\nCornelia Trompke's advisory engages all three levels simultaneously. And that is precisely why it creates change that holds." },
+      forWhom: { overline: "For Whom", headline: "Strategic Advisory for Organizations That Are Ready", items: ["Organizations at genuine inflection points: mergers, restructuring, leadership transitions that matter", "Companies where cultural transformation has stalled despite significant structural investment", "Leadership teams where strategy is clear but execution consistently and puzzlingly fails to follow", "Founders navigating the transition from founder-led to genuinely leadership-led organization", "Boards navigating complex leadership succession and culture transformation simultaneously"] },
       format: { overline: "Format", headline: "Advisory Structure", items: [{ label: "Duration", value: "Minimum 6 months, typically 12–18 months" }, { label: "Scope", value: "Diagnostic phase, systemic mapping, leadership architecture, sustained advisory presence" }, { label: "Access", value: "Direct access to senior leadership team and board" }, { label: "Approach", value: "Hybrid: in-person intensives combined with ongoing virtual advisory" }, { label: "Language", value: "German or English" }] },
       cta: { headline: "Ready to Begin an Advisory Conversation?", button: "Make an Enquiry" },
     },
   },
   contact: {
-    hero: { overline: "Contact & Apply", headline: "Start the Conversation", subtitle: "Every engagement begins with understanding. All enquiries receive a personal response — no automated replies, no forms that disappear into a void." },
+    hero: { overline: "Contact & Apply", headline: "Start the Conversation", subtitle: "Every engagement begins with understanding. All inquiries receive a personal response — no automated replies, no forms that disappear into a void." },
     form: {
       headline: "Send an Enquiry",
       name: "Full Name",
       email: "Email Address",
-      organisation: "Organisation",
+      organization: "Organization",
       role: "Your Role / Title",
       message: "What brings you here?",
       messagePlaceholder: "Briefly describe what you are navigating and why this work might be relevant for you...",
       submit: "Submit Enquiry",
-      success: "Thank you. Your enquiry has been received. Cornelia will respond personally within 2–3 business days.",
+      success: "Thank you. Your inquiry has been received. Cornelia will respond personally within 2–3 business days.",
       error: "Something went wrong. Please try again or reach out directly via WhatsApp.",
     },
     whatsapp: { headline: "Prefer to Talk First?", body: "For a more direct first contact, reach out via WhatsApp. A real conversation, not a form.", button: "Connect via WhatsApp" },
@@ -509,7 +509,7 @@ const en = {
     },
   },
   footer: {
-    tagline: "Executive coaching, organisational advisory, and retreats for leaders committed to lasting change.",
+    tagline: "Executive coaching, organizational advisory, and retreats for leaders committed to lasting change.",
     navigation: "Navigation",
     services: "Services",
     legal: "Legal",

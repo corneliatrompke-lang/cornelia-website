@@ -119,7 +119,7 @@ const ACCORDION_SERVICE_LINKS = [
     secondary: { label: "Explore Executive Retreats", to: "/executive-retreats" },
   },
   { label: "Explore Leadership Team Facilitation", to: "/leadership-team-facilitation" },
-  { label: "Explore Organisational Advisory", to: "/organizational-advisory" },
+  { label: "Explore Organizational Advisory", to: "/organizational-advisory" },
 ];
 
 // ─── Page ─────────────────────────────────────────────────────────────────────

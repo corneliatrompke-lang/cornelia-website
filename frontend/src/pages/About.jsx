@@ -102,11 +102,11 @@ const About = () => {
               "url": "https://www.corneliatrompke.com/about-me",
               "image": "https://www.corneliatrompke.com/favicon.png",
               "address": { "@type": "PostalAddress", "addressLocality": "Berlin", "addressCountry": "DE" },
-              "knowsAbout": ["Executive Coaching", "NARM — NeuroAffective Relational Model", "Integral Coaching", "Leadership Development", "Nervous System Science", "Trauma-Informed Coaching", "Organisational Development", "Depth Psychology"],
+              "knowsAbout": ["Executive Coaching", "NARM — NeuroAffective Relational Model", "Integral Coaching", "Leadership Development", "Nervous System Science", "Trauma-Informed Coaching", "Organizational Development", "Depth Psychology"],
               "hasCredential": [
                 { "@type": "EducationalOccupationalCredential", "name": "NARM Practitioner", "description": "Certified in the NeuroAffective Relational Model, developed by Dr. Laurence Heller" },
                 { "@type": "EducationalOccupationalCredential", "name": "Integral Coach", "description": "Trained at New Ventures West Institute, San Francisco" },
-                { "@type": "EducationalOccupationalCredential", "name": "Systemic Facilitator", "description": "Advanced training in systemic organisational constellations and team dynamics" },
+                { "@type": "EducationalOccupationalCredential", "name": "Systemic Facilitator", "description": "Advanced training in systemic organizational constellations and team dynamics" },
               ],
               "worksFor": { "@id": "https://www.corneliatrompke.com/#organization" },
             },

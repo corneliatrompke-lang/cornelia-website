@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
-const WA_URL = "https://wa.me/491622363466?text=Hello%20Cornelia%2C%20I%20found%20your%20website%20and%20would%20like%20to%20enquire%20about%20your%20work.";
+const WA_URL = "https://wa.me/491622363466?text=Hello%20Cornelia%2C%20I%20found%20your%20website%20and%20would%20like%20to%20inquire%20about%20your%20work.";
 
 const WhatsAppIcon = () => (
   <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">

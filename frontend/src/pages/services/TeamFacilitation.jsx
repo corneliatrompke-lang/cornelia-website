@@ -36,25 +36,25 @@ const WORK_ADDRESSES = [
     number: "01",
     title: "Priorities",
     subtitle: "Shared Direction",
-    body: "Leadership teams often carry strong, separately-optimising individual agendas that fragment collective direction. This work creates genuine shared clarity on what matters most — and why. That alignment becomes the foundation from which every decision and every direction that follows can be made with real authority.",
+    body: "Leadership teams often carry strong, separately-optimizing individual agendas that fragment collective direction. This work creates genuine shared clarity on what matters most — and why. That alignment becomes the foundation from which every decision and every direction that follows can be made with real authority.",
   },
   {
     number: "02",
     title: "Communication",
     subtitle: "How the Team Actually Speaks",
-    body: "How leaders speak to each other in a room determines how the organisation functions at every level below. This work surfaces the patterns that slow, distort, and bypass real exchange — and creates the conditions for more direct, honest, and genuinely productive communication across the leadership body.",
+    body: "How leaders speak to each other in a room determines how the organization functions at every level below. This work surfaces the patterns that slow, distort, and bypass real exchange — and creates the conditions for more direct, honest, and genuinely productive communication across the leadership body.",
   },
   {
     number: "03",
     title: "Tensions",
     subtitle: "What Is Really in the Room",
-    body: "Unaddressed tensions cost organisations enormous energy, clarity, and trust. The facilitated sessions create conditions in which what has been unsayable can finally be said — and worked through constructively, rather than managed around indefinitely at great invisible cost.",
+    body: "Unaddressed tensions cost organizations enormous energy, clarity, and trust. The facilitated sessions create conditions in which what has been unsayable can finally be said — and worked through constructively, rather than managed around indefinitely at great invisible cost.",
   },
   {
     number: "04",
     title: "Decision-Making",
     subtitle: "From Discussion to Commitment",
-    body: "Strong individuals often inadvertently stall the collective decisions that need to move. This work builds a shared framework for how the team decides together — creating speed, genuine accountability, and clarity in how the organisation is actually led from the top.",
+    body: "Strong individuals often inadvertently stall the collective decisions that need to move. This work builds a shared framework for how the team decides together — creating speed, genuine accountability, and clarity in how the organization is actually led from the top.",
   },
 ];
 
@@ -78,12 +78,12 @@ const FOR_WHOM_ITEMS = [
       "Navigate the transition from founder-led culture to a genuinely structured leadership team",
       "Establish shared ownership over direction — rather than competing individual fiefdoms",
       "Rebuild trust on a more honest, adult, peer basis than the early culture allowed",
-      "Create decision-making norms that scale with the organisation as it grows",
+      "Create decision-making norms that scale with the organization as it grows",
     ],
   },
   {
     number: "03",
-    subtitle: "Navigating Significant Organisational Change",
+    subtitle: "Navigating Significant Organizational Change",
     title: "The Transition Team",
     benefits: [
       "Create stability and shared ground during restructuring, merger, or leadership transition",
@@ -108,7 +108,7 @@ const FOR_WHOM_ITEMS = [
 const OUTCOME_ROWS = [
   {
     label: "Priorities",
-    before: "Strong, separately-optimising individual agendas",
+    before: "Strong, separately-optimizing individual agendas",
     after: "Shared direction the whole team can genuinely act from",
   },
   {
@@ -323,7 +323,7 @@ const TeamFacilitation = () => {
             <div style={{ flex: 1, paddingTop: isMobile ? "0" : "68px" }}>
               {[
                 "In my work with leadership teams, I help leaders align on shared priorities, improve how they communicate under pressure, address what has gone unsaid, and build the kind of trust that enables real collective decisions.",
-                "The goal is not harmony for its own sake. It is to move the leadership team from a group of strong individuals — each optimising separately — to a genuinely synchronised leadership body capable of leading the organisation with clarity and authority.",
+                "The goal is not harmony for its own sake. It is to move the leadership team from a group of strong individuals — each optimizing separately — to a genuinely synchronised leadership body capable of leading the organization with clarity and authority.",
                 "This work operates at the level of the team as a system, not only at the level of each individual within it. That distinction is everything.",
               ].map((para, i) => (
                 <ScrollReveal key={i} delay={0.08 * i}>

@@ -117,7 +117,7 @@ const FORMAT_ITEMS = [
   { label: "Duration", value: "3 or 5 days residential" },
   { label: "Location", value: "Oman, Costa Rica, and select European locations — carefully chosen for stillness and focus" },
   { label: "Group Size", value: "Small groups only — maximum 8 participants" },
-  { label: "Who This Is For", value: "Leaders currently engaged in one of Cornelia's programmes" },
+  { label: "Who This Is For", value: "Leaders currently engaged in one of Cornelia's programs" },
   { label: "Practice Level", value: "All levels — from complete beginners to experienced practitioners" },
   { label: "Language", value: "German or English" },
   { label: "Investment", value: "Shared on application" },
@@ -314,12 +314,12 @@ const MeditationRetreat = () => {
                 {
                   "@type": "Question",
                   "name": "What is an executive meditation retreat?",
-                  "acceptedAnswer": { "@type": "Answer", "text": "An executive meditation retreat is an immersive, silent or semi-silent retreat programme specifically designed for senior leaders. It integrates evidence-based meditation practice with nervous system regulation, providing leaders with tools to sustain high performance, clarity, and presence under sustained pressure." },
+                  "acceptedAnswer": { "@type": "Answer", "text": "An executive meditation retreat is an immersive, silent or semi-silent retreat program specifically designed for senior leaders. It integrates evidence-based meditation practice with nervous system regulation, providing leaders with tools to sustain high performance, clarity, and presence under sustained pressure." },
                 },
                 {
                   "@type": "Question",
                   "name": "Who are executive retreats for?",
-                  "acceptedAnswer": { "@type": "Answer", "text": "Retreats are offered to senior leaders who are engaged in one of Cornelia's ongoing coaching or advisory programmes and who are ready to go deeper — creating sustained space for the inner work that drives lasting leadership transformation." },
+                  "acceptedAnswer": { "@type": "Answer", "text": "Retreats are offered to senior leaders who are engaged in one of Cornelia's ongoing coaching or advisory programs and who are ready to go deeper — creating sustained space for the inner work that drives lasting leadership transformation." },
                 },
                 {
                   "@type": "Question",
@@ -437,9 +437,9 @@ const MeditationRetreat = () => {
             {/* Right: body */}
             <div style={{ flex: 1, paddingTop: isMobile ? "0" : "68px" }}>
               {[
-                "For leaders working with me in programmes, I regularly offer 3–5 day executive meditation retreats. I have practiced meditation for over 30 years and have been teaching it to leaders for more than a decade.",
+                "For leaders working with me in programs, I regularly offer 3–5 day executive meditation retreats. I have practiced meditation for over 30 years and have been teaching it to leaders for more than a decade.",
                 "When practiced with real rigour and genuine guidance, meditation strengthens self-regulation, deepens insight, and creates the clarity and cognitive flexibility that leadership at the highest level demands. These retreats create the conditions that daily operational life cannot.",
-                "What I offer in these retreats is not a wellness programme. It is a structured, intelligent, and personally guided introduction to the kind of practice that changes the architecture of how you lead — from the inside out.",
+                "What I offer in these retreats is not a wellness program. It is a structured, intelligent, and personally guided introduction to the kind of practice that changes the architecture of how you lead — from the inside out.",
               ].map((para, i) => (
                 <ScrollReveal key={i} delay={0.08 * i}>
                   <p
@@ -593,7 +593,7 @@ const MeditationRetreat = () => {
                     maxWidth: "480px",
                   }}
                 >
-                  "What I offer in these retreats is not a wellness programme. It is a rigorous, intelligent introduction to the kind of practice that changes the architecture of leadership."
+                  "What I offer in these retreats is not a wellness program. It is a rigorous, intelligent introduction to the kind of practice that changes the architecture of leadership."
                 </p>
               </ScrollReveal>
             </div>
@@ -1465,7 +1465,7 @@ const MeditationRetreat = () => {
                   {/* Status + Spots + CTA */}
                   <div style={{ display: "flex", alignItems: "center", justifyContent: isMobile ? "space-between" : "flex-start", gap: isMobile ? "0" : "16px", width: isMobile ? "100%" : "auto", flexShrink: 0 }}>
 
-                    {/* Status badge — colour-coded */}
+                    {/* Status badge — color-coded */}
                     <span style={{
                       fontFamily: "Manrope, sans-serif", fontSize: "10px", fontWeight: 500,
                       letterSpacing: "1.5px", textTransform: "uppercase",
@@ -1719,7 +1719,7 @@ const MeditationRetreat = () => {
                         When You're Ready to Go Deeper
                       </h2>
                       <p style={{ fontFamily: "Manrope, sans-serif", fontSize: "15px", fontWeight: 300, color: "rgba(227,222,215,0.45)", lineHeight: 1.75, marginTop: "18px" }}>
-                        Retreats are offered to leaders engaged in one of Cornelia's programmes. Enquiries are welcomed — to understand whether the timing and format are the right fit.
+                        Retreats are offered to leaders engaged in one of Cornelia's programs. Inquiries are welcomed — to understand whether the timing and format are the right fit.
                       </p>
                       <button
                         onClick={() => setShowFinalForm(true)}

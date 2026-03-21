@@ -15,7 +15,7 @@ const WorkWithMe = () => {
     <div>
       <SEOHead
         title="Work With Me — 4 Engagement Formats"
-        description="Four ways to work with Cornelia Trompke: 1:1 executive coaching, executive retreats, leadership team facilitation, and organisational advisory. All engagements begin with a conversation."
+        description="Four ways to work with Cornelia Trompke: 1:1 executive coaching, executive retreats, leadership team facilitation, and organizational advisory. All engagements begin with a conversation."
         path="/work-with-me"
         noIndex
         jsonLd={{
@@ -36,7 +36,7 @@ const WorkWithMe = () => {
                 { "@type": "ListItem", "position": 1, "name": "Executive Coaching & Advisory", "url": "https://www.corneliatrompke.com/executive-coaching" },
                 { "@type": "ListItem", "position": 2, "name": "Executive Retreats", "url": "https://www.corneliatrompke.com/executive-retreats" },
                 { "@type": "ListItem", "position": 3, "name": "Leadership Team Facilitation", "url": "https://www.corneliatrompke.com/leadership-team-facilitation" },
-                { "@type": "ListItem", "position": 4, "name": "Organisational Advisory for People & Culture Transformation", "url": "https://www.corneliatrompke.com/organizational-advisory" },
+                { "@type": "ListItem", "position": 4, "name": "Organizational Advisory for People & Culture Transformation", "url": "https://www.corneliatrompke.com/organizational-advisory" },
               ],
             },
           ],

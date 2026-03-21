@@ -38,7 +38,7 @@ const Contact = () => {
     <div>
       <SEOHead
         title="Contact & Apply — Start the Conversation"
-        description="Begin the conversation. Every engagement starts with understanding. All enquiries to Cornelia Trompke receive a personal response within 2–3 business days. Based in Berlin, working in German and English."
+        description="Begin the conversation. Every engagement starts with understanding. All inquiries to Cornelia Trompke receive a personal response within 2–3 business days. Based in Berlin, working in German and English."
         path="/contact"
         jsonLd={{
           "@context": "https://schema.org",
@@ -46,7 +46,7 @@ const Contact = () => {
           "@id": "https://www.corneliatrompke.com/contact#webpage",
           "url": "https://www.corneliatrompke.com/contact",
           "name": "Contact Cornelia Trompke — Start the Conversation",
-          "description": "All enquiries receive a personal response within 2–3 business days.",
+          "description": "All inquiries receive a personal response within 2–3 business days.",
           "isPartOf": { "@id": "https://www.corneliatrompke.com/#website" },
           "about": { "@id": "https://www.corneliatrompke.com/#organization" },
         }}
