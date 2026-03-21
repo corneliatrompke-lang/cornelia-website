@@ -25,6 +25,9 @@ const TICKER_ITEMS = [
   { name: "A. Lange & Söhne",          src: "/logos/a-lange-soehne.svg",  h: 48 },
   { name: "Fashion Digital",           src: "/logos/fashion-digital.jpg" },
   { name: "Unite",                     src: "/logos/unite.png"           },
+  { name: "ZAHORANSKY",                src: "/logos/zahoransky.png"      },
+  { name: "Riverty",                   src: "/logos/riverty.png"         },
+  { name: "Otto Krahn Group",          src: "/logos/otto-krahn-group.png" },
 ];
 
 // Hero videos — desktop and mobile variants
