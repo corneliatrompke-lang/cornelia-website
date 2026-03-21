@@ -509,7 +509,7 @@ const en = {
     },
   },
   footer: {
-    tagline: "Trauma-Informed Leadership Development for Senior Executives — Berlin & Worldwide.",
+    tagline: "Executive coaching, organisational advisory, and retreats for leaders committed to lasting change.",
     navigation: "Navigation",
     services: "Services",
     legal: "Legal",

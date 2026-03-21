@@ -37,7 +37,7 @@ const de = {
       overline: "Wie wir zusammenarbeiten",
       headline: "Vier Formate. Eine Richtung.",
       items: [
-        { number: "01", title: "1:1 Executive Coaching", description: "Ein vertraulicher Rahmen für tiefe individuelle Arbeit. Für Führungskräfte, die bereit sind, aus Ganzheit heraus zu führen — nicht aus Performance.", link: "/executive-coaching" },
+        { number: "01", title: "1:1 Executive Coaching", description: "Ein vertraulicher Rahmen für tiefe individuelle Arbeit. Für Führungskräfte, die bereit sind, aus innerer Ganzheit heraus zu führen — nicht aus Leistungsdruck.", link: "/executive-coaching" },
         { number: "02", title: "Executive Meditations-Retreat", description: "Ein immersives Intensivformat, das Raum für die Fragen schafft, die im Tempo des Alltags nie auftauchen.", link: "/executive-retreats" },
         { number: "03", title: "Facilitation für Führungsteams", description: "Tiefe Prozessarbeit mit Führungsteams, die Komplexität, Konflikte und die unsichtbaren Dynamiken kollektiver Performance navigieren.", link: "/leadership-team-facilitation" },
         { number: "04", title: "Beratung für organisationalen Wandel", description: "Strategische Beratung für Organisationen an Wendepunkten — Kultur, Struktur und Führungsarchitektur durch eine Nervensystemlinse.", link: "/organizational-advisory" },
@@ -90,7 +90,7 @@ const de = {
           number: "02",
           role: "Integrative Praxis",
           period: "Die Vertiefung",
-          description: "Eine Hinwendung zur Schnittstelle von Performance und innerer Realität. Das Verweben von systemischem Denken, traumainformierter Psychologie und somatischer Weisheit – und die gelebte Erkenntnis, dass was überzeugend klingt und was wirklich trägt selten dasselbe ist.",
+          description: "Eine Hinwendung zur Schnittstelle von Performance und innerer Realität. Das Verweben von systemischem Denken, traumainformierter Psychologie und somatischer Weisheit – und die gelebte Erkenntnis, dass das, was überzeugend klingt, und das, was wirklich trägt, selten dasselbe ist.",
         },
         {
           number: "03",
@@ -119,12 +119,12 @@ const de = {
     },
     credentials: {
       overline: "Ausbildung & Qualifikationen",
-      headline: "Eine Praxis, aufgebaut auf Jahrzehnten von Tiefe",
+      headline: "Eine Praxis, aufgebaut auf Jahrzehnten der Vertiefung",
       items: [
         { title: "NARM Practitioner", description: "Zertifiziert im NeuroAffective Relational Model von Dr. Laurence Heller – einem führenden traumainformierten Ansatz für Entwicklung und Identität" },
         { title: "Integral Coach", description: "Ausgebildet in Integral Coaching Methodik – systemisches Denken, traumainformierte Psychologie und somatische Weisheit in einer einheitlichen Praxis verwoben" },
         { title: "Schülerin von Thomas Hübl", description: "Langjährige Arbeit mit dem Bewusstseinslehrer Thomas Hübl – kontemplative Tiefe und kollektives Bewusstsein in die Führungsarbeit integriert" },
-        { title: "Corporate HR Hintergrund", description: "Jahre in internationalen Organisationen, bevor sie eine unabhängige Praxis gründete – mit einem Ersthand-Verständnis dafür, was Führung wirklich fordert" },
+        { title: "Corporate HR Hintergrund", description: "Jahre in internationalen Organisationen, bevor sie eine unabhängige Praxis gründete – mit einem Verständnis aus erster Hand dafür, was Führung wirklich fordert" },
       ],
     },
     approach: {
@@ -144,7 +144,7 @@ const de = {
         {
           number: "03",
           title: "Maßgeschneiderter Prozess",
-          description: "Es gibt keine Vorlagen, keine Standardprogramme. Jedes Engagement wird vollständig von dem geformt, was am lebendigsten und nötigsten ist – auf der Ebene der Person, nicht der Rolle.",
+          description: "Es gibt keine Vorlagen, keine Standardprogramme. Jedes Engagement wird vollständig von dem geformt, was am lebendigsten und dringendsten ist – auf der Ebene der Person, nicht der Rolle.",
         },
         {
           number: "04",
