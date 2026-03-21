@@ -16,7 +16,7 @@ const de = {
   home: {
     hero: {
       overline: "Executive Coaching & Consulting · Berlin & Weltweit",
-      tagline: "Verändern Sie, wie Sie führen — und was Ihre Organisation werden kann",
+      tagline: "Wie Sie führen, verändert alles — auch das, was Ihre Organisation werden kann",
       subtitle: "Executive Coaching, Beratung und Retreats für Führungskräfte, die auf nachhaltige Veränderung setzen.",
       cta: "Gespräch beginnen",
       ctaSecondary: "Leistungen erkunden",
