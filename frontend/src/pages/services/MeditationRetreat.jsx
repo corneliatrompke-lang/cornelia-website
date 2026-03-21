@@ -438,7 +438,7 @@ const MeditationRetreat = () => {
             <div style={{ flex: 1, paddingTop: isMobile ? "0" : "68px" }}>
               {[
                 "For leaders working with me in programs, I regularly offer 3–5 day executive meditation retreats. I have practiced meditation for over 30 years and have been teaching it to leaders for more than a decade.",
-                "When practiced with real rigour and genuine guidance, meditation strengthens self-regulation, deepens insight, and creates the clarity and cognitive flexibility that leadership at the highest level demands. These retreats create the conditions that daily operational life cannot.",
+                "When practiced with real rigor and genuine guidance, meditation strengthens self-regulation, deepens insight, and creates the clarity and cognitive flexibility that leadership at the highest level demands. These retreats create the conditions that daily operational life cannot.",
                 "What I offer in these retreats is not a wellness program. It is a structured, intelligent, and personally guided introduction to the kind of practice that changes the architecture of how you lead — from the inside out.",
               ].map((para, i) => (
                 <ScrollReveal key={i} delay={0.08 * i}>

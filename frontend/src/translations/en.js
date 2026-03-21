@@ -172,7 +172,7 @@ const en = {
         {
           number: "02",
           title: "Confidential Container",
-          description: "Complete discretion governs every conversation. Nothing said within the engagement is shared. The container is held with the same rigour and care as the work itself.",
+          description: "Complete discretion governs every conversation. Nothing said within the engagement is shared. The container is held with the same rigor and care as the work itself.",
         },
         {
           number: "03",

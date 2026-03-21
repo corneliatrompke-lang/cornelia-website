@@ -128,7 +128,7 @@ const Legal = () => {
             <div className="mt-10 space-y-6">
               {[
                 { title: "Data Controller", text: "Cornelia Trompke, Berlin, Germany. Email: contact@corneliatrompke.com" },
-                { title: "Data Collected", text: "Contact form: name, email, organisation, role, and message. This data is used solely to respond to your inquiry." },
+                { title: "Data Collected", text: "Contact form: name, email, organization, role, and message. This data is used solely to respond to your inquiry." },
                 { title: "Data Retention", text: "Contact form data is retained for a period of 6 months from the date of submission, after which it is securely deleted." },
                 { title: "Your Rights", text: "Under GDPR, you have the right to access, rectify, and erase your personal data. You may exercise these rights by contacting us at the email address above." },
                 { title: "Cookies", text: "This website does not use tracking or marketing cookies. Anonymous analytics data may be collected to improve the user experience." },

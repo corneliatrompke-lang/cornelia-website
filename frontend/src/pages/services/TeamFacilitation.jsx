@@ -323,7 +323,7 @@ const TeamFacilitation = () => {
             <div style={{ flex: 1, paddingTop: isMobile ? "0" : "68px" }}>
               {[
                 "In my work with leadership teams, I help leaders align on shared priorities, improve how they communicate under pressure, address what has gone unsaid, and build the kind of trust that enables real collective decisions.",
-                "The goal is not harmony for its own sake. It is to move the leadership team from a group of strong individuals — each optimizing separately — to a genuinely synchronised leadership body capable of leading the organization with clarity and authority.",
+                "The goal is not harmony for its own sake. It is to move the leadership team from a group of strong individuals — each optimizing separately — to a genuinely synchronized leadership body capable of leading the organization with clarity and authority.",
                 "This work operates at the level of the team as a system, not only at the level of each individual within it. That distinction is everything.",
               ].map((para, i) => (
                 <ScrollReveal key={i} delay={0.08 * i}>

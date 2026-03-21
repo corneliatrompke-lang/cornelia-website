@@ -25,7 +25,7 @@ const DIMENSIONS = [
     number: "02",
     title: "People Systems",
     subtitle: "The Architecture of Work",
-    body: "People practices are the operating system of your organization. Performance processes, talent frameworks, how you hire, develop, and recognise people — these are not administrative functions. They are the structural encoding of what the organization truly values. We examine what your current systems actually produce, where they constrain the culture you are trying to build, and what specifically needs to change.",
+    body: "People practices are the operating system of your organization. Performance processes, talent frameworks, how you hire, develop, and recognize people — these are not administrative functions. They are the structural encoding of what the organization truly values. We examine what your current systems actually produce, where they constrain the culture you are trying to build, and what specifically needs to change.",
   },
   {
     number: "03",
@@ -310,7 +310,7 @@ const OrganizationalAdvisory = () => {
             {/* Right: body */}
             <div style={{ flex: 1, paddingTop: isMobile ? "0" : "68px" }}>
               {[
-                "My work with organizations addresses the three dimensions that must evolve together for transformation to hold: leadership, people systems, and culture. When only one changes, the system restabilises around its old patterns.",
+                "My work with organizations addresses the three dimensions that must evolve together for transformation to hold: leadership, people systems, and culture. When only one changes, the system restabilizes around its old patterns.",
                 "The engagement typically begins with a listening phase — structured conversations across the organization to surface what the data cannot capture and what the official narrative consistently leaves out.",
                 "Based on this, I develop a clear picture of where your current systems and practices support the direction you intend — and where they actively work against it. What follows is a frank strategic conversation about what needs to change, and how.",
               ].map((para, i) => (
