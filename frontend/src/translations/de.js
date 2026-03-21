@@ -25,7 +25,7 @@ const de = {
     philosophy: {
       overline: "Das Fundament",
       headline: "Führung ist keine Strategie. Führung ist ein Seinsszustand.",
-      body: "Die folgenreichsten Entscheidungen werden aus dem Nervensystem getroffen — nicht aus der Tabellenkalkulation. Führungskräfte, die Institutionen prägen, Kulturen aufbauen und nachhaltigen Einfluss über Jahrzehnte ausüben, verstehen, was in ihrem Körper unter Druck geschieht.\n\nDas ist die Ebene, die die meisten Berater nie berühren. Hier beginnt diese Arbeit.",
+      body: "Die folgenreichsten Entscheidungen werden aus dem Nervensystem getroffen — nicht aus der Tabellenkalkulation. Führungskräfte, die Institutionen prägen, Kulturen aufbauen und nachhaltigen Einfluss über Jahrzehnte ausüben, verstehen, was unter Druck in Ihnen geschieht.\n\nDas ist die Ebene, die die meisten Berater nie berühren. Hier beginnt diese Arbeit.",
     },
     aboutPreview: {
       overline: "Cornelia Trompke",
@@ -47,7 +47,7 @@ const de = {
     method: {
       overline: "Die Methodik",
       headline: "In der Wissenschaft verankert. Von Tiefe geleitet.",
-      body: "Die Arbeit integriert zwei der ausgefeiltesten Methoden für tiefgreifenden menschlichen und organisationalen Wandel: NARM — das NeuroAffective Relational Model — und Integral Coaching. Gemeinsam schaffen sie eine einzigartige Kapazität, mit dem zu arbeiten, was in Führungskraft und System gleichzeitig lebendig ist.",
+      body: "Die Arbeit integriert zwei der ausgefeiltesten Methoden für tiefgreifenden menschlichen und organisationalen Wandel: NARM — das NeuroAffective Relational Model — und Integral Coaching. Gemeinsam schaffen sie eine einzigartige Fähigkeit, mit dem zu arbeiten, was in Führungskraft und System gleichzeitig lebendig ist.",
       cta: "Die Methode erkunden",
     },
     testimonials: {
@@ -66,7 +66,7 @@ const de = {
     },
     cta: {
       headline: "Bereit zu beginnen?",
-      body: "Engagements sind selektiv und beginnen mit einem Gespräch. Wenn diese Arbeit resoniert — für Sie persönlich oder Ihre Organisation — beginnen Sie hier.",
+      body: "Zusammenarbeit entsteht bewusst und beginnt mit einem Gespräch. Wenn Sie sich angesprochen fühlen — für Sie persönlich oder Ihre Organisation — beginnen Sie hier.",
       cta: "Zusammenarbeit anfragen",
     },
   },
