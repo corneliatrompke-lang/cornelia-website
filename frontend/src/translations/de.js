@@ -203,7 +203,7 @@ const de = {
       overline: "Methodik Eins",
       headline: "NARM — NeuroAffective Relational Model",
       body: "Von Dr. Laurence Heller entwickelt, ist NARM ein führender traumainformierter Ansatz zur menschlichen Entwicklung, der an der Schnittstelle von Neurowissenschaft, Entwicklungspsychologie und somatischem Gewahrsein arbeitet. Anders als klassische Traumatherapie geht es bei NARM nicht um die Verarbeitung der Vergangenheit — es geht darum, die adaptiven Überlebensstrategien loszulassen, die uns einst dienten, aber jetzt unsere Fähigkeit einschränken, mit voller Präsenz zu führen und in Beziehung zu treten.\n\nFür Führungskräfte bedeutet das eine tiefgreifende Verschiebung: von reaktiver zu regulierter Führung; von leistungsbasierter Identität zu authentischer Autorität.",
-      points: ["Nervensystemregulation und Kapazitätsaufbau", "Arbeit mit adaptiven Überlebensstrategien, die Führungseffektivität einschränken", "Wiederherstellung des Zugangs zu Verbindung, Lebendigkeit und authentischer Präsenz", "Resilienzentwicklung durch echte Kapazität — nicht durch Unterdrückung"],
+      points: ["Nervensystemregulation und Kapazitätsaufbau", "Arbeit mit adaptiven Überlebensstrategien, die Führungseffektivität einschränken", "Wiederherstellung des Zugangs zu Verbindung, Lebendigkeit und authentischer Präsenz", "Resilienz durch echte innere Stärke — nicht durch Unterdrückung"],
     },
     integral: {
       overline: "Methodik Zwei",
