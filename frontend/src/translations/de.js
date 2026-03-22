@@ -526,7 +526,7 @@ const de = {
       },
       dimensions: {
         overline: "Die drei Dimensionen",
-        headline: "Drei Dimensionen. Eine integrierte Transformation.",
+        headline: "Drei Dimensionen der Transformation.",
         subtitle: "Organisationale Transformation erfordert, dass sich alle drei Dimensionen gemeinsam bewegen — nicht nacheinander, nicht isoliert, sondern als integriertes Ganzes.",
         items: [
           { number: "01", title: "Führung", subtitle: "Wie Führungskräfte tatsächlich operieren", body: "Führung ist der primäre Hebel jeder bedeutsamen organisationalen Veränderung. Wer führt, wie sie führen und was sie vorleben, schafft die Bedingungen — oder die Einschränkungen — für alles andere. Wir untersuchen Führungsreife, Entscheidungsmuster und die Lücke zwischen dem, was gesagt wird, und dem, was tatsächlich gelebt wird. Wo Führung nicht wirklich mit der beabsichtigten Zukunft übereinstimmt, gerät die Transformation ins Stocken. Immer." },
