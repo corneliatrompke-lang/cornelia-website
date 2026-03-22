@@ -39,7 +39,7 @@ const de = {
       { title: "Executive Coaching & Advisory", path: "/executive-coaching" },
       { title: "Executive Retreats", path: "/executive-retreats" },
       { title: "Facilitation für Führungsteams", path: "/leadership-team-facilitation" },
-      { title: "Beratung für organisationalen Wandel", path: "/organizational-advisory" },
+      { title: "Beratung für Organisations- und Kulturwandel", path: "/organizational-advisory" },
     ],
   },
   home: {
@@ -69,7 +69,7 @@ const de = {
         { number: "01", title: "1:1 Executive Coaching", description: "Ein vertraulicher Rahmen für tiefe individuelle Arbeit. Für Führungskräfte, die bereit sind, aus innerer Ganzheit heraus zu führen — nicht aus Leistungsdruck.", link: "/executive-coaching" },
         { number: "02", title: "Executive Meditations-Retreat", description: "Ein immersives Intensivformat, das Raum für die Fragen schafft, die im Tempo des Alltags nie auftauchen.", link: "/executive-retreats" },
         { number: "03", title: "Facilitation für Führungsteams", description: "Tiefe Prozessarbeit mit Führungsteams, die Komplexität, Konflikte und die unsichtbaren Dynamiken kollektiver Performance navigieren.", link: "/leadership-team-facilitation" },
-        { number: "04", title: "Beratung für organisationalen Wandel", description: "Strategische Beratung für Organisationen an Wendepunkten — Kultur, Struktur und Führungsarchitektur durch eine Nervensystemlinse.", link: "/organizational-advisory" },
+        { number: "04", title: "Beratung für Organisations- und Kulturwandel", description: "Strategische Beratung für Organisationen an Wendepunkten — Kultur, Struktur und Führungsarchitektur durch eine Nervensystemlinse.", link: "/organizational-advisory" },
       ],
       cta: "Alle Leistungen ansehen",
     },
@@ -350,7 +350,7 @@ const de = {
       { number: "01", title: "1:1 Executive Coaching", description: "Eine nachhaltige, vertrauliche Partnerschaft für Senior Executives und Gründer, die bereit sind, von innen heraus zu entwickeln.", link: "/executive-coaching", cta: "Mehr erfahren" },
       { number: "02", title: "Executive Meditations-Retreat", description: "Ein immersives Intensivformat, das Raum für die Fragen schafft, die kein operativer Kalender erlaubt.", link: "/executive-retreats", cta: "Mehr erfahren" },
       { number: "03", title: "Facilitation für Führungsteams", description: "Tiefe Facilitationsarbeit mit Führungsteams, die Komplexität und kollektive Transformation navigieren.", link: "/leadership-team-facilitation", cta: "Mehr erfahren" },
-      { number: "04", title: "Beratung für organisationalen Wandel", description: "Strategische Beratung für Organisationen an kritischen Wendepunkten — Kultur, Struktur und Führung auf Tiefe geprüft.", link: "/organizational-advisory", cta: "Mehr erfahren" },
+      { number: "04", title: "Beratung für Organisations- und Kulturwandel", description: "Strategische Beratung für Organisationen an kritischen Wendepunkten — Kultur, Struktur und Führung auf Tiefe geprüft.", link: "/organizational-advisory", cta: "Mehr erfahren" },
     ],
     note: "Jede Zusammenarbeit beginnt mit einem ersten Gespräch. Cornelia arbeitet zu jedem Zeitpunkt mit einer begrenzten Anzahl von Klienten und Organisationen, um die Tiefe zu gewährleisten, die diese Arbeit erfordert.",
     cta: { headline: "Sie wissen noch nicht, welches Format passt?", body: "Beginnen Sie mit einem Gespräch. Wir finden gemeinsam das richtige Format.", button: "Gespräch beginnen" },
@@ -517,7 +517,7 @@ const de = {
       cta: { headline: "Dieses Format erkunden", button: "Gespräch beginnen", description: "Jede Zusammenarbeit beginnt mit einem Gespräch." },
     },
     organizationalAdvisory: {
-      hero: { overline: "04 — Advisory", headline: "Beratung für organisationalen Wandel", subtitle: "Strategische Intelligenz, die berücksichtigt, was die meisten Beratungsansätze verfehlen." },
+      hero: { overline: "04 — Advisory", headline: "Beratung für Organisations- und Kulturwandel", subtitle: "Strategische Intelligenz, die berücksichtigt, was die meisten Beratungsansätze verfehlen." },
       premise: {
         overline: "Die Prämisse",
         quote: "Organisationen entwickeln sich, wenn Führung, Personal-Praktiken und Kultur sich in dieselbe Richtung entwickeln — selten, wenn sich nur eines ändert, während die anderen fixiert bleiben.",
