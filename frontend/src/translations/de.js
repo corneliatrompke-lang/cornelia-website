@@ -216,7 +216,7 @@ const de = {
       headline: "Zusammen schaffen sie etwas Seltenes",
       body: "Wenn NARM und Integral Coaching integriert werden, entsteht eine Form der Arbeit, die die volle Tiefe der Führungsentwicklung adressiert — das Biologische, das Psychologische, das Relationale und das Strukturelle. Es ist diese Integration, die der Arbeit ihre besondere Qualität verleiht: leise transformativ, tiefgreifend präzise und dauerhaft.",
     },
-    cta: { headline: "Bereit für den nächsten Schritt?", body: "Jede Zusammenarbeit beginnt mit einem echten Gespräch. Erkunden Sie, welches Format für Sie am besten geeignet ist.", button: "Gespräch beginnen" },
+    cta: { headline: "Bereit für den nächsten Schritt?", body: "Jede Zusammenarbeit beginnt mit einem Gespräch. Erkunden Sie, welches Format für Sie am besten geeignet ist.", button: "Gespräch beginnen" },
   },
   workWithMe: {
     hero: { overline: "Zusammenarbeit", headline: "Vier Wege der Zusammenarbeit", subtitle: "Jede Zusammenarbeit ist maßgeschneidert. Jede beginnt mit einem Gespräch." },

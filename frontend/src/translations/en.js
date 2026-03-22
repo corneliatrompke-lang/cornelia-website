@@ -325,7 +325,7 @@ const en = {
         },
       ],
     },
-    cta: { headline: "Ready to Experience the Work?", body: "Every engagement begins with a real conversation. Explore what format might be right for you, and begin from there.", button: "Begin the Conversation" },
+    cta: { headline: "Ready to Experience the Work?", body: "Every engagement begins with a conversation. Explore what format might be right for you, and begin from there.", button: "Begin the Conversation" },
   },
   workWithMe: {
     hero: {
