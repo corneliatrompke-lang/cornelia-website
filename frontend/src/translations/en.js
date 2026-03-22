@@ -108,6 +108,8 @@ const en = {
       overline: "About Me",
       headline: "Cornelia Trompke",
       subheadline: "Executive Coach · Organizational Developer · Leadership Team Facilitator · Executive Meditation Retreats",
+      ctaPrimary: "Begin the Conversation",
+      ctaSecondary: "Explore the Method",
     },
     originStory: {
       overline: "The Journey",

@@ -108,6 +108,8 @@ const de = {
       overline: "Über mich",
       headline: "Cornelia Trompke",
       subheadline: "Executive Coach · Organisationsentwicklung · Leadership Team Facilitatorin · Executive Meditation Retreats",
+      ctaPrimary: "Gespräch beginnen",
+      ctaSecondary: "Die Methode erkunden",
     },
     originStory: {
       overline: "Der Weg",

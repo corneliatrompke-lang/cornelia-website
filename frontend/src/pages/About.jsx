@@ -228,11 +228,11 @@ const About = () => {
                   data-testid="about-hero-cta-primary"
                   style={{ cursor: "pointer", border: "none" }}
                 >
-                  Begin the Conversation
+                  {a.hero.ctaPrimary}
                   <ArrowRight size={13} />
                 </button>
                 <Link to="/how-i-work" className="btn-hero-pill-outline" data-testid="about-hero-cta-secondary">
-                  Explore the Method
+                  {a.hero.ctaSecondary}
                 </Link>
               </div>
             </ScrollReveal>
