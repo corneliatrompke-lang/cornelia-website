@@ -422,7 +422,7 @@ const de = {
         headline: "Das Retreat-Erlebnis",
         centerLabel: "Stille",
         items: [
-          { number: "01", label: "Stille Reflexion", role: "Der innere Raum", description: "Unstrukturierte Stunden, in denen Ihr Nervensystem sich auf seine eigene Weise beruhigt. Keine erzwungene Stille — echte Stille. Raum für das, was gewartet hat, geduldig und leise, um endlich gehört zu werden." },
+          { number: "01", label: "Stille Reflexion", role: "Der innere Raum", description: "Stille, die Raum schafft für das, was sonst nicht zu Wort kommt. In der sich Spannung bemerkbar machen und abschmelzen kann. Eine tiefe Entspannung und Regulation des Nervensystems kann sich einstellen." },
           { number: "02", label: "Geführte Praxis", role: "Die Architektur", description: "Anleitung in Meditationsformen, die für den Executive-Geist geeignet sind — anspruchsvoll, intelligent und angepasst an Führungskräfte. Ob Sie noch nie praktiziert haben oder seit Jahren praktizieren, die Anleitung trifft Sie genau dort, wo Sie sind." },
           { number: "03", label: "Dialog", role: "Das Feld", description: "Gespräche in kleiner Gruppe, die Einsichten durch Austausch setzen und vertiefen lassen. Die Qualität der Verbindung zwischen Teilnehmern — auf dieser Ebene der Offenheit — erzeugt oft ihre eigene tiefgreifende Art von Klarheit." },
         ],
