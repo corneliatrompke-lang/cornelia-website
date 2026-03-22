@@ -534,7 +534,7 @@ const en = {
       cta: { headline: "Want to Explore This?", button: "Begin a Conversation", description: "Every engagement begins with a conversation." },
     },
     organizationalAdvisory: {
-      hero: { overline: "Organizational Advisory", headline: "Organizational Transformation Advisory", subtitle: "Strategic intelligence that accounts for what most consulting never reaches." },
+      hero: { overline: "Organizational Advisory", headline: "Organizational Transformation Advisory", subtitle: "Change that starts with people." },
       premise: {
         overline: "The Premise",
         quote: "Organizations evolve when leadership, people practices, and culture develop in the same direction — rarely when only one changes while the others stay fixed.",
