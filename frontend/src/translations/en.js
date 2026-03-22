@@ -421,7 +421,7 @@ const en = {
           { value: "10+", label: "Years Teaching\nMeditation to Leaders" },
         ],
         quote: "What I offer in these retreats is not a wellness program. It is a structured, intelligent, and personally guided introduction to the kind of practice that changes the architecture of how you lead — from the inside out.",
-        body: ["Meditation has never been separate from my work with leaders. It is the foundation of it. The ability to regulate your own system — to remain present under pressure, to lead from a quiet center — is precisely what most leaders have never systematically developed.", "These retreats bring together what I have learned in over three decades of personal practice and over a decade of working with leaders under the highest pressure. The practices are rigorous but accessible. The guidance is direct and personal. The results are lasting."],
+        body: ["Meditation has never been separate from my work with leaders. It is the foundation of it. The ability to regulate your own system — to remain present under pressure, to lead from a quiet center — is precisely what most leaders have never systematically developed.", "These retreats bring together what I have learned in over three decades of personal practice and over a decade of working with leaders. The practices are rigorous but accessible. The guidance is direct and personal. The results are lasting with continued practice."],
       },
       whatOpens: {
         overline: "What Opens",

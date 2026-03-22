@@ -404,7 +404,7 @@ const de = {
           { value: "10+", label: "Jahre Meditation\nfür Führungskräfte lehren" },
         ],
         quote: "Was ich in diesen Retreats anbiete, ist kein Wellness-Programm. Es ist eine strukturierte, intelligente und persönlich begleitete Einführung in die Art von Praxis, die die Architektur verändert, wie Sie führen — von innen nach außen.",
-        body: ["Meditation war für mich nie von meiner Arbeit mit Führungskräften getrennt. Sie ist das Fundament davon. Die Fähigkeit, das eigene System zu regulieren — unter Druck präsent zu bleiben, aus einem ruhigen Zentrum heraus zu führen — ist genau das, was die meisten Führungskräfte nie systematisch entwickelt haben.", "Diese Retreats bringen zusammen, was ich in über drei Jahrzehnten persönlicher Praxis und über einem Jahrzehnt Arbeit mit Führungskräften unter höchstem Druck gelernt habe. Die Praktiken sind anspruchsvoll, aber zugänglich. Die Anleitung ist direkt und persönlich. Die Ergebnisse sind dauerhaft."],
+        body: ["Meditation war für mich nie von meiner Arbeit mit Führungskräften getrennt. Sie ist das Fundament davon. Die Fähigkeit, das eigene System zu regulieren — unter Druck präsent zu bleiben, aus einem ruhigen Zentrum heraus zu führen — ist genau das, was die meisten Führungskräfte nie systematisch entwickelt haben.", "Diese Retreats bringen zusammen, was ich in über drei Jahrzehnten persönlicher Praxis und über einem Jahrzehnt Arbeit mit Führungskräften gelernt habe. Die Praktiken sind anspruchsvoll, aber zugänglich. Die Anleitung ist direkt und persönlich. Die Ergebnisse sind dauerhaft bei kontinuierlicher Fortsetzung der Praxis."],
       },
       whatOpens: {
         overline: "Was sich öffnet",
