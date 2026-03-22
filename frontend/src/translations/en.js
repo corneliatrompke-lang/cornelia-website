@@ -578,7 +578,7 @@ const en = {
         headline: "Strategic Guidance Over Time",
         duration: "3–12",
         durationUnit: "months",
-        durationNote: "The structure adapts to what the organization needs — from intensive diagnostic work at the front to lighter-touch strategic support during implementation.",
+        durationNote: "The structure adapts to what the organization needs — from intensive diagnostic work at the start to focused support during implementation.",
         includedLabel: "What's Included",
         items: [
           "Stakeholder conversation series across levels of the organization",
