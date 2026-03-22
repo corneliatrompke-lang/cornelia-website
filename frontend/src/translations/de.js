@@ -464,7 +464,7 @@ const de = {
         overline: "Die Prämisse",
         quote: "In meiner 1:1 Arbeit mit Führungskräften wird immer wieder klar, dass die beharrlichsten Herausforderungen selten individuell sind — sie leben im Raum zwischen Menschen.",
         author: "Cornelia Trompke",
-        body: ["In meiner Arbeit mit Führungsteams helfe ich Führungskräften, sich auf gemeinsame Prioritäten auszurichten, zu verbessern, wie sie unter Druck kommunizieren, anzusprechen, was ungesagt geblieben ist, und jene Art von Vertrauen aufzubauen, die echte kollektive Entscheidungen ermöglicht.", "Das Ziel ist nicht Harmonie um ihrer selbst willen. Es geht darum, das Führungsteam von einer Gruppe starker Einzelpersonen — die jeweils separat optimieren — zu einem wirklich synchronisierten Führungskörper zu entwickeln, der fähig ist, die Organisation mit Klarheit und Autorität zu führen.", "Diese Arbeit operiert auf der Ebene des Teams als System, nicht nur auf der Ebene jedes einzelnen Individuums darin. Diese Unterscheidung ist alles."],
+        body: ["In der Arbeit mit Führungsteams geht es darum, gemeinsame Prioritäten zu klären, Kommunikation unter Druck zu verbessern, das Unausgesprochene anzusprechen – und Vertrauen aufzubauen, das echte gemeinsame Entscheidungen trägt.", "Das Ziel ist nicht Harmonie um ihrer selbst willen. Es geht darum, aus einer Gruppe starker Einzelpersonen ein synchronisiertes Führungsteam zu machen – eines, das wirklich zusammen führt, mit Klarheit und gegenseitigem Vertrauen."],
       },
       process: {
         overline: "Der Prozess",
