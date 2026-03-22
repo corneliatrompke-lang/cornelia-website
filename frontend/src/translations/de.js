@@ -125,7 +125,7 @@ const de = {
           number: "02",
           role: "Integrative Praxis",
           period: "Die Vertiefung",
-          description: "Eine Hinwendung zur Schnittstelle von Performance und innerer Realität. Das Verweben von systemischem Denken, traumainformierter Psychologie und somatischer Weisheit – und die gelebte Erkenntnis, dass das, was überzeugend klingt, und das, was wirklich trägt, selten dasselbe ist.",
+          description: "Der Schritt zur Schnittstelle von Performance und innerem Erleben. Systemisches Denken, traumasensible Psychologie und verkörperte Weisheit – und die gelebte Erkenntnis, dass Klarheit unter Druck anders aussieht als Klarheit auf dem Papier.",
         },
         {
           number: "03",
