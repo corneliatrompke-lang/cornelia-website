@@ -418,8 +418,8 @@ const de = {
         ],
       },
       experience: {
-        overline: "Das Erleben",
-        headline: "Das Erleben selbst",
+        overline: "Was Sie erwartet",
+        headline: "Das Retreat-Erlebnis",
         centerLabel: "Stille",
         items: [
           { number: "01", label: "Stille Reflexion", role: "Der innere Raum", description: "Unstrukturierte Stunden, in denen Ihr Nervensystem sich auf seine eigene Weise beruhigt. Keine erzwungene Stille — echte Stille. Raum für das, was gewartet hat, geduldig und leise, um endlich gehört zu werden." },
