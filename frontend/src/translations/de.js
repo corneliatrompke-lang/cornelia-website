@@ -193,7 +193,75 @@ const de = {
     },
   },
   method: {
-    hero: { overline: "Die Methode", headline: "Wo Neurowissenschaft auf Executive-Tiefe trifft", subtitle: "Zwei ausgereifte Methodiken. Ein integrierter Ansatz zur Führungstransformation." },
+    hero: { overline: "Die Methode — NARM & Integral Coaching für Führungskräfte", headline: "Wo Neurowissenschaft auf Executive-Tiefe trifft", subtitle: "Zwei ausgereifte Methodiken. Ein integrierter Ansatz zur Führungstransformation, der tiefer geht als rein verhaltensbasierte Ansätze." },
+    whatWeDo: {
+      overline: "Das Fundament",
+      headline: "Zwei Methodiken. Ein integrierter Rahmen.",
+      body: "Diese Arbeit basiert auf zwei unterschiedlichen — und zutiefst komplementären — Ansätzen. Jeder ist für sich genommen anspruchsvoll. Zusammen schaffen sie etwas, das keine einzelne Methodik allein bieten kann: Transformation, die die volle Tiefe dessen adressiert, wer Sie als Führungskraft sind.",
+      narmCard: {
+        label: "Methodik Eins",
+        title: "NARM",
+        subtitle: "NeuroAffective Relational Model",
+        description: "An der Schnittstelle von Neurowissenschaft, Entwicklungspsychologie und somatischem Gewahrsein — NARM identifiziert und löst die adaptiven Überlebensmuster, die leise prägen, wie Sie unter Druck funktionieren.",
+        points: ["Nervensystemregulation & erweiterte Kapazität", "Lösung der Muster, die Ihre Führung einschränken", "Verkörperte Präsenz & authentische Autorität"],
+      },
+      integralCard: {
+        label: "Methodik Zwei",
+        title: "Integral Coaching",
+        subtitle: "Lizenziert von Integral Coaching Canada",
+        description: "Basierend auf Ken Wilbers Integraler Theorie und Robert Kegans entwicklungspsychologischem Rahmenwerk — Integral Coaching erweitert die Struktur selbst, durch die Sie die Welt verstehen, anstatt nur neue Fähigkeiten auf alte Muster zu legen.",
+        points: ["Erweiterte Sinngebung und Perspektive", "Entwicklung des ganzen Menschen im Kontext", "Nachhaltige strukturelle Veränderung — keine temporäre Verbesserung"],
+      },
+    },
+    benefits: {
+      overline: "Was sich verändert",
+      headline: "Was möglich wird, wenn die Arbeit in die Tiefe geht",
+      items: [
+        { number: "01", title: "Nervensystemregulation", body: "Sie führen aus einem geerdeten, weiten Zustand heraus — nicht aus chronischem Stress, Reaktivität oder der erschöpfenden Performance, ruhig zu erscheinen, wenn Sie es nicht sind." },
+        { number: "02", title: "Authentische Autorität", body: "Sie hören auf, Führung zu performen, und beginnen, sie zu verkörpern — mit der stillen Sicherheit von jemandem, der wirklich weiß, wer er ist und wofür er steht." },
+        { number: "03", title: "Relationale Präzision", body: "Wie Sie anderen begegnen, verändert sich grundlegend. Sie werden präsenter, abgestimmter und effektiver in den komplexesten und anspruchsvollsten menschlichen Situationen." },
+        { number: "04", title: "Dauerhafte Transformation", body: "Die Veränderungen sind strukturell — nicht oberflächlich. Sie halten unter Druck, in verschiedenen Kontexten, und sie verstärken und vertiefen sich über Zeit." },
+      ],
+    },
+    accordion: {
+      overline: "Für wen diese Arbeit gedacht ist",
+      headline: "Diese Arbeit begegnet Ihnen dort, wo Sie stehen",
+      items: [
+        {
+          audience: "Für einzelne Führungskräfte",
+          subtitle: "Die Führungskraft, die bereit ist für mehr als Standard-Coaching",
+          benefits: [
+            "Lösen Sie die Überlebensmuster, die leise Ihre Führungspräsenz einschränken",
+            "Bewegen Sie sich von reaktiver, druckgesteuerter Entscheidungsfindung zu geerdeter, regulierter Autorität",
+            "Integrieren Sie die volle Komplexität dessen, wer Sie sind, in die Art, wie Sie tatsächlich führen",
+            "Bauen Sie Resilienz auf, die wirklich hält unter Vorstands- und öffentlicher Prüfung",
+            "Gewinnen Sie eine Klarheit, die kein Strategie-Framework oder Kompetenzmodell bieten kann",
+          ],
+        },
+        {
+          audience: "Für Führungsteams",
+          subtitle: "Das Team, das gut performt — und weiß, dass mehr möglich ist",
+          benefits: [
+            "Machen Sie das unsichtbare relationale Feld sichtbar — und wirklich bearbeitbar",
+            "Lösen Sie die Dynamiken, die strukturelle Interventionen schlicht nicht erreichen können",
+            "Bauen Sie kollektive Nervensystemkapazität und echte gemeinsame Regulation auf",
+            "Schaffen Sie die Bedingungen für strategische Ausrichtung, die über Oberflächenzustimmung hinausgeht",
+            "Bauen Sie eine Kultur psychologischer Tiefe neben hoher Performance auf",
+          ],
+        },
+        {
+          audience: "Für Organisationen als Ganzes",
+          subtitle: "Die Organisation an einem echten Wendepunkt",
+          benefits: [
+            "Zugang zur tieferen Architektur, die Kultur und kollektives Verhalten prägt",
+            "Transformation auf der Ebene, wo Veränderung wirklich hält — nicht nur auf der strukturellen Ebene",
+            "Aufbau von Führungskapazität im gesamten System — nicht nur an der Spitze",
+            "Navigation von Komplexität und Unsicherheit mit echter systemischer Intelligenz",
+            "Schaffen Sie die Bedingungen für echte Emergenz — nicht nur disziplinierte Ausführung",
+          ],
+        },
+      ],
+    },
     intro: {
       overline: "Die Integration",
       headline: "Die meisten Führungsentwicklungsprogramme arbeiten an der Oberfläche",
@@ -201,20 +269,47 @@ const de = {
     },
     narm: {
       overline: "Methodik Eins",
-      headline: "NARM — NeuroAffective Relational Model",
+      headline: "NARM — Das NeuroAffective Relational Model",
       body: "Von Dr. Laurence Heller entwickelt, ist NARM ein führender traumainformierter Ansatz zur menschlichen Entwicklung, der an der Schnittstelle von Neurowissenschaft, Entwicklungspsychologie und somatischem Gewahrsein arbeitet. Anders als klassische Traumatherapie geht es bei NARM nicht um die Verarbeitung der Vergangenheit — es geht darum, die adaptiven Überlebensstrategien loszulassen, die uns einst dienten, aber jetzt unsere Fähigkeit einschränken, mit voller Präsenz zu führen und in Beziehung zu treten.\n\nFür Führungskräfte bedeutet das eine tiefgreifende Verschiebung: von reaktiver zu regulierter Führung; von leistungsbasierter Identität zu authentischer Autorität.",
-      points: ["Nervensystemregulation und Aufbau innerer Stabilität", "Arbeit mit adaptiven Überlebensstrategien, die Führungseffektivität einschränken", "Wiederherstellung des Zugangs zu Verbindung, Lebendigkeit und authentischer Präsenz", "Resilienz durch echte innere Stärke — nicht durch Unterdrückung"],
+      points: ["Nervensystemregulation und echter Kapazitätsaufbau", "Lösung der adaptiven Überlebensstrategien, die Ihre Führungseffektivität einschränken", "Wiederherstellung des Zugangs zu Verbindung, Lebendigkeit und authentischer Präsenz", "Entwicklung echter Resilienz — durch Kapazität, nicht durch Unterdrückung"],
+      diagramTitle: "Die NARM-Ebenen",
+      diagramLayers: [
+        { level: "01", name: "Biologisch", description: "Nervensystemzustände — die physiologische Grundlage allen Führungsverhaltens" },
+        { level: "02", name: "Psychologisch", description: "Adaptive Überlebensmuster — die festen Strategien, die einst schützten, jetzt einschränken" },
+        { level: "03", name: "Relational", description: "Verbindungsthemen — wie Sie sich zu sich selbst, zu anderen und zu dem, was Sie führen, verhalten" },
+        { level: "04", name: "Identität", description: "Die Strukturen des Selbst — was Sie glauben, dass für Sie als Führungskraft wirklich möglich ist" },
+        { level: "05", name: "Ausdruck", description: "Authentische Führungspräsenz — geerdet, reguliert und wirklich lebendig" },
+      ],
     },
     integral: {
       overline: "Methodik Zwei",
       headline: "Integral Coaching",
-      body: "Integral Coaching, entwickelt von Integral Coaching Canada, erfasst den ganzen Menschen in seinem vollständigsten Kontext — nicht nur die professionelle Persona, sondern die gesamte Struktur, wie eine Person ihre Welt versteht, sich zu anderen verhält und wächst. Es basiert auf Ken Wilbers Integraler Theorie und Robert Kegans Entwicklungsarbeit.\n\nIntegral Coaching baut nicht einfach neue Verhaltensweisen auf — es entwickelt neue Fähigkeiten. Es arbeitet mit dem, was eine Person sehen, tun und sein kann — und erweitert diese Grenze in allen Dimensionen gleichzeitig.",
-      points: ["Entwicklung des gesamten Menschen, nicht nur beruflicher Kompetenzen", "Arbeit mit der aktuellen Weltanschauung der Führungskraft und Erweiterung ihrer Grenzen", "Nachhaltige Transformation über Zeit, keine temporären Leistungsverbesserungen", "Coaching, das Kontext, Kultur, Verkörperung und Bedeutung berücksichtigt"],
+      body: "Integral Coaching, entwickelt von Integral Coaching Canada, erfasst den ganzen Menschen in seinem vollständigsten Kontext — nicht nur die professionelle Persona, sondern die gesamte Struktur, wie eine Person ihre Welt versteht, sich zu anderen verhält und wächst. Es basiert auf Ken Wilbers Integraler Theorie und Robert Kegans entwicklungspsychologischer Grundlagenarbeit.\n\nIntegral Coaching baut nicht einfach neue Verhaltensweisen auf — es entwickelt neue Fähigkeiten. Es erweitert, was Sie sehen können, was Sie tun können und wer Sie sein können — gleichzeitig, in allen Dimensionen Ihres Lebens und Ihrer Führung.",
+      points: ["Entwicklung des ganzen Menschen — nicht nur beruflicher Kompetenzen", "Arbeit mit Ihrer aktuellen Weltanschauung und echte Erweiterung ihrer Grenze", "Nachhaltige Transformation über Zeit — keine temporären Leistungsverbesserungen", "Coaching, das Kontext, Kultur, Verkörperung und Bedeutung würdigt"],
     },
     integration: {
       overline: "Die Synthese",
       headline: "Zusammen schaffen sie etwas Seltenes",
-      body: "Wenn NARM und Integral Coaching integriert werden, entsteht eine Form der Arbeit, die die volle Tiefe der Führungsentwicklung adressiert — das Biologische, das Psychologische, das Relationale und das Strukturelle. Es ist diese Integration, die der Arbeit ihre besondere Qualität verleiht: leise transformativ, tiefgreifend präzise und dauerhaft.",
+      body: "Wenn NARM und Integral Coaching zusammengebracht werden, entsteht ein Ergebnis, das die volle Tiefe der Entwicklung einer Führungskraft adressiert — biologisch, psychologisch, relational und strukturell. Es ist diese Integration, die der Arbeit ihre besondere Qualität verleiht: leise transformativ, tiefgreifend präzise und gebaut, um weit über das Engagement selbst hinaus zu halten.",
+    },
+    combined: {
+      overline: "Die Synthese",
+      headline: "Zusammen schaffen sie etwas Seltenes",
+      subtitle: "Die Integration von NARM und Integral Coaching ist nicht additiv — sie ist multiplikativ. Jede Methodik erreicht, was die andere nicht kann. Zusammen ermöglichen sie eine Form der Veränderung, die keine allein erreicht.",
+      columns: [
+        {
+          heading: "NARM bietet",
+          items: ["Nervensystem-Bewusstsein und Regulation", "Lösung einschränkender Überlebensmuster", "Verkörperte Präsenz und somatische Intelligenz", "Relationale Abstimmung in echter Tiefe"],
+        },
+        {
+          heading: "Integral Coaching bietet",
+          items: ["Entwicklungsperspektive und systemischer Kontext", "Erweiterung der Sinngebungskapazität", "Engagement mit dem ganzen Menschen in seiner Welt", "Strukturelle Transformation, die über Zeit anhält"],
+        },
+        {
+          heading: "Zusammen schaffen sie",
+          items: ["Führung, die im Körper geerdet und in der Perspektive erweitert ist", "Autorität, die authentisch ist — nicht performed oder gemanagt", "Die Fähigkeit, größere Komplexität mit größerer Leichtigkeit zu halten", "Transformation, die hält — weil sie wirklich strukturell ist"],
+        },
+      ],
     },
     cta: { headline: "Bereit für den nächsten Schritt?", body: "Jede Zusammenarbeit beginnt mit einem Gespräch. Erkunden Sie, welches Format für Sie am besten geeignet ist.", button: "Gespräch beginnen" },
   },
@@ -278,10 +373,35 @@ const de = {
     },
     organizationalAdvisory: {
       hero: { overline: "04 — Advisory", headline: "Beratung für organisationalen Wandel", subtitle: "Strategische Intelligenz, die berücksichtigt, was die meisten Beratungsansätze verfehlen." },
-      description: { overline: "Die Beratung", headline: "Organisationen haben auch Nervensysteme", body: "Jede Organisation hat ein Nervensystem — ein Netzwerk von Reaktionsmustern, relationalen Dynamiken und Überlebensstrategien, das unterhalb der Ebene von Strategie und Struktur wirkt. Die meisten Transformationsprojekte adressieren die strukturelle Ebene. Die kulturelle Ebene. Selten die tiefere Ebene, wo Muster tatsächlich kodiert sind.\n\nCornelia Trompkes Beratungsarbeit wirkt auf allen drei Ebenen gleichzeitig." },
+      premise: {
+        overline: "Die Prämisse",
+        quote: "Organisationen entwickeln sich, wenn Führung, Personal-Praktiken und Kultur sich in dieselbe Richtung entwickeln — selten, wenn sich nur eines ändert, während die anderen fixiert bleiben.",
+        author: "Cornelia Trompke",
+        body: ["Meine Arbeit mit Organisationen adressiert die drei Dimensionen, die sich gemeinsam entwickeln müssen, damit Transformation Bestand hat: Führung, Personal-Systeme und Kultur. Wenn sich nur eines ändert, stabilisiert sich das System um seine alten Muster.", "Das Engagement beginnt typischerweise mit einer Zuhörphase — strukturierte Gespräche quer durch die Organisation, um das ans Licht zu bringen, was Daten nicht erfassen können und was die offizielle Narrative konsequent auslässt.", "Darauf basierend entwickle ich ein klares Bild davon, wo Ihre aktuellen Systeme und Praktiken die Richtung unterstützen, die Sie anstreben — und wo sie aktiv dagegen arbeiten. Was folgt, ist ein offenes strategisches Gespräch darüber, was sich ändern muss und wie."],
+      },
+      dimensions: {
+        overline: "Die drei Dimensionen",
+        headline: "Drei Dimensionen. Eine integrierte Transformation.",
+        subtitle: "Organisationale Transformation erfordert, dass sich alle drei Dimensionen gemeinsam bewegen — nicht nacheinander, nicht isoliert, sondern als integriertes Ganzes.",
+        items: [
+          { number: "01", title: "Führung", subtitle: "Wie Führungskräfte tatsächlich operieren", body: "Führung ist der primäre Hebel jeder bedeutsamen organisationalen Veränderung. Wer führt, wie sie führen und was sie vorleben, schafft die Bedingungen — oder die Einschränkungen — für alles andere. Wir untersuchen Führungsreife, Entscheidungsmuster und die Lücke zwischen dem, was gesagt wird, und dem, was tatsächlich gelebt wird. Wo Führung nicht wirklich mit der beabsichtigten Zukunft übereinstimmt, gerät die Transformation ins Stocken. Immer." },
+          { number: "02", title: "Personal-Systeme", subtitle: "Die Architektur der Arbeit", body: "Personal-Praktiken sind das Betriebssystem Ihrer Organisation. Performance-Prozesse, Talent-Frameworks, wie Sie einstellen, entwickeln und Menschen anerkennen — das sind keine administrativen Funktionen. Sie sind die strukturelle Kodierung dessen, was die Organisation wirklich wertschätzt. Wir untersuchen, was Ihre aktuellen Systeme tatsächlich produzieren, wo sie die Kultur einschränken, die Sie aufbauen möchten, und was sich konkret ändern muss." },
+          { number: "03", title: "Kultur", subtitle: "Was die Organisation tatsächlich lebt", body: "Kultur ist kein Programm oder eine Reihe von Werten an der Wand. Sie ist die Summe dessen, was belohnt wird, was toleriert wird und was dauerhaft unausgesprochen bleibt. Ihre aktuelle Kultur zu verstehen — ehrlich, ohne Beschönigung — ist die Grundlage dafür, sie zu ändern. Wir untersuchen die gelebte Erfahrung von Menschen in der gesamten Organisation und identifizieren die Muster und Normen, die prägen, wie Arbeit tatsächlich erledigt wird." },
+        ],
+      },
+      process: {
+        overline: "Der Prozess",
+        headline: "Wie das Engagement typischerweise entfaltet",
+        phases: [
+          { number: "01", title: "Stakeholder-Gespräche", subtitle: "Zuhören mit echter Tiefe", description: "Bevor etwas diagnostiziert oder empfohlen wird, hören wir zu. Einzelgespräche auf verschiedenen Ebenen der Organisation — konzipiert, um das ans Licht zu bringen, was Daten nicht erfassen können und was die offizielle Narrative konsequent auslässt." },
+          { number: "02", title: "Systemische Analyse", subtitle: "Mapping dessen, was tatsächlich passiert", description: "Die Stakeholder-Phase informiert eine strukturierte Analyse. Wir untersuchen die Führungslandschaft, Personal-Praktiken und kulturellen Muster — und entwickeln eine systemische Sicht dessen, was die aktuelle Dynamik tatsächlich antreibt." },
+          { number: "03", title: "Strategische Klarheit", subtitle: "Fokus, bevor Aktion", description: "Wir entwickeln ein klares Bild davon, wo die aktuellen Systeme die Zukunft unterstützen, die Sie beabsichtigen — und wo sie aktiv dagegen arbeiten. Das bildet die Grundlage für ein offenes strategisches Gespräch darüber, was wirklich verändert werden muss." },
+          { number: "04", title: "Nachhaltige Begleitung", subtitle: "Begleitung für dauerhafte Veränderung", description: "Transformation geschieht nicht in einem Workshop. Das Engagement umfasst nachhaltige Beratungspräsenz, während Veränderungen eingeführt, integriert und im Laufe der Zeit angepasst werden — sicherstellend, dass sie tatsächlich halten." },
+        ],
+      },
       forWhom: { overline: "Für wen", headline: "Strategische Beratung für...", items: ["Organisationen an strategischen Wendepunkten: Fusionen, Restrukturierungen, Führungswechsel", "Unternehmen, wo kulturelle Transformation trotz struktureller Veränderung ins Stocken geraten ist", "Führungsteams, wo Strategieklarheit vorhanden ist, aber die Umsetzung immer wieder scheitert", "Gründer beim Übergang von gründergeführten zu führungsgeführten Organisationen", "Vorstände, die komplexe Führungsnachfolge und Kulturtransformation navigieren"] },
       format: { overline: "Format", headline: "Beratungsstruktur", items: [{ label: "Dauer", value: "Mindestens 6 Monate, typischerweise 12–18 Monate" }, { label: "Umfang", value: "Diagnostikphase, systemisches Mapping, Führungsarchitektur, nachhaltige Begleitung" }, { label: "Zugang", value: "Direkter Zugang zum Senior Leadership Team und Vorstand" }, { label: "Ansatz", value: "Hybrid: persönliche Intensivphasen + virtuelle Beratungspräsenz" }, { label: "Sprache", value: "Deutsch oder Englisch" }] },
-      cta: { headline: "Beratungsgespräch beginnen", button: "Anfrage stellen" },
+      cta: { headline: "Beratungsgespräch beginnen", button: "Anfrage stellen", description: "Jede Zusammenarbeit beginnt mit einem Gespräch. Ohne Verpflichtung — nur ein erstes gegenseitiges Kennenlernen." },
     },
   },
   contact: {

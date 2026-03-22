@@ -123,7 +123,8 @@ const FOREST_TO_IVORY =
 
 // ─── Page ─────────────────────────────────────────────────────────────────────
 const OrganizationalAdvisory = () => {
-  const { t } = useLanguage();
+  const { t, lang } = useLanguage();
+  const s = t.services.organizationalAdvisory;
   const { heroOpenFn, finalCtaOpenFn, setModalOpen } = useContactForm();
   const testimonials = t.home.testimonials.items;
 
@@ -233,22 +234,22 @@ const OrganizationalAdvisory = () => {
             style={{ overflowY: "hidden", display: "flex", flexDirection: "column", justifyContent: "flex-end" }}
             animate={{ maxWidth: showContactForm ? "580px" : "900px" }}
             transition={{ duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] }}>
-            <ScrollReveal delay={0.1}><p className="ct-overline text-gold mb-6">03 — Organizational Advisory</p></ScrollReveal>
+            <ScrollReveal delay={0.1}><p className="ct-overline text-gold mb-6">{s.hero.overline}</p></ScrollReveal>
             <ScrollReveal delay={0.25}>
               <h1 className="text-ivory leading-[1.04]" data-testid="advisory-hero-headline"
                 style={{ fontFamily: "Figtree, sans-serif", fontSize: showContactForm ? (isMobile ? "30px" : "55px") : "clamp(38px, 6vw, 80px)", fontWeight: 400, transition: "font-size 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)" }}>
-                Where Leadership, People Practices, and Culture Evolve Together
+                {s.hero.headline}
               </h1>
             </ScrollReveal>
             <ScrollReveal delay={0.42}>
               <p className="mt-5 max-w-[540px] leading-relaxed" style={{ fontFamily: "Cormorant Garamond, serif", fontSize: "22px", fontStyle: "italic", color: "rgba(227,222,215,0.65)" }}>
-                Strategic guidance for organizations at points of meaningful transformation.
+                {s.hero.subtitle}
               </p>
             </ScrollReveal>
             <ScrollReveal delay={0.58}>
               <div style={{ display: "flex", flexWrap: "wrap", gap: "12px", marginTop: "36px", marginBottom: "40px" }}>
                 <button onClick={() => setShowContactForm(true)} className="btn-hero-pill" data-testid="advisory-hero-cta" style={{ border: "none", cursor: "pointer" }}>
-                  Begin the Conversation
+                  {s.cta.button}
                 </button>
               </div>
             </ScrollReveal>
@@ -277,7 +278,7 @@ const OrganizationalAdvisory = () => {
             {/* Left: pull quote */}
             <div style={{ flex: isMobile ? "none" : "0 0 44%" }}>
               <ScrollReveal>
-                <p className="ct-overline text-sage mb-8">The Premise</p>
+                <p className="ct-overline text-sage mb-8">{s.premise.overline}</p>
                 <p
                   style={{
                     fontFamily: "Cormorant Garamond, serif",
@@ -288,7 +289,7 @@ const OrganizationalAdvisory = () => {
                     lineHeight: 1.28,
                   }}
                 >
-                  "Organizations evolve when leadership, people practices, and culture develop in the same direction — rarely when only one changes while the others stay fixed."
+                  "{s.premise.quote}"
                 </p>
                 <div style={{ width: "40px", height: "1px", background: "rgba(200,169,106,0.5)", marginTop: "36px" }} />
                 <p
@@ -302,18 +303,14 @@ const OrganizationalAdvisory = () => {
                     marginTop: "16px",
                   }}
                 >
-                  Cornelia Trompke
+                  {s.premise.author}
                 </p>
               </ScrollReveal>
             </div>
 
             {/* Right: body */}
             <div style={{ flex: 1, paddingTop: isMobile ? "0" : "68px" }}>
-              {[
-                "My work with organizations addresses the three dimensions that must evolve together for transformation to hold: leadership, people systems, and culture. When only one changes, the system restabilizes around its old patterns.",
-                "The engagement typically begins with a listening phase — structured conversations across the organization to surface what the data cannot capture and what the official narrative consistently leaves out.",
-                "Based on this, I develop a clear picture of where your current systems and practices support the direction you intend — and where they actively work against it. What follows is a frank strategic conversation about what needs to change, and how.",
-              ].map((para, i) => (
+              {s.premise.body.map((para, i) => (
                 <ScrollReveal key={i} delay={0.08 * i}>
                   <p
                     style={{
@@ -353,7 +350,7 @@ const OrganizationalAdvisory = () => {
 
         <div className="max-w-[1400px] mx-auto px-6 md:px-16 relative z-10">
           <ScrollReveal>
-            <p className="ct-overline text-sage mb-5">The Work</p>
+            <p className="ct-overline text-sage mb-5">{s.dimensions.overline}</p>
             <h2
               style={{
                 fontFamily: "Figtree, sans-serif",
@@ -365,7 +362,7 @@ const OrganizationalAdvisory = () => {
                 marginBottom: "100px",
               }}
             >
-              Three Dimensions That Must Move Together
+              {s.dimensions.headline}
             </h2>
           </ScrollReveal>
 
@@ -376,15 +373,15 @@ const OrganizationalAdvisory = () => {
               gap: "0",
             }}
           >
-            {DIMENSIONS.map((dim, i) => (
+            {s.dimensions.items.map((dim, i) => (
               <React.Fragment key={i}>
                 <ScrollReveal delay={0.1 * i}>
                   <div
                     style={{
-                      paddingRight: !isMobile && i < DIMENSIONS.length - 1 ? "clamp(32px, 4vw, 64px)" : "0",
+                      paddingRight: !isMobile && i < s.dimensions.items.length - 1 ? "clamp(32px, 4vw, 64px)" : "0",
                       paddingLeft: !isMobile && i > 0 ? "clamp(32px, 4vw, 64px)" : "0",
                       paddingBottom: isMobile ? "40px" : "0",
-                      borderBottom: isMobile && i < DIMENSIONS.length - 1 ? "1px solid rgba(245,242,236,0.10)" : "none",
+                      borderBottom: isMobile && i < s.dimensions.items.length - 1 ? "1px solid rgba(245,242,236,0.10)" : "none",
                     }}
                     data-testid={`dimension-${i}`}
                   >
@@ -438,7 +435,7 @@ const OrganizationalAdvisory = () => {
                     </p>
                   </div>
                 </ScrollReveal>
-                {i < DIMENSIONS.length - 1 && !isMobile && (
+                {i < s.dimensions.items.length - 1 && !isMobile && (
                   <div style={{ background: "rgba(245,242,236,0.10)" }} />
                 )}
               </React.Fragment>
@@ -455,7 +452,7 @@ const OrganizationalAdvisory = () => {
         <div className="max-w-[1400px] mx-auto px-6 md:px-16">
           <div className="max-w-[680px] mb-16">
             <ScrollReveal>
-              <p className="ct-overline text-gold/60 mb-5">The Process</p>
+              <p className="ct-overline text-gold/60 mb-5">{s.process.overline}</p>
               <h2
                 style={{
                   fontFamily: "Figtree, sans-serif",
@@ -465,7 +462,7 @@ const OrganizationalAdvisory = () => {
                   lineHeight: 1.1,
                 }}
               >
-                Three Phases. One Coherent Transformation.
+                {s.process.headline}
               </h2>
             </ScrollReveal>
           </div>
@@ -473,7 +470,7 @@ const OrganizationalAdvisory = () => {
           {isMobile ? (
             /* ── Mobile: vertical expand/collapse accordion ── */
             <div>
-              {PROCESS_PHASES.map((phase, i) => {
+              {s.process.phases.map((phase, i) => {
                 const isOpen = openProcessMobile === i;
                 return (
                   <div key={i} style={{ borderBottom: "1px solid rgba(245,242,236,0.08)" }} data-testid={`process-phase-${i}`}>
@@ -499,7 +496,7 @@ const OrganizationalAdvisory = () => {
             </div>
           ) : (
           <div className="flex" style={{ height: "420px", overflow: "hidden" }}>
-            {PROCESS_PHASES.map((phase, i) => {
+            {s.process.phases.map((phase, i) => {
               const isActive = activePhase === i;
               return (
                 <div
@@ -512,7 +509,7 @@ const OrganizationalAdvisory = () => {
                     transition: "flex 0.65s cubic-bezier(0.4, 0, 0.2, 1), background 0.4s ease",
                     position: "relative",
                     overflow: "hidden",
-                    borderRight: i < PROCESS_PHASES.length - 1 ? "1px solid rgba(245,242,236,0.07)" : "none",
+                    borderRight: i < s.process.phases.length - 1 ? "1px solid rgba(245,242,236,0.07)" : "none",
                     cursor: "default",
                     background: isActive ? "rgba(200,169,106,0.04)" : "transparent",
                   }}

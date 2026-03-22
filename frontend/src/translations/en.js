@@ -391,10 +391,35 @@ const en = {
     },
     organizationalAdvisory: {
       hero: { overline: "Organizational Advisory", headline: "Organizational Transformation Advisory", subtitle: "Strategic intelligence that accounts for what most consulting never reaches." },
-      description: { overline: "The Advisory", headline: "Your Organization Has a Nervous System, Too", body: "Every organization has a nervous system — a network of response patterns, relational dynamics, and survival strategies operating beneath the level of strategy and structure. Most transformation projects address the structural layer. Some reach the cultural layer. Rarely does the work go to the deeper level — where the patterns are actually encoded and where real change becomes possible.\n\nCornelia Trompke's advisory engages all three levels simultaneously. And that is precisely why it creates change that holds." },
+      premise: {
+        overline: "The Premise",
+        quote: "Organizations evolve when leadership, people practices, and culture develop in the same direction — rarely when only one changes while the others stay fixed.",
+        author: "Cornelia Trompke",
+        body: ["My work with organizations addresses the three dimensions that must evolve together for transformation to hold: leadership, people systems, and culture. When only one changes, the system restabilizes around its old patterns.", "The engagement typically begins with a listening phase — structured conversations across the organization to surface what the data cannot capture and what the official narrative consistently leaves out.", "Based on this, I develop a clear picture of where your current systems and practices support the direction you intend — and where they actively work against it. What follows is a frank strategic conversation about what needs to change, and how."],
+      },
+      dimensions: {
+        overline: "The Three Dimensions",
+        headline: "Three Dimensions. One Integrated Transformation.",
+        subtitle: "Organizational transformation requires all three dimensions to move together — not sequentially, not in isolation, but as an integrated whole.",
+        items: [
+          { number: "01", title: "Leadership", subtitle: "How Leaders Actually Operate", body: "Leadership is the primary lever of every meaningful organizational change. Who leads, how they lead, and what they model creates the conditions — or the constraints — for everything else. We examine leadership maturity, decision-making patterns, and the gap between what is stated and what is actually lived. Where leadership is not genuinely aligned with the intended future, the transformation stalls. Always." },
+          { number: "02", title: "People Systems", subtitle: "The Architecture of Work", body: "People practices are the operating system of your organization. Performance processes, talent frameworks, how you hire, develop, and recognize people — these are not administrative functions. They are the structural encoding of what the organization truly values. We examine what your current systems actually produce, where they constrain the culture you are trying to build, and what specifically needs to change." },
+          { number: "03", title: "Culture", subtitle: "What the Organization Actually Lives", body: "Culture is not a program or a set of values printed on a wall. It is the sum of what is rewarded, what is tolerated, and what goes permanently unsaid. Understanding your current culture — honestly, without consolation — is the foundation for changing it. We examine the lived experience of people across the organization and identify the patterns and norms shaping how work actually gets done." },
+        ],
+      },
+      process: {
+        overline: "The Process",
+        headline: "How the Engagement Typically Unfolds",
+        phases: [
+          { number: "01", title: "Stakeholder Conversations", subtitle: "Listening With Real Depth", description: "Before anything is diagnosed or recommended, we listen. Individual conversations across levels of the organization — designed to surface what the data cannot capture and what the official narrative consistently leaves out." },
+          { number: "02", title: "Systemic Analysis", subtitle: "Mapping What Is Actually Happening", description: "The stakeholder phase informs a structured analysis. We examine the leadership landscape, people practices, and cultural patterns — and develop a systemic view of what is actually driving the current dynamics." },
+          { number: "03", title: "Strategic Clarity", subtitle: "Focus Before Action", description: "We develop a clear picture of where current systems support the future you intend — and where they actively work against it. This forms the basis for a frank strategic conversation about what genuinely needs to change." },
+          { number: "04", title: "Sustained Advisory", subtitle: "Accompaniment for Lasting Change", description: "Transformation does not happen in a workshop. The engagement includes sustained advisory presence as changes are introduced, integrated, and adjusted over time — ensuring they actually hold." },
+        ],
+      },
       forWhom: { overline: "For Whom", headline: "Strategic Advisory for Organizations That Are Ready", items: ["Organizations at genuine inflection points: mergers, restructuring, leadership transitions that matter", "Companies where cultural transformation has stalled despite significant structural investment", "Leadership teams where strategy is clear but execution consistently and puzzlingly fails to follow", "Founders navigating the transition from founder-led to genuinely leadership-led organization", "Boards navigating complex leadership succession and culture transformation simultaneously"] },
       format: { overline: "Format", headline: "Advisory Structure", items: [{ label: "Duration", value: "Minimum 6 months, typically 12–18 months" }, { label: "Scope", value: "Diagnostic phase, systemic mapping, leadership architecture, sustained advisory presence" }, { label: "Access", value: "Direct access to senior leadership team and board" }, { label: "Approach", value: "Hybrid: in-person intensives combined with ongoing virtual advisory" }, { label: "Language", value: "German or English" }] },
-      cta: { headline: "Ready to Begin an Advisory Conversation?", button: "Make an Enquiry" },
+      cta: { headline: "Ready to Begin an Advisory Conversation?", button: "Make an Enquiry", description: "Every engagement begins with a conversation. No commitment — just a first mutual exploration." },
     },
   },
   contact: {
