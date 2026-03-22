@@ -129,7 +129,7 @@ const de = {
         },
         {
           number: "03",
-          role: "Coach · Entwicklerin · Facilitatorin",
+          role: "Coach · Organisationsentwicklerin · Facilitatorin",
           period: "Heute",
           description: "Zertifizierte NARM Practitioner (Dr. Laurence Heller), ausgebildete Integral Coach und langjährige Studentin des Bewusstseinslehrers Thomas Hübl. Eine einzigartige Praxis für Führungskräfte, die bereit sind, wirklich in die Tiefe zu gehen.",
         },
