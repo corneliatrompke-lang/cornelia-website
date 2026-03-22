@@ -159,7 +159,7 @@ const CirclesViz = ({ activePhase, size = 500 }) => {
         );
       })}
       {/* Label mapping */}
-      {EXPERIENCE_ELEMENTS.map((el, i) => {
+      {s.experience.items.map((el, i) => {
         const angles = [0, -60, -120];
         const rad = (angles[i] * Math.PI) / 180;
         const x = cx + radii[i] * Math.cos(rad);
@@ -206,7 +206,7 @@ const CirclesViz = ({ activePhase, size = 500 }) => {
             whiteSpace: "nowrap",
           }}
         >
-          Stillness
+          {s.experience.centerLabel}
         </span>
       </div>
     </div>

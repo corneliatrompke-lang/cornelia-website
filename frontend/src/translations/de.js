@@ -420,6 +420,7 @@ const de = {
       experience: {
         overline: "Das Erleben",
         headline: "Das Erleben selbst",
+        centerLabel: "Stille",
         items: [
           { number: "01", label: "Stille Reflexion", role: "Der innere Raum", description: "Unstrukturierte Stunden, in denen Ihr Nervensystem sich auf seine eigene Weise beruhigt. Keine erzwungene Stille — echte Stille. Raum für das, was gewartet hat, geduldig und leise, um endlich gehört zu werden." },
           { number: "02", label: "Geführte Praxis", role: "Die Architektur", description: "Anleitung in Meditationsformen, die für den Executive-Geist geeignet sind — anspruchsvoll, intelligent und angepasst an Führungskräfte. Ob Sie noch nie praktiziert haben oder seit Jahren praktizieren, die Anleitung trifft Sie genau dort, wo Sie sind." },

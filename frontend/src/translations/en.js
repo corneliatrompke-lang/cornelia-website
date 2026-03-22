@@ -437,6 +437,7 @@ const en = {
       experience: {
         overline: "The Experience",
         headline: "The Experience Itself",
+        centerLabel: "Stillness",
         items: [
           { number: "01", label: "Quiet Reflection", role: "The Inner Chamber", description: "Unstructured hours where your nervous system settles on its own terms. Not forced silence — genuine stillness. Space for what has been waiting, patiently and quietly, to finally be heard." },
           { number: "02", label: "Guided Practice", role: "The Architecture", description: "Instruction in meditation forms suited to the executive mind — rigorous, intelligent, and adapted to leaders. Whether you have never practiced before or have practiced for years, the guidance meets you exactly where you are." },
