@@ -392,7 +392,7 @@ const de = {
       hero: { overline: "02 — Executive Retreat", headline: "Executive Meditations-Retreat", subtitle: "Weg vom Betrieb. In die Klarheit." },
       premise: {
         overline: "Das Retreat",
-        quote: "Stillheit ist kein Rückzug von Führung. Sie ist eines der mächtigsten Werkzeuge, die eine Führungskraft entwickeln kann.",
+        quote: "Stille ist kein Rückzug von Führung. Sie ist eines der mächtigsten Werkzeuge, die eine Führungskraft entwickeln kann.",
         author: "Cornelia Trompke",
         body: ["Für Führungskräfte, die mit mir in Programmen arbeiten, biete ich regelmäßig 3-5 tägige Executive Meditations-Retreats an. Ich praktiziere Meditation seit über 30 Jahren und lehre sie Führungskräften seit mehr als einem Jahrzehnt.", "Bei echter Praxis und authentischer Anleitung stärkt Meditation die Selbstregulation, vertieft Einsicht und schafft jene Klarheit und kognitive Flexibilität, die Führung auf höchstem Niveau verlangt. Diese Retreats schaffen die Bedingungen, die der tägliche Betrieb nicht bieten kann.", "Was ich in diesen Retreats anbiete, ist kein Wellness-Programm. Es ist eine strukturierte, intelligente und persönlich angeleitete Einführung in die Art von Praxis, die die Architektur verändert, wie Sie führen — von innen nach außen."],
       },
