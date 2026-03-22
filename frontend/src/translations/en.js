@@ -129,7 +129,7 @@ const en = {
         },
         {
           number: "03",
-          role: "Coach · Developer · Facilitator",
+          role: "Coach · Organizational Developer · Facilitator",
           period: "Today",
           description: "Certified NARM Practitioner (Dr. Laurence Heller), trained Integral Coach, and longtime student of consciousness teacher Thomas Hübl. A singular practice for leaders who are ready to go deep — and stay there.",
         },
