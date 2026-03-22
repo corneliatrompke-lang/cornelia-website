@@ -459,7 +459,7 @@ const de = {
       cta: { headline: "Retreat anfragen", button: "Anfrage stellen", description: "Alle Retreats werden persönlich durch Gespräch vereinbart." },
     },
     teamFacilitation: {
-      hero: { overline: "03 — Team Facilitation", headline: "Facilitation für Führungsteams", subtitle: "Die unsichtbaren Dynamiken von Teams — sichtbar gemacht, bearbeitbar und transformativ." },
+      hero: { overline: "03 — Team Facilitation", headline: "Facilitation für Führungsteams", subtitle: "Die unsichtbaren Dynamiken von Teams — sichtbar machen und transformieren." },
       premise: {
         overline: "Die Prämisse",
         quote: "In meiner 1:1 Arbeit mit Führungskräften wird immer wieder klar, dass die beharrlichsten Herausforderungen selten individuell sind — sie leben im Raum zwischen Menschen.",
