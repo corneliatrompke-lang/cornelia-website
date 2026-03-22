@@ -388,6 +388,7 @@ const About = () => {
                           color: "#121212",
                           lineHeight: 1.2,
                           marginTop: "20px",
+                          minHeight: "62px",
                         }}
                       >
                         {m.role}
