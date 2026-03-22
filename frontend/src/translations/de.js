@@ -445,7 +445,7 @@ const de = {
           { label: "Dauer", value: "3 oder 5 Tage Residential" },
           { label: "Ort", value: "Oman, Costa Rica und ausgewählte europäische Standorte — sorgfältig gewählt für Stille und Fokus" },
           { label: "Gruppengröße", value: "Nur kleine Gruppen — maximal 8 Teilnehmer" },
-          { label: "Für wen", value: "Führungskräfte, die derzeit in einem von Cornelias Programmen arbeiten" },
+          { label: "Für wen", value: "Führungskräfte, die bereits mit Cornelia arbeiten" },
           { label: "Praxislevel", value: "Alle Levels — von kompletten Anfängern bis zu erfahrenen Praktizierenden" },
           { label: "Sprache", value: "Deutsch oder Englisch" },
           { label: "Investment", value: "Auf Anfrage" },
