@@ -491,7 +491,7 @@ const MeditationRetreat = () => {
 
           {/* Section heading */}
           <ScrollReveal>
-            <p className="ct-overline text-sage mb-5">The Guide</p>
+            <p className="ct-overline text-sage mb-5">{s.guide.overline}</p>
             <h2
               style={{
                 fontFamily: "Figtree, sans-serif",
@@ -503,7 +503,7 @@ const MeditationRetreat = () => {
                 marginBottom: "72px",
               }}
             >
-              Thirty Years of Practice. A Decade of Teaching Leaders.
+              {s.guide.headline}
             </h2>
           </ScrollReveal>
 
@@ -514,7 +514,7 @@ const MeditationRetreat = () => {
             <div style={{ flex: isMobile ? "none" : "0 0 42%" }}>
               {/* Stat blocks */}
               <div style={{ display: "flex", gap: "2px", marginBottom: "52px" }}>
-                {GUIDE_STATS.map((stat, i) => (
+                {s.guide.stats.map((stat, i) => (
                   <ScrollReveal key={i} delay={0.12 * i}>
                     <div
                       style={{
@@ -590,7 +590,7 @@ const MeditationRetreat = () => {
                     maxWidth: "480px",
                   }}
                 >
-                  "What I offer in these retreats is not a wellness program. It is a rigorous, intelligent introduction to the kind of practice that changes the architecture of leadership."
+                  "{s.guide.quote}"
                 </p>
               </ScrollReveal>
             </div>
@@ -660,10 +660,7 @@ const MeditationRetreat = () => {
               </ScrollReveal>
 
               {/* Body paragraphs — light colors for gradient midzone */}
-              {[
-                "Meditation is not a technique I use with clients. It is the ground from which this entire body of work emerges. I began practicing in my early twenties and have studied across traditions, completed extended silent retreats, and spent years integrating these practices with the neuroscience of self-regulation.",
-                "Research from Harvard Medical School and Harvard Business School confirms what practitioners have known for centuries: regular meditation practice can improve attention, emotional regulation, cognitive flexibility, and creative problem-solving — capacities essential for leaders operating in complex environments.",
-              ].map((para, i) => (
+              {s.guide.body.map((para, i) => (
                 <ScrollReveal key={i} delay={0.2 + i * 0.12}>
                   <p
                     style={{
@@ -696,7 +693,7 @@ const MeditationRetreat = () => {
         <div className="max-w-[1400px] mx-auto px-6 md:px-16">
           <div className="max-w-[600px] mx-auto mb-16 text-center">
             <ScrollReveal>
-              <p className="ct-overline text-gold/60 mb-5">What Opens</p>
+              <p className="ct-overline text-gold/60 mb-5">{s.whatOpens.overline}</p>
               <h2
                 style={{
                   fontFamily: "Figtree, sans-serif",
@@ -706,7 +703,7 @@ const MeditationRetreat = () => {
                   lineHeight: 1.1,
                 }}
               >
-                Four Capacities That Open in You
+                {s.whatOpens.headline}
               </h2>
             </ScrollReveal>
           </div>
@@ -714,7 +711,7 @@ const MeditationRetreat = () => {
           {/* Horizontal accordion / Mobile vertical accordion */}
           {isMobile ? (
             <div>
-              {WHAT_OPENS.map((item, i) => {
+              {s.whatOpens.items.map((item, i) => {
                 const isOpen = openWhatOpensMobile === i;
                 return (
                   <div key={i} style={{ borderBottom: "1px solid rgba(245,242,236,0.08)" }} data-testid={`what-opens-item-${i}`}>
@@ -744,7 +741,7 @@ const MeditationRetreat = () => {
             </div>
           ) : (
           <div className="flex" style={{ height: "420px", overflow: "hidden" }}>
-            {WHAT_OPENS.map((item, i) => {
+            {s.whatOpens.items.map((item, i) => {
               const isActive = activeOpen === i;
               return (
                 <div
@@ -758,7 +755,7 @@ const MeditationRetreat = () => {
                     position: "relative",
                     overflow: "hidden",
                     borderRight:
-                      i < WHAT_OPENS.length - 1
+                      i < s.whatOpens.items.length - 1
                         ? "1px solid rgba(245,242,236,0.07)"
                         : "none",
                     cursor: "default",
@@ -935,7 +932,7 @@ const MeditationRetreat = () => {
           style={{ paddingTop: "140px", paddingBottom: "80px" }}
         >
           <ScrollReveal>
-            <p className="ct-overline text-gold/60 mb-5">The Experience</p>
+            <p className="ct-overline text-gold/60 mb-5">{s.experience.overline}</p>
             <h2
               style={{
                 fontFamily: "Figtree, sans-serif",
@@ -945,7 +942,7 @@ const MeditationRetreat = () => {
                 lineHeight: 1.1,
               }}
             >
-              Three Dimensions of the Retreat
+              {s.experience.headline}
             </h2>
           </ScrollReveal>
         </div>
@@ -973,7 +970,7 @@ const MeditationRetreat = () => {
 
               {/* Element rows */}
               <div style={{ width: "100%" }}>
-                {EXPERIENCE_ELEMENTS.map((el, i) => {
+                {s.experience.items.map((el, i) => {
                   const isActive = activeElement >= i;
                   const isCurrent = activeElement === i;
                   return (
@@ -1050,7 +1047,7 @@ const MeditationRetreat = () => {
 
                 {/* Right: element rows */}
                 <div style={{ flex: 1 }}>
-                  {EXPERIENCE_ELEMENTS.map((el, i) => {
+                  {s.experience.items.map((el, i) => {
                     const isActive = activeElement >= i;
                     const isCurrent = activeElement === i;
                     return (
@@ -1197,7 +1194,7 @@ const MeditationRetreat = () => {
           {/* Part A: 5-day timeline */}
           <div style={{ marginBottom: "100px" }}>
             <ScrollReveal>
-              <p className="ct-overline text-gold/60 mb-5">The Five Days</p>
+              <p className="ct-overline text-gold/60 mb-5">{s.timeline.overline}</p>
               <h2
                 style={{
                   fontFamily: "Figtree, sans-serif",
@@ -1208,7 +1205,7 @@ const MeditationRetreat = () => {
                   marginBottom: "64px",
                 }}
               >
-                A Day-by-Day Architecture
+                {s.timeline.headline}
               </h2>
             </ScrollReveal>
 
@@ -1216,7 +1213,7 @@ const MeditationRetreat = () => {
             {isMobile ? (
               /* Mobile: vertical timeline */
               <div style={{ paddingLeft: "16px", borderLeft: "1px solid rgba(200,169,106,0.25)" }}>
-                {TIMELINE_DAYS.map((day, i) => (
+                {s.timeline.days.map((day, i) => (
                   <motion.div
                     key={i}
                     initial={{ opacity: 0, x: -16 }}
@@ -1251,13 +1248,13 @@ const MeditationRetreat = () => {
               />
 
               <div style={{ display: "flex", gap: "0" }}>
-                {TIMELINE_DAYS.map((day, i) => (
+                {s.timeline.days.map((day, i) => (
                   <ScrollReveal key={i} delay={0.08 * i} direction="up">
                     <div
                       style={{
                         flex: 1,
                         paddingTop: "52px",
-                        paddingRight: i < TIMELINE_DAYS.length - 1 ? "28px" : "0",
+                        paddingRight: i < s.timeline.days.length - 1 ? "28px" : "0",
                         paddingLeft: i > 0 ? "28px" : "0",
                         position: "relative",
                       }}
@@ -1527,7 +1524,7 @@ const MeditationRetreat = () => {
             {/* Left: heading */}
             <div style={{ flex: isMobile ? "none" : "0 0 38%" }}>
               <ScrollReveal>
-                <p className="ct-overline text-gold/60 mb-5">Format</p>
+                <p className="ct-overline text-gold/60 mb-5">{s.format.overline}</p>
                 <h2
                   style={{
                     fontFamily: "Figtree, sans-serif",
@@ -1537,14 +1534,14 @@ const MeditationRetreat = () => {
                     lineHeight: 1.1,
                   }}
                 >
-                  The Structure of a Retreat
+                  {s.format.headline}
                 </h2>
               </ScrollReveal>
             </div>
 
             {/* Right: format rows */}
             <div style={{ flex: 1, paddingTop: "64px" }}>
-              {FORMAT_ITEMS.map((item, i) => (
+              {s.format.items.map((item, i) => (
                 <ScrollReveal key={i} delay={0.07 * i}>
                   <div
                     style={{
@@ -1713,10 +1710,10 @@ const MeditationRetreat = () => {
                       transition={{ duration: 0.3 }}
                     >
                       <h2 style={{ fontFamily: "Figtree, sans-serif", fontSize: "clamp(28px, 3.5vw, 44px)", fontWeight: 400, lineHeight: 1.1, color: "#F5F2EC" }}>
-                        When You're Ready to Go Deeper
+                        {s.finalCta.headline}
                       </h2>
                       <p style={{ fontFamily: "Manrope, sans-serif", fontSize: "15px", fontWeight: 300, color: "rgba(227,222,215,0.45)", lineHeight: 1.75, marginTop: "18px" }}>
-                        Retreats are offered to leaders engaged in one of Cornelia's programs. Inquiries are welcomed — to understand whether the timing and format are the right fit.
+                        {s.finalCta.body}
                       </p>
                       <button
                         onClick={() => setShowFinalForm(true)}
@@ -1724,7 +1721,7 @@ const MeditationRetreat = () => {
                         style={{ marginTop: "40px", borderRadius: "8px", display: "inline-block", cursor: "pointer" }}
                         data-testid="retreat-apply-btn"
                       >
-                        Inquire About Retreats
+                        {s.finalCta.button}
                       </button>
                     </motion.div>
                   ) : (
