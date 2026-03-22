@@ -113,7 +113,7 @@ const de = {
     },
     originStory: {
       overline: "Der Weg",
-      headline: "Von Innen Heraus Gebaut.",
+      headline: "In der Tiefe verwurzelt.",
       milestones: [
         {
           number: "01",
