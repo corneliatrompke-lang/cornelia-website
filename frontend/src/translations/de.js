@@ -453,7 +453,7 @@ const de = {
       },
       finalCta: {
         headline: "Wenn Sie bereit sind, tiefer zu gehen",
-        body: "Retreats werden Führungskräften angeboten, die in einem von Cornelias Programmen arbeiten. Anfragen sind willkommen — um zu verstehen, ob Timing und Format die richtige Passung sind.",
+        body: "Die Retreats sind für Führungskräfte gedacht, die bereits mit Cornelia arbeiten. Bei Interesse freue ich mich über eine Anfrage — um zu klären, ob Zeitpunkt und Format passen.",
         button: "Retreat anfragen",
       },
       cta: { headline: "Retreat anfragen", button: "Anfrage stellen", description: "Alle Retreats werden persönlich durch Gespräch vereinbart." },
