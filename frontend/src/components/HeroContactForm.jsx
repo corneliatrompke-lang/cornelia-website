@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, ArrowRight, Check } from "lucide-react";
+import { useLanguage } from "../context/LanguageContext";
 
 const COUNTRY_CODES = [
   { code: "+49", country: "DE" },
@@ -24,12 +25,7 @@ const COUNTRY_CODES = [
   { code: "+91", country: "IN" },
 ];
 
-const SERVICES = [
-  { id: "executive-coaching",  label: "Executive Coaching & Advisory" },
-  { id: "executive-retreats",  label: "Executive Retreats" },
-  { id: "team-facilitation",   label: "Leadership Team Facilitation" },
-  { id: "org-advisory",        label: "Organizational Advisory" },
-];
+const SERVICE_IDS = ["executive-coaching", "executive-retreats", "team-facilitation", "org-advisory"];
 
 const LABEL = {
   fontFamily: "Manrope, sans-serif",
@@ -57,7 +53,7 @@ const INPUT = {
 };
 
 // ─── Success Screen ────────────────────────────────────────────────────────────
-const SuccessView = ({ name, onClose, noPadding }) => (
+const SuccessView = ({ name, onClose, noPadding, f }) => (
   <motion.div
     initial={{ opacity: 0, scale: 0.97 }}
     animate={{ opacity: 1, scale: 1 }}
@@ -73,23 +69,26 @@ const SuccessView = ({ name, onClose, noPadding }) => (
       <Check size={22} color="#C8A96A" />
     </motion.div>
     <h3 style={{ fontFamily: "Figtree, sans-serif", fontSize: "24px", fontWeight: 400, color: "#F5F2EC", marginBottom: "14px", lineHeight: 1.2 }}>
-      Thank you, {name.split(" ")[0]}.
+      {f.successTitle} {name.split(" ")[0]}.
     </h3>
     <p style={{ fontFamily: "Manrope, sans-serif", fontSize: "13px", fontWeight: 300, color: "rgba(245,242,236,0.5)", lineHeight: 1.75, maxWidth: "280px" }}>
-      I will be in touch within 48 hours to arrange a first conversation.
+      {f.successMessage}
     </p>
     <button
       onClick={onClose}
       style={{ marginTop: "40px", fontFamily: "Manrope, sans-serif", fontSize: "9px", fontWeight: 600, letterSpacing: "2.5px", textTransform: "uppercase", color: "rgba(200,169,106,0.55)", background: "none", border: "none", cursor: "pointer", transition: "color 0.2s" }}
       data-testid="contact-success-close"
     >
-      Close
+      {f.close}
     </button>
   </motion.div>
 );
 
 // ─── Main Form Component ───────────────────────────────────────────────────────
 export const HeroContactForm = ({ onClose, noPadding = false, preselectedService = null, sendFrom = null }) => {
+  const { t, lang } = useLanguage();
+  const f = t.heroForm;
+  
   const [form, setForm] = useState({
     name: "", email: "", countryCode: "+49", phone: "",
     services: preselectedService ? [preselectedService] : [],
@@ -163,7 +162,7 @@ export const HeroContactForm = ({ onClose, noPadding = false, preselectedService
 
   const field = (hasErr) => ({ ...INPUT, borderColor: hasErr ? "rgba(210,80,80,0.55)" : "rgba(200,169,106,0.22)" });
 
-  if (submitted) return <SuccessView name={form.name} onClose={onClose} noPadding={noPadding} />;
+  if (submitted) return <SuccessView name={form.name} onClose={onClose} noPadding={noPadding} f={f} />;
 
   return (
     <div style={{ padding: noPadding ? "0" : "32px 32px 28px", scrollbarWidth: "none" }}>
@@ -178,7 +177,7 @@ export const HeroContactForm = ({ onClose, noPadding = false, preselectedService
       {/* Header */}
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: "24px" }}>
         <h3 style={{ fontFamily: "Figtree, sans-serif", fontSize: "22px", fontWeight: 400, color: "#F5F2EC", lineHeight: 1.15 }}>
-          Start a Conversation
+          {f.title}
         </h3>
         <button
           onClick={onClose}
@@ -193,11 +192,11 @@ export const HeroContactForm = ({ onClose, noPadding = false, preselectedService
 
         {/* Name */}
         <div>
-          <label style={LABEL}>Name <span style={{ color: "rgba(200,169,106,0.5)" }}>*</span></label>
+          <label style={LABEL}>{f.name} <span style={{ color: "rgba(200,169,106,0.5)" }}>*</span></label>
           <input
             className="ct-input"
             type="text"
-            placeholder="Your full name"
+            placeholder={f.namePlaceholder}
             value={form.name}
             onChange={e => { setForm(p => ({ ...p, name: e.target.value })); setErrors(p => ({ ...p, name: false })); }}
             style={field(errors.name)}
@@ -207,11 +206,11 @@ export const HeroContactForm = ({ onClose, noPadding = false, preselectedService
 
         {/* Email */}
         <div>
-          <label style={LABEL}>Email <span style={{ color: "rgba(200,169,106,0.5)" }}>*</span></label>
+          <label style={LABEL}>{f.email} <span style={{ color: "rgba(200,169,106,0.5)" }}>*</span></label>
           <input
             className="ct-input"
             type="email"
-            placeholder="your@email.com"
+            placeholder={f.emailPlaceholder}
             value={form.email}
             onChange={e => { setForm(p => ({ ...p, email: e.target.value })); setErrors(p => ({ ...p, email: false })); }}
             style={field(errors.email)}
@@ -221,7 +220,7 @@ export const HeroContactForm = ({ onClose, noPadding = false, preselectedService
 
         {/* Phone */}
         <div>
-          <label style={LABEL}>Phone <span style={{ color: "rgba(245,242,236,0.25)", fontWeight: 300, textTransform: "none", letterSpacing: 0 }}>(optional)</span></label>
+          <label style={LABEL}>{f.phone} <span style={{ color: "rgba(245,242,236,0.25)", fontWeight: 300, textTransform: "none", letterSpacing: 0 }}>{f.optional}</span></label>
           <div style={{ display: "flex", gap: "8px" }}>
             <select
               className="ct-input"
@@ -237,7 +236,7 @@ export const HeroContactForm = ({ onClose, noPadding = false, preselectedService
             <input
               className="ct-input"
               type="tel"
-              placeholder="Phone number"
+              placeholder={f.phonePlaceholder}
               value={form.phone}
               onChange={e => setForm(p => ({ ...p, phone: e.target.value }))}
               style={{ ...INPUT, flex: 1 }}
@@ -248,7 +247,7 @@ export const HeroContactForm = ({ onClose, noPadding = false, preselectedService
 
         {/* Services Multi-select */}
         <div ref={ddRef} style={{ position: "relative" }}>
-          <label style={LABEL}>Service of Interest</label>
+          <label style={LABEL}>{f.serviceOfInterest}</label>
           <button
             type="button"
             onClick={() => setServicesOpen(v => !v)}
@@ -257,10 +256,10 @@ export const HeroContactForm = ({ onClose, noPadding = false, preselectedService
           >
             <span style={{ color: form.services.length === 0 ? "rgba(245,242,236,0.25)" : "#F5F2EC", fontSize: "13px", fontFamily: "Manrope, sans-serif", fontWeight: 300 }}>
               {form.services.length === 0
-                ? "Select service(s)..."
+                ? f.selectServices
                 : form.services.length === 1
-                ? SERVICES.find(s => s.id === form.services[0])?.label
-                : `${form.services.length} services selected`}
+                ? f.services[form.services[0]]
+                : `${form.services.length} ${f.servicesSelected}`}
             </span>
             <motion.span animate={{ rotate: servicesOpen ? 180 : 0 }} transition={{ duration: 0.2 }}>
               <svg width="10" height="6" viewBox="0 0 10 6" fill="none">
@@ -290,12 +289,12 @@ export const HeroContactForm = ({ onClose, noPadding = false, preselectedService
                   zIndex: 60,
                 }}
               >
-                {SERVICES.map((svc, i) => {
-                  const selected = form.services.includes(svc.id);
+                {SERVICE_IDS.map((svcId, i) => {
+                  const selected = form.services.includes(svcId);
                   return (
                     <div
-                      key={svc.id}
-                      onClick={() => toggleService(svc.id)}
+                      key={svcId}
+                      onClick={() => toggleService(svcId)}
                       style={{
                         padding: "12px 14px",
                         display: "flex",
@@ -306,7 +305,7 @@ export const HeroContactForm = ({ onClose, noPadding = false, preselectedService
                         background: selected ? "rgba(200,169,106,0.07)" : "transparent",
                         transition: "background 0.15s ease",
                       }}
-                      data-testid={`service-option-${svc.id}`}
+                      data-testid={`service-option-${svcId}`}
                     >
                       <div style={{
                         width: "15px", height: "15px", borderRadius: "3px", flexShrink: 0,
@@ -318,7 +317,7 @@ export const HeroContactForm = ({ onClose, noPadding = false, preselectedService
                         {selected && <Check size={9} color="#C8A96A" />}
                       </div>
                       <span style={{ fontFamily: "Manrope, sans-serif", fontSize: "12px", fontWeight: 300, color: selected ? "#F5F2EC" : "rgba(245,242,236,0.55)" }}>
-                        {svc.label}
+                        {f.services[svcId]}
                       </span>
                     </div>
                   );
@@ -331,13 +330,13 @@ export const HeroContactForm = ({ onClose, noPadding = false, preselectedService
         {/* Notes */}
         <div>
           <label style={LABEL}>
-            Notes{" "}
-            <span style={{ color: "rgba(245,242,236,0.3)", fontWeight: 300, textTransform: "none", letterSpacing: 0, fontSize: "9px" }}>(optional)</span>
+            {f.notes}{" "}
+            <span style={{ color: "rgba(245,242,236,0.3)", fontWeight: 300, textTransform: "none", letterSpacing: 0, fontSize: "9px" }}>{f.optional}</span>
           </label>
           <textarea
             className="ct-input"
             rows={3}
-            placeholder="Briefly describe your current situation or what brings you here..."
+            placeholder={f.notesPlaceholder}
             value={form.notes}
             onChange={e => setForm(p => ({ ...p, notes: e.target.value }))}
             style={{ ...INPUT, lineHeight: 1.65 }}
@@ -361,10 +360,11 @@ export const HeroContactForm = ({ onClose, noPadding = false, preselectedService
             {form.agreeTC && <Check size={9} color="#C8A96A" />}
           </div>
           <p style={{ fontFamily: "Manrope, sans-serif", fontSize: "11px", fontWeight: 300, color: "rgba(245,242,236,0.42)", lineHeight: 1.65 }}>
-            I agree to the{" "}
+            {f.agreeText}{" "}
             <a href="/legal" style={{ color: "rgba(200,169,106,0.65)", textDecoration: "none", borderBottom: "1px solid rgba(200,169,106,0.28)" }}>
-              Terms & Privacy Policy
+              {f.termsLink}
             </a>
+            {f.termsLinkSuffix ? ` ${f.termsLinkSuffix}` : ""}
           </p>
         </div>
 
@@ -398,7 +398,7 @@ export const HeroContactForm = ({ onClose, noPadding = false, preselectedService
           }}
           data-testid="contact-submit"
         >
-          {submitting ? "Sending..." : "Send Enquiry"}
+          {submitting ? f.sending : f.submit}
           {!submitting && <ArrowRight size={12} />}
         </motion.button>
 
