@@ -560,7 +560,7 @@ const de = {
         headline: "Strategische Begleitung über Zeit",
         duration: "3–12",
         durationUnit: "Monate",
-        durationNote: "Die Struktur passt sich an, was die Organisation braucht — von intensiver diagnostischer Arbeit am Anfang bis zu leichterer strategischer Begleitung während der Umsetzung.",
+        durationNote: "Die Struktur passt sich dem an, was die Organisation braucht – von intensiver Diagnosearbeit am Anfang bis zur gezielten Begleitung in der Umsetzung.",
         includedLabel: "Was enthalten ist",
         items: [
           "Stakeholder-Gesprächsreihe quer durch alle Ebenen der Organisation",
