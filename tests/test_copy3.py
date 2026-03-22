@@ -1,7 +1,7 @@
 import asyncio
 from playwright.async_api import async_playwright
 
-APP_URL = "https://executive-luxury-1.preview.emergentagent.com"
+APP_URL = "https://trompke-executive.preview.emergentagent.com"
 
 async def main():
     async with async_playwright() as p:
