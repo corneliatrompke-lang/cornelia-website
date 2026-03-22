@@ -377,17 +377,85 @@ const en = {
     },
     meditationRetreat: {
       hero: { overline: "Executive Retreats", headline: "Executive Meditation Retreat", subtitle: "Away from operations. Into the questions that actually matter." },
-      description: { overline: "The Retreat", headline: "The Space Your Real Questions Have Been Waiting For", body: "The Executive Meditation Retreat is an immersive residential format designed for leaders who need genuine space — to step outside the relentless pace of operations and meet the deeper questions that daily life consistently makes impossible to hold.\n\nThis is not a wellness retreat or a relaxation break. It is an intensive container for inner work, structured reflection, and the kind of honest conversation that only becomes possible when the noise of daily operations falls completely away." },
+      premise: {
+        overline: "The Retreat",
+        quote: "Stillness is not a retreat from leadership. It is one of the most powerful tools a leader can develop.",
+        author: "Cornelia Trompke",
+        body: ["For leaders working with me in programs, I regularly offer 3-5 day executive meditation retreats. I have practiced meditation for over 30 years and have been teaching it to leaders for more than a decade.", "When practiced with real rigor and genuine guidance, meditation strengthens self-regulation, deepens insight, and creates the clarity and cognitive flexibility that leadership at the highest level demands. These retreats create the conditions that daily operational life cannot.", "What I offer in these retreats is not a wellness program. It is a structured, intelligent, and personally guided introduction to the kind of practice that changes the architecture of how you lead — from the inside out."],
+      },
+      whatOpens: {
+        overline: "What Opens",
+        headline: "What Stillness Makes Possible",
+        subtitle: "In the space of guided stillness, profound shifts begin. Not as an abstract idea, but as direct experience.",
+        items: [
+          { number: "01", title: "Regulated Presence", body: "The ability to remain present through stress, tension, and uncertainty — without reactivity, without collapse." },
+          { number: "02", title: "Inner Clarity", body: "A quiet quality of knowing that consistently cuts through the noise of daily operations. Deeper insight, clearer decisions." },
+          { number: "03", title: "Embodied Groundedness", body: "Leadership rooted in the body — not just the head. Less depletion, more capacity." },
+        ],
+      },
+      experience: {
+        overline: "The Experience",
+        headline: "The Experience Itself",
+        items: [
+          { title: "Guided Practice", body: "Formal meditation sessions, personally guided, with real-time instruction to deepen practice and gently correct what needs aligning." },
+          { title: "Dialogue in Depth", body: "Structured conversations that proceed from the quiet foundation of the practice — questions and exchange at a level daily life makes impossible." },
+          { title: "Structured Silence", body: "Periods of noble silence — to integrate, digest, and allow what naturally emerges from contact with stillness itself." },
+          { title: "Personal Reflection", body: "Guided inquiry to articulate the deeper insights that arise — and bring them into a form that survives the transition back to the world of work." },
+        ],
+      },
+      timeline: {
+        overline: "Structure",
+        headline: "A Typical Retreat Sequence",
+        days: [
+          { label: "Day One", title: "Arrival & Foundation", description: "Arrival, orientation, and settling in. Foundational practice is established. First evening meditation session begins the transition from external pace to inner stillness." },
+          { label: "Day Two", title: "Deepening Practice", description: "Morning and afternoon meditation sessions — longer, deeper. Structured silence between sessions. Evening dialogue to integrate what arises." },
+          { label: "Day Three", title: "Dialogue & Integration", description: "Continued practice with increasing depth. Core dialogue format takes place — reflection on what has moved, and first articulation of lasting insights." },
+          { label: "Optional Extension", title: "Extended Depth", description: "For 5-day formats: two further days of guided practice allow a deeper experience and a more complete integration arc before returning." },
+        ],
+      },
       forWhom: { overline: "For Whom", headline: "This Format Is For...", items: ["Senior leaders at critical personal or professional junctures who need more than strategy", "Small leadership pairs or triads working through a significant shared challenge together", "Executives who have never had genuine space for their own inner life — and are ready to change that", "Leaders at inflection points who sense that what is needed now goes well beyond tactics and planning"] },
       format: { overline: "Format", headline: "The Structure", items: [{ label: "Duration", value: "3 or 5 days residential" }, { label: "Location", value: "Selected retreat locations across Germany and Europe" }, { label: "Format", value: "Individual or small group (2–4 participants)" }, { label: "Structure", value: "Alternating guided practice, deep dialogue, and structured silence" }, { label: "Language", value: "German or English" }] },
-      cta: { headline: "Ready to Inquire?", button: "Make an Enquiry" },
+      cta: { headline: "Ready to Inquire?", button: "Make an Enquiry", description: "All retreats are arranged personally through conversation." },
     },
     teamFacilitation: {
       hero: { overline: "Leadership Team Facilitation", headline: "Leadership Team Facilitation", subtitle: "The invisible dynamics shaping your team — made visible, workable, and genuinely transformative." },
-      description: { overline: "The Engagement", headline: "Most Team Problems Aren't Actually Team Problems", body: "Most leadership team interventions focus on communication frameworks, alignment workshops, and decision-making processes. These are real challenges — but they are rarely the actual source of the problem. The real source is almost always the relational field: the invisible patterns of power, anxiety, protection, and unspoken history operating beneath the surface of every team.\n\nThis work makes that field visible. And workable. And when that shifts, everything shifts with it." },
+      premise: {
+        overline: "The Premise",
+        quote: "In my 1:1 work with leaders, it becomes clear again and again that the most persistent challenges are rarely individual — they live in the space between people.",
+        author: "Cornelia Trompke",
+        body: ["In my work with leadership teams, I help leaders align on shared priorities, improve how they communicate under pressure, address what has gone unsaid, and build the kind of trust that enables real collective decisions.", "The goal is not harmony for its own sake. It is to move the leadership team from a group of strong individuals — each optimizing separately — to a genuinely synchronized leadership body capable of leading the organization with clarity and authority.", "This work operates at the level of the team as a system, not only at the level of each individual within it. That distinction is everything."],
+      },
+      process: {
+        overline: "The Process",
+        headline: "How the Engagement Typically Unfolds",
+        phases: [
+          { number: "01", title: "Individual Sessions", subtitle: "Listening Beneath the Surface", description: "The work begins with individual conversations with each member of the leadership team. These sessions give each person space to share their perspective, their experience of the team, and what they sense is most needed — without constraint. What emerges is always a fuller and more honest picture than the group dynamic alone reveals." },
+          { number: "02", title: "Facilitated Team Sessions", subtitle: "Creating the Conditions for Real Alignment", description: "Drawing on those individual insights, the facilitated sessions bring the full leadership team together to address what is actually real — priorities, communication patterns, unresolved tensions, and how decisions are genuinely made. The sessions are direct, carefully structured, and held with both challenge and care." },
+        ],
+      },
+      workAddresses: {
+        overline: "What the Work Addresses",
+        headline: "What This Work Addresses",
+        items: [
+          { number: "01", title: "Priorities", subtitle: "Shared Direction", body: "Leadership teams often carry strong, separately-optimizing individual agendas that fragment collective direction. This work creates genuine shared clarity on what matters most — and why. That alignment becomes the foundation from which every decision and every direction that follows can be made with real authority." },
+          { number: "02", title: "Communication", subtitle: "How the Team Actually Speaks", body: "How leaders speak to each other in a room determines how the organization functions at every level below. This work surfaces the patterns that slow, distort, and bypass real exchange — and creates the conditions for more direct, honest, and genuinely productive communication across the leadership body." },
+          { number: "03", title: "Tensions", subtitle: "What Is Really in the Room", body: "Unaddressed tensions cost organizations enormous energy, clarity, and trust. The facilitated sessions create conditions in which what has been unsayable can finally be said — and worked through constructively, rather than managed around indefinitely at great invisible cost." },
+          { number: "04", title: "Decision-Making", subtitle: "From Discussion to Commitment", body: "Strong individuals often inadvertently stall the collective decisions that need to move. This work builds a shared framework for how the team decides together — creating speed, genuine accountability, and clarity in how the organization is actually led from the top." },
+        ],
+      },
+      forWhomDetailed: {
+        overline: "For Whom",
+        headline: "The Organizations This Work Is Built For",
+        items: [
+          { number: "01", subtitle: "A CEO and Their Direct Reports", title: "The C-Suite", benefits: ["Establish shared direction and genuine priorities the whole team can actually act from", "Surface the dynamics that are slowing or fragmenting collective decision-making", "Build communication norms that create real clarity — not more noise", "Develop the team's real capacity to address difficulty directly and constructively"] },
+          { number: "02", subtitle: "Early Ways of Working at Their Limit", title: "The Founder's Team", benefits: ["Navigate the transition from founder-led culture to a genuinely structured leadership team", "Establish shared ownership over direction — rather than competing individual fiefdoms", "Rebuild trust on a more honest, adult, peer basis than the early culture allowed", "Create decision-making norms that scale with the organization as it grows"] },
+          { number: "03", subtitle: "Navigating Significant Organizational Change", title: "The Transition Team", benefits: ["Create stability and shared ground during restructuring, merger, or leadership transition", "Manage the anxiety of change without suppressing what genuinely needs to be addressed", "Realign around new priorities without losing the team's hard-won collective intelligence", "Emerge from the transition as a more coherent and capable leadership body than before"] },
+          { number: "04", subtitle: "Starting from the Ground Up", title: "The New Leadership Body", benefits: ["Establish working norms and shared expectations before pressure creates them by force", "Build communication patterns from the start that scale with complexity", "Lay the relational ground that will carry the team when it is tested", "Build real psychological safety as one of the team's lived norms and standards"] },
+        ],
+      },
       forWhom: { overline: "For Whom", headline: "Who This Work Serves Best", items: ["Executive leadership teams of 4–12 people navigating complexity, conflict, or a significant turning point", "Boards or advisory teams at critical strategic junctures that need deeper alignment to move forward", "Teams experiencing persistent underperformance that structural interventions haven't been able to resolve", "Newly formed senior leadership teams building the relational foundations they need to truly perform"] },
       format: { overline: "Format", headline: "How We Work Together", items: [{ label: "Duration", value: "2 to 3-day intensive with optional follow-on sessions" }, { label: "Preparation", value: "Individual pre-conversations with each team member" }, { label: "Location", value: "Off-site at a selected residential or retreat venue" }, { label: "Group Size", value: "4 to 12 participants" }, { label: "Language", value: "German or English" }] },
-      cta: { headline: "Want to Explore This?", button: "Begin a Conversation" },
+      cta: { headline: "Want to Explore This?", button: "Begin a Conversation", description: "Every engagement begins with a conversation. No commitment — just a first mutual exploration." },
     },
     organizationalAdvisory: {
       hero: { overline: "Organizational Advisory", headline: "Organizational Transformation Advisory", subtitle: "Strategic intelligence that accounts for what most consulting never reaches." },

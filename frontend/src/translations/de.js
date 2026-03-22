@@ -359,17 +359,85 @@ const de = {
     },
     meditationRetreat: {
       hero: { overline: "02 — Executive Retreat", headline: "Executive Meditations-Retreat", subtitle: "Weg vom Betrieb. In die Klarheit." },
-      description: { overline: "Das Retreat", headline: "Raum für Fragen, die der Alltag unmöglich macht", body: "Das Executive Meditations-Retreat ist ein immersives Intensivformat für Führungskräfte, die echten Raum brauchen — um aus dem Tempo ihres operativen Lebens herauszutreten und den tieferen Fragen zu begegnen.\n\nDies ist kein Wellness-Retreat oder eine Entspannungspause. Es ist ein intensives Gefäß für innere Arbeit, strukturierte Reflexion und jene Art von Dialog, die nur möglich wird, wenn der Lärm des täglichen Betriebs verstummt." },
+      premise: {
+        overline: "Das Retreat",
+        quote: "Stillheit ist kein Rückzug von Führung. Sie ist eines der mächtigsten Werkzeuge, die eine Führungskraft entwickeln kann.",
+        author: "Cornelia Trompke",
+        body: ["Für Führungskräfte, die mit mir in Programmen arbeiten, biete ich regelmäßig 3-5 tägige Executive Meditations-Retreats an. Ich praktiziere Meditation seit über 30 Jahren und lehre sie Führungskräften seit mehr als einem Jahrzehnt.", "Bei echter Praxis und authentischer Anleitung stärkt Meditation die Selbstregulation, vertieft Einsicht und schafft jene Klarheit und kognitive Flexibilität, die Führung auf höchstem Niveau verlangt. Diese Retreats schaffen die Bedingungen, die der tägliche Betrieb nicht bieten kann.", "Was ich in diesen Retreats anbiete, ist kein Wellness-Programm. Es ist eine strukturierte, intelligente und persönlich angeleitete Einführung in die Art von Praxis, die die Architektur verändert, wie Sie führen — von innen nach außen."],
+      },
+      whatOpens: {
+        overline: "Was sich öffnet",
+        headline: "Was Stillheit ermöglicht",
+        subtitle: "Im Raum der geführten Stille beginnen tiefgreifende Verschiebungen. Nicht als abstrakte Idee, sondern als direktes Erleben.",
+        items: [
+          { number: "01", title: "Regulierte Präsenz", body: "Die Fähigkeit, in Stress, Spannung und Unsicherheit präsent zu bleiben — ohne Reaktivität, ohne Zusammenbruch." },
+          { number: "02", title: "Innere Klarheit", body: "Eine stille Qualität von Wissen, die das Rauschen des täglichen Betriebs konsequent überschreibt. Tiefere Einsicht, klarere Entscheidungen." },
+          { number: "03", title: "Verkörperte Erdung", body: "Führung, die im Körper verankert ist — nicht nur im Kopf. Weniger Erschöpfung, mehr Kapazität." },
+        ],
+      },
+      experience: {
+        overline: "Das Erleben",
+        headline: "Das Erleben selbst",
+        items: [
+          { title: "Geführte Praxis", body: "Formale Meditationssitzungen, persönlich geführt, mit Echtzeit-Anleitung, um die Praxis zu vertiefen und sanft zu korrigieren, was ausgerichtet werden muss." },
+          { title: "Dialog in Tiefe", body: "Strukturierte Gespräche, die vom ruhigen Fundament der Praxis ausgehen — Fragen und Austausch auf einem Niveau, das der Alltag unmöglich macht." },
+          { title: "Strukturierte Stille", body: "Perioden edler Stille — um zu integrieren, zu verdauen und zu erlauben, was aus dem Kontakt mit Stille selbst natürlich entsteht." },
+          { title: "Persönliche Reflexion", body: "Geführte Fragen, um die tieferen Einsichten zu artikulieren, die entstehen — und sie in eine Form zu bringen, die den Übergang zurück in die Welt der Arbeit überdauert." },
+        ],
+      },
+      timeline: {
+        overline: "Struktur",
+        headline: "Eine typische Retreat-Sequenz",
+        days: [
+          { label: "Tag Eins", title: "Ankommen & Fundament", description: "Ankunft, Orientierung und Einstimmung. Die Grundlagenpraxis wird etabliert. Die erste Abendmeditationssitzung beginnt den Übergang vom äußeren Tempo zur inneren Stille." },
+          { label: "Tag Zwei", title: "Vertiefung der Praxis", description: "Morgen- und Nachmittagsmeditationssitzungen — länger, tiefer. Strukturierte Stille zwischen den Sitzungen. Abend-Dialog zur Integration dessen, was aufsteigt." },
+          { label: "Tag Drei", title: "Dialog & Integration", description: "Fortsetzung der Praxis mit zunehmender Tiefe. Das zentrale Dialogformat findet statt — Reflexion darüber, was sich bewegt hat, und erste Artikulation dauerhafter Einsichten." },
+          { label: "Optionale Verlängerung", title: "Erweiterte Tiefe", description: "Für 5-Tage-Formate: zwei weitere Tage geführter Praxis ermöglichen eine tiefere Erfahrung und einen vollständigeren Integrations-Bogen vor der Rückkehr." },
+        ],
+      },
       forWhom: { overline: "Für wen", headline: "Dieses Format ist für...", items: ["Einzelne Führungskräfte an kritischen persönlichen oder beruflichen Wendepunkten", "Kleine Führungspaare oder Triaden, die eine gemeinsame Herausforderung bearbeiten", "Executives, die noch nie Raum für ihr eigenes inneres Leben hatten", "Führungskräfte an Wendepunkten, die Tiefe brauchen, nicht nur Strategie"] },
       format: { overline: "Format", headline: "Die Struktur", items: [{ label: "Dauer", value: "3 oder 5 Tage Intensivformat" }, { label: "Ort", value: "Ausgewählte Retreat-Orte in Deutschland und Europa" }, { label: "Format", value: "Einzeln oder Kleingruppe (2–4 Teilnehmer)" }, { label: "Struktur", value: "Wechsel von geführter Praxis, tiefem Dialog und strukturierter Stille" }, { label: "Sprache", value: "Deutsch oder Englisch" }] },
-      cta: { headline: "Retreat anfragen", button: "Anfrage stellen" },
+      cta: { headline: "Retreat anfragen", button: "Anfrage stellen", description: "Alle Retreats werden persönlich durch Gespräch vereinbart." },
     },
     teamFacilitation: {
       hero: { overline: "03 — Team Facilitation", headline: "Facilitation für Führungsteams", subtitle: "Die unsichtbaren Dynamiken von Teams — sichtbar gemacht, bearbeitbar und transformativ." },
-      description: { overline: "Das Engagement", headline: "Die meisten Teamprobleme sind keine Teamprobleme", body: "Die meisten Führungsteam-Interventionen konzentrieren sich auf Kommunikation, Alignment und Entscheidungsprozesse. Das sind echte Herausforderungen — aber selten die Quelle des Problems. Die Quelle ist fast immer das relationale Feld: die unsichtbaren Muster von Macht, Angst, Schutz und Geschichte, die unter der Oberfläche jedes Teams wirken.\n\nDiese Arbeit macht dieses Feld sichtbar. Und bearbeitbar." },
+      premise: {
+        overline: "Die Prämisse",
+        quote: "In meiner 1:1 Arbeit mit Führungskräften wird immer wieder klar, dass die beharrlichsten Herausforderungen selten individuell sind — sie leben im Raum zwischen Menschen.",
+        author: "Cornelia Trompke",
+        body: ["In meiner Arbeit mit Führungsteams helfe ich Führungskräften, sich auf gemeinsame Prioritäten auszurichten, zu verbessern, wie sie unter Druck kommunizieren, anzusprechen, was ungesagt geblieben ist, und jene Art von Vertrauen aufzubauen, die echte kollektive Entscheidungen ermöglicht.", "Das Ziel ist nicht Harmonie um ihrer selbst willen. Es geht darum, das Führungsteam von einer Gruppe starker Einzelpersonen — die jeweils separat optimieren — zu einem wirklich synchronisierten Führungskörper zu entwickeln, der fähig ist, die Organisation mit Klarheit und Autorität zu führen.", "Diese Arbeit operiert auf der Ebene des Teams als System, nicht nur auf der Ebene jedes einzelnen Individuums darin. Diese Unterscheidung ist alles."],
+      },
+      process: {
+        overline: "Der Prozess",
+        headline: "Wie das Engagement typischerweise entfaltet",
+        phases: [
+          { number: "01", title: "Einzelgespräche", subtitle: "Zuhören unter der Oberfläche", description: "Die Arbeit beginnt mit Einzelgesprächen mit jedem Mitglied des Führungsteams. Diese Sitzungen geben jeder Person Raum, ihre Perspektive zu teilen, ihre Erfahrung des Teams und was sie als am meisten gebraucht empfindet — ohne Einschränkung. Was entsteht, ist immer ein vollständigeres und ehrlicheres Bild als die Gruppendynamik allein offenbart." },
+          { number: "02", title: "Facilitierte Team-Sessions", subtitle: "Die Bedingungen für echte Ausrichtung schaffen", description: "Aus diesen individuellen Einsichten schöpfend, bringen die facilititierten Sitzungen das gesamte Führungsteam zusammen, um das anzusprechen, was wirklich real ist — Prioritäten, Kommunikationsmuster, ungelöste Spannungen und wie Entscheidungen tatsächlich getroffen werden. Die Sitzungen sind direkt, sorgfältig strukturiert und werden mit sowohl Herausforderung als auch Fürsorge gehalten." },
+        ],
+      },
+      workAddresses: {
+        overline: "Die Arbeit adressiert",
+        headline: "Was diese Arbeit adressiert",
+        items: [
+          { number: "01", title: "Prioritäten", subtitle: "Gemeinsame Richtung", body: "Führungsteams tragen oft starke, separat optimierende individuelle Agenden, die kollektive Richtung fragmentieren. Diese Arbeit schafft echte gemeinsame Klarheit darüber, was am meisten zählt — und warum. Diese Ausrichtung wird zum Fundament, von dem aus jede Entscheidung und jede Richtung, die folgt, mit echter Autorität getroffen werden kann." },
+          { number: "02", title: "Kommunikation", subtitle: "Wie das Team wirklich spricht", body: "Wie Führungskräfte in einem Raum miteinander sprechen, bestimmt, wie die Organisation auf jeder Ebene darunter funktioniert. Diese Arbeit bringt die Muster ans Licht, die echten Austausch verlangsamen, verzerren und umgehen — und schafft die Bedingungen für direktere, ehrlichere und wirklich produktivere Kommunikation im gesamten Führungskörper." },
+          { number: "03", title: "Spannungen", subtitle: "Was wirklich im Raum ist", body: "Unbearbeitete Spannungen kosten Organisationen enorme Energie, Klarheit und Vertrauen. Die facilititierten Sitzungen schaffen Bedingungen, unter denen das Unsagbare endlich gesagt werden kann — und konstruktiv durchgearbeitet wird, anstatt auf unbestimmte Zeit mit großen unsichtbaren Kosten herummanövriert zu werden." },
+          { number: "04", title: "Entscheidungsfindung", subtitle: "Von Diskussion zu Commitment", body: "Starke Individuen blockieren oft unbeabsichtigt die kollektiven Entscheidungen, die sich bewegen müssen. Diese Arbeit baut ein gemeinsames Framework dafür auf, wie das Team zusammen entscheidet — und schafft Geschwindigkeit, echte Verantwortlichkeit und Klarheit darüber, wie die Organisation tatsächlich von der Spitze geführt wird." },
+        ],
+      },
+      forWhomDetailed: {
+        overline: "Für wen",
+        headline: "Die Organisationen, für die diese Arbeit gemacht ist",
+        items: [
+          { number: "01", subtitle: "Ein CEO und seine direkten Reports", title: "Die C-Suite", benefits: ["Gemeinsame Richtung und echte Prioritäten etablieren, nach denen das ganze Team tatsächlich handeln kann", "Die Dynamiken aufdecken, die kollektive Entscheidungsfindung verlangsamen oder fragmentieren", "Kommunikationsnormen aufbauen, die echte Klarheit schaffen — nicht mehr Rauschen", "Die echte Fähigkeit des Teams entwickeln, Schwierigkeiten direkt und konstruktiv anzusprechen"] },
+          { number: "02", subtitle: "Frühe Arbeitsweisen an ihrer Grenze", title: "Das Gründerteam", benefits: ["Den Übergang von gründergeführter Kultur zu einem wirklich strukturierten Führungsteam navigieren", "Gemeinsame Ownership über Richtung etablieren — statt konkurrierender individueller Fürstentümer", "Vertrauen auf einer ehrlicheren, erwachseneren, kollegialen Basis wieder aufbauen, als die frühe Kultur ermöglichte", "Entscheidungsnormen schaffen, die mit der Organisation skalieren, während sie wächst"] },
+          { number: "03", subtitle: "Signifikanten organisationalen Wandel navigieren", title: "Das Übergangsteam", benefits: ["Stabilität und gemeinsamen Grund während Restrukturierung, Fusion oder Führungswechsel schaffen", "Die Angst vor Veränderung managen, ohne zu unterdrücken, was wirklich angesprochen werden muss", "Sich um neue Prioritäten neu ausrichten, ohne die hart erkämpfte kollektive Intelligenz des Teams zu verlieren", "Aus dem Übergang als kohärenterer und fähigerer Führungskörper hervorgehen als zuvor"] },
+          { number: "04", subtitle: "Von Grund auf beginnen", title: "Der neue Führungskörper", benefits: ["Arbeitsnormen und gemeinsame Erwartungen etablieren, bevor Druck sie mit Gewalt schafft", "Kommunikationsmuster von Anfang an aufbauen, die mit Komplexität skalieren", "Die relationale Grundlage legen, die das Team tragen wird, wenn es getestet wird", "Echte psychologische Sicherheit als eine der gelebten Normen und Standards des Teams aufbauen"] },
+        ],
+      },
       forWhom: { overline: "Für wen", headline: "Die richtige Passung", items: ["Executive Führungsteams (4–12 Personen), die Komplexität oder Konflikt navigieren", "Vorstände oder Beratungsgremien an kritischen strategischen Wendepunkten", "Teams mit anhaltender Unterperformance trotz struktureller Interventionen", "Neu zusammengesetzte Führungsteams, die ein tragfähiges Beziehungsfundament brauchen"] },
       format: { overline: "Format", headline: "Engagement-Design", items: [{ label: "Dauer", value: "2 bis 3-tägiges Intensiv mit optionalen Folgesitzungen" }, { label: "Vorbereitung", value: "Individuelle Vorgespräche mit jedem Teammitglied" }, { label: "Ort", value: "Auswärts in einem ausgewählten Wohn- oder Retreat-Venue" }, { label: "Gruppengröße", value: "4 bis 12 Teilnehmer" }, { label: "Sprache", value: "Deutsch oder Englisch" }] },
-      cta: { headline: "Dieses Format erkunden", button: "Gespräch beginnen" },
+      cta: { headline: "Dieses Format erkunden", button: "Gespräch beginnen", description: "Jede Zusammenarbeit beginnt mit einem Gespräch. Ohne Verpflichtung — nur ein erstes gegenseitiges Kennenlernen." },
     },
     organizationalAdvisory: {
       hero: { overline: "04 — Advisory", headline: "Beratung für organisationalen Wandel", subtitle: "Strategische Intelligenz, die berücksichtigt, was die meisten Beratungsansätze verfehlen." },

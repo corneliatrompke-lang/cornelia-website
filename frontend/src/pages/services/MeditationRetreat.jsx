@@ -215,7 +215,8 @@ const CirclesViz = ({ activePhase, size = 500 }) => {
 
 // ─── Page ─────────────────────────────────────────────────────────────────────
 const MeditationRetreat = () => {
-  const { t } = useLanguage();
+  const { t, lang } = useLanguage();
+  const s = t.services.meditationRetreat;
   const { heroOpenFn, finalCtaOpenFn, openApplicationForm } = useContactForm();
   const testimonials = t.home.testimonials.items;
 
@@ -354,22 +355,22 @@ const MeditationRetreat = () => {
             style={{ overflowY: "hidden", display: "flex", flexDirection: "column", justifyContent: "flex-end" }}
             animate={{ maxWidth: showContactForm ? "580px" : "860px" }}
             transition={{ duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] }}>
-            <ScrollReveal delay={0.1}><p className="ct-overline text-gold mb-6">02 — Executive Retreat</p></ScrollReveal>
+            <ScrollReveal delay={0.1}><p className="ct-overline text-gold mb-6">{s.hero.overline}</p></ScrollReveal>
             <ScrollReveal delay={0.25}>
               <h1 className="text-ivory leading-[1.04]" data-testid="retreat-hero-headline"
                 style={{ fontFamily: "Figtree, sans-serif", fontSize: showContactForm ? (isMobile ? "30px" : "55px") : "clamp(40px, 6.5vw, 84px)", fontWeight: 400, transition: "font-size 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)" }}>
-                Stillness as a Leadership Practice
+                {s.hero.headline}
               </h1>
             </ScrollReveal>
             <ScrollReveal delay={0.42}>
               <p className="mt-5 max-w-[520px] leading-relaxed" style={{ fontFamily: "Cormorant Garamond, serif", fontSize: "22px", fontStyle: "italic", color: "rgba(227,222,215,0.65)" }}>
-                Away from operations. Into clarity.
+                {s.hero.subtitle}
               </p>
             </ScrollReveal>
             <ScrollReveal delay={0.58}>
               <div style={{ display: "flex", flexDirection: "row", flexWrap: "wrap", gap: "12px", marginTop: "36px", marginBottom: "40px" }}>
                 <button onClick={() => setShowContactForm(true)} className="btn-hero-pill" data-testid="retreat-hero-cta" style={{ border: "none", cursor: "pointer" }}>
-                  Inquire About Retreats
+                  {s.cta.button}
                 </button>
               </div>
             </ScrollReveal>
@@ -397,7 +398,7 @@ const MeditationRetreat = () => {
             {/* Left: large pull quote */}
             <div style={{ flex: isMobile ? "none" : "0 0 44%" }}>
               <ScrollReveal>
-                <p className="ct-overline text-sage mb-8">The Retreat</p>
+                <p className="ct-overline text-sage mb-8">{s.premise.overline}</p>
                 <p
                   style={{
                     fontFamily: "Cormorant Garamond, serif",
@@ -408,7 +409,7 @@ const MeditationRetreat = () => {
                     lineHeight: 1.25,
                   }}
                 >
-                  "Stillness is not a retreat from leadership. It is one of the most powerful tools a leader can develop."
+                  "{s.premise.quote}"
                 </p>
                 <div
                   style={{
@@ -429,18 +430,14 @@ const MeditationRetreat = () => {
                     marginTop: "16px",
                   }}
                 >
-                  Cornelia Trompke
+                  {s.premise.author}
                 </p>
               </ScrollReveal>
             </div>
 
             {/* Right: body */}
             <div style={{ flex: 1, paddingTop: isMobile ? "0" : "68px" }}>
-              {[
-                "For leaders working with me in programs, I regularly offer 3–5 day executive meditation retreats. I have practiced meditation for over 30 years and have been teaching it to leaders for more than a decade.",
-                "When practiced with real rigor and genuine guidance, meditation strengthens self-regulation, deepens insight, and creates the clarity and cognitive flexibility that leadership at the highest level demands. These retreats create the conditions that daily operational life cannot.",
-                "What I offer in these retreats is not a wellness program. It is a structured, intelligent, and personally guided introduction to the kind of practice that changes the architecture of how you lead — from the inside out.",
-              ].map((para, i) => (
+              {s.premise.body.map((para, i) => (
                 <ScrollReveal key={i} delay={0.08 * i}>
                   <p
                     style={{

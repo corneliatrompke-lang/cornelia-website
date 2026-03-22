@@ -136,7 +136,8 @@ const OUTCOME_GRADIENT =
 
 // ─── Page ─────────────────────────────────────────────────────────────────────
 const TeamFacilitation = () => {
-  const { t } = useLanguage();
+  const { t, lang } = useLanguage();
+  const s = t.services.teamFacilitation;
   const { heroOpenFn, finalCtaOpenFn, setModalOpen } = useContactForm();
   const testimonials = t.home.testimonials.items;
 
@@ -247,22 +248,22 @@ const TeamFacilitation = () => {
             style={{ overflowY: "hidden", display: "flex", flexDirection: "column", justifyContent: "flex-end" }}
             animate={{ maxWidth: showContactForm ? "580px" : "860px" }}
             transition={{ duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] }}>
-            <ScrollReveal delay={0.1}><p className="ct-overline text-gold mb-6">02 — Team Facilitation</p></ScrollReveal>
+            <ScrollReveal delay={0.1}><p className="ct-overline text-gold mb-6">{s.hero.overline}</p></ScrollReveal>
             <ScrollReveal delay={0.25}>
               <h1 className="text-ivory leading-[1.04]" data-testid="facilitation-hero-headline"
                 style={{ fontFamily: "Figtree, sans-serif", fontSize: showContactForm ? (isMobile ? "30px" : "55px") : "clamp(40px, 6.5vw, 84px)", fontWeight: 400, transition: "font-size 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)" }}>
-                From Strong Individuals to a Coherent Leadership Unit
+                {s.hero.headline}
               </h1>
             </ScrollReveal>
             <ScrollReveal delay={0.42}>
               <p className="mt-5 max-w-[520px] leading-relaxed" style={{ fontFamily: "Cormorant Garamond, serif", fontSize: "22px", fontStyle: "italic", color: "rgba(227,222,215,0.65)" }}>
-                Alignment. Clarity. Decision-making authority.
+                {s.hero.subtitle}
               </p>
             </ScrollReveal>
             <ScrollReveal delay={0.58}>
               <div style={{ display: "flex", flexWrap: "wrap", gap: "12px", marginTop: "36px", marginBottom: "40px" }}>
                 <button onClick={() => setShowContactForm(true)} className="btn-hero-pill" data-testid="facilitation-hero-cta" style={{ border: "none", cursor: "pointer" }}>
-                  Begin the Conversation
+                  {s.cta.button}
                 </button>
               </div>
             </ScrollReveal>
@@ -290,7 +291,7 @@ const TeamFacilitation = () => {
             {/* Left: pull quote */}
             <div style={{ flex: isMobile ? "none" : "0 0 44%" }}>
               <ScrollReveal>
-                <p className="ct-overline text-sage mb-8">The Premise</p>
+                <p className="ct-overline text-sage mb-8">{s.premise.overline}</p>
                 <p
                   style={{
                     fontFamily: "Cormorant Garamond, serif",
@@ -301,7 +302,7 @@ const TeamFacilitation = () => {
                     lineHeight: 1.28,
                   }}
                 >
-                  "In my 1:1 work with leaders, it becomes clear again and again that the most persistent challenges are rarely individual — they live in the space between people."
+                  "{s.premise.quote}"
                 </p>
                 <div style={{ width: "40px", height: "1px", background: "rgba(200,169,106,0.5)", marginTop: "36px" }} />
                 <p
@@ -315,17 +316,13 @@ const TeamFacilitation = () => {
                     marginTop: "16px",
                   }}
                 >
-                  Cornelia Trompke
+                  {s.premise.author}
                 </p>
               </ScrollReveal>
             </div>
             {/* Right: body */}
             <div style={{ flex: 1, paddingTop: isMobile ? "0" : "68px" }}>
-              {[
-                "In my work with leadership teams, I help leaders align on shared priorities, improve how they communicate under pressure, address what has gone unsaid, and build the kind of trust that enables real collective decisions.",
-                "The goal is not harmony for its own sake. It is to move the leadership team from a group of strong individuals — each optimizing separately — to a genuinely synchronized leadership body capable of leading the organization with clarity and authority.",
-                "This work operates at the level of the team as a system, not only at the level of each individual within it. That distinction is everything.",
-              ].map((para, i) => (
+              {s.premise.body.map((para, i) => (
                 <ScrollReveal key={i} delay={0.08 * i}>
                   <p
                     style={{
@@ -367,7 +364,7 @@ const TeamFacilitation = () => {
         <div className="max-w-[1400px] mx-auto px-6 md:px-16 relative z-10">
           {/* Heading — sits in the ivory/sage top zone */}
           <ScrollReveal>
-            <p className="ct-overline text-sage mb-5">The Process</p>
+            <p className="ct-overline text-sage mb-5">{s.process.overline}</p>
             <h2
               style={{
                 fontFamily: "Figtree, sans-serif",
@@ -379,7 +376,7 @@ const TeamFacilitation = () => {
                 marginBottom: "100px",
               }}
             >
-              Two Phases. One Coherent Team.
+              {s.process.headline}
             </h2>
           </ScrollReveal>
 
@@ -391,7 +388,7 @@ const TeamFacilitation = () => {
                 gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr",
               }}
             >
-              {PROCESS_PHASES.map((phase, i) => (
+              {s.process.phases.map((phase, i) => (
                 <div
                   key={i}
                   style={{
@@ -467,7 +464,7 @@ const TeamFacilitation = () => {
         <div className="max-w-[1400px] mx-auto px-6 md:px-16">
           <div className="max-w-[600px] mx-auto mb-16 text-center">
             <ScrollReveal>
-              <p className="ct-overline text-gold/60 mb-5">The Work</p>
+              <p className="ct-overline text-gold/60 mb-5">{s.workAddresses.overline}</p>
               <h2
                 style={{
                   fontFamily: "Figtree, sans-serif",
@@ -477,7 +474,7 @@ const TeamFacilitation = () => {
                   lineHeight: 1.1,
                 }}
               >
-                Four Dimensions of Genuine Team Alignment
+                {s.workAddresses.headline}
               </h2>
             </ScrollReveal>
           </div>
@@ -485,7 +482,7 @@ const TeamFacilitation = () => {
           {isMobile ? (
             /* ── Mobile: vertical accordion ── */
             <div>
-              {WORK_ADDRESSES.map((item, i) => {
+              {s.workAddresses.items.map((item, i) => {
                 const isOpen = openWorkMobile === i;
                 return (
                   <div key={i} style={{ borderBottom: "1px solid rgba(245,242,236,0.08)" }} data-testid={`work-item-${i}`}>
@@ -511,7 +508,7 @@ const TeamFacilitation = () => {
             </div>
           ) : (
           <div className="flex" style={{ height: "420px", overflow: "hidden" }}>
-            {WORK_ADDRESSES.map((item, i) => {
+            {s.workAddresses.items.map((item, i) => {
               const isActive = activeWork === i;
               return (
                 <div
@@ -524,7 +521,7 @@ const TeamFacilitation = () => {
                     transition: "flex 0.65s cubic-bezier(0.4, 0, 0.2, 1), background 0.4s ease",
                     position: "relative",
                     overflow: "hidden",
-                    borderRight: i < WORK_ADDRESSES.length - 1 ? "1px solid rgba(245,242,236,0.07)" : "none",
+                    borderRight: i < s.workAddresses.items.length - 1 ? "1px solid rgba(245,242,236,0.07)" : "none",
                     cursor: "default",
                     background: isActive ? "rgba(200,169,106,0.04)" : "transparent",
                   }}
