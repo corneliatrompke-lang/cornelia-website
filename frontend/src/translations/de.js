@@ -164,27 +164,27 @@ const de = {
     },
     approach: {
       overline: "Wie Cornelia arbeitet",
-      headline: "Die Prinzipien, die jedes Engagement prägen",
+      headline: "Die Prinzipien, die jede Zusammenarbeit prägen",
       items: [
         {
           number: "01",
-          title: "Selektives Engagement",
-          description: "Jedes Engagement beginnt mit einem sorgfältigen Gespräch zur Klärung echter gegenseitiger Passung. Die Arbeit erfordert echte Bereitschaft – nicht nur Verfügbarkeit oder Budget.",
+          title: "Selektive Zusammenarbeit",
+          description: "Jede Zusammenarbeit beginnt mit einem sorgfältigen Gespräch zur Klärung echter gegenseitiger Passung. Die Arbeit erfordert echte Bereitschaft – nicht nur Verfügbarkeit oder Budget.",
         },
         {
           number: "02",
           title: "Vertraulicher Rahmen",
-          description: "Vollständige Diskretion bestimmt jedes Gespräch. Nichts, was im Engagement gesagt wird, wird geteilt. Der Rahmen wird mit derselben Sorgfalt gehalten wie die Arbeit selbst.",
+          description: "Vollständige Diskretion bestimmt jedes Gespräch. Nichts, was in der Zusammenarbeit gesagt wird, wird geteilt. Der Rahmen wird mit derselben Sorgfalt gehalten wie die Arbeit selbst.",
         },
         {
           number: "03",
           title: "Maßgeschneiderter Prozess",
-          description: "Es gibt keine Vorlagen, keine Standardprogramme. Jedes Engagement wird vollständig von dem geformt, was am lebendigsten und dringendsten ist – auf der Ebene der Person, nicht der Rolle.",
+          description: "Es gibt keine Vorlagen, keine Standardprogramme. Jede Zusammenarbeit wird vollständig von dem geformt, was am lebendigsten und dringendsten ist – auf der Ebene der Person, nicht der Rolle.",
         },
         {
           number: "04",
           title: "Integrität über alles",
-          description: "Intellektuelle Ehrlichkeit, emotionaler Mut und eine unerschütterliche Verpflichtung zur echten Entwicklung – das bringt Cornelia in jedes Engagement, ausnahmslos.",
+          description: "Intellektuelle Ehrlichkeit, emotionaler Mut und eine unerschütterliche Verpflichtung zur echten Entwicklung – das bringt Cornelia in jede Zusammenarbeit, ausnahmslos.",
         },
       ],
     },
