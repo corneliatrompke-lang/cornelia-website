@@ -398,7 +398,7 @@ const de = {
       },
       guide: {
         overline: "Die Begleitung",
-        headline: "Dreißig Jahre Praxis. Ein Jahrzehnt Führungskräfte unterrichten.",
+        headline: "30 Jahre eigene Meditationspraxis. Über ein Jahrzehnt Weitergabe an Führungskräfte.",
         stats: [
           { value: "30+", label: "Jahre persönliche\nMeditationspraxis" },
           { value: "10+", label: "Jahre Meditation\nfür Führungskräfte lehren" },
