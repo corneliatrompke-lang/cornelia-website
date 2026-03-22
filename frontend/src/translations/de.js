@@ -517,7 +517,7 @@ const de = {
       cta: { headline: "Dieses Format erkunden", button: "Gespräch beginnen", description: "Jede Zusammenarbeit beginnt mit einem Gespräch." },
     },
     organizationalAdvisory: {
-      hero: { overline: "04 — Advisory", headline: "Beratung für Organisations- und Kulturwandel", subtitle: "Strategische Intelligenz, die berücksichtigt, was die meisten Beratungsansätze verfehlen." },
+      hero: { overline: "04 — Advisory", headline: "Beratung für Organisations- und Kulturwandel", subtitle: "Wandel, der bei den Menschen beginnt." },
       premise: {
         overline: "Die Prämisse",
         quote: "Organisationen entwickeln sich, wenn Führung, Personal-Praktiken und Kultur sich in dieselbe Richtung entwickeln — selten, wenn sich nur eines ändert, während die anderen fixiert bleiben.",
