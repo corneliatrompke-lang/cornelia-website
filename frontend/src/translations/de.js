@@ -526,6 +526,22 @@ const de = {
           { number: "04", subtitle: "Gründergeführt an seiner Grenze", title: "Der Gründerübergang", benefits: ["Den Übergang von gründergeführter Kultur zu einer wirklich führungsgeführten Organisation navigieren", "Governance-Strukturen aufbauen, die mit der Organisation skalieren", "Professionelles Management etablieren, ohne die Gründerenergie zu verlieren", "Die nächste Phase des Wachstums mit einem Führungsteam ermöglichen, das wirklich führen kann"] },
         ],
       },
+      engagement: {
+        overline: "Das Format",
+        headline: "Strategische Begleitung über Zeit",
+        duration: "3–12",
+        durationUnit: "Monate",
+        durationNote: "Die Struktur passt sich an, was die Organisation braucht — von intensiver diagnostischer Arbeit am Anfang bis zu leichterer strategischer Begleitung während der Umsetzung.",
+        includedLabel: "Was enthalten ist",
+        items: [
+          "Stakeholder-Gesprächsreihe quer durch alle Ebenen der Organisation",
+          "Tiefgehende Analyse der Personal- und Kulturpraktiken sowie Führungsroutinen",
+          "Präsentation der Transformationshebel mit klaren Prioritätsbereichen",
+          "Strukturierte Optionen für den bevorstehenden Transformationsweg",
+          "Regelmäßige strategische Check-ins mit den umsetzenden Teams",
+          "Konzeptionelle und strategische Begleitung durchgehend — nicht nur am Anfang",
+        ],
+      },
       format: {
         overline: "Format",
         headline: "Beratungsstruktur",

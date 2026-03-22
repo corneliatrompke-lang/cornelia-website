@@ -14,106 +14,7 @@ const HERO_VIDEO_DESKTOP =
 const HERO_VIDEO_MOBILE =
   "https://customer-assets.emergentagent.com/job_nervous-system-exec/artifacts/ujdpvv4m_Hero%20-%20mobile.mp4";
 
-const DIMENSIONS = [
-  {
-    number: "01",
-    title: "Leadership",
-    subtitle: "How Leaders Actually Operate",
-    body: "Leadership is the primary lever of every meaningful organizational change. Who leads, how they lead, and what they model creates the conditions — or the constraints — for everything else. We examine leadership maturity, decision-making patterns, and the gap between what is stated and what is actually lived. Where leadership is not genuinely aligned with the intended future, the transformation stalls. Always.",
-  },
-  {
-    number: "02",
-    title: "People Systems",
-    subtitle: "The Architecture of Work",
-    body: "People practices are the operating system of your organization. Performance processes, talent frameworks, how you hire, develop, and recognize people — these are not administrative functions. They are the structural encoding of what the organization truly values. We examine what your current systems actually produce, where they constrain the culture you are trying to build, and what specifically needs to change.",
-  },
-  {
-    number: "03",
-    title: "Culture",
-    subtitle: "What the Organization Actually Lives",
-    body: "Culture is not a program or a set of values printed on a wall. It is the sum of what is rewarded, what is tolerated, and what goes permanently unsaid. Understanding your current culture — honestly, without consolation — is the foundation for changing it. We examine the lived experience of people across the organization and identify the patterns and norms shaping how work actually gets done.",
-  },
-];
-
-const PROCESS_PHASES = [
-  {
-    number: "01",
-    title: "Stakeholder Conversations",
-    subtitle: "Listening With Real Depth",
-    description:
-      "Before anything is diagnosed or recommended, we listen. Individual conversations across levels of the organization — designed to surface what the data cannot capture and what the official narrative consistently leaves out.",
-  },
-  {
-    number: "02",
-    title: "Systemic Analysis",
-    subtitle: "Mapping What Is Actually Happening",
-    description:
-      "A rigorous examination of current structures, cultural patterns, and leadership dynamics. Not what the organization says it is — but what it actually is, beneath the layer of stated intention and curated presentation.",
-  },
-  {
-    number: "03",
-    title: "Strategic Guidance",
-    subtitle: "A Clear Path Forward",
-    description:
-      "Concrete recommendations grounded in what the system can absorb and genuinely sustain. Not a slide deck — but a real advisory presence that stays with the organization through the full complexity of meaningful change.",
-  },
-];
-
-const ENGAGEMENT_ITEMS = [
-  "Stakeholder conversation series across levels of the organization",
-  "Review of People & Culture practices and leadership routines in depth",
-  "Transformation levers presentation with clear priority focus areas",
-  "Structured options for the transformation journey ahead",
-  "Regular strategic check-ins with the teams driving implementation",
-  "Conceptual and strategic guidance throughout — not just at the beginning",
-];
-
-const FOR_WHOM_ITEMS = [
-  {
-    number: "01",
-    subtitle: "Leading Change From the Inside",
-    title: "The CHRO / People Leader",
-    benefits: [
-      "Build a coherent transformation strategy grounded in the organization's actual current state — not the intended one",
-      "Create a shared language with leadership for what real change requires and what it genuinely costs",
-      "Identify where people systems are actively reinforcing the culture you are trying to move away from",
-      "Develop a clear, credible, and honest narrative for the transformation journey ahead",
-    ],
-  },
-  {
-    number: "02",
-    subtitle: "Leading an Organization Through Change",
-    title: "The CEO",
-    benefits: [
-      "Understand what your organization actually needs — beyond the symptoms presenting on the surface",
-      "Build genuine alignment across the leadership team on direction, priorities, and what each person is accountable for",
-      "Identify where leadership behavior is the real lever — and where the systems themselves need to change",
-      "Create a transformation roadmap that is honest and realistic about what the organization can absorb",
-    ],
-  },
-  {
-    number: "03",
-    subtitle: "Scaling, Merging, or Reinventing",
-    title: "The Organization at Inflection Point",
-    benefits: [
-      "Navigate significant growth, merger, or strategic pivot without losing organizational coherence and trust",
-      "Align people practices with the organization you are genuinely becoming — not the one you were",
-      "Address the cultural drift that almost always accompanies rapid scale before it becomes embedded",
-      "Build the leadership and people infrastructure the next stage of growth actually requires",
-    ],
-  },
-  {
-    number: "04",
-    subtitle: "Moving Beyond Founder-Led Culture",
-    title: "The Scale-up",
-    benefits: [
-      "Replace informal people practices with structured systems that genuinely support a growing organization",
-      "Retain what made the company exceptional while building the infrastructure required for scale",
-      "Develop leaders who can manage and lead — not just build and execute",
-      "Create real clarity around performance, development, and expectations without losing the agility that matters",
-    ],
-  },
-];
+// Constants removed - now using translation data from s.dimensions.items, s.process.phases, s.engagement.items, s.forWhomDetailed.items
 
 const PHASE_GRADIENT =
   "linear-gradient(to bottom, #F5F2EC 0%, #CDD8C4 15%, #8A9A80 32%, #2A3825 52%, #162018 75%, #0F1A12 100%)";
@@ -634,7 +535,7 @@ const OrganizationalAdvisory = () => {
             {/* Left: duration + context */}
             <div style={{ flex: isMobile ? "none" : "0 0 42%" }}>
               <ScrollReveal>
-                <p className="ct-overline text-gold/60 mb-5">The Format</p>
+                <p className="ct-overline text-gold/60 mb-5">{s.engagement.overline}</p>
                 <h2
                   style={{
                     fontFamily: "Figtree, sans-serif",
@@ -645,7 +546,7 @@ const OrganizationalAdvisory = () => {
                     marginBottom: "36px",
                   }}
                 >
-                  Strategic Guidance Over Time
+                  {s.engagement.headline}
                 </h2>
                 {/* Duration display */}
                 <div
@@ -668,7 +569,7 @@ const OrganizationalAdvisory = () => {
                       letterSpacing: "-1px",
                     }}
                   >
-                    3–12
+                    {s.engagement.duration}
                   </span>
                   <span
                     style={{
@@ -680,7 +581,7 @@ const OrganizationalAdvisory = () => {
                       color: "rgba(245,242,236,0.35)",
                     }}
                   >
-                    months
+                    {s.engagement.durationUnit}
                   </span>
                 </div>
                 <p
@@ -692,7 +593,7 @@ const OrganizationalAdvisory = () => {
                     lineHeight: 1.85,
                   }}
                 >
-                  The structure adapts to what the organization needs — from intensive diagnostic work at the front to lighter-touch strategic support during implementation.
+                  {s.engagement.durationNote}
                 </p>
               </ScrollReveal>
             </div>
@@ -710,10 +611,10 @@ const OrganizationalAdvisory = () => {
                   marginBottom: "28px",
                 }}
               >
-                What's Included
+                {s.engagement.includedLabel}
               </p>
               <div style={{ display: "flex", flexDirection: "column", gap: "0" }}>
-                {ENGAGEMENT_ITEMS.map((item, i) => (
+                {s.engagement.items.map((item, i) => (
                   <ScrollReveal key={i} delay={0.06 * i}>
                     <div
                       style={{
@@ -761,7 +662,7 @@ const OrganizationalAdvisory = () => {
 
           <div className="max-w-[680px] mb-20">
             <ScrollReveal>
-              <p className="ct-overline text-gold/60 mb-5">For Whom</p>
+              <p className="ct-overline text-gold/60 mb-5">{s.forWhomDetailed.overline}</p>
               <h2
                 style={{
                   fontFamily: "Figtree, sans-serif",
@@ -770,7 +671,7 @@ const OrganizationalAdvisory = () => {
                   color: "#F5F2EC",
                 }}
               >
-                The Organizations This Work Is Built For
+                {s.forWhomDetailed.headline}
               </h2>
             </ScrollReveal>
           </div>
@@ -778,7 +679,7 @@ const OrganizationalAdvisory = () => {
           {isMobile ? (
             /* ── Mobile: vertical expand/collapse accordion ── */
             <div>
-              {FOR_WHOM_ITEMS.map((item, i) => {
+              {s.forWhomDetailed.items.map((item, i) => {
                 const isOpen = openForWhom === i;
                 return (
                   <div key={i} style={{ borderBottom: "1px solid rgba(245,242,236,0.08)" }} data-testid={`for-whom-item-${i}`}>
@@ -794,7 +695,7 @@ const OrganizationalAdvisory = () => {
                     </button>
                     {isOpen && (
                       <div style={{ paddingBottom: "20px" }}>
-                        <p style={{ fontFamily: "Manrope, sans-serif", fontSize: "10px", fontWeight: 500, letterSpacing: "2px", textTransform: "uppercase", color: "rgba(200,169,106,0.5)", marginBottom: "14px" }}>What this addresses</p>
+                        <p style={{ fontFamily: "Manrope, sans-serif", fontSize: "10px", fontWeight: 500, letterSpacing: "2px", textTransform: "uppercase", color: "rgba(200,169,106,0.5)", marginBottom: "14px" }}>{s.forWhomDetailed.whatThisAddresses}</p>
                         <div style={{ display: "flex", flexDirection: "column", gap: "14px" }}>
                           {item.benefits.map((benefit, j) => (
                             <div key={j} style={{ display: "flex", gap: "14px", alignItems: "baseline" }}>
@@ -814,7 +715,7 @@ const OrganizationalAdvisory = () => {
 
             {/* Left: selector rows */}
             <div style={{ flex: "0 0 44%", paddingRight: "80px" }}>
-              {FOR_WHOM_ITEMS.map((item, i) => {
+              {s.forWhomDetailed.items.map((item, i) => {
                 const isActive = openForWhom === i;
                 return (
                   <div
@@ -884,11 +785,11 @@ const OrganizationalAdvisory = () => {
                         color: "rgba(200,169,106,0.5)",
                       }}
                     >
-                      What this addresses
+                      {s.forWhomDetailed.whatThisAddresses}
                     </p>
                   </div>
                   <div style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
-                    {FOR_WHOM_ITEMS[openForWhom].benefits.map((benefit, j) => (
+                    {s.forWhomDetailed.items[openForWhom].benefits.map((benefit, j) => (
                       <motion.div
                         key={j}
                         initial={{ opacity: 0, x: 14 }}
@@ -935,7 +836,7 @@ const OrganizationalAdvisory = () => {
               style={{ borderRadius: "8px", cursor: "pointer" }}
               data-testid="advisory-for-whom-cta"
             >
-              Begin the Conversation
+              {s.finalCta.button}
             </button>
           </div>
 
@@ -1108,10 +1009,10 @@ const OrganizationalAdvisory = () => {
                       transition={{ duration: 0.3 }}
                     >
                       <h2 style={{ fontFamily: "Figtree, sans-serif", fontSize: "clamp(28px, 3.5vw, 44px)", fontWeight: 400, lineHeight: 1.1, color: "#F5F2EC" }}>
-                        When Transformation Becomes the Work
+                        {s.finalCta.headline}
                       </h2>
                       <p style={{ fontFamily: "Manrope, sans-serif", fontSize: "15px", fontWeight: 300, color: "rgba(227,222,215,0.45)", lineHeight: 1.75, marginTop: "18px" }}>
-                        If your organization is at a point where people, culture, and leadership need to evolve together, I welcome an initial conversation to understand your situation.
+                        {s.finalCta.body}
                       </p>
                       <button
                         onClick={() => setShowFinalForm(true)}
@@ -1119,7 +1020,7 @@ const OrganizationalAdvisory = () => {
                         style={{ marginTop: "40px", borderRadius: "8px", display: "inline-block", cursor: "pointer" }}
                         data-testid="advisory-apply-btn"
                       >
-                        Begin the Conversation
+                        {s.finalCta.button}
                       </button>
                     </motion.div>
                   ) : (
