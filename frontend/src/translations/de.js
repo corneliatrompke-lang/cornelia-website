@@ -183,8 +183,8 @@ const de = {
         },
         {
           number: "04",
-          title: "Integrität über alles",
-          description: "Intellektuelle Ehrlichkeit, emotionaler Mut und eine unerschütterliche Verpflichtung zur echten Entwicklung – das bringt Cornelia in jede Zusammenarbeit, ausnahmslos.",
+          title: "Integrität als Grundlage",
+          description: "Empathisch begleiten, eingestimmt auch unbequeme Wahrheiten aussprechen, emotional präsent bleiben, echte Entwicklung über schnelle Lösungen stellen – das ist Cornelias Haltung in jeder Zusammenarbeit.",
         },
       ],
     },

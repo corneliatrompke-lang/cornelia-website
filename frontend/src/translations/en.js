@@ -183,8 +183,8 @@ const en = {
         },
         {
           number: "04",
-          title: "Integrity Above All",
-          description: "Intellectual honesty, emotional courage, and an unwavering commitment to genuine development over surface metrics. This is what Cornelia brings to every engagement, without exception.",
+          title: "Integrity as a Foundation",
+          description: "Accompanying with empathy, speaking uncomfortable truths when needed, staying emotionally present, choosing real development over quick fixes — this is Cornelia's approach in every collaboration.",
         },
       ],
     },
