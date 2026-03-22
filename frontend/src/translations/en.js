@@ -140,15 +140,15 @@ const en = {
       statements: [
         {
           text: "Real change comes from within.",
-          note: "Leadership that truly endures always begins with the person exercising it — not with the framework they apply or the strategy they adopt. This is where the work starts, and where it goes deepest.",
+          note: "Lasting leadership begins with the person exercising it — not the framework they apply or the strategy they adopt. This is where the work starts. And where it goes deepest.",
         },
         {
-          text: "What sounds compelling and what actually works are rarely the same.",
-          note: "What drives this practice is a single question: what holds up in real life, in real relationships, in real moments of decision? Not what is theoretically sound — but what is livingly true.",
+          text: "What holds under pressure reveals more than what sounds right.",
+          note: "One question runs through everything: what actually works in real relationships, real decisions, real moments of stress? Not what is theoretically elegant — but what holds when it matters.",
         },
         {
           text: "Inner work and outer impact are not opposites — they need each other.",
-          note: "A long-standing meditation practice is not an add-on to this work — it is part of the foundation. Stillness that clarifies. Depth that sustains. The understanding that the two directions of development are, in fact, one.",
+          note: "A long-standing meditation practice is not an add-on to this work — it is part of the foundation. Stillness that clarifies. Depth that sustains. The understanding that inner development and outer impact nourish each other.",
         },
       ],
     },

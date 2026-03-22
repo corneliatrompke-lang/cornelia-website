@@ -139,16 +139,16 @@ const de = {
       overline: "Philosophie",
       statements: [
         {
-          text: "Echter Wandel kommt von innen.",
-          note: "Führung, die wirklich Bestand hat, beginnt immer bei der Person, die sie ausübt – nicht bei dem Framework, das sie anwendet, oder der Strategie, die sie verfolgt. Hier beginnt die Arbeit, und hier geht sie am tiefsten.",
+          text: "Echte Veränderung beginnt innen.",
+          note: "Führung, die wirklich trägt, beginnt bei der Person, die sie ausübt – nicht beim Modell, das sie anwendet, oder der Strategie, die sie wählt. Hier fängt die Arbeit an. Und hier geht sie am tiefsten.",
         },
         {
-          text: "Was überzeugend klingt und was wirklich funktioniert, ist selten dasselbe.",
-          note: "Was diese Praxis antreibt, ist eine einzige Frage: Was hält im echten Leben stand – in echten Beziehungen, in echten Entscheidungsmomenten? Nicht was theoretisch schlüssig ist – sondern was lebendig wahr ist.",
+          text: "Was unter Druck hält, sagt mehr als das, was richtig klingt.",
+          note: "Eine Frage zieht sich durch alles: Was wirkt wirklich – in echten Beziehungen, echten Entscheidungen, echten Momenten der Belastung? Nicht was theoretisch elegant ist – sondern was standhält, wenn es darauf ankommt.",
         },
         {
           text: "Innere Arbeit und äußere Wirkung sind keine Gegensätze – sie brauchen einander.",
-          note: "Eine langjährige Meditationspraxis ist kein Zusatz zu dieser Arbeit – sie ist Teil des Fundaments. Stille, die klärt. Tiefe, die trägt und nährt. Die gelebte Erkenntnis, dass beide Richtungen der Entwicklung in Wirklichkeit eine sind.",
+          note: "Eine langjährige Meditationspraxis ist kein Zusatz zu dieser Arbeit – sie ist Teil ihres Fundaments. Stille, die klärt. Tiefe, die trägt. Die Erkenntnis, dass innere Entwicklung und äußere Wirkung einander nähren.",
         },
       ],
     },
