@@ -408,7 +408,7 @@ const de = {
       },
       whatOpens: {
         overline: "Was sich öffnet",
-        headline: "Was Stillheit ermöglicht",
+        headline: "Was Stille ermöglicht",
         subtitle: "Was entsteht, wenn der Geist wirklich still wird",
         items: [
           { number: "01", title: "Aufmerksamkeit", subtitle: "Präsenz als Präzision", body: "Tiefe Praxis schärft Ihre Fähigkeit, anhaltenden Fokus in Umgebungen ständiger Fragmentierung zu halten. Führungskräfte, die diese Arbeit getan haben, berichten durchweg von einer qualitativen Verschiebung ihrer Aufmerksamkeit — weniger reaktiv, bewusster, wirklich verfügbar für das, was zählt.", citation: "Harvard Medical School" },
@@ -421,7 +421,7 @@ const de = {
         overline: "Das Erleben",
         headline: "Das Erleben selbst",
         items: [
-          { number: "01", label: "Stille Reflexion", role: "Der innere Raum", description: "Unstrukturierte Stunden, in denen Ihr Nervensystem sich auf seine eigene Weise beruhigt. Keine erzwungene Stille — echte Stillheit. Raum für das, was gewartet hat, geduldig und leise, um endlich gehört zu werden." },
+          { number: "01", label: "Stille Reflexion", role: "Der innere Raum", description: "Unstrukturierte Stunden, in denen Ihr Nervensystem sich auf seine eigene Weise beruhigt. Keine erzwungene Stille — echte Stille. Raum für das, was gewartet hat, geduldig und leise, um endlich gehört zu werden." },
           { number: "02", label: "Geführte Praxis", role: "Die Architektur", description: "Anleitung in Meditationsformen, die für den Executive-Geist geeignet sind — anspruchsvoll, intelligent und angepasst an Führungskräfte. Ob Sie noch nie praktiziert haben oder seit Jahren praktizieren, die Anleitung trifft Sie genau dort, wo Sie sind." },
           { number: "03", label: "Dialog", role: "Das Feld", description: "Gespräche in kleiner Gruppe, die Einsichten durch Austausch setzen und vertiefen lassen. Die Qualität der Verbindung zwischen Teilnehmern — auf dieser Ebene der Offenheit — erzeugt oft ihre eigene tiefgreifende Art von Klarheit." },
         ],
@@ -430,7 +430,7 @@ const de = {
         overline: "Die fünf Tage",
         headline: "Eine typische Retreat-Sequenz",
         days: [
-          { day: "Tag 1", title: "Ankunft & Ankommen", description: "Ankunft am Abend. Erste gemeinsame geführte Sitzung. Der Übergang vom operativen Tempo in die Bedingungen für echte Stillheit — langsamer als erwartet, und genau das, was Sie brauchen." },
+          { day: "Tag 1", title: "Ankunft & Ankommen", description: "Ankunft am Abend. Erste gemeinsame geführte Sitzung. Der Übergang vom operativen Tempo in die Bedingungen für echte Stille — langsamer als erwartet, und genau das, was Sie brauchen." },
           { day: "Tag 2", title: "Fundament", description: "Morgen- und Nachmittagspraxis. Etablierung der inneren Architektur. Ihr Nervensystem beginnt sich auf eine Weise zu beruhigen, die das Tempo des normalen Lebens nicht erlaubt." },
           { day: "Tag 3", title: "Vertiefung", description: "Erweiterte Praxisperioden. Die Arbeit geht tiefer. Einsichten beginnen zu entstehen — nicht erzwungen, sondern natürlich aufsteigend in der erweiterten Stille eines Geistes, der endlich still ist." },
           { day: "Tag 4", title: "Integration", description: "Dialog in kleiner Gruppe. Muster werden sichtbar, wenn sie geteilt werden. Nachfragen gewinnt neue Tiefe und Ehrlichkeit, wenn es auf die Stille der vorherigen Tage trifft." },
