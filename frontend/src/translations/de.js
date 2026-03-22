@@ -520,7 +520,7 @@ const de = {
       hero: { overline: "04 — Advisory", headline: "Beratung für Organisations- und Kulturwandel", subtitle: "Wandel, der bei den Menschen beginnt." },
       premise: {
         overline: "Die Prämisse",
-        quote: "Organisationen entwickeln sich, wenn Führung, Personal-Praktiken und Kultur sich in dieselbe Richtung entwickeln — selten, wenn sich nur eines ändert, während die anderen fixiert bleiben.",
+        quote: "Organisationen verändern sich nachhaltig, wenn Führung, HR-Prozesse und Kultur gemeinsam in Bewegung kommen — nicht, wenn nur ein Bereich angepasst wird.",
         author: "Cornelia Trompke",
         body: ["Meine Arbeit mit Organisationen adressiert die drei Dimensionen, die sich gemeinsam entwickeln müssen, damit Transformation Bestand hat: Führung, Personal-Systeme und Kultur. Wenn sich nur eines ändert, stabilisiert sich das System um seine alten Muster.", "Die Zusammenarbeit beginnt typischerweise mit einer Zuhörphase — strukturierte Gespräche quer durch die Organisation, um das ans Licht zu bringen, was Daten nicht erfassen können und was die offizielle Narrative konsequent auslässt.", "Darauf basierend entwickle ich ein klares Bild davon, wo Ihre aktuellen Systeme und Praktiken die Richtung unterstützen, die Sie anstreben — und wo sie aktiv dagegen arbeiten. Was folgt, ist ein offenes strategisches Gespräch darüber, was sich ändern muss und wie."],
       },
