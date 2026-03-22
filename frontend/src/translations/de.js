@@ -584,7 +584,7 @@ const de = {
       },
       forWhom: { overline: "Für wen", headline: "Strategische Beratung für...", items: ["Organisationen an strategischen Wendepunkten: Fusionen, Restrukturierungen, Führungswechsel", "Unternehmen, wo kulturelle Transformation trotz struktureller Veränderung ins Stocken geraten ist", "Führungsteams, wo Strategieklarheit vorhanden ist, aber die Umsetzung immer wieder scheitert", "Gründer beim Übergang von gründergeführten zu führungsgeführten Organisationen", "Vorstände, die komplexe Führungsnachfolge und Kulturtransformation navigieren"] },
       finalCta: {
-        headline: "Wenn Transformation zur Arbeit wird",
+        headline: "Wenn es um Transformation geht",
         body: "Wenn Ihre Organisation an einem Punkt steht, wo Menschen, Kultur und Führung sich gemeinsam entwickeln müssen, freue ich mich über ein erstes Gespräch, um Ihre Situation zu verstehen.",
         button: "Gespräch beginnen",
       },
