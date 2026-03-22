@@ -292,7 +292,7 @@ const de = {
     integration: {
       overline: "Die Synthese",
       headline: "Zusammen schaffen sie etwas Seltenes",
-      body: "Wenn NARM und Integral Coaching zusammengebracht werden, entsteht ein Ergebnis, das die volle Tiefe der Entwicklung einer Führungskraft adressiert — biologisch, psychologisch, relational und strukturell. Es ist diese Integration, die der Arbeit ihre besondere Qualität verleiht: leise transformativ, tiefgreifend präzise und gebaut, um weit über das Engagement selbst hinaus zu halten.",
+      body: "Wenn NARM und Integral Coaching zusammengebracht werden, entsteht ein Ergebnis, das die volle Tiefe der Entwicklung einer Führungskraft adressiert — biologisch, psychologisch, relational und strukturell. Es ist diese Integration, die der Arbeit ihre besondere Qualität verleiht: leise transformativ, tiefgreifend präzise und gebaut, um weit über die Zusammenarbeit selbst hinaus zu halten.",
     },
     combined: {
       overline: "Die Synthese",
@@ -305,7 +305,7 @@ const de = {
         },
         {
           heading: "Integral Coaching bietet",
-          items: ["Entwicklungsperspektive und systemischer Kontext", "Erweiterung der Sinngebungskapazität", "Engagement mit dem ganzen Menschen in seiner Welt", "Strukturelle Transformation, die über Zeit anhält"],
+          items: ["Entwicklungsperspektive und systemischer Kontext", "Erweiterung der Sinngebungskapazität", "Arbeit mit dem ganzen Menschen in seiner Welt", "Strukturelle Transformation, die über Zeit anhält"],
         },
         {
           heading: "Zusammen schaffen sie",
@@ -329,22 +329,22 @@ const de = {
   services: {
     executiveCoaching: {
       hero: { overline: "01 — Executive Coaching", headline: "1:1 Executive Coaching", subtitle: "Die privateste Form dieser Arbeit. Eine nachhaltige Partnerschaft, die Ebenen erreicht, die die meisten Executive Coaches nicht berühren." },
-      description: { overline: "Das Engagement", headline: "Ein Raum für die Arbeit, die sonst nirgendwo stattfinden kann", body: "Executive Coaching mit Cornelia Trompke ist kein strukturiertes Programm mit vordefinierten Ergebnissen. Es ist eine nachhaltige, vertrauliche Partnerschaft, die um Ihre tatsächliche Entwicklung herum aufgebaut ist — die Muster, denen Sie immer wieder begegnen, die Grenzen, über die Sie sich nicht hinausbewegen können, die Fähigkeiten, die Ihre Führung jetzt am meisten braucht.\n\nDie Arbeit schöpft aus NARM und Integral Coaching, um über Verhaltensstrategien hinaus in die Nervensystem- und Identitätsstrukturen zu gehen, die das Führungsverhalten tatsächlich antreiben." },
+      description: { overline: "Die Zusammenarbeit", headline: "Ein Raum für die Arbeit, die sonst nirgendwo stattfinden kann", body: "Executive Coaching mit Cornelia Trompke ist kein strukturiertes Programm mit vordefinierten Ergebnissen. Es ist eine nachhaltige, vertrauliche Partnerschaft, die um Ihre tatsächliche Entwicklung herum aufgebaut ist — die Muster, denen Sie immer wieder begegnen, die Grenzen, über die Sie sich nicht hinausbewegen können, die Fähigkeiten, die Ihre Führung jetzt am meisten braucht.\n\nDie Arbeit schöpft aus NARM und Integral Coaching, um über Verhaltensstrategien hinaus in die Nervensystem- und Identitätsstrukturen zu gehen, die das Führungsverhalten tatsächlich antreiben." },
       forWhom: { overline: "Für wen", headline: "Diese Arbeit passt zu Ihnen, wenn...", items: [
         { title: "Standard-Coaching nicht mehr reicht", body: "Sie sind Senior Executive, Gründer:in oder Beiratsmitglied. Sie haben bereits an Ihrer persönlichen Entwicklung gearbeitet. Standard-Coaching erreicht nicht mehr die Ebene, auf der Ihre eigentlichen Grenzen liegen." },
         { title: "das Muster tiefer liegt als jede Strategie", body: "Sie spüren, dass das, was Sie zurückhält, kein strategisches oder taktisches Problem ist — es ist strukturell. Das Muster wiederholt sich über verschiedene Kontexte und Rollen hinweg. Kein Framework hat es bisher erreicht." },
         { title: "Sie echte Komplexität navigieren", body: "Sie befinden sich inmitten von etwas Bedeutsamem — organisatorisch, beruflich oder persönlich — und brauchen eine Begleitung, die das volle Gewicht halten kann, ohne es zu minimieren oder zu vereinfachen." },
         { title: "Sie aus Ganzheit führen wollen", body: "Sie wollen aus einer echten Mitte heraus führen — nicht aus Performance, Angst oder Erschöpfung. Sie suchen mehr als Optimierung, und Sie wissen bereits, was das bedeutet." },
-        { title: "Sie bereit sind, in die Tiefe zu gehen", body: "Sie verstehen, dass echte Veränderung Zeit und echtes Engagement braucht. Sie sind bereit, nachhaltige Aufmerksamkeit in etwas zu investieren, das Sie wirklich verändert — nicht nur, wie Sie sich präsentieren." },
+        { title: "Sie bereit sind, in die Tiefe zu gehen", body: "Sie verstehen, dass echte Veränderung Zeit und echten Einsatz braucht. Sie sind bereit, nachhaltige Aufmerksamkeit in etwas zu investieren, das Sie wirklich verändert — nicht nur, wie Sie sich präsentieren." },
       ]},
-      format: { overline: "Format", headline: "Struktur des Engagements", items: [{ label: "Dauer", value: "3 bis 12 Monate" }, { label: "Frequenz", value: "Zweiwöchentliche 60-minütige Sitzungen + Vertiefungssitzungen von 2 Stunden (Anzahl abhängig von der Programmlänge)" }, { label: "Ort", value: "Virtuell" }, { label: "Sprache", value: "Deutsch oder Englisch" }, { label: "Aufnahme", value: "Per Bewerbung und Erstgespräch" }] },
+      format: { overline: "Format", headline: "Struktur der Zusammenarbeit", items: [{ label: "Dauer", value: "3 bis 12 Monate" }, { label: "Frequenz", value: "Zweiwöchentliche 60-minütige Sitzungen + Vertiefungssitzungen von 2 Stunden (Anzahl abhängig von der Programmlänge)" }, { label: "Ort", value: "Virtuell" }, { label: "Sprache", value: "Deutsch oder Englisch" }, { label: "Aufnahme", value: "Per Bewerbung und Erstgespräch" }] },
       cta: { headline: "Bewerbung beginnen", button: "Jetzt bewerben", description: "Jede Zusammenarbeit beginnt mit einem Gespräch. Ohne Verpflichtung — nur ein erstes gegenseitiges Kennenlernen." },
-      engagementArc: { overline: "Der Engagement-Bogen", headline: "Wie sich die Arbeit über die Zeit entfaltet", phases: [
+      engagementArc: { overline: "Der Bogen der Zusammenarbeit", headline: "Wie sich die Arbeit über die Zeit entfaltet", phases: [
         { label: "Fundament", duration: "Monate 1–3", description: "Der Boden wird bereitet — Vertrauen wird aufgebaut, Muster werden sichtbar gemacht, und die eigentliche Arbeit kommt in den Fokus. Die ersten Sitzungen zeigen nicht nur, was Sie verändern möchten, sondern die tiefere Architektur, warum es sich bisher nicht verändert hat." },
         { label: "Vertiefung", duration: "Monate 4–8", description: "Hier beginnt die eigentliche Arbeit. Muster werden sichtbar. Die Arbeit mit dem Nervensystem greift. Was unsichtbar und unzugänglich war, beginnt sich zu bewegen. Hier wird Veränderung greifbar — nicht mehr Konzept, sondern gelebte Erfahrung." },
         { label: "Integration", duration: "Monate 9–12", description: "Die Veränderungen festigen sich zu etwas Strukturellem. Neue Arten der Führung fühlen sich nicht mehr anstrengend an, sondern beginnen sich anzufühlen wie Sie selbst. Die Arbeit bewegt sich von Einsicht zu verkörperter Kompetenz — und das ist es, was über die Zeit Bestand hat." },
       ]},
-      whatYouReceive: { overline: "Was Sie erhalten", headline: "Die Struktur des Engagements", items: [
+      whatYouReceive: { overline: "Was Sie erhalten", headline: "Die Struktur der Zusammenarbeit", items: [
         { title: "Regelmäßige 1:1-Sitzungen", description: "Zweiwöchentliche 90-minütige Sitzungen — strukturiert, gehalten und nie gehetzt. Ein dedizierter Raum für das, was in Ihrer Entwicklung gerade am präsentesten und lebendigsten ist. Kein festes Curriculum nach Zeitplan, sondern eine lebendige Beziehung zu Ihrem tatsächlichen Wachstum." },
         { title: "Direkter Messenger-Zugang", description: "Zwischen den Sitzungen, für Momente, in denen etwas klar wird und Sie ein Gegenüber brauchen — nicht nächste Woche, sondern jetzt. Die Entwicklung pausiert nicht zwischen den Gesprächen — und die Begleitung auch nicht." },
         { title: "Individuell gestaltete Vertiefungssitzungen", description: "Längere Sitzungsformate für die Arbeit, die mehr Zeit, mehr Tiefe oder spezifische Vorbereitung erfordert — vollständig um die Bereiche Ihrer Entwicklung herum gestaltet, die gerade am wesentlichsten sind." },
@@ -438,7 +438,7 @@ const de = {
       },
       process: {
         overline: "Der Prozess",
-        headline: "Wie das Engagement typischerweise entfaltet",
+        headline: "Wie die Zusammenarbeit typischerweise verläuft",
         phases: [
           { number: "01", title: "Einzelgespräche", subtitle: "Zuhören unter der Oberfläche", description: "Die Arbeit beginnt mit Einzelgesprächen mit jedem Mitglied des Führungsteams. Diese Sitzungen geben jeder Person Raum, ihre Perspektive zu teilen, ihre Erfahrung des Teams und was sie als am meisten gebraucht empfindet — ohne Einschränkung. Was entsteht, ist immer ein vollständigeres und ehrlicheres Bild als die Gruppendynamik allein offenbart." },
           { number: "02", title: "Facilitierte Team-Sessions", subtitle: "Die Bedingungen für echte Ausrichtung schaffen", description: "Aus diesen individuellen Einsichten schöpfend, bringen die facilititierten Sitzungen das gesamte Führungsteam zusammen, um das anzusprechen, was wirklich real ist — Prioritäten, Kommunikationsmuster, ungelöste Spannungen und wie Entscheidungen tatsächlich getroffen werden. Die Sitzungen sind direkt, sorgfältig strukturiert und werden mit sowohl Herausforderung als auch Fürsorge gehalten." },
@@ -479,7 +479,7 @@ const de = {
         ],
       },
       forWhom: { overline: "Für wen", headline: "Die richtige Passung", items: ["Executive Führungsteams (4–12 Personen), die Komplexität oder Konflikt navigieren", "Vorstände oder Beratungsgremien an kritischen strategischen Wendepunkten", "Teams mit anhaltender Unterperformance trotz struktureller Interventionen", "Neu zusammengesetzte Führungsteams, die ein tragfähiges Beziehungsfundament brauchen"] },
-      format: { overline: "Format", headline: "Engagement-Design", items: [{ label: "Dauer", value: "2 bis 3-tägiges Intensiv mit optionalen Folgesitzungen" }, { label: "Vorbereitung", value: "Individuelle Vorgespräche mit jedem Teammitglied" }, { label: "Ort", value: "Auswärts in einem ausgewählten Wohn- oder Retreat-Venue" }, { label: "Gruppengröße", value: "4 bis 12 Teilnehmer" }, { label: "Sprache", value: "Deutsch oder Englisch" }] },
+      format: { overline: "Format", headline: "Design der Zusammenarbeit", items: [{ label: "Dauer", value: "2 bis 3-tägiges Intensiv mit optionalen Folgesitzungen" }, { label: "Vorbereitung", value: "Individuelle Vorgespräche mit jedem Teammitglied" }, { label: "Ort", value: "Auswärts in einem ausgewählten Wohn- oder Retreat-Venue" }, { label: "Gruppengröße", value: "4 bis 12 Teilnehmer" }, { label: "Sprache", value: "Deutsch oder Englisch" }] },
       finalCta: {
         headline: "Wenn Ihr Team bereit ist",
         body: "Die Arbeit beginnt mit einem Gespräch. Wenn Sie vor Herausforderungen auf der Ebene Ihres Führungsteams stehen, freue ich mich über einen ersten Austausch, um die Situation zu verstehen.",
@@ -493,7 +493,7 @@ const de = {
         overline: "Die Prämisse",
         quote: "Organisationen entwickeln sich, wenn Führung, Personal-Praktiken und Kultur sich in dieselbe Richtung entwickeln — selten, wenn sich nur eines ändert, während die anderen fixiert bleiben.",
         author: "Cornelia Trompke",
-        body: ["Meine Arbeit mit Organisationen adressiert die drei Dimensionen, die sich gemeinsam entwickeln müssen, damit Transformation Bestand hat: Führung, Personal-Systeme und Kultur. Wenn sich nur eines ändert, stabilisiert sich das System um seine alten Muster.", "Das Engagement beginnt typischerweise mit einer Zuhörphase — strukturierte Gespräche quer durch die Organisation, um das ans Licht zu bringen, was Daten nicht erfassen können und was die offizielle Narrative konsequent auslässt.", "Darauf basierend entwickle ich ein klares Bild davon, wo Ihre aktuellen Systeme und Praktiken die Richtung unterstützen, die Sie anstreben — und wo sie aktiv dagegen arbeiten. Was folgt, ist ein offenes strategisches Gespräch darüber, was sich ändern muss und wie."],
+        body: ["Meine Arbeit mit Organisationen adressiert die drei Dimensionen, die sich gemeinsam entwickeln müssen, damit Transformation Bestand hat: Führung, Personal-Systeme und Kultur. Wenn sich nur eines ändert, stabilisiert sich das System um seine alten Muster.", "Die Zusammenarbeit beginnt typischerweise mit einer Zuhörphase — strukturierte Gespräche quer durch die Organisation, um das ans Licht zu bringen, was Daten nicht erfassen können und was die offizielle Narrative konsequent auslässt.", "Darauf basierend entwickle ich ein klares Bild davon, wo Ihre aktuellen Systeme und Praktiken die Richtung unterstützen, die Sie anstreben — und wo sie aktiv dagegen arbeiten. Was folgt, ist ein offenes strategisches Gespräch darüber, was sich ändern muss und wie."],
       },
       dimensions: {
         overline: "Die drei Dimensionen",
@@ -507,12 +507,12 @@ const de = {
       },
       process: {
         overline: "Der Prozess",
-        headline: "Wie das Engagement typischerweise entfaltet",
+        headline: "Wie die Zusammenarbeit typischerweise verläuft",
         phases: [
           { number: "01", title: "Stakeholder-Gespräche", subtitle: "Zuhören mit echter Tiefe", description: "Bevor etwas diagnostiziert oder empfohlen wird, hören wir zu. Einzelgespräche auf verschiedenen Ebenen der Organisation — konzipiert, um das ans Licht zu bringen, was Daten nicht erfassen können und was die offizielle Narrative konsequent auslässt." },
           { number: "02", title: "Systemische Analyse", subtitle: "Mapping dessen, was tatsächlich passiert", description: "Die Stakeholder-Phase informiert eine strukturierte Analyse. Wir untersuchen die Führungslandschaft, Personal-Praktiken und kulturellen Muster — und entwickeln eine systemische Sicht dessen, was die aktuelle Dynamik tatsächlich antreibt." },
           { number: "03", title: "Strategische Klarheit", subtitle: "Fokus, bevor Aktion", description: "Wir entwickeln ein klares Bild davon, wo die aktuellen Systeme die Zukunft unterstützen, die Sie beabsichtigen — und wo sie aktiv dagegen arbeiten. Das bildet die Grundlage für ein offenes strategisches Gespräch darüber, was wirklich verändert werden muss." },
-          { number: "04", title: "Nachhaltige Begleitung", subtitle: "Begleitung für dauerhafte Veränderung", description: "Transformation geschieht nicht in einem Workshop. Das Engagement umfasst nachhaltige Beratungspräsenz, während Veränderungen eingeführt, integriert und im Laufe der Zeit angepasst werden — sicherstellend, dass sie tatsächlich halten." },
+          { number: "04", title: "Nachhaltige Begleitung", subtitle: "Begleitung für dauerhafte Veränderung", description: "Transformation geschieht nicht in einem Workshop. Die Zusammenarbeit umfasst nachhaltige Beratungspräsenz, während Veränderungen eingeführt, integriert und im Laufe der Zeit angepasst werden — sicherstellend, dass sie tatsächlich halten." },
         ],
       },
       forWhomDetailed: {
