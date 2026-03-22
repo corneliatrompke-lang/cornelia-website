@@ -124,15 +124,15 @@ const FORMAT_ITEMS = [
 ];
 
 // ─── Concentric Circles ───────────────────────────────────────────────────────
-const CirclesViz = ({ activePhase, size = 500 }) => {
-  const s = size / 500;
+const CirclesViz = ({ activePhase, size = 500, experienceItems, centerLabel }) => {
+  const scale = size / 500;
   const cx = size / 2;
   const rings = [
-    { inset: `${Math.round(180 * s)}px` },
-    { inset: `${Math.round(90 * s)}px` },
+    { inset: `${Math.round(180 * scale)}px` },
+    { inset: `${Math.round(90 * scale)}px` },
     { inset: "0px" },
   ];
-  const radii = [70 * s, 160 * s, 250 * s];
+  const radii = [70 * scale, 160 * scale, 250 * scale];
   return (
     <div style={{ position: "relative", width: `${size}px`, height: `${size}px`, flexShrink: 0 }}>
       {rings.map((ring, i) => {
@@ -159,7 +159,7 @@ const CirclesViz = ({ activePhase, size = 500 }) => {
         );
       })}
       {/* Label mapping */}
-      {s.experience.items.map((el, i) => {
+      {experienceItems.map((el, i) => {
         const angles = [0, -60, -120];
         const rad = (angles[i] * Math.PI) / 180;
         const x = cx + radii[i] * Math.cos(rad);
@@ -206,7 +206,7 @@ const CirclesViz = ({ activePhase, size = 500 }) => {
             whiteSpace: "nowrap",
           }}
         >
-          {s.experience.centerLabel}
+          {centerLabel}
         </span>
       </div>
     </div>
@@ -965,7 +965,7 @@ const MeditationRetreat = () => {
             >
               {/* Circles — update with scroll */}
               <div style={{ marginBottom: "24px", flexShrink: 0 }}>
-                <CirclesViz activePhase={activeElement} size={200} />
+                <CirclesViz activePhase={activeElement} size={200} experienceItems={s.experience.items} centerLabel={s.experience.centerLabel} />
               </div>
 
               {/* Element rows */}
@@ -1042,7 +1042,7 @@ const MeditationRetreat = () => {
                     alignItems: "center",
                   }}
                 >
-                  <CirclesViz activePhase={activeElement} size={isNarrow ? 380 : 500} />
+                  <CirclesViz activePhase={activeElement} size={isNarrow ? 380 : 500} experienceItems={s.experience.items} centerLabel={s.experience.centerLabel} />
                 </div>
 
                 {/* Right: element rows */}
