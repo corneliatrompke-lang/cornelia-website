@@ -503,7 +503,7 @@ const en = {
         body: "The work begins with a conversation. If you are facing challenges at the level of your leadership team, I welcome an initial exchange to understand the situation.",
         button: "Begin the Conversation",
       },
-      cta: { headline: "Want to Explore This?", button: "Begin a Conversation", description: "Every engagement begins with a conversation. No commitment — just a first mutual exploration." },
+      cta: { headline: "Want to Explore This?", button: "Begin a Conversation", description: "Every engagement begins with a conversation." },
     },
     organizationalAdvisory: {
       hero: { overline: "Organizational Advisory", headline: "Organizational Transformation Advisory", subtitle: "Strategic intelligence that accounts for what most consulting never reaches." },
@@ -567,7 +567,7 @@ const en = {
         body: "If your organization is at a point where people, culture, and leadership need to evolve together, I welcome an initial conversation to understand your situation.",
         button: "Begin the Conversation",
       },
-      cta: { headline: "Ready to Begin an Advisory Conversation?", button: "Make an Enquiry", description: "Every engagement begins with a conversation. No commitment — just a first mutual exploration." },
+      cta: { headline: "Ready to Begin an Advisory Conversation?", button: "Make an Enquiry", description: "Every engagement begins with a conversation." },
     },
   },
   contact: {

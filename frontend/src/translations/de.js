@@ -338,7 +338,7 @@ const de = {
         { title: "Sie bereit sind, in die Tiefe zu gehen", body: "Sie verstehen, dass echte Veränderung Zeit und echten Einsatz braucht. Sie sind bereit, nachhaltige Aufmerksamkeit in etwas zu investieren, das Sie wirklich verändert — nicht nur, wie Sie sich präsentieren." },
       ]},
       format: { overline: "Format", headline: "Struktur der Zusammenarbeit", items: [{ label: "Dauer", value: "3 bis 12 Monate" }, { label: "Frequenz", value: "Zweiwöchentliche 60-minütige Sitzungen + Vertiefungssitzungen von 2 Stunden (Anzahl abhängig von der Programmlänge)" }, { label: "Ort", value: "Virtuell" }, { label: "Sprache", value: "Deutsch oder Englisch" }] },
-      cta: { headline: "Bewerbung beginnen", button: "Jetzt bewerben", description: "Jede Zusammenarbeit beginnt mit einem Gespräch. Ohne Verpflichtung — nur ein erstes gegenseitiges Kennenlernen." },
+      cta: { headline: "Bewerbung beginnen", button: "Jetzt bewerben", description: "Jede Zusammenarbeit beginnt mit einem Gespräch." },
       engagementArc: { overline: "Der Bogen der Zusammenarbeit", headline: "Wie sich die Arbeit über die Zeit entfaltet", phases: [
         { label: "Fundament", duration: "Monate 1–3", description: "Der Boden wird bereitet — Vertrauen wird aufgebaut, Muster werden sichtbar gemacht, und die eigentliche Arbeit kommt in den Fokus. Die ersten Sitzungen zeigen nicht nur, was Sie verändern möchten, sondern die tiefere Architektur, warum es sich bisher nicht verändert hat." },
         { label: "Vertiefung", duration: "Monate 4–8", description: "Hier beginnt die eigentliche Arbeit. Muster werden sichtbar. Die Arbeit mit dem Nervensystem greift. Was unsichtbar und unzugänglich war, beginnt sich zu bewegen. Hier wird Veränderung greifbar — nicht mehr Konzept, sondern gelebte Erfahrung." },
@@ -485,7 +485,7 @@ const de = {
         body: "Die Arbeit beginnt mit einem Gespräch. Wenn Sie vor Herausforderungen auf der Ebene Ihres Führungsteams stehen, freue ich mich über einen ersten Austausch, um die Situation zu verstehen.",
         button: "Gespräch beginnen",
       },
-      cta: { headline: "Dieses Format erkunden", button: "Gespräch beginnen", description: "Jede Zusammenarbeit beginnt mit einem Gespräch. Ohne Verpflichtung — nur ein erstes gegenseitiges Kennenlernen." },
+      cta: { headline: "Dieses Format erkunden", button: "Gespräch beginnen", description: "Jede Zusammenarbeit beginnt mit einem Gespräch." },
     },
     organizationalAdvisory: {
       hero: { overline: "04 — Advisory", headline: "Beratung für organisationalen Wandel", subtitle: "Strategische Intelligenz, die berücksichtigt, was die meisten Beratungsansätze verfehlen." },
@@ -559,7 +559,7 @@ const de = {
         body: "Wenn Ihre Organisation an einem Punkt steht, wo Menschen, Kultur und Führung sich gemeinsam entwickeln müssen, freue ich mich über ein erstes Gespräch, um Ihre Situation zu verstehen.",
         button: "Gespräch beginnen",
       },
-      cta: { headline: "Beratungsgespräch beginnen", button: "Anfrage stellen", description: "Jede Zusammenarbeit beginnt mit einem Gespräch. Ohne Verpflichtung — nur ein erstes gegenseitiges Kennenlernen." },
+      cta: { headline: "Beratungsgespräch beginnen", button: "Anfrage stellen", description: "Jede Zusammenarbeit beginnt mit einem Gespräch." },
     },
   },
   contact: {
