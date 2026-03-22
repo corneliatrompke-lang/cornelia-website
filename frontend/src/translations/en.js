@@ -474,7 +474,8 @@ const en = {
       },
       forWhomDetailed: {
         overline: "For Whom",
-        headline: "The Organizations This Work Is Built For",
+        headline: "The Teams This Work Is Built For",
+        whatThisAddresses: "What this addresses",
         items: [
           { number: "01", subtitle: "A CEO and Their Direct Reports", title: "The C-Suite", benefits: ["Establish shared direction and genuine priorities the whole team can actually act from", "Surface the dynamics that are slowing or fragmenting collective decision-making", "Build communication norms that create real clarity — not more noise", "Develop the team's real capacity to address difficulty directly and constructively"] },
           { number: "02", subtitle: "Early Ways of Working at Their Limit", title: "The Founder's Team", benefits: ["Navigate the transition from founder-led culture to a genuinely structured leadership team", "Establish shared ownership over direction — rather than competing individual fiefdoms", "Rebuild trust on a more honest, adult, peer basis than the early culture allowed", "Create decision-making norms that scale with the organization as it grows"] },
@@ -482,8 +483,26 @@ const en = {
           { number: "04", subtitle: "Starting from the Ground Up", title: "The New Leadership Body", benefits: ["Establish working norms and shared expectations before pressure creates them by force", "Build communication patterns from the start that scale with complexity", "Lay the relational ground that will carry the team when it is tested", "Build real psychological safety as one of the team's lived norms and standards"] },
         ],
       },
+      outcome: {
+        overline: "The Outcome",
+        headline: "What the Work Actually Creates",
+        quote: "A group of strong individuals becomes a coherent unit with shared direction and mutual accountability.",
+        before: "Before",
+        after: "What Opens",
+        rows: [
+          { before: "Competing individual agendas fragment direction", after: "Genuine shared clarity on what matters most — and why" },
+          { before: "Communication patterns that slow or bypass real exchange", after: "More direct, honest, and genuinely productive communication" },
+          { before: "Unaddressed tensions cost energy and trust", after: "What has been unsayable can finally be said and worked through constructively" },
+          { before: "Strong individuals inadvertently stall collective decisions", after: "A shared framework for how the team decides together" },
+        ],
+      },
       forWhom: { overline: "For Whom", headline: "Who This Work Serves Best", items: ["Executive leadership teams of 4–12 people navigating complexity, conflict, or a significant turning point", "Boards or advisory teams at critical strategic junctures that need deeper alignment to move forward", "Teams experiencing persistent underperformance that structural interventions haven't been able to resolve", "Newly formed senior leadership teams building the relational foundations they need to truly perform"] },
       format: { overline: "Format", headline: "How We Work Together", items: [{ label: "Duration", value: "2 to 3-day intensive with optional follow-on sessions" }, { label: "Preparation", value: "Individual pre-conversations with each team member" }, { label: "Location", value: "Off-site at a selected residential or retreat venue" }, { label: "Group Size", value: "4 to 12 participants" }, { label: "Language", value: "German or English" }] },
+      finalCta: {
+        headline: "When Your Team Is Ready",
+        body: "The work begins with a conversation. If you are facing challenges at the level of your leadership team, I welcome an initial exchange to understand the situation.",
+        button: "Begin the Conversation",
+      },
       cta: { headline: "Want to Explore This?", button: "Begin a Conversation", description: "Every engagement begins with a conversation. No commitment — just a first mutual exploration." },
     },
     organizationalAdvisory: {

@@ -645,9 +645,9 @@ const TeamFacilitation = () => {
           {/* Section heading */}
           <div className="max-w-[680px] mb-20">
             <ScrollReveal>
-              <p className="ct-overline text-gold/60 mb-5">For Whom</p>
+              <p className="ct-overline text-gold/60 mb-5">{s.forWhomDetailed.overline}</p>
               <h2 style={{ fontFamily: "Figtree, sans-serif", fontSize: "clamp(28px, 3.5vw, 46px)", fontWeight: 400, color: "#F5F2EC" }}>
-                The Teams This Work Is Built For
+                {s.forWhomDetailed.headline}
               </h2>
             </ScrollReveal>
           </div>
@@ -655,7 +655,7 @@ const TeamFacilitation = () => {
           {isMobile ? (
             /* ── Mobile: vertical expand/collapse accordion ── */
             <div>
-              {FOR_WHOM_ITEMS.map((item, i) => {
+              {s.forWhomDetailed.items.map((item, i) => {
                 const isOpen = openForWhom === i;
                 return (
                   <div key={i} style={{ borderBottom: "1px solid rgba(245,242,236,0.08)" }} data-testid={`for-whom-item-${i}`}>
@@ -671,7 +671,7 @@ const TeamFacilitation = () => {
                     </button>
                     {isOpen && (
                       <div style={{ paddingBottom: "20px" }}>
-                        <p style={{ fontFamily: "Manrope, sans-serif", fontSize: "10px", fontWeight: 500, letterSpacing: "2px", textTransform: "uppercase", color: "rgba(200,169,106,0.5)", marginBottom: "14px" }}>What this addresses</p>
+                        <p style={{ fontFamily: "Manrope, sans-serif", fontSize: "10px", fontWeight: 500, letterSpacing: "2px", textTransform: "uppercase", color: "rgba(200,169,106,0.5)", marginBottom: "14px" }}>{s.forWhomDetailed.whatThisAddresses}</p>
                         <div style={{ display: "flex", flexDirection: "column", gap: "14px" }}>
                           {item.benefits.map((benefit, j) => (
                             <div key={j} style={{ display: "flex", gap: "14px", alignItems: "baseline" }}>
@@ -692,7 +692,7 @@ const TeamFacilitation = () => {
 
             {/* Left: selector rows (44%) */}
             <div style={{ flex: "0 0 44%", paddingRight: "80px" }}>
-              {FOR_WHOM_ITEMS.map((item, i) => {
+              {s.forWhomDetailed.items.map((item, i) => {
                 const isActive = openForWhom === i;
                 return (
                   <div
@@ -762,11 +762,11 @@ const TeamFacilitation = () => {
                         color: "rgba(200,169,106,0.5)",
                       }}
                     >
-                      What this addresses
+                      {s.forWhomDetailed.whatThisAddresses}
                     </p>
                   </div>
                   <div style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
-                    {FOR_WHOM_ITEMS[openForWhom].benefits.map((benefit, j) => (
+                    {s.forWhomDetailed.items[openForWhom].benefits.map((benefit, j) => (
                       <motion.div
                         key={j}
                         initial={{ opacity: 0, x: 14 }}
@@ -820,7 +820,7 @@ const TeamFacilitation = () => {
               style={{ borderRadius: "8px", cursor: "pointer" }}
               data-testid="for-whom-unified-cta"
             >
-              Begin the Conversation
+              {s.cta.button}
             </button>
           </div>
 
@@ -839,7 +839,7 @@ const TeamFacilitation = () => {
             {/* Left: heading */}
             <div style={{ flex: isMobile ? "none" : "0 0 38%" }}>
               <ScrollReveal>
-                <p className="ct-overline text-gold/60 mb-5">The Outcome</p>
+                <p className="ct-overline text-gold/60 mb-5">{s.outcome.overline}</p>
                 <h2
                   style={{
                     fontFamily: "Figtree, sans-serif",
@@ -850,7 +850,7 @@ const TeamFacilitation = () => {
                     marginBottom: "28px",
                   }}
                 >
-                  What the Work Actually Creates
+                  {s.outcome.headline}
                 </h2>
                 <p
                   style={{
@@ -862,7 +862,7 @@ const TeamFacilitation = () => {
                     maxWidth: "340px",
                   }}
                 >
-                  "A group of strong individuals becomes a coherent unit with shared direction and mutual accountability."
+                  "{s.outcome.quote}"
                 </p>
               </ScrollReveal>
             </div>
@@ -880,17 +880,17 @@ const TeamFacilitation = () => {
               >
                 <div style={{ flex: "0 0 44%" }}>
                   <span style={{ fontFamily: "Manrope, sans-serif", fontSize: "9px", fontWeight: 600, letterSpacing: "2.5px", textTransform: "uppercase", color: "rgba(245,242,236,0.28)" }}>
-                    Before
+                    {s.outcome.before}
                   </span>
                 </div>
                 <div style={{ flex: 1 }}>
                   <span style={{ fontFamily: "Manrope, sans-serif", fontSize: "9px", fontWeight: 600, letterSpacing: "2.5px", textTransform: "uppercase", color: "rgba(200,169,106,0.55)" }}>
-                    What Opens
+                    {s.outcome.after}
                   </span>
                 </div>
               </div>
 
-              {OUTCOME_ROWS.map((row, i) => (
+              {s.outcome.rows.map((row, i) => (
                 <ScrollReveal key={i} delay={0.08 * i}>
                   <div
                     style={{
@@ -898,25 +898,11 @@ const TeamFacilitation = () => {
                       gap: "40px",
                       alignItems: "flex-start",
                       borderBottom: "1px solid rgba(245,242,236,0.07)",
-                      padding: "24px 0",
+                      padding: "20px 0",
                     }}
                     data-testid={`outcome-row-${i}`}
                   >
                     <div style={{ flex: "0 0 44%" }}>
-                      <span
-                        style={{
-                          fontFamily: "Manrope, sans-serif",
-                          fontSize: "9px",
-                          fontWeight: 600,
-                          letterSpacing: "2px",
-                          textTransform: "uppercase",
-                          color: "rgba(200,169,106,0.5)",
-                          display: "block",
-                          marginBottom: "8px",
-                        }}
-                      >
-                        {row.label}
-                      </span>
                       <p
                         style={{
                           fontFamily: "Manrope, sans-serif",
@@ -1117,10 +1103,10 @@ const TeamFacilitation = () => {
                       transition={{ duration: 0.3 }}
                     >
                       <h2 style={{ fontFamily: "Figtree, sans-serif", fontSize: "clamp(28px, 3.5vw, 44px)", fontWeight: 400, lineHeight: 1.1, color: "#F5F2EC" }}>
-                        When Your Team Is Ready
+                        {s.finalCta.headline}
                       </h2>
                       <p style={{ fontFamily: "Manrope, sans-serif", fontSize: "15px", fontWeight: 300, color: "rgba(227,222,215,0.45)", lineHeight: 1.75, marginTop: "18px" }}>
-                        The work begins with a conversation. If you are facing challenges at the level of your leadership team, I welcome an initial exchange to understand the situation.
+                        {s.finalCta.body}
                       </p>
                       <button
                         onClick={() => setShowFinalForm(true)}
@@ -1128,7 +1114,7 @@ const TeamFacilitation = () => {
                         style={{ marginTop: "40px", borderRadius: "8px", display: "inline-block", cursor: "pointer" }}
                         data-testid="facilitation-apply-btn"
                       >
-                        Begin the Conversation
+                        {s.finalCta.button}
                       </button>
                     </motion.div>
                   ) : (

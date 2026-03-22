@@ -456,7 +456,8 @@ const de = {
       },
       forWhomDetailed: {
         overline: "Für wen",
-        headline: "Die Organisationen, für die diese Arbeit gemacht ist",
+        headline: "Die Teams, für die diese Arbeit gemacht ist",
+        whatThisAddresses: "Was dies adressiert",
         items: [
           { number: "01", subtitle: "Ein CEO und seine direkten Reports", title: "Die C-Suite", benefits: ["Gemeinsame Richtung und echte Prioritäten etablieren, nach denen das ganze Team tatsächlich handeln kann", "Die Dynamiken aufdecken, die kollektive Entscheidungsfindung verlangsamen oder fragmentieren", "Kommunikationsnormen aufbauen, die echte Klarheit schaffen — nicht mehr Rauschen", "Die echte Fähigkeit des Teams entwickeln, Schwierigkeiten direkt und konstruktiv anzusprechen"] },
           { number: "02", subtitle: "Frühe Arbeitsweisen an ihrer Grenze", title: "Das Gründerteam", benefits: ["Den Übergang von gründergeführter Kultur zu einem wirklich strukturierten Führungsteam navigieren", "Gemeinsame Ownership über Richtung etablieren — statt konkurrierender individueller Fürstentümer", "Vertrauen auf einer ehrlicheren, erwachseneren, kollegialen Basis wieder aufbauen, als die frühe Kultur ermöglichte", "Entscheidungsnormen schaffen, die mit der Organisation skalieren, während sie wächst"] },
@@ -464,8 +465,26 @@ const de = {
           { number: "04", subtitle: "Von Grund auf beginnen", title: "Der neue Führungskörper", benefits: ["Arbeitsnormen und gemeinsame Erwartungen etablieren, bevor Druck sie mit Gewalt schafft", "Kommunikationsmuster von Anfang an aufbauen, die mit Komplexität skalieren", "Die relationale Grundlage legen, die das Team tragen wird, wenn es getestet wird", "Echte psychologische Sicherheit als eine der gelebten Normen und Standards des Teams aufbauen"] },
         ],
       },
+      outcome: {
+        overline: "Das Ergebnis",
+        headline: "Was die Arbeit tatsächlich schafft",
+        quote: "Eine Gruppe starker Einzelpersonen wird zu einer kohärenten Einheit mit gemeinsamer Richtung und gegenseitiger Verantwortlichkeit.",
+        before: "Vorher",
+        after: "Was sich öffnet",
+        rows: [
+          { before: "Konkurrierende individuelle Agenden fragmentieren die Richtung", after: "Echte gemeinsame Klarheit darüber, was am meisten zählt — und warum" },
+          { before: "Kommunikationsmuster, die echten Austausch verlangsamen oder umgehen", after: "Direktere, ehrlichere und wirklich produktivere Kommunikation" },
+          { before: "Unbearbeitete Spannungen kosten Energie und Vertrauen", after: "Das Unsagbare kann endlich gesagt und konstruktiv durchgearbeitet werden" },
+          { before: "Starke Individuen blockieren unbeabsichtigt kollektive Entscheidungen", after: "Ein gemeinsames Framework dafür, wie das Team zusammen entscheidet" },
+        ],
+      },
       forWhom: { overline: "Für wen", headline: "Die richtige Passung", items: ["Executive Führungsteams (4–12 Personen), die Komplexität oder Konflikt navigieren", "Vorstände oder Beratungsgremien an kritischen strategischen Wendepunkten", "Teams mit anhaltender Unterperformance trotz struktureller Interventionen", "Neu zusammengesetzte Führungsteams, die ein tragfähiges Beziehungsfundament brauchen"] },
       format: { overline: "Format", headline: "Engagement-Design", items: [{ label: "Dauer", value: "2 bis 3-tägiges Intensiv mit optionalen Folgesitzungen" }, { label: "Vorbereitung", value: "Individuelle Vorgespräche mit jedem Teammitglied" }, { label: "Ort", value: "Auswärts in einem ausgewählten Wohn- oder Retreat-Venue" }, { label: "Gruppengröße", value: "4 bis 12 Teilnehmer" }, { label: "Sprache", value: "Deutsch oder Englisch" }] },
+      finalCta: {
+        headline: "Wenn Ihr Team bereit ist",
+        body: "Die Arbeit beginnt mit einem Gespräch. Wenn Sie vor Herausforderungen auf der Ebene Ihres Führungsteams stehen, freue ich mich über einen ersten Austausch, um die Situation zu verstehen.",
+        button: "Gespräch beginnen",
+      },
       cta: { headline: "Dieses Format erkunden", button: "Gespräch beginnen", description: "Jede Zusammenarbeit beginnt mit einem Gespräch. Ohne Verpflichtung — nur ein erstes gegenseitiges Kennenlernen." },
     },
     organizationalAdvisory: {
