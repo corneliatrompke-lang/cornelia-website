@@ -59,7 +59,7 @@ const de = {
     aboutPreview: {
       overline: "Cornelia Trompke",
       headline: "Wo Führung und Organisation sich treffen",
-      body: "Zwei Jahrzehnte Beratung von Führungskräften und Organisationen durch Transformation. Cornelia Trompke verbindet systemisches Denken und Expertise in Organisationsentwicklung mit tiefgehender Coaching-Arbeit — für Executives, Führungsteams und Organisationen in den Veränderungen, die wirklich zählen.",
+      body: "Zwei Jahrzehnte Beratung von Führungskräften und Organisationen durch Transformation. Cornelia Trompke verbindet systemisches Denken und Expertise in Organisationsentwicklung mit tiefgehender Coaching-Arbeit — für Executives, Führungsteams und Organisationen, die nachhaltige Veränderung suchen.",
       cta: "Über Cornelia",
     },
     services: {
