@@ -421,6 +421,7 @@ const de = {
         overline: "Was sich öffnet",
         headline: "Was Stille ermöglicht",
         subtitle: "Was entsteht, wenn der Geist wirklich still wird",
+        researchNote: "Basierend auf Studien der Harvard Medical School und Harvard Business School zu den Auswirkungen regelmäßiger Meditationspraxis auf die Leistungsfähigkeit von Führungskräften.",
         items: [
           { number: "01", title: "Aufmerksamkeit", subtitle: "Präsenz als Präzision", body: "Tiefe Praxis schärft Ihre Fähigkeit, anhaltenden Fokus in Umgebungen ständiger Fragmentierung zu halten. Führungskräfte, die diese Arbeit getan haben, berichten durchweg von einer qualitativen Verschiebung ihrer Aufmerksamkeit — weniger reaktiv, bewusster, wirklich verfügbar für das, was zählt.", citation: "Harvard Medical School" },
           { number: "02", title: "Emotionale Regulation", subtitle: "Die regulierte Führungskraft", body: "Wenn Sie Ihr eigenes Nervensystem regulieren, verändern Sie das Nervensystem jedes Raumes, den Sie betreten. Meditation baut die echte Fähigkeit für nicht-reaktive, weise Reaktion auf — selbst unter den anspruchsvollsten und hochriskanten Bedingungen, denen Sie begegnen.", citation: "Harvard Medical School" },

@@ -913,7 +913,7 @@ const MeditationRetreat = () => {
                   lineHeight: 1.6,
                 }}
               >
-                Research drawn from studies at Harvard Medical School and Harvard Business School on the effects of regular meditation practice on executive performance.
+                {s.whatOpens.researchNote}
               </p>
             </div>
           </ScrollReveal>

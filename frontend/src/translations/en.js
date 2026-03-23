@@ -438,6 +438,7 @@ const en = {
         overline: "What Opens",
         headline: "What Stillness Makes Possible",
         subtitle: "What emerges when the mind genuinely becomes still",
+        researchNote: "Research drawn from studies at Harvard Medical School and Harvard Business School on the effects of regular meditation practice on executive performance.",
         items: [
           { number: "01", title: "Attention", subtitle: "Presence as Precision", body: "Deep practice sharpens your capacity to hold sustained focus in environments of constant fragmentation. Leaders who have done this work consistently report a qualitative shift in their attention — less reactive, more deliberate, more genuinely available to what matters.", citation: "Harvard Medical School" },
           { number: "02", title: "Emotional Regulation", subtitle: "The Regulated Leader", body: "When you regulate your own nervous system, you change the nervous system of every room you walk into. Meditation builds the genuine capacity for non-reactive, wise response — even under the most demanding and high-stakes conditions you face.", citation: "Harvard Medical School" },
