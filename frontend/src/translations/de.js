@@ -288,7 +288,7 @@ const de = {
             "Transformation auf der Ebene, wo Veränderung wirklich hält — nicht nur auf der strukturellen Ebene",
             "Aufbau von Führungskapazität im gesamten System — nicht nur an der Spitze",
             "Navigation von Komplexität und Unsicherheit mit echter systemischer Intelligenz",
-            "Schaffen Sie die Bedingungen für echte Emergenz — nicht nur disziplinierte Ausführung",
+            "Schaffen Sie die Bedingungen für echte Emergenz",
           ],
         },
       ],
