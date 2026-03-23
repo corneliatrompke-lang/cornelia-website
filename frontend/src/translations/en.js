@@ -53,7 +53,7 @@ const en = {
     philosophy: {
       overline: "The Foundation",
       headline: "Leadership Is Not a Strategy. It Is a State of Being.",
-      body: "Your most consequential decisions are made from your nervous system — not your spreadsheet. The leaders who build cultures that last, who shape institutions and sustain real influence across decades, understand one thing: what happens inside them under pressure changes everything around them.\n\nThis is the layer most advisors never reach. This is where the real work begins.",
+      body: "Your most consequential decisions are made from your nervous system — not your spreadsheet. The leaders who build cultures that last, who shape institutions and sustain real influence across decades, understand one thing: how they show up in moments that matter changes everything around them.\n\nThis is the layer most advisors never reach. This is where the real work begins.",
     },
     aboutPreview: {
       overline: "Meet Cornelia",
@@ -254,7 +254,7 @@ const en = {
         { number: "01", title: "Nervous System Regulation", body: "You lead from a grounded, expansive state — not from chronic stress, reactivity, or the exhausting performance of appearing calm when you're not." },
         { number: "02", title: "Authentic Authority", body: "You stop performing leadership and begin inhabiting it — with the quiet confidence of someone who genuinely knows who they are and what they stand for." },
         { number: "03", title: "Relational Precision", body: "How you meet others shifts profoundly. You become more present, more attuned, and more effective in the most complex and demanding human situations." },
-        { number: "04", title: "Lasting Transformation", body: "The changes are structural — not superficial. They hold under pressure, across different contexts, and they compound and deepen over time." },
+        { number: "04", title: "Lasting Transformation", body: "The changes are structural — not superficial. They hold in challenge and in success, across different contexts, and they compound and deepen over time." },
       ],
     },
     accordion: {
@@ -299,7 +299,7 @@ const en = {
     intro: {
       overline: "The Integration",
       headline: "This Work Goes Deeper",
-      body: "Strategies and frameworks have their place. The work offered here starts somewhere else: at the level of identity, nervous system, and the deep patterns that actually shape leadership behavior under pressure.",
+      body: "Strategies and frameworks have their place. The work offered here starts somewhere else: at the level of identity, nervous system, and the deep patterns that shape how you lead — in moments of pressure and in moments of flow.",
     },
     narm: {
       overline: "Methodology One",
@@ -421,7 +421,7 @@ const en = {
           { value: "10+", label: "Years Teaching\nMeditation to Leaders" },
         ],
         quote: "What I offer in these retreats is not a wellness program. It is a structured, intelligent, and personally guided introduction to the kind of practice that changes the architecture of how you lead — from the inside out.",
-        body: ["Meditation has never been separate from my work with leaders. It is the foundation of it. The ability to regulate your own system — to remain present under pressure, to lead from a quiet center — is precisely what most leaders have never systematically developed.", "These retreats bring together what I have learned in over three decades of personal practice and over a decade of working with leaders. The practices are rigorous but accessible. The guidance is direct and personal. The results are lasting with continued practice."],
+        body: ["Meditation has never been separate from my work with leaders. It is the foundation of it. The ability to regulate your own system — to remain present when it matters, to lead from a quiet center — is precisely what most leaders have never systematically developed.", "These retreats bring together what I have learned in over three decades of personal practice and over a decade of working with leaders. The practices are rigorous but accessible. The guidance is direct and personal. The results are lasting with continued practice."],
       },
       whatOpens: {
         overline: "What Opens",

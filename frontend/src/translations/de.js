@@ -54,7 +54,7 @@ const de = {
     philosophy: {
       overline: "Das Fundament",
       headline: "Führung ist keine Strategie. Führung ist ein Seinsszustand.",
-      body: "Die folgenreichsten Entscheidungen werden aus dem Nervensystem getroffen — nicht aus der Tabellenkalkulation. Führungskräfte, die Institutionen prägen, Kulturen aufbauen und nachhaltigen Einfluss über Jahrzehnte ausüben, verstehen, was unter Druck in Ihnen geschieht.\n\nDas ist die Ebene, die die meisten Berater nie berühren. Hier beginnt diese Arbeit.",
+      body: "Die folgenreichsten Entscheidungen werden aus dem Nervensystem getroffen — nicht aus der Tabellenkalkulation. Führungskräfte, die Institutionen prägen, Kulturen aufbauen und nachhaltigen Einfluss über Jahrzehnte ausüben, verstehen: Wie sie in entscheidenden Momenten präsent sind, verändert alles.\n\nDas ist die Ebene, die die meisten Berater nie berühren. Hier beginnt diese Arbeit.",
     },
     aboutPreview: {
       overline: "Cornelia Trompke",
@@ -251,7 +251,7 @@ const de = {
         { number: "01", title: "Nervensystemregulation", body: "Sie führen aus einem geerdeten, weiten Zustand heraus — nicht aus chronischem Stress, Reaktivität oder der erschöpfenden Performance, ruhig zu erscheinen, wenn Sie es nicht sind." },
         { number: "02", title: "Authentische Autorität", body: "Sie hören auf, Führung zu performen, und beginnen, sie zu verkörpern — mit der stillen Sicherheit von jemandem, der wirklich weiß, wer er ist und wofür er steht." },
         { number: "03", title: "Beziehungskompetenz", body: "Wie Sie anderen begegnen, verändert sich grundlegend. Sie werden präsenter, eingestimmter und effektiver in den komplexesten und anspruchsvollsten menschlichen Situationen." },
-        { number: "04", title: "Dauerhafte Transformation", body: "Die Veränderungen sind strukturell — nicht oberflächlich. Sie halten unter Druck, in verschiedenen Kontexten, und sie verstärken und vertiefen sich über Zeit." },
+        { number: "04", title: "Dauerhafte Transformation", body: "Die Veränderungen sind strukturell — nicht oberflächlich. Sie halten in Herausforderung und Erfolg, in verschiedenen Kontexten, und sie verstärken und vertiefen sich über Zeit." },
       ],
     },
     accordion: {
@@ -296,7 +296,7 @@ const de = {
     intro: {
       overline: "Die Integration",
       headline: "Diese Arbeit geht tiefer",
-      body: "Strategien und Frameworks haben ihren Platz. Die hier angebotene Arbeit setzt woanders an: bei Identität, Nervensystem und den tiefen Mustern, die Führungsverhalten unter Druck tatsächlich prägen.",
+      body: "Strategien und Frameworks haben ihren Platz. Die hier angebotene Arbeit setzt woanders an: bei Identität, Nervensystem und den tiefen Mustern, die prägen, wie Sie führen — in Momenten der Herausforderung und in Momenten des Flows.",
     },
     narm: {
       overline: "Methodik Eins",
@@ -404,7 +404,7 @@ const de = {
           { value: "10+", label: "Jahre Meditation\nfür Führungskräfte lehren" },
         ],
         quote: "Was ich in diesen Retreats anbiete, ist kein Wellness-Programm. Es ist eine strukturierte, intelligente und persönlich begleitete Einführung in die Art von Praxis, die die Architektur verändert, wie Sie führen — von innen nach außen.",
-        body: ["Meditation war für mich nie von meiner Arbeit mit Führungskräften getrennt. Sie ist das Fundament davon. Die Fähigkeit, das eigene System zu regulieren — unter Druck präsent zu bleiben, aus einem ruhigen Zentrum heraus zu führen — ist genau das, was die meisten Führungskräfte nie systematisch entwickelt haben.", "Diese Retreats bringen zusammen, was ich in über drei Jahrzehnten persönlicher Praxis und über einem Jahrzehnt Arbeit mit Führungskräften gelernt habe. Die Praktiken sind anspruchsvoll, aber zugänglich. Die Anleitung ist direkt und persönlich. Die Ergebnisse sind dauerhaft bei kontinuierlicher Fortsetzung der Praxis."],
+        body: ["Meditation war für mich nie von meiner Arbeit mit Führungskräften getrennt. Sie ist das Fundament davon. Die Fähigkeit, das eigene System zu regulieren — präsent zu bleiben, wenn es darauf ankommt, aus einem ruhigen Zentrum heraus zu führen — ist genau das, was die meisten Führungskräfte nie systematisch entwickelt haben.", "Diese Retreats bringen zusammen, was ich in über drei Jahrzehnten persönlicher Praxis und über einem Jahrzehnt Arbeit mit Führungskräften gelernt habe. Die Praktiken sind anspruchsvoll, aber zugänglich. Die Anleitung ist direkt und persönlich. Die Ergebnisse sind dauerhaft bei kontinuierlicher Fortsetzung der Praxis."],
       },
       whatOpens: {
         overline: "Was sich öffnet",
