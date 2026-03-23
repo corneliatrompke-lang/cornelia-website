@@ -295,8 +295,8 @@ const de = {
     },
     intro: {
       overline: "Die Integration",
-      headline: "Die meisten Führungsentwicklungsprogramme arbeiten an der Oberfläche",
-      body: "Strategien, Rahmenwerke, Kompetenzmodelle und Feedback-Systeme — diese Werkzeuge arbeiten auf der Verhaltensebene. Sie können Performance an der Oberfläche verbessern. Sie verändern selten die Führungskraft.\n\nDie hier angebotene Arbeit wirkt auf einer anderen Ebene: auf der Ebene von Identität, Nervensystem und den tiefen Mustern von Verbindung und Trennung, die das Führungsverhalten unter Druck tatsächlich prägen.",
+      headline: "Diese Arbeit geht tiefer",
+      body: "Strategien und Frameworks haben ihren Platz. Die hier angebotene Arbeit setzt woanders an: bei Identität, Nervensystem und den tiefen Mustern, die Führungsverhalten unter Druck tatsächlich prägen.",
     },
     narm: {
       overline: "Methodik Eins",

@@ -298,8 +298,8 @@ const en = {
     },
     intro: {
       overline: "The Integration",
-      headline: "Most Leadership Development Doesn't Go Deep Enough",
-      body: "Strategies, frameworks, competency models, and feedback systems — these tools operate at the level of behavior. They can improve performance at the margins. They rarely change the leader.\n\nThe work offered here operates differently: at the level of identity, nervous system, and the deep patterns of connection and disconnection that shape how you function under the pressure that actually counts.",
+      headline: "This Work Goes Deeper",
+      body: "Strategies and frameworks have their place. The work offered here starts somewhere else: at the level of identity, nervous system, and the deep patterns that actually shape leadership behavior under pressure.",
     },
     narm: {
       overline: "Methodology One",
