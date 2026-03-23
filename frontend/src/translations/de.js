@@ -715,7 +715,7 @@ const de = {
     },
   },
   footer: {
-    tagline: "Executive Coaching, Organisationsentwicklung und Retreats für Führungskräfte.",
+    tagline: "Executive Coaching, Organisationsentwicklung, Facilitation und Retreats für Führungskräfte.",
     navigation: "Navigation",
     services: "Leistungen",
     legal: "Rechtliches",

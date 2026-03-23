@@ -722,7 +722,7 @@ const en = {
     },
   },
   footer: {
-    tagline: "Executive coaching, organizational advisory, and retreats for leaders committed to lasting change.",
+    tagline: "Executive coaching, organizational advisory, facilitation, and retreats for leaders committed to lasting change.",
     navigation: "Navigation",
     services: "Services",
     legal: "Legal",
