@@ -256,7 +256,7 @@ const de = {
     },
     accordion: {
       overline: "Für wen diese Arbeit gedacht ist",
-      headline: "Diese Arbeit begegnet Ihnen dort, wo Sie stehen",
+      headline: "Ich begegne Ihnen dort, wo Sie stehen",
       items: [
         {
           audience: "Für einzelne Führungskräfte",
