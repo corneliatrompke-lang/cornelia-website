@@ -58,8 +58,8 @@ const de = {
     },
     aboutPreview: {
       overline: "Cornelia Trompke",
-      headline: "Eine Beraterin, die auf der Ebene arbeitet, die wirklich zählt",
-      body: "Mit über zwei Jahrzehnten Erfahrung an der Schnittstelle von Executive Leadership, traumainformierter Psychologie und Integral Coaching bringt Cornelia Trompke etwas Seltenes: die Tiefe systemischen Denkens, die Präzision NARM-basierter Entwicklungsarbeit und eine ruhige Autorität, die durch tausende Stunden tiefer Arbeit mit Führungskräften entstanden ist.",
+      headline: "Wo Führung und Organisation sich treffen",
+      body: "Zwei Jahrzehnte Beratung von Führungskräften und Organisationen durch Transformation. Cornelia Trompke verbindet systemisches Denken und Expertise in Organisationsentwicklung mit tiefgehender Coaching-Arbeit — für Executives, Führungsteams und Organisationen in den Veränderungen, die wirklich zählen.",
       cta: "Über Cornelia",
     },
     services: {
