@@ -250,7 +250,7 @@ const de = {
       items: [
         { number: "01", title: "Nervensystemregulation", body: "Sie führen aus einem geerdeten, weiten Zustand heraus — nicht aus chronischem Stress, Reaktivität oder der erschöpfenden Performance, ruhig zu erscheinen, wenn Sie es nicht sind." },
         { number: "02", title: "Authentische Autorität", body: "Sie hören auf, Führung zu performen, und beginnen, sie zu verkörpern — mit der stillen Sicherheit von jemandem, der wirklich weiß, wer er ist und wofür er steht." },
-        { number: "03", title: "Relationale Präzision", body: "Wie Sie anderen begegnen, verändert sich grundlegend. Sie werden präsenter, abgestimmter und effektiver in den komplexesten und anspruchsvollsten menschlichen Situationen." },
+        { number: "03", title: "Beziehungskompetenz", body: "Wie Sie anderen begegnen, verändert sich grundlegend. Sie werden präsenter, eingestimmter und effektiver in den komplexesten und anspruchsvollsten menschlichen Situationen." },
         { number: "04", title: "Dauerhafte Transformation", body: "Die Veränderungen sind strukturell — nicht oberflächlich. Sie halten unter Druck, in verschiedenen Kontexten, und sie verstärken und vertiefen sich über Zeit." },
       ],
     },
