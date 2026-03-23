@@ -79,6 +79,17 @@ const de = {
       body: "Die Arbeit integriert zwei der ausgefeiltesten Methoden für tiefgreifenden menschlichen und organisationalen Wandel: NARM — das NeuroAffective Relational Model — und Integral Coaching. Gemeinsam schaffen sie eine einzigartige Fähigkeit, mit dem zu arbeiten, was in Führungskraft und System gleichzeitig lebendig ist.",
       cta: "Die Methode erkunden",
     },
+    transformation: {
+      overline: "Die Transformation",
+      headline: "Was möglich wird",
+      subheadline: "Wenn Führungskräfte innere Klarheit entwickeln, verändert sich alles.",
+      items: [
+        { number: "01", heading: "Von Reaktiv\nzu Präsent", subtext: "Führen aus Klarheit und Präsenz, auch in herausfordernden Momenten." },
+        { number: "02", heading: "Von Isolation\nzu Einfluss", subtext: "Kulturen des Vertrauens aufbauen, die außergewöhnliche Talente anziehen und halten." },
+        { number: "03", heading: "Von Erschöpfung\nzu Nachhaltigkeit", subtext: "Ihre Kapazität wächst mit den Anforderungen der Führung, statt zu schrumpfen." },
+        { number: "04", heading: "Von Performance\nzu Präsenz", subtext: "Ihre volle Intelligenz in jeden Raum, jede Entscheidung, jede Beziehung einbringen." },
+      ],
+    },
     testimonials: {
       overline: "Was Führungskräfte sagen",
       items: [

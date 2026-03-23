@@ -1,32 +1,13 @@
 import React, { useRef, useState, useEffect } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
+import { useLanguage } from "../context/LanguageContext";
 
 // Left / right alternating — x:22 = left, x:78 = right
-const ITEMS = [
-  {
-    number: "01",
-    heading: "From Reactive\nto Responsive",
-    subtext: "Lead from clarity rather than fear, even under extraordinary pressure.",
-    x: 22, y: 54,
-  },
-  {
-    number: "02",
-    heading: "From Isolation\nto Influence",
-    subtext: "Build cultures of trust that attract and retain exceptional talent.",
-    x: 78, y: 58,
-  },
-  {
-    number: "03",
-    heading: "From Depletion\nto Sustainability",
-    subtext: "Your capacity grows rather than diminishes with the demands of leadership.",
-    x: 22, y: 54,
-  },
-  {
-    number: "04",
-    heading: "From Performance\nto Presence",
-    subtext: "Bring your full intelligence to every room, every decision, every relationship.",
-    x: 78, y: 58,
-  },
+const ITEM_POSITIONS = [
+  { x: 22, y: 54 },
+  { x: 78, y: 58 },
+  { x: 22, y: 54 },
+  { x: 78, y: 58 },
 ];
 
 // Asymmetric vertical stagger for the final all-4 row
@@ -40,6 +21,20 @@ const SEG34 = "M 22,54 C 36,46 43,65 50,54 C 57,43 65,65 78,58";
 const CIRCLE_LARGE = 450;
 
 export default function TransformationSection() {
+  const { t } = useLanguage();
+  const trans = t.home?.transformation || {
+    overline: "The Transformation",
+    headline: "What Becomes Possible",
+    subheadline: "When leaders regulate their nervous system, everything changes.",
+    items: [
+      { number: "01", heading: "From Reactive\nto Responsive", subtext: "Lead from clarity rather than fear, even in challenging moments." },
+      { number: "02", heading: "From Isolation\nto Influence", subtext: "Build cultures of trust that attract and retain exceptional talent." },
+      { number: "03", heading: "From Depletion\nto Sustainability", subtext: "Your capacity grows rather than diminishes with the demands of leadership." },
+      { number: "04", heading: "From Performance\nto Presence", subtext: "Bring your full intelligence to every room, every decision, every relationship." },
+    ],
+  };
+  const ITEMS = trans.items.map((item, i) => ({ ...item, ...ITEM_POSITIONS[i] }));
+  
   const sectionRef = useRef(null);
 
   const [screenW, setScreenW] = useState(typeof window !== "undefined" ? window.innerWidth : 1200);
@@ -133,7 +128,7 @@ export default function TransformationSection() {
               marginBottom: "8px",
             }}
           >
-            The Transformation
+            {trans.overline}
           </p>
           <h2
             style={{
@@ -144,7 +139,7 @@ export default function TransformationSection() {
               lineHeight: 1.1,
             }}
           >
-            What Becomes Possible
+            {trans.headline}
           </h2>
           <p
             style={{
@@ -154,7 +149,7 @@ export default function TransformationSection() {
               marginTop: "5px",
             }}
           >
-            When leaders regulate their nervous system, everything changes.
+            {trans.subheadline}
           </p>
         </div>
 

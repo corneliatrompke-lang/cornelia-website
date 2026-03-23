@@ -78,6 +78,17 @@ const en = {
       body: "This work brings together two of the most sophisticated methodologies available for deep leadership and organizational change: NARM — the NeuroAffective Relational Model — and Integral Coaching. Together, they create a unique capacity to work with what is most alive in both the leader and the system — simultaneously, at depth.",
       cta: "Explore the Method",
     },
+    transformation: {
+      overline: "The Transformation",
+      headline: "What Becomes Possible",
+      subheadline: "When leaders develop inner clarity, everything shifts.",
+      items: [
+        { number: "01", heading: "From Reactive\nto Responsive", subtext: "Lead from clarity and presence, even in challenging moments." },
+        { number: "02", heading: "From Isolation\nto Influence", subtext: "Build cultures of trust that attract and retain exceptional talent." },
+        { number: "03", heading: "From Depletion\nto Sustainability", subtext: "Your capacity grows rather than diminishes with the demands of leadership." },
+        { number: "04", heading: "From Performance\nto Presence", subtext: "Bring your full intelligence to every room, every decision, every relationship." },
+      ],
+    },
     testimonials: {
       overline: "What Leaders Say",
       items: [
