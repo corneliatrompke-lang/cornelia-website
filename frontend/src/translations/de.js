@@ -85,7 +85,7 @@ const de = {
       subheadline: "Wenn Führungskräfte innere Klarheit entwickeln, verändert sich alles.",
       items: [
         { number: "01", heading: "Von Reaktiv\nzu Präsent", subtext: "Führen aus Klarheit und Präsenz, auch in herausfordernden Momenten." },
-        { number: "02", heading: "Von Isolation\nzu Einfluss", subtext: "Kulturen des Vertrauens aufbauen, die außergewöhnliche Talente anziehen und halten." },
+        { number: "02", heading: "Von allein\nzu gemeinsam", subtext: "Kulturen des Vertrauens aufbauen, die außergewöhnliche Talente anziehen und halten." },
         { number: "03", heading: "Von Erschöpfung\nzu Nachhaltigkeit", subtext: "Ihre Kapazität wächst mit den Anforderungen der Führung, statt zu schrumpfen." },
         { number: "04", heading: "Von Performance\nzu Präsenz", subtext: "Ihre volle Intelligenz in jeden Raum, jede Entscheidung, jede Beziehung einbringen." },
       ],
