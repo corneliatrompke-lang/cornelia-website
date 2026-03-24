@@ -52,8 +52,8 @@ const en = {
     marquee: "LEADERSHIP · NERVOUS SYSTEM · TRANSFORMATION · NARM · INTEGRAL COACHING · EXECUTIVE DEPTH · SYSTEMIC CLARITY · ORGANISATIONAL CHANGE · ",
     philosophy: {
       overline: "The Foundation",
-      headline: "Leadership Is Not a Strategy. It Is a State of Being.",
-      body: "Your most consequential decisions are made from your nervous system — not your spreadsheet. The leaders who build cultures that last, who shape institutions and sustain real influence across decades, understand one thing: how they show up in moments that matter changes everything around them.\n\nThis is the layer most advisors never reach. This is where the real work begins.",
+      headline: "Lasting Change Happens at the Root.",
+      body: "Whether working with an individual executive, a leadership team, or an entire organization — the principle is the same: sustainable transformation requires depth. Surface-level interventions produce surface-level results.\n\nThis work reaches the layer most advisors never touch — where real clarity emerges, where systems shift, and where lasting change becomes possible.",
     },
     aboutPreview: {
       overline: "Meet Cornelia",
@@ -81,12 +81,12 @@ const en = {
     transformation: {
       overline: "The Transformation",
       headline: "What Becomes Possible",
-      subheadline: "When leaders develop inner clarity, everything shifts.",
+      subheadline: "When depth work meets strategic clarity, everything shifts.",
       items: [
-        { number: "01", heading: "From Reactive\nto Responsive", subtext: "Lead from clarity and presence, even in challenging moments." },
-        { number: "02", heading: "From Isolation\nto Influence", subtext: "Build cultures of trust that attract and retain exceptional talent." },
-        { number: "03", heading: "From Depletion\nto Sustainability", subtext: "Your capacity grows rather than diminishes with the demands of leadership." },
-        { number: "04", heading: "From Performance\nto Presence", subtext: "Bring your full intelligence to every room, every decision, every relationship." },
+        { number: "01", heading: "From Reactive\nto Responsive", subtext: "Navigate complexity with clarity — whether in a boardroom, a team, or an organization." },
+        { number: "02", heading: "From Fragmentation\nto Alignment", subtext: "Create coherence across leaders, teams, and systems that sustains through change." },
+        { number: "03", heading: "From Depletion\nto Sustainability", subtext: "Build capacity that grows rather than diminishes with the demands of the work." },
+        { number: "04", heading: "From Surface\nto Depth", subtext: "Address root causes — not symptoms — for transformation that actually lasts." },
       ],
     },
     testimonials: {
