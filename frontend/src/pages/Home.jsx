@@ -26,6 +26,9 @@ const TICKER_ITEMS = [
   { name: "Fashion Digital",           src: "/logos/fashion-digital.jpg" },
   { name: "Unite",                     src: "/logos/unite.png"           },
   { name: "Otto Krahn Group",          src: "/logos/otto-krahn-group.png" },
+  { name: "Otto",                      src: "/logos/otto-krahn-group.webp", h: 32 },
+  { name: "Riverty",                   src: "/logos/riverty.png"         },
+  { name: "ZAHORANSKY",                src: "/logos/zahoransky-ag.png",  h: 32 },
 ];
 
 // Hero videos — desktop and mobile variants
