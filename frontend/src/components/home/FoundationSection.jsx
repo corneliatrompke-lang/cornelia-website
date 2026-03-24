@@ -226,7 +226,7 @@ export default function FoundationSection() {
                 top: 0,
                 left: "13%",
                 right: "13%",
-                height: "clamp(300px, 42vh, 450px)",
+                height: "clamp(350px, 55vh, 550px)",
                 overflow: "hidden",
                 y: bannerSlide,
               }}
