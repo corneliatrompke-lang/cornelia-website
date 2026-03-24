@@ -22,8 +22,8 @@ const de = {
     successMessage: "Ich melde mich innerhalb von 48 Stunden, um ein erstes Gespräch zu vereinbaren.",
     close: "Schließen",
     services: {
-      "executive-coaching": "Executive Coaching & Advisory",
-      "executive-retreats": "Executive Retreats",
+      "executive-coaching": "Coaching für Führungskräfte",
+      "executive-retreats": "Executive Retreat",
       "team-facilitation": "Facilitation für Führungsteams",
       "org-advisory": "Organisationsberatung",
     },
@@ -36,8 +36,8 @@ const de = {
     contact: "Kontakt",
     cta: "Gespräch beginnen",
     workWithMeLinks: [
-      { title: "Executive Coaching & Advisory", path: "/executive-coaching" },
-      { title: "Executive Retreats", path: "/executive-retreats" },
+      { title: "Coaching für Führungskräfte", path: "/executive-coaching" },
+      { title: "Executive Retreat", path: "/executive-retreats" },
       { title: "Facilitation für Führungsteams", path: "/leadership-team-facilitation" },
       { title: "Beratung für Organisations- und Kulturwandel", path: "/organizational-advisory" },
     ],
@@ -66,8 +66,8 @@ const de = {
       overline: "Wie wir zusammenarbeiten",
       headline: "Vier Formate. Eine Richtung.",
       items: [
-        { number: "01", title: "1:1 Executive Coaching", description: "Ein vertraulicher Rahmen für tiefe individuelle Arbeit. Für Führungskräfte, die bereit sind, aus innerer Ganzheit heraus zu führen — nicht aus Leistungsdruck.", link: "/executive-coaching" },
-        { number: "02", title: "Executive Meditations-Retreat", description: "Ein immersives Intensivformat, das Raum für die Fragen schafft, die im Tempo des Alltags nie auftauchen.", link: "/executive-retreats" },
+        { number: "01", title: "1:1 Coaching für Führungskräfte", description: "Ein vertraulicher Rahmen für tiefe individuelle Arbeit. Für Führungskräfte, die bereit sind, aus innerer Ganzheit heraus zu führen — nicht aus Leistungsdruck.", link: "/executive-coaching" },
+        { number: "02", title: "Executive Retreat", description: "Ein immersives Intensivformat, das Raum für die Fragen schafft, die im Tempo des Alltags nie auftauchen.", link: "/executive-retreats" },
         { number: "03", title: "Facilitation für Führungsteams", description: "Tiefe Prozessarbeit mit Führungsteams, die Komplexität, Konflikte und die unsichtbaren Dynamiken kollektiver Performance navigieren.", link: "/leadership-team-facilitation" },
         { number: "04", title: "Beratung für Organisations- und Kulturwandel", description: "Strategische Beratung für Organisationen an Wendepunkten — Kultur, Struktur und Führungsarchitektur durch eine Nervensystemlinse.", link: "/organizational-advisory" },
       ],
@@ -358,8 +358,8 @@ const de = {
   workWithMe: {
     hero: { overline: "Zusammenarbeit", headline: "Vier Wege der Zusammenarbeit", subtitle: "Jede Zusammenarbeit ist maßgeschneidert. Jede beginnt mit einem Gespräch." },
     services: [
-      { number: "01", title: "1:1 Executive Coaching", description: "Eine nachhaltige, vertrauliche Partnerschaft für Senior Executives und Gründer, die bereit sind, von innen heraus zu entwickeln.", link: "/executive-coaching", cta: "Mehr erfahren" },
-      { number: "02", title: "Executive Meditations-Retreat", description: "Ein immersives Intensivformat, das Raum für die Fragen schafft, die kein operativer Kalender erlaubt.", link: "/executive-retreats", cta: "Mehr erfahren" },
+      { number: "01", title: "1:1 Coaching für Führungskräfte", description: "Eine nachhaltige, vertrauliche Partnerschaft für Senior Executives und Gründer, die bereit sind, von innen heraus zu entwickeln.", link: "/executive-coaching", cta: "Mehr erfahren" },
+      { number: "02", title: "Executive Retreat", description: "Ein immersives Intensivformat, das Raum für die Fragen schafft, die kein operativer Kalender erlaubt.", link: "/executive-retreats", cta: "Mehr erfahren" },
       { number: "03", title: "Facilitation für Führungsteams", description: "Tiefe Facilitationsarbeit mit Führungsteams, die Komplexität und kollektive Transformation navigieren.", link: "/leadership-team-facilitation", cta: "Mehr erfahren" },
       { number: "04", title: "Beratung für Organisations- und Kulturwandel", description: "Strategische Beratung für Organisationen an kritischen Wendepunkten — Kultur, Struktur und Führung auf Tiefe geprüft.", link: "/organizational-advisory", cta: "Mehr erfahren" },
     ],
@@ -368,7 +368,7 @@ const de = {
   },
   services: {
     executiveCoaching: {
-      hero: { overline: "01 — Executive Coaching", headline: "1:1 Executive Coaching", subtitle: "Die privateste Form dieser Arbeit. Eine nachhaltige Partnerschaft, die Ebenen erreicht, die die meisten Executive Coaches nicht berühren." },
+      hero: { overline: "01 — Coaching", headline: "1:1 Coaching für Führungskräfte", subtitle: "Die privateste Form dieser Arbeit. Eine nachhaltige Partnerschaft, die Ebenen erreicht, die die meisten Executive Coaches nicht berühren." },
       description: { overline: "Die Zusammenarbeit", headline: "Ein Raum für die Arbeit, die sonst nirgendwo stattfinden kann", body: "Executive Coaching mit Cornelia Trompke ist kein strukturiertes Programm mit vordefinierten Ergebnissen. Es ist eine nachhaltige, vertrauliche Partnerschaft, die um Ihre tatsächliche Entwicklung herum aufgebaut ist — die Muster, denen Sie immer wieder begegnen, die Grenzen, über die Sie sich nicht hinausbewegen können, die Fähigkeiten, die Ihre Führung jetzt am meisten braucht.\n\nDie Arbeit schöpft aus NARM und Integral Coaching, um über Verhaltensstrategien hinaus in die Nervensystem- und Identitätsstrukturen zu gehen, die das Führungsverhalten tatsächlich antreiben." },
       forWhom: { overline: "Für wen", headline: "Diese Arbeit passt zu Ihnen, wenn...", items: [
         { title: "Standard-Coaching nicht mehr reicht", body: "Sie sind Senior Executive, Gründer:in oder Beiratsmitglied. Sie haben bereits an Ihrer persönlichen Entwicklung gearbeitet. Standard-Coaching erreicht nicht mehr die Ebene, auf der Ihre eigentlichen Grenzen liegen." },
@@ -400,12 +400,12 @@ const de = {
       ]},
     },
     meditationRetreat: {
-      hero: { overline: "02 — Executive Retreat", headline: "Executive Meditations-Retreat", subtitle: "Weg vom Betrieb. In die Klarheit." },
+      hero: { overline: "02 — Retreat", headline: "Executive Retreat", subtitle: "Weg vom Betrieb. In die Klarheit." },
       premise: {
         overline: "Das Retreat",
         quote: "Stille ist kein Rückzug von Führung. Sie ist eines der mächtigsten Werkzeuge, die eine Führungskraft entwickeln kann.",
         author: "Cornelia Trompke",
-        body: ["Für Führungskräfte, die mit mir in Programmen arbeiten, biete ich regelmäßig 3-5 tägige Executive Meditations-Retreats an. Ich praktiziere Meditation seit über 30 Jahren und lehre sie Führungskräften seit mehr als einem Jahrzehnt.", "Bei echter Praxis und authentischer Anleitung stärkt Meditation die Selbstregulation, vertieft Einsicht und schafft jene Klarheit und kognitive Flexibilität, die Führung auf höchstem Niveau verlangt. Diese Retreats schaffen die Bedingungen, die der tägliche Betrieb nicht bieten kann.", "Was ich in diesen Retreats anbiete, ist kein Wellness-Programm. Es ist eine strukturierte, intelligente und persönlich angeleitete Einführung in die Art von Praxis, die die Architektur verändert, wie Sie führen — von innen nach außen."],
+        body: ["Für Führungskräfte, die mit mir arbeiten, biete ich regelmäßig 3-5 tägige Executive Retreats an. Ich praktiziere Meditation seit über 30 Jahren und lehre sie Führungskräften seit mehr als einem Jahrzehnt.", "Bei echter Praxis und authentischer Anleitung stärkt Meditation die Selbstregulation, vertieft Einsicht und schafft jene Klarheit und kognitive Flexibilität, die Führung auf höchstem Niveau verlangt. Diese Retreats schaffen die Bedingungen, die der tägliche Betrieb nicht bieten kann.", "Was ich in diesen Retreats anbiete, ist kein Wellness-Programm. Es ist eine strukturierte, intelligente und persönlich angeleitete Einführung in die Art von Praxis, die die Architektur verändert, wie Sie führen — von innen nach außen."],
       },
       guide: {
         overline: "Die Begleitung",
