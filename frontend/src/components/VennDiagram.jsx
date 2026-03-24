@@ -17,7 +17,7 @@ const RX_START = 1300;
 const circPath = (cx, cy, r) =>
   `M ${cx - r} ${cy} A ${r} ${r} 0 0 1 ${cx + r} ${cy} A ${r} ${r} 0 0 1 ${cx - r} ${cy}`;
 
-const SEP = "\u00A0\u00A0\u00B7\u00A0\u00A0";
+const SEP = "\u00A0\u00A0\u00A0\u00B7\u00A0\u00A0\u00A0";
 const L_BASE = "NERVOUS\u00A0SYSTEM" + SEP + "EMBODIED\u00A0LEADERSHIP" + SEP + "EXECUTIVE\u00A0DEPTH" + SEP + "AGENCY" + SEP;
 const R_BASE = "AQAL" + SEP + "SYSTEMIC CLARITY" + SEP + "SOMATIC INTELLIGENCE" + SEP + "CULTURAL TRANSFORMATION" + SEP + "HOLISTIC APPROACH" + SEP + "SUSTAINABLE CHANGE" + SEP;
 const L_TEXT = L_BASE.repeat(2);
