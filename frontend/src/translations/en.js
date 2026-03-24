@@ -15,7 +15,7 @@ const en = {
     notesPlaceholder: "Briefly describe your current situation or what brings you here...",
     agreeText: "I agree to the",
     termsLink: "Terms & Privacy Policy",
-    submit: "Send Enquiry",
+    submit: "Send Inquiry",
     sending: "Sending...",
     successTitle: "Thank you,",
     successMessage: "I will be in touch within 48 hours to arrange a first conversation.",
@@ -453,7 +453,7 @@ const en = {
         items: [
           { number: "01", label: "Quiet Reflection", role: "The Inner Chamber", description: "Unstructured hours where your nervous system settles on its own terms. Not forced silence — genuine stillness. Space for what has been waiting, patiently and quietly, to finally be heard." },
           { number: "02", label: "Guided Practice", role: "The Architecture", description: "Instruction in meditation forms suited to the executive mind — rigorous, intelligent, and adapted to leaders. Whether you have never practiced before or have practiced for years, the guidance meets you exactly where you are." },
-          { number: "03", label: "Dialogue", role: "The Field", description: "Small-group conversation that allows insights to settle and deepen through exchange. The quality of connection between participants — at this level of openness — often produces its own profound kind of clarity." },
+          { number: "03", label: "Dialog", role: "The Field", description: "Small-group conversation that allows insights to settle and deepen through exchange. The quality of connection between participants — at this level of openness — often produces its own profound kind of clarity." },
         ],
       },
       timeline: {
@@ -463,8 +463,8 @@ const en = {
           { day: "Day 1", title: "Arrival & Settling", description: "Evening arrival. First guided session together. The transition from operational pace into the conditions for genuine stillness — slower than you expect, and exactly what you need." },
           { day: "Day 2", title: "Foundation", description: "Morning and afternoon practice. Establishing the inner architecture. Your nervous system begins to settle in ways that the pace of normal life doesn't permit." },
           { day: "Day 3", title: "Deepening", description: "Extended practice periods. The work goes deeper. Insights begin to emerge — not forced, but arising naturally in the extended quiet of a mind that is finally still." },
-          { day: "Day 4", title: "Integration", description: "Small-group dialogue. Patterns become visible when shared. Inquiry takes on new depth and honesty when met with the stillness of the previous days." },
-          { day: "Day 5", title: "Return", description: "Morning practice. Closing dialogue. Carrying what has genuinely shifted back into leadership — as changed capacity and presence, not just as memory." },
+          { day: "Day 4", title: "Integration", description: "Small-group dialog. Patterns become visible when shared. Inquiry takes on new depth and honesty when met with the stillness of the previous days." },
+          { day: "Day 5", title: "Return", description: "Morning practice. Closing dialog. Carrying what has genuinely shifted back into leadership — as changed capacity and presence, not just as memory." },
         ],
       },
       format: {
@@ -485,7 +485,7 @@ const en = {
         body: "Retreats are offered to leaders engaged in one of Cornelia's programs. Inquiries are welcomed — to understand whether the timing and format are the right fit.",
         button: "Inquire About Retreats",
       },
-      cta: { headline: "Ready to Inquire?", button: "Make an Enquiry", description: "All retreats are arranged personally through conversation." },
+      cta: { headline: "Ready to Inquire?", button: "Make an Inquiry", description: "All retreats are arranged personally through conversation." },
     },
     teamFacilitation: {
       hero: { overline: "Leadership Team Facilitation", headline: "Leadership Team Facilitation", subtitle: "The invisible dynamics shaping your team — made visible, workable, and genuinely transformative." },
@@ -608,20 +608,20 @@ const en = {
         body: "If your organization is at a point where people, culture, and leadership need to evolve together, I welcome an initial conversation to understand your situation.",
         button: "Begin the Conversation",
       },
-      cta: { headline: "Ready to Begin an Advisory Conversation?", button: "Make an Enquiry", description: "Every engagement begins with a conversation." },
+      cta: { headline: "Ready to Begin an Advisory Conversation?", button: "Make an Inquiry", description: "Every engagement begins with a conversation." },
     },
   },
   contact: {
     hero: { overline: "Contact & Apply", headline: "Start the Conversation", subtitle: "Every engagement begins with understanding. All inquiries receive a personal response — no automated replies, no forms that disappear into a void." },
     form: {
-      headline: "Send an Enquiry",
+      headline: "Send an Inquiry",
       name: "Full Name",
       email: "Email Address",
       organization: "Organization",
       role: "Your Role / Title",
       message: "What brings you here?",
       messagePlaceholder: "Briefly describe what you are navigating and why this work might be relevant for you...",
-      submit: "Submit Enquiry",
+      submit: "Submit Inquiry",
       success: "Thank you. Your inquiry has been received. Cornelia will respond personally within 2–3 business days.",
       error: "Something went wrong. Please try again or reach out directly via WhatsApp.",
     },
@@ -707,7 +707,7 @@ const en = {
         {
           number: "4",
           title: "Cancellation Policy",
-          text: "Agreed appointments must be cancelled at least 48 hours in advance. In the event of late cancellation or no-show, the full fee will be charged as a cancellation fee, as the slot was reserved exclusively for the client.",
+          text: "Agreed appointments must be canceled at least 48 hours in advance. In the event of late cancellation or no-show, the full fee will be charged as a cancellation fee, as the slot was reserved exclusively for the client.",
         },
         {
           number: "5",
