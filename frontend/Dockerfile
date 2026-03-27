@@ -14,8 +14,9 @@ RUN yarn build
 # Install serve to run the static files
 RUN yarn global add serve
 
-# Expose port
-EXPOSE 3000
+# Railway sets PORT automatically, default to 8080
+ENV PORT=8080
+EXPOSE 8080
 
-# Serve the build folder
-CMD ["serve", "-s", "build", "-l", "3000"]
+# Serve the build folder on the PORT Railway provides
+CMD serve -s build -l $PORT
