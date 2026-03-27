@@ -8,9 +8,8 @@ COPY . .
 # Install dependencies (ignore engine checks for compatibility)
 RUN yarn install --ignore-engines
 
-# Set build-time environment variable for React
-ARG REACT_APP_BACKEND_URL
-ENV REACT_APP_BACKEND_URL=$REACT_APP_BACKEND_URL
+# Set build-time environment variable for React (hardcoded for Railway production)
+ENV REACT_APP_BACKEND_URL=https://cornelia-website-backend-production.up.railway.app
 
 # Build the app
 RUN yarn build
