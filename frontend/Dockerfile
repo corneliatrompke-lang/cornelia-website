@@ -1,4 +1,4 @@
-FROM node:18-alpine AS builder
+FROM node:18-alpine
 
 WORKDIR /app
 
@@ -14,16 +14,11 @@ COPY . .
 # Build the app
 RUN yarn build
 
-# Production stage
-FROM nginx:alpine
-
-# Copy custom nginx config
-COPY nginx.conf /etc/nginx/conf.d/default.conf
-
-# Copy built files
-COPY --from=builder /app/build /usr/share/nginx/html
+# Install serve to run the static files
+RUN yarn global add serve
 
 # Expose port
-EXPOSE 80
+EXPOSE 3000
 
-CMD ["nginx", "-g", "daemon off;"]
+# Serve the build folder
+CMD ["serve", "-s", "build", "-l", "3000"]
