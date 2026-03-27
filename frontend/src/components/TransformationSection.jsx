@@ -52,38 +52,38 @@ export default function TransformationSection() {
   });
 
   // ── Individual circles (500vh, 4 phases × 0.20 each + final 0.20) ──
-  // Circle 1 visible immediately when section enters, fades at 0.24
-  const c1o = useTransform(scrollYProgress, [0, 0.20, 0.24], [1, 1, 0]);
-  const c1s = useTransform(scrollYProgress, [0, 0.20, 0.24], [1, 1, 0.92]);
+  // Circle 1 visible immediately when section enters, fades at 0.18
+  const c1o = useTransform(scrollYProgress, [0, 0.15, 0.18], [1, 1, 0]);
+  const c1s = useTransform(scrollYProgress, [0, 0.15, 0.18], [1, 1, 0.92]);
 
-  // Circle 2 fades in at 0.20, fades out at 0.44
-  const c2o = useTransform(scrollYProgress, [0.20, 0.24, 0.40, 0.44], [0, 1, 1, 0]);
-  const c2s = useTransform(scrollYProgress, [0.20, 0.24, 0.40, 0.44], [0.84, 1, 1, 0.92]);
+  // Circle 2 fades in at 0.16, fades out at 0.38
+  const c2o = useTransform(scrollYProgress, [0.16, 0.20, 0.35, 0.38], [0, 1, 1, 0]);
+  const c2s = useTransform(scrollYProgress, [0.16, 0.20, 0.35, 0.38], [0.84, 1, 1, 0.92]);
 
-  // Circle 3 fades in at 0.40, fades out at 0.64
-  const c3o = useTransform(scrollYProgress, [0.40, 0.44, 0.60, 0.64], [0, 1, 1, 0]);
-  const c3s = useTransform(scrollYProgress, [0.40, 0.44, 0.60, 0.64], [0.84, 1, 1, 0.92]);
+  // Circle 3 fades in at 0.36, fades out at 0.58
+  const c3o = useTransform(scrollYProgress, [0.36, 0.40, 0.55, 0.58], [0, 1, 1, 0]);
+  const c3s = useTransform(scrollYProgress, [0.36, 0.40, 0.55, 0.58], [0.84, 1, 1, 0.92]);
 
-  // Circle 4 fades in at 0.60, fades out at 0.84
-  const c4o = useTransform(scrollYProgress, [0.60, 0.64, 0.80, 0.84], [0, 1, 1, 0]);
-  const c4s = useTransform(scrollYProgress, [0.60, 0.64, 0.80, 0.84], [0.84, 1, 1, 0.92]);
+  // Circle 4 fades in at 0.56, fades out at 0.78
+  const c4o = useTransform(scrollYProgress, [0.56, 0.60, 0.75, 0.78], [0, 1, 1, 0]);
+  const c4s = useTransform(scrollYProgress, [0.56, 0.60, 0.75, 0.78], [0.84, 1, 1, 0.92]);
 
   // ── Wavy segments ────────────────────────────────────────────────
   // Segment 1→2 draws during circle 1→2 transition
-  const seg12PL = useTransform(scrollYProgress, [0.18, 0.30], [0, 1]);
-  const seg12O  = useTransform(scrollYProgress, [0.18, 0.24, 0.40, 0.44], [0, 0.85, 0.85, 0]);
+  const seg12PL = useTransform(scrollYProgress, [0.14, 0.26], [0, 1]);
+  const seg12O  = useTransform(scrollYProgress, [0.14, 0.18, 0.35, 0.38], [0, 0.85, 0.85, 0]);
 
   // Segment 2→3 draws during circle 2→3 transition
-  const seg23PL = useTransform(scrollYProgress, [0.38, 0.50], [0, 1]);
-  const seg23O  = useTransform(scrollYProgress, [0.38, 0.44, 0.60, 0.64], [0, 0.85, 0.85, 0]);
+  const seg23PL = useTransform(scrollYProgress, [0.34, 0.46], [0, 1]);
+  const seg23O  = useTransform(scrollYProgress, [0.34, 0.38, 0.55, 0.58], [0, 0.85, 0.85, 0]);
 
   // Segment 3→4 draws during circle 3→4 transition
-  const seg34PL = useTransform(scrollYProgress, [0.58, 0.70], [0, 1]);
-  const seg34O  = useTransform(scrollYProgress, [0.58, 0.64, 0.80, 0.84], [0, 0.85, 0.85, 0]);
+  const seg34PL = useTransform(scrollYProgress, [0.54, 0.66], [0, 1]);
+  const seg34O  = useTransform(scrollYProgress, [0.54, 0.58, 0.75, 0.78], [0, 0.85, 0.85, 0]);
 
   // ── Final all-4 row ───────────────────────────────────────────────
-  // Summary circles fade in near the end of the section
-  const finalO = useTransform(scrollYProgress, [0.80, 0.90], [0, 1]);
+  // Summary circles fade in at the end (after all individual circles are done)
+  const finalO = useTransform(scrollYProgress, [0.76, 0.85], [0, 1]);
 
   const circles = [
     { o: c1o, s: c1s },
