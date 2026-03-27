@@ -1,12 +1,12 @@
-FROM node:18-alpine
+FROM node:20-alpine
 
 WORKDIR /app
 
 # Copy all files
 COPY . .
 
-# Install dependencies
-RUN yarn install
+# Install dependencies (ignore engine checks for compatibility)
+RUN yarn install --ignore-engines
 
 # Build the app
 RUN yarn build
