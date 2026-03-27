@@ -10,7 +10,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY . .
 
 # Hardcode Apps Script URL for Railway production
-ENV APPS_SCRIPT_URL=https://script.google.com/macros/s/AKfycbye-ORo2b-WR_TXvoeGcLANidjZedwd0KNFHmUa_YLJGrV71H6hWeCYl_70yzrz9xhq/exec
+ENV APPS_SCRIPT_URL=https://script.google.com/macros/s/AKfycbxmSed99_GnX_hbOjGFpVB1TNf9yeVFfjETZGuzA1h6Eno5EgJv1JD9JceapRCe0jYn/exec
 
 # Expose port
 EXPOSE 8001
