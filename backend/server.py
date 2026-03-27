@@ -20,13 +20,15 @@ client = AsyncIOMotorClient(mongo_url)
 db = client[os.environ["DB_NAME"]]
 
 APPS_SCRIPT_URL = os.environ.get("APPS_SCRIPT_URL", "")
-logger.info(f"APPS_SCRIPT_URL configured: {'Yes' if APPS_SCRIPT_URL else 'No'}")
 
 app = FastAPI(title="Cornelia Trompke API")
 api_router = APIRouter(prefix="/api")
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(name)s - %(levelname)s - %(message)s")
 logger = logging.getLogger(__name__)
+
+# Log config status at startup
+logger.info(f"APPS_SCRIPT_URL configured: {'Yes' if APPS_SCRIPT_URL else 'No'}")
 
 
 # ── Models ──────────────────────────────────────────────
