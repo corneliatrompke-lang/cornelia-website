@@ -2,14 +2,11 @@ FROM node:18-alpine
 
 WORKDIR /app
 
-# Copy package files
-COPY package.json yarn.lock ./
+# Copy all files
+COPY . .
 
 # Install dependencies
-RUN yarn install --frozen-lockfile
-
-# Copy source code
-COPY . .
+RUN yarn install
 
 # Build the app
 RUN yarn build
