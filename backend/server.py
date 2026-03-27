@@ -84,16 +84,21 @@ async def submit_contact(submission: ContactSubmission):
     await db.contact_inquiries.insert_one(doc)
     logger.info(f"New contact inquiry from {record.email} via {record.send_from}")
 
-    # 2. Forward to Google Apps Script → Google Sheet
+    # 2. Forward to Google Apps Script → Google Sheet (fire-and-forget, don't wait)
     if APPS_SCRIPT_URL:
-        try:
-            logger.info(f"Forwarding to Apps Script: {APPS_SCRIPT_URL[:50]}...")
-            async with httpx.AsyncClient(timeout=15.0, follow_redirects=True) as http:
-                payload = submission.model_dump(exclude_none=True)
-                response = await http.post(APPS_SCRIPT_URL, json=payload)
-                logger.info(f"Apps Script response: {response.status_code}")
-        except Exception as e:
-            logger.warning(f"Google Sheet sync failed (non-fatal): {e}")
+        import asyncio
+        async def forward_to_apps_script():
+            try:
+                logger.info(f"Forwarding to Apps Script: {APPS_SCRIPT_URL[:50]}...")
+                async with httpx.AsyncClient(timeout=30.0, follow_redirects=True) as http:
+                    payload = submission.model_dump(exclude_none=True)
+                    response = await http.post(APPS_SCRIPT_URL, json=payload)
+                    logger.info(f"Apps Script response: {response.status_code}")
+            except Exception as e:
+                logger.warning(f"Google Sheet sync failed (non-fatal): {e}")
+        
+        # Fire and forget - don't await, let it run in background
+        asyncio.create_task(forward_to_apps_script())
     else:
         logger.warning("APPS_SCRIPT_URL not configured, skipping sheet sync")
 
