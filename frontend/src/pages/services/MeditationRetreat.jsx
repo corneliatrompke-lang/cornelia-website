@@ -15,7 +15,7 @@ const HERO_VIDEO_MOBILE =
   "https://customer-assets.emergentagent.com/job_e5136b8e-7455-4da3-b49e-b5fc614c9fe2/artifacts/7xb0jhlg_HERO%20-%20MOBILE3.mp4";
 
 const GUIDE_BG =
-  "https://customer-assets.emergentagent.com/job_nervous-system-exec/artifacts/mix18bkw_Cornelia%20Trompke_0691.jpg";
+  "/images/cornelia-retreat.jpg";
 
 // ─── Content ──────────────────────────────────────────────────────────────────
 const GUIDE_STATS = [

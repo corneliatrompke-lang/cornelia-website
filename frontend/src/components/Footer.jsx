@@ -4,7 +4,7 @@ import { useLanguage } from "../context/LanguageContext";
 import { useCookieConsent } from "../context/CookieConsentContext";
 
 const LOGO_DARK =
-  "https://customer-assets.emergentagent.com/job_nervous-system-exec/artifacts/qn22a37e_Cornelia%20Trompke%20Logo%20Vertical-01.png";
+  "/images/logo-vertical.png";
 
 const Footer = () => {
   const { t, language } = useLanguage();

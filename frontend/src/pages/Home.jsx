@@ -13,7 +13,7 @@ import { useContactForm } from "../context/ContactFormContext";
 import SEOHead from "../components/SEOHead";
 
 const PORTRAIT =
-  "https://customer-assets.emergentagent.com/job_nervous-system-exec/artifacts/za4j3pc7_Cornelia%2BTrompke_0436.webp";
+  "/images/cornelia-portrait.webp";
 
 // Brand logo ticker — Simple Icons CDN, rendered as black marks on ivory
 const TICKER_ITEMS = [

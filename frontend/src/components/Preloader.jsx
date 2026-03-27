@@ -2,7 +2,7 @@ import React, { useState, useLayoutEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 const LOGO_MARK =
-  "https://customer-assets.emergentagent.com/job_c6a96dcc-a529-4678-b4e5-76313235aa2d/artifacts/kv7m20gz_Cornelia%20Trompke%20Logo%20Mark.png";
+  "/images/logo-mark.png";
 
 const Preloader = ({ onComplete }) => {
   const [visible, setVisible] = useState(true);

@@ -10,9 +10,9 @@ import { useContactForm } from "../context/ContactFormContext";
 import SEOHead from "../components/SEOHead";
 
 const HERO_IMG_DESKTOP =
-  "https://customer-assets.emergentagent.com/job_nervous-system-exec/artifacts/y8e2ch2k_About%20Hero%20-%20Desktop.jpg";
+  "/images/about-hero-desktop.jpg";
 const HERO_IMG_MOBILE =
-  "https://customer-assets.emergentagent.com/job_nervous-system-exec/artifacts/qcaigsvl_About%20Hero%20-%20Mobile.jpg";
+  "/images/about-hero-mobile.jpg";
 
 const About = () => {
   const { t } = useLanguage();

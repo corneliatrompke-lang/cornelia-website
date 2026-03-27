@@ -20,6 +20,7 @@ client = AsyncIOMotorClient(mongo_url)
 db = client[os.environ["DB_NAME"]]
 
 APPS_SCRIPT_URL = os.environ.get("APPS_SCRIPT_URL", "")
+logger.info(f"APPS_SCRIPT_URL configured: {'Yes' if APPS_SCRIPT_URL else 'No'}")
 
 app = FastAPI(title="Cornelia Trompke API")
 api_router = APIRouter(prefix="/api")
@@ -84,11 +85,15 @@ async def submit_contact(submission: ContactSubmission):
     # 2. Forward to Google Apps Script → Google Sheet
     if APPS_SCRIPT_URL:
         try:
-            async with httpx.AsyncClient(timeout=10.0, follow_redirects=True) as http:
+            logger.info(f"Forwarding to Apps Script: {APPS_SCRIPT_URL[:50]}...")
+            async with httpx.AsyncClient(timeout=15.0, follow_redirects=True) as http:
                 payload = submission.model_dump(exclude_none=True)
-                await http.post(APPS_SCRIPT_URL, json=payload)
+                response = await http.post(APPS_SCRIPT_URL, json=payload)
+                logger.info(f"Apps Script response: {response.status_code}")
         except Exception as e:
             logger.warning(f"Google Sheet sync failed (non-fatal): {e}")
+    else:
+        logger.warning("APPS_SCRIPT_URL not configured, skipping sheet sync")
 
     return record
 
@@ -133,6 +138,16 @@ async def get_status_checks():
 
 
 # ── App setup ───────────────────────────────────────────
+
+@api_router.get("/health")
+async def health_check():
+    """Health check with config status."""
+    return {
+        "status": "ok",
+        "apps_script_configured": bool(APPS_SCRIPT_URL),
+        "cors_origins": os.environ.get("CORS_ORIGINS", "*"),
+    }
+
 
 app.include_router(api_router)
 

@@ -2,12 +2,9 @@ import React, { useRef, useEffect, useState } from "react";
 import { motion, useScroll, useTransform, useMotionValueEvent } from "framer-motion";
 import { useLanguage } from "../../context/LanguageContext";
 
-const BANNER_SRC =
-  "https://customer-assets.emergentagent.com/job_nervous-system-exec/artifacts/9y106yhn_Banner%20Image.jpg";
-const CIRCLE_SRC =
-  "https://customer-assets.emergentagent.com/job_nervous-system-exec/artifacts/sfldgsxg_Circle%20Image.jpg";
-const SQUARE_SRC =
-  "https://customer-assets.emergentagent.com/job_nervous-system-exec/artifacts/ahttcgam_Square%20Image.jpg";
+const BANNER_SRC = "/images/banner-image.jpg";
+const CIRCLE_SRC = "/images/circle-image.jpg";
+const SQUARE_SRC = "/images/square-image.jpg";
 
 // Fixed nav height — sticky inner content starts below this
 const NAV_H = 80;
