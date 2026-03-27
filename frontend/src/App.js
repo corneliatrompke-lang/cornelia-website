@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useEffect } from "react";
 import { BrowserRouter, Routes, Route, Navigate, useLocation } from "react-router-dom";
 import { AnimatePresence } from "framer-motion";
 import { HelmetProvider } from "react-helmet-async";
@@ -23,7 +23,6 @@ const GA4PageViewTracker = () => {
   }, [pathname, consent]);
   return null;
 };
-import Preloader from "./components/Preloader";
 import GrainOverlay from "./components/GrainOverlay";
 import Navigation from "./components/Navigation";
 import Footer from "./components/Footer";
@@ -89,29 +88,23 @@ const AppContent = () => (
 );
 
 function App() {
-  const [ready, setReady] = useState(false);
-  const handleComplete = useCallback(() => setReady(true), []);
-
   return (
     <HelmetProvider>
       <LanguageProvider>
         <CookieConsentProvider>
-          {!ready && <Preloader onComplete={handleComplete} />}
-          {ready && (
-            <BrowserRouter>
-              <ContactFormProvider>
-                <div className="App">
-                  <GrainOverlay />
-                  <AppContent />
-                  <ContactFormModal />
-                  <RetreatApplicationModal />
-                  <WhatsAppButton />
-                  <CookieBanner />
-                  <CookieSettingsModal />
-                </div>
-              </ContactFormProvider>
-            </BrowserRouter>
-          )}
+          <BrowserRouter>
+            <ContactFormProvider>
+              <div className="App">
+                <GrainOverlay />
+                <AppContent />
+                <ContactFormModal />
+                <RetreatApplicationModal />
+                <WhatsAppButton />
+                <CookieBanner />
+                <CookieSettingsModal />
+              </div>
+            </ContactFormProvider>
+          </BrowserRouter>
         </CookieConsentProvider>
       </LanguageProvider>
     </HelmetProvider>
