@@ -1,5 +1,5 @@
 import React, { useRef, useState, useEffect } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion } from "framer-motion";
 import { useLanguage } from "../context/LanguageContext";
 
 // Left / right alternating — x:22 = left, x:78 = right
@@ -36,6 +36,7 @@ export default function TransformationSection() {
   const ITEMS = trans.items.map((item, i) => ({ ...item, ...ITEM_POSITIONS[i] }));
   
   const sectionRef = useRef(null);
+  const [scrollProgress, setScrollProgress] = useState(0);
 
   const [screenW, setScreenW] = useState(typeof window !== "undefined" ? window.innerWidth : 1200);
   useEffect(() => {
@@ -46,44 +47,66 @@ export default function TransformationSection() {
   const isMobile = screenW < 768;
   const isNarrow = screenW < 1024;
 
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ["start start", "end end"],
-  });
+  // Manual scroll tracking for reliability
+  useEffect(() => {
+    const handleScroll = () => {
+      if (!sectionRef.current) return;
+      const rect = sectionRef.current.getBoundingClientRect();
+      const sectionHeight = sectionRef.current.offsetHeight;
+      const viewportHeight = window.innerHeight;
+      
+      // Calculate progress: 0 when section top hits viewport top, 1 when section bottom hits viewport bottom
+      const scrolled = -rect.top;
+      const totalScrollable = sectionHeight - viewportHeight;
+      const progress = Math.max(0, Math.min(1, scrolled / totalScrollable));
+      
+      setScrollProgress(progress);
+    };
+    
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    handleScroll(); // Initial calculation
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
-  // ── Individual circles (500vh, 4 phases × 0.20 each + final 0.20) ──
-  // Circle 1 visible immediately when section enters, fades at 0.18
-  const c1o = useTransform(scrollYProgress, [0, 0.15, 0.18], [1, 1, 0]);
-  const c1s = useTransform(scrollYProgress, [0, 0.15, 0.18], [1, 1, 0.92]);
+  // Helper function to interpolate values based on scroll progress
+  const interpolate = (progress, inputRange, outputRange) => {
+    if (progress <= inputRange[0]) return outputRange[0];
+    if (progress >= inputRange[inputRange.length - 1]) return outputRange[outputRange.length - 1];
+    
+    for (let i = 0; i < inputRange.length - 1; i++) {
+      if (progress >= inputRange[i] && progress <= inputRange[i + 1]) {
+        const t = (progress - inputRange[i]) / (inputRange[i + 1] - inputRange[i]);
+        return outputRange[i] + t * (outputRange[i + 1] - outputRange[i]);
+      }
+    }
+    return outputRange[outputRange.length - 1];
+  };
 
-  // Circle 2 fades in at 0.16, fades out at 0.38
-  const c2o = useTransform(scrollYProgress, [0.16, 0.20, 0.35, 0.38], [0, 1, 1, 0]);
-  const c2s = useTransform(scrollYProgress, [0.16, 0.20, 0.35, 0.38], [0.84, 1, 1, 0.92]);
+  // ── Individual circles opacity and scale ──
+  const c1o = interpolate(scrollProgress, [0, 0.15, 0.18], [1, 1, 0]);
+  const c1s = interpolate(scrollProgress, [0, 0.15, 0.18], [1, 1, 0.92]);
 
-  // Circle 3 fades in at 0.36, fades out at 0.58
-  const c3o = useTransform(scrollYProgress, [0.36, 0.40, 0.55, 0.58], [0, 1, 1, 0]);
-  const c3s = useTransform(scrollYProgress, [0.36, 0.40, 0.55, 0.58], [0.84, 1, 1, 0.92]);
+  const c2o = interpolate(scrollProgress, [0.16, 0.20, 0.35, 0.38], [0, 1, 1, 0]);
+  const c2s = interpolate(scrollProgress, [0.16, 0.20, 0.35, 0.38], [0.84, 1, 1, 0.92]);
 
-  // Circle 4 fades in at 0.56, fades out at 0.78
-  const c4o = useTransform(scrollYProgress, [0.56, 0.60, 0.75, 0.78], [0, 1, 1, 0]);
-  const c4s = useTransform(scrollYProgress, [0.56, 0.60, 0.75, 0.78], [0.84, 1, 1, 0.92]);
+  const c3o = interpolate(scrollProgress, [0.36, 0.40, 0.55, 0.58], [0, 1, 1, 0]);
+  const c3s = interpolate(scrollProgress, [0.36, 0.40, 0.55, 0.58], [0.84, 1, 1, 0.92]);
 
-  // ── Wavy segments ────────────────────────────────────────────────
-  // Segment 1→2 draws during circle 1→2 transition
-  const seg12PL = useTransform(scrollYProgress, [0.14, 0.26], [0, 1]);
-  const seg12O  = useTransform(scrollYProgress, [0.14, 0.18, 0.35, 0.38], [0, 0.85, 0.85, 0]);
+  const c4o = interpolate(scrollProgress, [0.56, 0.60, 0.75, 0.78], [0, 1, 1, 0]);
+  const c4s = interpolate(scrollProgress, [0.56, 0.60, 0.75, 0.78], [0.84, 1, 1, 0.92]);
 
-  // Segment 2→3 draws during circle 2→3 transition
-  const seg23PL = useTransform(scrollYProgress, [0.34, 0.46], [0, 1]);
-  const seg23O  = useTransform(scrollYProgress, [0.34, 0.38, 0.55, 0.58], [0, 0.85, 0.85, 0]);
+  // ── Wavy segments ──
+  const seg12PL = interpolate(scrollProgress, [0.14, 0.26], [0, 1]);
+  const seg12O = interpolate(scrollProgress, [0.14, 0.18, 0.35, 0.38], [0, 0.85, 0.85, 0]);
 
-  // Segment 3→4 draws during circle 3→4 transition
-  const seg34PL = useTransform(scrollYProgress, [0.54, 0.66], [0, 1]);
-  const seg34O  = useTransform(scrollYProgress, [0.54, 0.58, 0.75, 0.78], [0, 0.85, 0.85, 0]);
+  const seg23PL = interpolate(scrollProgress, [0.34, 0.46], [0, 1]);
+  const seg23O = interpolate(scrollProgress, [0.34, 0.38, 0.55, 0.58], [0, 0.85, 0.85, 0]);
 
-  // ── Final all-4 row ───────────────────────────────────────────────
-  // Summary circles fade in at the end (after all individual circles are done)
-  const finalO = useTransform(scrollYProgress, [0.76, 0.85], [0, 1]);
+  const seg34PL = interpolate(scrollProgress, [0.54, 0.66], [0, 1]);
+  const seg34O = interpolate(scrollProgress, [0.54, 0.58, 0.75, 0.78], [0, 0.85, 0.85, 0]);
+
+  // ── Final all-4 row ──
+  const finalO = interpolate(scrollProgress, [0.76, 0.85], [0, 1]);
 
   const circles = [
     { o: c1o, s: c1s },
@@ -176,21 +199,30 @@ export default function TransformationSection() {
         >
           {segments.map(({ d, pl, opacity }, si) => (
             <React.Fragment key={si}>
-              <motion.path
+              <path
                 d={d}
                 stroke="rgba(200,169,106,0.18)"
                 strokeWidth="2.2"
                 fill="none"
                 strokeLinecap="round"
-                style={{ pathLength: pl, opacity, filter: "blur(6px)" }}
+                style={{ 
+                  strokeDasharray: 1000,
+                  strokeDashoffset: 1000 * (1 - pl),
+                  opacity, 
+                  filter: "blur(6px)" 
+                }}
               />
-              <motion.path
+              <path
                 d={d}
                 stroke="rgba(200,169,106,0.68)"
                 strokeWidth="0.18"
                 fill="none"
                 strokeLinecap="round"
-                style={{ pathLength: pl, opacity }}
+                style={{ 
+                  strokeDasharray: 1000,
+                  strokeDashoffset: 1000 * (1 - pl),
+                  opacity 
+                }}
               />
             </React.Fragment>
           ))}
@@ -203,17 +235,16 @@ export default function TransformationSection() {
           const xPos = isNarrow ? 50 : item.x;
           const yPos = isNarrow ? 54 : item.y;
           return (
-          <motion.div
+          <div
             key={i}
             style={{
               position: "absolute",
               left: `${xPos}%`,
               top: `${yPos}%`,
-              translateX: "-50%",
-              translateY: "-50%",
+              transform: `translate(-50%, -50%) scale(${circles[i].s})`,
               opacity: circles[i].o,
-              scale: circles[i].s,
               zIndex: 5,
+              transition: "opacity 0.15s ease-out, transform 0.15s ease-out",
             }}
           >
             <div
@@ -280,12 +311,12 @@ export default function TransformationSection() {
                 {item.subtext}
               </p>
             </div>
-          </motion.div>
+          </div>
           );
         })}
 
         {/* ── Final view: responsive layout ── */}
-        <motion.div
+        <div
           style={{
             position: "absolute",
             top: isMobile ? "240px" : isNarrow ? "20%" : "160px",
@@ -303,6 +334,7 @@ export default function TransformationSection() {
             opacity: finalO,
             zIndex: 6,
             pointerEvents: "none",
+            transition: "opacity 0.2s ease-out",
           }}
         >
           {ITEMS.map((item, i) => (
@@ -389,7 +421,7 @@ export default function TransformationSection() {
               </p>
             </div>
           ))}
-        </motion.div>
+        </div>
       </div>
     </section>
   );

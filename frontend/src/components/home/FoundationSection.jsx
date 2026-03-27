@@ -1,5 +1,5 @@
 import React, { useRef, useEffect, useState } from "react";
-import { motion, useScroll, useTransform, useMotionValueEvent } from "framer-motion";
+import { motion } from "framer-motion";
 import { useLanguage } from "../../context/LanguageContext";
 
 const BANNER_SRC = "/images/banner-image.jpg";
@@ -30,6 +30,20 @@ function initParticles(w, h) {
   });
 }
 
+// Helper function to interpolate values based on scroll progress
+const interpolate = (progress, inputRange, outputRange) => {
+  if (progress <= inputRange[0]) return outputRange[0];
+  if (progress >= inputRange[inputRange.length - 1]) return outputRange[outputRange.length - 1];
+  
+  for (let i = 0; i < inputRange.length - 1; i++) {
+    if (progress >= inputRange[i] && progress <= inputRange[i + 1]) {
+      const t = (progress - inputRange[i]) / (inputRange[i + 1] - inputRange[i]);
+      return outputRange[i] + t * (outputRange[i + 1] - outputRange[i]);
+    }
+  }
+  return outputRange[outputRange.length - 1];
+};
+
 export default function FoundationSection() {
   const { t } = useLanguage();
   const outerRef  = useRef(null);
@@ -37,6 +51,7 @@ export default function FoundationSection() {
   const particlesRef = useRef([]);
   const progressRef  = useRef(0);
   const rafRef = useRef(null);
+  const [fp, setFp] = useState(0);
 
   // JS-based responsive detection — avoids CSS class specificity conflicts
   const [isDesktop, setIsDesktop] = useState(
@@ -48,54 +63,74 @@ export default function FoundationSection() {
     return () => window.removeEventListener("resize", check);
   }, []);
 
-  const { scrollYProgress: fp } = useScroll({
-    target: outerRef,
-    offset: ["start end", "end end"],
-  });
+  // Manual scroll tracking for reliability
+  useEffect(() => {
+    const handleScroll = () => {
+      if (!outerRef.current) return;
+      const rect = outerRef.current.getBoundingClientRect();
+      const sectionHeight = outerRef.current.offsetHeight;
+      const viewportHeight = window.innerHeight;
+      
+      // offset: ["start end", "end end"]
+      // Progress starts at 0 when section top reaches viewport bottom
+      // Progress ends at 1 when section bottom reaches viewport bottom
+      const startPoint = viewportHeight; // section top at viewport bottom
+      const endPoint = 0; // section bottom at viewport bottom
+      
+      const scrolled = startPoint - rect.top;
+      const totalScrollable = sectionHeight;
+      const progress = Math.max(0, Math.min(1, scrolled / totalScrollable));
+      
+      setFp(progress);
+      progressRef.current = progress;
+    };
+    
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    handleScroll(); // Initial calculation
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   // Desktop pins at fp ≈ 0.333 (100vh / 300vh)
   // Mobile  pins at fp ≈ 0.500 (100vh / 200vh)
   // Animations mapped so after-pin range = old total range → identical scroll speed
 
   // ── Banner slide-down reveal: starts showing bottom ~30%, slides to full ──
-  // At y=-518 → only bottom ~10% (45px) visible through sticky frame overflow
-  // At y=0 → fully visible at natural position
-  const bannerSlide = useTransform(fp, [0, 0.333], [-518, 0]);
+  const bannerSlide = interpolate(fp, [0, 0.333], [-518, 0]);
 
   // ── Desktop: images assemble after section pins ──────────────
-  const circleX = useTransform(fp, [0.37, 0.72], [620, 0]);
-  const circleO = useTransform(fp, [0.37, 0.52], [0, 1]);
+  const circleX = interpolate(fp, [0.37, 0.72], [620, 0]);
+  const circleO = interpolate(fp, [0.37, 0.52], [0, 1]);
 
-  const squareX = useTransform(fp, [0.37, 0.72], [-560, 0]);
-  const squareY = useTransform(fp, [0.37, 0.72], [160, 0]);
-  const squareO = useTransform(fp, [0.37, 0.51], [0, 1]);
+  const squareX = interpolate(fp, [0.37, 0.72], [-560, 0]);
+  const squareY = interpolate(fp, [0.37, 0.72], [160, 0]);
+  const squareO = interpolate(fp, [0.37, 0.51], [0, 1]);
 
   // ── Card rises after images settle ─────────────────────────────
-  const cardY = useTransform(fp, [0.67, 0.80], [180, 0]);
-  const cardO = useTransform(fp, [0.67, 0.77], [0, 1]);
+  const cardY = interpolate(fp, [0.67, 0.80], [180, 0]);
+  const cardO = interpolate(fp, [0.67, 0.77], [0, 1]);
 
   // ── Text cascade ───────────────────────────────────────────────
-  const dividerScaleX = useTransform(fp, [0.79, 0.87], [0, 1]);
-  const dividerO      = useTransform(fp, [0.79, 0.85], [0, 1]);
+  const dividerScaleX = interpolate(fp, [0.79, 0.87], [0, 1]);
+  const dividerO      = interpolate(fp, [0.79, 0.85], [0, 1]);
 
-  const headingY = useTransform(fp, [0.82, 0.91], [-100, 0]);
-  const headingO = useTransform(fp, [0.82, 0.91], [0, 1]);
+  const headingY = interpolate(fp, [0.82, 0.91], [-100, 0]);
+  const headingO = interpolate(fp, [0.82, 0.91], [0, 1]);
 
-  const para0Y = useTransform(fp, [0.88, 0.95], [80, 0]);
-  const para0O = useTransform(fp, [0.88, 0.95], [0, 1]);
+  const para0Y = interpolate(fp, [0.88, 0.95], [80, 0]);
+  const para0O = interpolate(fp, [0.88, 0.95], [0, 1]);
 
-  const para1Y = useTransform(fp, [0.92, 0.98], [80, 0]);
-  const para1O = useTransform(fp, [0.92, 0.98], [0, 1]);
+  const para1Y = interpolate(fp, [0.92, 0.98], [80, 0]);
+  const para1O = interpolate(fp, [0.92, 0.98], [0, 1]);
 
   // ── Mobile: text cascade after pin (fp=0.5) ─────────────────
-  const mHeadingY = useTransform(fp, [0.60, 0.73], [-80, 0]);
-  const mHeadingO = useTransform(fp, [0.59, 0.71], [0, 1]);
+  const mHeadingY = interpolate(fp, [0.60, 0.73], [-80, 0]);
+  const mHeadingO = interpolate(fp, [0.59, 0.71], [0, 1]);
 
-  const mPara0Y = useTransform(fp, [0.69, 0.80], [60, 0]);
-  const mPara0O = useTransform(fp, [0.68, 0.79], [0, 1]);
+  const mPara0Y = interpolate(fp, [0.69, 0.80], [60, 0]);
+  const mPara0O = interpolate(fp, [0.68, 0.79], [0, 1]);
 
-  const mPara1Y = useTransform(fp, [0.78, 0.89], [60, 0]);
-  const mPara1O = useTransform(fp, [0.76, 0.88], [0, 1]);
+  const mPara1Y = interpolate(fp, [0.78, 0.89], [60, 0]);
+  const mPara1O = interpolate(fp, [0.76, 0.88], [0, 1]);
 
   // ── Particle canvas RAF ────────────────────────────────────────
   useEffect(() => {
@@ -161,10 +196,6 @@ export default function FoundationSection() {
     };
   }, []);
 
-  useMotionValueEvent(fp, "change", (v) => {
-    progressRef.current = v;
-  });
-
   return (
     // ── Outer section: 300vh on desktop (scroll driver), 150vh on mobile ──
     <section
@@ -217,7 +248,7 @@ export default function FoundationSection() {
             }}
           >
             {/* Banner — slides down from above, revealing bottom-first */}
-            <motion.div
+            <div
               style={{
                 position: "absolute",
                 top: 0,
@@ -225,7 +256,8 @@ export default function FoundationSection() {
                 right: "13%",
                 height: "clamp(350px, 55vh, 550px)",
                 overflow: "hidden",
-                y: bannerSlide,
+                transform: `translateY(${bannerSlide}px)`,
+                transition: "transform 0.1s ease-out",
               }}
             >
               <img
@@ -233,10 +265,10 @@ export default function FoundationSection() {
                 alt=""
                 style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center center" }}
               />
-            </motion.div>
+            </div>
 
             {/* Circle — 260px, sweeps 620px from the right */}
-            <motion.div
+            <div
               style={{
                 position: "absolute",
                 right: 80,
@@ -248,8 +280,9 @@ export default function FoundationSection() {
                 border: "6px solid #F5F2EC",
                 boxShadow: "0 12px 48px rgba(18,18,18,0.20)",
                 zIndex: 2,
-                x: circleX,
+                transform: `translateX(${circleX}px)`,
                 opacity: circleO,
+                transition: "transform 0.1s ease-out, opacity 0.1s ease-out",
               }}
             >
               <img
@@ -257,10 +290,10 @@ export default function FoundationSection() {
                 alt=""
                 style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center top" }}
               />
-            </motion.div>
+            </div>
 
             {/* Square — 225px, surges from lower-left */}
-            <motion.div
+            <div
               style={{
                 position: "absolute",
                 left: 60,
@@ -271,10 +304,9 @@ export default function FoundationSection() {
                 border: "6px solid #F5F2EC",
                 boxShadow: "0 12px 48px rgba(18,18,18,0.20)",
                 zIndex: 2,
-                rotate: -5,
-                x: squareX,
-                y: squareY,
+                transform: `rotate(-5deg) translate(${squareX}px, ${squareY}px)`,
                 opacity: squareO,
+                transition: "transform 0.1s ease-out, opacity 0.1s ease-out",
               }}
             >
               <img
@@ -282,7 +314,7 @@ export default function FoundationSection() {
                 alt=""
                 style={{ width: "100%", height: "100%", objectFit: "cover" }}
               />
-            </motion.div>
+            </div>
 
             {/* Card centering wrapper
                 top scales with banner: maintains ~13% overlap */}
@@ -297,28 +329,30 @@ export default function FoundationSection() {
                 zIndex: 3,
               }}
             >
-              <motion.div
+              <div
                 style={{
                   background: "#F5F2EC",
                   padding: "28px 28px 0",
-                  y: cardY,
+                  transform: `translateY(${cardY}px)`,
                   opacity: cardO,
+                  transition: "transform 0.1s ease-out, opacity 0.1s ease-out",
                 }}
               >
                 {/* Divider scales from centre */}
-                <motion.div
+                <div
                   className="ct-divider mx-auto mb-6"
                   style={{
                     background: "rgba(18,18,18,0.2)",
                     opacity: dividerO,
-                    scaleX: dividerScaleX,
+                    transform: `scaleX(${dividerScaleX})`,
                     transformOrigin: "center",
+                    transition: "transform 0.1s ease-out, opacity 0.1s ease-out",
                   }}
                 />
 
                 {/* Heading — clips down from above, warm gold gradient tint */}
                 <div style={{ overflow: "hidden", position: "relative" }}>
-                  <motion.h2
+                  <h2
                     className="leading-[1.15]"
                     style={{
                       fontFamily: "Figtree, sans-serif",
@@ -328,12 +362,13 @@ export default function FoundationSection() {
                       WebkitBackgroundClip: "text",
                       WebkitTextFillColor: "transparent",
                       backgroundClip: "text",
-                      y: headingY,
+                      transform: `translateY(${headingY}px)`,
                       opacity: headingO,
+                      transition: "transform 0.1s ease-out, opacity 0.1s ease-out",
                     }}
                   >
                     {t.home.philosophy.headline}
-                  </motion.h2>
+                  </h2>
                 </div>
 
                 {/* Paragraphs clip up individually */}
@@ -342,22 +377,23 @@ export default function FoundationSection() {
                   const po = i === 0 ? para0O : para1O;
                   return (
                     <div key={i} style={{ overflow: "hidden", position: "relative" }}>
-                      <motion.p
+                      <p
                         className="text-charcoal/65 mt-5 leading-relaxed"
                         style={{
                           fontFamily: "Manrope, sans-serif",
                           fontSize: "16px",
                           fontWeight: 300,
-                          y: py,
+                          transform: `translateY(${py}px)`,
                           opacity: po,
+                          transition: "transform 0.1s ease-out, opacity 0.1s ease-out",
                         }}
                       >
                         {para}
-                      </motion.p>
+                      </p>
                     </div>
                   );
                 })}
-              </motion.div>
+              </div>
             </div>
           </div>
         </div>}
@@ -379,7 +415,7 @@ export default function FoundationSection() {
           >
             {/* Heading — drops from above */}
             <div style={{ overflow: "hidden", position: "relative", width: "100%" }}>
-              <motion.h2
+              <h2
                 className="leading-[1.15]"
                 style={{
                   fontFamily: "Figtree, sans-serif",
@@ -389,12 +425,13 @@ export default function FoundationSection() {
                   WebkitBackgroundClip: "text",
                   WebkitTextFillColor: "transparent",
                   backgroundClip: "text",
-                  y: mHeadingY,
+                  transform: `translateY(${mHeadingY}px)`,
                   opacity: mHeadingO,
+                  transition: "transform 0.1s ease-out, opacity 0.1s ease-out",
                 }}
               >
                 {t.home.philosophy.headline}
-              </motion.h2>
+              </h2>
             </div>
 
             {/* Paragraphs rise from below */}
@@ -403,18 +440,19 @@ export default function FoundationSection() {
               const po = i === 0 ? mPara0O : mPara1O;
               return (
                 <div key={i} style={{ overflow: "hidden", position: "relative", width: "100%" }}>
-                  <motion.p
+                  <p
                     className="text-charcoal/65 mt-5 leading-relaxed"
                     style={{
                       fontFamily: "Manrope, sans-serif",
                       fontSize: "16px",
                       fontWeight: 300,
-                      y: py,
+                      transform: `translateY(${py}px)`,
                       opacity: po,
+                      transition: "transform 0.1s ease-out, opacity 0.1s ease-out",
                     }}
                   >
                     {para}
-                  </motion.p>
+                  </p>
                 </div>
               );
             })}
