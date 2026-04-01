@@ -32,9 +32,9 @@ const TICKER_ITEMS = [
 
 // Hero videos — desktop and mobile variants
 const HERO_VIDEO_DESKTOP =
-  "https://customer-assets.emergentagent.com/job_nervous-system-exec/artifacts/ga9nbu4m_Hero%203%20-%20desktop.mp4";
+  "https://customer-assets.emergentagent.com/job_e5136b8e-7455-4da3-b49e-b5fc614c9fe2/artifacts/j94zdljc_Hero%20-%20Desktop%20-%20final.mp4";
 const HERO_VIDEO_MOBILE =
-  "https://customer-assets.emergentagent.com/job_nervous-system-exec/artifacts/x1r73hze_Hero%203%20-%20Mobile.mp4";
+  "https://customer-assets.emergentagent.com/job_e5136b8e-7455-4da3-b49e-b5fc614c9fe2/artifacts/4u2ci5hj_Hero%20-%20Mobile%20-%20final.mp4";
 
 const Home = () => {
   const { t } = useLanguage();
