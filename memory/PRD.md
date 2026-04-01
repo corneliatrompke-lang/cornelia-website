@@ -66,14 +66,20 @@ Create a "Cinematic Editorial Luxury" marketing website for "Cornelia Trompke Co
 - [x] RAF-throttled scroll handlers to reduce forced reflows
 - [x] LCP image preload hint in HTML head
 - [x] fetchPriority="high" on hero video
-- [x] Video error handling with poster fallback
+- [x] Video error handling with poster fallback on ALL pages
 - [x] Simplified PostHog init (disabled autocapture, session recording)
-- [x] **Compressed and localized all hero videos:**
+- [x] **Compressed and localized ALL hero videos (10 total):**
   - Homepage Desktop: 16.4 MB → 1.2 MB (93% reduction)
   - Homepage Mobile: 20.8 MB → 1.8 MB (91% reduction)  
   - Retreat Desktop: 23 MB → 4.1 MB (82% reduction)
   - Retreat Mobile: 15 MB → 2.6 MB (83% reduction)
-  - Total savings: ~65 MB → ~10 MB
+  - Executive Coaching Desktop: 27 MB → 4.4 MB (84% reduction)
+  - Executive Coaching Mobile: 7.4 MB → 1.6 MB (78% reduction)
+  - Team Facilitation Desktop: 32 MB → 5.9 MB (82% reduction)
+  - Team Facilitation Mobile: 12 MB → 1.6 MB (87% reduction)
+  - Organizational Advisory Desktop: 14 MB → 2.3 MB (84% reduction)
+  - Organizational Advisory Mobile: 26 MB → 4.6 MB (82% reduction)
+  - **Total savings: ~193 MB → ~30 MB (85% reduction)**
 
 ### Logo Ticker
 Current logos:

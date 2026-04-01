@@ -9,10 +9,8 @@ import { useContactForm } from "../../context/ContactFormContext";
 import SEOHead from "../../components/SEOHead";
 
 // ─── Constants ────────────────────────────────────────────────────────────────
-const HERO_VIDEO_DESKTOP =
-  "https://customer-assets.emergentagent.com/job_nervous-system-exec/artifacts/j538qa02_Hero%202%20-%20desktop.mp4";
-const HERO_VIDEO_MOBILE =
-  "https://customer-assets.emergentagent.com/job_nervous-system-exec/artifacts/6wshf0lt_Hero%202%20-%20mobiile.mp4";
+const HERO_VIDEO_DESKTOP = "/videos/team-desktop.mp4";
+const HERO_VIDEO_MOBILE = "/videos/team-mobile.mp4";
 
 const PROCESS_PHASES = [
   {
@@ -235,7 +233,9 @@ const TeamFacilitation = () => {
             loop
             playsInline
             aria-hidden="true"
-            style={{ position: "absolute", left: 0, right: 0, top: 0, width: "100%", height: "115%", objectFit: "cover", objectPosition: "center 40%", y: heroBgY }}
+            poster="/images/banner-image.webp"
+            onError={(e) => { e.currentTarget.style.display = 'none'; }}
+            style={{ position: "absolute", left: 0, right: 0, top: 0, width: "100%", height: "115%", objectFit: "cover", objectPosition: "center 40%", y: heroBgY, backgroundColor: "#0F1A12" }}
           >
             <source src={isMobile ? HERO_VIDEO_MOBILE : HERO_VIDEO_DESKTOP} type="video/mp4" />
           </motion.video>

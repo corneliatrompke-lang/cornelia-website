@@ -9,10 +9,8 @@ import { useContactForm } from "../../context/ContactFormContext";
 import SEOHead from "../../components/SEOHead";
 
 // ─── Constants ────────────────────────────────────────────────────────────────
-const HERO_VIDEO_DESKTOP =
-  "https://customer-assets.emergentagent.com/job_nervous-system-exec/artifacts/dityn0yt_Hero%20-%20desktop.mp4";
-const HERO_VIDEO_MOBILE =
-  "https://customer-assets.emergentagent.com/job_nervous-system-exec/artifacts/ujdpvv4m_Hero%20-%20mobile.mp4";
+const HERO_VIDEO_DESKTOP = "/videos/org-desktop.mp4";
+const HERO_VIDEO_MOBILE = "/videos/org-mobile.mp4";
 
 // Constants removed - now using translation data from s.dimensions.items, s.process.phases, s.engagement.items, s.forWhomDetailed.items
 
@@ -122,7 +120,9 @@ const OrganizationalAdvisory = () => {
             loop
             playsInline
             aria-hidden="true"
-            style={{ position: "absolute", left: 0, right: 0, top: 0, width: "100%", height: "115%", objectFit: "cover", objectPosition: "center 40%", y: heroBgY }}
+            poster="/images/banner-image.webp"
+            onError={(e) => { e.currentTarget.style.display = 'none'; }}
+            style={{ position: "absolute", left: 0, right: 0, top: 0, width: "100%", height: "115%", objectFit: "cover", objectPosition: "center 40%", y: heroBgY, backgroundColor: "#0F1A12" }}
           >
             <source src={isMobile ? HERO_VIDEO_MOBILE : HERO_VIDEO_DESKTOP} type="video/mp4" />
           </motion.video>
