@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, lazy, Suspense } from "react";
 import { BrowserRouter, Routes, Route, Navigate, useLocation } from "react-router-dom";
 import { AnimatePresence } from "framer-motion";
 import { HelmetProvider } from "react-helmet-async";
@@ -6,12 +6,33 @@ import "./App.css";
 
 import { LanguageProvider } from "./context/LanguageContext";
 import { ContactFormProvider } from "./context/ContactFormContext";
-import { ContactFormModal } from "./components/ContactFormModal";
-import { RetreatApplicationModal } from "./components/RetreatApplicationModal";
-import { WhatsAppButton } from "./components/WhatsAppButton";
-import { CookieBanner } from "./components/CookieBanner";
-import { CookieSettingsModal } from "./components/CookieSettingsModal";
 import { CookieConsentProvider, useCookieConsent } from "./context/CookieConsentContext";
+
+// Eagerly load critical components
+import Navigation from "./components/Navigation";
+import Home from "./pages/Home";
+
+// Lazy load non-critical components
+const ContactFormModal = lazy(() => import("./components/ContactFormModal").then(m => ({ default: m.ContactFormModal })));
+const RetreatApplicationModal = lazy(() => import("./components/RetreatApplicationModal").then(m => ({ default: m.RetreatApplicationModal })));
+const WhatsAppButton = lazy(() => import("./components/WhatsAppButton").then(m => ({ default: m.WhatsAppButton })));
+const CookieBanner = lazy(() => import("./components/CookieBanner").then(m => ({ default: m.CookieBanner })));
+const CookieSettingsModal = lazy(() => import("./components/CookieSettingsModal").then(m => ({ default: m.CookieSettingsModal })));
+const GrainOverlay = lazy(() => import("./components/GrainOverlay"));
+const Footer = lazy(() => import("./components/Footer"));
+
+// Lazy load pages
+const About = lazy(() => import("./pages/About"));
+const Method = lazy(() => import("./pages/Method"));
+const WorkWithMe = lazy(() => import("./pages/WorkWithMe"));
+const ExecutiveCoaching = lazy(() => import("./pages/services/ExecutiveCoaching"));
+const MeditationRetreat = lazy(() => import("./pages/services/MeditationRetreat"));
+const TeamFacilitation = lazy(() => import("./pages/services/TeamFacilitation"));
+const OrganizationalAdvisory = lazy(() => import("./pages/services/OrganizationalAdvisory"));
+const Contact = lazy(() => import("./pages/Contact"));
+const Impressum = lazy(() => import("./pages/legal/Impressum"));
+const PrivacyPolicy = lazy(() => import("./pages/legal/PrivacyPolicy"));
+const Terms = lazy(() => import("./pages/legal/Terms"));
 
 const GA4PageViewTracker = () => {
   const { pathname } = useLocation();
@@ -23,22 +44,6 @@ const GA4PageViewTracker = () => {
   }, [pathname, consent]);
   return null;
 };
-import GrainOverlay from "./components/GrainOverlay";
-import Navigation from "./components/Navigation";
-import Footer from "./components/Footer";
-
-import Home from "./pages/Home";
-import About from "./pages/About";
-import Method from "./pages/Method";
-import WorkWithMe from "./pages/WorkWithMe";
-import ExecutiveCoaching from "./pages/services/ExecutiveCoaching";
-import MeditationRetreat from "./pages/services/MeditationRetreat";
-import TeamFacilitation from "./pages/services/TeamFacilitation";
-import OrganizationalAdvisory from "./pages/services/OrganizationalAdvisory";
-import Contact from "./pages/Contact";
-import Impressum from "./pages/legal/Impressum";
-import PrivacyPolicy from "./pages/legal/PrivacyPolicy";
-import Terms from "./pages/legal/Terms";
 
 const ScrollToTop = () => {
   const { pathname } = useLocation();
@@ -60,30 +65,34 @@ const AppContent = () => (
     <GA4PageViewTracker />
     <Navigation />
     <main>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/about-me" element={<About />} />
-        <Route path="/how-i-work" element={<Method />} />
-        <Route path="/work-with-me" element={<WorkWithMe />} />
-        <Route path="/executive-coaching" element={<ExecutiveCoaching />} />
-        <Route path="/executive-retreats" element={<MeditationRetreat />} />
-        <Route path="/leadership-team-facilitation" element={<TeamFacilitation />} />
-        <Route path="/organizational-advisory" element={<OrganizationalAdvisory />} />
-        <Route path="/contact" element={<Contact />} />
-        <Route path="/impressum" element={<Impressum />} />
-        <Route path="/privacy" element={<PrivacyPolicy />} />
-        <Route path="/terms" element={<Terms />} />
-        {/* Redirects for old/duplicate routes */}
-        <Route path="/about" element={<Navigate to="/about-me" replace />} />
-        <Route path="/method" element={<Navigate to="/how-i-work" replace />} />
-        <Route path="/work-with-me/executive-coaching" element={<Navigate to="/executive-coaching" replace />} />
-        <Route path="/work-with-me/meditation-retreat" element={<Navigate to="/executive-retreats" replace />} />
-        <Route path="/work-with-me/team-facilitation" element={<Navigate to="/leadership-team-facilitation" replace />} />
-        <Route path="/work-with-me/organisational-advisory" element={<Navigate to="/organizational-advisory" replace />} />
-        <Route path="/legal" element={<Navigate to="/impressum" replace />} />
-      </Routes>
+      <Suspense fallback={<div style={{ minHeight: "100vh" }} />}>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/about-me" element={<About />} />
+          <Route path="/how-i-work" element={<Method />} />
+          <Route path="/work-with-me" element={<WorkWithMe />} />
+          <Route path="/executive-coaching" element={<ExecutiveCoaching />} />
+          <Route path="/executive-retreats" element={<MeditationRetreat />} />
+          <Route path="/leadership-team-facilitation" element={<TeamFacilitation />} />
+          <Route path="/organizational-advisory" element={<OrganizationalAdvisory />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/impressum" element={<Impressum />} />
+          <Route path="/privacy" element={<PrivacyPolicy />} />
+          <Route path="/terms" element={<Terms />} />
+          {/* Redirects for old/duplicate routes */}
+          <Route path="/about" element={<Navigate to="/about-me" replace />} />
+          <Route path="/method" element={<Navigate to="/how-i-work" replace />} />
+          <Route path="/work-with-me/executive-coaching" element={<Navigate to="/executive-coaching" replace />} />
+          <Route path="/work-with-me/meditation-retreat" element={<Navigate to="/executive-retreats" replace />} />
+          <Route path="/work-with-me/team-facilitation" element={<Navigate to="/leadership-team-facilitation" replace />} />
+          <Route path="/work-with-me/organisational-advisory" element={<Navigate to="/organizational-advisory" replace />} />
+          <Route path="/legal" element={<Navigate to="/impressum" replace />} />
+        </Routes>
+      </Suspense>
     </main>
-    <Footer />
+    <Suspense fallback={null}>
+      <Footer />
+    </Suspense>
   </>
 );
 
@@ -95,13 +104,17 @@ function App() {
           <BrowserRouter>
             <ContactFormProvider>
               <div className="App">
-                <GrainOverlay />
+                <Suspense fallback={null}>
+                  <GrainOverlay />
+                </Suspense>
                 <AppContent />
-                <ContactFormModal />
-                <RetreatApplicationModal />
-                <WhatsAppButton />
-                <CookieBanner />
-                <CookieSettingsModal />
+                <Suspense fallback={null}>
+                  <ContactFormModal />
+                  <RetreatApplicationModal />
+                  <WhatsAppButton />
+                  <CookieBanner />
+                  <CookieSettingsModal />
+                </Suspense>
               </div>
             </ContactFormProvider>
           </BrowserRouter>

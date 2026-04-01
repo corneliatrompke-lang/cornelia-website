@@ -2,7 +2,7 @@ import React, { useState, useLayoutEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 const LOGO_MARK =
-  "/images/logo-mark.png";
+  "/ct-logo-mark.webp";
 
 const Preloader = ({ onComplete }) => {
   const [visible, setVisible] = useState(true);

@@ -5,7 +5,7 @@ import { Menu, X, ChevronDown, Globe } from "lucide-react";
 import { useLanguage } from "../context/LanguageContext";
 import { useContactForm } from "../context/ContactFormContext";
 
-const LOGO_NAV = "/ct-logo-nav.png";
+const LOGO_NAV = "/ct-logo-nav.webp";
 
 const Navigation = () => {
   const { lang, setLang, t } = useLanguage();
