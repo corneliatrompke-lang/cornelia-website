@@ -33,6 +33,9 @@ const Footer = () => {
               <img
                 src={LOGO_DARK}
                 alt="Cornelia Trompke Consulting & Coaching"
+                width={92}
+                height={44}
+                loading="lazy"
                 style={{
                   height: "44px",
                   width: "auto",

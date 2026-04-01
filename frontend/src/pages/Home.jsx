@@ -17,17 +17,17 @@ const PORTRAIT =
 
 // Brand logo ticker — Simple Icons CDN, rendered as black marks on ivory
 const TICKER_ITEMS = [
-  { name: "Metro AG",                  src: "/logos/metro-ag.png"        },
-  { name: "Metro.digital",             src: "/logos/metro-digital.png"   },
-  { name: "Tom Tailor",                src: "/logos/tom-tailor.avif"     },
-  { name: "KWS",                       src: "/logos/kws.jpg",       h: 38 },
-  { name: "Beiersdorf",                src: "/logos/beiersdorf.png"      },
-  { name: "A. Lange & Söhne",          src: "/logos/a-lange-soehne.svg",  h: 48 },
-  { name: "Fashion Digital",           src: "/logos/fashion-digital.jpg" },
-  { name: "Unite",                     src: "/logos/unite.png"           },
-  { name: "Otto",                      src: "/logos/otto-krahn-group.webp", h: 32 },
-  { name: "Riverty",                   src: "/logos/riverty.png"         },
-  { name: "ZAHORANSKY",                src: "/logos/zahoransky-ag.png",  h: 32 },
+  { name: "Metro AG",                  src: "/logos/metro-ag.png",        h: 28, w: 69 },
+  { name: "Metro.digital",             src: "/logos/metro-digital.png",   h: 28, w: 140 },
+  { name: "Tom Tailor",                src: "/logos/tom-tailor.avif",     h: 28, w: 115 },
+  { name: "KWS",                       src: "/logos/kws.jpg",             h: 38, w: 42 },
+  { name: "Beiersdorf",                src: "/logos/beiersdorf.png",      h: 28, w: 170 },
+  { name: "A. Lange & Söhne",          src: "/logos/a-lange-soehne.svg",  h: 48, w: 120 },
+  { name: "Fashion Digital",           src: "/logos/fashion-digital.jpg", h: 28, w: 77 },
+  { name: "Unite",                     src: "/logos/unite.png",           h: 28, w: 115 },
+  { name: "Otto",                      src: "/logos/otto-krahn-group.webp", h: 32, w: 80 },
+  { name: "Riverty",                   src: "/logos/riverty.png",         h: 28, w: 249 },
+  { name: "ZAHORANSKY",                src: "/logos/zahoransky-ag.png",   h: 32, w: 159 },
 ];
 
 // Hero videos — desktop and mobile variants
@@ -427,6 +427,8 @@ const Home = () => {
                 src={item.src}
                 alt={item.name}
                 loading="lazy"
+                width={item.w || 100}
+                height={item.h || 28}
                 style={{
                   height: `${item.h || 28}px`,
                   width: "auto",
@@ -530,6 +532,8 @@ const Home = () => {
                     src={PORTRAIT}
                     alt="Cornelia Trompke"
                     loading="lazy"
+                    width={720}
+                    height={960}
                     className="w-full h-full object-cover"
                     style={{ filter: "contrast(1.05)" }}
                     initial={{ scale: 1.06 }}

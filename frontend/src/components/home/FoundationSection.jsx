@@ -264,6 +264,8 @@ export default function FoundationSection() {
                 src={BANNER_SRC}
                 alt=""
                 loading="lazy"
+                width={1200}
+                height={550}
                 style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center center" }}
               />
             </div>
@@ -290,6 +292,8 @@ export default function FoundationSection() {
                 src={CIRCLE_SRC}
                 alt=""
                 loading="lazy"
+                width={260}
+                height={260}
                 style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center top" }}
               />
             </div>
@@ -315,6 +319,8 @@ export default function FoundationSection() {
                 src={SQUARE_SRC}
                 alt=""
                 loading="lazy"
+                width={225}
+                height={225}
                 style={{ width: "100%", height: "100%", objectFit: "cover" }}
               />
             </div>

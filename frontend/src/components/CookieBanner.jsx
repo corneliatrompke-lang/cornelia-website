@@ -15,7 +15,7 @@ export const CookieBanner = () => {
     manage:    isDE ? "Einstellungen"  : "Manage Preferences",
     reject:    isDE ? "Alle ablehnen"  : "Reject All",
     accept:    isDE ? "Alle akzeptieren" : "Accept All",
-    learnMore: isDE ? "Mehr erfahren"  : "Learn more",
+    learnMore: isDE ? "Datenschutzerklärung lesen"  : "Read our Privacy Policy",
   };
 
   return (
