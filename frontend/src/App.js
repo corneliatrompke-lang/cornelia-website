@@ -1,6 +1,6 @@
 import React, { useEffect, lazy, Suspense } from "react";
 import { BrowserRouter, Routes, Route, Navigate, useLocation } from "react-router-dom";
-import { AnimatePresence } from "framer-motion";
+import { LazyMotion, domAnimation, AnimatePresence } from "framer-motion";
 import { HelmetProvider } from "react-helmet-async";
 import "./App.css";
 
@@ -103,19 +103,21 @@ function App() {
         <CookieConsentProvider>
           <BrowserRouter>
             <ContactFormProvider>
-              <div className="App">
-                <Suspense fallback={null}>
-                  <GrainOverlay />
-                </Suspense>
-                <AppContent />
-                <Suspense fallback={null}>
-                  <ContactFormModal />
-                  <RetreatApplicationModal />
-                  <WhatsAppButton />
-                  <CookieBanner />
-                  <CookieSettingsModal />
-                </Suspense>
-              </div>
+              <LazyMotion features={domAnimation} strict>
+                <div className="App">
+                  <Suspense fallback={null}>
+                    <GrainOverlay />
+                  </Suspense>
+                  <AppContent />
+                  <Suspense fallback={null}>
+                    <ContactFormModal />
+                    <RetreatApplicationModal />
+                    <WhatsAppButton />
+                    <CookieBanner />
+                    <CookieSettingsModal />
+                  </Suspense>
+                </div>
+              </LazyMotion>
             </ContactFormProvider>
           </BrowserRouter>
         </CookieConsentProvider>

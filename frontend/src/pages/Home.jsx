@@ -239,6 +239,8 @@ const Home = () => {
             playsInline
             aria-hidden="true"
             poster="/images/banner-image.webp"
+            preload="auto"
+            fetchPriority="high"
             onLoadedData={() => {
               if (!isMobile && videoRef.current) videoRef.current.playbackRate = 0.7;
             }}

@@ -63,31 +63,46 @@ export default function FoundationSection() {
     return () => window.removeEventListener("resize", check);
   }, []);
 
-  // Manual scroll tracking for reliability
+  // Manual scroll tracking for reliability (RAF-throttled to reduce reflows)
   useEffect(() => {
+    let rafId = null;
+    let ticking = false;
+    
     const handleScroll = () => {
-      if (!outerRef.current) return;
-      const rect = outerRef.current.getBoundingClientRect();
-      const sectionHeight = outerRef.current.offsetHeight;
-      const viewportHeight = window.innerHeight;
-      
-      // offset: ["start end", "end end"]
-      // Progress starts at 0 when section top reaches viewport bottom
-      // Progress ends at 1 when section bottom reaches viewport bottom
-      const startPoint = viewportHeight; // section top at viewport bottom
-      const endPoint = 0; // section bottom at viewport bottom
-      
-      const scrolled = startPoint - rect.top;
-      const totalScrollable = sectionHeight;
-      const progress = Math.max(0, Math.min(1, scrolled / totalScrollable));
-      
-      setFp(progress);
-      progressRef.current = progress;
+      if (!ticking) {
+        rafId = requestAnimationFrame(() => {
+          if (!outerRef.current) {
+            ticking = false;
+            return;
+          }
+          const rect = outerRef.current.getBoundingClientRect();
+          const sectionHeight = outerRef.current.offsetHeight;
+          const viewportHeight = window.innerHeight;
+          
+          // offset: ["start end", "end end"]
+          // Progress starts at 0 when section top reaches viewport bottom
+          // Progress ends at 1 when section bottom reaches viewport bottom
+          const startPoint = viewportHeight; // section top at viewport bottom
+          const endPoint = 0; // section bottom at viewport bottom
+          
+          const scrolled = startPoint - rect.top;
+          const totalScrollable = sectionHeight;
+          const progress = Math.max(0, Math.min(1, scrolled / totalScrollable));
+          
+          setFp(progress);
+          progressRef.current = progress;
+          ticking = false;
+        });
+        ticking = true;
+      }
     };
     
     window.addEventListener("scroll", handleScroll, { passive: true });
     handleScroll(); // Initial calculation
-    return () => window.removeEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      if (rafId) cancelAnimationFrame(rafId);
+    };
   }, []);
 
   // Desktop pins at fp ≈ 0.333 (100vh / 300vh)

@@ -47,25 +47,40 @@ export default function TransformationSection() {
   const isMobile = screenW < 768;
   const isNarrow = screenW < 1024;
 
-  // Manual scroll tracking for reliability
+  // Manual scroll tracking for reliability (RAF-throttled to reduce reflows)
   useEffect(() => {
+    let rafId = null;
+    let ticking = false;
+    
     const handleScroll = () => {
-      if (!sectionRef.current) return;
-      const rect = sectionRef.current.getBoundingClientRect();
-      const sectionHeight = sectionRef.current.offsetHeight;
-      const viewportHeight = window.innerHeight;
-      
-      // Calculate progress: 0 when section top hits viewport top, 1 when section bottom hits viewport bottom
-      const scrolled = -rect.top;
-      const totalScrollable = sectionHeight - viewportHeight;
-      const progress = Math.max(0, Math.min(1, scrolled / totalScrollable));
-      
-      setScrollProgress(progress);
+      if (!ticking) {
+        rafId = requestAnimationFrame(() => {
+          if (!sectionRef.current) {
+            ticking = false;
+            return;
+          }
+          const rect = sectionRef.current.getBoundingClientRect();
+          const sectionHeight = sectionRef.current.offsetHeight;
+          const viewportHeight = window.innerHeight;
+          
+          // Calculate progress: 0 when section top hits viewport top, 1 when section bottom hits viewport bottom
+          const scrolled = -rect.top;
+          const totalScrollable = sectionHeight - viewportHeight;
+          const progress = Math.max(0, Math.min(1, scrolled / totalScrollable));
+          
+          setScrollProgress(progress);
+          ticking = false;
+        });
+        ticking = true;
+      }
     };
     
     window.addEventListener("scroll", handleScroll, { passive: true });
     handleScroll(); // Initial calculation
-    return () => window.removeEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      if (rafId) cancelAnimationFrame(rafId);
+    };
   }, []);
 
   // Helper function to interpolate values based on scroll progress

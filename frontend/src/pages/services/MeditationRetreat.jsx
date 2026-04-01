@@ -342,7 +342,9 @@ const MeditationRetreat = () => {
             loop
             playsInline
             aria-hidden="true"
-            style={{ position: "absolute", left: 0, right: 0, top: 0, width: "100%", height: "115%", objectFit: "cover", objectPosition: "center 30%", y: heroBgY }}
+            poster="/images/banner-image.webp"
+            onError={(e) => { e.currentTarget.style.display = 'none'; }}
+            style={{ position: "absolute", left: 0, right: 0, top: 0, width: "100%", height: "115%", objectFit: "cover", objectPosition: "center 30%", y: heroBgY, backgroundColor: "#0F1A12" }}
           >
             <source src={isMobile ? HERO_VIDEO_MOBILE : HERO_VIDEO_DESKTOP} type="video/mp4" />
           </motion.video>
