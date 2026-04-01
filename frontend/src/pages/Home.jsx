@@ -30,11 +30,9 @@ const TICKER_ITEMS = [
   { name: "ZAHORANSKY",                src: "/logos/zahoransky-ag.png",   h: 32, w: 159 },
 ];
 
-// Hero videos — desktop and mobile variants
-const HERO_VIDEO_DESKTOP =
-  "https://customer-assets.emergentagent.com/job_e5136b8e-7455-4da3-b49e-b5fc614c9fe2/artifacts/j94zdljc_Hero%20-%20Desktop%20-%20final.mp4";
-const HERO_VIDEO_MOBILE =
-  "https://customer-assets.emergentagent.com/job_e5136b8e-7455-4da3-b49e-b5fc614c9fe2/artifacts/4u2ci5hj_Hero%20-%20Mobile%20-%20final.mp4";
+// Hero videos — local compressed versions for faster loading
+const HERO_VIDEO_DESKTOP = "/videos/hero-desktop.mp4";
+const HERO_VIDEO_MOBILE = "/videos/hero-mobile.mp4";
 
 const Home = () => {
   const { t } = useLanguage();

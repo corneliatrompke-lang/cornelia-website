@@ -9,10 +9,8 @@ import { useContactForm } from "../../context/ContactFormContext";
 import SEOHead from "../../components/SEOHead";
 
 // ─── Assets ───────────────────────────────────────────────────────────────────
-const HERO_VIDEO_DESKTOP =
-  "https://customer-assets.emergentagent.com/job_7c54d528-9ec4-446c-a068-82b34262f2cf/artifacts/i6p280t8_0_Meditation_Yoga_1920x1010.mp4";
-const HERO_VIDEO_MOBILE =
-  "https://customer-assets.emergentagent.com/job_e5136b8e-7455-4da3-b49e-b5fc614c9fe2/artifacts/7xb0jhlg_HERO%20-%20MOBILE3.mp4";
+const HERO_VIDEO_DESKTOP = "/videos/retreat-desktop.mp4";
+const HERO_VIDEO_MOBILE = "/videos/retreat-mobile.mp4";
 
 const GUIDE_BG =
   "/images/cornelia-retreat.webp";

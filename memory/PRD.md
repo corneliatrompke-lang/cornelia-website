@@ -68,6 +68,12 @@ Create a "Cinematic Editorial Luxury" marketing website for "Cornelia Trompke Co
 - [x] fetchPriority="high" on hero video
 - [x] Video error handling with poster fallback
 - [x] Simplified PostHog init (disabled autocapture, session recording)
+- [x] **Compressed and localized all hero videos:**
+  - Homepage Desktop: 16.4 MB → 1.2 MB (93% reduction)
+  - Homepage Mobile: 20.8 MB → 1.8 MB (91% reduction)  
+  - Retreat Desktop: 23 MB → 4.1 MB (82% reduction)
+  - Retreat Mobile: 15 MB → 2.6 MB (83% reduction)
+  - Total savings: ~65 MB → ~10 MB
 
 ### Logo Ticker
 Current logos:
