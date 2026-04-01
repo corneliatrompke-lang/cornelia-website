@@ -426,6 +426,7 @@ const Home = () => {
               <img
                 src={item.src}
                 alt={item.name}
+                loading="lazy"
                 style={{
                   height: `${item.h || 28}px`,
                   width: "auto",
@@ -528,6 +529,7 @@ const Home = () => {
                   <motion.img
                     src={PORTRAIT}
                     alt="Cornelia Trompke"
+                    loading="lazy"
                     className="w-full h-full object-cover"
                     style={{ filter: "contrast(1.05)" }}
                     initial={{ scale: 1.06 }}

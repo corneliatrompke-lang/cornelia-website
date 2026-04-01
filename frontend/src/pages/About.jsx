@@ -10,9 +10,9 @@ import { useContactForm } from "../context/ContactFormContext";
 import SEOHead from "../components/SEOHead";
 
 const HERO_IMG_DESKTOP =
-  "/images/about-hero-desktop.jpg";
+  "/images/about-hero-desktop.webp";
 const HERO_IMG_MOBILE =
-  "/images/about-hero-mobile.jpg";
+  "/images/about-hero-mobile.webp";
 
 const About = () => {
   const { t } = useLanguage();

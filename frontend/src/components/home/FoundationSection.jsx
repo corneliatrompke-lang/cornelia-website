@@ -2,9 +2,9 @@ import React, { useRef, useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { useLanguage } from "../../context/LanguageContext";
 
-const BANNER_SRC = "/images/banner-image.jpg";
-const CIRCLE_SRC = "/images/circle-image.jpg";
-const SQUARE_SRC = "/images/square-image.jpg";
+const BANNER_SRC = "/images/banner-image.webp";
+const CIRCLE_SRC = "/images/circle-image.webp";
+const SQUARE_SRC = "/images/square-image.webp";
 
 // Fixed nav height — sticky inner content starts below this
 const NAV_H = 80;
@@ -263,6 +263,7 @@ export default function FoundationSection() {
               <img
                 src={BANNER_SRC}
                 alt=""
+                loading="lazy"
                 style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center center" }}
               />
             </div>
@@ -288,6 +289,7 @@ export default function FoundationSection() {
               <img
                 src={CIRCLE_SRC}
                 alt=""
+                loading="lazy"
                 style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center top" }}
               />
             </div>
@@ -312,6 +314,7 @@ export default function FoundationSection() {
               <img
                 src={SQUARE_SRC}
                 alt=""
+                loading="lazy"
                 style={{ width: "100%", height: "100%", objectFit: "cover" }}
               />
             </div>
