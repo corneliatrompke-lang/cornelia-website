@@ -238,8 +238,13 @@ const Home = () => {
             loop
             playsInline
             aria-hidden="true"
+            poster="/images/banner-image.webp"
             onLoadedData={() => {
               if (!isMobile && videoRef.current) videoRef.current.playbackRate = 0.7;
+            }}
+            onError={(e) => {
+              // Hide video on error, poster will show as fallback
+              e.currentTarget.style.display = 'none';
             }}
             style={{
               position: "absolute",
@@ -251,6 +256,7 @@ const Home = () => {
               objectFit: "cover",
               objectPosition: "center",
               y: heroBgY,
+              backgroundColor: "#0F1A12",
             }}
           >
             <source
