@@ -612,6 +612,9 @@ const MeditationRetreat = () => {
                   <img
                     src={GUIDE_BG}
                     alt="Contemplative forest landscape"
+                    loading="lazy"
+                    width={600}
+                    height={340}
                     style={{
                       width: "100%",
                       height: "100%",

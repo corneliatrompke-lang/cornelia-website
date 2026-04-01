@@ -142,6 +142,9 @@ const About = () => {
             src={isMobile ? HERO_IMG_MOBILE : HERO_IMG_DESKTOP}
             alt=""
             aria-hidden="true"
+            width={1920}
+            height={1280}
+            fetchPriority="high"
             style={{
               position: "absolute",
               left: 0,

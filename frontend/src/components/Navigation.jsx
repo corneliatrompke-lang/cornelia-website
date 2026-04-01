@@ -71,6 +71,8 @@ const Navigation = () => {
             <img
               src={LOGO_NAV}
               alt="Cornelia Trompke Consulting & Coaching"
+              width={79}
+              height={38}
               style={{ height: 38, width: "auto", objectFit: "contain" }}
             />
           </Link>

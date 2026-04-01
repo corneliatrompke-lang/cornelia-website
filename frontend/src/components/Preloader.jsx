@@ -57,6 +57,8 @@ const Preloader = ({ onComplete }) => {
           <motion.img
             src={LOGO_MARK}
             alt="Cornelia Trompke"
+            width={110}
+            height={110}
             initial={{ opacity: 0, scale: 0.88 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1.1, ease: [0.25, 0.46, 0.45, 0.94], delay: 0.3 }}
