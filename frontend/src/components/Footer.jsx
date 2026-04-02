@@ -3,8 +3,7 @@ import { Link } from "react-router-dom";
 import { useLanguage } from "../context/LanguageContext";
 import { useCookieConsent } from "../context/CookieConsentContext";
 
-const LOGO_DARK =
-  "/images/logo-vertical.png";
+const LOGO_DARK = "/images/footer-logo.webp";
 
 const Footer = () => {
   const { t, language } = useLanguage();
@@ -33,11 +32,11 @@ const Footer = () => {
               <img
                 src={LOGO_DARK}
                 alt="Cornelia Trompke Consulting & Coaching"
-                width={92}
-                height={44}
+                width={180}
+                height={86}
                 loading="lazy"
                 style={{
-                  height: "44px",
+                  height: "86px",
                   width: "auto",
                   objectFit: "contain",
                   display: "block",

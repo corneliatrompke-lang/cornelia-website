@@ -309,7 +309,7 @@ export default function FoundationSection() {
                 loading="lazy"
                 width={260}
                 height={260}
-                style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center top" }}
+                style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center center" }}
               />
             </div>
 
@@ -336,7 +336,7 @@ export default function FoundationSection() {
                 loading="lazy"
                 width={225}
                 height={225}
-                style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center center" }}
               />
             </div>
 
