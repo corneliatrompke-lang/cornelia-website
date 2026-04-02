@@ -32,11 +32,11 @@ const Footer = () => {
               <img
                 src={LOGO_DARK}
                 alt="Cornelia Trompke Consulting & Coaching"
-                width={180}
-                height={86}
+                width={84}
+                height={40}
                 loading="lazy"
                 style={{
-                  height: "86px",
+                  height: "40px",
                   width: "auto",
                   objectFit: "contain",
                   display: "block",
