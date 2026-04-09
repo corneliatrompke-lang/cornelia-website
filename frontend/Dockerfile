@@ -14,17 +14,19 @@ ENV REACT_APP_BACKEND_URL=https://cornelia-website-backend-production.up.railway
 # Build the app
 RUN yarn build
 
-# Production stage with nginx
-FROM nginx:alpine
+# Production stage - use lightweight node with serve
+FROM node:20-alpine
 
-# Copy custom nginx configs
-COPY nginx.main.conf /etc/nginx/nginx.conf
-COPY nginx.conf /etc/nginx/conf.d/default.conf
+WORKDIR /app
 
-# Copy built files
-COPY --from=builder /app/build /usr/share/nginx/html
+# Install serve globally
+RUN npm install -g serve
+
+# Copy built files from builder
+COPY --from=builder /app/build ./build
 
 # Expose port 8080 for Railway
 EXPOSE 8080
 
-CMD ["nginx", "-g", "daemon off;"]
+# Serve the build folder on port 8080
+CMD ["serve", "-s", "build", "-l", "8080"]
