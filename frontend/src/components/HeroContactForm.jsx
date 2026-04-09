@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, ArrowRight, Check } from "lucide-react";
 import { useLanguage } from "../context/LanguageContext";
+import { BACKEND_URL } from "../lib/config";
 
 const COUNTRY_CODES = [
   { code: "+49", country: "DE" },
@@ -145,7 +146,7 @@ export const HeroContactForm = ({ onClose, noPadding = false, preselectedService
       send_from: form.sendFrom,
     };
     try {
-      const res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/contact`, {
+      const res = await fetch(`${BACKEND_URL}/api/contact`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),

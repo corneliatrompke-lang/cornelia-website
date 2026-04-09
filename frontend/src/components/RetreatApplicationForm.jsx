@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, ArrowRight, Check } from "lucide-react";
 import { useContactForm } from "../context/ContactFormContext";
+import { BACKEND_URL } from "../lib/config";
 
 const COUNTRY_CODES = [
   { code: "+49", country: "DE" },
@@ -137,7 +138,7 @@ export const RetreatApplicationForm = ({ onClose }) => {
       retreat_location: r?.location || "",
     };
     try {
-      const res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/contact`, {
+      const res = await fetch(`${BACKEND_URL}/api/contact`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
