@@ -17,7 +17,8 @@ RUN yarn build
 # Production stage with nginx
 FROM nginx:alpine
 
-# Copy custom nginx config
+# Copy custom nginx configs
+COPY nginx.main.conf /etc/nginx/nginx.conf
 COPY nginx.conf /etc/nginx/conf.d/default.conf
 
 # Copy built files
