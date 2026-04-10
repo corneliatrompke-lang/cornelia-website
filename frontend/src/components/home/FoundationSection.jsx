@@ -490,7 +490,7 @@ export default function FoundationSection() {
             <div
               style={{
                 position: "absolute",
-                top: "440px",
+                top: "clamp(300px, 45vh, 450px)",
                 left: "50%",
                 transform: "translateX(-50%)",
                 width: "clamp(440px, 55%, 676px)",
