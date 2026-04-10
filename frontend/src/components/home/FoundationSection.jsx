@@ -3,8 +3,6 @@ import { motion } from "framer-motion";
 import { useLanguage } from "../../context/LanguageContext";
 
 const BANNER_SRC = "/images/banner-image.webp";
-const CIRCLE_SRC = "/images/circle-image.webp";
-const SQUARE_SRC = "/images/square-image.webp";
 
 // Fixed nav height — sticky inner content starts below this
 const NAV_H = 80;
@@ -116,13 +114,9 @@ export default function FoundationSection() {
   const circleX = interpolate(fp, [0.37, 0.72], [620, 0]);
   const circleO = interpolate(fp, [0.37, 0.52], [0, 1]);
 
-  const squareX = interpolate(fp, [0.37, 0.72], [-560, 0]);
-  const squareY = interpolate(fp, [0.37, 0.72], [160, 0]);
-  const squareO = interpolate(fp, [0.37, 0.51], [0, 1]);
-
-  // ── Card rises after images settle ─────────────────────────────
-  const cardY = interpolate(fp, [0.67, 0.80], [180, 0]);
-  const cardO = interpolate(fp, [0.67, 0.77], [0, 1]);
+  // ── Card rises after banner settles ─────────────────────────────
+  const cardY = interpolate(fp, [0.50, 0.65], [180, 0]);
+  const cardO = interpolate(fp, [0.50, 0.62], [0, 1]);
 
   // ── Text cascade ───────────────────────────────────────────────
   const dividerScaleX = interpolate(fp, [0.79, 0.87], [0, 1]);
@@ -281,61 +275,6 @@ export default function FoundationSection() {
                 loading="lazy"
                 width={1200}
                 height={550}
-                style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center center" }}
-              />
-            </div>
-
-            {/* Circle — 260px, sweeps 620px from the right */}
-            <div
-              style={{
-                position: "absolute",
-                right: 80,
-                top: 0,
-                width: 260,
-                height: 260,
-                borderRadius: "50%",
-                overflow: "hidden",
-                border: "6px solid #F5F2EC",
-                boxShadow: "0 12px 48px rgba(18,18,18,0.20)",
-                zIndex: 2,
-                transform: `translateX(${circleX}px)`,
-                opacity: circleO,
-                transition: "transform 0.1s ease-out, opacity 0.1s ease-out",
-              }}
-            >
-              <img
-                src={CIRCLE_SRC}
-                alt=""
-                loading="lazy"
-                width={260}
-                height={260}
-                style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center center" }}
-              />
-            </div>
-
-            {/* Square — 225px, surges from lower-left */}
-            <div
-              style={{
-                position: "absolute",
-                left: 60,
-                top: 244,
-                width: 225,
-                height: 225,
-                overflow: "hidden",
-                border: "6px solid #F5F2EC",
-                boxShadow: "0 12px 48px rgba(18,18,18,0.20)",
-                zIndex: 2,
-                transform: `rotate(-5deg) translate(${squareX}px, ${squareY}px)`,
-                opacity: squareO,
-                transition: "transform 0.1s ease-out, opacity 0.1s ease-out",
-              }}
-            >
-              <img
-                src={SQUARE_SRC}
-                alt=""
-                loading="lazy"
-                width={225}
-                height={225}
                 style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center center" }}
               />
             </div>
