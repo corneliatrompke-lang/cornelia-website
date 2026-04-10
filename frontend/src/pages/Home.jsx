@@ -33,6 +33,8 @@ const TICKER_ITEMS = [
 // Hero videos — local compressed versions for faster loading
 const HERO_VIDEO_DESKTOP = "/videos/hero-desktop.mp4";
 const HERO_VIDEO_MOBILE = "/videos/hero-mobile.mp4";
+const HERO_POSTER_DESKTOP = "/images/hero-desktop-fallback.webp";
+const HERO_POSTER_MOBILE = "/images/hero-mobile-fallback.webp";
 
 const Home = () => {
   const { t } = useLanguage();
@@ -100,13 +102,6 @@ const Home = () => {
     return () => clearInterval(timerRef.current);
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [testimonials.length]);
-
-  // ── Desktop hero video — slow playback to 0.7x ───────────────────────────
-  useEffect(() => {
-    if (!isMobile && videoRef.current) {
-      videoRef.current.playbackRate = 0.7;
-    }
-  }, [isMobile]);
 
   const handleTestimonialClick = (i) => {
     setActiveTestimonial(i);
@@ -236,12 +231,9 @@ const Home = () => {
             loop
             playsInline
             aria-hidden="true"
-            poster="/images/hero-fallback.webp"
+            poster={isMobile ? HERO_POSTER_MOBILE : HERO_POSTER_DESKTOP}
             preload="auto"
             fetchPriority="high"
-            onLoadedData={() => {
-              if (!isMobile && videoRef.current) videoRef.current.playbackRate = 0.7;
-            }}
             onError={(e) => {
               // Hide video on error, poster will show as fallback
               e.currentTarget.style.display = 'none';
