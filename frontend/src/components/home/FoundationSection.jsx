@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import { useLanguage } from "../../context/LanguageContext";
 
 const BANNER_VIDEO_SRC = "/videos/foundation-intro.mp4";
-const BANNER_POSTER_SRC = "/images/banner-image.webp";
+const BANNER_POSTER_SRC = "/images/foundation-intro-fallback.webp";
 
 // Fixed nav height — sticky inner content starts below this
 const NAV_H = 80;
