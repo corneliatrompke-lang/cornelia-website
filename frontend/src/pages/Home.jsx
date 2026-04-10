@@ -236,7 +236,7 @@ const Home = () => {
             loop
             playsInline
             aria-hidden="true"
-            poster="/images/banner-image.webp"
+            poster="/images/hero-fallback.webp"
             preload="auto"
             fetchPriority="high"
             onLoadedData={() => {

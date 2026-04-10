@@ -490,7 +490,7 @@ export default function FoundationSection() {
             <div
               style={{
                 position: "absolute",
-                top: "clamp(300px, 45vh, 450px)",
+                top: "300px",
                 left: "50%",
                 transform: "translateX(-50%)",
                 width: "clamp(440px, 55%, 676px)",
@@ -501,7 +501,7 @@ export default function FoundationSection() {
               <div
                 style={{
                   background: "#F5F2EC",
-                  padding: "28px 28px 0",
+                  padding: "20px 20px",
                   transform: `translateY(${cardY}px)`,
                   opacity: cardO,
                   transition: "transform 0.1s ease-out, opacity 0.1s ease-out",
