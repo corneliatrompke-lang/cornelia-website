@@ -507,18 +507,6 @@ export default function FoundationSection() {
                   transition: "transform 0.1s ease-out, opacity 0.1s ease-out",
                 }}
               >
-                {/* Divider scales from centre */}
-                <div
-                  className="ct-divider mx-auto mb-6"
-                  style={{
-                    background: "rgba(18,18,18,0.2)",
-                    opacity: dividerO,
-                    transform: `scaleX(${dividerScaleX})`,
-                    transformOrigin: "center",
-                    transition: "transform 0.1s ease-out, opacity 0.1s ease-out",
-                  }}
-                />
-
                 {/* Heading — clips down from above, warm gold gradient tint */}
                 <div style={{ overflow: "hidden", position: "relative" }}>
                   <h2
