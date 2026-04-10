@@ -304,11 +304,11 @@ export default function FoundationSection() {
   }, []);
 
   return (
-    // ── Outer section: 300vh on desktop (scroll driver), 150vh on mobile ──
+    // ── Outer section: 300vh on desktop (scroll driver), 120vh on mobile ──
     <section
       ref={outerRef}
       className="bg-ivory"
-      style={{ height: isDesktop ? "300vh" : "200vh" }}
+      style={{ height: isDesktop ? "300vh" : "120vh" }}
       data-testid="philosophy-section"
     >
       {/* ── Pinned inner frame: sticky on both desktop and mobile ───── */}
