@@ -54,7 +54,7 @@ export default function FoundationSection() {
   const [fp, setFp] = useState(0);
   const [isVideoInView, setIsVideoInView] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
-  const [isMuted, setIsMuted] = useState(true); // Start muted - browsers block unmuted autoplay
+  const [isMuted, setIsMuted] = useState(false); // Try unmuted first
 
   // JS-based responsive detection — avoids CSS class specificity conflicts
   const [isDesktop, setIsDesktop] = useState(
@@ -83,24 +83,27 @@ export default function FoundationSection() {
     return () => observer.disconnect();
   }, []);
 
-  // Autoplay muted when in view (browsers block unmuted autoplay), pause when out of view
+  // Autoplay unmuted when in view, fall back to muted if browser blocks
   useEffect(() => {
     const video = videoRef.current;
     if (!video) return;
 
     if (isVideoInView) {
-      // Always start muted to ensure autoplay works
-      video.muted = true;
-      setIsMuted(true);
+      // Try to play with sound first
+      video.muted = false;
       const playPromise = video.play();
       
       if (playPromise !== undefined) {
         playPromise
           .then(() => {
             setIsPlaying(true);
+            setIsMuted(false);
           })
           .catch(() => {
-            // Even muted autoplay failed - do nothing
+            // Browser blocked unmuted autoplay, fall back to muted
+            video.muted = true;
+            setIsMuted(true);
+            video.play().then(() => setIsPlaying(true)).catch(() => {});
           });
       }
     } else {
