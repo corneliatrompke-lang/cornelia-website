@@ -64,30 +64,28 @@ export default function FoundationSection() {
     return () => window.removeEventListener("resize", check);
   }, []);
 
-  // Video play/pause based on visibility (plays only when fully in view)
+  // Video play/pause based on visibility (pauses when out of view)
   useEffect(() => {
     const video = videoRef.current;
     if (!video) return;
 
     const observer = new IntersectionObserver(
       ([entry]) => {
-        setIsVideoInView(entry.isIntersecting && entry.intersectionRatio >= 0.8);
+        setIsVideoInView(entry.isIntersecting && entry.intersectionRatio >= 0.5);
       },
-      { threshold: 0.8 }
+      { threshold: 0.5 }
     );
 
     observer.observe(video);
     return () => observer.disconnect();
   }, []);
 
-  // Control video playback based on visibility
+  // Pause video when scrolled out of view (but don't auto-play - user controls playback)
   useEffect(() => {
     const video = videoRef.current;
     if (!video) return;
 
-    if (isVideoInView) {
-      video.play().catch(() => {}); // Ignore autoplay errors
-    } else {
+    if (!isVideoInView && !video.paused) {
       video.pause();
     }
   }, [isVideoInView]);
@@ -302,12 +300,18 @@ export default function FoundationSection() {
             >
               <video
                 ref={videoRef}
-                muted
                 loop
                 playsInline
+                controls
                 poster={BANNER_POSTER_SRC}
                 preload="metadata"
-                style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center center" }}
+                style={{ 
+                  width: "100%", 
+                  height: "100%", 
+                  objectFit: "cover", 
+                  objectPosition: "center center",
+                  borderRadius: "4px",
+                }}
               >
                 <source src={BANNER_VIDEO_SRC} type="video/mp4" />
               </video>
