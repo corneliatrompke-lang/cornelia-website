@@ -60,11 +60,71 @@ export default function FoundationSection() {
   const [isDesktop, setIsDesktop] = useState(
     typeof window !== "undefined" ? window.innerWidth >= 768 : true
   );
+  
+  // Track viewport height for dynamic positioning
+  const [viewportHeight, setViewportHeight] = useState(
+    typeof window !== "undefined" ? window.innerHeight : 800
+  );
+  
   useEffect(() => {
-    const check = () => setIsDesktop(window.innerWidth >= 768);
+    const check = () => {
+      setIsDesktop(window.innerWidth >= 768);
+      setViewportHeight(window.innerHeight);
+    };
     window.addEventListener("resize", check);
     return () => window.removeEventListener("resize", check);
   }, []);
+  
+  // Calculate dynamic values based on viewport
+  const isConstrainedHeight = viewportHeight < 700;
+  const isVeryConstrainedHeight = viewportHeight < 550;
+  
+  // Video banner height: clamp(350px, 55vh, 550px)
+  const videoHeight = Math.min(550, Math.max(350, viewportHeight * 0.55));
+  
+  // Content wrapper top: position just below video with overlap
+  // For normal viewports: use the clamp value
+  // For constrained viewports: position based on actual video height with less overlap
+  const getContentWrapperTop = () => {
+    if (isVeryConstrainedHeight) {
+      return `${videoHeight - 60}px`; // Minimal overlap for very small viewports
+    }
+    if (isConstrainedHeight) {
+      return `${videoHeight - 80}px`; // Reduced overlap for constrained viewports
+    }
+    return "clamp(350px, 50vh, 500px)"; // Original value for normal viewports
+  };
+  
+  // Max height for content wrapper to prevent overflow
+  const getContentWrapperMaxHeight = () => {
+    if (isVeryConstrainedHeight) {
+      return `${viewportHeight - videoHeight + 40}px`;
+    }
+    if (isConstrainedHeight) {
+      return `${viewportHeight - videoHeight + 60}px`;
+    }
+    return "none";
+  };
+  
+  // Dynamic padding based on viewport constraints
+  const getContentPadding = () => {
+    if (isVeryConstrainedHeight) return "12px 16px";
+    if (isConstrainedHeight) return "16px 18px";
+    return "20px 20px";
+  };
+  
+  // Dynamic font sizes for constrained viewports
+  const getHeadingFontSize = () => {
+    if (isVeryConstrainedHeight) return "clamp(20px, 2.8vw, 32px)";
+    if (isConstrainedHeight) return "clamp(22px, 3vw, 38px)";
+    return "clamp(26px, 3.2vw, 44px)";
+  };
+  
+  const getParagraphFontSize = () => {
+    if (isVeryConstrainedHeight) return "13px";
+    if (isConstrainedHeight) return "14px";
+    return "16px";
+  };
 
   // Video play/pause based on visibility
   useEffect(() => {
@@ -490,18 +550,20 @@ export default function FoundationSection() {
             <div
               style={{
                 position: "absolute",
-                top: "clamp(350px, 50vh, 500px)",
+                top: getContentWrapperTop(),
                 left: "50%",
                 transform: "translateX(-50%)",
                 width: "clamp(440px, 55%, 676px)",
                 textAlign: "center",
                 zIndex: 3,
+                maxHeight: getContentWrapperMaxHeight(),
+                overflowY: isConstrainedHeight ? "auto" : "visible",
               }}
             >
               <div
                 style={{
                   background: "#F5F2EC",
-                  padding: "20px 20px",
+                  padding: getContentPadding(),
                   transform: `translateY(${cardY}px)`,
                   opacity: cardO,
                   transition: "transform 0.1s ease-out, opacity 0.1s ease-out",
@@ -513,7 +575,7 @@ export default function FoundationSection() {
                     className="leading-[1.15]"
                     style={{
                       fontFamily: "Figtree, sans-serif",
-                      fontSize: "clamp(26px, 3.2vw, 44px)",
+                      fontSize: getHeadingFontSize(),
                       fontWeight: 400,
                       background: "linear-gradient(160deg, #121212 30%, #3D2916 100%)",
                       WebkitBackgroundClip: "text",
@@ -538,7 +600,7 @@ export default function FoundationSection() {
                         className="text-charcoal/65 mt-5 leading-relaxed"
                         style={{
                           fontFamily: "Manrope, sans-serif",
-                          fontSize: "16px",
+                          fontSize: getParagraphFontSize(),
                           fontWeight: 300,
                           transform: `translateY(${py}px)`,
                           opacity: po,
