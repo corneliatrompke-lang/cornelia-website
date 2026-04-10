@@ -2,7 +2,8 @@ import React, { useRef, useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { useLanguage } from "../../context/LanguageContext";
 
-const BANNER_SRC = "/images/banner-image.webp";
+const BANNER_VIDEO_SRC = "/videos/foundation-intro.mp4";
+const BANNER_POSTER_SRC = "/images/banner-image.webp";
 
 // Fixed nav height — sticky inner content starts below this
 const NAV_H = 80;
@@ -46,10 +47,12 @@ export default function FoundationSection() {
   const { t } = useLanguage();
   const outerRef  = useRef(null);
   const canvasRef = useRef(null);
+  const videoRef = useRef(null);
   const particlesRef = useRef([]);
   const progressRef  = useRef(0);
   const rafRef = useRef(null);
   const [fp, setFp] = useState(0);
+  const [isVideoInView, setIsVideoInView] = useState(false);
 
   // JS-based responsive detection — avoids CSS class specificity conflicts
   const [isDesktop, setIsDesktop] = useState(
@@ -60,6 +63,34 @@ export default function FoundationSection() {
     window.addEventListener("resize", check);
     return () => window.removeEventListener("resize", check);
   }, []);
+
+  // Video play/pause based on visibility (plays only when fully in view)
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsVideoInView(entry.isIntersecting && entry.intersectionRatio >= 0.8);
+      },
+      { threshold: 0.8 }
+    );
+
+    observer.observe(video);
+    return () => observer.disconnect();
+  }, []);
+
+  // Control video playback based on visibility
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    if (isVideoInView) {
+      video.play().catch(() => {}); // Ignore autoplay errors
+    } else {
+      video.pause();
+    }
+  }, [isVideoInView]);
 
   // Manual scroll tracking for reliability (RAF-throttled to reduce reflows)
   useEffect(() => {
@@ -269,14 +300,17 @@ export default function FoundationSection() {
                 transition: "transform 0.1s ease-out",
               }}
             >
-              <img
-                src={BANNER_SRC}
-                alt=""
-                loading="lazy"
-                width={1200}
-                height={550}
+              <video
+                ref={videoRef}
+                muted
+                loop
+                playsInline
+                poster={BANNER_POSTER_SRC}
+                preload="metadata"
                 style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center center" }}
-              />
+              >
+                <source src={BANNER_VIDEO_SRC} type="video/mp4" />
+              </video>
             </div>
 
             {/* Card centering wrapper
