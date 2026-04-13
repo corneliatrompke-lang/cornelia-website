@@ -94,6 +94,18 @@ const AppContent = () => (
           <Route path="/language/" element={<Navigate to="/" replace />} />
           <Route path="/blog" element={<Navigate to="/" replace />} />
           <Route path="/blog/" element={<Navigate to="/" replace />} />
+          {/* Old legal page URLs from previous website */}
+          <Route path="/imprint" element={<Navigate to="/impressum" replace />} />
+          <Route path="/terms-conditions" element={<Navigate to="/terms" replace />} />
+          <Route path="/privacy-policy" element={<Navigate to="/privacy" replace />} />
+          {/* Old German legal page URLs */}
+          <Route path="/haftungsausschluss" element={<Navigate to="/impressum" replace />} />
+          <Route path="/allgemeine-geschftsbedingungen" element={<Navigate to="/terms" replace />} />
+          <Route path="/allgemeine-geschaeftsbedingungen" element={<Navigate to="/terms" replace />} />
+          {/* Old content pages from previous website */}
+          <Route path="/more-than-coaching" element={<Navigate to="/how-i-work" replace />} />
+          <Route path="/philanthropy-1" element={<Navigate to="/about-me" replace />} />
+          <Route path="/philanthropy" element={<Navigate to="/about-me" replace />} />
         </Routes>
       </Suspense>
     </main>
