@@ -1,5 +1,10 @@
 User-agent: *
 Allow: /
 Disallow: /api/
+Disallow: /*?lang=
+Disallow: /*?*lang=
+
+# Clean URLs only - prevent duplicate content from query params
+Clean-param: lang /
 
 Sitemap: https://www.corneliatrompke.com/sitemap.xml

@@ -87,6 +87,13 @@ const AppContent = () => (
           <Route path="/work-with-me/team-facilitation" element={<Navigate to="/leadership-team-facilitation" replace />} />
           <Route path="/work-with-me/organisational-advisory" element={<Navigate to="/organizational-advisory" replace />} />
           <Route path="/legal" element={<Navigate to="/impressum" replace />} />
+          {/* Fix duplicate/non-existent pages flagged by Google Search Console */}
+          <Route path="/home" element={<Navigate to="/" replace />} />
+          <Route path="/home/" element={<Navigate to="/" replace />} />
+          <Route path="/language" element={<Navigate to="/" replace />} />
+          <Route path="/language/" element={<Navigate to="/" replace />} />
+          <Route path="/blog" element={<Navigate to="/" replace />} />
+          <Route path="/blog/" element={<Navigate to="/" replace />} />
         </Routes>
       </Suspense>
     </main>
