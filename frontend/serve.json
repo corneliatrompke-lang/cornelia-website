@@ -1,4 +1,14 @@
 {
+  "redirects": [
+    {
+      "source": "/**",
+      "destination": "https://www.corneliatrompke.com/:splat",
+      "type": 301,
+      "headers": {
+        "host": "corneliatrompke.com"
+      }
+    }
+  ],
   "headers": [
     {
       "source": "**/*.@(jpg|jpeg|gif|png|webp|avif|svg|ico)",
