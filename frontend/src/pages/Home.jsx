@@ -533,7 +533,7 @@ const Home = () => {
                     width={720}
                     height={720}
                     className="w-full h-full object-cover"
-                    style={{ filter: "contrast(1.05)", objectPosition: "30% center" }}
+                    style={{ filter: "contrast(1.05)", objectPosition: "-30% center" }}
                     initial={{ scale: 1.06 }}
                     whileInView={{ scale: 1 }}
                     transition={{ duration: 1.2, ease: [0.25, 0.46, 0.45, 0.94] }}
