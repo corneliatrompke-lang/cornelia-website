@@ -532,7 +532,7 @@ const Home = () => {
                     loading="lazy"
                     width={720}
                     height={720}
-                    className="w-full h-full object-contain"
+                    className="w-full h-full object-cover"
                     style={{ filter: "contrast(1.05)" }}
                     initial={{ scale: 1.06 }}
                     whileInView={{ scale: 1 }}
