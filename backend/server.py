@@ -93,8 +93,10 @@ async def submit_contact(submission: ContactSubmission):
                 logger.info(f"Forwarding to Apps Script: {APPS_SCRIPT_URL[:50]}...")
                 async with httpx.AsyncClient(timeout=30.0, follow_redirects=True) as http:
                     payload = submission.model_dump(exclude_none=True)
+                    logger.info(f"Payload being sent: {payload}")
                     response = await http.post(APPS_SCRIPT_URL, json=payload)
                     logger.info(f"Apps Script response: {response.status_code}")
+                    logger.info(f"Apps Script response body: {response.text[:500]}")
             except Exception as e:
                 logger.warning(f"Google Sheet sync failed (non-fatal): {e}")
         
