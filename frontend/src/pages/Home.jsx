@@ -520,7 +520,7 @@ const Home = () => {
               <ScrollReveal delay={0.1} direction="none">
                 <motion.div
                   className="relative overflow-hidden"
-                  style={{ aspectRatio: "3/4", maxHeight: isMobile ? "380px" : isNarrow ? "500px" : undefined, width: isMobile ? "260px" : "100%" }}
+                  style={{ aspectRatio: "3/4", maxHeight: isMobile ? "380px" : isNarrow ? "500px" : undefined, width: isMobile ? "260px" : "100%", backgroundColor: "#1a2b1d" }}
                   initial={{ opacity: 0, x: 40 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   transition={{ duration: 0.9, ease: [0.25, 0.46, 0.45, 0.94] }}
@@ -531,8 +531,8 @@ const Home = () => {
                     alt="Cornelia Trompke"
                     loading="lazy"
                     width={720}
-                    height={960}
-                    className="w-full h-full object-cover"
+                    height={720}
+                    className="w-full h-full object-contain"
                     style={{ filter: "contrast(1.05)" }}
                     initial={{ scale: 1.06 }}
                     whileInView={{ scale: 1 }}
