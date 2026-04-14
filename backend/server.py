@@ -19,7 +19,8 @@ mongo_url = os.environ["MONGO_URL"]
 client = AsyncIOMotorClient(mongo_url)
 db = client[os.environ["DB_NAME"]]
 
-APPS_SCRIPT_URL = os.environ.get("APPS_SCRIPT_URL", "")
+# Hardcoded Google Apps Script URL for form submissions
+APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzOruIUUtswoBdIqz3y6WG-Lkam5HEFpGJWY-XowLLuo808fgUn1soGtSPNBOlQ6m-F/exec"
 
 app = FastAPI(title="Cornelia Trompke API")
 api_router = APIRouter(prefix="/api")
