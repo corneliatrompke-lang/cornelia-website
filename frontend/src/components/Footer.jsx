@@ -2,8 +2,22 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useLanguage } from "../context/LanguageContext";
 import { useCookieConsent } from "../context/CookieConsentContext";
+import { Linkedin, Instagram } from "lucide-react";
 
 const LOGO_DARK = "/images/footer-logo.webp";
+
+const SOCIAL_LINKS = [
+  {
+    name: "LinkedIn",
+    url: "https://www.linkedin.com/in/cornelia-trompke",
+    icon: Linkedin,
+  },
+  {
+    name: "Instagram",
+    url: "https://www.instagram.com/liatrompke",
+    icon: Instagram,
+  },
+];
 
 const Footer = () => {
   const { t, language } = useLanguage();
@@ -68,6 +82,28 @@ const Footer = () => {
             >
               {t.footer.location}
             </p>
+            
+            {/* Social Icons */}
+            <div style={{ display: "flex", gap: "16px", marginTop: "20px" }}>
+              {SOCIAL_LINKS.map((social) => (
+                <a
+                  key={social.name}
+                  href={social.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={social.name}
+                  data-testid={`footer-social-${social.name.toLowerCase()}`}
+                  style={{
+                    color: "rgba(18,18,18,0.45)",
+                    transition: "color 0.2s ease",
+                  }}
+                  onMouseEnter={(e) => (e.currentTarget.style.color = "rgba(18,18,18,0.75)")}
+                  onMouseLeave={(e) => (e.currentTarget.style.color = "rgba(18,18,18,0.45)")}
+                >
+                  <social.icon size={20} strokeWidth={1.5} />
+                </a>
+              ))}
+            </div>
           </div>
 
           {/* Navigation */}
