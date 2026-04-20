@@ -4,8 +4,7 @@ import { MessageCircle, MapPin, Languages, Clock } from "lucide-react";
 import ScrollReveal from "../components/ScrollReveal";
 import { useLanguage } from "../context/LanguageContext";
 import SEOHead from "../components/SEOHead";
-
-const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
+import { BACKEND_URL } from "../lib/config";
 const WHATSAPP_NUMBER = "49030000000"; // Placeholder – update with real number
 
 const Contact = () => {

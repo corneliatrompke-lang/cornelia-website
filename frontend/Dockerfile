@@ -8,10 +8,8 @@ COPY . .
 # Install dependencies (ignore engine checks for compatibility)
 RUN yarn install --ignore-engines
 
-# Set build-time environment variable for React (hardcoded for Railway production)
-ENV REACT_APP_BACKEND_URL=https://cornelia-website-backend-production-1477.up.railway.app
-
-# Build the app
+# Build the app (REACT_APP_BACKEND_URL is intentionally NOT set here;
+# it is injected at runtime via start.sh so the same image works in any environment)
 RUN yarn build
 
 # Production stage - use lightweight node with serve
@@ -25,8 +23,12 @@ RUN npm install -g serve
 # Copy built files from builder
 COPY --from=builder /app/build ./build
 
+# Copy the runtime startup script and make it executable
+COPY start.sh ./start.sh
+RUN chmod +x ./start.sh
+
 # Expose port 8080 for Railway
 EXPOSE 8080
 
-# Serve the build folder on port 8080
-CMD ["serve", "-s", "build", "-l", "8080"]
+# start.sh writes config.js from REACT_APP_BACKEND_URL, then runs serve
+CMD ["./start.sh"]
